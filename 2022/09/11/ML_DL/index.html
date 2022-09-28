@@ -1,0 +1,1029 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="alleyf">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Deep_learning">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ML_DL">
+<meta property="og:url" content="https://alleyf.github.io/2022/09/11/ML_DL/index.html">
+<meta property="og:site_name" content="alleyf">
+<meta property="og:description" content="Deep_learning">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/image-20220912142745507.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/image-20220902190129721.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/image-20220902190439588.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/image-20220911193010646.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/a8c80653f39b479dab9f6867a638b64c405e79d6540c4307a22f43c4b0e228bc">
+<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/c8f06f423acc488fb391bca5dcf8f2b02d7444ef526f41599b6b430ae24659c1">
+<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/image-20220910232915712.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/image-20220911193234679.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/image-20220911193426778.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/image-20220911193512661.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/image-20220911193512661.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/image-20220911194420932.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/image-20220911195508553.png">
+<meta property="article:published_time" content="2022-09-10T16:26:00.000Z">
+<meta property="article:modified_time" content="2022-09-12T06:28:14.258Z">
+<meta property="article:author" content="alleyf">
+<meta property="article:tag" content="Numpy">
+<meta property="article:tag" content="Pandas">
+<meta property="article:tag" content="PIL">
+<meta property="article:tag" content="Matplotlib">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/image-20220912142745507.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>ML_DL - alleyf</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"alleyf.github.io","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":true,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"d57048846da607439cf11718741f2eb0","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?d57048846da607439cf11718741f2eb0";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Mr.Alleyf</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                Links
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="ML_DL"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        alleyf
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-09-11 00:26" pubdate>
+          September 11, 2022 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          7.5k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          63 mins
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> views
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">ML_DL</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    Last updated on 16 days ago
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="深度学习"><a href="#深度学习" class="headerlink" title="深度学习"></a>深度学习</h1><h2 id="基本步骤："><a href="#基本步骤：" class="headerlink" title="基本步骤："></a>基本步骤：</h2><ol>
+<li><p>模型假设</p>
+</li>
+<li><p>优化目标</p>
+</li>
+<li><p>寻解算法</p>
+<ul>
+<li><p>公式法：</p>
+</li>
+<li><p>梯度下降法:  </p>
+<ol>
+<li><p>方向</p>
+</li>
+<li><p>步长</p>
+</li>
+<li><p>特征缩放</p>
+</li>
+<li><p>梯度决定步长   </p>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/image-20220912142745507.png" srcset="/img/loading.gif" lazyload alt="image-20220912142745507"></p>
+<h2 id="实例："><a href="#实例：" class="headerlink" title="实例："></a>实例：</h2><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/image-20220902190129721.png" srcset="/img/loading.gif" lazyload style="zoom: 33%;" />
+
+<img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/image-20220902190439588.png" srcset="/img/loading.gif" lazyload style="zoom: 50%;" />
+
+<h2 id="常用的库"><a href="#常用的库" class="headerlink" title="常用的库"></a>常用的库</h2><ol>
+<li><p><strong>numpy</strong>是Python科学计算库的基础。包含了强大的N维数组对象和向量运算。</p>
+</li>
+<li><p><strong>pandas</strong>是建立在numpy基础上的高效数据分析处理库，是Python的重要数据分析库。</p>
+</li>
+<li><p><strong>Matplotlib</strong>是一个主要用于绘制二维图形的Python库。用途：绘图、可视化</p>
+</li>
+<li><p><strong>PIL</strong>库是一个具有强大图像处理能力的第三方库。用途：图像处理</p>
+</li>
+</ol>
+<hr>
+<h3 id="Numpy库"><a href="#Numpy库" class="headerlink" title="Numpy库"></a>Numpy库</h3><ul>
+<li>可以使用array函数从常规Python<strong>列表或元组</strong>中创建数组。得到的数组的类型是从Python列表中元素的类型推导出来的</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><br><span class="hljs-comment">#将列表转换为二维数组</span><br>array = np.array([[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>],<br>                 [<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>]])<br><span class="hljs-built_in">print</span>(array)<br><span class="hljs-comment">#将元组转换为二维数组</span><br>array = np.array(((<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>),<br>                 (<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>)))<br><span class="hljs-built_in">print</span>(array)<br><span class="hljs-comment">#将列表或元组转为一维数组</span><br>a = np.array([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>]) <br>b = np.array((<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>))<br><span class="hljs-built_in">print</span>(a,b)<br></code></pre></td></tr></table></figure>
+
+<h4 id="1-常用函数"><a href="#1-常用函数" class="headerlink" title="1.常用函数"></a>1.常用函数</h4><ul>
+<li><p>zeros():可以创建指定长度或者形状的全0数组</p>
+</li>
+<li><p>ones():可以创建指定长度或者形状的全1数组</p>
+</li>
+<li><p>empty():创建一个数组，其初始内容是随机的,取决于内存的状态</p>
+</li>
+<li><p>arange():创建一个指定处末位置和步长的数字数组</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python">zeroarray = np.zeros((<span class="hljs-number">3</span>,<span class="hljs-number">3</span>),dtype=<span class="hljs-string">&#x27;int64&#x27;</span>)<br><span class="hljs-built_in">print</span>(zeroarray)<br>onearray = np.ones((<span class="hljs-number">3</span>,<span class="hljs-number">4</span>),dtype=<span class="hljs-string">&#x27;int64&#x27;</span>)<br><span class="hljs-built_in">print</span>(onearray)<br>emptyarray = np.empty((<span class="hljs-number">3</span>,<span class="hljs-number">4</span>))<br><span class="hljs-built_in">print</span>(emptyarray)<br>array = np.arange( <span class="hljs-number">10</span>, <span class="hljs-number">31</span>,<span class="hljs-number">5</span> )<br><span class="hljs-built_in">print</span>(array)<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>输出数组的一些信息，如维度、形状、元素个数、元素类型等</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python">array = np.array([[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>],[<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>],[<span class="hljs-number">7</span>,<span class="hljs-number">8</span>,<span class="hljs-number">9</span>],[<span class="hljs-number">10</span>,<span class="hljs-number">11</span>,<span class="hljs-number">12</span>]])<br><span class="hljs-built_in">print</span>(array)<br><span class="hljs-comment">#数组维度</span><br><span class="hljs-built_in">print</span>(array.ndim)<br><span class="hljs-comment">#数组形状</span><br><span class="hljs-built_in">print</span>(array.shape)<br><span class="hljs-comment">#数组元素个数</span><br><span class="hljs-built_in">print</span>(array.size)<br><span class="hljs-comment">#数组元素类型</span><br><span class="hljs-built_in">print</span>(array.dtype)<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>reshape([m,n])重新定义数字的形状为m行n列。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python">array1 = np.arange(<span class="hljs-number">6</span>).reshape([<span class="hljs-number">2</span>,<span class="hljs-number">3</span>])<span class="hljs-comment">#重塑为2行3列</span><br><span class="hljs-built_in">print</span>(array1)<br><br><br>array2 = np.array([[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,[<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>]],dtype=np.int64).reshape([<span class="hljs-number">3</span>,<span class="hljs-number">2</span>])<span class="hljs-comment">#重塑为3行2列</span><br><span class="hljs-built_in">print</span>(array2)<br><br></code></pre></td></tr></table></figure>
+
+<h4 id="2-数组计算"><a href="#2-数组计算" class="headerlink" title="2.数组计算"></a>2.数组计算</h4><p><strong>注:大小相等的数组之间的任何算术运算都会将运算应用到元素级。同样，数组与标量的算术运算也会将那个标量值传播到各个元素.</strong></p>
+<ol>
+<li><p>矩阵基础运算：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python">arr1 = np.array([[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>],[<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>]])<br>arr2 = np.ones([<span class="hljs-number">2</span>,<span class="hljs-number">3</span>],dtype=np.int64)<br><br><span class="hljs-built_in">print</span>(arr1 + arr2)<br><span class="hljs-built_in">print</span>(arr1 - arr2)<br><span class="hljs-built_in">print</span>(arr1 * arr2)<br><span class="hljs-built_in">print</span>(arr1 / arr2)<br><span class="hljs-built_in">print</span>(arr1 ** <span class="hljs-number">2</span>)<br></code></pre></td></tr></table></figure></li>
+<li><p>矩阵乘法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">arr3 = np.array([[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>],[<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>]])<br>arr4 = np.ones([<span class="hljs-number">3</span>,<span class="hljs-number">2</span>],dtype=np.int64)<br><span class="hljs-built_in">print</span>(arr3)<br><span class="hljs-built_in">print</span>(arr4)<br><span class="hljs-built_in">print</span>(np.dot(arr3,arr4))<br></code></pre></td></tr></table></figure></li>
+<li><p>矩阵其他运算：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-built_in">print</span>(np.<span class="hljs-built_in">sum</span>(arr3,axis=<span class="hljs-number">1</span>)) <span class="hljs-comment">#axis=1,每一行求和 axie=0,每一列求和</span><br><span class="hljs-built_in">print</span>(np.<span class="hljs-built_in">max</span>(arr3))<br><span class="hljs-built_in">print</span>(np.<span class="hljs-built_in">min</span>(arr3))<br><span class="hljs-built_in">print</span>(np.mean(arr3))<br><span class="hljs-built_in">print</span>(np.argmax(arr3),axis=<span class="hljs-number">0</span>/<span class="hljs-number">1</span>)<span class="hljs-comment">#axis=1,每一行求最大值的索引 axie=0,每一列求最大值索引</span><br><span class="hljs-built_in">print</span>(np.argmin(arr3),axis=<span class="hljs-number">0</span>/<span class="hljs-number">1</span>)<span class="hljs-comment">#axis=1,每一行求最小值的索引 axie=0,每一列求最小值索引</span><br><span class="hljs-built_in">print</span>(arr3.transpose())<span class="hljs-comment">#求数组的转置矩阵</span><br><span class="hljs-built_in">print</span>(arr3.flatten())<span class="hljs-comment">#将数组降为一维</span><br></code></pre></td></tr></table></figure></li>
+</ol>
+<h4 id="3-数组的索引与切片"><a href="#3-数组的索引与切片" class="headerlink" title="3.数组的索引与切片"></a>3.数组的索引与切片</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python">arr5 = np.arange(<span class="hljs-number">0</span>,<span class="hljs-number">6</span>).reshape([<span class="hljs-number">2</span>,<span class="hljs-number">3</span>])<br><span class="hljs-built_in">print</span>(arr5)<br><span class="hljs-built_in">print</span>(arr5[<span class="hljs-number">1</span>])<span class="hljs-comment">#索引第一行</span><br><span class="hljs-built_in">print</span>(arr5[<span class="hljs-number">1</span>][<span class="hljs-number">2</span>])<span class="hljs-comment">#索引第一行第二列</span><br><span class="hljs-built_in">print</span>(arr5[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>])<span class="hljs-comment">#索引第一行第二列</span><br><span class="hljs-built_in">print</span>(arr5[<span class="hljs-number">1</span>,:])<span class="hljs-comment">#切片第一行</span><br><span class="hljs-built_in">print</span>(arr5[:,<span class="hljs-number">1</span>])<span class="hljs-comment">#切片第一列</span><br><span class="hljs-built_in">print</span>(arr5[<span class="hljs-number">1</span>,<span class="hljs-number">0</span>:<span class="hljs-number">2</span>])<span class="hljs-comment">#切片第一行第零列开始向后的两个元素，返回一个列表</span><br></code></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="4-线性代数常用库函数"><a href="#4-线性代数常用库函数" class="headerlink" title="4.线性代数常用库函数"></a>4.线性代数常用库函数</h4><p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/image-20220911193010646.png" srcset="/img/loading.gif" lazyload alt="image-20220911193010646"></p>
+<h3 id="Pandas库"><a href="#Pandas库" class="headerlink" title="Pandas库"></a>Pandas库</h3><p>注：提供高性能易用数据类型和分析工具；</p>
+<p>​        pandas基于numpy实现，常与numpy和matplotlib一同使用。</p>
+<p><strong>Pandas核心数据结构：</strong></p>
+<img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/a8c80653f39b479dab9f6867a638b64c405e79d6540c4307a22f43c4b0e228bc" srcset="/img/loading.gif" lazyload alt="img" style="zoom: 67%;" />
+
+<img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/c8f06f423acc488fb391bca5dcf8f2b02d7444ef526f41599b6b430ae24659c1" srcset="/img/loading.gif" lazyload alt="img" style="zoom: 50%;" />
+
+<h4 id="1-Series"><a href="#1-Series" class="headerlink" title="1. Series"></a>1. Series</h4><p>注：Series是一种类似于一维数组的对象，它由一维数组（各种numpy数据类    型）以及一组与之相关的数据标签（即索引）组成.可理解为带标签的一维数组，可存储整数、浮点数、字符串、Python 对象等类型的数据。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><br>s = pd.Series([<span class="hljs-string">&#x27;a&#x27;</span>,<span class="hljs-string">&#x27;b&#x27;</span>,<span class="hljs-string">&#x27;c&#x27;</span>,<span class="hljs-string">&#x27;d&#x27;</span>,<span class="hljs-string">&#x27;e&#x27;</span>])<span class="hljs-comment">#将列表转为series对象</span><br><span class="hljs-built_in">print</span>(s)<br></code></pre></td></tr></table></figure>
+
+<p>注：Series中可以使用index设置索引列表，与字典不同的是，Series允许索引重复。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#与字典不同的是：Series允许索引重复</span><br>s = pd.Series([<span class="hljs-string">&#x27;a&#x27;</span>,<span class="hljs-string">&#x27;b&#x27;</span>,<span class="hljs-string">&#x27;c&#x27;</span>,<span class="hljs-string">&#x27;d&#x27;</span>,<span class="hljs-string">&#x27;e&#x27;</span>],index=[<span class="hljs-number">100</span>,<span class="hljs-number">200</span>,<span class="hljs-number">100</span>,<span class="hljs-number">400</span>,<span class="hljs-number">500</span>])<br><span class="hljs-built_in">print</span>(s)<br>d = &#123;<span class="hljs-string">&#x27;b&#x27;</span>: <span class="hljs-number">1</span>, <span class="hljs-string">&#x27;a&#x27;</span>: <span class="hljs-number">0</span>, <span class="hljs-string">&#x27;c&#x27;</span>: <span class="hljs-number">2</span>&#125;<br>pd.Series(d)<br>d = &#123;<span class="hljs-string">&#x27;b&#x27;</span>: <span class="hljs-number">1</span>, <span class="hljs-string">&#x27;a&#x27;</span>: <span class="hljs-number">0</span>, <span class="hljs-string">&#x27;c&#x27;</span>: <span class="hljs-number">2</span>&#125;<span class="hljs-comment">#将字典实例化</span><br>pd.Series(d)<br><span class="hljs-built_in">print</span>(s.values)<span class="hljs-comment">#取键值</span><br><span class="hljs-built_in">print</span>(s.index)<span class="hljs-comment">#取键</span><br><span class="hljs-comment">#与普通numpy数组相比，可以通过索引的方式选取Series中的单个或一组值</span><br><span class="hljs-built_in">print</span>(s[<span class="hljs-number">100</span>])<br><span class="hljs-built_in">print</span>(s[[<span class="hljs-number">400</span>, <span class="hljs-number">500</span>]])<br><span class="hljs-comment">#对应元素求和</span><br><span class="hljs-built_in">print</span>(s+s)<br><span class="hljs-comment">#对应元素乘</span><br><span class="hljs-built_in">print</span>(s*<span class="hljs-number">3</span>)<br></code></pre></td></tr></table></figure>
+
+<p>注：Series中最重要的一个功能是它会在算术运算中基于标签自动对齐不同索引的数据。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs python">obj1 = pd.Series(&#123;<span class="hljs-string">&quot;Ohio&quot;</span>: <span class="hljs-number">35000</span>, <span class="hljs-string">&quot;Oregon&quot;</span>: <span class="hljs-number">16000</span>, <span class="hljs-string">&quot;Texas&quot;</span>: <span class="hljs-number">71000</span>, <span class="hljs-string">&quot;Utah&quot;</span>: <span class="hljs-number">5000</span>&#125;)<br><span class="hljs-built_in">print</span>(obj1)<br>obj2 = pd.Series(&#123;<span class="hljs-string">&quot;California&quot;</span>: np.nan, <span class="hljs-string">&quot;Ohio&quot;</span>: <span class="hljs-number">35000</span>, <span class="hljs-string">&quot;Oregon&quot;</span>: <span class="hljs-number">16000</span>, <span class="hljs-string">&quot;Texas&quot;</span>: <span class="hljs-number">71000</span>&#125;)<br><span class="hljs-built_in">print</span>(obj2)<br><span class="hljs-built_in">print</span>(obj1 + obj2)<br><br><span class="hljs-comment">#可以切片，基础运算时没有匹配的键值会被设为NaN</span><br>s = pd.Series(np.array([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>]), index=[<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-string">&#x27;c&#x27;</span>, <span class="hljs-string">&#x27;d&#x27;</span>, <span class="hljs-string">&#x27;e&#x27;</span>])<br><br><span class="hljs-built_in">print</span>(s[<span class="hljs-string">&#x27;a&#x27;</span>])<br><span class="hljs-built_in">print</span>(s[<span class="hljs-number">1</span>:])<br><br><span class="hljs-built_in">print</span>(s[:-<span class="hljs-number">1</span>])<br><br><span class="hljs-built_in">print</span>(s[<span class="hljs-number">1</span>:] + s[:-<span class="hljs-number">1</span>])<br></code></pre></td></tr></table></figure>
+
+<h4 id="2-DataFrame"><a href="#2-DataFrame" class="headerlink" title="2. DataFrame"></a>2. DataFrame</h4><p>注：</p>
+<ul>
+<li>DataFrame是一个表格型的数据结构，类似于Excel或sql表</li>
+</ul>
+<p>它含有一组有序的列，每列可以是不同的值类型（数值、字符串、布尔值等）</p>
+<p>DataFrame既有行索引也有列索引，它可以被看做由Series组成的字典（共用同一个索引）。</p>
+<ul>
+<li><strong>用多维数组字典、列表字典生成 DataFrame。</strong></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#如果指定了列顺序，则DataFrame的列就会按照指定顺序进行排列, 跟原Series一样，如果传入的列在数据中找不到，就会产生NAN值.</span><br>data = &#123;<span class="hljs-string">&#x27;state&#x27;</span>: [<span class="hljs-string">&#x27;Ohio&#x27;</span>, <span class="hljs-string">&#x27;Ohio&#x27;</span>, <span class="hljs-string">&#x27;Ohio&#x27;</span>, <span class="hljs-string">&#x27;Nevada&#x27;</span>, <span class="hljs-string">&#x27;Nevada&#x27;</span>], <span class="hljs-string">&#x27;year&#x27;</span>: [<span class="hljs-number">2000</span>, <span class="hljs-number">2001</span>, <span class="hljs-number">2002</span>, <span class="hljs-number">2001</span>, <span class="hljs-number">2002</span>], <span class="hljs-string">&#x27;pop&#x27;</span>: [<span class="hljs-number">1.5</span>, <span class="hljs-number">1.7</span>, <span class="hljs-number">3.6</span>, <span class="hljs-number">2.4</span>, <span class="hljs-number">2.9</span>]&#125;<br>frame = pd.DataFrame(data,columns=[<span class="hljs-string">&#x27;year&#x27;</span>, <span class="hljs-string">&#x27;state&#x27;</span>, <span class="hljs-string">&#x27;pop&#x27;</span>, <span class="hljs-string">&#x27;debt&#x27;</span>])<br><span class="hljs-built_in">print</span>(frame)<br></code></pre></td></tr></table></figure>
+
+<img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/image-20220910232915712.png" srcset="/img/loading.gif" lazyload alt="image-20220910232915712"  />
+
+<ul>
+<li><strong>用 Series 字典或字典生成 DataFrame, 即Series可以作为DataFrame的子集。</strong></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs python">d = &#123;<span class="hljs-string">&#x27;one&#x27;</span>: pd.Series([<span class="hljs-number">1.</span>, <span class="hljs-number">2.</span>, <span class="hljs-number">3.</span>], index=[<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-string">&#x27;c&#x27;</span>]),<br>     <span class="hljs-string">&#x27;two&#x27;</span>: pd.Series([<span class="hljs-number">1.</span>, <span class="hljs-number">2.</span>, <span class="hljs-number">3.</span>, <span class="hljs-number">4.</span>], index=[<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-string">&#x27;c&#x27;</span>, <span class="hljs-string">&#x27;d&#x27;</span>])&#125;<br><span class="hljs-built_in">print</span>(pd.DataFrame(d))<br><br><span class="hljs-comment">#通过类似字典标记的方式或属性的方式，可以将DataFrame的列获取为一个Series,返回的Series拥有原DataFrame相同的索引</span><br><span class="hljs-built_in">print</span>(frame2[<span class="hljs-string">&#x27;state&#x27;</span>])<br><br><span class="hljs-comment">#列可以通过赋值的方式进行修改,例如，给那个空的“delt”列赋上一个标量值或一组值</span><br>frame2[<span class="hljs-string">&#x27;debt&#x27;</span>] = <span class="hljs-number">16.5</span><br><span class="hljs-built_in">print</span>(frame2)<br><br><span class="hljs-comment">#新增一个Series</span><br>frame2[<span class="hljs-string">&#x27;new&#x27;</span>] = frame2[<span class="hljs-string">&#x27;debt&#x27;</span> ]* frame2[<span class="hljs-string">&#x27;pop&#x27;</span>] <br><span class="hljs-built_in">print</span>(frame2)<br><br><span class="hljs-comment">#用numpy数组赋值</span><br>frame2[<span class="hljs-string">&#x27;debt&#x27;</span>] = np.arange(<span class="hljs-number">5.</span>)<br><span class="hljs-built_in">print</span>(frame2)<br></code></pre></td></tr></table></figure>
+
+<h4 id="3-索引对象常用方法"><a href="#3-索引对象常用方法" class="headerlink" title="3. 索引对象常用方法"></a>3. 索引对象常用方法</h4><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/image-20220911193234679.png" srcset="/img/loading.gif" lazyload alt="image-20220911193234679" style="zoom:50%;" />
+
+<hr>
+<h3 id="PIL库"><a href="#PIL库" class="headerlink" title="PIL库"></a>PIL库</h3><p>注：</p>
+<ul>
+<li><p>PIL库是一个具有强大图像处理能力的第三方库。</p>
+</li>
+<li><p>在命令行下的安装方法: pip install pillow。</p>
+</li>
+<li><p>在使用过程中的弓|入方法: from PIL import Image。</p>
+</li>
+<li><p>图像的组成：由RGB三原色组成,RGB图像中，一种彩色由R、G、B三原色按照比例混合而成。0-255区分不同亮度的颜色。图像的数组表示：图像是一个由像素组成的矩阵，每个元素是一个RGB值。</p>
+</li>
+<li><p>Image 是 PIL 库中代表一个图像的类（对象）。</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> Image<br><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br><span class="hljs-comment">#显示matplotlib生成的图形</span><br>%matplotlib inline<br><br><span class="hljs-comment">#读取图片</span><br>img = Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;/home/aistudio/work/yushuxin.jpg&#x27;</span>) <br><br><span class="hljs-comment">#显示图片</span><br><span class="hljs-comment">#img.show() #自动调用计算机上显示图片的工具</span><br>plt.imshow(img)  <br>plt.show(img)   <br><br><span class="hljs-comment">#获得图像的模式和大小</span><br>img_mode = img.mode<br><span class="hljs-built_in">print</span>(img_mode)<br>width,height = img.size<br><span class="hljs-built_in">print</span>(width,height)<br><br><span class="hljs-comment">#将图片旋转45度</span><br>img_rotate = img.rotate(<span class="hljs-number">45</span>) <br><br><span class="hljs-comment">#左右镜像</span><br>img3_lr = img3.transpose(Image.FLIP_LEFT_RIGHT)<br><span class="hljs-comment">#上下镜像</span><br>img3_bt = img3.transpose(Image.FLIP_TOP_BOTTOM)<br><br><span class="hljs-comment">#缩放</span><br>width,height = img2.size<br>img2_resize_result = img2.resize((<span class="hljs-built_in">int</span>(width*<span class="hljs-number">0.6</span>),<span class="hljs-built_in">int</span>(height*<span class="hljs-number">0.6</span>)),Image.ANTIALIAS)<br><br><span class="hljs-comment">#剪切 crop()四个参数分别是：(左上角点的x坐标，左上角点的y坐标，右下角点的x坐标，右下角点的y坐标)</span><br>img1_crop_result = img1.crop((<span class="hljs-number">126</span>,<span class="hljs-number">0</span>,<span class="hljs-number">381</span>,<span class="hljs-number">300</span>))<br><span class="hljs-comment">#保存图片</span><br>img1_crop_result.save(<span class="hljs-string">&#x27;path&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="Matplotlib库"><a href="#Matplotlib库" class="headerlink" title="Matplotlib库"></a>Matplotlib库</h3><p>注：</p>
+<ul>
+<li>Matplotlib库由各种可视化类构成，内部结构复杂。</li>
+<li>matplotlib.pylot是绘制各类可视化图形的命令字库。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np <br><br><span class="hljs-comment">#显示matplotlib生成的图形</span><br>%matplotlib inline<br><br>x = np.linspace(-<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">50</span>) <span class="hljs-comment">#等差数列，从-1到1生成50个等间距的数的数组</span><br>y1 = <span class="hljs-number">2</span>*x + <span class="hljs-number">1</span><br>y2 = x**<span class="hljs-number">2</span><br><br><span class="hljs-comment">#传入x,y,通过plot()绘制出折线图 </span><br>plt.figure(figsize=(<span class="hljs-number">7</span>,<span class="hljs-number">5</span>))<span class="hljs-comment">#保持图像</span><br>plt.plot(x,y1,color=<span class="hljs-string">&#x27;red&#x27;</span>,linewidth=<span class="hljs-number">1</span>)<span class="hljs-comment">#连续图</span><br>plt.plot(x,y2,color=<span class="hljs-string">&#x27;blue&#x27;</span>,linewidth=<span class="hljs-number">5</span>)<br>plt.legend(handles=[l1,l2],labels=[<span class="hljs-string">&#x27;aa&#x27;</span>,<span class="hljs-string">&#x27;bb&#x27;</span>],loc=<span class="hljs-string">&#x27;best&#x27;</span>)<span class="hljs-comment">#图例</span><br>plt.xlabel(<span class="hljs-string">&#x27;x&#x27;</span>,fontsize=<span class="hljs-number">20</span>)<br>plt.ylabel(<span class="hljs-string">&#x27;y&#x27;</span>,fontsize=<span class="hljs-number">20</span>)<br>plt.xlim((<span class="hljs-number">0</span>,<span class="hljs-number">1</span>))  <span class="hljs-comment">#x轴只截取一段进行显示</span><br>plt.ylim((<span class="hljs-number">0</span>,<span class="hljs-number">1</span>))  <span class="hljs-comment">#y轴只截取一段进行显示</span><br>plt.show()<span class="hljs-comment">#显示图形</span><br><br><span class="hljs-comment">#绘制离散图</span><br>dots1 =np.random.rand(<span class="hljs-number">50</span>)<br>dots2 =np.random.rand(<span class="hljs-number">50</span>)<br>plt.scatter(dots1,dots2,c=<span class="hljs-string">&#x27;red&#x27;</span>,alpha=<span class="hljs-number">0.5</span>) <span class="hljs-comment">#c表示颜色，alpha表示透明度</span><br>plt.show()<br><br><span class="hljs-comment">#绘制直方图（柱状图）</span><br>x = np.arange(<span class="hljs-number">10</span>)<br>y = <span class="hljs-number">2</span>**x+<span class="hljs-number">10</span><br>plt.bar(x,y,facecolor=<span class="hljs-string">&#x27;#9999ff&#x27;</span>,edgecolor=<span class="hljs-string">&#x27;white&#x27;</span>)<br><span class="hljs-keyword">for</span> ax,ay <span class="hljs-keyword">in</span> <span class="hljs-built_in">zip</span>(x,y):<span class="hljs-comment">#顶部居中标注纵坐标</span><br>    plt.text(ax,ay,<span class="hljs-string">&#x27;%.1f&#x27;</span> % ay,ha=<span class="hljs-string">&#x27;center&#x27;</span>,va=<span class="hljs-string">&#x27;bottom&#x27;</span>)<br>plt.show()<br></code></pre></td></tr></table></figure>
+
+<h4 id="基础图标函数"><a href="#基础图标函数" class="headerlink" title="基础图标函数"></a>基础图标函数</h4><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/image-20220911193426778.png" srcset="/img/loading.gif" lazyload alt="image-20220911193426778" style="zoom:67%;" />
+
+<p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/image-20220911193512661.png" srcset="/img/loading.gif" lazyload alt="image-20220911193512661"></p>
+<p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/image-20220911193512661.png" srcset="/img/loading.gif" lazyload></p>
+<hr>
+<h2 id="数据增强"><a href="#数据增强" class="headerlink" title="数据增强"></a>数据增强</h2><p>简介：深层神经网络一般都需要大量的训练数据才能获得比较理想的结果。在数据量有限的情况下，可以通过数据增强( Data Augmentation )来增加训练样本的多样性，提高模型鲁棒性。<br>目的：</p>
+<ul>
+<li><p>增加数据量</p>
+</li>
+<li><p>采集更多的图像特征</p>
+</li>
+<li><p>使网络可见更多的数据变化</p>
+</li>
+<li><p>提高模型的泛化能力</p>
+</li>
+</ul>
+<p>增强方式：</p>
+<img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/image-20220911194420932.png" srcset="/img/loading.gif" lazyload alt="image-20220911194420932" style="zoom: 80%;" />
+
+<h3 id="1-随机旋转"><a href="#1-随机旋转" class="headerlink" title="1. 随机旋转"></a>1. 随机旋转</h3><p>注：<strong>使用numpy+ PIL库进行图像的随机旋转</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">rotate_image</span>(<span class="hljs-params"> img </span>): <br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    图像增强，增加随机旋转角度</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    angle = np.random.randint( -<span class="hljs-number">14</span>, <span class="hljs-number">15</span>)<br>    img = img.rotate(angle)<br>    <span class="hljs-keyword">return</span> img<br><br></code></pre></td></tr></table></figure>
+
+<h3 id="2-随机亮度调整"><a href="#2-随机亮度调整" class="headerlink" title="2. 随机亮度调整"></a>2. 随机亮度调整</h3><p>注：使用numpy+ PIL库进行图像的随机亮度调整</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">random_brightness</span>(<span class="hljs-params">img</span>): <br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    图像增强，亮度调整</span><br><span class="hljs-string">    :param img:</span><br><span class="hljs-string">    :return:</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    prob = np.random.uniform(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>)<br>    <span class="hljs-keyword">if</span> prob &lt; train_parameters[<span class="hljs-string">&#x27;image_enhance_strategy&#x27;</span>][<span class="hljs-string">&#x27;brightness_prob&#x27;</span>]:<br>        brightness_delta = train_parameters[<span class="hljs-string">&#x27;image_enhance_strategy&#x27;</span>][<span class="hljs-string">&#x27;brightness_delta&#x27;</span>] <br>        delta = np.random.uniform(-brightness_delta, brightness_delta) + <span class="hljs-number">1</span><br>        img = ImageEnhance.Brightness(img).enhance(delta)<br>    <span class="hljs-keyword">return</span> img<br></code></pre></td></tr></table></figure>
+
+<h3 id="3-训练过程可视化"><a href="#3-训练过程可视化" class="headerlink" title="3. 训练过程可视化"></a>3. 训练过程可视化</h3><p>注：使用Matplotlib库绘制深度学习训练过程中,随着数据的增加，误差与准确率的变化趋势,从而对模型效果进行评估。观察到模型的误差相对较低,而准确率较高，接下来可以使用该模型进行预测。</p>
+<p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/image-20220911195508553.png" srcset="/img/loading.gif" lazyload alt="image-20220911195508553"></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/MachineLearning/" class="category-chain-item">MachineLearning</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Numpy/">#Numpy</a>
+      
+        <a href="/tags/Pandas/">#Pandas</a>
+      
+        <a href="/tags/PIL/">#PIL</a>
+      
+        <a href="/tags/Matplotlib/">#Matplotlib</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>ML_DL</div>
+      <div>https://alleyf.github.io/2022/09/11/ML_DL/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>alleyf</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>September 11, 2022</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Updated on</div>
+          <div>September 12, 2022</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/09/22/SignalSample/" title="SignalSample">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">SignalSample</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/09/10/Html5_Css_Js/" title="Html5+Css+Js">
+                        <span class="hidden-mobile">Html5+Css+Js</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.7.2/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"636f2864e051a199b91c","clientSecret":"5185fd11115bbcd8d2f636bc80de6bed98ed14c1","repo":"Gitalk","owner":"Alleyf","admin":["Alleyf"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":false,"proxy":"https://shielded-brushlands-08810.herokuapp.com/https://github.com/login/oauth/access_token"},
+          {
+            id: 'a209bf112edde5d75a5d8f9fbfa81c64'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://github.com/Alleyf" target="_blank" rel="nofollow noopener"><span>Alleyf</span></a> <i class="iconfont icon-love"></i> <a href="https://fcsy.fit" target="_blank" rel="nofollow noopener"><span>Homepage</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        Views: 
+        <span id="busuanzi_value_site_pv"></span>
+        
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        Visitors: 
+        <span id="busuanzi_value_site_uv"></span>
+        
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      陕ICP备2022010038号
+    </a>
+  </span>
+  
+    
+      <span>
+        <a
+          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=2022010038"
+          rel="nofollow noopener"
+          class="beian-police"
+          target="_blank"
+        >
+          
+            <span style="visibility: hidden; width: 0">|</span>
+            <img src="/img/police_beian.png" srcset="/img/loading.gif" lazyload alt="police-icon"/>
+          
+          <span>陕公网安备2022010038号</span>
+        </a>
+      </span>
+    
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.1/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
