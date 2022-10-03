@@ -18,36 +18,23 @@
   <meta name="author" content="alleyf">
   <meta name="keywords" content="">
   
-    <meta name="description" content="a lot of notes dealing with usage of QuartusII">
+    <meta name="description" content="FPGA_NotesVerilog语法语句块 顺序块：beginend 并行块：forkjoin  多路分支语句1234567891011case()    condition1    condition2    endcasecasez(sel)          4&amp;#x27;b???1:     sout_t &#x3D; p0 ;          4&amp;#x27;b??1?:     sout_t">
 <meta property="og:type" content="article">
-<meta property="og:title" content="QuartusIIUsage">
-<meta property="og:url" content="https://alleyf.github.io/2022/09/23/QuartusUsage/index.html">
+<meta property="og:title" content="alleyf">
+<meta property="og:url" content="https://alleyf.github.io/2022/10/03/FPGA/index.html">
 <meta property="og:site_name" content="alleyf">
-<meta property="og:description" content="a lot of notes dealing with usage of QuartusII">
+<meta property="og:description" content="FPGA_NotesVerilog语法语句块 顺序块：beginend 并行块：forkjoin  多路分支语句1234567891011case()    condition1    condition2    endcasecasez(sel)          4&amp;#x27;b???1:     sout_t &#x3D; p0 ;          4&amp;#x27;b??1?:     sout_t">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/image-20220924165154538.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/TwoDivF.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/EightDivf.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/FourDiv.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/EightDiv.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/image-20220924170739029.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/SeqGn.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/SeGn.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/image-20220924171445232.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/EnShake.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/EmShake.png">
-<meta property="article:published_time" content="2022-09-23T04:00:00.000Z">
-<meta property="article:modified_time" content="2022-09-24T09:21:59.492Z">
+<meta property="article:published_time" content="2022-10-03T01:10:12.874Z">
+<meta property="article:modified_time" content="2022-10-03T01:38:37.706Z">
 <meta property="article:author" content="alleyf">
-<meta property="article:tag" content="QuartusII">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/image-20220924165154538.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>QuartusIIUsage - alleyf</title>
+  <title>alleyf</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -252,7 +239,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="QuartusIIUsage"></span>
+            <span id="subtitle" data-typed-text=""></span>
           
         </div>
 
@@ -268,8 +255,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-09-23 12:00" pubdate>
-          September 23, 2022 pm
+        <time datetime="2022-10-03 09:10" pubdate>
+          October 3, 2022 am
         </time>
       </span>
     
@@ -280,7 +267,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          946 words
+          3k words
         
       </span>
     
@@ -291,7 +278,7 @@
         
         
         
-          8 mins
+          25 mins
         
       </span>
     
@@ -337,12 +324,12 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">QuartusIIUsage</h1>
+            <h1 style="display: none"></h1>
             
               <p class="note note-info">
                 
                   
-                    Last updated on 9 days ago
+                    Last updated on a few seconds ago
                   
                 
               </p>
@@ -350,31 +337,56 @@
             
               <div class="markdown-body">
                 
-                <h1 id="The-Usage-of-QuartusII-And-ModelSim"><a href="#The-Usage-of-QuartusII-And-ModelSim" class="headerlink" title="The Usage of QuartusII And ModelSim"></a>The Usage of QuartusII And ModelSim</h1><h2 id="习题3-1"><a href="#习题3-1" class="headerlink" title="习题3.1"></a>习题3.1</h2><h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>基于 Quartus Prime 软件，采用原理图设计方式用 D 触发器设计一个 2 分频电路；在此基础上， 设计一个 4 分频和 8 分频电路并进行仿真。（参考设计如图 3.67 所示）</p>
-<p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/image-20220924165154538.png" srcset="/img/loading.gif" lazyload></p>
-<p>​                                                        图 3.67 2 分频电路</p>
-<h3 id="电路原理图设计"><a href="#电路原理图设计" class="headerlink" title="电路原理图设计"></a>电路原理图设计</h3><h4 id="四分频原理图"><a href="#四分频原理图" class="headerlink" title="四分频原理图"></a>四分频原理图</h4><p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/TwoDivF.png" srcset="/img/loading.gif" lazyload alt="TwoDivF"></p>
-<h4 id="八分频原理图"><a href="#八分频原理图" class="headerlink" title="八分频原理图"></a>八分频原理图</h4><p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/EightDivf.png" srcset="/img/loading.gif" lazyload alt="EightDivf"></p>
-<h3 id="ModelSim仿真结果"><a href="#ModelSim仿真结果" class="headerlink" title="ModelSim仿真结果"></a>ModelSim仿真结果</h3><h4 id="四分频波形图"><a href="#四分频波形图" class="headerlink" title="四分频波形图"></a>四分频波形图</h4><p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/FourDiv.png" srcset="/img/loading.gif" lazyload alt="FourDiv"></p>
-<h4 id="八分频波形图"><a href="#八分频波形图" class="headerlink" title="八分频波形图"></a>八分频波形图</h4><p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/EightDiv.png" srcset="/img/loading.gif" lazyload alt="EightDiv"></p>
-<h3 id="结果分析"><a href="#结果分析" class="headerlink" title="结果分析"></a>结果分析</h3><p>首先在QuartusII中绘出原理图，编译后然后生成testbench测试文件，将两者关联后，再次编译，然后联合ModelSim进行波形<u>门级仿真</u>，四分频电路由两个二分频电路<u>级联</u>得到，而八分频电路由三个二分频电路得到；观察波形仿真结果发现四分频和八分频分别将输入的矩形波进行了<u>四分频和八分频</u>，结果与理论一致，但是输出的不是随输入瞬时变化，而是有一小段<u>延时</u>，这是由于门级水平仿真下<u>各逻辑门存在一定的延时</u>导致的。</p>
-<h2 id="习题3-6"><a href="#习题3-6" class="headerlink" title="习题3.6"></a>习题3.6</h2><h3 id="问题描述-1"><a href="#问题描述-1" class="headerlink" title="问题描述"></a>问题描述</h3><p>基于 Quartus Prime，用 74194（4 位双向移位寄存器）设计一个 00011101 序列产生器电路，进 行编译和仿真，查看仿真结果。 参考设计：图 3.72 是序列产生器原理图，序列产生器采用 74194 和 74153（双 4 选 1 数据选择器） 构成。</p>
-<p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/image-20220924170739029.png" srcset="/img/loading.gif" lazyload alt="image-20220924170739029"></p>
-<p>​                                图 3.72 00011101 序列产生器原理图</p>
-<h3 id="电路原理图设计-1"><a href="#电路原理图设计-1" class="headerlink" title="电路原理图设计"></a>电路原理图设计</h3><p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/SeqGn.png" srcset="/img/loading.gif" lazyload alt="SeqGn"></p>
-<h3 id="ModelSim仿真结果-1"><a href="#ModelSim仿真结果-1" class="headerlink" title="ModelSim仿真结果"></a>ModelSim仿真结果</h3><p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/SeGn.png" srcset="/img/loading.gif" lazyload alt="SeGn"></p>
-<h3 id="结果分析-1"><a href="#结果分析-1" class="headerlink" title="结果分析"></a>结果分析</h3><p>观察仿真结果波形发现输出为周期变化的<strong>00011101序列</strong>，实验结果与预期一致，实现了题目所要求的功能。</p>
-<h2 id="习题3-12"><a href="#习题3-12" class="headerlink" title="习题3.12"></a>习题3.12</h2><h3 id="问题描述-2"><a href="#问题描述-2" class="headerlink" title="问题描述"></a>问题描述</h3><p>设计消抖动电路，并对其功能进行仿真。 参考设计：由 4 个触发器和一个 4 输入与门构成的消抖动电路如图 3.73 所示，消抖动电路实质上就是 一个信号过滤器，能够将信号中的毛刺、抖动等都滤除掉，图 3.74 是其仿真波形，从波形可看出，输出信 号实现了消抖动，同时可以发现如下特点：</p>
-<ul>
-<li>输出脉宽变小了，它只等于 CLK 的一个周期的宽度。  </li>
-<li>CLK 的频率不能太低，应至少有 4 个上升沿包含在正常信号脉冲中；CLK 的频率也不能太高，其 周期不能太多地小于干扰或者抖动信号的脉宽。</li>
-<li>增加 D 触发器的数量，可以改善消抖动效果。</li>
+                <h1 id="FPGA-Notes"><a href="#FPGA-Notes" class="headerlink" title="FPGA_Notes"></a>FPGA_Notes</h1><h2 id="Verilog"><a href="#Verilog" class="headerlink" title="Verilog"></a>Verilog</h2><h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><h4 id="语句块"><a href="#语句块" class="headerlink" title="语句块"></a>语句块</h4><ul>
+<li>顺序块：<br><code>begin</code><br><code>end</code></li>
+<li>并行块：<br><code>fork</code><br><code>join</code></li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/image-20220924171445232.png" srcset="/img/loading.gif" lazyload alt="image-20220924171445232"></p>
-<h3 id="电路原理图设计-2"><a href="#电路原理图设计-2" class="headerlink" title="电路原理图设计"></a>电路原理图设计</h3><p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/EnShake.png" srcset="/img/loading.gif" lazyload alt="EnShake"></p>
-<h3 id="ModelSim仿真结果-2"><a href="#ModelSim仿真结果-2" class="headerlink" title="ModelSim仿真结果"></a>ModelSim仿真结果</h3><p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/EmShake.png" srcset="/img/loading.gif" lazyload alt="EmShake"></p>
-<h3 id="结果分析-2"><a href="#结果分析-2" class="headerlink" title="结果分析"></a>结果分析</h3><p>将输入和输出对比发现，输出没有了输入的<strong>抖动、毛刺</strong>，消除了这些短暂的脉冲，将其过滤掉了，说明该电路有效地实现了消除抖动的功能，与预期相一致。</p>
+<h4 id="多路分支语句"><a href="#多路分支语句" class="headerlink" title="多路分支语句"></a>多路分支语句</h4><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-keyword">case</span>()<br>    condition1<br>    condition2<br>    <span class="hljs-keyword">endcase</span><br><span class="hljs-keyword">casez</span>(sel)<br>          <span class="hljs-number">4</span>&#x27;b???<span class="hljs-number">1</span>:     sout_t = p0 ;<br>          <span class="hljs-number">4</span>&#x27;b??<span class="hljs-number">1</span>?:     sout_t = p1 ;<br>          <span class="hljs-number">4</span>&#x27;b?<span class="hljs-number">1</span>??:     sout_t = p2 ;<br>          <span class="hljs-number">4&#x27;b1</span>???:     sout_t = p3 ;  <br>      <span class="hljs-keyword">default</span>:         sout_t = <span class="hljs-number">2&#x27;b0</span> ;<br><span class="hljs-keyword">endcase</span><br></code></pre></td></tr></table></figure>
 
+<h4 id="循环语句"><a href="#循环语句" class="headerlink" title="循环语句"></a>循环语句</h4><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-keyword">while</span>()<br> <span class="hljs-keyword">begin</span><br> <span class="hljs-keyword">end</span><br><span class="hljs-keyword">for</span>(initial_assignment; condition ; step_assignment)  <br><span class="hljs-keyword">begin</span><br>  …<br><span class="hljs-keyword">end</span><br><span class="hljs-keyword">repeat</span>(num)<br> <span class="hljs-keyword">begin</span><br> <span class="hljs-keyword">end</span><br><span class="hljs-keyword">forever</span><br> <span class="hljs-keyword">begin</span><br> <span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
+<h4 id="模块例化"><a href="#模块例化" class="headerlink" title="模块例化"></a>模块例化</h4><ul>
+<li>不带参数例化</li>
+</ul>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-comment">//output 端口 Co 悬空</span><br>full_adder1  u_adder0(<br>  <span class="hljs-variable">.Ai</span>     (a[<span class="hljs-number">0</span>]),<br>  <span class="hljs-variable">.Bi</span>     (b[<span class="hljs-number">0</span>]),<br>  <span class="hljs-variable">.Ci</span>     (c==<span class="hljs-number">1&#x27;b1</span> ? <span class="hljs-number">1&#x27;b0</span> : <span class="hljs-number">1&#x27;b1</span>),<br>  <span class="hljs-variable">.So</span>     (so_bit0),<br>  <span class="hljs-variable">.Co</span>     ());<br><br><span class="hljs-comment">//output 端口 Co 删除</span><br>full_adder1  u_adder0(<br>    <span class="hljs-variable">.Ai</span>     (a[<span class="hljs-number">0</span>]),<br>    <span class="hljs-variable">.Bi</span>     (b[<span class="hljs-number">0</span>]),<br>    <span class="hljs-variable">.Ci</span>     (c==<span class="hljs-number">1&#x27;b1</span> ? <span class="hljs-number">1&#x27;b0</span> : <span class="hljs-number">1&#x27;b1</span>),<br>    <span class="hljs-variable">.So</span>     (so_bit0));<br></code></pre></td></tr></table></figure>
+<ul>
+<li>带参数例化</li>
+</ul>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-comment">//instantiation</span><br><span class="hljs-keyword">defparam</span>     u_ram_4x4<span class="hljs-variable">.MASK</span> = <span class="hljs-number">7</span> ;<br>ram_4x4    u_ram_4x4<br>    (<br>        <span class="hljs-variable">.CLK</span>    (clk),<br>        <span class="hljs-variable">.A</span>      (a[<span class="hljs-number">4</span>-<span class="hljs-number">1</span>:<span class="hljs-number">0</span>]),<br>        <span class="hljs-variable">.D</span>      (d),<br>        <span class="hljs-variable">.EN</span>     (en),<br>        <span class="hljs-variable">.WR</span>     (wr),    <span class="hljs-comment">//1 for write and 0 for read</span><br>        <span class="hljs-variable">.Q</span>      (q)    );<br></code></pre></td></tr></table></figure>
+<h4 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h4><p>函数只能在模块中定义，位置任意，并在模块的任何地方引用，作用范围也局限于此模块。函数主要有以下几个特点：</p>
+<ol>
+<li>不含有任何延迟、时序或时序控制逻辑</li>
+<li>至少有一个输入变量</li>
+<li>只有一个返回值，且没有输出</li>
+<li>不含有非阻塞赋值语句</li>
+<li>函数可以调用其他函数，但是不能调用任务</li>
+</ol>
+<p>Verilog 函数声明格式如下：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-keyword">function</span> [range-<span class="hljs-number">1</span>:<span class="hljs-number">0</span>]     function_id ;<br>input_declaration ;<br> other_declaration ;<br>procedural_statement ;<br><span class="hljs-keyword">endfunction</span><br></code></pre></td></tr></table></figure>
+<p><strong>模块实例</strong></p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-keyword">module</span> endian_rvs<br>	#(<span class="hljs-keyword">parameter</span> N = <span class="hljs-number">4</span>)<br>	    (<br>	        <span class="hljs-keyword">input</span>             en,     <span class="hljs-comment">//enable control</span><br>	        <span class="hljs-keyword">input</span> [N-<span class="hljs-number">1</span>:<span class="hljs-number">0</span>]     a ,<br>	        <span class="hljs-keyword">output</span> [N-<span class="hljs-number">1</span>:<span class="hljs-number">0</span>]    b<br>	);<br>	     <br>	    <span class="hljs-keyword">reg</span> [N-<span class="hljs-number">1</span>:<span class="hljs-number">0</span>]          b_temp ;<br>	    <span class="hljs-keyword">always</span> @(*) <span class="hljs-keyword">begin</span><br>	    <span class="hljs-keyword">if</span> (en) <span class="hljs-keyword">begin</span><br>	            b_temp =  data_rvs(a);<br>	        <span class="hljs-keyword">end</span><br>	        <span class="hljs-keyword">else</span> <span class="hljs-keyword">begin</span><br>	            b_temp = <span class="hljs-number">0</span> ;<br>	        <span class="hljs-keyword">end</span><br>	<span class="hljs-keyword">end</span><br>	    <span class="hljs-keyword">assign</span> b = b_temp ;<br>	     <br>	<span class="hljs-comment">//function entity</span><br>	    <span class="hljs-keyword">function</span> [N-<span class="hljs-number">1</span>:<span class="hljs-number">0</span>]     data_rvs ;<br>	        <span class="hljs-keyword">input</span>     [N-<span class="hljs-number">1</span>:<span class="hljs-number">0</span>] data_in ;<br>	        <span class="hljs-keyword">parameter</span>         MASK = <span class="hljs-number">32&#x27;h3</span> ;<br>	        <span class="hljs-keyword">integer</span>           k ;<br>	        <span class="hljs-keyword">begin</span><br>	            <span class="hljs-keyword">for</span>(k=<span class="hljs-number">0</span>; k&lt;N; k=k+<span class="hljs-number">1</span>) <span class="hljs-keyword">begin</span><br>	                data_rvs[N-k-<span class="hljs-number">1</span>]  = data_in[k] ;  <br>	            <span class="hljs-keyword">end</span><br>	        <span class="hljs-keyword">end</span><br>	<span class="hljs-keyword">endfunction</span><br><span class="hljs-keyword">endmodule</span> <br></code></pre></td></tr></table></figure>
+<h3 id="常数函数"><a href="#常数函数" class="headerlink" title="常数函数"></a>常数函数</h3><p>常数函数是指在仿真开始之前，在编译期间就计算出结果为常数的函数。常数函数不允许访问全局变量或者调用系统函数，但是可以调用另一个常数函数。</p>
+<p>这种函数能够用来引用复杂的值，因此可用来代替常量。</p>
+<p>例如下面一个常量函数，可以来计算模块中地址总线的宽度：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-keyword">parameter</span>    MEM_DEPTH = <span class="hljs-number">256</span> ;<br><span class="hljs-keyword">reg</span>  [logb2(MEM_DEPTH)-<span class="hljs-number">1</span>: <span class="hljs-number">0</span>] addr ; <span class="hljs-comment">//可得addr的宽度为8bit</span><br> <br>    <span class="hljs-keyword">function</span> <span class="hljs-keyword">integer</span>     logb2;<br>    <span class="hljs-keyword">input</span> <span class="hljs-keyword">integer</span>     depth ;<br>        <span class="hljs-comment">//256为9bit，我们最终数据应该是8，所以需depth=2时提前停止循环</span><br>    <span class="hljs-keyword">for</span>(logb2=<span class="hljs-number">0</span>; depth&gt;<span class="hljs-number">1</span>; logb2=logb2+<span class="hljs-number">1</span>) <span class="hljs-keyword">begin</span><br>        depth = depth &gt;&gt; <span class="hljs-number">1</span> ;<br>    <span class="hljs-keyword">end</span><br><span class="hljs-keyword">endfunction</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="automatic-函数"><a href="#automatic-函数" class="headerlink" title="automatic 函数"></a>automatic 函数</h3><p>在 Verilog 中，一般函数的局部变量是静态的，即函数的每次调用，函数的局部变量都会使用同一个存储空间。若某个函数在两个不同的地方同时并发的调用，那么两个函数调用行为同时对同一块地址进行操作，会导致不确定的函数结果。</p>
+<p>Verilog 用关键字 automatic 来对函数进行说明，此类函数在调用时是可以自动分配新的内存空间的，也可以理解为是可递归的。因此，automatic 函数中声明的局部变量不能通过层次命名进行访问，但是 automatic 函数本身可以通过层次名进行调用。</p>
+<p>下面用 automatic 函数，实现阶乘计算：</p>
+<blockquote>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs verilog">&gt;<span class="hljs-keyword">wire</span> [<span class="hljs-number">31</span>:<span class="hljs-number">0</span>]      results3 = factorial(<span class="hljs-number">4</span>);<br>&gt;<span class="hljs-keyword">function</span> <span class="hljs-keyword">automatic</span> <span class="hljs-keyword">integer</span>    factorial ;<br>&gt;<span class="hljs-keyword">input</span> <span class="hljs-keyword">integer</span>   data ;<br>&gt;<span class="hljs-keyword">integer</span>     i ;<br>&gt;<span class="hljs-keyword">begin</span><br>&gt;factorial = (data&gt;=<span class="hljs-number">2</span>)? data * factorial(data-<span class="hljs-number">1</span>) : <span class="hljs-number">1</span> ;<br>&gt;<span class="hljs-keyword">end</span><br>&gt;<span class="hljs-keyword">endfunction</span><span class="hljs-comment">// factorial</span><br></code></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="常见指令"><a href="#常见指令" class="headerlink" title="常见指令"></a>常见指令</h3><ul>
+<li>$display<br>(类似于c的print,自动换行,运行时显示)</li>
+<li>$write<br>(和display功能一样,不换行)</li>
+<li>$monitor<br>(监视变量的变化，只要变则输出)</li>
+<li>$strobe<br>(活动结束后显示)</li>
+<li>$stop<br>(暂停仿真)</li>
+<li>$finish<br>(结束仿真)</li>
+<li>$time<br>(返回一个64位整数时间值)<br>$stime<br>(返回一个32位整数时间值)<br>$realtime<br>(返回-一个实数时间值)</li>
+<li>( 1) Srandom和$random()<br>意义一样,都是产生32带符号整数随机数<br>( 2) $random%100<br>在-99到99之间产生随机数<br>(3) {Srandom}%100<br>采用位拼接符,在0到100之间产生随机数<br>(4) 如seed =10, Srandom(seed)<br>根据seed值产生随机数,而后seed值也会更新</li>
+<li>（读取文件中的数据,内容必须为空格、换行、制表格、注释行、二进制或十六进制的数字）<br>$readmemb(“ &lt;数据文件名&gt;”, &lt;存贮器名&gt;);<br>$readmemb(“&lt;数据文件名&gt;”,&lt;存贮器名&gt;,&lt;起始地址&gt;);<br>Sreadmemb(“ &lt;数据文件名&gt;”, &lt;存贮器名&gt;,&lt;起始地址&gt;, &lt;结束地址&gt;);<br>$readmemh(“ &lt;数据文件名&gt;”, &lt;存贮器名&gt;);<br>$readmemh(“ &lt;数据文件名&gt;”,&lt;存则器名&gt;,&lt;起始地址&gt;);<br>$readmemh(“&lt;数据文件名&gt;”,&lt;存贮器名&gt;,&lt;起始地址&gt;, &lt;结束地址&gt;);</li>
+</ul>
+<h2 id="ModelSim"><a href="#ModelSim" class="headerlink" title="ModelSim"></a>ModelSim</h2><h3 id=""><a href="#" class="headerlink" title=""></a></h3><h2 id="分支主题-3"><a href="#分支主题-3" class="headerlink" title="分支主题 3"></a>分支主题 3</h2>
                 
               </div>
             
@@ -382,34 +394,6 @@
             <div>
               <div class="post-metas my-3">
   
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/QuartusII/" class="category-chain-item">QuartusII</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
-  
-  
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/QuartusII/">#QuartusII</a>
-      
-    </div>
   
 </div>
 
@@ -419,8 +403,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>QuartusIIUsage</div>
-      <div>https://alleyf.github.io/2022/09/23/QuartusUsage/</div>
+      <div></div>
+      <div>https://alleyf.github.io/2022/10/03/FPGA/</div>
     </div>
     <div class="license-meta">
       
@@ -432,13 +416,13 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>September 23, 2022</div>
+          <div>October 3, 2022</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>Updated on</div>
-          <div>September 24, 2022</div>
+          <div>October 3, 2022</div>
         </div>
       
       <div class="license-meta-item">
@@ -467,18 +451,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/09/28/Java_Exercise/" title="Java_Exercise">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Java_Exercise</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/09/22/SignalSample/" title="SignalSample">
-                        <span class="hidden-mobile">SignalSample</span>
+                      <a href="/2022/09/28/Java_Exercise/" title="Java_Exercise">
+                        <span class="hidden-mobile">Java_Exercise</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -499,7 +477,7 @@
         var options = Object.assign(
           {"clientID":"636f2864e051a199b91c","clientSecret":"5185fd11115bbcd8d2f636bc80de6bed98ed14c1","repo":"Gitalk","owner":"Alleyf","admin":["Alleyf"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":false,"proxy":"https://shielded-brushlands-08810.herokuapp.com/https://github.com/login/oauth/access_token"},
           {
-            id: '4285614722b4436532be5bf4a9c567b1'
+            id: 'c714e06c35746229d04871802da58dc6'
           }
         )
         var gitalk = new Gitalk(options);
