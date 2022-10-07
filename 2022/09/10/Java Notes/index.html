@@ -64,8 +64,14 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/image-20220930090145928.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/image-20220930090437034.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/image-20220930090537860.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/image-20221007080603796.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/image-20221007080648065.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/image-20221007080759956.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/qiV0by.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/image-20221007080944453.png">
+<meta property="og:image" content="https://i.vgy.me/WYm0AK.png">
 <meta property="article:published_time" content="2022-09-10T02:00:00.000Z">
-<meta property="article:modified_time" content="2022-09-30T01:34:50.602Z">
+<meta property="article:modified_time" content="2022-10-07T01:34:51.991Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary_large_image">
@@ -308,7 +314,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          13k words
+          20k words
         
       </span>
     
@@ -319,7 +325,7 @@
         
         
         
-          108 mins
+          170 mins
         
       </span>
     
@@ -370,7 +376,7 @@
               <p class="note note-info">
                 
                   
-                    Last updated on 4 days ago
+                    Last updated on 12 hours ago
                   
                 
               </p>
@@ -808,7 +814,154 @@
 <h3 id="布局管理"><a href="#布局管理" class="headerlink" title="布局管理"></a>布局管理</h3><h3 id="颜色和字体"><a href="#颜色和字体" class="headerlink" title="颜色和字体"></a>颜色和字体</h3><h2 id="事件处理"><a href="#事件处理" class="headerlink" title="事件处理"></a>事件处理</h2><p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/image-20220930090145928.png" srcset="/img/loading.gif" lazyload alt="image-20220930090145928"></p>
 <h2 id="Swing组件及事件"><a href="#Swing组件及事件" class="headerlink" title="Swing组件及事件"></a>Swing组件及事件</h2><p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/image-20220930090437034.png" srcset="/img/loading.gif" lazyload alt="image-20220930090437034"></p>
 <p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/image-20220930090537860.png" srcset="/img/loading.gif" lazyload alt="image-20220930090537860"></p>
-<h2 id="图形图像"><a href="#图形图像" class="headerlink" title="图形图像"></a>图形图像</h2><p><strong>版权归属：</strong><a target="_blank" rel="noopener" href="https://fcsy.fit/">Alleyf</a></p>
+<h2 id="图形图像"><a href="#图形图像" class="headerlink" title="图形图像"></a>图形图像</h2><h1 id="第六章、多线程编程"><a href="#第六章、多线程编程" class="headerlink" title="第六章、多线程编程"></a>第六章、多线程编程</h1><h2 id="进程和线程"><a href="#进程和线程" class="headerlink" title="进程和线程"></a>进程和线程</h2><h3 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h3><p>是指 一个内存中运行的应用程序 ，每个进程都有一个独立的内存空间，一个应用程序可以同时运行多个进程；进程也是程序的一次执行过程，是系统运行程序的基本单位；系统运行一个程序即是一个进程从创建、运行到消亡的过程。</p>
+<h3 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h3><p>进程内部的一个独立执行单元；一个进程可以同时并发的运行多个线程，可以理解为一个进程便相当于一个单 CPU 操作系统，而线程便是这个系统中运行的多个任务。 </p>
+<h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><p>进程：有独立的内存空间，进程中的数据存放空间（堆空间和栈空间）是独立的，至少有一个线程。</p>
+<p>线程：堆空间是共享的，栈空间是独立的，线程消耗的资源比进程小的多。 </p>
+<h3 id="状态及转换"><a href="#状态及转换" class="headerlink" title="状态及转换"></a>状态及转换</h3><p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/image-20221007080603796.png" srcset="/img/loading.gif" lazyload alt="image-20221007080603796"></p>
+<h3 id="多线程结构"><a href="#多线程结构" class="headerlink" title="多线程结构"></a>多线程结构</h3><p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/image-20221007080648065.png" srcset="/img/loading.gif" lazyload alt="image-20221007080648065"></p>
+<h3 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h3><p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/image-20221007080759956.png" srcset="/img/loading.gif" lazyload alt="image-20221007080759956"></p>
+<h2 id="Java的线程对象"><a href="#Java的线程对象" class="headerlink" title="Java的线程对象"></a>Java的线程对象</h2><ol>
+<li>通过实现<strong>接口Runnable，实现void run()方法</strong>创建线程对象，是线程对象。<ul>
+<li>创建一个实现Runnable接口的类。</li>
+<li>实现类去实现Runnable接口中的抽象方法：run()。</li>
+<li>创建实现类的对象。</li>
+<li>将此对象作为参数传到Thread类的构造器中，创建Thread类的对象。</li>
+<li>通过Thread类的对象调用start()方法。</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.broky.multiThread;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">RunnableThread</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-comment">//创建实现类的对象</span><br>        <span class="hljs-type">RunnableThread01</span> <span class="hljs-variable">runnableThread01</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RunnableThread01</span>();<br>        <span class="hljs-comment">//创建Thread类的对象,并将实现类的对象当做参数传入构造器</span><br>        <span class="hljs-type">Thread</span> <span class="hljs-variable">t1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(runnableThread01);<br>        <span class="hljs-comment">//使用Thread类的对象去调用Thread类的start()方法:①启动了线程 ②Thread中的run()调用了Runnable中的run()</span><br>        t1.start();<br><br>        <span class="hljs-comment">//在创建一个线程时，只需要new一个Thread类就可,不需要new实现类</span><br>        <span class="hljs-type">Thread</span> <span class="hljs-variable">t2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(runnableThread01);<br>        t2.start();<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">//RunnableThread01实现Runnable接口的run()抽象方法</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">RunnableThread01</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Runnable</span> &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">100</span>; i++) &#123;<br>            <span class="hljs-keyword">if</span> (i % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>) System.out.println(Thread.currentThread().getName() + <span class="hljs-string">&quot;:\t&quot;</span> + i);<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>通过**继承Thread类并重写void run()**方法创建线程对象，是线程的目标对象。<ul>
+<li>创建一个继承于Thread类的子类。</li>
+<li>重写Thread类的run()方法。</li>
+<li>创建Thread类的子类的对象。</li>
+<li>通过此对象调用start()来启动一个线程。</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.broky.multiThread.exer;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ThreadExerDemo01</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread01</span>().start();<br>        <span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread02</span>().start();<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Thread01</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Thread</span> &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">100</span>; i++) &#123;<br>            <span class="hljs-keyword">if</span> (i % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>) System.out.println(Thread.currentThread().getName() + <span class="hljs-string">&quot;:\t&quot;</span> + i);<br>        &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Thread02</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Thread</span> &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">100</span>; i++) &#123;<br>            <span class="hljs-keyword">if</span> (i % <span class="hljs-number">2</span> != <span class="hljs-number">0</span>) System.out.println(Thread.currentThread().getName() + <span class="hljs-string">&quot;:\t&quot;</span> + i);<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>两种实现方式的比较</strong></p>
+<ul>
+<li>Java中只允许单进程，以卖票程序TiketSales类来说，很有可能这个类本来就有父类，这样一来就不可以继承Thread类来完成多线程了，但是一个类可以实现多个接口，因此实现的方式没有类的单继承性的局限性，用实现Runnable接口的方式来完成多线程更加实用。</li>
+<li>实现Runnable接口的方式天然具有共享数据的特性（不用static变量）。因为继承Thread的实现方式，需要创建多个子类的对象来进行多线程，如果子类中有变量A，而不使用static约束变量的话，每个子类的对象都会有自己独立的变量A，只有static约束A后，子类的对象才共享变量A。而实现Runnable接口的方式，只需要创建一个实现类的对象，要将这个对象传入Thread类并创建多个Thread类的对象来完成多线程，而这多个Thread类对象实际上就是调用一个实现类对象而已。实现的方式更适合来处理多个线程有共享数据的情况。</li>
+<li>联系：Thread类中也实现了Runnable接口</li>
+<li>相同点两种方式都需要重写run()方法，线程的执行逻辑都在run()方法中</li>
+</ul>
+<ol start="3">
+<li>实现Callable接口<ul>
+<li>相比run()方法，可以有返回值</li>
+<li>方法可以抛出异常</li>
+<li>支持泛型的返回值</li>
+<li>需要借助FutureTask类，比如获取返回结果</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.broky.multiThread;<br><br><span class="hljs-keyword">import</span> java.util.concurrent.Callable;<br><span class="hljs-keyword">import</span> java.util.concurrent.ExecutionException;<br><span class="hljs-keyword">import</span> java.util.concurrent.FutureTask;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 创建线程的方式三：实现Callable接口。 ---JDK5新特性</span><br><span class="hljs-comment"> * 如何理解Callable比Runnable强大？</span><br><span class="hljs-comment"> * 1.call()可以有返回值</span><br><span class="hljs-comment"> * 2.call()可以抛出异常被外面的操作捕获</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> 13roky</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@date</span> 2021-04-22 21:04</span><br><span class="hljs-comment"> */</span><br><br><span class="hljs-comment">//1.创建一个实现Callable的实现类</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">NumThread</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Callable</span>&lt;Integer&gt;&#123;<br>    <span class="hljs-comment">//2.实现call方法，将此线程需要执行的操作声明在call()中</span><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> Integer <span class="hljs-title function_">call</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">sum</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>; i &lt; <span class="hljs-number">100</span>; i++) &#123;<br>            <span class="hljs-keyword">if</span>(i%<span class="hljs-number">2</span>==<span class="hljs-number">0</span>)&#123;<br>                System.out.println(i);<br>                sum += i;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> sum;<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ThreadNew</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-comment">//3.创建Callable接口实现类的对象</span><br>        <span class="hljs-type">NumThread</span> <span class="hljs-variable">numThread</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">NumThread</span>();<br>        <span class="hljs-comment">//4.将此Callable接口实现类的对象作为参数传递到FutureTask构造器中，创建FutureTask对象</span><br>        FutureTask&lt;Integer&gt; futureTask = <span class="hljs-keyword">new</span> <span class="hljs-title class_">FutureTask</span>(numThread);<br>        <span class="hljs-comment">//5.将FutureTask的对象作为参数传递到Thread类的构造器中，创建Thread对象，并调用start()</span><br>        <span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(futureTask).start();<br><br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-comment">//6.获取Callable中Call方法的返回值</span><br>            <span class="hljs-type">Integer</span> <span class="hljs-variable">sum</span> <span class="hljs-operator">=</span> futureTask.get();<br>            System.out.println(<span class="hljs-string">&quot;总和为&quot;</span>+sum);<br>        &#125; <span class="hljs-keyword">catch</span> (InterruptedException e) &#123;<br>            e.printStackTrace();<br>        &#125; <span class="hljs-keyword">catch</span> (ExecutionException e) &#123;<br>            e.printStackTrace();<br>        &#125;<br><br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<ol start="4">
+<li><p>线程池</p>
+<ul>
+<li><strong>背景：</strong></li>
+</ul>
+<p> 经常创建和销毁、使用量特别大的资源、比如并发情况下的线程、对性能影响很大。</p>
+<ul>
+<li><strong>思路：</strong></li>
+</ul>
+<p> 提前创建好多个线程，放入线程池中，使用时直接获取，使用完放回池中。可以避免频繁创建销毁、实现重复利用。类似生活中的公共交通工具。</p>
+<ul>
+<li><strong>优点：</strong></li>
+</ul>
+<p> 提高响应速度（减少了创建新线程的时间）</p>
+<p> 降低资源消耗（重复利用线程池中线程，不需要每次都创建）</p>
+<p> 便于线程管理</p>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.broky.multiThread;<br><br><span class="hljs-keyword">import</span> java.util.concurrent.ExecutorService;<br><span class="hljs-keyword">import</span> java.util.concurrent.Executors;<br><span class="hljs-keyword">import</span> java.util.concurrent.ThreadPoolExecutor;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 创建线程的方式四：使用线程池</span><br><span class="hljs-comment"> * &lt;p&gt;</span><br><span class="hljs-comment"> * 面试题：创建多线程有几种方式</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> 13roky</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@date</span> 2021-04-22 21:49</span><br><span class="hljs-comment"> */</span><br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">NumberThread</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Runnable</span> &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">100</span>; i++) &#123;<br>            <span class="hljs-keyword">if</span> (i % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>) &#123;<br>                System.out.println(Thread.currentThread().getName() + <span class="hljs-string">&quot;:\t&quot;</span> + i);<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ThreadPool</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br><br>        <span class="hljs-comment">//1.提供指定线程数量的线程池</span><br>        <span class="hljs-type">ExecutorService</span> <span class="hljs-variable">service</span> <span class="hljs-operator">=</span> Executors.newFixedThreadPool(<span class="hljs-number">10</span>);<br>        <span class="hljs-type">ThreadPoolExecutor</span> <span class="hljs-variable">service1</span> <span class="hljs-operator">=</span> (ThreadPoolExecutor) service;<br>        <span class="hljs-comment">//设置线程池的属性</span><br>        <span class="hljs-comment">//        System.out.println(service.getClass());</span><br>        <span class="hljs-comment">//        service1.setCorePoolSize(15);</span><br>        <span class="hljs-comment">//        service1.setKeepAliveTime();</span><br><br>        <span class="hljs-comment">//2.执行指定的线程的操作。需要提供实现Runnable接口或Callable接口实现类的对象。</span><br>        service.execute(<span class="hljs-keyword">new</span> <span class="hljs-title class_">NumberThread</span>()); <span class="hljs-comment">//适合用于Runnable</span><br>        <span class="hljs-comment">//        service.submit(); 适合适用于Callable</span><br>        <span class="hljs-comment">//关闭线程池</span><br>        service.shutdown();<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h3 id="Thread类的常用方法"><a href="#Thread类的常用方法" class="headerlink" title="Thread类的常用方法"></a>Thread类的常用方法</h3><ul>
+<li><p>start() : 启动当前线程, 调用当前线程的run()方法</p>
+</li>
+<li><p>run() : 通常需要重写Thread类中的此方法, 将创建的线程要执行的操作声明在此方法中</p>
+</li>
+<li><p>currentThread() : 静态方法, 返回当前代码执行的线程</p>
+</li>
+<li><p>getName() : 获取当前线程的名字</p>
+</li>
+<li><p>setName() : 设置当前线程的名字</p>
+</li>
+<li><p>yield() : 释放当前CPU的执行权</p>
+</li>
+<li><p>join() : 在线程a中调用线程b的join(), 此时线程a进入阻塞状态, 直到线程b完全执行完以后, 线程a才结束阻塞状态</p>
+</li>
+<li><p>stop() : 已过时. 当执行此方法时,强制结束当前线程.</p>
+</li>
+<li><p>sleep(long militime) : 让线程睡眠指定的毫秒数，在指定时间内，线程是定时等待状态</p>
+</li>
+<li><p>isAlive() ：判断当前线程是否存活</p>
+</li>
+</ul>
+<h3 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h3><ul>
+<li>JDk中用Thread.State类定义了线程的几种状态</li>
+</ul>
+<p>想要实现多线程，必须在主线程中创建新的线程对象。Java语言使用Thread类及其子类的对象来表示线程，在他的一个完整的生命周期中通常要经历如下的<strong>五种状态</strong>：</p>
+<ol>
+<li>新建：当一个Thread类或其子类的对象被声明并创建时，新的线程对象处于新建状态。</li>
+<li>就绪：处于新建状态的线程被start()后，将进入线程队列等待CPU时间片，此时它已具备了运行的条件，只是没分配到CPU资源。</li>
+<li>运行：当就绪的线程被调度并获得CPU资源时，便进入运行状态，run()方法定义了线程的操作和功能。</li>
+<li>阻塞：在某种特殊情况下，被认为挂起或执行输入输出操作时，让出CPU并临时中止自己的执行，进入阻塞状态。</li>
+<li>死亡：线程完成了它的全部工作或线程被提前强制性的中止或出现异常倒置导致结束。<center>
+<img src='https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/qiV0by.png'>
+</center></li>
+</ol>
+<h3 id=""><a href="#" class="headerlink" title=""></a><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/image-20221007080944453.png" srcset="/img/loading.gif" lazyload alt="image-20221007080944453"></h3><h2 id="线程的调度"><a href="#线程的调度" class="headerlink" title="线程的调度"></a>线程的调度</h2><h3 id="cpu的调度策略"><a href="#cpu的调度策略" class="headerlink" title="cpu的调度策略"></a>cpu的调度策略</h3><ul>
+<li><strong>时间片：</strong>cpu正常情况下的调度策略。即CPU分配给各个程序的时间，每个线程被分配一个时间段，称作它的时间片，即该进程允许运行的时间，使各个程序从表面上看是同时进行的。如果在时间片结束时进程还在运行，则CPU将被剥夺并分配给另一个进程。如果进程在时间片结束前阻塞或结束，则CPU当即进行切换。而不会造成CPU资源浪费。在宏观上：我们可以同时打开多个应用程序，每个程序并行不悖，同时运行。但在微观上：由于只有一个CPU，一次只能处理程序要求的一部分，如何处理公平，一种方法就是引入时间片，每个程序轮流执行。</li>
+<li><strong>抢占式：</strong>高优先级的线程抢占cpu。</li>
+</ul>
+<h3 id="Java的调度算法："><a href="#Java的调度算法：" class="headerlink" title="Java的调度算法："></a>Java的调度算法：</h3><ul>
+<li>同优先级线程组成先进先出队列（先到先服务），使用时间片策略。</li>
+<li>堆高优先级，使用优先调度的抢占式策略。</li>
+</ul>
+<p><strong>线程的优先级等级</strong>（一共有10挡）</p>
+<ul>
+<li>MAX_PRIORITY：10</li>
+<li>MIN_PRIORITY：1</li>
+<li>NORM_PRIORITY：5 (默认优先级)</li>
+</ul>
+<p><strong>获取和设置当前线程的优先级</strong></p>
+<ul>
+<li><code>getPriority();</code> 获取</li>
+<li><code>setPriority(int p);</code> 设置</li>
+</ul>
+<p><strong>说明：高优先级的线程要抢占低优先级线程cpu的执行权。但是只是从概率上讲，高优先级的线程高概率的情况下被执行。并不意味着只有高优先级的线程执行完成以后，低优先级的线程才执行。</strong></p>
+<h2 id="线程互斥和线程同步"><a href="#线程互斥和线程同步" class="headerlink" title="线程互斥和线程同步"></a>线程互斥和线程同步</h2><h3 id="多线程的安全性问题解析"><a href="#多线程的安全性问题解析" class="headerlink" title="多线程的安全性问题解析"></a>多线程的安全性问题解析</h3><ul>
+<li>线程的安全问题<ul>
+<li>多个线程执行的不确定性硬气执行结果的不稳定性</li>
+<li>多个线程对账本的<strong>共享,</strong> 会造成操作的不完整性, 会破坏数据.</li>
+<li>多个线程访问共享的数据时可能存在安全性问题</li>
+</ul>
+</li>
+<li>线程的安全问题Demo: 卖票过程中出现了重票和错票的情况 (以下多窗口售票demo存在多线程安全问题)</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.broky.multiThread.safeThread;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">SafeTicketsWindow</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-type">WindowThread</span> <span class="hljs-variable">ticketsThread02</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">WindowThread</span>();<br>        <span class="hljs-type">Thread</span> <span class="hljs-variable">t1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(ticketsThread02);<br>        <span class="hljs-type">Thread</span> <span class="hljs-variable">t2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(ticketsThread02);<br>        <span class="hljs-type">Thread</span> <span class="hljs-variable">t3</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(ticketsThread02);<br><br>        t1.setName(<span class="hljs-string">&quot;窗口1&quot;</span>);<br>        t2.setName(<span class="hljs-string">&quot;窗口2&quot;</span>);<br>        t3.setName(<span class="hljs-string">&quot;窗口3&quot;</span>);<br><br>        t1.start();<br>        t2.start();<br>        t3.start();<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">WindowThread</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Runnable</span> &#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> <span class="hljs-variable">tiketsNum</span> <span class="hljs-operator">=</span> <span class="hljs-number">100</span>;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) &#123;<br>            <span class="hljs-keyword">if</span> (tiketsNum &gt; <span class="hljs-number">0</span>) &#123;<br>                <span class="hljs-keyword">try</span> &#123;<br>                    <span class="hljs-comment">//手动让线程进入阻塞,增大错票概率</span><br>                    Thread.sleep(<span class="hljs-number">100</span>);<br>                &#125; <span class="hljs-keyword">catch</span> (InterruptedException e) &#123;<br>                    e.printStackTrace();<br>                &#125;<br>                System.out.println(Thread.currentThread().getName() + <span class="hljs-string">&quot;:\t票号:&quot;</span> + tiketsNum);<br>                <span class="hljs-comment">/*try &#123;</span><br><span class="hljs-comment">                    //手动让线程进入阻塞,增大重票的概率</span><br><span class="hljs-comment">                    Thread.sleep(100);</span><br><span class="hljs-comment">                &#125; catch (InterruptedException e) &#123;</span><br><span class="hljs-comment">                    e.printStackTrace();</span><br><span class="hljs-comment">                &#125;*/</span><br>                tiketsNum--;<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                <span class="hljs-keyword">break</span>;<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p><strong>错票分析:</strong></p>
+<p>当票数为1的时候，三个线程中有线程被阻塞没有执行票数-1的操作，这是其它线程就会通过if语句的判断，这样一来就会造成多卖了一张票，出现错票的情况。极端情况为，当票数为1时，三个线程同时判断通过，进入阻塞，然后多执行两侧卖票操作。</p>
+<p><img src="https://i.vgy.me/WYm0AK.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h3 id="线程互斥的实现"><a href="#线程互斥的实现" class="headerlink" title="线程互斥的实现"></a>线程互斥的实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java">(<span class="hljs-number">1</span>). 互斥锁定一 段程序<br><span class="hljs-keyword">synchronized</span> (对象) <span class="hljs-comment">//锁定 &lt;对象〉，被互斥访问，临界资源</span><br>语句<br><span class="hljs-comment">//临界区，描述线程对临界资源的操作</span><br>(<span class="hljs-number">2</span>)互斥锁定-一个方法<br><span class="hljs-keyword">synchronized</span><br>方法声明<br><span class="hljs-comment">//等价于</span><br>方法声明<br>&#123;<br><span class="hljs-keyword">synchronized</span> (<span class="hljs-built_in">this</span>)/ /被锁定的临界资源是调用该方法的对象<span class="hljs-built_in">this</span><br>&#123;<br>方法体<br>&#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+<p><strong>版权归属：</strong><a target="_blank" rel="noopener" href="https://fcsy.fit/">Alleyf</a></p>
 
                 
               </div>
@@ -873,7 +1026,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Updated on</div>
-          <div>September 30, 2022</div>
+          <div>October 7, 2022</div>
         </div>
       
       <div class="license-meta-item">
