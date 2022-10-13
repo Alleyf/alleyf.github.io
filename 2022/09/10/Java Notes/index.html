@@ -72,8 +72,12 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/qiV0by.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/image-20221007080944453.png">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20210512224504688.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0NzE1OTQz,size_16,color_FFFFFF,t_70,t_70, #pic_center">
+<meta property="og:image" content="http://c.biancheng.net/uploads/allimg/200115/5-200115142HWK.png">
+<meta property="og:image" content="http://c.biancheng.net/uploads/allimg/200115/5-200115142K1644.png">
+<meta property="og:image" content="http://c.biancheng.net/uploads/allimg/200115/5-200115145253550.png">
+<meta property="og:image" content="http://c.biancheng.net/uploads/allimg/200115/5-200115151G3J0.png">
 <meta property="article:published_time" content="2022-09-10T02:00:00.000Z">
-<meta property="article:modified_time" content="2022-10-09T13:35:19.065Z">
+<meta property="article:modified_time" content="2022-10-12T08:24:57.882Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary_large_image">
@@ -316,7 +320,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          29k words
+          42k words
         
       </span>
     
@@ -327,7 +331,7 @@
         
         
         
-          241 mins
+          353 mins
         
       </span>
     
@@ -1064,18 +1068,21 @@
 <p><strong>同步编程模型：</strong><br>线程t1和线程t2，在线程t1执行的时候，必须等待t2线程执行结束，或者说在t2线程执行的时候，必须等待t1线程执行结束，两个线程之间发生了等待关系，这就是同步编程模型。</p>
 <p>实质：线程排队执行，效率较低。</p>
 <p><strong>同步就是排队。</strong></p>
-<h3 id="线程安全和非线程安全的类的选择"><a href="#线程安全和非线程安全的类的选择" class="headerlink" title="线程安全和非线程安全的类的选择"></a>线程安全和非线程安全的类的选择</h3><p><strong>如果使用局部变量的话：</strong></p>
-<p>建议使用：<strong>StringBuilder</strong>。</p>
-<p>因为局部变量不存在线程安全问题。选择StringBuilder。</p>
-<p>StringBuffer效率比较低。</p>
-<p><strong>反之：</strong></p>
-<p>使用<strong>StringBuffer</strong>。</p>
-<ul>
-<li>ArrayList是非线程安全的。</li>
-<li>Vector是线程安全的。</li>
-<li>HashMap HashSet是非线程安全的。</li>
-<li>Hashtable是线程安全的。</li>
+<h3 id="线程安全和非线程安全的类的选择"><a href="#线程安全和非线程安全的类的选择" class="headerlink" title="线程安全和非线程安全的类的选择"></a>线程安全和非线程安全的类的选择</h3><ul>
+<li><p>StringBuffer是线程安全的类，但效率低。</p>
+</li>
+<li><p>StringBuilder是非线程安全的类，用于代替StringBuffer。</p>
+</li>
+<li><p>ArrayList是非线程安全的，用于代替Vector。</p>
+</li>
+<li><p>Vector是线程安全的。</p>
+</li>
+<li><p>HashMap HashSet是非线程安全的，用于代替Hashtable。</p>
+</li>
+<li><p>Hashtable是线程安全的。</p>
+</li>
 </ul>
+<p>线程安全的类的方法都是<strong>同步方法</strong>，因此这些类是安全的，线程非安全的类可以用作<strong>局部变量</strong>以避免线程安全问题。</p>
 <h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><p>是一上来就选择线程同步吗？synchronized</p>
 <p>不是，synchronized会让程序的执行效率降低，用户体验不好。<br>系统的用户吞吐量降低。用户体验差。在不得已的情况下再选择线程同步机制。</p>
 <ul>
@@ -1148,6 +1155,43 @@
 <li>对象锁：1个对象1把锁，100个对象100把锁。</li>
 <li>类锁：100个对象，也可能只是1把类锁。</li>
 </ul>
+<h2 id="LOCK锁"><a href="#LOCK锁" class="headerlink" title="LOCK锁"></a>LOCK锁</h2><p>Lock实现提供比使用synchronized方法和语句可以获得更广泛的锁定操作</p>
+<p>Lock中提供了<strong>获得锁和释放锁</strong>的方法</p>
+<ul>
+<li><p>void lock():获得锁</p>
+</li>
+<li><p>void unlock():释放锁</p>
+</li>
+</ul>
+<p>Lock是接口不能直接实例化，这里采用它的实现类<strong>ReentrantLock</strong>来实例化</p>
+<ul>
+<li><p>Reentrantlock的构造方法</p>
+</li>
+<li><p>ReentrantLock(): 创建一个ReentrantLock的实例</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> ch6;<br><br><span class="hljs-keyword">import</span> java.util.concurrent.locks.Lock;<br><span class="hljs-keyword">import</span> java.util.concurrent.locks.ReentrantLock;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Locktest</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-type">sellticket</span> <span class="hljs-variable">t</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">sellticket</span>(<span class="hljs-number">100</span>);<br>        <span class="hljs-type">Thread</span> <span class="hljs-variable">t1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(t, <span class="hljs-string">&quot;t1&quot;</span>);<br>        <span class="hljs-type">Thread</span> <span class="hljs-variable">t2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(t, <span class="hljs-string">&quot;t2&quot;</span>);<br>        <span class="hljs-type">Thread</span> <span class="hljs-variable">t3</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(t, <span class="hljs-string">&quot;t3&quot;</span>);<br>        t1.start();<br>        t2.start();<br>        t3.start();<br><span class="hljs-comment">//        System.out.println(Thread.currentThread().getName());</span><br>    &#125;<br>&#125;<br><br><br><br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">selltickets</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Runnable</span> &#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> tickets;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-type">Lock</span> <span class="hljs-variable">lock</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ReentrantLock</span>();<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-type">Object</span> <span class="hljs-variable">obj</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Object</span>();<br><br>    selltickets(<span class="hljs-type">int</span> tickets) &#123;<br>        <span class="hljs-built_in">this</span>.tickets = tickets;<br>    &#125;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;<br><br>        <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) &#123;<br>                sell();<br>            &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">sell</span><span class="hljs-params">()</span> &#123;<br>        lock.lock();<br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-keyword">if</span> (tickets &gt; <span class="hljs-number">0</span>) &#123;<br>                <span class="hljs-keyword">try</span> &#123;<br>                    Thread.sleep(<span class="hljs-number">100</span>);<br><span class="hljs-comment">//                            Thread.yield();</span><br>                &#125; <span class="hljs-keyword">catch</span> (InterruptedException e) &#123;<br>                    e.printStackTrace();<br>                &#125;<br>                System.out.println(Thread.currentThread().getName() + <span class="hljs-string">&quot;正在出售第&quot;</span> + <span class="hljs-built_in">this</span>.tickets + <span class="hljs-string">&quot;张票&quot;</span>);<br>                tickets--;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">finally</span>&#123;<br>            lock.unlock();<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h2><h3 id="生产者与消费者"><a href="#生产者与消费者" class="headerlink" title="生产者与消费者"></a>生产者与消费者</h3><table>
+<thead>
+<tr>
+<th align="center">方法名</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">void wait()</td>
+<td align="left">导致当前线程等待，直到另一个线程调用该对象的notify()方法或notifyAll()方法</td>
+</tr>
+<tr>
+<td align="center">void notify()</td>
+<td align="left">唤醒正在等待对象监视器的单个线程</td>
+</tr>
+<tr>
+<td align="center">void notifyAll()</td>
+<td align="left">唤醒正在等待对象监视器的所有线程</td>
+</tr>
+</tbody></table>
 <h2 id="死锁（DeadLock）"><a href="#死锁（DeadLock）" class="headerlink" title="死锁（DeadLock）"></a>死锁（DeadLock）</h2><img src="https://img-blog.csdnimg.cn/20210512224504688.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0NzE1OTQz,size_16,color_FFFFFF,t_70,t_70, #pic_center" srcset="/img/loading.gif" lazyload>
 
 <p><u>代码示例</u>：</p>
@@ -1181,6 +1225,431 @@
 </table>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ThreadTest14</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-type">Thread</span> <span class="hljs-variable">t</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BakDataThread</span>();<br>        t.setName(<span class="hljs-string">&quot;备份数据的线程&quot;</span>);<br><br>        <span class="hljs-comment">// 启动线程之前，将线程设置为守护线程</span><br>        t.setDaemon(<span class="hljs-literal">true</span>);<br><br>        t.start();<br><br>        <span class="hljs-comment">// 主线程：主线程是用户线程</span><br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++)&#123;<br>            System.out.println(Thread.currentThread().getName() + <span class="hljs-string">&quot;---&gt;&quot;</span> + i);<br>            <span class="hljs-keyword">try</span> &#123;<br>                Thread.sleep(<span class="hljs-number">1000</span>);<br>            &#125; <span class="hljs-keyword">catch</span> (InterruptedException e) &#123;<br>                e.printStackTrace();<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">BakDataThread</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Thread</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>        <span class="hljs-comment">// 即使是死循环，但由于该线程是守护者，当用户线程结束，守护线程自动终止。</span><br>        <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>)&#123;<br>            System.out.println(Thread.currentThread().getName() + <span class="hljs-string">&quot;---&gt;&quot;</span> + (++i));<br>            <span class="hljs-keyword">try</span> &#123;<br>                Thread.sleep(<span class="hljs-number">1000</span>);<br>            &#125; <span class="hljs-keyword">catch</span> (InterruptedException e) &#123;<br>                e.printStackTrace();<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
+<h1 id="第七章、数据IO流操作"><a href="#第七章、数据IO流操作" class="headerlink" title="第七章、数据IO流操作"></a>第七章、数据IO流操作</h1><h2 id="输入输出流概念"><a href="#输入输出流概念" class="headerlink" title="输入输出流概念"></a>输入输出流概念</h2><p>数据流是 Java 进行 I/O 操作的对象，它按照不同的标准可以分为不同的类别。</p>
+<ul>
+<li>按照流的方向主要分为输入流和输出流两大类。</li>
+<li>数据流按照数据单位的不同分为字节流和字符流。</li>
+<li>按照功能可以划分为节点流和处理流。</li>
+</ul>
+<p>数据流的处理只能按照数据序列的顺序来进行，即前一个数据处理完之后才能处理后一个数据。数据流以输入流的形式被程序获取，再以输出流的形式将数据输出到其它设备。图 1 为输入流模式，图 2 为输出流模式。</p>
+<p><img src="http://c.biancheng.net/uploads/allimg/200115/5-200115142HWK.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="http://c.biancheng.net/uploads/allimg/200115/5-200115142K1644.png" srcset="/img/loading.gif" lazyload alt="输入流模式"></p>
+<h3 id="输入流"><a href="#输入流" class="headerlink" title="输入流"></a>输入流</h3><p>Java 流相关的类都封装在 java.io 包中，而且每个数据流都是一个对象。所有输入流类都是 InputStream 抽象类（字节输入流）和 Reader 抽象类（字符输入流）的子类。其中 InputStream 类是字节输入流的抽象类，是所有字节输入流的父类，其层次结构如图 3 所示。</p>
+<div align="center">
+    <img src="http://c.biancheng.net/uploads/allimg/200115/5-200115145253550.png" srcset="/img/loading.gif" lazyload>
+</div>
+
+
+<p>InputStream 类中所有方法遇到错误时都会引发 IOException 异常。如下是该类中包含的常用方法。</p>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">int read()</td>
+<td>从输入流读入一个 8 字节的数据，将它转换成一个 0~ 255 的整数，返回一个整数，如果遇到输入流的结尾返回 -1</td>
+</tr>
+<tr>
+<td align="left">int read(byte[] b)</td>
+<td>从输入流读取若干字节的数据保存到参数 b 指定的字节数组中，返回的字节数表示读取的字节数，如果遇到输入流的结尾返回 -1</td>
+</tr>
+<tr>
+<td align="left">int read(byte[] b,int off,int len)</td>
+<td>从输入流读取若干字节的数据保存到参数 b 指定的字节数组中，其中 off 是指在数组中开始保存数据位置的起始下标，len 是指读取字节的位数。返回的是实际读取的字节数，如果遇到输入流的结尾则返回 -1</td>
+</tr>
+<tr>
+<td align="left">void close()</td>
+<td>关闭数据流，当完成对数据流的操作之后需要关闭数据流</td>
+</tr>
+<tr>
+<td align="left">int available()</td>
+<td>返回可以从数据源读取的数据流的位数。</td>
+</tr>
+<tr>
+<td align="left">skip(long n)</td>
+<td>从输入流跳过参数 n 指定的字节数目</td>
+</tr>
+<tr>
+<td align="left">boolean markSupported()</td>
+<td>判断输入流是否可以重复读取，如果可以就返回 true</td>
+</tr>
+<tr>
+<td align="left">void mark(int readLimit)</td>
+<td>如果输入流可以被重复读取，从流的当前位置开始设置标记，readLimit 指定可以设置标记的字节数</td>
+</tr>
+<tr>
+<td align="left">void reset()</td>
+<td>使输入流重新定位到刚才被标记的位置，这样可以重新读取标记过的数据</td>
+</tr>
+</tbody></table>
+<p>上述最后 3 个方法一般会结合在一起使用，首先使用 markSupported() 判断，如果可以重复读取，则使用 mark(int readLimit) 方法进行标记，标记完成之后可以使用 read() 方法读取标记范围内的字节数，最后使用 reset() 方法使输入流重新定位到标记的位置，继而完成重复读取操作。</p>
+<p>Java 中的字符是 Unicode 编码，即双字节的，而 InputerStream 是用来处理单字节的，在处理字符文本时不是很方便。这时可以使用 Java 的文本输入流 Reader 类，该类是字符输入流的抽象类，即所有字符输入流的实现都是它的子类，该类的方法与 InputerSteam 类的方法类似，这里不再介绍。</p>
+<h3 id="输出流"><a href="#输出流" class="headerlink" title="输出流"></a>输出流</h3><p>在 Java 中所有输出流类都是 OutputStream 抽象类（字节输出流）和 Writer 抽象类（字符输出流）的子类。其中 OutputStream 类是字节输出流的抽象类，是所有字节输出流的父类，其层次结构如图 4 所示。</p>
+<div align="center">
+    <img src="http://c.biancheng.net/uploads/allimg/200115/5-200115151G3J0.png" srcset="/img/loading.gif" lazyload>
+</div>
+
+
+<p>OutputStream 类是所有字节输出流的超类，用于以二进制的形式将数据写入目标设备，该类是抽象类，不能被实例化。OutputStream 类提供了一系列跟数据输出有关的方法，如下所示。</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>int write(b)</td>
+<td>将指定字节的数据写入到输出流</td>
+</tr>
+<tr>
+<td>int write (byte[] b)</td>
+<td>将指定字节数组的内容写入输出流</td>
+</tr>
+<tr>
+<td>int write (byte[] b,int off,int len)</td>
+<td>将指定字节数组从 off 位置开始的 len 字节的内容写入输出流</td>
+</tr>
+<tr>
+<td>close()</td>
+<td>关闭数据流，当完成对数据流的操作之后需要关闭数据流</td>
+</tr>
+<tr>
+<td>flush()</td>
+<td>刷新输出流，强行将缓冲区的内容写入输出流</td>
+</tr>
+</tbody></table>
+<p>每个Java程序运行时都带有一个系统流，系统流对应的类为 java.lang.System。Sytem 类封装了 Java 程序运行时的 3 个系统流，分别通过 in、out 和 err 变量来引用。这 3 个系统流如下所示：</p>
+<ul>
+<li>System.in：标准输入流，默认设备是键盘。</li>
+<li>System.out：标准输出流，默认设备是控制台。</li>
+<li>System.err：标准错误流，默认设备是控制台。</li>
+</ul>
+<p>Java 中常见编码说明如下：</p>
+<ul>
+<li>ISO8859-1：属于单字节编码，最多只能表示 0~255 的字符范围。</li>
+<li>GBK/GB2312：中文的国标编码，用来表示汉字，属于双字节编码。GBK 可以表示简体中文和繁体中文，而 GB2312 只能表示简体中文。GBK 兼容 GB2312。</li>
+<li>Unicode：是一种编码规范，是为解决全球字符通用编码而设计的。UTF-8 和 UTF-16 是这种规范的一种实现，此编码不兼容 ISO8859-1 编码。Java 内部采用此编码。</li>
+<li>UTF：UTF 编码兼容了 ISO8859-1 编码，同时也可以用来表示所有的语言字符，不过 UTF 编码是不定长编码，每一个字符的长度为 1~6 个字节不等。一般在中文网页中使用此编码，可以节省空间。</li>
+</ul>
+<p>在程序中如果处理不好字符编码，就有可能出现乱码问题。例如现在本机的默认编码是 GBK，但在程序中使用了 ISO8859-1 编码，则就会出现字符的乱码问题。就像两个人交谈，一个人说中文，另外一个人说英语，语言不同就无法沟通。为了避免产生乱码，程序编码应与本地的默认编码保持一致。</p>
+<p>本地的默认编码可以使用 System 类查看。Java 中 System 类可以取得与系统有关的信息，所以直接使用此类可以找到系统的默认编码。方法如下所示：</p>
+<p><code>public static Properties getProperty()</code></p>
+<p>使用上述方法可以查看 JVM 的默认编码，代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;    <span class="hljs-comment">// 获取当前系统编码    </span><br>    System.out.println(<span class="hljs-string">&quot;系统默认编码：&quot;</span> + System.getProperty(<span class="hljs-string">&quot;file.encoding&quot;</span>));<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="字节输入流"><a href="#字节输入流" class="headerlink" title="字节输入流"></a>字节输入流</h2><p>InputStream 类及其子类的对象表示字节输入流，InputStream 类的常用子类如下。</p>
+<ul>
+<li>ByteArrayInputStream 类：将字节数组转换为字节输入流，从中读取字节。</li>
+<li>FileInputStream 类：从文件中读取数据。</li>
+<li>PipedInputStream 类：连接到一个 PipedOutputStream（管道输出流）。</li>
+<li>SequenceInputStream 类：将多个字节输入流串联成一个字节输入流。</li>
+<li>ObjectInputStream 类：将对象反序列化。</li>
+</ul>
+<p>使用 InputStream 类的方法可以从流中读取一个或一批字节。表 1 列出了 InputStream 类的常用方法。</p>
+<table>
+<thead>
+<tr>
+<th>方法名及返回值类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>int read()</td>
+<td>从输入流中读取一个 8 位的字节，并把它转换为 0~255 的整数，最后返回整数。 如果返回 -1，则表示已经到了输入流的末尾。为了提高 I/O 操作的效率，建议尽量 使用 read() 方法的另外两种形式</td>
+</tr>
+<tr>
+<td>int read(byte[] b)</td>
+<td>从输入流中读取若干字节，并把它们保存到参数 b 指定的字节数组中。 该方法返回 读取的字节数。如果返回 -1，则表示已经到了输入流的末尾</td>
+</tr>
+<tr>
+<td>int read(byte[] b, int off, int len)</td>
+<td>从输入流中读取若干字节，并把它们保存到参数 b 指定的字节数组中。其中，off 指 定在字节数组中开始保存数据的起始下标；len 指定读取的字节数。该方法返回实际 读取的字节数。如果返回 -1，则表示已经到了输入流的末尾</td>
+</tr>
+<tr>
+<td>void close()</td>
+<td>关闭输入流。在读操作完成后，应该关闭输入流，系统将会释放与这个输入流相关 的资源。注意，InputStream 类本身的 close() 方法不执行任何操作，但是它的许多 子类重写了 close() 方法</td>
+</tr>
+<tr>
+<td>int available()</td>
+<td>返回可以从输入流中读取的字节数</td>
+</tr>
+<tr>
+<td>long skip(long n)</td>
+<td>从输入流中跳过参数 n 指定数目的字节。该方法返回跳过的字节数</td>
+</tr>
+<tr>
+<td>void mark(int readLimit)</td>
+<td>在输入流的当前位置开始设置标记，参数 readLimit 则指定了最多被设置标记的字 节数</td>
+</tr>
+<tr>
+<td>boolean markSupported()</td>
+<td>判断当前输入流是否允许设置标记，是则返回 true，否则返回 false</td>
+</tr>
+<tr>
+<td>void reset()</td>
+<td>将输入流的指针返回到设置标记的起始处</td>
+</tr>
+</tbody></table>
+<p>注意：在使用 mark() 方法和 reset() 方法之前，需要判断该文件系统是否支持这两个方法，以避免对程序造成影响。</p>
+<h2 id="字节输出流"><a href="#字节输出流" class="headerlink" title="字节输出流"></a>字节输出流</h2><p>OutputStream 类及其子类的对象表示一个字节输出流。OutputStream 类的常用子类如下。</p>
+<ul>
+<li>ByteArrayOutputStream 类：向内存缓冲区的字节数组中写数据。</li>
+<li>FileOutputStream 类：向文件中写数据。</li>
+<li>PipedOutputStream 类：连接到一个 PipedlntputStream（管道输入流）。</li>
+<li>ObjectOutputStream 类：将对象序列化。</li>
+</ul>
+<p>利用 OutputStream 类的方法可以从流中写入一个或一批字节。表 2 列出了 OutputStream 类的常用方法。</p>
+<table>
+<thead>
+<tr>
+<th>方法名及返回值类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void write(int b)</td>
+<td>向输出流写入一个字节。这里的参数是 int 类型，但是它允许使用表达式， 而不用强制转换成 byte 类型。为了提高 I/O 操作的效率，建议尽量使用 write() 方法的另外两种形式</td>
+</tr>
+<tr>
+<td>void write(byte[] b)</td>
+<td>把参数 b 指定的字节数组中的所有字节写到输出流中</td>
+</tr>
+<tr>
+<td>void write(byte[] b,int off,int len)</td>
+<td>把参数 b 指定的字节数组中的若干字节写到输出流中。其中，off 指定字节 数组中的起始下标，len 表示元素个数</td>
+</tr>
+<tr>
+<td>void close()</td>
+<td>关闭输出流。写操作完成后，应该关闭输出流。系统将会释放与这个输出 流相关的资源。注意，OutputStream 类本身的 close() 方法不执行任何操 作，但是它的许多子类重写了 close() 方法</td>
+</tr>
+<tr>
+<td>void flush()</td>
+<td>为了提高效率，在向输出流中写入数据时，数据一般会先保存到内存缓冲 区中，只有当缓冲区中的数据达到一定程度时，缓冲区中的数据才会被写 入输出流中。使用 flush() 方法则可以强制将缓冲区中的数据写入输出流， 并清空缓冲区</td>
+</tr>
+</tbody></table>
+<p>在 <a href="http://alleyf.github.io/">Java</a> 中，File 类是 java.io 包中唯一代表磁盘文件本身的对象，也就是说，如果希望在程序中操作文件和目录，则都可以通过 File 类来完成。File 类定义了一些方法来操作文件，如新建、删除、重命名文件和目录等。</p>
+<p>File 类不能访问文件内容本身，如果需要访问文件内容本身，则需要使用输入/输出流。</p>
+<p>File 类提供了如下三种形式构造方法。</p>
+<ol>
+<li>File(String path)：如果 path 是实际存在的路径，则该 File 对象表示的是目录；如果 path 是文件名，则该 File 对象表示的是文件。</li>
+<li>File(String path, String name)：path 是路径名，name 是文件名。</li>
+<li>File(File dir, String name)：dir 是路径对象，name 是文件名。</li>
+</ol>
+<p>使用任意一个构造方法都可以创建一个 File 对象，然后调用其提供的方法对文件进行操作。在表 1 中列出了 File 类的常用方法及说明。</p>
+<table>
+<thead>
+<tr>
+<th>方法名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>boolean canRead()</td>
+<td>测试应用程序是否能从指定的文件中进行读取</td>
+</tr>
+<tr>
+<td>boolean canWrite()</td>
+<td>测试应用程序是否能写当前文件</td>
+</tr>
+<tr>
+<td>boolean delete()</td>
+<td>删除当前对象指定的文件</td>
+</tr>
+<tr>
+<td>boolean exists()</td>
+<td>测试当前 File 是否存在</td>
+</tr>
+<tr>
+<td>String getAbsolutePath()</td>
+<td>返回由该对象表示的文件的绝对路径名</td>
+</tr>
+<tr>
+<td>String getName()</td>
+<td>返回表示当前对象的文件名或路径名（如果是路径，则返回最后一级子路径名）</td>
+</tr>
+<tr>
+<td>String getParent()</td>
+<td>返回当前 File 对象所对应目录（最后一级子目录）的父目录名</td>
+</tr>
+<tr>
+<td>boolean isAbsolute()</td>
+<td>测试当前 File 对象表示的文件是否为一个绝对路径名。该方法消除了不同平台的差异，可以直接判断 file 对象是否为绝对路径。在 UNIX/Linux/BSD 等系统上，如果路径名开头是一条斜线<code>/</code>，则表明该 File 对象对应一个绝对路径；在 Windows 等系统上，如果路径开头是盘符，则说明它是一个绝对路径。</td>
+</tr>
+<tr>
+<td>boolean isDirectory()</td>
+<td>测试当前 File 对象表示的文件是否为一个路径</td>
+</tr>
+<tr>
+<td>boolean isFile()</td>
+<td>测试当前 File 对象表示的文件是否为一个“普通”文件</td>
+</tr>
+<tr>
+<td>long lastModified()</td>
+<td>返回当前 File 对象表示的文件最后修改的时间</td>
+</tr>
+<tr>
+<td>long length()</td>
+<td>返回当前 File 对象表示的文件长度</td>
+</tr>
+<tr>
+<td>String[] list()</td>
+<td>返回当前 File 对象指定的路径文件列表</td>
+</tr>
+<tr>
+<td>String[] list(FilenameFilter)</td>
+<td>返回当前 File 对象指定的目录中满足指定过滤器的文件列表</td>
+</tr>
+<tr>
+<td>boolean mkdir()</td>
+<td>创建一个目录，它的路径名由当前 File 对象指定</td>
+</tr>
+<tr>
+<td>boolean mkdirs()</td>
+<td>创建一个目录，它的路径名由当前 File 对象指定</td>
+</tr>
+<tr>
+<td>boolean renameTo(File)</td>
+<td>将当前 File 对象指定的文件更名为给定参数 File 指定的路径名</td>
+</tr>
+</tbody></table>
+<p>File 类中有以下两个常用常量：</p>
+<ul>
+<li>public static final String pathSeparator：指的是分隔连续多个路径字符串的分隔符，Windows 下指<code>;</code>。例如 <code>java -cp test.jar;abc.jar HelloWorld</code>。</li>
+<li>public static final String separator：用来分隔同一个路径字符串中的目录的，Windows 下指<code>/</code>。例如 <code>C:/Program Files/Common Files</code>。</li>
+</ul>
+<p>注意：可以看到 File 类的常量定义的命名规则不符合标准命名规则，常量名没有全部大写，这是因为 Java 的发展经过了一段相当长的时间，而命名规范也是逐步形成的，File 类出现较早，所以当时并没有对命名规范有严格的要求，这些都属于 Java 的历史遗留问题。</p>
+<blockquote>
+<p>Windows 的路径分隔符使用反斜线“\”，而 Java 程序中的反斜线表示转义字符，所以如果需要在 Windows 的路径下包括反斜线，则应该使用两条反斜线或直接使用斜线“/”也可以。Java 程序支持将斜线当成平台无关的路径分隔符。</p>
+</blockquote>
+<p>假设在 Windows 操作系统中有一文件 <code>D:\javaspace\hello.java</code>，在 Java 中使用的时候，其路径的写法应该为 <code>D:/javaspace/hello.java</code> 或者 <code>D:\\javaspace\\hello.java</code>。</p>
+<h2 id="字符输入流"><a href="#字符输入流" class="headerlink" title="字符输入流"></a>字符输入流</h2><p>Reader 类是所有字符流输入类的父类，该类定义了许多方法，这些方法对所有子类都是有效的。</p>
+<p>Reader 类的常用子类如下。</p>
+<ul>
+<li>CharArrayReader 类：将字符数组转换为字符输入流，从中读取字符。</li>
+<li>StringReader 类：将字符串转换为字符输入流，从中读取字符。</li>
+<li>BufferedReader 类：为其他字符输入流提供读缓冲区。</li>
+<li>PipedReader 类：连接到一个 PipedWriter。</li>
+<li>InputStreamReader 类：将字节输入流转换为字符输入流，可以指定字符编码。</li>
+</ul>
+<p>与 InputStream 类相同，在 Reader 类中也包含 close()、mark()、skip() 和 reset() 等方法，这些方法可以参考 InputStream 类的方法。下面主要介绍 Reader 类中的 read() 方法，如表 1 所示。</p>
+<table>
+<thead>
+<tr>
+<th>方法名及返回值类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>int read()</td>
+<td>从输入流中读取一个字符，并把它转换为 0~65535 的整数。如果返回 -1， 则表示 已经到了输入流的末尾。为了提高 I/O 操作的效率，建议尽量使用下面两种 read() 方法</td>
+</tr>
+<tr>
+<td>int read(char[] cbuf)</td>
+<td>从输入流中读取若干个字符，并把它们保存到参数 cbuf 指定的字符数组中。 该方 法返回读取的字符数，如果返回 -1，则表示已经到了输入流的末尾</td>
+</tr>
+<tr>
+<td>int read(char[] cbuf,int off,int len)</td>
+<td>从输入流中读取若干个字符，并把它们保存到参数 cbuf 指定的字符数组中。其中， off 指定在字符数组中开始保存数据的起始下标，len 指定读取的字符数。该方法返 回实际读取的字符数，如果返回 -1，则表示已经到了输入流的末尾</td>
+</tr>
+</tbody></table>
+<h2 id="字符输出流"><a href="#字符输出流" class="headerlink" title="字符输出流"></a>字符输出流</h2><p>与 Reader 类相反，Writer 类是所有字符输出流的父类，该类中有许多方法，这些方法对继承该类的所有子类都是有效的。</p>
+<p>Writer 类的常用子类如下。</p>
+<ul>
+<li>CharArrayWriter 类：向内存缓冲区的字符数组写数据。</li>
+<li>StringWriter 类：向内存缓冲区的字符串（StringBuffer）写数据。</li>
+<li>BufferedWriter 类：为其他字符输出流提供写缓冲区。</li>
+<li>PipedWriter 类：连接到一个 PipedReader。</li>
+<li>OutputStreamReader 类：将字节输出流转换为字符输出流，可以指定字符编码。</li>
+</ul>
+<p>与 OutputStream 类相同，Writer 类也包含 close()、flush() 等方法，这些方法可以参考 OutputStream 类的方法。下面主要介绍 Writer 类中的 write() 方法和 append() 方法，如表 2 所示。</p>
+<table>
+<thead>
+<tr>
+<th>方法名及返回值类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>void write(int c)</td>
+<td>向输出流中写入一个字符</td>
+</tr>
+<tr>
+<td>void write(char[] cbuf)</td>
+<td>把参数 cbuf 指定的字符数组中的所有字符写到输出流中</td>
+</tr>
+<tr>
+<td>void write(char[] cbuf,int off,int len)</td>
+<td>把参数 cbuf 指定的字符数组中的若干字符写到输出流中。其中，off 指定 字符数组中的起始下标，len 表示元素个数</td>
+</tr>
+<tr>
+<td>void write(String str)</td>
+<td>向输出流中写入一个字符串</td>
+</tr>
+<tr>
+<td>void write(String str, int off,int len)</td>
+<td>向输出流中写入一个字符串中的部分字符。其中，off 指定字符串中的起 始偏移量，len 表示字符个数</td>
+</tr>
+<tr>
+<td>append(char c)</td>
+<td>将参数 c 指定的字符添加到输出流中</td>
+</tr>
+<tr>
+<td>append(charSequence esq)</td>
+<td>将参数 esq 指定的字符序列添加到输出流中</td>
+</tr>
+<tr>
+<td>append(charSequence esq,int start,int end)</td>
+<td>将参数 esq 指定的字符序列的子序列添加到输出流中。其中，start 指定 子序列的第一个字符的索引，end 指定子序列中最后一个字符后面的字符 的索引，也就是说子序列的内容包含 start 索引处的字符，但不包括 end 索引处的字符</td>
+</tr>
+</tbody></table>
+<p>注意：Writer 类所有的方法在出错的情况下都会引发 <strong>IOException</strong> 异常。关闭一个流后，再对其进行任何操作都会产生错误。</p>
+<h2 id="字符文件输入流"><a href="#字符文件输入流" class="headerlink" title="字符文件输入流"></a>字符文件输入流</h2><p>为了读取方便，Java 提供了用来读取字符文件的便捷类——FileReader。该类的构造方法有如下两种重载形式。</p>
+<ol>
+<li>FileReader(File file)：在给定要读取数据的文件的情况下创建一个新的 FileReader 对象。其中，file 表示要从中读取数据的文件。</li>
+<li>FileReader(String fileName)：在给定从中读取数据的文件名的情况下创建一个新 FileReader 对象。其中，fileName 表示要从中读取数据的文件的名称，表示的是一个文件的完整路径。</li>
+</ol>
+<p>在用该类的构造方法创建 FileReader 读取对象时，默认的字符编码及字节缓冲区大小都是由系统设定的。要自己指定这些值，可以在 FilelnputStream 上构造一个 InputStreamReader。</p>
+<p>注意：在创建 FileReader 对象时可能会引发一个 FileNotFoundException 异常，因此需要使用 try catch 语句捕获该异常。</p>
+<p>字符流和字节流的操作步骤相同，都是首先创建输入流或输出流对象，即建立连接管道，建立完成后进行读或写操作，最后关闭输入/输出流通道。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Test12</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-type">FileReader</span> <span class="hljs-variable">fr</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;<br>        <span class="hljs-keyword">try</span> &#123;<br>            fr = <span class="hljs-keyword">new</span> <span class="hljs-title class_">FileReader</span>(<span class="hljs-string">&quot;D:/myJava/HelloJava.java&quot;</span>); <span class="hljs-comment">// 创建FileReader对象</span><br>            <span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>            System.out.println(<span class="hljs-string">&quot;D:\\myJava\\HelloJava.java文件内容如下：&quot;</span>);<br>            <span class="hljs-keyword">while</span> ((i = fr.read()) != -<span class="hljs-number">1</span>) &#123; <span class="hljs-comment">// 循环读取</span><br>                System.out.print((<span class="hljs-type">char</span>) i); <span class="hljs-comment">// 将读取的内容强制转换为char类型</span><br>            &#125;<br>        &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>            System.out.print(e);<br>        &#125; <span class="hljs-keyword">finally</span> &#123;<br>            <span class="hljs-keyword">try</span> &#123;<br>                fr.close(); <span class="hljs-comment">// 关闭对象</span><br>            &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>                e.printStackTrace();<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>如上述代码，首先创建了 FileReader 字符输入流对象 fr，该对象指向 D:\myJava\HelloJava.java 文件，然后定义变量 i 来接收调用 read() 方法的返回值，即读取的字符。在 while 循环中，每次读取一个字符赋给整型变量 i，直到读取到文件末尾时退出循环（当输入流读取到文件末尾时，会返回值 -1）。</p>
+<h2 id="字符文件输出流"><a href="#字符文件输出流" class="headerlink" title="字符文件输出流"></a>字符文件输出流</h2><p>Java 提供了写入字符文件的便捷类——FileWriter，该类的构造方法有如下 4 种重载形式。</p>
+<ol>
+<li>FileWriter(File file)：在指定 File 对象的情况下构造一个 FileWriter 对象。其中，file 表示要写入数据的 File 对象。</li>
+<li>FileWriter(File file,boolean append)：在指定 File 对象的情况下构造一个 FileWriter 对象，如果 append 的值为 true，则将字节写入文件末尾，而不是写入文件开始处。</li>
+<li>FileWriter(String fileName)：在指定文件名的情况下构造一个 FileWriter 对象。其中，fileName 表示要写入字符的文件名，表示的是完整路径。</li>
+<li>FileWriter(String fileName,boolean append)：在指定文件名以及要写入文件的位置的情况下构造 FileWriter 对象。其中，append 是一个 boolean 值，如果为 true，则将数据写入文件末尾，而不是文件开始处。</li>
+</ol>
+<p>在创建 FileWriter 对象时，默认字符编码和默认字节缓冲区大小都是由系统设定的。要自己指定这些值，可以在 FileOutputStream 上构造一个 OutputStreamWriter 对象。</p>
+<p>FileWriter 类的创建不依赖于文件存在与否，如果关联文件不存在，则会自动生成一个新的文件。在创建文件之前，FileWriter 将在创建对象时打开它作为输出。如果试图打开一个只读文件，将引发一个 IOException 异常。</p>
+<p>注意：在创建 FileWriter 对象时可能会引发 IOException 或 SecurityException 异常，因此需要使用 try catch 语句捕获该异常。</p>
+<p>编写一个程序，将用户输入的 4 个字符串保存到 D:\myJava\book.txt 文件中。在这里使用 FileWriter 类中的 write() 方法循环向指定文件中写入数据，实现代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Test13</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-type">Scanner</span> <span class="hljs-variable">input</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Scanner</span>(System.in);<br>        <span class="hljs-type">FileWriter</span> <span class="hljs-variable">fw</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;<br>        <span class="hljs-keyword">try</span> &#123;<br>            fw = <span class="hljs-keyword">new</span> <span class="hljs-title class_">FileWriter</span>(<span class="hljs-string">&quot;D:\\myJava\\book.txt&quot;</span>); <span class="hljs-comment">// 创建FileWriter对象</span><br>            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">4</span>; i++) &#123;<br>                System.out.println(<span class="hljs-string">&quot;请输入第&quot;</span> + (i + <span class="hljs-number">1</span>) + <span class="hljs-string">&quot;个字符串：&quot;</span>);<br>                <span class="hljs-type">String</span> <span class="hljs-variable">name</span> <span class="hljs-operator">=</span> input.next(); <span class="hljs-comment">// 读取输入的名称</span><br>                fw.write(name + <span class="hljs-string">&quot;\r\n&quot;</span>); <span class="hljs-comment">// 循环写入文件</span><br>            &#125;<br>            System.out.println(<span class="hljs-string">&quot;录入完成！&quot;</span>);<br>        &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>            System.out.println(e.getMessage());<br>        &#125; <span class="hljs-keyword">finally</span> &#123;<br>            <span class="hljs-keyword">try</span> &#123;<br>                fw.close(); <span class="hljs-comment">// 关闭对象</span><br>            &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>                e.printStackTrace();<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>如上述代码，首先创建了一个指向 D:\myJava\book.txt 文件的字符文件输出流对象 fw，然后使用 for 循环录入 4 个字符串，并调用 write() 方法将字符串写入到指定的文件中。最后在 finally 语句中关闭字符文件输出流。</p>
+<h2 id="字符缓冲区输入流"><a href="#字符缓冲区输入流" class="headerlink" title="字符缓冲区输入流"></a>字符缓冲区输入流</h2><p>BufferedReader 类主要用于辅助其他字符输入流，它带有缓冲区，可以先将一批数据读到内存缓冲区。接下来的读操作就可以直接从缓冲区中获取数据，而不需要每次都从数据源读取数据并进行字符编码转换，这样就可以提高数据的读取效率。</p>
+<p>BufferedReader 类的构造方法有如下两种重载形式。</p>
+<ol>
+<li>BufferedReader(Reader in)：创建一个 BufferedReader 来修饰参数 in 指定的字符输入流。</li>
+<li>BufferedReader(Reader in,int size)：创建一个 BufferedReader 来修饰参数 in 指定的字符输入流，参数 size 则用于指定缓冲区的大小，单位为字符。</li>
+</ol>
+<p>除了可以为字符输入流提供缓冲区以外，BufferedReader 还提供了 <code>readLine()</code> 方法，该方法返回包含该行内容的字符串，但该字符串中不包含任何终止符，如果已到达流末尾，则返回 null。readLine() 方法表示每次读取一行文本内容，当遇到换行（\n）、回车（\r）或回车后直接跟着换行标记符即可认为某行已终止。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Test13</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-type">FileReader</span> <span class="hljs-variable">fr</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;<br>        <span class="hljs-type">BufferedReader</span> <span class="hljs-variable">br</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;<br>        <span class="hljs-keyword">try</span> &#123;<br>            fr = <span class="hljs-keyword">new</span> <span class="hljs-title class_">FileReader</span>(<span class="hljs-string">&quot;D:\\myJava\\book.txt&quot;</span>); <span class="hljs-comment">// 创建 FileReader 对象</span><br>            br = <span class="hljs-keyword">new</span> <span class="hljs-title class_">BufferedReader</span>(fr); <span class="hljs-comment">// 创建 BufferedReader 对象</span><br>            System.out.println(<span class="hljs-string">&quot;D:\\myJava\\book.txt 文件中的内容如下：&quot;</span>);<br>            <span class="hljs-type">String</span> <span class="hljs-variable">strLine</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;&quot;</span>;<br>            <span class="hljs-keyword">while</span> ((strLine = br.readLine()) != <span class="hljs-literal">null</span>) &#123; <span class="hljs-comment">// 循环读取每行数据</span><br>                System.out.println(strLine);<br>            &#125;<br>        &#125; <span class="hljs-keyword">catch</span> (FileNotFoundException e1) &#123;<br>            e1.printStackTrace();<br>        &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>            e.printStackTrace();<br>        &#125; <span class="hljs-keyword">finally</span> &#123;<br>            <span class="hljs-keyword">try</span> &#123;<br>                fr.close(); <span class="hljs-comment">// 关闭 FileReader 对象</span><br>                br.close();<br>            &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>                e.printStackTrace();<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>如上述代码，首先分别创建了名称为 fr 的 FileReader 对象和名称为 br 的 BufferedReader 对象，然后调用 BufferedReader 对象的 readLine() 方法逐行读取文件中的内容。如果读取的文件内容为 Null，即表明已经读取到文件尾部，此时退出循环不再进行读取操作。最后将字符文件输入流和带缓冲的字符输入流关闭.</p>
+<h2 id="字符缓冲区输出流"><a href="#字符缓冲区输出流" class="headerlink" title="字符缓冲区输出流"></a>字符缓冲区输出流</h2><p>BufferedWriter 类主要用于辅助其他字符输出流，它同样带有缓冲区，可以先将一批数据写入缓冲区，当缓冲区满了以后，再将缓冲区的数据一次性写到字符输出流，其目的是为了提高数据的写效率。</p>
+<p>BufferedWriter 类的构造方法有如下两种重载形式。</p>
+<ol>
+<li>BufferedWriter(Writer out)：创建一个 BufferedWriter 来修饰参数 out 指定的字符输出流。</li>
+<li>BufferedWriter(Writer out,int size)：创建一个 BufferedWriter 来修饰参数 out 指定的字符输出流，参数 size 则用于指定缓冲区的大小，单位为字符。</li>
+</ol>
+<p>该类除了可以给字符输出流提供缓冲区之外，还提供了一个新的方法 newLine()，该方法用于写入一个行分隔符。行分隔符字符串由系统属性 line.separator 定义，并且不一定是单个新行（\n）符。</p>
+<p>提示：BufferedWriter 类的使用与 FileWriter 类相同，这里不再重述。</p>
 
                 
               </div>
@@ -1245,7 +1714,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Updated on</div>
-          <div>October 9, 2022</div>
+          <div>October 12, 2022</div>
         </div>
       
       <div class="license-meta-item">
