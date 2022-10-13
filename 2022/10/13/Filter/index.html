@@ -25,20 +25,22 @@
 <meta property="og:site_name" content="alleyf">
 <meta property="og:description" content="some ideas about FIR and IIR filters。">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="d:/实验图片/DSP/FIR.png">
+<meta property="og:image" content="https://img.gouka.la/i/2022/10/13/z58w2p.webp">
 <meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/cheb1ordIIR.png">
-<meta property="og:image" content="d:/实验图片/DSP/origin.png">
+<meta property="og:image" content="https://img.gouka.la/i/2022/10/13/1222moj.webp">
+<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/image-20221013213239697.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/FIRSingle.png">
+<meta property="og:image" content="https://upload.semidata.info/new.eefocus.com/article/image/2021/07/15/60efdc2160bb0-thumb.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/chebfrequency.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/cheb1ordIIR.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/image-20221013153232154.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/IIRbutterword.png">
 <meta property="article:published_time" content="2022-10-13T06:56:00.000Z">
-<meta property="article:modified_time" content="2022-10-13T07:52:43.747Z">
+<meta property="article:modified_time" content="2022-10-13T15:11:09.820Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="FIR、IIR">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="d:/实验图片/DSP/FIR.png">
+<meta name="twitter:image" content="https://img.gouka.la/i/2022/10/13/z58w2p.webp">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -277,7 +279,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3k words
+          3.6k words
         
       </span>
     
@@ -288,7 +290,7 @@
         
         
         
-          25 mins
+          30 mins
         
       </span>
     
@@ -339,7 +341,7 @@
               <p class="note note-info">
                 
                   
-                    Last updated on a minute ago
+                    Last updated on a few seconds ago
                   
                 
               </p>
@@ -348,7 +350,7 @@
               <div class="markdown-body">
                 
                 <h1 id="信号的时域处理"><a href="#信号的时域处理" class="headerlink" title="信号的时域处理"></a>信号的时域处理</h1><h2 id="一、要求"><a href="#一、要求" class="headerlink" title="一、要求"></a>一、要求</h2><p>选择子作业１中的音频信号，自行给定滤波器的系统函数，分别采用<strong>时域线性卷积</strong>和<strong>差分方程</strong>两种方法对音频信号进行滤波处理，比较滤波前后信号的波形和回放的效果。</p>
-<h2 id="二、处理思路"><a href="#二、处理思路" class="headerlink" title="二、处理思路"></a>二、处理思路</h2><h3 id="1-时域卷积法"><a href="#1-时域卷积法" class="headerlink" title="1.时域卷积法"></a>1.时域卷积法</h3><ul>
+<h2 id="二、实现思路"><a href="#二、实现思路" class="headerlink" title="二、实现思路"></a>二、实现思路</h2><h3 id="1-时域卷积法"><a href="#1-时域卷积法" class="headerlink" title="1.时域卷积法"></a>1.时域卷积法</h3><ul>
 <li><p>分析原始音频信号的频谱，观察有用信号和噪声的分布，选择滤波器类型（低通、高通、带通、带阻等）</p>
 </li>
 <li><p>设定幅频响应下降三分贝的截止频率和滤波器阶数</p>
@@ -367,7 +369,7 @@
 <li>计算滤波器的差分方程系数</li>
 <li>调用filter函数对原始信号进行滤波</li>
 </ul>
-<h2 id="三、实现过程"><a href="#三、实现过程" class="headerlink" title="三、实现过程"></a>三、实现过程</h2><h3 id="滤波前后对比图"><a href="#滤波前后对比图" class="headerlink" title="滤波前后对比图"></a>滤波前后对比图</h3><p><img src="D:\实验图片\DSP\FIR.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="三、实现过程"><a href="#三、实现过程" class="headerlink" title="三、实现过程"></a>三、实现过程</h2><h3 id="滤波前后对比图"><a href="#滤波前后对比图" class="headerlink" title="滤波前后对比图"></a>滤波前后对比图</h3><p><img src="https://img.gouka.la/i/2022/10/13/z58w2p.webp" srcset="/img/loading.gif" lazyload></p>
 <p align="center">
     图一 FIRhamming 窗低通滤波器前后对比图
 </p>
@@ -382,18 +384,23 @@
 <h3 id="1-时域卷积"><a href="#1-时域卷积" class="headerlink" title="1.时域卷积"></a>1.时域卷积</h3><p>首先导入原始音频信号并画出时域图和幅频响应曲线，分析其频谱分布，代码如下所示。</p>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-comment">%% 数据导入及参数设置</span><br>[x,Fs]=audioread(<span class="hljs-string">&#x27;D:\数据\Carmen_overture_noisy_8k_9.5k.wav&#x27;</span>);<br>Nx=<span class="hljs-built_in">length</span>(x);<br>tx=(<span class="hljs-number">0</span>:Nx<span class="hljs-number">-1</span>)/Fs;<span class="hljs-comment">%时域范围</span><br>df=Fs/<span class="hljs-built_in">length</span>(tx); <span class="hljs-comment">%计算谱线间隔</span><br>fx=tx*df;<span class="hljs-comment">%频域范围</span><br>X=FFT(x,Nx,Fs,tx);<span class="hljs-comment">%快速傅里叶变换</span><br>fx=(fx*Fs)/<span class="hljs-number">1e3</span>;<span class="hljs-comment">%只显示正频谱</span><br>X=<span class="hljs-built_in">abs</span>(X);<br><span class="hljs-comment">% 绘出时域图和幅频响应</span><br><span class="hljs-built_in">figure</span>;<br>subplot(<span class="hljs-number">221</span>)<br><span class="hljs-built_in">plot</span>(tx,x); <br>title(<span class="hljs-string">&quot;原信号音频时域图&quot;</span>);<br>xlabel(<span class="hljs-string">&quot;t/s&quot;</span>); <br>subplot(<span class="hljs-number">222</span>)<br><span class="hljs-comment">% plot(fx*Fs/1e3,abs(X),&quot;blue&quot;)</span><br><span class="hljs-built_in">plot</span>(fx(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>:<span class="hljs-built_in">ceil</span>(Nx/<span class="hljs-number">2</span>)),X(<span class="hljs-number">1</span>:<span class="hljs-built_in">ceil</span>(Nx/<span class="hljs-number">2</span>),<span class="hljs-number">1</span>),<span class="hljs-string">&#x27;b&#x27;</span>)<br>title(<span class="hljs-string">&quot;原信号音频相频响应&quot;</span>);<br>xlabel(<span class="hljs-string">&quot;f/Khz&quot;</span>); <br></code></pre></td></tr></table></figure>
 
-<p>下面展示了原始音频信号的时域图和幅频响应曲线：</p>
-<p><img src="D:\实验图片\DSP\origin.png" srcset="/img/loading.gif" lazyload></p>
-<h4 id="FIR滤波器"><a href="#FIR滤波器" class="headerlink" title="FIR滤波器"></a>FIR滤波器</h4><p>观察其幅频响应发现有用信号的频率在8Khz以下，以上则为能量较大的高频噪声，因此我采用低通滤波器对其进行滤波，实现代码如下。</p>
+<p><img src="https://img.gouka.la/i/2022/10/13/1222moj.webp" srcset="/img/loading.gif" lazyload></p>
+<p>观察其幅频响应发现有用信号的频率在8Khz以下，以上则为能量较大的高频噪声，因此我采用低通滤波器对其进行滤波。</p>
+<h4 id="FIR滤波器"><a href="#FIR滤波器" class="headerlink" title="FIR滤波器"></a>FIR滤波器</h4><p>设FIR滤波器的单位冲激响应h(n)为一个N点序列，0≤n≤N-1，则滤波器的系统函数为：<br>$$<br>H(\mathrm{z})=\sum_{k=0}^{N-1}h(\mathrm{k})*\mathrm{z}^{-k}<br>$$<br>直接型FIR滤波器的差分方程为：<br>$$<br>\mathrm{y(n)}=\sum_{m=0}^{N-1}\mathrm{h(m)x(n-m)}<br>$$<br>由差分方程可知只需要求出FIR滤波器的单位冲激响应h(n)，设置滤波阶数和3db通带截止频率fc，采用汉林窗函数处理，再使用fir1函数将其与待滤波信号卷积即可完成滤波，具体实现代码如下。</p>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-comment">%% hamming窗低通滤波器滤除高频噪声</span><br>fc=<span class="hljs-number">7.95e3</span>; <span class="hljs-comment">%下降3分贝截止频率</span><br>h_n=fir1(<span class="hljs-number">1000</span>,fc*<span class="hljs-number">2</span>/Fs,<span class="hljs-string">&quot;low&quot;</span>);<br>y=conv(h_n,x);<br><br>Ny=<span class="hljs-built_in">length</span>(y);<span class="hljs-comment">%滤波后信号的长度</span><br>ty=(<span class="hljs-number">0</span>:Ny<span class="hljs-number">-1</span>)/Fs;<span class="hljs-comment">%时域范围</span><br>Y=FFT(y,Ny,Fs,ty);<span class="hljs-comment">%快速傅里叶变换求频谱</span><br>df=Fs/<span class="hljs-built_in">length</span>(ty); <span class="hljs-comment">%计算谱线间隔</span><br>fy=ty*df;<span class="hljs-comment">%频域范围</span><br>fy=(fy*Fs)/<span class="hljs-number">1e3</span>;<span class="hljs-comment">%只显示正频谱</span><br>Y=<span class="hljs-built_in">abs</span>(Y);<br><span class="hljs-comment">% 绘出滤波后的时域图和幅频响应</span><br>subplot(<span class="hljs-number">223</span>)<br><span class="hljs-built_in">plot</span>(ty,y,<span class="hljs-string">&quot;g&quot;</span>);<br>title(<span class="hljs-string">&quot;滤波后信号音频时域图&quot;</span>);<br>xlabel(<span class="hljs-string">&quot;t/s&quot;</span>); <br>subplot(<span class="hljs-number">224</span>)<br>stem(fx(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>:<span class="hljs-built_in">ceil</span>(Ny/<span class="hljs-number">2</span>)),Y(<span class="hljs-number">1</span>:<span class="hljs-built_in">ceil</span>(Ny/<span class="hljs-number">2</span>),<span class="hljs-number">1</span>),<span class="hljs-string">&#x27;c&#x27;</span>,<span class="hljs-string">&#x27;.&#x27;</span>)<br>title(<span class="hljs-string">&quot;滤波后信号音频相频响应&quot;</span>);<br>xlabel(<span class="hljs-string">&quot;f/Khz&quot;</span>); <br><span class="hljs-comment">%% 试听及保存</span><br><span class="hljs-comment">% sound(y,Fs);</span><br>audiowrite(<span class="hljs-string">&quot;D:\数据\FIRfilter.wav&quot;</span>,y,Fs);<br><span class="hljs-comment">%% 快速傅里叶变换函数</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">FourierTransform</span> = <span class="hljs-title">FFT</span><span class="hljs-params">(signal,N,fs,t)</span></span><br>Y=fft(signal,N);<br>df=fs/<span class="hljs-built_in">length</span>(t); <span class="hljs-comment">%计算谱线间隔</span><br>f=t*df;<span class="hljs-comment">%频域范围</span><br>Ys=<span class="hljs-built_in">abs</span>(Y); <span class="hljs-comment">%幅度响应</span><br>FourierTransform=Ys;<br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
 
+<p>FIR滤波器的单位冲激响应如下图所示：</p>
+<p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/image-20221013213239697.png" srcset="/img/loading.gif" lazyload alt="image-20221013213239697"></p>
 <p>通过时域卷积得到滤波后的结果如下图所示：</p>
 <p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/FIRSingle.png" srcset="/img/loading.gif" lazyload></p>
 <p>由图可知，发现经过<strong>1000阶</strong>的3分贝截止频率为<strong>7.95e3Khz</strong>的低通滤波器处理后，8Khz及以上的高频噪声基本被完全滤除，成功从原始音频信号中提取到有用信号。</p>
-<h3 id="2-差分方程"><a href="#2-差分方程" class="headerlink" title="2.差分方程"></a>2.差分方程</h3><p>首先也是先对原始音频信号做傅里叶变换分析其频谱，频谱结果同上，这里不在赘述。采用如下代码实现差分方程法实现IIR巴特沃斯低通滤波器。</p>
-<h4 id="IIR巴特沃斯低通滤波"><a href="#IIR巴特沃斯低通滤波" class="headerlink" title="IIR巴特沃斯低通滤波"></a>IIR巴特沃斯低通滤波</h4><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-comment">%% IIR-cheb1ord低通滤波器滤除高频噪声</span><br>Wp=<span class="hljs-number">7.6e3</span>*<span class="hljs-number">2</span>/Fs;<span class="hljs-comment">%通带频率</span><br>Ws=<span class="hljs-number">8e3</span>*<span class="hljs-number">2</span>/Fs;<span class="hljs-comment">%阻带频率</span><br>[n,Wc]=cheb1ord(Wp,Ws,<span class="hljs-number">2</span>,<span class="hljs-number">40</span>);<span class="hljs-comment">%计算阶数和3db通带截止频率</span><br>[b,a]=cheby1(n,<span class="hljs-number">3</span>,Wc);<span class="hljs-comment">%切比雪夫滤波器返回差分方程系数</span><br>freqz(b,a);<span class="hljs-comment">%绘出滤波器频谱图（幅频响应和相频响应）</span><br>y=filter(b,a,x);<span class="hljs-comment">%滤除高频噪声</span><br>Y=FFT(y,N,Fs,t);<br>Y=fftshift(Y);<br>Y=<span class="hljs-built_in">abs</span>(Y);<br><span class="hljs-comment">% 绘出滤波后的时域图和幅频响应</span><br>subplot(<span class="hljs-number">223</span>)<br><span class="hljs-built_in">plot</span>(t,y,<span class="hljs-string">&#x27;b&#x27;</span>);<br>title(<span class="hljs-string">&quot;滤波后信号音频时域图&quot;</span>);<br>xlabel(<span class="hljs-string">&quot;t/s&quot;</span>); <br>subplot(<span class="hljs-number">224</span>)<br><span class="hljs-comment">% plot(f*Fs/1e3,Y,&#x27;k&#x27;);</span><br><span class="hljs-built_in">plot</span>(f(<span class="hljs-number">1</span>,<span class="hljs-built_in">ceil</span>(N/<span class="hljs-number">2</span>):<span class="hljs-keyword">end</span>),Y(<span class="hljs-built_in">ceil</span>(N/<span class="hljs-number">2</span>):<span class="hljs-keyword">end</span>,<span class="hljs-number">1</span>),<span class="hljs-string">&#x27;g&#x27;</span>)<br>title(<span class="hljs-string">&quot;滤波后信号音频幅频响应&quot;</span>);<br>xlabel(<span class="hljs-string">&quot;f/Khz&quot;</span>); <br></code></pre></td></tr></table></figure>
+<h3 id="2-差分方程"><a href="#2-差分方程" class="headerlink" title="2.差分方程"></a>2.差分方程</h3><p>首先也是先对原始音频信号做傅里叶变换分析其频谱，频谱结果同上，这里不在赘述。</p>
+<h4 id="IIR切比雪夫低通滤波"><a href="#IIR切比雪夫低通滤波" class="headerlink" title="IIR切比雪夫低通滤波"></a>IIR切比雪夫低通滤波</h4><p>IIR(infinite impulse response)滤波器，无限冲激响应滤波器,IIR滤波器定义如下：<br>$$<br>\sum_{l=0}^{N}a(l)y(n-l)= \sum _{k=0}^{M}b(k)x(n-k)<br>$$<br>令$a(0)=1,a(l),l=1,2,…N$取反后得：<br>$$<br>y(n)= \sum _{k=0}^{M}b(k)x(n-k)+ \sum _{l=1}^{N}a(l)y(n-l)<br>$$<br>IIR直接II型滤波器的流程框图如下所示：</p>
+<p><img src="https://upload.semidata.info/new.eefocus.com/article/image/2021/07/15/60efdc2160bb0-thumb.png" srcset="/img/loading.gif" lazyload></p>
+<p>根据流程框图可知，需要求得差分方程系数向量a和b，这里我采用常见的切比雪夫滤波器设定通带频率、阻带频率以及纹波系数和衰减系数计算出系数a和b，再利用filter函数传入系数a、b和待滤波信号即可完成滤波，采用如下代码实现差分方程法实现IIR切比雪夫低通滤波器。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-comment">%% IIR-Chebyshev低通滤波器滤除高频噪声</span><br>Wp=<span class="hljs-number">7.6e3</span>*<span class="hljs-number">2</span>/Fs;<span class="hljs-comment">%通带频率</span><br>Ws=<span class="hljs-number">8e3</span>*<span class="hljs-number">2</span>/Fs;<span class="hljs-comment">%阻带频率</span><br>[n,Wc]=cheb1ord(Wp,Ws,<span class="hljs-number">2</span>,<span class="hljs-number">40</span>);<span class="hljs-comment">%计算阶数和3db通带截止频率</span><br>[b,a]=cheby1(n,<span class="hljs-number">3</span>,Wc);<span class="hljs-comment">%切比雪夫滤波器返回差分方程系数</span><br>freqz(b,a);<span class="hljs-comment">%绘出滤波器频谱图（幅频响应和相频响应）</span><br>y=filter(b,a,x);<span class="hljs-comment">%滤除高频噪声</span><br>Y=FFT(y,N,Fs,t);<br>Y=fftshift(Y);<br>Y=<span class="hljs-built_in">abs</span>(Y);<br><span class="hljs-comment">% 绘出滤波后的时域图和幅频响应</span><br>subplot(<span class="hljs-number">223</span>)<br><span class="hljs-built_in">plot</span>(t,y,<span class="hljs-string">&#x27;b&#x27;</span>);<br>title(<span class="hljs-string">&quot;滤波后信号音频时域图&quot;</span>);<br>xlabel(<span class="hljs-string">&quot;t/s&quot;</span>); <br>subplot(<span class="hljs-number">224</span>)<br><span class="hljs-comment">% plot(f*Fs/1e3,Y,&#x27;k&#x27;);</span><br><span class="hljs-built_in">plot</span>(f(<span class="hljs-number">1</span>,<span class="hljs-built_in">ceil</span>(N/<span class="hljs-number">2</span>):<span class="hljs-keyword">end</span>),Y(<span class="hljs-built_in">ceil</span>(N/<span class="hljs-number">2</span>):<span class="hljs-keyword">end</span>,<span class="hljs-number">1</span>),<span class="hljs-string">&#x27;g&#x27;</span>)<br>title(<span class="hljs-string">&quot;滤波后信号音频幅频响应&quot;</span>);<br>xlabel(<span class="hljs-string">&quot;f/Khz&quot;</span>); <br></code></pre></td></tr></table></figure>
 
-<p>IIR切比雪夫滤波器的频谱图如下所示：</p>
+<p>IIR切比雪夫滤波器的归一化频谱图如下所示：</p>
 <p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/chebfrequency.png" srcset="/img/loading.gif" lazyload></p>
 <p>观察发现其幅频响应滤波效果比较好，根据此滤波器对原始音频信号进行滤波，下图展示了滤波后的结果。</p>
 <p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/cheb1ordIIR.png" srcset="/img/loading.gif" lazyload></p>
@@ -420,7 +427,6 @@
     </p>
 </p>
 </div>
-
 
                 
               </div>
