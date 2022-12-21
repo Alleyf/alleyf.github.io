@@ -18,24 +18,30 @@
   <meta name="author" content="alleyf">
   <meta name="keywords" content="">
   
-    <meta name="description" content="some notation about FPGA。">
+    <meta name="description" content="some ideas about FFT。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="FPGA_Notes">
-<meta property="og:url" content="https://alleyf.github.io/2022/10/03/FPGA/index.html">
+<meta property="og:title" content="Frequency——Analysis">
+<meta property="og:url" content="https://alleyf.github.io/2022/12/21/%E8%B0%B1%E5%88%86%E6%9E%90%E5%8F%8A%E6%BB%A4%E6%B3%A2%E5%99%A8%E6%8C%87%E6%A0%87%E8%AE%A1%E7%AE%97/index.html">
 <meta property="og:site_name" content="alleyf">
-<meta property="og:description" content="some notation about FPGA。">
+<meta property="og:description" content="some ideas about FFT。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-10-03T02:00:00.000Z">
-<meta property="article:modified_time" content="2022-10-05T00:44:28.713Z">
+<meta property="og:image" content="d:/DSP实验报告/大作业报告/ch4andch5/图片/原始信号.png">
+<meta property="og:image" content="d:/DSP实验报告/大作业报告/ch4andch5/图片/加噪信号.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/chuiyugin/imgbed/%E6%BB%A4%E6%B3%A2%E5%99%A8.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/chuiyugin/imgbed/%E6%BB%A4%E6%B3%A2%E5%99%A82.png">
+<meta property="og:image" content="d:/DSP实验报告/大作业报告/ch4andch5/图片/加噪信号频谱图.png">
+<meta property="article:published_time" content="2022-12-21T13:17:00.000Z">
+<meta property="article:modified_time" content="2022-12-21T13:49:09.119Z">
 <meta property="article:author" content="alleyf">
-<meta property="article:tag" content="FPGA">
+<meta property="article:tag" content="FFT">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="d:/DSP实验报告/大作业报告/ch4andch5/图片/原始信号.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>FPGA_Notes - alleyf</title>
+  <title>Frequency——Analysis - alleyf</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -240,7 +246,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="FPGA_Notes"></span>
+            <span id="subtitle" data-typed-text="Frequency——Analysis"></span>
           
         </div>
 
@@ -256,8 +262,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-10-03 10:00" pubdate>
-          October 3, 2022 am
+        <time datetime="2022-12-21 21:17" pubdate>
+          December 21, 2022 pm
         </time>
       </span>
     
@@ -268,7 +274,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3k words
+          2.7k words
         
       </span>
     
@@ -279,7 +285,7 @@
         
         
         
-          25 mins
+          23 mins
         
       </span>
     
@@ -325,12 +331,12 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">FPGA_Notes</h1>
+            <h1 style="display: none">Frequency——Analysis</h1>
             
               <p class="note note-info">
                 
                   
-                    Last updated on 3 months ago
+                    Last updated on 5 minutes ago
                   
                 
               </p>
@@ -338,56 +344,63 @@
             
               <div class="markdown-body">
                 
-                <h1 id="FPGA-Notes"><a href="#FPGA-Notes" class="headerlink" title="FPGA_Notes"></a>FPGA_Notes</h1><h2 id="Verilog"><a href="#Verilog" class="headerlink" title="Verilog"></a>Verilog</h2><h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><h4 id="语句块"><a href="#语句块" class="headerlink" title="语句块"></a>语句块</h4><ul>
-<li>顺序块：<br><code>begin</code><br><code>end</code></li>
-<li>并行块：<br><code>fork</code><br><code>join</code></li>
+                <h1 id="频谱分析及滤波指标设计"><a href="#频谱分析及滤波指标设计" class="headerlink" title="频谱分析及滤波指标设计"></a>频谱分析及滤波指标设计</h1><h2 id="一、要求"><a href="#一、要求" class="headerlink" title="一、要求"></a>一、要求</h2><p>为了完成对子作业1中音频信号的滤波，对子作业1中的音频信号进行<strong>频谱分析</strong>，并获取滤波器设计所需要的<strong>性能指标</strong>。</p>
+<h2 id="二、实现思路"><a href="#二、实现思路" class="headerlink" title="二、实现思路"></a>二、实现思路</h2><h3 id="1-频谱分析"><a href="#1-频谱分析" class="headerlink" title="1.频谱分析"></a>1.频谱分析</h3><h4 id="1-读取音频"><a href="#1-读取音频" class="headerlink" title="1.读取音频"></a>1.读取音频</h4><ul>
+<li>利用<strong>MATLAB</strong>的<code>audioread</code>函数读取原始音频（无噪声原始音频），该函数读取音频的实质是对音频进行<strong>采样</strong>，采样频率根据原始信号的情况而定。</li>
 </ul>
-<h4 id="多路分支语句"><a href="#多路分支语句" class="headerlink" title="多路分支语句"></a>多路分支语句</h4><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-keyword">case</span>()<br>    condition1<br>    condition2<br>    <span class="hljs-keyword">endcase</span><br><span class="hljs-keyword">casez</span>(sel)<br>          <span class="hljs-number">4</span>&#x27;b???<span class="hljs-number">1</span>:     sout_t = p0 ;<br>          <span class="hljs-number">4</span>&#x27;b??<span class="hljs-number">1</span>?:     sout_t = p1 ;<br>          <span class="hljs-number">4</span>&#x27;b?<span class="hljs-number">1</span>??:     sout_t = p2 ;<br>          <span class="hljs-number">4&#x27;b1</span>???:     sout_t = p3 ;  <br>      <span class="hljs-keyword">default</span>:         sout_t = <span class="hljs-number">2&#x27;b0</span> ;<br><span class="hljs-keyword">endcase</span><br></code></pre></td></tr></table></figure>
+<h4 id="2-FFT变换"><a href="#2-FFT变换" class="headerlink" title="2.FFT变换"></a>2.FFT变换</h4><ul>
+<li>对读取到的音频取<strong>单声道</strong>根据读取音频时得到的采样频率和频谱分辨率要求计算捕获时间和频谱间隔，进行进行<strong>FFT</strong>快速傅里叶变换得到原始音频信号的频谱，分析频谱的分布。</li>
+</ul>
+<h4 id="3-信号加噪"><a href="#3-信号加噪" class="headerlink" title="3.信号加噪"></a>3.信号加噪</h4><ul>
+<li>给原始信号加入高频带限噪声，加入噪声的频率范围为<code>11.15khz~11.95khz</code>。</li>
+</ul>
+<h4 id="4-FFT变换"><a href="#4-FFT变换" class="headerlink" title="4.FFT变换"></a>4.FFT变换</h4><ul>
+<li>对加噪后的音频信号进行FFT快速傅里叶变换，观察频谱的频率分布和范围。</li>
+</ul>
+<h4 id="5-失真分析"><a href="#5-失真分析" class="headerlink" title="5.失真分析"></a>5.失真分析</h4><ul>
+<li>分析原始信号经过采样后的频谱是否存在<strong>频谱混叠</strong>和<strong>栅栏效应</strong>，如果有则改进加以去除。</li>
+</ul>
+<h3 id="2-设计性能指标"><a href="#2-设计性能指标" class="headerlink" title="2.设计性能指标"></a>2.设计性能指标</h3><ul>
+<li><p>根据前面的频谱得到通带截止频率**$w_p$<strong>和阻带截止频率</strong>$w_s$**。</p>
+</li>
+<li><p>根据频谱设置通带容限**$\alpha1$<strong>和阻带容限</strong>$\alpha2$<strong>，进而得到通带最大衰减系数</strong>$\delta_1$<strong>和阻带最小衰减系数</strong>$\delta_2$**.</p>
+</li>
+</ul>
+<h2 id="三、实现过程"><a href="#三、实现过程" class="headerlink" title="三、实现过程"></a>三、实现过程</h2><h3 id="1-读取原始音频信号及频谱分析"><a href="#1-读取原始音频信号及频谱分析" class="headerlink" title="1.读取原始音频信号及频谱分析"></a>1.读取原始音频信号及频谱分析</h3><p>在MATLAB中利用audioread函数读取原始音频信号，并且绘出其时域图和频谱图，结果如下图所示。</p>
+<img src="D:\DSP实验报告\大作业报告\ch4andch5\图片\原始信号.png" srcset="/img/loading.gif" lazyload style="zoom:67%;" />
 
-<h4 id="循环语句"><a href="#循环语句" class="headerlink" title="循环语句"></a>循环语句</h4><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-keyword">while</span>()<br> <span class="hljs-keyword">begin</span><br> <span class="hljs-keyword">end</span><br><span class="hljs-keyword">for</span>(initial_assignment; condition ; step_assignment)  <br><span class="hljs-keyword">begin</span><br>  …<br><span class="hljs-keyword">end</span><br><span class="hljs-keyword">repeat</span>(num)<br> <span class="hljs-keyword">begin</span><br> <span class="hljs-keyword">end</span><br><span class="hljs-keyword">forever</span><br> <span class="hljs-keyword">begin</span><br> <span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
-<h4 id="模块例化"><a href="#模块例化" class="headerlink" title="模块例化"></a>模块例化</h4><ul>
-<li>不带参数例化</li>
-</ul>
-<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-comment">//output 端口 Co 悬空</span><br>full_adder1  u_adder0(<br>  <span class="hljs-variable">.Ai</span>     (a[<span class="hljs-number">0</span>]),<br>  <span class="hljs-variable">.Bi</span>     (b[<span class="hljs-number">0</span>]),<br>  <span class="hljs-variable">.Ci</span>     (c==<span class="hljs-number">1&#x27;b1</span> ? <span class="hljs-number">1&#x27;b0</span> : <span class="hljs-number">1&#x27;b1</span>),<br>  <span class="hljs-variable">.So</span>     (so_bit0),<br>  <span class="hljs-variable">.Co</span>     ());<br><br><span class="hljs-comment">//output 端口 Co 删除</span><br>full_adder1  u_adder0(<br>    <span class="hljs-variable">.Ai</span>     (a[<span class="hljs-number">0</span>]),<br>    <span class="hljs-variable">.Bi</span>     (b[<span class="hljs-number">0</span>]),<br>    <span class="hljs-variable">.Ci</span>     (c==<span class="hljs-number">1&#x27;b1</span> ? <span class="hljs-number">1&#x27;b0</span> : <span class="hljs-number">1&#x27;b1</span>),<br>    <span class="hljs-variable">.So</span>     (so_bit0));<br></code></pre></td></tr></table></figure>
-<ul>
-<li>带参数例化</li>
-</ul>
-<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-comment">//instantiation</span><br><span class="hljs-keyword">defparam</span>     u_ram_4x4<span class="hljs-variable">.MASK</span> = <span class="hljs-number">7</span> ;<br>ram_4x4    u_ram_4x4<br>    (<br>        <span class="hljs-variable">.CLK</span>    (clk),<br>        <span class="hljs-variable">.A</span>      (a[<span class="hljs-number">4</span>-<span class="hljs-number">1</span>:<span class="hljs-number">0</span>]),<br>        <span class="hljs-variable">.D</span>      (d),<br>        <span class="hljs-variable">.EN</span>     (en),<br>        <span class="hljs-variable">.WR</span>     (wr),    <span class="hljs-comment">//1 for write and 0 for read</span><br>        <span class="hljs-variable">.Q</span>      (q)    );<br></code></pre></td></tr></table></figure>
-<h4 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h4><p>函数只能在模块中定义，位置任意，并在模块的任何地方引用，作用范围也局限于此模块。函数主要有以下几个特点：</p>
+<p>由图可知原始音频信号的频谱从<strong>0~10.7khz</strong>左右就基本没有了，因此原始信号的最高频率**$f_{max}=10.7khz$**.</p>
+<p>其源代码如下所示：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-comment">%% 数据导入及参数设置</span><br>[x,Fs]=audioread(<span class="hljs-string">&#x27;D:\DSP实验报告\大作业报告\ch4andch5\myaudio.mp3&#x27;</span>);<br>x=x(:,<span class="hljs-number">1</span>);<span class="hljs-comment">%选择左声道</span><br>N=<span class="hljs-built_in">length</span>(x);<br>t=(<span class="hljs-number">0</span>:N<span class="hljs-number">-1</span>)/Fs;<span class="hljs-comment">%时域范围</span><br>df=Fs/<span class="hljs-built_in">length</span>(t); <span class="hljs-comment">%计算谱线间隔</span><br>f=t*df;<span class="hljs-comment">%频域范围</span><br>X=FFT(x,N,Fs,t);<br>X=fftshift(X);<span class="hljs-comment">%将频谱翻转过来</span><br>f=(f*Fs-Fs/<span class="hljs-number">2</span>)/<span class="hljs-number">1e3</span>;<span class="hljs-comment">%只显示正频谱</span><br>X=<span class="hljs-built_in">abs</span>(X);<br><span class="hljs-comment">% 绘出时域图和幅频响应</span><br><span class="hljs-built_in">figure</span>;<br>subplot(<span class="hljs-number">221</span>)<br><span class="hljs-built_in">plot</span>(t,x);<br>title(<span class="hljs-string">&quot;原信号音频时域图&quot;</span>);<br>ylabel(<span class="hljs-string">&#x27;幅值&#x27;</span>);<br>xlabel(<span class="hljs-string">&quot;t/s&quot;</span>);<br>subplot(<span class="hljs-number">222</span>)<br><span class="hljs-built_in">plot</span>(f(:,<span class="hljs-built_in">ceil</span>(N/<span class="hljs-number">2</span>):<span class="hljs-keyword">end</span>),X(<span class="hljs-built_in">ceil</span>(N/<span class="hljs-number">2</span>):<span class="hljs-keyword">end</span>,<span class="hljs-number">1</span>),<span class="hljs-string">&#x27;c&#x27;</span>)<br><span class="hljs-comment">% plot(f*Fs/1e3,Y,&#x27;k&#x27;);</span><br>title(<span class="hljs-string">&quot;原信号音频幅频响应&quot;</span>);<br>xlabel(<span class="hljs-string">&quot;f/Khz&quot;</span>); <br>ylabel(<span class="hljs-string">&#x27;频率幅值&#x27;</span>);<br></code></pre></td></tr></table></figure>
+
+<h3 id="2-信号加噪及频谱分析"><a href="#2-信号加噪及频谱分析" class="headerlink" title="2.信号加噪及频谱分析"></a>2.信号加噪及频谱分析</h3><p>给原始音频信号加入频谱范围为<code>11.15~11.95khz</code>的<strong>高频带限噪声</strong>为后面设计滤波器做准备，绘出加噪信号的时域图和频谱图，如下图所示。</p>
+<img src="D:\DSP实验报告\大作业报告\ch4andch5\图片\加噪信号.png" srcset="/img/loading.gif" lazyload style="zoom:67%;" />
+
+<p>由上图观察可知加噪后的信号在<code>11.15~11.95khz</code>的范围内出现了高频噪声信号，这也是后面需要滤波消除的部分，根据加噪后的信号的频谱可以得到设计滤波器的性能指标。</p>
+<p>源代码如下所示：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-comment">%% 加入噪声</span><br>noise=<span class="hljs-number">0</span>;<br><span class="hljs-keyword">for</span> <span class="hljs-built_in">i</span>=<span class="hljs-number">0.1</span>:<span class="hljs-number">0.1</span>:<span class="hljs-number">5</span><br>    noise=noise+<span class="hljs-number">0.003</span>*(<span class="hljs-built_in">cos</span>((<span class="hljs-number">70</span>+<span class="hljs-built_in">i</span>)*<span class="hljs-number">1000</span>*t));<br><span class="hljs-keyword">end</span><br>x_z=x+noise&#x27;;<br>X_Z=FFT(x_z,N,Fs,t);<br>X_Z=fftshift(X_Z);<span class="hljs-comment">%将频谱翻转过来</span><br>X_Z=<span class="hljs-built_in">abs</span>(X_Z);<br>subplot(<span class="hljs-number">211</span>)<br><span class="hljs-built_in">plot</span>(t,x_z);<br>xlabel(<span class="hljs-string">&quot;t/s&quot;</span>);<br>ylabel(<span class="hljs-string">&#x27;幅值&#x27;</span>);<br>title(<span class="hljs-string">&#x27;加噪后信号时域图&#x27;</span>);<br>subplot(<span class="hljs-number">212</span>)<br><span class="hljs-built_in">plot</span>(f(:,<span class="hljs-built_in">ceil</span>(N/<span class="hljs-number">2</span>):<span class="hljs-keyword">end</span>),X_Z(<span class="hljs-built_in">ceil</span>(N/<span class="hljs-number">2</span>):<span class="hljs-keyword">end</span>,<span class="hljs-number">1</span>),<span class="hljs-string">&#x27;c&#x27;</span>)<br>xlabel(<span class="hljs-string">&#x27;f/Hz&#x27;</span>);<br>ylabel(<span class="hljs-string">&#x27;频率幅值&#x27;</span>);<br>title(<span class="hljs-string">&#x27;加噪后信号幅频响应&#x27;</span>);<br></code></pre></td></tr></table></figure>
+
+<h3 id="3-失真分析"><a href="#3-失真分析" class="headerlink" title="3.失真分析"></a>3.失真分析</h3><p>由上述的频谱图可知原始音频信号**$f_{max}=10.7khz&lt;f_s=48khz$**,因此经过采样后信号没有发生频谱混叠，且没有栅栏效应发生。</p>
+<h3 id="4-设计性能指标"><a href="#4-设计性能指标" class="headerlink" title="4.设计性能指标"></a>4.设计性能指标</h3><p>数字滤波器的频率响应表示为：<br>$$<br>H(e^{j\omega})=|H(e^{j\omega})|e^{j\beta(j\omega)}<br>$$<br>根据下图中理想低通滤波器逼近的误差容限可以看出，频率响应有通带、过渡带、阻带三个范围:</p>
+<p><img src="https://cdn.jsdelivr.net/gh/chuiyugin/imgbed/%E6%BB%A4%E6%B3%A2%E5%99%A8.png" srcset="/img/loading.gif" lazyload></p>
+<p>下图展示了不同滤波器的技术指标：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/chuiyugin/imgbed/%E6%BB%A4%E6%B3%A2%E5%99%A82.png" srcset="/img/loading.gif" lazyload></p>
+<p> 对加噪后的音频频谱进行分析，有用信号的频谱范围是<code>0~10.7khz</code>，噪声信号的频谱范围是<code>11.15~11.95khz</code>，因此设置通带截止频率**$w_p=10.7khz$<strong>，阻带截止频率</strong>$w_{st}=11.15khz$<strong>,通带最大衰减系数</strong>$\delta_1=2db$<strong>，阻带最小衰减</strong>$\delta_2=80db$**。</p>
+<h2 id="四、结果展示"><a href="#四、结果展示" class="headerlink" title="四、结果展示"></a>四、结果展示</h2><p>原始音频信号加噪前后时域、频域对比图如下图所示：</p>
+<img src="D:\DSP实验报告\大作业报告\ch4andch5\图片\加噪信号频谱图.png" srcset="/img/loading.gif" lazyload alt="加噪前后对比图" style="zoom:67%;" />
+
+<p>设计滤波器的性能指标如下：</p>
+<p><u>通带截止频率**$w_p=10.7khz$<strong>，阻带截止频率</strong>$w_{st}=11.15khz$<strong>,通带最大衰减系数</strong>$\delta_1=2db$<strong>，阻带最小衰减</strong>$\delta_2=80db$**。</u></p>
+<h2 id="五、结果分析"><a href="#五、结果分析" class="headerlink" title="五、结果分析"></a>五、结果分析</h2><blockquote>
 <ol>
-<li>不含有任何延迟、时序或时序控制逻辑</li>
-<li>至少有一个输入变量</li>
-<li>只有一个返回值，且没有输出</li>
-<li>不含有非阻塞赋值语句</li>
-<li>函数可以调用其他函数，但是不能调用任务</li>
+<li>谱分析的过程中首先要知道分辨率和采样频率等要求，然后根据原始信号的最大频率结合<strong>奈奎斯特采样定理</strong>设定合适的采样频率，再依据$F_0=\frac{1}{T_0}=\frac{1}{N*T_s}$计算得到采样点数和捕获时间等信息，计算频域窗口范围，接着进行FFT变换获得其频谱，观察频谱与理论频谱是否一致，判断是否发生<strong>频谱混叠、栅栏效应</strong>等，若使用了窗函数进行截断还要考虑是否发生<strong>频谱泄露</strong>。</li>
+<li>设计滤波器性能指标过程中，首先需要知道待滤波信号的频谱情况，然后依据频谱判断有用信号和噪声信号的分布，从而确定使用低通、高通、带通还是带阻等滤波器，并且设计相应的性能指标，一般包括<strong>通带截止频率、阻带截止频率、通带最大衰减和阻带最大衰减</strong>四个性能指标。</li>
 </ol>
-<p>Verilog 函数声明格式如下：</p>
-<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-keyword">function</span> [range-<span class="hljs-number">1</span>:<span class="hljs-number">0</span>]     function_id ;<br>input_declaration ;<br> other_declaration ;<br>procedural_statement ;<br><span class="hljs-keyword">endfunction</span><br></code></pre></td></tr></table></figure>
-<p><strong>模块实例</strong></p>
-<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-keyword">module</span> endian_rvs<br>	#(<span class="hljs-keyword">parameter</span> N = <span class="hljs-number">4</span>)<br>	    (<br>	        <span class="hljs-keyword">input</span>             en,     <span class="hljs-comment">//enable control</span><br>	        <span class="hljs-keyword">input</span> [N-<span class="hljs-number">1</span>:<span class="hljs-number">0</span>]     a ,<br>	        <span class="hljs-keyword">output</span> [N-<span class="hljs-number">1</span>:<span class="hljs-number">0</span>]    b<br>	);<br>	     <br>	    <span class="hljs-keyword">reg</span> [N-<span class="hljs-number">1</span>:<span class="hljs-number">0</span>]          b_temp ;<br>	    <span class="hljs-keyword">always</span> @(*) <span class="hljs-keyword">begin</span><br>	    <span class="hljs-keyword">if</span> (en) <span class="hljs-keyword">begin</span><br>	            b_temp =  data_rvs(a);<br>	        <span class="hljs-keyword">end</span><br>	        <span class="hljs-keyword">else</span> <span class="hljs-keyword">begin</span><br>	            b_temp = <span class="hljs-number">0</span> ;<br>	        <span class="hljs-keyword">end</span><br>	<span class="hljs-keyword">end</span><br>	    <span class="hljs-keyword">assign</span> b = b_temp ;<br>	     <br>	<span class="hljs-comment">//function entity</span><br>	    <span class="hljs-keyword">function</span> [N-<span class="hljs-number">1</span>:<span class="hljs-number">0</span>]     data_rvs ;<br>	        <span class="hljs-keyword">input</span>     [N-<span class="hljs-number">1</span>:<span class="hljs-number">0</span>] data_in ;<br>	        <span class="hljs-keyword">parameter</span>         MASK = <span class="hljs-number">32&#x27;h3</span> ;<br>	        <span class="hljs-keyword">integer</span>           k ;<br>	        <span class="hljs-keyword">begin</span><br>	            <span class="hljs-keyword">for</span>(k=<span class="hljs-number">0</span>; k&lt;N; k=k+<span class="hljs-number">1</span>) <span class="hljs-keyword">begin</span><br>	                data_rvs[N-k-<span class="hljs-number">1</span>]  = data_in[k] ;  <br>	            <span class="hljs-keyword">end</span><br>	        <span class="hljs-keyword">end</span><br>	<span class="hljs-keyword">endfunction</span><br><span class="hljs-keyword">endmodule</span> <br></code></pre></td></tr></table></figure>
-<h3 id="常数函数"><a href="#常数函数" class="headerlink" title="常数函数"></a>常数函数</h3><p>常数函数是指在仿真开始之前，在编译期间就计算出结果为常数的函数。常数函数不允许访问全局变量或者调用系统函数，但是可以调用另一个常数函数。</p>
-<p>这种函数能够用来引用复杂的值，因此可用来代替常量。</p>
-<p>例如下面一个常量函数，可以来计算模块中地址总线的宽度：</p>
-<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-keyword">parameter</span>    MEM_DEPTH = <span class="hljs-number">256</span> ;<br><span class="hljs-keyword">reg</span>  [logb2(MEM_DEPTH)-<span class="hljs-number">1</span>: <span class="hljs-number">0</span>] addr ; <span class="hljs-comment">//可得addr的宽度为8bit</span><br> <br>    <span class="hljs-keyword">function</span> <span class="hljs-keyword">integer</span>     logb2;<br>    <span class="hljs-keyword">input</span> <span class="hljs-keyword">integer</span>     depth ;<br>        <span class="hljs-comment">//256为9bit，我们最终数据应该是8，所以需depth=2时提前停止循环</span><br>    <span class="hljs-keyword">for</span>(logb2=<span class="hljs-number">0</span>; depth&gt;<span class="hljs-number">1</span>; logb2=logb2+<span class="hljs-number">1</span>) <span class="hljs-keyword">begin</span><br>        depth = depth &gt;&gt; <span class="hljs-number">1</span> ;<br>    <span class="hljs-keyword">end</span><br><span class="hljs-keyword">endfunction</span><br></code></pre></td></tr></table></figure>
-
-<h3 id="automatic-函数"><a href="#automatic-函数" class="headerlink" title="automatic 函数"></a>automatic 函数</h3><p>在 Verilog 中，一般函数的局部变量是静态的，即函数的每次调用，函数的局部变量都会使用同一个存储空间。若某个函数在两个不同的地方同时并发的调用，那么两个函数调用行为同时对同一块地址进行操作，会导致不确定的函数结果。</p>
-<p>Verilog 用关键字 automatic 来对函数进行说明，此类函数在调用时是可以自动分配新的内存空间的，也可以理解为是可递归的。因此，automatic 函数中声明的局部变量不能通过层次命名进行访问，但是 automatic 函数本身可以通过层次名进行调用。</p>
-<p>下面用 automatic 函数，实现阶乘计算：</p>
-<blockquote>
-<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs verilog">&gt;<span class="hljs-keyword">wire</span> [<span class="hljs-number">31</span>:<span class="hljs-number">0</span>]      results3 = factorial(<span class="hljs-number">4</span>);<br>&gt;<span class="hljs-keyword">function</span> <span class="hljs-keyword">automatic</span> <span class="hljs-keyword">integer</span>    factorial ;<br>&gt;<span class="hljs-keyword">input</span> <span class="hljs-keyword">integer</span>   data ;<br>&gt;<span class="hljs-keyword">integer</span>     i ;<br>&gt;<span class="hljs-keyword">begin</span><br>&gt;factorial = (data&gt;=<span class="hljs-number">2</span>)? data * factorial(data-<span class="hljs-number">1</span>) : <span class="hljs-number">1</span> ;<br>&gt;<span class="hljs-keyword">end</span><br>&gt;<span class="hljs-keyword">endfunction</span><span class="hljs-comment">// factorial</span><br></code></pre></td></tr></table></figure>
 </blockquote>
-<h3 id="常见指令"><a href="#常见指令" class="headerlink" title="常见指令"></a>常见指令</h3><ul>
-<li>$display<br>(类似于c的print,自动换行,运行时显示)</li>
-<li>$write<br>(和display功能一样,不换行)</li>
-<li>$monitor<br>(监视变量的变化，只要变则输出)</li>
-<li>$strobe<br>(活动结束后显示)</li>
-<li>$stop<br>(暂停仿真)</li>
-<li>$finish<br>(结束仿真)</li>
-<li>$time<br>(返回一个64位整数时间值)<br>$stime<br>(返回一个32位整数时间值)<br>$realtime<br>(返回-一个实数时间值)</li>
-<li>( 1) Srandom和$random()<br>意义一样,都是产生32带符号整数随机数<br>( 2) $random%100<br>在-99到99之间产生随机数<br>(3) {Srandom}%100<br>采用位拼接符,在0到100之间产生随机数<br>(4) 如seed =10, Srandom(seed)<br>根据seed值产生随机数,而后seed值也会更新</li>
-<li>（读取文件中的数据,内容必须为空格、换行、制表格、注释行、二进制或十六进制的数字）<br>$readmemb(“ &lt;数据文件名&gt;”, &lt;存贮器名&gt;);<br>$readmemb(“&lt;数据文件名&gt;”,&lt;存贮器名&gt;,&lt;起始地址&gt;);<br>Sreadmemb(“ &lt;数据文件名&gt;”, &lt;存贮器名&gt;,&lt;起始地址&gt;, &lt;结束地址&gt;);<br>$readmemh(“ &lt;数据文件名&gt;”, &lt;存贮器名&gt;);<br>$readmemh(“ &lt;数据文件名&gt;”,&lt;存则器名&gt;,&lt;起始地址&gt;);<br>$readmemh(“&lt;数据文件名&gt;”,&lt;存贮器名&gt;,&lt;起始地址&gt;, &lt;结束地址&gt;);</li>
-</ul>
-<h2 id="ModelSim"><a href="#ModelSim" class="headerlink" title="ModelSim"></a>ModelSim</h2><h2 id="分支主题-3"><a href="#分支主题-3" class="headerlink" title="分支主题 3"></a>分支主题 3</h2>
+<h2 id="六、源码开源"><a href="#六、源码开源" class="headerlink" title="六、源码开源"></a>六、源码开源</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-24bfcec2-0b23-4547-a957-73ffab276534/2c7c8bdd-2316-47cd-8a94-4882573700a5.zip">源代码资源包</a>有需要的小伙伴可以下载参考。</p>
+</blockquote>
+
                 
               </div>
             
@@ -405,7 +418,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/FPGA/" class="category-chain-item">FPGA</a>
+  <a href="/categories/DSP/" class="category-chain-item">DSP</a>
   
   
 
@@ -420,7 +433,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/FPGA/">#FPGA</a>
+        <a href="/tags/FFT/">#FFT</a>
       
     </div>
   
@@ -432,8 +445,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>FPGA_Notes</div>
-      <div>https://alleyf.github.io/2022/10/03/FPGA/</div>
+      <div>Frequency——Analysis</div>
+      <div>https://alleyf.github.io/2022/12/21/谱分析及滤波器指标计算/</div>
     </div>
     <div class="license-meta">
       
@@ -445,13 +458,13 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>October 3, 2022</div>
+          <div>December 21, 2022</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>Updated on</div>
-          <div>October 5, 2022</div>
+          <div>December 21, 2022</div>
         </div>
       
       <div class="license-meta-item">
@@ -480,9 +493,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/10/09/LatexEquationManual/" title="LatexEquationManual">
+                      <a href="/2022/12/21/FIR%E5%92%8CIIR%E6%BB%A4%E6%B3%A2%E5%99%A8%E8%AE%BE%E8%AE%A1/" title="FIR and IIR filter design">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">LatexEquationManual</span>
+                        <span class="hidden-mobile">FIR and IIR filter design</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -490,8 +503,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/09/28/Java_Exercise/" title="Java_Exercise">
-                        <span class="hidden-mobile">Java_Exercise</span>
+                      <a href="/2022/11/21/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8/" title="Embeded theory and appliment">
+                        <span class="hidden-mobile">Embeded theory and appliment</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -512,7 +525,7 @@
         var options = Object.assign(
           {"clientID":"636f2864e051a199b91c","clientSecret":"5185fd11115bbcd8d2f636bc80de6bed98ed14c1","repo":"Gitalk","owner":"Alleyf","admin":["Alleyf"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":false,"proxy":"https://shielded-brushlands-08810.herokuapp.com/https://github.com/login/oauth/access_token"},
           {
-            id: 'c714e06c35746229d04871802da58dc6'
+            id: '122529a49c6316a984cd928cefa9d24d'
           }
         )
         var gitalk = new Gitalk(options);
