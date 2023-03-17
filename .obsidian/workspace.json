@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "c12ac80b58d62717",
+        "id": "3eb69e7919a81ce6",
         "type": "tabs",
         "children": [
           {
-            "id": "1be060c2da3c88f0",
+            "id": "c5085fa051e921cc",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/机器学习/CV/图像分类.md",
+                "file": "source/_posts/英语学习/考研单词.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/机器学习/CV/图像分类.md",
+                "file": "source/_posts/英语学习/考研单词.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/_posts/机器学习/CV/图像分类.md",
+                "file": "source/_posts/英语学习/考研单词.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/机器学习/CV/图像分类.md"
+                "file": "source/_posts/英语学习/考研单词.md"
               }
             }
           },
@@ -185,13 +185,16 @@
       "remotely-save:Remotely Save": false
     }
   },
-  "active": "1be060c2da3c88f0",
+  "active": "c5085fa051e921cc",
   "lastOpenFiles": [
+    "source/_posts/英语学习/考研单词.md",
+    "source/_posts/未命名.canvas",
+    "source/_posts/英语学习",
+    "source/_posts/机器学习/CV/计算机视觉概述.md",
     "source/_posts/机器学习/ML_DL.md",
     "source/_posts/机器学习/CV/图像分类.md",
     "source/_posts/机器学习/CV/目标检测.md",
     "source/_posts/机器学习/CV/卷积神经网络基础.md",
-    "source/_posts/机器学习/CV/计算机视觉概述.md",
     "public/2023/03/56d5f0383564.html",
     "public/2023/03/cc1560495a8d.html",
     "public/2023/03/f41646eecf81.html",
@@ -206,7 +209,6 @@
     "source/_posts/前后端开发/网页开发.md",
     "source/_posts/前后端开发/algorithm.md",
     "2023-03-17.md",
-    "public/2023/03/7d1a5ec599a4.html",
     "node_modules/husky/README.md",
     "机器学习/CV/卷积神经网络基础.md",
     "机器学习/CV/计算机视觉概述.md",
@@ -221,8 +223,6 @@
     "课程学习/嵌入式原理与应用.md",
     "课程学习/谱分析及滤波器指标计算.md",
     "课程学习/FIR快速卷积滤波.md",
-    "课程学习/FPGA.md",
-    "课程学习/FIR和IIR滤波器设计.md",
     "未命名.canvas"
   ]
 }

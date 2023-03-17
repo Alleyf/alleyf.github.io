@@ -1,7 +1,6 @@
 ---
 title: ML_DL
 tags: [Numpy,Pandas,PIL,Matplotlib]
-categories: MachineLearning
 date: 2022-9-11 0:26:00
 sticky: 100
 excerpt: Deep_learning
