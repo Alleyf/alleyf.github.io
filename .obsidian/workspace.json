@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/机器学习/CV/计算机视觉概述.md",
+                "file": "source/_posts/机器学习/CV/目标检测.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/机器学习/CV/计算机视觉概述.md",
+                "file": "source/_posts/机器学习/CV/目标检测.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/_posts/机器学习/CV/计算机视觉概述.md",
+                "file": "source/_posts/机器学习/CV/目标检测.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/机器学习/CV/计算机视觉概述.md"
+                "file": "source/_posts/机器学习/CV/目标检测.md"
               }
             }
           },
@@ -185,23 +185,28 @@
       "remotely-save:Remotely Save": false
     }
   },
-  "active": "1be060c2da3c88f0",
+  "active": "1d6169ada01295c2",
   "lastOpenFiles": [
+    "public/2023/03/56d5f0383564.html",
+    "public/2023/03/cc1560495a8d.html",
+    "public/2023/03/f41646eecf81.html",
+    "public/tags/CNN/index.html",
+    "public/tags/CNN",
+    "public/tags/CV/index.html",
+    "public/tags/CV",
+    "public/tags/Algorithm/index.html",
+    "public/tags/Algorithm",
     "source/_posts/机器学习/CV/卷积神经网络基础.md",
-    "2023-03-17.md",
+    "source/_posts/机器学习/CV/目标检测.md",
+    "source/_posts/机器学习/CV/图像分类.md",
     "source/_posts/机器学习/CV/计算机视觉概述.md",
-    "public/2023/03/7d1a5ec599a4.html",
-    "public/tags/机器视觉/index.html",
-    "public/tags/机器视觉",
-    "public/tags/DL-CV/index.html",
-    "public/tags/DL-CV",
     "source/_obsidian/Post Template.md",
     "source/_posts/课程学习/谱分析及滤波器指标计算.md",
-    "public/archives/2022/09/page/2/index.html",
-    "public/archives/2022/09/page/2",
-    "public/archives/2022/09/page",
-    "public/page/3/index.html",
-    "public/page/3",
+    "source/_posts/前后端开发/网页开发.md",
+    "source/_posts/前后端开发/algorithm.md",
+    "2023-03-17.md",
+    "public/2023/03/7d1a5ec599a4.html",
+    "public/tags/机器视觉/index.html",
     "node_modules/husky/README.md",
     "机器学习/CV/卷积神经网络基础.md",
     "机器学习/CV/计算机视觉概述.md",
@@ -218,11 +223,6 @@
     "课程学习/FIR快速卷积滤波.md",
     "课程学习/FPGA.md",
     "课程学习/FIR和IIR滤波器设计.md",
-    "前后端学习/网页开发.md",
-    "前后端学习/未命名.md",
-    "textgenerator/prompts/default/getTitles.md",
-    "textgenerator/prompts/default/getEmailNeg.md",
-    "textgenerator/prompts/default/getIdeas.md",
     "未命名.canvas"
   ]
 }
