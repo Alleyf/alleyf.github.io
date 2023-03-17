@@ -18,14 +18,6 @@
                 "source": false
               }
             }
-          },
-          {
-            "id": "680af7e461673b6a",
-            "type": "leaf",
-            "state": {
-              "type": "empty",
-              "state": {}
-            }
           }
         ]
       }
@@ -160,14 +152,21 @@
               "type": "advanced-tables-toolbar",
               "state": {}
             }
+          },
+          {
+            "id": "1d6169ada01295c2",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {}
+            }
           }
         ],
-        "currentTab": 6
+        "currentTab": 7
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 200
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -183,22 +182,31 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false,
       "templater-obsidian:Templater": false,
       "obsidian-advanced-slides:Show Slide Preview": false,
-      "digitalgarden:Digital Garden Publication Center": false,
       "remotely-save:Remotely Save": false
     }
   },
-  "active": "c315bce6e580037b",
+  "active": "4a383e802b683e84",
   "lastOpenFiles": [
+    "public/archives/2022/09/page/2/index.html",
+    "public/archives/2022/09/page/2",
+    "public/archives/2022/09/page",
+    "public/page/3/index.html",
+    "public/page/3",
+    "public/2023/03/b4ffe501f6f3.html",
+    "public/2023/03/d13e286fa999.html",
+    "public/2023/03/9bd7bc6fbf6c.html",
+    "public/2023/03/1bf06815c12c.html",
+    "public/2023/03",
+    "public/categories/机器学习/index.html",
+    "node_modules/husky/README.md",
     "source/_posts/课程学习/谱分析及滤波器指标计算.md",
     "source/_posts/机器学习/CV/计算机视觉概述.md",
     "机器学习/CV/卷积神经网络基础.md",
     "机器学习/CV/计算机视觉概述.md",
     "机器学习/CV/目标检测.md",
     "机器学习/CV/图像分类.md",
-    "机器学习/CV",
     "机器学习/ML_DL.md",
     "ML_DL.md",
-    "机器学习",
     "课程学习/QuartusUsage.md",
     "课程学习/Java Notes.md",
     "课程学习/SignalSample.md",
@@ -208,20 +216,13 @@
     "课程学习/FIR快速卷积滤波.md",
     "课程学习/FPGA.md",
     "课程学习/FIR和IIR滤波器设计.md",
-    "课程学习",
     "前后端学习/网页开发.md",
     "前后端学习/未命名.md",
-    "前后端学习",
     "textgenerator/prompts/default/getTitles.md",
     "textgenerator/prompts/default/getEmailNeg.md",
     "textgenerator/prompts/default/getIdeas.md",
     "textgenerator/prompts/default/getEmailPos.md",
     "未命名.canvas",
-    "textgenerator/prompts/default/getOutline.md",
-    "textgenerator/prompts/default/rewrite.md",
-    "textgenerator/prompts/default/summarize.md",
-    "textgenerator/prompts/default",
-    "textgenerator/prompts",
-    "textgenerator"
+    "textgenerator/prompts/default/getOutline.md"
   ]
 }
