@@ -1,0 +1,850 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="alleyf">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="some notation about FPGA。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FPGA_Notes">
+<meta property="og:url" content="https://alleyf.github.io/2022/10/225ffd722b96.html">
+<meta property="og:site_name" content="alleyf">
+<meta property="og:description" content="some notation about FPGA。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-10-03T02:00:00.000Z">
+<meta property="article:modified_time" content="2022-10-05T00:44:28.713Z">
+<meta property="article:author" content="alleyf">
+<meta property="article:tag" content="FPGA">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>FPGA_Notes - alleyf</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"alleyf.github.io","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":true,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"d57048846da607439cf11718741f2eb0","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?d57048846da607439cf11718741f2eb0";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Mr.Alleyf</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                Links
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="FPGA_Notes"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        alleyf
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-10-03 10:00" pubdate>
+          October 3, 2022 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          25 mins
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> views
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">FPGA_Notes</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    Last updated on 5 months ago
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="FPGA-Notes"><a href="#FPGA-Notes" class="headerlink" title="FPGA_Notes"></a>FPGA_Notes</h1><h2 id="Verilog"><a href="#Verilog" class="headerlink" title="Verilog"></a>Verilog</h2><h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><h4 id="语句块"><a href="#语句块" class="headerlink" title="语句块"></a>语句块</h4><ul>
+<li>顺序块：<br><code>begin</code><br><code>end</code></li>
+<li>并行块：<br><code>fork</code><br><code>join</code></li>
+</ul>
+<h4 id="多路分支语句"><a href="#多路分支语句" class="headerlink" title="多路分支语句"></a>多路分支语句</h4><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-keyword">case</span>()<br>    condition1<br>    condition2<br>    <span class="hljs-keyword">endcase</span><br><span class="hljs-keyword">casez</span>(sel)<br>          <span class="hljs-number">4</span>&#x27;b???<span class="hljs-number">1</span>:     sout_t = p0 ;<br>          <span class="hljs-number">4</span>&#x27;b??<span class="hljs-number">1</span>?:     sout_t = p1 ;<br>          <span class="hljs-number">4</span>&#x27;b?<span class="hljs-number">1</span>??:     sout_t = p2 ;<br>          <span class="hljs-number">4&#x27;b1</span>???:     sout_t = p3 ;  <br>      <span class="hljs-keyword">default</span>:         sout_t = <span class="hljs-number">2&#x27;b0</span> ;<br><span class="hljs-keyword">endcase</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="循环语句"><a href="#循环语句" class="headerlink" title="循环语句"></a>循环语句</h4><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-keyword">while</span>()<br> <span class="hljs-keyword">begin</span><br> <span class="hljs-keyword">end</span><br><span class="hljs-keyword">for</span>(initial_assignment; condition ; step_assignment)  <br><span class="hljs-keyword">begin</span><br>  …<br><span class="hljs-keyword">end</span><br><span class="hljs-keyword">repeat</span>(num)<br> <span class="hljs-keyword">begin</span><br> <span class="hljs-keyword">end</span><br><span class="hljs-keyword">forever</span><br> <span class="hljs-keyword">begin</span><br> <span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
+<h4 id="模块例化"><a href="#模块例化" class="headerlink" title="模块例化"></a>模块例化</h4><ul>
+<li>不带参数例化</li>
+</ul>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-comment">//output 端口 Co 悬空</span><br>full_adder1  u_adder0(<br>  <span class="hljs-variable">.Ai</span>     (a[<span class="hljs-number">0</span>]),<br>  <span class="hljs-variable">.Bi</span>     (b[<span class="hljs-number">0</span>]),<br>  <span class="hljs-variable">.Ci</span>     (c==<span class="hljs-number">1&#x27;b1</span> ? <span class="hljs-number">1&#x27;b0</span> : <span class="hljs-number">1&#x27;b1</span>),<br>  <span class="hljs-variable">.So</span>     (so_bit0),<br>  <span class="hljs-variable">.Co</span>     ());<br><br><span class="hljs-comment">//output 端口 Co 删除</span><br>full_adder1  u_adder0(<br>    <span class="hljs-variable">.Ai</span>     (a[<span class="hljs-number">0</span>]),<br>    <span class="hljs-variable">.Bi</span>     (b[<span class="hljs-number">0</span>]),<br>    <span class="hljs-variable">.Ci</span>     (c==<span class="hljs-number">1&#x27;b1</span> ? <span class="hljs-number">1&#x27;b0</span> : <span class="hljs-number">1&#x27;b1</span>),<br>    <span class="hljs-variable">.So</span>     (so_bit0));<br></code></pre></td></tr></table></figure>
+<ul>
+<li>带参数例化</li>
+</ul>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-comment">//instantiation</span><br><span class="hljs-keyword">defparam</span>     u_ram_4x4<span class="hljs-variable">.MASK</span> = <span class="hljs-number">7</span> ;<br>ram_4x4    u_ram_4x4<br>    (<br>        <span class="hljs-variable">.CLK</span>    (clk),<br>        <span class="hljs-variable">.A</span>      (a[<span class="hljs-number">4</span>-<span class="hljs-number">1</span>:<span class="hljs-number">0</span>]),<br>        <span class="hljs-variable">.D</span>      (d),<br>        <span class="hljs-variable">.EN</span>     (en),<br>        <span class="hljs-variable">.WR</span>     (wr),    <span class="hljs-comment">//1 for write and 0 for read</span><br>        <span class="hljs-variable">.Q</span>      (q)    );<br></code></pre></td></tr></table></figure>
+<h4 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h4><p>函数只能在模块中定义，位置任意，并在模块的任何地方引用，作用范围也局限于此模块。函数主要有以下几个特点：</p>
+<ol>
+<li>不含有任何延迟、时序或时序控制逻辑</li>
+<li>至少有一个输入变量</li>
+<li>只有一个返回值，且没有输出</li>
+<li>不含有非阻塞赋值语句</li>
+<li>函数可以调用其他函数，但是不能调用任务</li>
+</ol>
+<p>Verilog 函数声明格式如下：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-keyword">function</span> [range-<span class="hljs-number">1</span>:<span class="hljs-number">0</span>]     function_id ;<br>input_declaration ;<br> other_declaration ;<br>procedural_statement ;<br><span class="hljs-keyword">endfunction</span><br></code></pre></td></tr></table></figure>
+<p><strong>模块实例</strong></p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-keyword">module</span> endian_rvs<br>	#(<span class="hljs-keyword">parameter</span> N = <span class="hljs-number">4</span>)<br>	    (<br>	        <span class="hljs-keyword">input</span>             en,     <span class="hljs-comment">//enable control</span><br>	        <span class="hljs-keyword">input</span> [N-<span class="hljs-number">1</span>:<span class="hljs-number">0</span>]     a ,<br>	        <span class="hljs-keyword">output</span> [N-<span class="hljs-number">1</span>:<span class="hljs-number">0</span>]    b<br>	);<br>	     <br>	    <span class="hljs-keyword">reg</span> [N-<span class="hljs-number">1</span>:<span class="hljs-number">0</span>]          b_temp ;<br>	    <span class="hljs-keyword">always</span> @(*) <span class="hljs-keyword">begin</span><br>	    <span class="hljs-keyword">if</span> (en) <span class="hljs-keyword">begin</span><br>	            b_temp =  data_rvs(a);<br>	        <span class="hljs-keyword">end</span><br>	        <span class="hljs-keyword">else</span> <span class="hljs-keyword">begin</span><br>	            b_temp = <span class="hljs-number">0</span> ;<br>	        <span class="hljs-keyword">end</span><br>	<span class="hljs-keyword">end</span><br>	    <span class="hljs-keyword">assign</span> b = b_temp ;<br>	     <br>	<span class="hljs-comment">//function entity</span><br>	    <span class="hljs-keyword">function</span> [N-<span class="hljs-number">1</span>:<span class="hljs-number">0</span>]     data_rvs ;<br>	        <span class="hljs-keyword">input</span>     [N-<span class="hljs-number">1</span>:<span class="hljs-number">0</span>] data_in ;<br>	        <span class="hljs-keyword">parameter</span>         MASK = <span class="hljs-number">32&#x27;h3</span> ;<br>	        <span class="hljs-keyword">integer</span>           k ;<br>	        <span class="hljs-keyword">begin</span><br>	            <span class="hljs-keyword">for</span>(k=<span class="hljs-number">0</span>; k&lt;N; k=k+<span class="hljs-number">1</span>) <span class="hljs-keyword">begin</span><br>	                data_rvs[N-k-<span class="hljs-number">1</span>]  = data_in[k] ;  <br>	            <span class="hljs-keyword">end</span><br>	        <span class="hljs-keyword">end</span><br>	<span class="hljs-keyword">endfunction</span><br><span class="hljs-keyword">endmodule</span> <br></code></pre></td></tr></table></figure>
+<h3 id="常数函数"><a href="#常数函数" class="headerlink" title="常数函数"></a>常数函数</h3><p>常数函数是指在仿真开始之前，在编译期间就计算出结果为常数的函数。常数函数不允许访问全局变量或者调用系统函数，但是可以调用另一个常数函数。</p>
+<p>这种函数能够用来引用复杂的值，因此可用来代替常量。</p>
+<p>例如下面一个常量函数，可以来计算模块中地址总线的宽度：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-keyword">parameter</span>    MEM_DEPTH = <span class="hljs-number">256</span> ;<br><span class="hljs-keyword">reg</span>  [logb2(MEM_DEPTH)-<span class="hljs-number">1</span>: <span class="hljs-number">0</span>] addr ; <span class="hljs-comment">//可得addr的宽度为8bit</span><br> <br>    <span class="hljs-keyword">function</span> <span class="hljs-keyword">integer</span>     logb2;<br>    <span class="hljs-keyword">input</span> <span class="hljs-keyword">integer</span>     depth ;<br>        <span class="hljs-comment">//256为9bit，我们最终数据应该是8，所以需depth=2时提前停止循环</span><br>    <span class="hljs-keyword">for</span>(logb2=<span class="hljs-number">0</span>; depth&gt;<span class="hljs-number">1</span>; logb2=logb2+<span class="hljs-number">1</span>) <span class="hljs-keyword">begin</span><br>        depth = depth &gt;&gt; <span class="hljs-number">1</span> ;<br>    <span class="hljs-keyword">end</span><br><span class="hljs-keyword">endfunction</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="automatic-函数"><a href="#automatic-函数" class="headerlink" title="automatic 函数"></a>automatic 函数</h3><p>在 Verilog 中，一般函数的局部变量是静态的，即函数的每次调用，函数的局部变量都会使用同一个存储空间。若某个函数在两个不同的地方同时并发的调用，那么两个函数调用行为同时对同一块地址进行操作，会导致不确定的函数结果。</p>
+<p>Verilog 用关键字 automatic 来对函数进行说明，此类函数在调用时是可以自动分配新的内存空间的，也可以理解为是可递归的。因此，automatic 函数中声明的局部变量不能通过层次命名进行访问，但是 automatic 函数本身可以通过层次名进行调用。</p>
+<p>下面用 automatic 函数，实现阶乘计算：</p>
+<blockquote>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs verilog">&gt;<span class="hljs-keyword">wire</span> [<span class="hljs-number">31</span>:<span class="hljs-number">0</span>]      results3 = factorial(<span class="hljs-number">4</span>);<br>&gt;<span class="hljs-keyword">function</span> <span class="hljs-keyword">automatic</span> <span class="hljs-keyword">integer</span>    factorial ;<br>&gt;<span class="hljs-keyword">input</span> <span class="hljs-keyword">integer</span>   data ;<br>&gt;<span class="hljs-keyword">integer</span>     i ;<br>&gt;<span class="hljs-keyword">begin</span><br>&gt;factorial = (data&gt;=<span class="hljs-number">2</span>)? data * factorial(data-<span class="hljs-number">1</span>) : <span class="hljs-number">1</span> ;<br>&gt;<span class="hljs-keyword">end</span><br>&gt;<span class="hljs-keyword">endfunction</span><span class="hljs-comment">// factorial</span><br></code></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="常见指令"><a href="#常见指令" class="headerlink" title="常见指令"></a>常见指令</h3><ul>
+<li>$display<br>(类似于c的print,自动换行,运行时显示)</li>
+<li>$write<br>(和display功能一样,不换行)</li>
+<li>$monitor<br>(监视变量的变化，只要变则输出)</li>
+<li>$strobe<br>(活动结束后显示)</li>
+<li>$stop<br>(暂停仿真)</li>
+<li>$finish<br>(结束仿真)</li>
+<li>$time<br>(返回一个64位整数时间值)<br>$stime<br>(返回一个32位整数时间值)<br>$realtime<br>(返回-一个实数时间值)</li>
+<li>( 1) Srandom和$random()<br>意义一样,都是产生32带符号整数随机数<br>( 2) $random%100<br>在-99到99之间产生随机数<br>(3) {Srandom}%100<br>采用位拼接符,在0到100之间产生随机数<br>(4) 如seed =10, Srandom(seed)<br>根据seed值产生随机数,而后seed值也会更新</li>
+<li>（读取文件中的数据,内容必须为空格、换行、制表格、注释行、二进制或十六进制的数字）<br>$readmemb(“ &lt;数据文件名&gt;”, &lt;存贮器名&gt;);<br>$readmemb(“&lt;数据文件名&gt;”,&lt;存贮器名&gt;,&lt;起始地址&gt;);<br>Sreadmemb(“ &lt;数据文件名&gt;”, &lt;存贮器名&gt;,&lt;起始地址&gt;, &lt;结束地址&gt;);<br>$readmemh(“ &lt;数据文件名&gt;”, &lt;存贮器名&gt;);<br>$readmemh(“ &lt;数据文件名&gt;”,&lt;存则器名&gt;,&lt;起始地址&gt;);<br>$readmemh(“&lt;数据文件名&gt;”,&lt;存贮器名&gt;,&lt;起始地址&gt;, &lt;结束地址&gt;);</li>
+</ul>
+<h2 id="ModelSim"><a href="#ModelSim" class="headerlink" title="ModelSim"></a>ModelSim</h2><h2 id="分支主题-3"><a href="#分支主题-3" class="headerlink" title="分支主题 3"></a>分支主题 3</h2>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/FPGA/" class="category-chain-item">FPGA</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/FPGA/">#FPGA</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>FPGA_Notes</div>
+      <div>https://alleyf.github.io/2022/10/225ffd722b96.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>alleyf</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>October 3, 2022</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Updated on</div>
+          <div>October 5, 2022</div>
+        </div>
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/10/7041d89da7de.html" title="LatexEquationManual">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">LatexEquationManual</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/09/22bd4c9923c0.html" title="Java_Exercise">
+                        <span class="hidden-mobile">Java_Exercise</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.7.2/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"636f2864e051a199b91c","clientSecret":"5185fd11115bbcd8d2f636bc80de6bed98ed14c1","repo":"Gitalk","owner":"Alleyf","admin":["Alleyf"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":false,"proxy":"https://shielded-brushlands-08810.herokuapp.com/https://github.com/login/oauth/access_token"},
+          {
+            id: 'a04eca072d690e380955bd70728b3990'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://github.com/Alleyf" target="_blank" rel="nofollow noopener"><span>Alleyf</span></a> <i class="iconfont icon-love"></i> <a href="https://fcsy.fit" target="_blank" rel="nofollow noopener"><span>Homepage</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        Views: 
+        <span id="busuanzi_value_site_pv"></span>
+        
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        Visitors: 
+        <span id="busuanzi_value_site_uv"></span>
+        
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      陕ICP备2022010038号
+    </a>
+  </span>
+  
+    
+      <span>
+        <a
+          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=2022010038"
+          rel="nofollow noopener"
+          class="beian-police"
+          target="_blank"
+        >
+          
+            <span style="visibility: hidden; width: 0">|</span>
+            <img src="/img/police_beian.png" srcset="/img/loading.gif" lazyload alt="police-icon"/>
+          
+          <span>陕公网安备2022010038号</span>
+        </a>
+      </span>
+    
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.1/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/js/addMusic.js"></script><!-- hexo injector body_end end --></body>
+</html>
