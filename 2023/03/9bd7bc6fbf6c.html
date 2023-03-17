@@ -18,30 +18,29 @@
   <meta name="author" content="alleyf">
   <meta name="keywords" content="">
   
-    <meta name="description" content="some ideas about FFT。">
+    <meta name="description" content="title: 计算机视觉概述date: 2023-03-17 16:39:05tags: [DL_CV,机器视觉]    引言计算机视觉作为一门让机器学会如何去“看”的学科，具体的说，就是让机器去识别摄像机拍摄的图片或视频中的物体，检测出物体所在的位置，并对目标物体进行跟踪，从而理解并描述出图片或视频里的场景和故事，以此来模拟人脑视觉系统。因此，计算机视觉也通常被叫做机器视觉，其目的是建立能够从">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Frequency——Analysis">
-<meta property="og:url" content="https://alleyf.github.io/2022/12/98f47ed35125.html">
+<meta property="og:title" content="alleyf">
+<meta property="og:url" content="https://alleyf.github.io/2023/03/9bd7bc6fbf6c.html">
 <meta property="og:site_name" content="alleyf">
-<meta property="og:description" content="some ideas about FFT。">
+<meta property="og:description" content="title: 计算机视觉概述date: 2023-03-17 16:39:05tags: [DL_CV,机器视觉]    引言计算机视觉作为一门让机器学会如何去“看”的学科，具体的说，就是让机器去识别摄像机拍摄的图片或视频中的物体，检测出物体所在的位置，并对目标物体进行跟踪，从而理解并描述出图片或视频里的场景和故事，以此来模拟人脑视觉系统。因此，计算机视觉也通常被叫做机器视觉，其目的是建立能够从">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="d:/DSP实验报告/大作业报告/ch4andch5/图片/原始信号.png">
-<meta property="og:image" content="d:/DSP实验报告/大作业报告/ch4andch5/图片/加噪信号.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/chuiyugin/imgbed/%E6%BB%A4%E6%B3%A2%E5%99%A8.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/chuiyugin/imgbed/%E6%BB%A4%E6%B3%A2%E5%99%A82.png">
-<meta property="og:image" content="d:/DSP实验报告/大作业报告/ch4andch5/图片/加噪信号频谱图.png">
-<meta property="article:published_time" content="2022-12-21T13:17:00.000Z">
-<meta property="article:modified_time" content="2023-03-17T06:34:53.929Z">
+<meta property="og:image" content="https://ai-studio-static-online.cdn.bcebos.com/93476b373dd342d1aae22397aa24c58fc60ab68307fd448189f16c8284723e9d">
+<meta property="og:image" content="https://ai-studio-static-online.cdn.bcebos.com/70d8475ed908487680057bf1f2760f10e367e7176acf43ebb380207b748b2377">
+<meta property="og:image" content="https://ai-studio-static-online.cdn.bcebos.com/d65f1ebcb0054dcb81a8eb50223adc529bb9b63265ab467d931a5df5b2864122">
+<meta property="og:image" content="https://ai-studio-static-online.cdn.bcebos.com/01179d17c9f74570b8a618d6123261ce6e10344f11c84dda8e47d44c1eb4fc81">
+<meta property="og:image" content="https://ai-studio-static-online.cdn.bcebos.com/1ccd30567304415d98b0b373ec641a3d00f76d803f194ea4b14aa85ce85bf7bb">
+<meta property="article:published_time" content="2023-03-17T08:32:29.549Z">
+<meta property="article:modified_time" content="2023-03-17T09:22:59.838Z">
 <meta property="article:author" content="alleyf">
-<meta property="article:tag" content="FFT">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="d:/DSP实验报告/大作业报告/ch4andch5/图片/原始信号.png">
+<meta name="twitter:image" content="https://ai-studio-static-online.cdn.bcebos.com/93476b373dd342d1aae22397aa24c58fc60ab68307fd448189f16c8284723e9d">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Frequency——Analysis - alleyf</title>
+  <title>alleyf</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -246,7 +245,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Frequency——Analysis"></span>
+            <span id="subtitle" data-typed-text=""></span>
           
         </div>
 
@@ -262,8 +261,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-12-21 21:17" pubdate>
-          December 21, 2022 pm
+        <time datetime="2023-03-17 16:32" pubdate>
+          March 17, 2023 pm
         </time>
       </span>
     
@@ -274,7 +273,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.7k words
+          2.2k words
         
       </span>
     
@@ -285,7 +284,7 @@
         
         
         
-          23 mins
+          19 mins
         
       </span>
     
@@ -331,12 +330,12 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Frequency——Analysis</h1>
+            <h1 style="display: none"></h1>
             
               <p class="note note-info">
                 
                   
-                    Last updated on 3 hours ago
+                    Last updated on 3 minutes ago
                   
                 
               </p>
@@ -344,62 +343,37 @@
             
               <div class="markdown-body">
                 
-                <h1 id="频谱分析及滤波指标设计"><a href="#频谱分析及滤波指标设计" class="headerlink" title="频谱分析及滤波指标设计"></a>频谱分析及滤波指标设计</h1><h2 id="一、要求"><a href="#一、要求" class="headerlink" title="一、要求"></a>一、要求</h2><p>为了完成对子作业1中音频信号的滤波，对子作业1中的音频信号进行<strong>频谱分析</strong>，并获取滤波器设计所需要的<strong>性能指标</strong>。</p>
-<h2 id="二、实现思路"><a href="#二、实现思路" class="headerlink" title="二、实现思路"></a>二、实现思路</h2><h3 id="1-频谱分析"><a href="#1-频谱分析" class="headerlink" title="1.频谱分析"></a>1.频谱分析</h3><h4 id="1-读取音频"><a href="#1-读取音频" class="headerlink" title="1.读取音频"></a>1.读取音频</h4><ul>
-<li>利用<strong>MATLAB</strong>的<code>audioread</code>函数读取原始音频（无噪声原始音频），该函数读取音频的实质是对音频进行<strong>采样</strong>，采样频率根据原始信号的情况而定。</li>
-</ul>
-<h4 id="2-FFT变换"><a href="#2-FFT变换" class="headerlink" title="2.FFT变换"></a>2.FFT变换</h4><ul>
-<li>对读取到的音频取<strong>单声道</strong>根据读取音频时得到的采样频率和频谱分辨率要求计算捕获时间和频谱间隔，进行进行<strong>FFT</strong>快速傅里叶变换得到原始音频信号的频谱，分析频谱的分布。</li>
-</ul>
-<h4 id="3-信号加噪"><a href="#3-信号加噪" class="headerlink" title="3.信号加噪"></a>3.信号加噪</h4><ul>
-<li>给原始信号加入高频带限噪声，加入噪声的频率范围为<code>11.15khz~11.95khz</code>。</li>
-</ul>
-<h4 id="4-FFT变换"><a href="#4-FFT变换" class="headerlink" title="4.FFT变换"></a>4.FFT变换</h4><ul>
-<li>对加噪后的音频信号进行FFT快速傅里叶变换，观察频谱的频率分布和范围。</li>
-</ul>
-<h4 id="5-失真分析"><a href="#5-失真分析" class="headerlink" title="5.失真分析"></a>5.失真分析</h4><ul>
-<li>分析原始信号经过采样后的频谱是否存在<strong>频谱混叠</strong>和<strong>栅栏效应</strong>，如果有则改进加以去除。</li>
-</ul>
-<h3 id="2-设计性能指标"><a href="#2-设计性能指标" class="headerlink" title="2.设计性能指标"></a>2.设计性能指标</h3><ul>
-<li><p>根据前面的频谱得到通带截止频率**$w_p$<strong>和阻带截止频率</strong>$w_s$**。</p>
-</li>
-<li><p>根据频谱设置通带容限**$\alpha1$<strong>和阻带容限</strong>$\alpha2$<strong>，进而得到通带最大衰减系数</strong>$\delta_1$<strong>和阻带最小衰减系数</strong>$\delta_2$**.</p>
-</li>
-</ul>
-<h2 id="三、实现过程"><a href="#三、实现过程" class="headerlink" title="三、实现过程"></a>三、实现过程</h2><h3 id="1-读取原始音频信号及频谱分析"><a href="#1-读取原始音频信号及频谱分析" class="headerlink" title="1.读取原始音频信号及频谱分析"></a>1.读取原始音频信号及频谱分析</h3><p>在MATLAB中利用audioread函数读取原始音频信号，并且绘出其时域图和频谱图，结果如下图所示。</p>
-<img src="D:\DSP实验报告\大作业报告\ch4andch5\图片\原始信号.png" srcset="/img/loading.gif" lazyload style="zoom:67%;" />
+                <hr>
+<p>title: 计算机视觉概述<br>date: 2023-03-17 16:39:05<br>tags: [DL_CV,机器视觉]  </p>
+<hr>
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>计算机视觉作为一门让机器学会如何去“看”的学科，具体的说，就是让机器去识别摄像机拍摄的图片或视频中的物体，检测出物体所在的位置，并对目标物体进行跟踪，从而理解并描述出图片或视频里的场景和故事，以此来模拟人脑视觉系统。因此，计算机视觉也通常被叫做机器视觉，其目的是建立能够从图像或者视频中“感知”信息的人工系统。</p>
+<p>计算机视觉技术经过几十年的发展，已经在交通（车牌识别、道路违章抓拍）、安防（人脸闸机、小区监控）、金融（刷脸支付、柜台的自动票据识别）、医疗（医疗影像诊断）、工业生产（产品缺陷自动检测）等多个领域应用，影响或正在改变人们的日常生活和工业生产方式。未来，随着技术的不断演进，必将涌现出更多的产品和应用，为我们的生活创造更大的便利和更广阔的机会。</p>
+<center><img src="https://ai-studio-static-online.cdn.bcebos.com/93476b373dd342d1aae22397aa24c58fc60ab68307fd448189f16c8284723e9d" srcset="/img/loading.gif" lazyload width = "500"></center>
+<center>图1：计算机视觉技术在各领域的应用</center>
+飞桨为计算机视觉任务提供了丰富的API，并通过底层优化和加速保证了这些API的性能。同时，飞桨还提供了丰富的模型库，覆盖图像分类、检测、分割、文字识别和视频理解等多个领域。用户可以直接使用这些API组建模型，也可以在飞桨提供的模型库基础上进行二次研发。
+由于篇幅所限，本章将重点介绍计算机视觉的经典模型（卷积神经网络）和两个典型任务（图像分类和目标检测）。主要涵盖如下内容：
+**卷积神经网络**：卷积神经网络（Convolutional Neural Networks, CNN）是计算机视觉技术最经典的模型结构。本教程主要介绍卷积神经网络的常用模块，包括：卷积、池化、激活函数、批归一化、丢弃法等。
+- **图像分类**：介绍图像分类算法的经典模型结构，包括：LeNet、AlexNet、VGG、GoogLeNet、ResNet，并通过眼疾筛查的案例展示算法的应用。
+- **目标检测**：介绍目标检测YOLOv3算法，并通过林业病虫害检测案例展示YOLOv3算法的应用。
 
-<p>由图可知原始音频信号的频谱从<strong>0~10.7khz</strong>左右就基本没有了，因此原始信号的最高频率**$f_{max}=10.7khz$**.</p>
-<p>其源代码如下所示：</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-comment">%% 数据导入及参数设置</span><br>[x,Fs]=audioread(<span class="hljs-string">&#x27;D:\DSP实验报告\大作业报告\ch4andch5\myaudio.mp3&#x27;</span>);<br>x=x(:,<span class="hljs-number">1</span>);<span class="hljs-comment">%选择左声道</span><br>N=<span class="hljs-built_in">length</span>(x);<br>t=(<span class="hljs-number">0</span>:N<span class="hljs-number">-1</span>)/Fs;<span class="hljs-comment">%时域范围</span><br>df=Fs/<span class="hljs-built_in">length</span>(t); <span class="hljs-comment">%计算谱线间隔</span><br>f=t*df;<span class="hljs-comment">%频域范围</span><br>X=FFT(x,N,Fs,t);<br>X=fftshift(X);<span class="hljs-comment">%将频谱翻转过来</span><br>f=(f*Fs-Fs/<span class="hljs-number">2</span>)/<span class="hljs-number">1e3</span>;<span class="hljs-comment">%只显示正频谱</span><br>X=<span class="hljs-built_in">abs</span>(X);<br><span class="hljs-comment">% 绘出时域图和幅频响应</span><br><span class="hljs-built_in">figure</span>;<br>subplot(<span class="hljs-number">221</span>)<br><span class="hljs-built_in">plot</span>(t,x);<br>title(<span class="hljs-string">&quot;原信号音频时域图&quot;</span>);<br>ylabel(<span class="hljs-string">&#x27;幅值&#x27;</span>);<br>xlabel(<span class="hljs-string">&quot;t/s&quot;</span>);<br>subplot(<span class="hljs-number">222</span>)<br><span class="hljs-built_in">plot</span>(f(:,<span class="hljs-built_in">ceil</span>(N/<span class="hljs-number">2</span>):<span class="hljs-keyword">end</span>),X(<span class="hljs-built_in">ceil</span>(N/<span class="hljs-number">2</span>):<span class="hljs-keyword">end</span>,<span class="hljs-number">1</span>),<span class="hljs-string">&#x27;c&#x27;</span>)<br><span class="hljs-comment">% plot(f*Fs/1e3,Y,&#x27;k&#x27;);</span><br>title(<span class="hljs-string">&quot;原信号音频幅频响应&quot;</span>);<br>xlabel(<span class="hljs-string">&quot;f/Khz&quot;</span>); <br>ylabel(<span class="hljs-string">&#x27;频率幅值&#x27;</span>);<br></code></pre></td></tr></table></figure>
+<h1 id="发展历程"><a href="#发展历程" class="headerlink" title="发展历程"></a>发展历程</h1><p>计算机视觉的发展历程要从生物视觉讲起。对于生物视觉的起源，目前学术界尚没有形成定论。有研究者认为最早的生物视觉形成于距今约<a target="_blank" rel="noopener" href="https://www.pnas.org/content/109/46/18868">7亿年前的水母之中</a>，也有研究者认为生物视觉产生于距今约5亿年前寒武纪【<a target="_blank" rel="noopener" href="https://doi.org/10.1038%2Fnature10097">1</a>, <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Evolution_of_the_eye">2</a>】。寒武纪生物大爆发的原因一直是个未解之谜，不过可以肯定的是在寒武纪动物具有了视觉能力，捕食者可以更容易地发现猎物，被捕食者也可以更早的发现天敌的位置。视觉能力加剧了猎手和猎物之间的博弈，也催生出更加激烈的生存演化规则。视觉系统的形成有力地推动了食物链的演化，加速了生物进化过程，是生物发展史上重要的里程碑。经过几亿年的演化，目前人类的视觉系统已经具备非常高的复杂度和强大的功能，人脑中神经元数目达到了1000亿个，这些神经元通过网络互相连接，这样庞大的视觉神经网络使得我们可以很轻松的观察周围的世界，如 <strong>图2</strong> 所示。</p>
+<center><img src="https://ai-studio-static-online.cdn.bcebos.com/70d8475ed908487680057bf1f2760f10e367e7176acf43ebb380207b748b2377" srcset="/img/loading.gif" lazyload width = "600"></center>
+<center><br>图2：人类视觉感知</center>
+对人类来说，识别猫和狗是件非常容易的事。但对计算机来说，即使是一个精通编程的高手，也很难轻松写出具有通用性的程序（比如：假设程序认为体型大的是狗，体型小的是猫，但由于拍摄角度不同，可能一张图片上猫占据的像素比狗还多）。那么，如何让计算机也能像人一样看懂周围的世界呢？研究者尝试着从不同的角度去解决这个问题，由此也发展出一系列的子任务，如 **图3** 所示。
+<center><img src="https://ai-studio-static-online.cdn.bcebos.com/d65f1ebcb0054dcb81a8eb50223adc529bb9b63265ab467d931a5df5b2864122" srcset="/img/loading.gif" lazyload width = "500"></center>
+<center><br>图3：计算机视觉子任务示意图</center>
+- **(a) Image Classification：** 图像分类，用于识别图像中物体的类别（如：bottle、cup、cube）。
+- **(b) Object Localization：** 目标检测，用于检测图像中每个物体的类别，并准确标出它们的位置。
+- **(c) Semantic Segmentation：** 图像语义分割，用于标出图像中每个像素点所属的类别，属于同一类别的像素点用一个颜色标识。
+- **(d) Instance Segmentation：** 实例分割，值得注意的是，（b）中的目标检测任务只需要标注出物体位置，而（d）中的实例分割任务不仅要标注出物体位置，还需要标注出物体的外形轮廓。
+在早期的图像分类任务中，通常是先人工提取图像特征，再用机器学习算法对这些特征进行分类，分类的结果强依赖于特征提取方法，往往只有经验丰富的研究者才能完成，如 **图4** 所示。
+<center><img src="https://ai-studio-static-online.cdn.bcebos.com/01179d17c9f74570b8a618d6123261ce6e10344f11c84dda8e47d44c1eb4fc81" srcset="/img/loading.gif" lazyload width = "500"></center>
+<center><br>图4：早期的图像分类任务</center>
+在这种背景下，基于神经网络的特征提取方法应运而生。Yann LeCun是最早将卷积神经网络应用到图像识别领域的，其主要逻辑是使用卷积神经网络提取图像特征，并对图像所属类别进行预测，通过训练数据不断调整网络参数，最终形成一套能自动提取图像特征并对这些特征进行分类的网络，如 **图5** 所示。
+<center><img src="https://ai-studio-static-online.cdn.bcebos.com/1ccd30567304415d98b0b373ec641a3d00f76d803f194ea4b14aa85ce85bf7bb" srcset="/img/loading.gif" lazyload width = "500"></center>
+<center><br>图5：早期的卷积神经网络处理图像任务示意</center>
 
-<h3 id="2-信号加噪及频谱分析"><a href="#2-信号加噪及频谱分析" class="headerlink" title="2.信号加噪及频谱分析"></a>2.信号加噪及频谱分析</h3><p>给原始音频信号加入频谱范围为<code>11.15~11.95khz</code>的<strong>高频带限噪声</strong>为后面设计滤波器做准备，绘出加噪信号的时域图和频谱图，如下图所示。</p>
-<img src="D:\DSP实验报告\大作业报告\ch4andch5\图片\加噪信号.png" srcset="/img/loading.gif" lazyload style="zoom:67%;" />
-
-<p>由上图观察可知加噪后的信号在<code>11.15~11.95khz</code>的范围内出现了高频噪声信号，这也是后面需要滤波消除的部分，根据加噪后的信号的频谱可以得到设计滤波器的性能指标。</p>
-<p>源代码如下所示：</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-comment">%% 加入噪声</span><br>noise=<span class="hljs-number">0</span>;<br><span class="hljs-keyword">for</span> <span class="hljs-built_in">i</span>=<span class="hljs-number">0.1</span>:<span class="hljs-number">0.1</span>:<span class="hljs-number">5</span><br>    noise=noise+<span class="hljs-number">0.003</span>*(<span class="hljs-built_in">cos</span>((<span class="hljs-number">70</span>+<span class="hljs-built_in">i</span>)*<span class="hljs-number">1000</span>*t));<br><span class="hljs-keyword">end</span><br>x_z=x+noise&#x27;;<br>X_Z=FFT(x_z,N,Fs,t);<br>X_Z=fftshift(X_Z);<span class="hljs-comment">%将频谱翻转过来</span><br>X_Z=<span class="hljs-built_in">abs</span>(X_Z);<br>subplot(<span class="hljs-number">211</span>)<br><span class="hljs-built_in">plot</span>(t,x_z);<br>xlabel(<span class="hljs-string">&quot;t/s&quot;</span>);<br>ylabel(<span class="hljs-string">&#x27;幅值&#x27;</span>);<br>title(<span class="hljs-string">&#x27;加噪后信号时域图&#x27;</span>);<br>subplot(<span class="hljs-number">212</span>)<br><span class="hljs-built_in">plot</span>(f(:,<span class="hljs-built_in">ceil</span>(N/<span class="hljs-number">2</span>):<span class="hljs-keyword">end</span>),X_Z(<span class="hljs-built_in">ceil</span>(N/<span class="hljs-number">2</span>):<span class="hljs-keyword">end</span>,<span class="hljs-number">1</span>),<span class="hljs-string">&#x27;c&#x27;</span>)<br>xlabel(<span class="hljs-string">&#x27;f/Hz&#x27;</span>);<br>ylabel(<span class="hljs-string">&#x27;频率幅值&#x27;</span>);<br>title(<span class="hljs-string">&#x27;加噪后信号幅频响应&#x27;</span>);<br></code></pre></td></tr></table></figure>
-
-<h3 id="3-失真分析"><a href="#3-失真分析" class="headerlink" title="3.失真分析"></a>3.失真分析</h3><p>由上述的频谱图可知原始音频信号**$f_{max}=10.7khz&lt;f_s=48khz$**,因此经过采样后信号没有发生频谱混叠，且没有栅栏效应发生。</p>
-<h3 id="4-设计性能指标"><a href="#4-设计性能指标" class="headerlink" title="4.设计性能指标"></a>4.设计性能指标</h3><p>数字滤波器的频率响应表示为：<br>$$<br>H(e^{j\omega})=|H(e^{j\omega})|e^{j\beta(j\omega)}<br>$$<br>根据下图中理想低通滤波器逼近的误差容限可以看出，频率响应有通带、过渡带、阻带三个范围:</p>
-<p><img src="https://cdn.jsdelivr.net/gh/chuiyugin/imgbed/%E6%BB%A4%E6%B3%A2%E5%99%A8.png" srcset="/img/loading.gif" lazyload></p>
-<p>下图展示了不同滤波器的技术指标：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/chuiyugin/imgbed/%E6%BB%A4%E6%B3%A2%E5%99%A82.png" srcset="/img/loading.gif" lazyload></p>
-<p> 对加噪后的音频频谱进行分析，有用信号的频谱范围是<code>0~10.7khz</code>，噪声信号的频谱范围是<code>11.15~11.95khz</code>，因此设置通带截止频率**$w_p=10.7khz$<strong>，阻带截止频率</strong>$w_{st}=11.15khz$<strong>,通带最大衰减系数</strong>$\delta_1=2db$<strong>，阻带最小衰减</strong>$\delta_2=80db$**。</p>
-<h2 id="四、结果展示"><a href="#四、结果展示" class="headerlink" title="四、结果展示"></a>四、结果展示</h2><p>原始音频信号加噪前后时域、频域对比图如下图所示：</p>
-<img src="D:\DSP实验报告\大作业报告\ch4andch5\图片\加噪信号频谱图.png" srcset="/img/loading.gif" lazyload alt="加噪前后对比图" style="zoom:67%;" />
-
-<p>设计滤波器的性能指标如下：</p>
-<p><u>通带截止频率**$w_p=10.7khz$<strong>，阻带截止频率</strong>$w_{st}=11.15khz$<strong>,通带最大衰减系数</strong>$\delta_1=2db$<strong>，阻带最小衰减</strong>$\delta_2=80db$**。</u></p>
-<h2 id="五、结果分析"><a href="#五、结果分析" class="headerlink" title="五、结果分析"></a>五、结果分析</h2><blockquote>
-<ol>
-<li>谱分析的过程中首先要知道分辨率和采样频率等要求，然后根据原始信号的最大频率结合<strong>奈奎斯特采样定理</strong>设定合适的采样频率，再依据$F_0=\frac{1}{T_0}=\frac{1}{N*T_s}$计算得到采样点数和捕获时间等信息，计算频域窗口范围，接着进行FFT变换获得其频谱，观察频谱与理论频谱是否一致，判断是否发生<strong>频谱混叠、栅栏效应</strong>等，若使用了窗函数进行截断还要考虑是否发生<strong>频谱泄露</strong>。</li>
-<li>设计滤波器性能指标过程中，首先需要知道待滤波信号的频谱情况，然后依据频谱判断有用信号和噪声信号的分布，从而确定使用低通、高通、带通还是带阻等滤波器，并且设计相应的性能指标，一般包括<strong>通带截止频率、阻带截止频率、通带最大衰减和阻带最大衰减</strong>四个性能指标。</li>
-</ol>
-</blockquote>
-<h2 id="六、源码开源"><a href="#六、源码开源" class="headerlink" title="六、源码开源"></a>六、源码开源</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-24bfcec2-0b23-4547-a957-73ffab276534/2c7c8bdd-2316-47cd-8a94-4882573700a5.zip">源代码资源包</a>有需要的小伙伴可以下载参考。</p>
-</blockquote>
+<p>这一方法在手写数字识别任务上取得了极大的成功，但在接下来的时间里，却没有得到很好的发展。其主要原因一方面是数据集不完善，只能处理简单任务，在大尺寸的数据上容易发生过拟合；另一方面是硬件瓶颈，网络模型复杂时，计算速度会特别慢。<br>目前，随着互联网技术的不断进步，数据量呈现大规模的增长，越来越丰富的数据集不断涌现。另外，得益于硬件能力的提升，计算机的算力也越来越强大。不断有研究者将新的模型和算法应用到计算机视觉领域。由此催生了越来越丰富的模型结构和更加准确的精度，同时计算机视觉所处理的问题也越来越丰富，包括分类、检测、分割、场景描述、图像生成和风格变换等，甚至还不仅仅局限于2维图片，包括视频处理技术和3D视觉等。</p>
 
                 
               </div>
@@ -418,7 +392,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/DSP/" class="category-chain-item">DSP</a>
+  <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" class="category-chain-item">机器学习</a>
   
   
 
@@ -430,13 +404,6 @@
     </div>
   
   
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/FFT/">#FFT</a>
-      
-    </div>
-  
 </div>
 
 
@@ -445,8 +412,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Frequency——Analysis</div>
-      <div>https://alleyf.github.io/2022/12/98f47ed35125.html</div>
+      <div></div>
+      <div>https://alleyf.github.io/2023/03/9bd7bc6fbf6c.html</div>
     </div>
     <div class="license-meta">
       
@@ -458,7 +425,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>December 21, 2022</div>
+          <div>March 17, 2023</div>
         </div>
       
       
@@ -493,18 +460,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/12/b3288796b118.html" title="FIR and IIR filter design">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">FIR and IIR filter design</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/11/8134dd087a1a.html" title="Embeded theory and appliment">
-                        <span class="hidden-mobile">Embeded theory and appliment</span>
+                      <a href="/2023/03/d13e286fa999.html" title="">
+                        <span class="hidden-mobile"></span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -525,7 +486,7 @@
         var options = Object.assign(
           {"clientID":"636f2864e051a199b91c","clientSecret":"5185fd11115bbcd8d2f636bc80de6bed98ed14c1","repo":"Gitalk","owner":"Alleyf","admin":["Alleyf"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":false,"proxy":"https://shielded-brushlands-08810.herokuapp.com/https://github.com/login/oauth/access_token"},
           {
-            id: 'dc656e86e0971f651c06d87481824b35'
+            id: 'b1bbb045c25078da59c065e0184f26ad'
           }
         )
         var gitalk = new Gitalk(options);
