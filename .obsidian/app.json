@@ -1,0 +1,14 @@
+{
+  "defaultViewMode": "source",
+  "spellcheckLanguages": [
+    "zh-CN",
+    "en-US"
+  ],
+  "userIgnoreFilters": [
+    "node_modules/",
+    "public/",
+    "scaffolds/",
+    "scripts/",
+    "themes/"
+  ]
+}

@@ -1,0 +1,912 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="alleyf">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="some ideas about FIR and IIR filters。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FilterDesign">
+<meta property="og:url" content="https://alleyf.github.io/2022/10/9968af83d482.html">
+<meta property="og:site_name" content="alleyf">
+<meta property="og:description" content="some ideas about FIR and IIR filters。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.gouka.la/i/2022/10/15/ystu0e.webp
+">
+<meta property="og:image" content="https://img.gouka.la/i/2022/10/15/yukca3.webp">
+<meta property="og:image" content="https://img.gouka.la/i/2022/10/15/yy5o7x.webp">
+<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/image-20221013213239697.png">
+<meta property="og:image" content="https://img.gouka.la/i/2022/10/15/yx0y7f.webp">
+<meta property="og:image" content="https://upload.semidata.info/new.eefocus.com/article/image/2021/07/15/60efdc2160bb0-thumb.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/chebfrequency.png">
+<meta property="og:image" content="https://img.gouka.la/i/2022/10/15/yukca3.webp">
+<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/image-20221013153232154.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/IIRbutterword.png">
+<meta property="article:published_time" content="2022-10-13T06:56:00.000Z">
+<meta property="article:modified_time" content="2022-11-20T13:46:12.791Z">
+<meta property="article:author" content="alleyf">
+<meta property="article:tag" content="FIR、IIR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.gouka.la/i/2022/10/15/ystu0e.webp
+">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>FilterDesign - alleyf</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"alleyf.github.io","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":true,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"d57048846da607439cf11718741f2eb0","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?d57048846da607439cf11718741f2eb0";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Mr.Alleyf</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                Links
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="FilterDesign"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        alleyf
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-10-13 14:56" pubdate>
+          October 13, 2022 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.6k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          31 mins
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> views
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">FilterDesign</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    Last updated on 4 months ago
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="信号的时域处理"><a href="#信号的时域处理" class="headerlink" title="信号的时域处理"></a>信号的时域处理</h1><h2 id="一、要求"><a href="#一、要求" class="headerlink" title="一、要求"></a>一、要求</h2><p>选择子作业１中的音频信号，自行给定滤波器的系统函数，分别采用<strong>时域线性卷积</strong>和<strong>差分方程</strong>两种方法对音频信号进行滤波处理，比较滤波前后信号的波形和回放的效果。</p>
+<h2 id="二、实现思路"><a href="#二、实现思路" class="headerlink" title="二、实现思路"></a>二、实现思路</h2><h3 id="1-时域卷积法"><a href="#1-时域卷积法" class="headerlink" title="1.时域卷积法"></a>1.时域卷积法</h3><ul>
+<li><p>分析原始音频信号的频谱，观察有用信号和噪声的分布，选择滤波器类型（低通、高通、带通、带阻等）</p>
+</li>
+<li><p>设定幅频响应下降三分贝的截止频率和滤波器阶数</p>
+</li>
+<li><p>选择合适的窗函数（包括Rectangular、Hanning、Hamming、Bartlett、Blackman、Kaiser、Gaussian、Flat-top等）</p>
+</li>
+<li><p>计算滤波器系数（滤波器的单位脉冲响应）</p>
+</li>
+<li><p>将滤波器系数与原始信号卷积进行滤波</p>
+</li>
+</ul>
+<h3 id="2-差分方程法"><a href="#2-差分方程法" class="headerlink" title="2.差分方程法"></a>2.差分方程法</h3><ul>
+<li>分析原始音频信号的频谱，观察有用信号和噪声的分布，选择滤波器类型（低通、高通、带通、带阻等）</li>
+<li>设置通带截止频率和阻带截止频率并归一化，设定通带纹波系数和阻带衰减系数</li>
+<li>求出切比雪夫滤波器的阶数和下降3分贝通带截止频率</li>
+<li>计算滤波器的差分方程系数</li>
+<li>调用filter函数对原始信号进行滤波</li>
+</ul>
+<h2 id="三、实现过程"><a href="#三、实现过程" class="headerlink" title="三、实现过程"></a>三、实现过程</h2><h3 id="滤波前后对比图"><a href="#滤波前后对比图" class="headerlink" title="滤波前后对比图"></a>滤波前后对比图</h3><div align="center">
+    <table align="center" border="0" cellspacing="0">
+        <tr>
+            <td><p align="center"><img src="https://img.gouka.la/i/2022/10/15/ystu0e.webp
+" srcset="/img/loading.gif" lazyload>
+    <p align="center">
+        FIR hamming窗低通滤波器前后对比图
+    </p>
+    </p></td>
+            <td><p align="center"><img src="https://img.gouka.la/i/2022/10/15/yukca3.webp" srcset="/img/loading.gif" lazyload>
+    <p align="center">
+        IIR 切比雪夫低通滤波器前后对比图
+    </p>
+</p></td>
+        </tr>
+    </table>
+</div>
+
+
+
+
+<h3 id="1-时域卷积"><a href="#1-时域卷积" class="headerlink" title="1.时域卷积"></a>1.时域卷积</h3><p>首先导入原始音频信号并画出时域图和幅频响应曲线，分析其频谱分布，代码如下所示。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-comment">%% 数据导入及参数设置</span><br>[x,Fs]=audioread(<span class="hljs-string">&#x27;D:\数据\Carmen_overture_noisy_8k_9.5k.wav&#x27;</span>);<br>Nx=<span class="hljs-built_in">length</span>(x);<br>tx=(<span class="hljs-number">0</span>:Nx<span class="hljs-number">-1</span>)/Fs;<span class="hljs-comment">%时域范围</span><br>df=Fs/<span class="hljs-built_in">length</span>(tx); <span class="hljs-comment">%计算谱线间隔</span><br>fx=tx*df;<span class="hljs-comment">%频域范围</span><br>X=FFT(x,Nx,Fs,tx);<span class="hljs-comment">%快速傅里叶变换</span><br>fx=(fx*Fs)/<span class="hljs-number">1e3</span>;<span class="hljs-comment">%只显示正频谱</span><br>X=<span class="hljs-built_in">abs</span>(X);<br><span class="hljs-comment">% 绘出时域图和幅频响应</span><br><span class="hljs-built_in">figure</span>;<br>subplot(<span class="hljs-number">221</span>)<br><span class="hljs-built_in">plot</span>(tx,x); <br>title(<span class="hljs-string">&quot;原信号音频时域图&quot;</span>);<br>xlabel(<span class="hljs-string">&quot;t/s&quot;</span>); <br>subplot(<span class="hljs-number">222</span>)<br><span class="hljs-comment">% plot(fx*Fs/1e3,abs(X),&quot;blue&quot;)</span><br><span class="hljs-built_in">plot</span>(fx(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>:<span class="hljs-built_in">ceil</span>(Nx/<span class="hljs-number">2</span>)),X(<span class="hljs-number">1</span>:<span class="hljs-built_in">ceil</span>(Nx/<span class="hljs-number">2</span>),<span class="hljs-number">1</span>),<span class="hljs-string">&#x27;b&#x27;</span>)<br>title(<span class="hljs-string">&quot;原信号音频相频响应&quot;</span>);<br>xlabel(<span class="hljs-string">&quot;f/Khz&quot;</span>); <br></code></pre></td></tr></table></figure>
+
+<p><img src="https://img.gouka.la/i/2022/10/15/yy5o7x.webp" srcset="/img/loading.gif" lazyload></p>
+<p>观察其幅频响应发现有用信号的频率在8Khz以下，以上则为能量较大的高频噪声，因此我采用低通滤波器对其进行滤波。</p>
+<h4 id="FIR滤波器"><a href="#FIR滤波器" class="headerlink" title="FIR滤波器"></a>FIR滤波器</h4><p>设FIR滤波器的单位冲激响应h(n)为一个N点序列，0≤n≤N-1，则滤波器的系统函数为：<br>$$<br>H(\mathrm{z})=\sum_{k=0}^{N-1}h(\mathrm{k})*\mathrm{z}^{-k}<br>$$<br><strong>直接型FIR滤波器</strong>的差分方程为：<br>$$<br>\mathrm{y(n)}=\sum_{m=0}^{N-1}\mathrm{h(m)x(n-m)}<br>$$<br>由差分方程可知只需要求出FIR滤波器的单位冲激响应h(n)，设置<strong>滤波阶数</strong>和<strong>3db通带截止频率fc</strong>，采用<strong>汉林窗函数</strong>处理，再使用<strong>fir1函数</strong>将其与待滤波信号卷积即可完成滤波，具体实现代码如下。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-comment">%% hamming窗低通滤波器滤除高频噪声</span><br>fc=<span class="hljs-number">7.95e3</span>; <span class="hljs-comment">%下降3分贝截止频率</span><br>h_n=fir1(<span class="hljs-number">1000</span>,fc*<span class="hljs-number">2</span>/Fs,<span class="hljs-string">&quot;low&quot;</span>);<br>y=conv(h_n,x);<br><br>Ny=<span class="hljs-built_in">length</span>(y);<span class="hljs-comment">%滤波后信号的长度</span><br>ty=(<span class="hljs-number">0</span>:Ny<span class="hljs-number">-1</span>)/Fs;<span class="hljs-comment">%时域范围</span><br>Y=FFT(y,Ny,Fs,ty);<span class="hljs-comment">%快速傅里叶变换求频谱</span><br>df=Fs/<span class="hljs-built_in">length</span>(ty); <span class="hljs-comment">%计算谱线间隔</span><br>fy=ty*df;<span class="hljs-comment">%频域范围</span><br>fy=(fy*Fs)/<span class="hljs-number">1e3</span>;<span class="hljs-comment">%只显示正频谱</span><br>Y=<span class="hljs-built_in">abs</span>(Y);<br><span class="hljs-comment">% 绘出滤波后的时域图和幅频响应</span><br>subplot(<span class="hljs-number">223</span>)<br><span class="hljs-built_in">plot</span>(ty,y,<span class="hljs-string">&quot;g&quot;</span>);<br>title(<span class="hljs-string">&quot;滤波后信号音频时域图&quot;</span>);<br>xlabel(<span class="hljs-string">&quot;t/s&quot;</span>); <br>subplot(<span class="hljs-number">224</span>)<br>stem(fx(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>:<span class="hljs-built_in">ceil</span>(Ny/<span class="hljs-number">2</span>)),Y(<span class="hljs-number">1</span>:<span class="hljs-built_in">ceil</span>(Ny/<span class="hljs-number">2</span>),<span class="hljs-number">1</span>),<span class="hljs-string">&#x27;c&#x27;</span>,<span class="hljs-string">&#x27;.&#x27;</span>)<br>title(<span class="hljs-string">&quot;滤波后信号音频相频响应&quot;</span>);<br>xlabel(<span class="hljs-string">&quot;f/Khz&quot;</span>); <br><span class="hljs-comment">%% 试听及保存</span><br><span class="hljs-comment">% sound(y,Fs);</span><br>audiowrite(<span class="hljs-string">&quot;D:\数据\FIRfilter.wav&quot;</span>,y,Fs);<br><span class="hljs-comment">%% 快速傅里叶变换函数</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">FourierTransform</span> = <span class="hljs-title">FFT</span><span class="hljs-params">(signal,N,fs,t)</span></span><br>Y=fft(signal,N);<br>df=fs/<span class="hljs-built_in">length</span>(t); <span class="hljs-comment">%计算谱线间隔</span><br>f=t*df;<span class="hljs-comment">%频域范围</span><br>Ys=<span class="hljs-built_in">abs</span>(Y); <span class="hljs-comment">%幅度响应</span><br>FourierTransform=Ys;<br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
+
+<p>FIR滤波器的单位冲激响应如下图所示：</p>
+<p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/image-20221013213239697.png" srcset="/img/loading.gif" lazyload></p>
+<p>通过时域卷积得到滤波后的结果如下图所示：</p>
+<p><img src="https://img.gouka.la/i/2022/10/15/yx0y7f.webp" srcset="/img/loading.gif" lazyload></p>
+<p>由图可知，发现经过<strong>1000阶</strong>的3分贝截止频率为<strong>7.95e3Khz</strong>的低通滤波器处理后，8Khz及以上的高频噪声基本被完全滤除，成功从原始音频信号中提取到有用信号。</p>
+<h3 id="2-差分方程"><a href="#2-差分方程" class="headerlink" title="2.差分方程"></a>2.差分方程</h3><p>首先也是先对原始音频信号做傅里叶变换分析其频谱，频谱结果同上，这里不在赘述。</p>
+<h4 id="IIR切比雪夫低通滤波"><a href="#IIR切比雪夫低通滤波" class="headerlink" title="IIR切比雪夫低通滤波"></a>IIR切比雪夫低通滤波</h4><p>IIR(infinite impulse response)滤波器，无限冲激响应滤波器,IIR滤波器定义如下：<br>$$<br>\sum_{l=0}^{N}a(l)y(n-l)= \sum _{k=0}^{M}b(k)x(n-k)<br>$$<br>令$a(0)=1,a(l),l=1,2,…N$取反后得：<br>$$<br>y(n)= \sum _{k=0}^{M}b(k)x(n-k)+ \sum _{l=1}^{N}a(l)y(n-l)<br>$$<br><strong>IIR直接II型滤波器</strong>的流程框图如下所示：</p>
+<p><img src="https://upload.semidata.info/new.eefocus.com/article/image/2021/07/15/60efdc2160bb0-thumb.png" srcset="/img/loading.gif" lazyload></p>
+<p>根据流程框图可知，需要求得<strong>差分方程系数向量a和b</strong>，这里我采用常见的切比雪夫滤波器设定<strong>通带频率、阻带频率</strong>以及<strong>纹波系数</strong>和<strong>衰减系数</strong>计算出系数a和b，再利用<strong>filter函数</strong>传入系数a、b和待滤波信号即可完成滤波，采用如下代码实现差分方程法实现IIR切比雪夫低通滤波器。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-comment">%% IIR-Chebyshev低通滤波器滤除高频噪声</span><br>Wp=<span class="hljs-number">7.6e3</span>*<span class="hljs-number">2</span>/Fs;<span class="hljs-comment">%通带频率</span><br>Ws=<span class="hljs-number">8e3</span>*<span class="hljs-number">2</span>/Fs;<span class="hljs-comment">%阻带频率</span><br>[n,Wc]=cheb1ord(Wp,Ws,<span class="hljs-number">2</span>,<span class="hljs-number">40</span>);<span class="hljs-comment">%计算阶数和3db通带截止频率</span><br>[b,a]=cheby1(n,<span class="hljs-number">3</span>,Wc);<span class="hljs-comment">%切比雪夫滤波器返回差分方程系数</span><br>freqz(b,a);<span class="hljs-comment">%绘出滤波器频谱图（幅频响应和相频响应）</span><br>y=filter(b,a,x);<span class="hljs-comment">%滤除高频噪声</span><br>Y=FFT(y,N,Fs,t);<br>Y=fftshift(Y);<br>Y=<span class="hljs-built_in">abs</span>(Y);<br><span class="hljs-comment">% 绘出滤波后的时域图和幅频响应</span><br>subplot(<span class="hljs-number">223</span>)<br><span class="hljs-built_in">plot</span>(t,y,<span class="hljs-string">&#x27;b&#x27;</span>);<br>title(<span class="hljs-string">&quot;滤波后信号音频时域图&quot;</span>);<br>xlabel(<span class="hljs-string">&quot;t/s&quot;</span>); <br>subplot(<span class="hljs-number">224</span>)<br><span class="hljs-comment">% plot(f*Fs/1e3,Y,&#x27;k&#x27;);</span><br><span class="hljs-built_in">plot</span>(f(<span class="hljs-number">1</span>,<span class="hljs-built_in">ceil</span>(N/<span class="hljs-number">2</span>):<span class="hljs-keyword">end</span>),Y(<span class="hljs-built_in">ceil</span>(N/<span class="hljs-number">2</span>):<span class="hljs-keyword">end</span>,<span class="hljs-number">1</span>),<span class="hljs-string">&#x27;g&#x27;</span>)<br>title(<span class="hljs-string">&quot;滤波后信号音频幅频响应&quot;</span>);<br>xlabel(<span class="hljs-string">&quot;f/Khz&quot;</span>); <br></code></pre></td></tr></table></figure>
+
+<p>IIR切比雪夫滤波器的归一化频谱图如下所示：</p>
+<p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/chebfrequency.png" srcset="/img/loading.gif" lazyload></p>
+<p>观察发现其幅频响应滤波效果比较好，根据此滤波器对原始音频信号进行滤波，下图展示了滤波后的结果。</p>
+<p><img src="https://img.gouka.la/i/2022/10/15/yukca3.webp" srcset="/img/loading.gif" lazyload></p>
+<p>由图可知8Khz及以上的高频噪声被滤除，但原始信号靠近8Khz的部分幅值也有所衰减但影响不大，从而实现了对有用信号的提取。</p>
+<h2 id="四、结果分析"><a href="#四、结果分析" class="headerlink" title="四、结果分析"></a>四、结果分析</h2><ol>
+<li><p>时域线性卷积法和差分方程法都是实现数字滤波的两种方法，都可以很好的滤除有用信号的噪声，从而提取出有用的信号，排除无用信号的干扰。</p>
+</li>
+<li><p>实际观察发现<strong>随着滤波器的阶数的升高，滤波器的频率响应越接近理想滤波</strong>器，而要想实现同样滤波效果，差分方程法的滤波器阶数远小于时域卷积法的阶数。</p>
+</li>
+<li><p>当使用IIR滤波器时，由于IIR滤波器的存在<strong>系统稳定性</strong>问题，因此当滤波器阶数过高时会导致系统不稳定，从而失去正常滤波能力。</p>
+</li>
+<li><p>将相同参数的IIR<strong>巴特沃斯滤波</strong>与<strong>切比雪夫滤波</strong>对比，发现切比雪夫滤波后<strong>残留噪声频谱分布均匀</strong>，而巴特沃斯滤波后<strong>残留噪声频谱频率与幅度成反比</strong>，但是两种滤波器<strong>对高频有用信号也都所衰减</strong>，说明难以实现理想滤波器，只能无限逼近，两者频谱对比图如下。</p>
+</li>
+</ol>
+<center>
+    <table align="center" border="0" cellspacing="0">
+        <tr>
+            <td><p align="center"><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/image-20221013153232154.png" srcset="/img/loading.gif" lazyload>
+    <p align="center">
+        切比雪夫滤波后的信号频谱图
+    </p>
+    </p></td>
+            <td><p align="center"><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/IIRbutterword.png" srcset="/img/loading.gif" lazyload>
+    <p align="center">
+        巴特沃斯滤波后的信号频谱图
+    </p>
+</p></td>
+        </tr>
+    </table>
+</center>
+
+
+
+
+<blockquote>
+<p><strong><a target="_blank" rel="noopener" href="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-24bfcec2-0b23-4547-a957-73ffab276534/0414f532-0d93-430a-9df7-55b09eefd343.zip">如果需要程序源代码在此，点击即可下载</a></strong></p>
+</blockquote>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/DSP/" class="category-chain-item">DSP</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/FIR%E3%80%81IIR/">#FIR、IIR</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>FilterDesign</div>
+      <div>https://alleyf.github.io/2022/10/9968af83d482.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>alleyf</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>October 13, 2022</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Updated on</div>
+          <div>November 20, 2022</div>
+        </div>
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/10/7fb9350bc4f2.html" title="GoodsManageSystem">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">GoodsManageSystem</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/10/7041d89da7de.html" title="LatexEquationManual">
+                        <span class="hidden-mobile">LatexEquationManual</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.7.2/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"636f2864e051a199b91c","clientSecret":"5185fd11115bbcd8d2f636bc80de6bed98ed14c1","repo":"Gitalk","owner":"Alleyf","admin":["Alleyf"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":false,"proxy":"https://shielded-brushlands-08810.herokuapp.com/https://github.com/login/oauth/access_token"},
+          {
+            id: 'a01af5b889e8e4d5893dde5b9d153092'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://github.com/Alleyf" target="_blank" rel="nofollow noopener"><span>Alleyf</span></a> <i class="iconfont icon-love"></i> <a href="https://fcsy.fit" target="_blank" rel="nofollow noopener"><span>Homepage</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        Views: 
+        <span id="busuanzi_value_site_pv"></span>
+        
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        Visitors: 
+        <span id="busuanzi_value_site_uv"></span>
+        
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      陕ICP备2022010038号
+    </a>
+  </span>
+  
+    
+      <span>
+        <a
+          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=2022010038"
+          rel="nofollow noopener"
+          class="beian-police"
+          target="_blank"
+        >
+          
+            <span style="visibility: hidden; width: 0">|</span>
+            <img src="/img/police_beian.png" srcset="/img/loading.gif" lazyload alt="police-icon"/>
+          
+          <span>陕公网安备2022010038号</span>
+        </a>
+      </span>
+    
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.1/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/js/addMusic.js"></script><!-- hexo injector body_end end --></body>
+</html>
