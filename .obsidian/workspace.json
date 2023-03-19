@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/英语学习/考研单词.md",
+                "file": "source/_posts/机器学习/CV/卷积神经网络基础.md",
                 "mode": "source",
                 "source": false
               }
@@ -69,7 +69,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 200
   },
   "right": {
     "id": "ef878eb90911b56c",
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/英语学习/考研单词.md",
+                "file": "source/_posts/机器学习/CV/卷积神经网络基础.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/_posts/英语学习/考研单词.md",
+                "file": "source/_posts/机器学习/CV/卷积神经网络基础.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/英语学习/考研单词.md"
+                "file": "source/_posts/机器学习/CV/卷积神经网络基础.md"
               }
             }
           },
@@ -166,7 +166,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 489.5
+    "width": 200
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -185,13 +185,15 @@
       "remotely-save:Remotely Save": false
     }
   },
-  "active": "1d6169ada01295c2",
+  "active": "4a383e802b683e84",
   "lastOpenFiles": [
+    "~$论文-李轶峰.docx",
+    "博士论文-李轶峰.docx",
+    "source/_posts/机器学习/CV/计算机视觉概述.md",
     "source/_posts/英语学习/考研单词.md",
     "2016IJC-导管组织接触对于模型的影响PentarRay FAM.pdf",
     "source/_posts/未命名.canvas",
     "source/_posts/英语学习",
-    "source/_posts/机器学习/CV/计算机视觉概述.md",
     "source/_posts/机器学习/ML_DL.md",
     "source/_posts/机器学习/CV/图像分类.md",
     "source/_posts/机器学习/CV/目标检测.md",
@@ -203,7 +205,6 @@
     "public/tags/CNN",
     "public/tags/CV/index.html",
     "public/tags/CV",
-    "public/tags/Algorithm/index.html",
     "source/_obsidian/Post Template.md",
     "source/_posts/课程学习/谱分析及滤波器指标计算.md",
     "source/_posts/前后端开发/网页开发.md",
