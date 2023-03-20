@@ -69,7 +69,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "ef878eb90911b56c",
@@ -185,26 +186,28 @@
       "remotely-save:Remotely Save": false
     }
   },
-  "active": "4a383e802b683e84",
+  "active": "aa176b3663e85d33",
   "lastOpenFiles": [
+    "Pasted image 20230320194157.png",
+    "source/_posts/机器学习/CV/计算机视觉概述.md",
+    "source/_posts/机器学习/CV/卷积神经网络基础.md",
+    "source/_posts/机器学习/CV/目标检测.md",
+    "source/_posts/机器学习/CV/图像分类.md",
+    "source/_posts/机器学习/ML_DL.md",
+    "source/_posts/机器学习/NoteBook.md",
+    "source/_posts/机器学习/Python_Notes.md",
     "~$论文-李轶峰.docx",
     "博士论文-李轶峰.docx",
-    "source/_posts/机器学习/CV/计算机视觉概述.md",
     "source/_posts/英语学习/考研单词.md",
     "2016IJC-导管组织接触对于模型的影响PentarRay FAM.pdf",
     "source/_posts/未命名.canvas",
     "source/_posts/英语学习",
-    "source/_posts/机器学习/ML_DL.md",
-    "source/_posts/机器学习/CV/图像分类.md",
-    "source/_posts/机器学习/CV/目标检测.md",
-    "source/_posts/机器学习/CV/卷积神经网络基础.md",
     "public/2023/03/56d5f0383564.html",
     "public/2023/03/cc1560495a8d.html",
     "public/2023/03/f41646eecf81.html",
     "public/tags/CNN/index.html",
     "public/tags/CNN",
     "public/tags/CV/index.html",
-    "public/tags/CV",
     "source/_obsidian/Post Template.md",
     "source/_posts/课程学习/谱分析及滤波器指标计算.md",
     "source/_posts/前后端开发/网页开发.md",
@@ -222,8 +225,6 @@
     "课程学习/SignalSample.md",
     "课程学习/Filter.md",
     "课程学习/嵌入式原理与应用.md",
-    "课程学习/谱分析及滤波器指标计算.md",
-    "课程学习/FIR快速卷积滤波.md",
     "未命名.canvas"
   ]
 }

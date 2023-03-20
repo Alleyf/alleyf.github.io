@@ -157,5 +157,13 @@
       "key": "M"
     }
   ],
-  "file-explorer:open": []
+  "file-explorer:open": [],
+  "editor:insert-callout": [
+    {
+      "modifiers": [
+        "Mod"
+      ],
+      "key": "ArrowDown"
+    }
+  ]
 }

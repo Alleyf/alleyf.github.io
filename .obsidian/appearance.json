@@ -3,5 +3,6 @@
   "theme": "system",
   "cssTheme": "Blue Topaz",
   "nativeMenus": true,
-  "translucency": true
+  "translucency": true,
+  "interfaceFontFamily": "Arial Black"
 }
