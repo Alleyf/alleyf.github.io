@@ -4,19 +4,50 @@
     "type": "split",
     "children": [
       {
-        "id": "4291753658e55439",
+        "id": "b8053837eb6789fd",
         "type": "tabs",
+        "dimension": 48.99665551839465,
         "children": [
           {
-            "id": "f4ea97d61279dc15",
+            "id": "d0f9971f9dde0444",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/机器学习/CV/图像分类.md",
+                "file": "source/_posts/机器学习/CV/卷积神经网络基础.md",
                 "mode": "source",
                 "source": false
               }
+            }
+          }
+        ]
+      },
+      {
+        "id": "9b015b06019d0a22",
+        "type": "tabs",
+        "dimension": 34.280936454849495,
+        "children": [
+          {
+            "id": "5636edc1b60946b8",
+            "type": "leaf",
+            "state": {
+              "type": "reveal-preview-view",
+              "state": {}
+            }
+          }
+        ]
+      },
+      {
+        "id": "92f56b4ed98b4b8e",
+        "type": "tabs",
+        "dimension": 16.722408026755854,
+        "children": [
+          {
+            "id": "7017137185f7dd07",
+            "type": "leaf",
+            "state": {
+              "type": "calendar",
+              "state": {}
             }
           }
         ]
@@ -69,7 +100,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "ef878eb90911b56c",
@@ -80,35 +112,6 @@
         "type": "tabs",
         "children": [
           {
-            "id": "e291124237a075d0",
-            "type": "leaf",
-            "state": {
-              "type": "backlink",
-              "state": {
-                "file": "source/_posts/机器学习/CV/图像分类.md",
-                "collapseAll": false,
-                "extraContext": false,
-                "sortOrder": "alphabetical",
-                "showSearch": false,
-                "searchQuery": "",
-                "backlinkCollapsed": false,
-                "unlinkedCollapsed": true
-              }
-            }
-          },
-          {
-            "id": "1363a8c956f0e264",
-            "type": "leaf",
-            "state": {
-              "type": "outgoing-link",
-              "state": {
-                "file": "source/_posts/机器学习/CV/图像分类.md",
-                "linksCollapsed": false,
-                "unlinkedCollapsed": true
-              }
-            }
-          },
-          {
             "id": "3b46ae81154984b5",
             "type": "leaf",
             "state": {
@@ -117,32 +120,6 @@
                 "sortOrder": "frequency",
                 "useHierarchy": false
               }
-            }
-          },
-          {
-            "id": "ac9b54a26a749c5c",
-            "type": "leaf",
-            "state": {
-              "type": "outline",
-              "state": {
-                "file": "source/_posts/机器学习/CV/图像分类.md"
-              }
-            }
-          },
-          {
-            "id": "3a64c91918991f21",
-            "type": "leaf",
-            "state": {
-              "type": "gptModelSettings",
-              "state": {}
-            }
-          },
-          {
-            "id": "7017137185f7dd07",
-            "type": "leaf",
-            "state": {
-              "type": "calendar",
-              "state": {}
             }
           },
           {
@@ -162,7 +139,7 @@
             }
           }
         ],
-        "currentTab": 7
+        "currentTab": 2
       }
     ],
     "direction": "horizontal",
@@ -185,11 +162,11 @@
       "remotely-save:Remotely Save": false
     }
   },
-  "active": "f4ea97d61279dc15",
+  "active": "7017137185f7dd07",
   "lastOpenFiles": [
+    "source/_posts/机器学习/CV/卷积神经网络基础.md",
     "source/_posts/机器学习/CV/目标检测.md",
     "source/_posts/机器学习/CV/图像分类.md",
-    "source/_posts/机器学习/CV/卷积神经网络基础.md",
     "source/_posts/机器学习/CV/计算机视觉概述.md",
     "Pasted image 20230320194157.png",
     "source/about/index.md",
