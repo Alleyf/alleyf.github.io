@@ -6,7 +6,7 @@
       {
         "id": "b8053837eb6789fd",
         "type": "tabs",
-        "dimension": 48.99665551839465,
+        "dimension": 51.67224080267558,
         "children": [
           {
             "id": "d0f9971f9dde0444",
@@ -16,6 +16,7 @@
               "state": {
                 "file": "source/_posts/机器学习/CV/卷积神经网络基础.md",
                 "mode": "source",
+                "backlinks": false,
                 "source": false
               }
             }
@@ -23,12 +24,12 @@
         ]
       },
       {
-        "id": "9b015b06019d0a22",
+        "id": "b87894130c4f7c83",
         "type": "tabs",
-        "dimension": 34.280936454849495,
+        "dimension": 28.26086956521739,
         "children": [
           {
-            "id": "5636edc1b60946b8",
+            "id": "90440e23c622bfbe",
             "type": "leaf",
             "state": {
               "type": "reveal-preview-view",
@@ -40,7 +41,7 @@
       {
         "id": "92f56b4ed98b4b8e",
         "type": "tabs",
-        "dimension": 16.722408026755854,
+        "dimension": 20.066889632107024,
         "children": [
           {
             "id": "7017137185f7dd07",
@@ -87,21 +88,12 @@
                 "sortOrder": "alphabetical"
               }
             }
-          },
-          {
-            "id": "80298501631641f4",
-            "type": "leaf",
-            "state": {
-              "type": "starred",
-              "state": {}
-            }
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 200
   },
   "right": {
     "id": "ef878eb90911b56c",
@@ -111,17 +103,6 @@
         "id": "e26526e60841ea18",
         "type": "tabs",
         "children": [
-          {
-            "id": "3b46ae81154984b5",
-            "type": "leaf",
-            "state": {
-              "type": "tag",
-              "state": {
-                "sortOrder": "frequency",
-                "useHierarchy": false
-              }
-            }
-          },
           {
             "id": "6016749994aa1a72",
             "type": "leaf",
@@ -139,7 +120,7 @@
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -147,22 +128,20 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "switcher:打开快速切换": false,
-      "graph:查看关系图谱": false,
       "canvas:新建白板": false,
       "daily-notes:打开/创建今天的日记": false,
       "templates:插入模板": false,
       "command-palette:打开命令面板": false,
-      "markdown-importer:打开 Markdown 格式转换器": false,
       "obsidian-textgenerator-plugin:Generate Text!": false,
       "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": false,
       "table-editor-obsidian:Advanced Tables Toolbar": false,
       "templater-obsidian:Templater": false,
       "obsidian-advanced-slides:Show Slide Preview": false,
-      "remotely-save:Remotely Save": false
+      "remotely-save:Remotely Save": false,
+      "markdown-importer:打开 Markdown 格式转换器": false
     }
   },
-  "active": "7017137185f7dd07",
+  "active": "d0f9971f9dde0444",
   "lastOpenFiles": [
     "source/_posts/机器学习/CV/卷积神经网络基础.md",
     "source/_posts/机器学习/CV/目标检测.md",

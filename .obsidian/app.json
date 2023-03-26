@@ -10,5 +10,9 @@
     "scaffolds/",
     "scripts/",
     "themes/"
-  ]
+  ],
+  "strictLineBreaks": true,
+  "showLineNumber": true,
+  "showFrontmatter": true,
+  "vimMode": false
 }
