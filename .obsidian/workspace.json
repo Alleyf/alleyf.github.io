@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "016734c94590c274",
+        "id": "4291753658e55439",
         "type": "tabs",
         "children": [
           {
-            "id": "aa176b3663e85d33",
+            "id": "f4ea97d61279dc15",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/机器学习/CV/卷积神经网络基础.md",
+                "file": "source/_posts/机器学习/CV/图像分类.md",
                 "mode": "source",
                 "source": false
               }
@@ -69,8 +69,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 200
   },
   "right": {
     "id": "ef878eb90911b56c",
@@ -86,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/机器学习/CV/卷积神经网络基础.md",
+                "file": "source/_posts/机器学习/CV/图像分类.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/_posts/机器学习/CV/卷积神经网络基础.md",
+                "file": "source/_posts/机器学习/CV/图像分类.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -126,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/机器学习/CV/卷积神经网络基础.md"
+                "file": "source/_posts/机器学习/CV/图像分类.md"
               }
             }
           },
@@ -186,13 +185,14 @@
       "remotely-save:Remotely Save": false
     }
   },
-  "active": "aa176b3663e85d33",
+  "active": "f4ea97d61279dc15",
   "lastOpenFiles": [
-    "Pasted image 20230320194157.png",
-    "source/_posts/机器学习/CV/计算机视觉概述.md",
-    "source/_posts/机器学习/CV/卷积神经网络基础.md",
     "source/_posts/机器学习/CV/目标检测.md",
     "source/_posts/机器学习/CV/图像分类.md",
+    "source/_posts/机器学习/CV/卷积神经网络基础.md",
+    "source/_posts/机器学习/CV/计算机视觉概述.md",
+    "Pasted image 20230320194157.png",
+    "source/about/index.md",
     "source/_posts/机器学习/ML_DL.md",
     "source/_posts/机器学习/NoteBook.md",
     "source/_posts/机器学习/Python_Notes.md",
@@ -224,7 +224,6 @@
     "课程学习/Java Notes.md",
     "课程学习/SignalSample.md",
     "课程学习/Filter.md",
-    "课程学习/嵌入式原理与应用.md",
     "未命名.canvas"
   ]
 }
