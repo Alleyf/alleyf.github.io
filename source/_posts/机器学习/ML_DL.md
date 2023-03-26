@@ -15,9 +15,8 @@ excerpt: Deep_learning
 </center>
 ​	
 
-|                          |                                                              |
+|         **目录**                |       **功能和包含的API**            |
 | :----------------------: | ------------------------------------------------------------ |
-|         **目录**         | **功能和包含的API**                                          |
 |         paddle.*         | paddle 根目录下保留了常用API的别名，包括：paddle.tensor, paddle.framework, paddle.device 目录下的所有API |
 |      paddle.tensor       | Tensor操作相关的API，包括 创建zeros, 矩阵运算matmul, 变换concat, 计算add, 查找argmax等 |
 |     paddle.framework     | 框架通用API和动态图模式的API，包括 no_grad 、 save 、 load 等。 |

@@ -6,7 +6,7 @@
       {
         "id": "b8053837eb6789fd",
         "type": "tabs",
-        "dimension": 51.67224080267558,
+        "dimension": 74.87437185929649,
         "children": [
           {
             "id": "d0f9971f9dde0444",
@@ -14,7 +14,20 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/机器学习/CV/卷积神经网络基础.md",
+                "file": "source/_posts/机器学习/CV/目标检测.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "4490d6edfa4fb2fe",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "source/_posts/机器学习/ML_DL.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -24,24 +37,9 @@
         ]
       },
       {
-        "id": "b87894130c4f7c83",
-        "type": "tabs",
-        "dimension": 28.26086956521739,
-        "children": [
-          {
-            "id": "90440e23c622bfbe",
-            "type": "leaf",
-            "state": {
-              "type": "reveal-preview-view",
-              "state": {}
-            }
-          }
-        ]
-      },
-      {
         "id": "92f56b4ed98b4b8e",
         "type": "tabs",
-        "dimension": 20.066889632107024,
+        "dimension": 25.12562814070352,
         "children": [
           {
             "id": "7017137185f7dd07",
@@ -89,11 +87,13 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "ef878eb90911b56c",
@@ -141,16 +141,16 @@
       "markdown-importer:打开 Markdown 格式转换器": false
     }
   },
-  "active": "d0f9971f9dde0444",
+  "active": "1afd6959333bf40d",
   "lastOpenFiles": [
-    "source/_posts/机器学习/CV/卷积神经网络基础.md",
+    "source/_posts/机器学习/ML_DL.md",
     "source/_posts/机器学习/CV/目标检测.md",
-    "source/_posts/机器学习/CV/图像分类.md",
     "source/_posts/机器学习/CV/计算机视觉概述.md",
+    "source/_posts/机器学习/NoteBook.md",
+    "source/_posts/机器学习/CV/卷积神经网络基础.md",
+    "source/_posts/机器学习/CV/图像分类.md",
     "Pasted image 20230320194157.png",
     "source/about/index.md",
-    "source/_posts/机器学习/ML_DL.md",
-    "source/_posts/机器学习/NoteBook.md",
     "source/_posts/机器学习/Python_Notes.md",
     "~$论文-李轶峰.docx",
     "博士论文-李轶峰.docx",
