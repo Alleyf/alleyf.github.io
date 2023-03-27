@@ -4,12 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "b8053837eb6789fd",
+        "id": "1b1addb0b69b435f",
         "type": "tabs",
-        "dimension": 74.87437185929649,
         "children": [
           {
-            "id": "d0f9971f9dde0444",
+            "id": "9bb175f80e899602",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -19,34 +18,6 @@
                 "backlinks": false,
                 "source": false
               }
-            }
-          },
-          {
-            "id": "4490d6edfa4fb2fe",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "source/_posts/机器学习/ML_DL.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          }
-        ]
-      },
-      {
-        "id": "92f56b4ed98b4b8e",
-        "type": "tabs",
-        "dimension": 25.12562814070352,
-        "children": [
-          {
-            "id": "7017137185f7dd07",
-            "type": "leaf",
-            "state": {
-              "type": "calendar",
-              "state": {}
             }
           }
         ]
@@ -87,13 +58,11 @@
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 200
   },
   "right": {
     "id": "ef878eb90911b56c",
@@ -116,6 +85,14 @@
             "type": "leaf",
             "state": {
               "type": "git-view",
+              "state": {}
+            }
+          },
+          {
+            "id": "fae6d5e204f96221",
+            "type": "leaf",
+            "state": {
+              "type": "calendar",
               "state": {}
             }
           }
@@ -141,14 +118,17 @@
       "markdown-importer:打开 Markdown 格式转换器": false
     }
   },
-  "active": "1afd6959333bf40d",
+  "active": "9bb175f80e899602",
   "lastOpenFiles": [
+    "source/_posts/机器学习/CV/图像分类.md",
+    "source/_posts/机器学习/CV/计算机视觉概述.md",
+    "未命名 1.canvas",
+    "未命名.canvas",
+    "().md",
     "source/_posts/机器学习/ML_DL.md",
     "source/_posts/机器学习/CV/目标检测.md",
-    "source/_posts/机器学习/CV/计算机视觉概述.md",
     "source/_posts/机器学习/NoteBook.md",
     "source/_posts/机器学习/CV/卷积神经网络基础.md",
-    "source/_posts/机器学习/CV/图像分类.md",
     "Pasted image 20230320194157.png",
     "source/about/index.md",
     "source/_posts/机器学习/Python_Notes.md",
@@ -178,8 +158,6 @@
     "ML_DL.md",
     "课程学习/QuartusUsage.md",
     "课程学习/Java Notes.md",
-    "课程学习/SignalSample.md",
-    "课程学习/Filter.md",
-    "未命名.canvas"
+    "课程学习/SignalSample.md"
   ]
 }
