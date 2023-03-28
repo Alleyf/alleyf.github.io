@@ -96,4 +96,4 @@ toc;
 
 ## 代码开源
 
-> [源代码包](https://vkceyugu.cdn.bspapp.com/VKCEYUGU-24bfcec2-0b23-4547-a957-73ffab276534/c6e41a2b-0baa-4e0d-844b-9df8885dfe0c.zip)有需要可以自行下载，里面包括源代码、滤波后的音频和PDF参考文档。
+> [源代码ch1和ch2](https://alist.fcsy.fit/d/mobilepan/PicoImages/ch1andch2.zip)[源代码ch3和ch4](https://alist.fcsy.fit/d/mobilepan/PicoImages/ch4andch5.zip)有需要可以自行下载，里面包括源代码、滤波后的音频和PDF参考文档。
