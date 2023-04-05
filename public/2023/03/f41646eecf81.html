@@ -40,7 +40,7 @@
 <meta property="og:image" content="https://alist.fcsy.fit/d/mobilepan/PicoImages/20230405155315.png">
 <meta property="og:image" content="https://alist.fcsy.fit/d/mobilepan/PicoImages/20230405172108.png">
 <meta property="article:published_time" content="2023-03-17T11:10:27.000Z">
-<meta property="article:modified_time" content="2023-04-05T10:08:12.771Z">
+<meta property="article:modified_time" content="2023-04-05T11:46:47.910Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="CNN">
 <meta name="twitter:card" content="summary_large_image">
@@ -283,7 +283,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.7k words
+          4.8k words
         
       </span>
     
@@ -294,7 +294,7 @@
         
         
         
-          40 mins
+          41 mins
         
       </span>
     
@@ -345,7 +345,7 @@
               <p class="note note-info">
                 
                   
-                    Last updated on 7 minutes ago
+                    Last updated on 2 hours ago
                   
                 
               </p>
@@ -474,6 +474,9 @@
 <p>将输入全部转为1维进行线性求和</p>
 </blockquote>
 <h2 id="形状-2"><a href="#形状-2" class="headerlink" title="形状"></a>形状</h2><p><code>[N,C]</code></p>
+<blockquote>
+<p>[!NOTE] 数据变换<br>尺寸的逻辑：输入层将数据拉平[B,C,H,W] -&gt; [B,C*H*W]<br>        x = paddle.reshape(x, [x.shape[0], -1])</p>
+</blockquote>
 
                 
               </div>
