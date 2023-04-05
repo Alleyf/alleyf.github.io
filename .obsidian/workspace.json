@@ -6,7 +6,7 @@
       {
         "id": "1d40237af9f7a03e",
         "type": "tabs",
-        "dimension": 72.65886287625418,
+        "dimension": 71.40468227424749,
         "children": [
           {
             "id": "c92276fff7bec973",
@@ -26,11 +26,12 @@
       {
         "id": "5c16359d15360e51",
         "type": "split",
-        "dimension": 27.341137123745817,
+        "dimension": 28.595317725752505,
         "children": [
           {
             "id": "c6edcc53a94d8c40",
             "type": "tabs",
+            "dimension": 54.367816091954026,
             "children": [
               {
                 "id": "fae6d5e204f96221",
@@ -45,6 +46,7 @@
           {
             "id": "4132f740c0bc1218",
             "type": "tabs",
+            "dimension": 45.632183908045974,
             "children": [
               {
                 "id": "1d6169ada01295c2",
@@ -115,7 +117,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 289.5
   },
   "right": {
     "id": "ef878eb90911b56c",
@@ -135,13 +137,12 @@
       "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": false,
       "table-editor-obsidian:Advanced Tables Toolbar": false,
       "templater-obsidian:Templater": false,
-      "obsidian-advanced-slides:Show Slide Preview": false,
       "remotely-save:Remotely Save": false,
       "markdown-importer:打开 Markdown 格式转换器": false,
       "obsidian-excalidraw-plugin:新建 Excalidraw 绘图": false
     }
   },
-  "active": "1d6169ada01295c2",
+  "active": "c92276fff7bec973",
   "lastOpenFiles": [
     "source/_posts/机器学习/CV/计算机视觉概述.md",
     "source/_posts/前后端开发/网页开发.md",

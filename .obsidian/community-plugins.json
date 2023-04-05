@@ -4,13 +4,11 @@
   "calendar",
   "templater-obsidian",
   "cm-editor-syntax-highlight-obsidian",
-  "obsidian-advanced-slides",
   "floating-toc",
   "remotely-save",
   "obsidian-git",
   "obsidian-image-auto-upload-plugin",
   "mousewheel-image-zoom",
   "obsidian-excalidraw-plugin",
-  "obsidian-minimal-settings",
-  "obsidian-tasks-plugin"
+  "obsidian-minimal-settings"
 ]
