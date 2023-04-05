@@ -15,5 +15,6 @@
   "showLineNumber": true,
   "showFrontmatter": true,
   "vimMode": false,
-  "livePreview": true
+  "livePreview": true,
+  "promptDelete": false
 }

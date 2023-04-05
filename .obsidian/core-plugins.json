@@ -1,6 +1,6 @@
 [
   "file-explorer",
-  "global-search",
+  "graph",
   "backlink",
   "canvas",
   "page-preview",
@@ -9,7 +9,6 @@
   "command-palette",
   "slash-command",
   "editor-status",
-  "markdown-importer",
   "outline",
   "word-count",
   "slides",
