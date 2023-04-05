@@ -1,8 +1,9 @@
 {
   "accentColor": "",
-  "theme": "system",
+  "theme": "moonstone",
   "cssTheme": "Blue Topaz",
   "nativeMenus": true,
   "translucency": true,
-  "interfaceFontFamily": "Arial Black"
+  "interfaceFontFamily": "Arial Black",
+  "baseFontSize": 14
 }

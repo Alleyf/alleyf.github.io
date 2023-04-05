@@ -14,5 +14,6 @@
   "strictLineBreaks": true,
   "showLineNumber": true,
   "showFrontmatter": true,
-  "vimMode": false
+  "vimMode": false,
+  "livePreview": true
 }

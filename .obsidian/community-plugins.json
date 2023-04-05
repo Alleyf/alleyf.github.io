@@ -8,5 +8,8 @@
   "floating-toc",
   "remotely-save",
   "obsidian-git",
-  "obsidian-image-auto-upload-plugin"
+  "obsidian-image-auto-upload-plugin",
+  "mousewheel-image-zoom",
+  "obsidian-excalidraw-plugin",
+  "obsidian-minimal-settings"
 ]

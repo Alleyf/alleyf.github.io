@@ -4,20 +4,67 @@
     "type": "split",
     "children": [
       {
-        "id": "1b1addb0b69b435f",
+        "id": "1d40237af9f7a03e",
         "type": "tabs",
+        "dimension": 20.40133779264214,
         "children": [
           {
-            "id": "9bb175f80e899602",
+            "id": "56cb9fcd32c02c9a",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "source/_posts/机器学习/CV/卷积神经网络基础.md"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "a11837645dadabc9",
+        "type": "tabs",
+        "dimension": 62.876254180602,
+        "children": [
+          {
+            "id": "97505472f1753ecf",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/机器学习/CV/目标检测.md",
+                "file": "source/_obsidian/Post Template.md",
                 "mode": "source",
-                "backlinks": false,
+                "backlinks": true,
                 "source": false
               }
+            }
+          },
+          {
+            "id": "ee1dd278b7535044",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "source/_posts/机器学习/CV/卷积神经网络基础.md",
+                "mode": "source",
+                "backlinks": true,
+                "source": false
+              }
+            }
+          }
+        ],
+        "currentTab": 1
+      },
+      {
+        "id": "c6edcc53a94d8c40",
+        "type": "tabs",
+        "dimension": 16.72240802675585,
+        "children": [
+          {
+            "id": "fae6d5e204f96221",
+            "type": "leaf",
+            "state": {
+              "type": "calendar",
+              "state": {}
             }
           }
         ]
@@ -73,14 +120,6 @@
         "type": "tabs",
         "children": [
           {
-            "id": "6016749994aa1a72",
-            "type": "leaf",
-            "state": {
-              "type": "advanced-tables-toolbar",
-              "state": {}
-            }
-          },
-          {
             "id": "1d6169ada01295c2",
             "type": "leaf",
             "state": {
@@ -89,15 +128,23 @@
             }
           },
           {
-            "id": "fae6d5e204f96221",
+            "id": "90f506d5f811210e",
             "type": "leaf",
             "state": {
-              "type": "calendar",
-              "state": {}
+              "type": "backlink",
+              "state": {
+                "file": "source/_posts/机器学习/CV/卷积神经网络基础.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -115,14 +162,25 @@
       "templater-obsidian:Templater": false,
       "obsidian-advanced-slides:Show Slide Preview": false,
       "remotely-save:Remotely Save": false,
-      "markdown-importer:打开 Markdown 格式转换器": false
+      "markdown-importer:打开 Markdown 格式转换器": false,
+      "obsidian-excalidraw-plugin:新建 Excalidraw 绘图": false
     }
   },
-  "active": "9bb175f80e899602",
+  "active": "ee1dd278b7535044",
   "lastOpenFiles": [
+    "source/_obsidian/Cnote Template.md",
+    "source/_obsidian/Post Template.md",
     "source/_posts/机器学习/CV/卷积神经网络基础.md",
     "source/_posts/机器学习/CV/计算机视觉概述.md",
+    "Untitled.md",
+    "未命名.md",
+    "ce.md",
+    "未命名.canvas",
+    "source/_posts/机器学习/CV/目标检测.md",
     "source/_posts/机器学习/CV/图像分类.md",
+    "source/_posts/课程学习/商品管理系统实战.md",
+    "source/_posts/前后端开发/网页开发.md",
+    "PaddleGAN.zip",
     "public/2023/03/3962ffddc056.html",
     "public/2023/03/73453d2eb27d.html",
     "public/2023/03/eda87d97e23c.html",
@@ -132,32 +190,23 @@
     "public/tags/English",
     "public/categories/英语学习/index.html",
     "public/categories/英语学习",
-    "source/_posts/机器学习/CV/目标检测.md",
     "source/_posts/英语学习/考研单词.md",
     "source/_posts/课程学习/Synthesis_Command.md",
     "source/_posts/课程学习/FIR快速卷积滤波.md",
     "未命名 1.canvas",
-    "未命名.canvas",
     "().md",
     "source/_posts/机器学习/ML_DL.md",
     "source/_posts/机器学习/NoteBook.md",
     "Pasted image 20230320194157.png",
     "source/about/index.md",
     "source/_posts/机器学习/Python_Notes.md",
-    "~$论文-李轶峰.docx",
     "source/_posts/未命名.canvas",
-    "source/_obsidian/Post Template.md",
     "source/_posts/课程学习/谱分析及滤波器指标计算.md",
-    "source/_posts/前后端开发/网页开发.md",
     "source/_posts/前后端开发/algorithm.md",
     "2023-03-17.md",
     "node_modules/husky/README.md",
     "机器学习/CV/卷积神经网络基础.md",
     "机器学习/CV/计算机视觉概述.md",
-    "机器学习/CV/目标检测.md",
-    "机器学习/CV/图像分类.md",
-    "机器学习/ML_DL.md",
-    "ML_DL.md",
-    "课程学习/QuartusUsage.md"
+    "机器学习/CV/目标检测.md"
   ]
 }

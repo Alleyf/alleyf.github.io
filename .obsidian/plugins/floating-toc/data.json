@@ -4,5 +4,5 @@
   "isLoadOnMobile": true,
   "isLeft": true,
   "isDefaultPin": false,
-  "isTooltip": false
+  "isTooltip": true
 }

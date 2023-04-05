@@ -1,6 +1,7 @@
 [
   "file-explorer",
   "global-search",
+  "backlink",
   "canvas",
   "page-preview",
   "daily-notes",
@@ -9,6 +10,7 @@
   "slash-command",
   "editor-status",
   "markdown-importer",
+  "outline",
   "word-count",
   "slides",
   "file-recovery"
