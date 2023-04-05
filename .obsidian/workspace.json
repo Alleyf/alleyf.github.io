@@ -6,40 +6,10 @@
       {
         "id": "1d40237af9f7a03e",
         "type": "tabs",
-        "dimension": 20.40133779264214,
+        "dimension": 72.65886287625418,
         "children": [
           {
-            "id": "56cb9fcd32c02c9a",
-            "type": "leaf",
-            "state": {
-              "type": "outline",
-              "state": {
-                "file": "source/_posts/机器学习/CV/卷积神经网络基础.md"
-              }
-            }
-          }
-        ]
-      },
-      {
-        "id": "a11837645dadabc9",
-        "type": "tabs",
-        "dimension": 62.876254180602,
-        "children": [
-          {
-            "id": "97505472f1753ecf",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "source/_obsidian/Post Template.md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "ee1dd278b7535044",
+            "id": "c92276fff7bec973",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -51,23 +21,43 @@
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       },
       {
-        "id": "c6edcc53a94d8c40",
-        "type": "tabs",
-        "dimension": 16.72240802675585,
+        "id": "5c16359d15360e51",
+        "type": "split",
+        "dimension": 27.341137123745817,
         "children": [
           {
-            "id": "fae6d5e204f96221",
-            "type": "leaf",
-            "state": {
-              "type": "calendar",
-              "state": {}
-            }
+            "id": "c6edcc53a94d8c40",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "fae6d5e204f96221",
+                "type": "leaf",
+                "state": {
+                  "type": "calendar",
+                  "state": {}
+                }
+              }
+            ]
+          },
+          {
+            "id": "4132f740c0bc1218",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "1d6169ada01295c2",
+                "type": "leaf",
+                "state": {
+                  "type": "git-view",
+                  "state": {}
+                }
+              }
+            ]
           }
-        ]
+        ],
+        "direction": "horizontal"
       }
     ],
     "direction": "vertical"
@@ -81,12 +71,12 @@
         "type": "tabs",
         "children": [
           {
-            "id": "4a383e802b683e84",
+            "id": "56cb9fcd32c02c9a",
             "type": "leaf",
             "state": {
-              "type": "file-explorer",
+              "type": "outline",
               "state": {
-                "sortOrder": "alphabetical"
+                "file": "source/_posts/机器学习/CV/卷积神经网络基础.md"
               }
             }
           },
@@ -106,41 +96,18 @@
             }
           }
         ]
-      }
-    ],
-    "direction": "horizontal",
-    "width": 200
-  },
-  "right": {
-    "id": "ef878eb90911b56c",
-    "type": "split",
-    "children": [
+      },
       {
-        "id": "e26526e60841ea18",
+        "id": "52a7943f31adb7dc",
         "type": "tabs",
         "children": [
           {
-            "id": "1d6169ada01295c2",
+            "id": "4a383e802b683e84",
             "type": "leaf",
             "state": {
-              "type": "git-view",
-              "state": {}
-            }
-          },
-          {
-            "id": "90f506d5f811210e",
-            "type": "leaf",
-            "state": {
-              "type": "backlink",
+              "type": "file-explorer",
               "state": {
-                "file": "source/_posts/机器学习/CV/卷积神经网络基础.md",
-                "collapseAll": false,
-                "extraContext": false,
-                "sortOrder": "alphabetical",
-                "showSearch": false,
-                "searchQuery": "",
-                "backlinkCollapsed": false,
-                "unlinkedCollapsed": true
+                "sortOrder": "alphabetical"
               }
             }
           }
@@ -149,6 +116,14 @@
     ],
     "direction": "horizontal",
     "width": 200
+  },
+  "right": {
+    "id": "ef878eb90911b56c",
+    "type": "split",
+    "children": [],
+    "direction": "horizontal",
+    "width": 433.5,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -166,12 +141,13 @@
       "obsidian-excalidraw-plugin:新建 Excalidraw 绘图": false
     }
   },
-  "active": "ee1dd278b7535044",
+  "active": "1d6169ada01295c2",
   "lastOpenFiles": [
+    "source/_posts/机器学习/CV/计算机视觉概述.md",
+    "source/_posts/前后端开发/网页开发.md",
+    "source/_posts/机器学习/CV/卷积神经网络基础.md",
     "source/_obsidian/Cnote Template.md",
     "source/_obsidian/Post Template.md",
-    "source/_posts/机器学习/CV/卷积神经网络基础.md",
-    "source/_posts/机器学习/CV/计算机视觉概述.md",
     "Untitled.md",
     "未命名.md",
     "ce.md",
@@ -179,7 +155,6 @@
     "source/_posts/机器学习/CV/目标检测.md",
     "source/_posts/机器学习/CV/图像分类.md",
     "source/_posts/课程学习/商品管理系统实战.md",
-    "source/_posts/前后端开发/网页开发.md",
     "PaddleGAN.zip",
     "public/2023/03/3962ffddc056.html",
     "public/2023/03/73453d2eb27d.html",

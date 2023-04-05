@@ -1,5 +1,5 @@
 {
-  "commitMessage": "vault backup: {{date}}",
+  "commitMessage": "{{hostname}}: {{date}}",
   "commitDateFormat": "YYYY-MM-DD HH:mm:ss",
   "autoSaveInterval": 20,
   "autoPushInterval": 0,
@@ -25,5 +25,5 @@
   "setLastSaveToLastCommit": false,
   "submoduleRecurseCheckout": false,
   "gitDir": "",
-  "autoCommitMessage": "vault backup: {{date}}"
+  "autoCommitMessage": "{{hostname}}: {{date}}"
 }
