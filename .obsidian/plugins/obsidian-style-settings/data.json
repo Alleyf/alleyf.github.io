@@ -18,5 +18,18 @@
   "blue-topaz-theme@@tab-title-bar-position": false,
   "blue-topaz-theme@@toggle-divider-lines": false,
   "blue-topaz-theme@@toggle-header-bottom-line": false,
-  "blue-topaz-theme@@bg-panel-page-opacity-cp": 0.1
+  "blue-topaz-theme@@bg-panel-page-opacity-cp": 0.1,
+  "Blue-Topaz-Codebox-Highlight@@code-theme-selection": "code-theme-monokai",
+  "Blue-Topaz-Codebox-Highlight@@code-line-number": true,
+  "Blue-Topaz-Codebox-Highlight@@code-box-style-option": "codebox-default-style",
+  "blue-topaz-theme@@toggle-calendar-shadow": true,
+  "blue-topaz-theme@@toggle-calendar-transparent": false,
+  "blue-topaz-theme@@style-options-for-calendar-plugin": "style-options-for-calendar-plugin-style-two",
+  "blue-topaz-theme@@rainbow-checklist": true,
+  "blue-topaz-theme@@style-options-for-buttons-plugin": true,
+  "floating-toc-styles@@enable-bar-icon": true,
+  "blue-topaz-theme@@retain-header-color": false,
+  "Blue-Topaz-Codebox-Highlight@@blur-codebox-frosted-glass": 3,
+  "Blue-Topaz-Codebox-Highlight@@code-comment@@light": "#FFFFFF",
+  "Blue-Topaz-Codebox-Highlight@@code-comment@@dark": "#FFFFFF"
 }

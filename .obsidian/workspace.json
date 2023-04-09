@@ -18,7 +18,7 @@
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "source/_posts/机器学习/CV/目标检测.md",
+                    "file": "source/_posts/机器学习/CV/图像分类.md",
                     "mode": "source",
                     "backlinks": true,
                     "source": false
@@ -100,7 +100,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/机器学习/CV/目标检测.md"
+                "file": "source/_posts/机器学习/CV/图像分类.md"
               }
             }
           }
@@ -140,7 +140,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/机器学习/CV/目标检测.md",
+                "file": "source/_posts/机器学习/CV/图像分类.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -176,9 +176,9 @@
   },
   "active": "8bb290fdbd41fc8a",
   "lastOpenFiles": [
+    "source/_posts/机器学习/CV/目标检测.md",
     "source/_posts/机器学习/CV/卷积神经网络基础.md",
     "source/_posts/机器学习/CV/图像分类.md",
-    "source/_posts/机器学习/CV/目标检测.md",
     "source/_posts/机器学习/CV/计算机视觉概述.md",
     "source/_posts/课程学习/LatexEquationManual.md",
     "Excalidraw/Drawing 2023-04-05 18.11.28.excalidraw.md",
