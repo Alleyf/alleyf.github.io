@@ -10,7 +10,7 @@
           {
             "id": "432e20e964c19c01",
             "type": "tabs",
-            "dimension": 81.91681735985533,
+            "dimension": 67.72151898734177,
             "children": [
               {
                 "id": "8bb290fdbd41fc8a",
@@ -18,7 +18,7 @@
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "source/_posts/机器学习/CV/图像分类.md",
+                    "file": "source/_posts/机器学习/CV/目标检测.md",
                     "mode": "source",
                     "backlinks": true,
                     "source": false
@@ -30,11 +30,12 @@
           {
             "id": "295f164b946db7db",
             "type": "split",
-            "dimension": 18.083182640144667,
+            "dimension": 32.278481012658226,
             "children": [
               {
                 "id": "c6edcc53a94d8c40",
                 "type": "tabs",
+                "dimension": 29.07949790794979,
                 "children": [
                   {
                     "id": "fae6d5e204f96221",
@@ -47,8 +48,24 @@
                 ]
               },
               {
+                "id": "8fb402dc956eb10a",
+                "type": "tabs",
+                "dimension": 29.07949790794979,
+                "children": [
+                  {
+                    "id": "c542d3845eb9413f",
+                    "type": "leaf",
+                    "state": {
+                      "type": "mindmap",
+                      "state": {}
+                    }
+                  }
+                ]
+              },
+              {
                 "id": "da98c7b0fd2852df",
                 "type": "tabs",
+                "dimension": 41.84100418410042,
                 "children": [
                   {
                     "id": "1d6169ada01295c2",
@@ -83,7 +100,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/机器学习/CV/图像分类.md"
+                "file": "source/_posts/机器学习/CV/目标检测.md"
               }
             }
           }
@@ -114,16 +131,16 @@
     "type": "split",
     "children": [
       {
-        "id": "77f42d17ed76943b",
+        "id": "77fa66f3fb849106",
         "type": "tabs",
         "children": [
           {
-            "id": "6b579b8b814dc6ae",
+            "id": "8bfd4b5774514128",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/机器学习/CV/图像分类.md",
+                "file": "source/_posts/机器学习/CV/目标检测.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -159,11 +176,11 @@
   },
   "active": "8bb290fdbd41fc8a",
   "lastOpenFiles": [
-    "source/_posts/机器学习/CV/目标检测.md",
-    "source/_posts/课程学习/LatexEquationManual.md",
-    "source/_posts/机器学习/CV/图像分类.md",
-    "source/_posts/机器学习/CV/计算机视觉概述.md",
     "source/_posts/机器学习/CV/卷积神经网络基础.md",
+    "source/_posts/机器学习/CV/图像分类.md",
+    "source/_posts/机器学习/CV/目标检测.md",
+    "source/_posts/机器学习/CV/计算机视觉概述.md",
+    "source/_posts/课程学习/LatexEquationManual.md",
     "Excalidraw/Drawing 2023-04-05 18.11.28.excalidraw.md",
     "Excalidraw",
     "source/_posts/课程学习/Java_Exercise.md",

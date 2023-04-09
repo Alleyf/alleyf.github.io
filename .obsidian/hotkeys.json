@@ -182,5 +182,23 @@
       ],
       "key": "\\"
     }
-  ]
+  ],
+  "buttons:button-maker": [
+    {
+      "modifiers": [
+        "Mod",
+        "Shift"
+      ],
+      "key": "B"
+    }
+  ],
+  "editor:save-file": [
+    {
+      "modifiers": [
+        "Mod"
+      ],
+      "key": "S"
+    }
+  ],
+  "obsidian-excalidraw-plugin:save": []
 }
