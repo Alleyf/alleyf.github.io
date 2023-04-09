@@ -35,7 +35,7 @@
               {
                 "id": "c6edcc53a94d8c40",
                 "type": "tabs",
-                "dimension": 29.07949790794979,
+                "dimension": 41.00294985250737,
                 "children": [
                   {
                     "id": "fae6d5e204f96221",
@@ -48,24 +48,9 @@
                 ]
               },
               {
-                "id": "8fb402dc956eb10a",
-                "type": "tabs",
-                "dimension": 29.07949790794979,
-                "children": [
-                  {
-                    "id": "c542d3845eb9413f",
-                    "type": "leaf",
-                    "state": {
-                      "type": "mindmap",
-                      "state": {}
-                    }
-                  }
-                ]
-              },
-              {
                 "id": "da98c7b0fd2852df",
                 "type": "tabs",
-                "dimension": 41.84100418410042,
+                "dimension": 58.99705014749262,
                 "children": [
                   {
                     "id": "1d6169ada01295c2",
@@ -174,7 +159,7 @@
       "obsidian-file-cleaner:清理文件": false
     }
   },
-  "active": "8bb290fdbd41fc8a",
+  "active": "fae6d5e204f96221",
   "lastOpenFiles": [
     "source/_posts/机器学习/CV/目标检测.md",
     "source/_posts/机器学习/CV/卷积神经网络基础.md",
