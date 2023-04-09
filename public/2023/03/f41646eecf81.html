@@ -40,7 +40,7 @@
 <meta property="og:image" content="https://alist.fcsy.fit/d/mobilepan/PicoImages/20230405155315.png">
 <meta property="og:image" content="https://alist.fcsy.fit/d/mobilepan/PicoImages/20230405172108.png">
 <meta property="article:published_time" content="2023-03-17T11:10:27.000Z">
-<meta property="article:modified_time" content="2023-04-05T11:46:47.910Z">
+<meta property="article:modified_time" content="2023-04-09T03:00:14.463Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="CNN">
 <meta name="twitter:card" content="summary_large_image">
@@ -283,7 +283,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.8k words
+          5.2k words
         
       </span>
     
@@ -294,7 +294,7 @@
         
         
         
-          41 mins
+          44 mins
         
       </span>
     
@@ -345,7 +345,7 @@
               <p class="note note-info">
                 
                   
-                    Last updated on 2 hours ago
+                    Last updated on 3 hours ago
                   
                 
               </p>
@@ -364,6 +364,22 @@
 <p>感受野是指输出特征图上的像素点所能感受到的输入数据的范围。</p>
 </blockquote>
 <p>从下图可以看出感受野的大小：<br><img src="https://s2.loli.net/2023/03/20/dC7PyWFI5ZmHhxr.png" srcset="/img/loading.gif" lazyload alt="image.png|250"><br><code>网络越深，越深层特征图的感受野越大，主要从输入的主对角线反映。</code></p>
+<blockquote>
+<p>[!NOTE] 提示<br>对于图像分类任务来说，感受野的大小与网络的性能存在一定的关系。感受野越大，网络可以获取到更广泛的上下文信息，从而更好地理解图像。但过大的感受野对图像分类也会有一定的影响，主要表现在以下两个方面：</p>
+</blockquote>
+<blockquote>
+<ol>
+<li>过大的感受野会<strong>引入过多的噪声和干扰信号</strong>。当感受野越大时，网络就会考虑更远的像素，这些像素可能与目标物体或图案无关，甚至会背离目标。这些噪声和干扰信号会干扰网络的学习，从而导致分类准确性的降低。</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="2">
+<li>过大的感受野会<strong>降低网络的细节敏感度</strong>。当感受野的大小超出图像细节的尺度范围时，网络无法有效地捕捉到细节信息，从而导致分类准确性的降低。尤其是对于一些小尺寸物体和图案，小细节对分类结果的影响会更加显著。</li>
+</ol>
+</blockquote>
+<blockquote>
+<p>因此，对于图像分类任务来说，选择适当的感受野大小非常重要。通常，在<strong>保证网络全局感知能力的同时，应该将感受野限制在合适的尺度范围内</strong>，以避免过度拟合和过大感受野带来的问题。同时，还可以结合多尺度特征提取的方法，综合利用不同感受野下的信息，以获取更全面、更准确的特征，提高分类精度。</p>
+</blockquote>
 <h2 id="Paddle-API卷积"><a href="#Paddle-API卷积" class="headerlink" title="Paddle API卷积"></a>Paddle API卷积</h2><p><img src="https://alist.fcsy.fit/d/mobilepan/PicoImages/20230320203438.png" srcset="/img/loading.gif" lazyload alt="image.png|400"></p>
 <h3 id="案例1-边缘检测二值图"><a href="#案例1-边缘检测二值图" class="headerlink" title="案例1-边缘检测二值图"></a>案例1-边缘检测二值图</h3><blockquote>
 <p>检测图像黑白分界线。</p>
@@ -541,7 +557,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Updated on</div>
-          <div>April 5, 2023</div>
+          <div>April 9, 2023</div>
         </div>
       
       <div class="license-meta-item">
