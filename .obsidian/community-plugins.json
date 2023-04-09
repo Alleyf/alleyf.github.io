@@ -1,6 +1,5 @@
 [
   "obsidian-textgenerator-plugin",
-  "table-editor-obsidian",
   "calendar",
   "templater-obsidian",
   "cm-editor-syntax-highlight-obsidian",
@@ -12,5 +11,10 @@
   "obsidian-excalidraw-plugin",
   "obsidian-minimal-settings",
   "obsidian-pangu",
-  "editing-toolbar"
+  "editing-toolbar",
+  "various-complements",
+  "obsidian-auto-link-title",
+  "obsidian-file-cleaner",
+  "mysnippets-plugin",
+  "obsidian-custom-frames"
 ]
