@@ -4,69 +4,60 @@
     "type": "split",
     "children": [
       {
-        "id": "99cf5cecd2706ceb",
-        "type": "split",
+        "id": "c138072340095ac8",
+        "type": "tabs",
+        "dimension": 70.97966728280961,
         "children": [
           {
-            "id": "432e20e964c19c01",
+            "id": "8bb290fdbd41fc8a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "source/about/index.md",
+                "mode": "source",
+                "backlinks": true,
+                "source": false
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "d3dd6e50fb8fc3da",
+        "type": "split",
+        "dimension": 29.02033271719039,
+        "children": [
+          {
+            "id": "bc4f444a53b7e712",
             "type": "tabs",
-            "dimension": 67.72151898734177,
             "children": [
               {
-                "id": "8bb290fdbd41fc8a",
+                "id": "fae6d5e204f96221",
                 "type": "leaf",
                 "state": {
-                  "type": "markdown",
-                  "state": {
-                    "file": "source/_posts/机器学习/CV/图像分类.md",
-                    "mode": "source",
-                    "backlinks": true,
-                    "source": false
-                  }
+                  "type": "calendar",
+                  "state": {}
                 }
               }
             ]
           },
           {
-            "id": "295f164b946db7db",
-            "type": "split",
-            "dimension": 32.278481012658226,
+            "id": "7e44f7839c7a7e76",
+            "type": "tabs",
             "children": [
               {
-                "id": "c6edcc53a94d8c40",
-                "type": "tabs",
-                "dimension": 41.00294985250737,
-                "children": [
-                  {
-                    "id": "fae6d5e204f96221",
-                    "type": "leaf",
-                    "state": {
-                      "type": "calendar",
-                      "state": {}
-                    }
-                  }
-                ]
-              },
-              {
-                "id": "da98c7b0fd2852df",
-                "type": "tabs",
-                "dimension": 58.99705014749262,
-                "children": [
-                  {
-                    "id": "1d6169ada01295c2",
-                    "type": "leaf",
-                    "state": {
-                      "type": "git-view",
-                      "state": {}
-                    }
-                  }
-                ]
+                "id": "c82f1ad7d8489f65",
+                "type": "leaf",
+                "state": {
+                  "type": "git-view",
+                  "state": {}
+                }
               }
-            ],
-            "direction": "horizontal"
+            ]
           }
         ],
-        "direction": "vertical"
+        "direction": "horizontal"
       }
     ],
     "direction": "vertical"
@@ -85,7 +76,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/机器学习/CV/图像分类.md"
+                "file": "source/about/index.md"
               }
             }
           }
@@ -116,16 +107,16 @@
     "type": "split",
     "children": [
       {
-        "id": "77fa66f3fb849106",
+        "id": "d0c5eb53d331ed71",
         "type": "tabs",
         "children": [
           {
-            "id": "8bfd4b5774514128",
+            "id": "100fbdc0d7cf11fd",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/机器学习/CV/图像分类.md",
+                "file": "source/about/index.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -159,12 +150,12 @@
       "obsidian-file-cleaner:清理文件": false
     }
   },
-  "active": "fae6d5e204f96221",
+  "active": "8bb290fdbd41fc8a",
   "lastOpenFiles": [
+    "source/_posts/机器学习/CV/计算机视觉概述.md",
+    "source/_posts/机器学习/CV/图像分类.md",
     "source/_posts/机器学习/CV/目标检测.md",
     "source/_posts/机器学习/CV/卷积神经网络基础.md",
-    "source/_posts/机器学习/CV/图像分类.md",
-    "source/_posts/机器学习/CV/计算机视觉概述.md",
     "source/_posts/课程学习/LatexEquationManual.md",
     "Excalidraw/Drawing 2023-04-05 18.11.28.excalidraw.md",
     "Excalidraw",

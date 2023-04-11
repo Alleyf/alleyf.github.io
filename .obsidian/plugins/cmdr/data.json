@@ -12,7 +12,7 @@
     {
       "id": "obsidian-mind-map:app:markmap-preview",
       "icon": "bot",
-      "name": "Mind Map: Preview the current note as a Mind Map",
+      "name": "思维导图",
       "mode": "any"
     }
   ],
