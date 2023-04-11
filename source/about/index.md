@@ -8,12 +8,6 @@ layout: about
 
 Motto：**You know more, you will do not know more.**
 
-\begin{array}
-(1) 非负性: \boldsymbol{D}(\overline{\boldsymbol{x}}, \overline{\boldsymbol{y}}) \mathbf{\geq 0}, 当且仅当 \bar{x}=\bar{y} 时等号成立;\\
-(2) 对称性: D (\overline{\boldsymbol{x}}, \overline{\boldsymbol{y}})=D (\overline{\boldsymbol{y}}, \overline{\boldsymbol{x}})\\
-(3) 三角不等式: \boldsymbol{D}(\overline{\boldsymbol{x}}, \overline{\boldsymbol{z}})+\boldsymbol{D}(\overline{\boldsymbol{z}}, \overline{\boldsymbol{y}}) \geq \boldsymbol{D}(\overline{\boldsymbol{x}}, \overline{\boldsymbol{y}})
-\end{array}
-
 ### Communication：
 
 您也可以关注我们的微信公众号和小程序，我们会定期更新一些对您有帮助的干货，您的支持将是我们最大的动力，我们会继续努力的。
