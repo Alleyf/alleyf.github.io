@@ -104,7 +104,7 @@
     "type": "split",
     "children": [
       {
-        "id": "2551c7a8655e9ec3",
+        "id": "2d40bda190b87fce",
         "type": "tabs",
         "children": [
           {
@@ -114,28 +114,11 @@
               "type": "calendar",
               "state": {}
             }
-          },
-          {
-            "id": "2856feca5374bed0",
-            "type": "leaf",
-            "state": {
-              "type": "backlink",
-              "state": {
-                "file": "source/_posts/机器学习/CV/图像分类.md",
-                "collapseAll": false,
-                "extraContext": false,
-                "sortOrder": "alphabetical",
-                "showSearch": false,
-                "searchQuery": "",
-                "backlinkCollapsed": false,
-                "unlinkedCollapsed": true
-              }
-            }
           }
         ]
       },
       {
-        "id": "2d40bda190b87fce",
+        "id": "1c5ef359a3d4c9fe",
         "type": "tabs",
         "children": [
           {
