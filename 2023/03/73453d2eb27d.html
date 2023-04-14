@@ -28,8 +28,9 @@
 <meta property="og:image" content="https://ai-studio-static-online.cdn.bcebos.com/82e4124e2e6a4231bcde17e086bc86ba732d3e81dcd7415f86fb4ef050aa7772">
 <meta property="og:image" content="https://alist.fcsy.fit/d/mobilepan/PicoImages/20230409204947.png">
 <meta property="og:image" content="https://alist.fcsy.fit/d/mobilepan/PicoImages/20230409212006.png">
+<meta property="og:image" content="https://alist.fcsy.fit/d/mobilepan/PicoImages/20230411205932.png">
 <meta property="article:published_time" content="2023-03-17T11:11:25.000Z">
-<meta property="article:modified_time" content="2023-04-11T11:30:05.950Z">
+<meta property="article:modified_time" content="2023-04-11T13:02:17.603Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="Image Classify">
 <meta name="twitter:card" content="summary_large_image">
@@ -272,7 +273,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5.8k words
+          6.1k words
         
       </span>
     
@@ -283,7 +284,7 @@
         
         
         
-          49 mins
+          52 mins
         
       </span>
     
@@ -334,7 +335,7 @@
               <p class="note note-info">
                 
                   
-                    Last updated on an hour ago
+                    Last updated on 3 days ago
                   
                 
               </p>
@@ -382,14 +383,30 @@
 <h1 id="ResNet"><a href="#ResNet" class="headerlink" title="ResNet"></a>ResNet</h1><blockquote>
 <p>解决网络层数加深后模型效果没有提升。</p>
 </blockquote>
-<h2 id="残差块"><a href="#残差块" class="headerlink" title="残差块"></a>残差块</h2><p>实现方式：<br><img src="https://alist.fcsy.fit/d/mobilepan/PicoImages/20230409204947.png" srcset="/img/loading.gif" lazyload alt="image.png|250"></p>
+<h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><h3 id="残差块"><a href="#残差块" class="headerlink" title="残差块"></a>残差块</h3><p>实现方式：<br><img src="https://alist.fcsy.fit/d/mobilepan/PicoImages/20230409204947.png" srcset="/img/loading.gif" lazyload alt="image.png|250"></p>
 <blockquote>
 <p>一般残差块输出通道数为输入通道数的==四倍==。</p>
 </blockquote>
-<h2 id="ResNet-50"><a href="#ResNet-50" class="headerlink" title="ResNet-50"></a>ResNet-50</h2><blockquote>
+<h3 id="ResNet-50"><a href="#ResNet-50" class="headerlink" title="ResNet-50"></a>ResNet-50</h3><blockquote>
 <p> depth = <em><strong>[3,4,6,3]</strong></em><br> 表示 c2 有 3 个残差块，c 3 有 4 个，c 4 有 6 个，c 5 有 3 个。<br> <img src="https://alist.fcsy.fit/d/mobilepan/PicoImages/20230409212006.png" srcset="/img/loading.gif" lazyload alt="image.png|525"></p>
 </blockquote>
 <h3 id="飞浆高层-API"><a href="#飞浆高层-API" class="headerlink" title="飞浆高层 API:"></a>飞浆高层 API:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#从paddle.vis ion.models模块中import残差网络，VGG网络，LeNet网络</span><br><span class="hljs-keyword">from</span> paddle.vision.models <span class="hljs-keyword">import</span> resnet50, v9g16, LeNet<br><span class="hljs-keyword">from</span> paddle.vision.datasets <span class="hljs-keyword">import</span> Cifar10 <br><span class="hljs-keyword">from</span> paddle.optimizer <span class="hljs-keyword">import</span> Momentum<br><span class="hljs-keyword">from</span> paddle.regularizer <span class="hljs-keyword">import</span> L2Decay<br><span class="hljs-keyword">from</span> paddle.nn <span class="hljs-keyword">import</span> CrossEnt ropyLoss<br><span class="hljs-keyword">from</span> paddle.metric <span class="hljs-keyword">import</span> Accuracy<br><span class="hljs-keyword">from</span> paddle.vision. transforms <span class="hljs-keyword">import</span> Transpose<br><span class="hljs-comment">#确保从paddle.vis ion.datasets. Cifar10中加载的图像数据是np. ndarray类型</span><br>paddle.vision.set_image_backend( <span class="hljs-string">&#x27;cv2&#x27;</span> )<br><span class="hljs-comment">#调用resnet50模型</span><br>model = padd le .Model( resnet50(pretrained=<span class="hljs-literal">False</span>, num_classes=<span class="hljs-number">10</span>&#125; )<br><span class="hljs-comment">#使用Cifar10数据集</span><br>train_dataset = Cifar10(mode=<span class="hljs-string">&#x27;train&#x27;</span>, transform= =Transpose() )<br>val_dataset = Cifar10 (mode=<span class="hljs-string">&#x27;test&#x27;</span>, transform=Transpose())<br><span class="hljs-comment">#定义优化器</span><br>optimizer = Momentum( learning_rate=<span class="hljs-number">0.01</span>, momentum=<span class="hljs-number">0.9</span>,<br>weight_decay = L2Decay(<span class="hljs-number">1e-4</span>),<br>parameters = model. parameters())<br><span class="hljs-comment">#进行训练前准备</span><br>model.prepare(optimizer, CrossEntropyLoss(), Accuracy(topk=(<span class="hljs-number">1</span>, <span class="hljs-number">5</span>)))<br><span class="hljs-comment">#启动训练</span><br>model.fit(train_dataset ,<br>val_dataset ,<br>epochs=<span class="hljs-number">50</span>,<br>batch_size=<span class="hljs-number">64</span>,<br>save_dir=*<span class="hljs-string">&quot;./output&quot;</span>,<br>num_workers=<span class="hljs-number">8</span> )<br> <br></code></pre></td></tr></table></figure>
+
+
+<hr>
+<h2 id="图像分类-ResNet-实战：眼疾识别分类"><a href="#图像分类-ResNet-实战：眼疾识别分类" class="headerlink" title="图像分类 ResNet 实战：眼疾识别分类"></a>图像分类 ResNet 实战：眼疾识别分类</h2><h3 id="CV-任务研发流程"><a href="#CV-任务研发流程" class="headerlink" title="CV 任务研发流程"></a>CV 任务研发流程</h3><p><img src="https://alist.fcsy.fit/d/mobilepan/PicoImages/20230411205932.png" srcset="/img/loading.gif" lazyload alt="image.png|425"></p>
+<blockquote>
+<p>[!NOTE] Tips<br>其中，基本的计算机视觉任务研发全流程包含模型训练、模型预测和模型部署三大步骤。每个步骤又包含单独的流程：</p>
+<ul>
+<li>数据准备：根据网络接收的数据格式，完成相应的预处理和跑批量数据读取器操作，保证模型正常读取；</li>
+<li>模型构建：设计卷积网络结构；</li>
+<li>特征提取：使用构建的模型提取数据的特征信息；</li>
+<li>损失函数：通过损失函数衡量模型的预测值和真实值的不一致程度，通常损失函数越小，模型性能越好；</li>
+<li>模型评估：在模型训练中或训练结束后岁模型进行评估测试，观察准确率；</li>
+<li>模型预测：使用训练好的模型进行测试，也需要准备数据和模型特征提取，最后对结果进行解析。</li>
+</ul>
+</blockquote>
+<h3 id="数据预处理"><a href="#数据预处理" class="headerlink" title="数据预处理"></a>数据预处理</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><br></code></pre></td></tr></table></figure>
 
 
                 
