@@ -49,6 +49,7 @@
                 }
               }
             ],
+            "currentTab": 1,
             "stacked": true
           }
         ],
@@ -164,7 +165,7 @@
       "obsidian-file-cleaner:清理文件": false
     }
   },
-  "active": "16e33629e566ba55",
+  "active": "20b641e6f82a17f5",
   "lastOpenFiles": [
     "source/_posts/机器学习/CV/图像分类.md",
     "未命名看板.md",
