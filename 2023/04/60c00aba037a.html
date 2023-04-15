@@ -18,30 +18,23 @@
   <meta name="author" content="alleyf">
   <meta name="keywords" content="">
   
-    <meta name="description" content="some overview about DL_CV。">
+    <meta name="description" content="概要设计（总体设计）概要设计中的模块层次结构、调用关系、模块间接口描述方法模块层次结构图使用树形图表示系统的总体层次结构和模块组织关系。高层模块逻辑上包含低层模块,低层模块可以被多个高层模块调用。  系统  模块1    子模块1    子模块2  模块2  模块3      调用关系图使用线条和箭头表示模块之间的调用关系,箭头指向被调用模块。循环调用也可以在图中表示。该图直观展示模块依赖和控制关">
 <meta property="og:type" content="article">
-<meta property="og:title" content="计算机视觉概述">
-<meta property="og:url" content="https://alleyf.github.io/2023/03/cc1560495a8d.html">
+<meta property="og:title" content="alleyf">
+<meta property="og:url" content="https://alleyf.github.io/2023/04/60c00aba037a.html">
 <meta property="og:site_name" content="alleyf">
-<meta property="og:description" content="some overview about DL_CV。">
+<meta property="og:description" content="概要设计（总体设计）概要设计中的模块层次结构、调用关系、模块间接口描述方法模块层次结构图使用树形图表示系统的总体层次结构和模块组织关系。高层模块逻辑上包含低层模块,低层模块可以被多个高层模块调用。  系统  模块1    子模块1    子模块2  模块2  模块3      调用关系图使用线条和箭头表示模块之间的调用关系,箭头指向被调用模块。循环调用也可以在图中表示。该图直观展示模块依赖和控制关">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://ai-studio-static-online.cdn.bcebos.com/93476b373dd342d1aae22397aa24c58fc60ab68307fd448189f16c8284723e9d">
-<meta property="og:image" content="https://ai-studio-static-online.cdn.bcebos.com/70d8475ed908487680057bf1f2760f10e367e7176acf43ebb380207b748b2377">
-<meta property="og:image" content="https://ai-studio-static-online.cdn.bcebos.com/d65f1ebcb0054dcb81a8eb50223adc529bb9b63265ab467d931a5df5b2864122">
-<meta property="og:image" content="https://ai-studio-static-online.cdn.bcebos.com/01179d17c9f74570b8a618d6123261ce6e10344f11c84dda8e47d44c1eb4fc81">
-<meta property="og:image" content="https://ai-studio-static-online.cdn.bcebos.com/1ccd30567304415d98b0b373ec641a3d00f76d803f194ea4b14aa85ce85bf7bb">
-<meta property="article:published_time" content="2023-03-17T11:09:35.000Z">
-<meta property="article:modified_time" content="2023-04-05T11:34:43.789Z">
+<meta property="article:published_time" content="2023-04-15T02:18:52.939Z">
+<meta property="article:modified_time" content="2023-04-15T02:20:12.960Z">
 <meta property="article:author" content="alleyf">
-<meta property="article:tag" content="CV">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://ai-studio-static-online.cdn.bcebos.com/93476b373dd342d1aae22397aa24c58fc60ab68307fd448189f16c8284723e9d">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>计算机视觉概述 - alleyf</title>
+  <title>alleyf</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -246,7 +239,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="计算机视觉概述"></span>
+            <span id="subtitle" data-typed-text=""></span>
           
         </div>
 
@@ -262,8 +255,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-03-17 19:09" pubdate>
-          March 17, 2023 pm
+        <time datetime="2023-04-15 10:18" pubdate>
+          April 15, 2023 am
         </time>
       </span>
     
@@ -274,7 +267,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.2k words
+          488 words
         
       </span>
     
@@ -285,7 +278,7 @@
         
         
         
-          19 mins
+          5 mins
         
       </span>
     
@@ -331,12 +324,12 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">计算机视觉概述</h1>
+            <h1 style="display: none"></h1>
             
               <p class="note note-info">
                 
                   
-                    Last updated on 10 days ago
+                    Last updated on 4 hours ago
                   
                 
               </p>
@@ -344,39 +337,25 @@
             
               <div class="markdown-body">
                 
-                <p>[[卷积神经网络基础]][[目标检测]][[图像分类]]</p>
-<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>计算机视觉作为一门让机器学会如何去“看”的学科，具体的说，就是让机器去识别摄像机拍摄的图片或视频中的物体，检测出物体所在的位置，并对目标物体进行跟踪，从而理解并描述出图片或视频里的场景和故事，以此来模拟人脑视觉系统。因此，计算机视觉也通常被叫做机器视觉，其目的是建立能够从图像或者视频中“感知”信息的人工系统。</p>
-<p>计算机视觉技术经过几十年的发展，已经在交通（车牌识别、道路违章抓拍）、安防（人脸闸机、小区监控）、金融（刷脸支付、柜台的自动票据识别）、医疗（医疗影像诊断）、工业生产（产品缺陷自动检测）等多个领域应用，影响或正在改变人们的日常生活和工业生产方式。未来，随着技术的不断演进，必将涌现出更多的产品和应用，为我们的生活创造更大的便利和更广阔的机会。</p>
-<center><img src="https://ai-studio-static-online.cdn.bcebos.com/93476b373dd342d1aae22397aa24c58fc60ab68307fd448189f16c8284723e9d" srcset="/img/loading.gif" lazyload width = "500"></center>
-<center>图1：计算机视觉技术在各领域的应用</center>
-
-
-
-<p>飞桨为计算机视觉任务提供了丰富的API，并通过底层优化和加速保证了这些API的性能。同时，飞桨还提供了丰富的模型库，覆盖图像分类、检测、分割、文字识别和视频理解等多个领域。用户可以直接使用这些API组建模型，也可以在飞桨提供的模型库基础上进行二次研发。<br>由于篇幅所限，本章将重点介绍计算机视觉的经典模型（卷积神经网络）和两个典型任务（图像分类和目标检测）。主要涵盖如下内容：<br><strong>卷积神经网络</strong>：卷积神经网络（Convolutional Neural Networks, CNN）是计算机视觉技术最经典的模型结构。本教程主要介绍卷积神经网络的常用模块，包括：卷积、池化、激活函数、批归一化、丢弃法等。</p>
+                <h1 id="概要设计（总体设计）"><a href="#概要设计（总体设计）" class="headerlink" title="概要设计（总体设计）"></a>概要设计（总体设计）</h1><h1 id="概要设计中的模块层次结构、调用关系、模块间接口描述方法"><a href="#概要设计中的模块层次结构、调用关系、模块间接口描述方法" class="headerlink" title="概要设计中的模块层次结构、调用关系、模块间接口描述方法"></a>概要设计中的模块层次结构、调用关系、模块间接口描述方法</h1><h2 id="模块层次结构图"><a href="#模块层次结构图" class="headerlink" title="模块层次结构图"></a>模块层次结构图</h2><p>使用树形图表示系统的总体层次结构和模块组织关系。高层模块逻辑上包含低层模块,低层模块可以被多个高层模块调用。</p>
 <ul>
-<li><strong>图像分类</strong>：介绍图像分类算法的经典模型结构，包括：LeNet、AlexNet、VGG、GoogLeNet、ResNet，并通过眼疾筛查的案例展示算法的应用。</li>
-<li><strong>目标检测</strong>：介绍目标检测YOLOv3算法，并通过林业病虫害检测案例展示YOLOv3算法的应用。</li>
+<li><p>系统</p>
+</li>
+<li><p>模块1  </p>
+</li>
+<li><p>子模块1  </p>
+</li>
+<li><p>子模块2</p>
+</li>
+<li><p>模块2</p>
+</li>
+<li><p>模块3   </p>
+</li>
 </ul>
-<h1 id="发展历程"><a href="#发展历程" class="headerlink" title="发展历程"></a>发展历程</h1><p>计算机视觉的发展历程要从生物视觉讲起。对于生物视觉的起源，目前学术界尚没有形成定论。有研究者认为最早的生物视觉形成于距今约<a target="_blank" rel="noopener" href="https://www.pnas.org/content/109/46/18868">7亿年前的水母之中</a>，也有研究者认为生物视觉产生于距今约5亿年前寒武纪【<a target="_blank" rel="noopener" href="https://doi.org/10.1038%2Fnature10097">1</a>, <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Evolution_of_the_eye">2</a>】。寒武纪生物大爆发的原因一直是个未解之谜，不过可以肯定的是在寒武纪动物具有了视觉能力，捕食者可以更容易地发现猎物，被捕食者也可以更早的发现天敌的位置。视觉能力加剧了猎手和猎物之间的博弈，也催生出更加激烈的生存演化规则。视觉系统的形成有力地推动了食物链的演化，加速了生物进化过程，是生物发展史上重要的里程碑。经过几亿年的演化，目前人类的视觉系统已经具备非常高的复杂度和强大的功能，人脑中神经元数目达到了1000亿个，这些神经元通过网络互相连接，这样庞大的视觉神经网络使得我们可以很轻松的观察周围的世界，如 <strong>图2</strong> 所示。</p>
-<center><img src="https://ai-studio-static-online.cdn.bcebos.com/70d8475ed908487680057bf1f2760f10e367e7176acf43ebb380207b748b2377" srcset="/img/loading.gif" lazyload width = "600"></center>
-<center><br>图2：人类视觉感知</center>
-
-<hr>
-<p>对人类来说，识别猫和狗是件非常容易的事。但对计算机来说，即使是一个精通编程的高手，也很难轻松写出具有通用性的程序（比如：假设程序认为体型大的是狗，体型小的是猫，但由于拍摄角度不同，可能一张图片上猫占据的像素比狗还多）。那么，如何让计算机也能像人一样看懂周围的世界呢？研究者尝试着从不同的角度去解决这个问题，由此也发展出一系列的子任务，如 <strong>图3</strong> 所示。</p>
-<center><img src="https://ai-studio-static-online.cdn.bcebos.com/d65f1ebcb0054dcb81a8eb50223adc529bb9b63265ab467d931a5df5b2864122" srcset="/img/loading.gif" lazyload width = "500"></center>
-<center><br>图3：计算机视觉子任务示意图</center>
-- **(a) Image Classification：** 图像分类，用于识别图像中物体的类别（如：bottle、cup、cube）。
-- **(b) Object Localization：** 目标检测，用于检测图像中每个物体的类别，并准确标出它们的位置。
-- **(c) Semantic Segmentation：** 图像语义分割，用于标出图像中每个像素点所属的类别，属于同一类别的像素点用一个颜色标识。
-- **(d) Instance Segmentation：** 实例分割，值得注意的是，（b）中的目标检测任务只需要标注出物体位置，而（d）中的实例分割任务不仅要标注出物体位置，还需要标注出物体的外形轮廓。
-在早期的图像分类任务中，通常是先人工提取图像特征，再用机器学习算法对这些特征进行分类，分类的结果强依赖于特征提取方法，往往只有经验丰富的研究者才能完成，如 **图4** 所示。
-<center><img src="https://ai-studio-static-online.cdn.bcebos.com/01179d17c9f74570b8a618d6123261ce6e10344f11c84dda8e47d44c1eb4fc81" srcset="/img/loading.gif" lazyload width = "500"></center>
-<center><br>图4：早期的图像分类任务</center>
-在这种背景下，基于神经网络的特征提取方法应运而生。Yann LeCun是最早将卷积神经网络应用到图像识别领域的，其主要逻辑是使用卷积神经网络提取图像特征，并对图像所属类别进行预测，通过训练数据不断调整网络参数，最终形成一套能自动提取图像特征并对这些特征进行分类的网络，如 **图5** 所示。
-<center><img src="https://ai-studio-static-online.cdn.bcebos.com/1ccd30567304415d98b0b373ec641a3d00f76d803f194ea4b14aa85ce85bf7bb" srcset="/img/loading.gif" lazyload width = "500"></center>
-<center><br>图5：早期的卷积神经网络处理图像任务示意</center>
-
-<p>这一方法在手写数字识别任务上取得了极大的成功，但在接下来的时间里，却没有得到很好的发展。其主要原因一方面是数据集不完善，只能处理简单任务，在大尺寸的数据上容易发生过拟合；另一方面是硬件瓶颈，网络模型复杂时，计算速度会特别慢。<br>目前，随着互联网技术的不断进步，数据量呈现大规模的增长，越来越丰富的数据集不断涌现。另外，得益于硬件能力的提升，计算机的算力也越来越强大。不断有研究者将新的模型和算法应用到计算机视觉领域。由此催生了越来越丰富的模型结构和更加准确的精度，同时计算机视觉所处理的问题也越来越丰富，包括分类、检测、分割、场景描述、图像生成和风格变换等，甚至还不仅仅局限于2维图片，包括视频处理技术和3D视觉等。</p>
+<h2 id="调用关系图"><a href="#调用关系图" class="headerlink" title="调用关系图"></a>调用关系图</h2><p>使用线条和箭头表示模块之间的调用关系,箭头指向被调用模块。循环调用也可以在图中表示。该图直观展示模块依赖和控制关系。</p>
+<p>模块1   -&gt;   模块2<br>↑<br>模块3  </p>
+<p>模块2   -&gt;   子模块1<br>↑<br>|-&gt; 子模块2</p>
+<h2 id="接口说明文档"><a href="#接口说明文档" class="headerlink" title="接口说明文档"></a>接口说明文档</h2><p>用表格列出每个模块的输入(Input)、输出(Output)接口规格说明。包括接口名称、参数、参数类型、功能说明等。这更详细和准确地描述了模块接口定义。|模块|接口名|输入参数|输出参数|功能| <br>|-|-|-|-|-|<br>|模块1|接口1|参数1:类型1|返回值:类型2|功能说明|<br>|子模块1|接口2|参数1:类型3|无|功能说明|<br>|子模块2|接口3|参数1:类型4|参数2:类型5|功能说明|这三种方式可以较全面地描述概要设计中的模块信息。但在实际使用中,可以根据需要选择一种或两种,或者结合使用,重点是要清晰和准确地表达设计思想。</p>
 
                 
               </div>
@@ -395,7 +374,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" class="category-chain-item">机器学习</a>
+  <a href="/categories/%E8%AF%BE%E7%A8%8B%E5%AD%A6%E4%B9%A0/" class="category-chain-item">课程学习</a>
   
   
 
@@ -407,13 +386,6 @@
     </div>
   
   
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/CV/">#CV</a>
-      
-    </div>
-  
 </div>
 
 
@@ -422,8 +394,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>计算机视觉概述</div>
-      <div>https://alleyf.github.io/2023/03/cc1560495a8d.html</div>
+      <div></div>
+      <div>https://alleyf.github.io/2023/04/60c00aba037a.html</div>
     </div>
     <div class="license-meta">
       
@@ -435,13 +407,13 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>March 17, 2023</div>
+          <div>April 15, 2023</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>Updated on</div>
-          <div>April 5, 2023</div>
+          <div>April 15, 2023</div>
         </div>
       
       <div class="license-meta-item">
@@ -470,18 +442,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/03/f41646eecf81.html" title="卷积神经网络基础">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">卷积神经网络基础</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/03/56d5f0383564.html" title="algorithm">
-                        <span class="hidden-mobile">algorithm</span>
+                      <a href="/2023/03/eda87d97e23c.html" title="考研单词">
+                        <span class="hidden-mobile">考研单词</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -502,7 +468,7 @@
         var options = Object.assign(
           {"clientID":"636f2864e051a199b91c","clientSecret":"5185fd11115bbcd8d2f636bc80de6bed98ed14c1","repo":"Gitalk","owner":"Alleyf","admin":["Alleyf"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":false,"proxy":"https://shielded-brushlands-08810.herokuapp.com/https://github.com/login/oauth/access_token"},
           {
-            id: '53a2f34c9a8950c4a72751c88005c756'
+            id: '00bf23427c98dfe8590ec511464cbc06'
           }
         )
         var gitalk = new Gitalk(options);
