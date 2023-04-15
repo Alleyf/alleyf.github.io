@@ -43,6 +43,7 @@
             }
           }
         ],
+        "currentTab": 1,
         "stacked": true
       }
     ],
@@ -154,7 +155,7 @@
       "obsidian-file-cleaner:清理文件": false
     }
   },
-  "active": "fe1961f343e9d699",
+  "active": "20b641e6f82a17f5",
   "lastOpenFiles": [
     "public/2023/04/60c00aba037a.html",
     "public/2023/04",
