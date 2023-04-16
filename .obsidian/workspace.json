@@ -6,14 +6,15 @@
       {
         "id": "15deeb8ef71c6ff3",
         "type": "tabs",
+        "dimension": 60.150375939849624,
         "children": [
           {
-            "id": "fe1961f343e9d699",
+            "id": "34cd2537d6c0a8dd",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/课程学习/软件工程.md",
+                "file": "source/_posts/前后端开发/uni-app.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
@@ -25,6 +26,7 @@
       {
         "id": "fb78bf8f02af2bcd",
         "type": "tabs",
+        "dimension": 39.849624060150376,
         "children": [
           {
             "id": "a4430a604572ffdf",
@@ -43,7 +45,6 @@
             }
           }
         ],
-        "currentTab": 1,
         "stacked": true
       }
     ],
@@ -63,7 +64,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/课程学习/软件工程.md"
+                "file": "source/_posts/前后端开发/uni-app.md"
               }
             }
           }
@@ -87,7 +88,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "ef878eb90911b56c",
@@ -111,7 +113,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/课程学习/软件工程.md",
+                "file": "source/_posts/前后端开发/uni-app.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -140,7 +142,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -155,8 +158,16 @@
       "obsidian-file-cleaner:清理文件": false
     }
   },
-  "active": "20b641e6f82a17f5",
+  "active": "34cd2537d6c0a8dd",
   "lastOpenFiles": [
+    "public/tags/vue/index.html",
+    "public/tags/vue",
+    "source/_posts/前后端开发/Vue.md",
+    "source/_posts/前后端开发/uni-app.md",
+    "source/_posts/前后端开发/网页开发.md",
+    "source/_posts/前后端开发/algorithm.md",
+    "source/_posts/前后端开发/Html5_Css_Js.md",
+    "source/_posts/课程学习/软件工程.md",
     "public/2023/04/60c00aba037a.html",
     "public/2023/04",
     "public/archives/2023/04/index.html",
@@ -164,7 +175,6 @@
     "public/categories/课程学习/index.html",
     "public/categories/课程学习",
     "source/about/index.md",
-    "source/_posts/课程学习/软件工程.md",
     "未命名.canvas",
     "source/_posts/机器学习/CV/图像分类.md",
     "未命名看板.md",
@@ -176,7 +186,6 @@
     "Excalidraw",
     "source/_posts/课程学习/Java_Exercise.md",
     "1.md",
-    "source/_posts/前后端开发/网页开发.md",
     "source/_obsidian/Cnote Template.md",
     "source/_obsidian/Post Template.md",
     "Untitled.md",
@@ -185,17 +194,11 @@
     "source/_posts/课程学习/商品管理系统实战.md",
     "PaddleGAN.zip",
     "public/2023/03/3962ffddc056.html",
-    "public/2023/03/73453d2eb27d.html",
-    "public/2023/03/eda87d97e23c.html",
     "source/_posts/英语学习/考研单词.md",
     "source/_posts/课程学习/Synthesis_Command.md",
     "source/_posts/课程学习/FIR快速卷积滤波.md",
     "未命名 1.canvas",
-    "().md",
-    "source/_posts/机器学习/ML_DL.md",
-    "source/_posts/机器学习/NoteBook.md",
     "Pasted image 20230320194157.png",
-    "source/_posts/机器学习/Python_Notes.md",
     "source/_posts/未命名.canvas"
   ]
 }
