@@ -110,6 +110,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "source/_posts/前后端开发/uni-app.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -120,7 +121,8 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       },
       {
         "id": "1c5ef359a3d4c9fe",
@@ -138,8 +140,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 200
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -154,7 +155,7 @@
       "obsidian-file-cleaner:清理文件": false
     }
   },
-  "active": "34cd2537d6c0a8dd",
+  "active": "a4430a604572ffdf",
   "lastOpenFiles": [
     "public/2023/04/3dbbbdf5122f.html",
     "public/2023/04/5d72eb9cc9af.html",
