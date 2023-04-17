@@ -120,8 +120,17 @@
                 "unlinkedCollapsed": true
               }
             }
+          },
+          {
+            "id": "59fcd1373f045d31",
+            "type": "leaf",
+            "state": {
+              "type": "custom-frames-chafgpt",
+              "state": {}
+            }
           }
-        ]
+        ],
+        "currentTab": 2
       },
       {
         "id": "1c5ef359a3d4c9fe",
@@ -154,7 +163,7 @@
       "obsidian-file-cleaner:清理文件": false
     }
   },
-  "active": "a4430a604572ffdf",
+  "active": "59fcd1373f045d31",
   "lastOpenFiles": [
     "public/2023/04/3dbbbdf5122f.html",
     "public/2023/04/5d72eb9cc9af.html",
