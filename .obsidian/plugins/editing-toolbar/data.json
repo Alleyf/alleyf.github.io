@@ -213,7 +213,7 @@
   ],
   "appendMethod": "body",
   "shouldShowMenuOnSelect": false,
-  "cMenuVisibility": false,
+  "cMenuVisibility": true,
   "cMenuBottomValue": 4.25,
   "cMenuNumRows": 32,
   "cMenuWidth": 502,
