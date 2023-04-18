@@ -200,5 +200,7 @@
       "key": "S"
     }
   ],
-  "obsidian-excalidraw-plugin:save": []
+  "obsidian-excalidraw-plugin:save": [],
+  "obsidian-pangu:pangu-format": [],
+  "editor:insert-embed": []
 }

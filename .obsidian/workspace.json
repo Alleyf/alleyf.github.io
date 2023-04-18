@@ -105,23 +105,6 @@
             }
           },
           {
-            "id": "1f640a62b4177aa5",
-            "type": "leaf",
-            "state": {
-              "type": "backlink",
-              "state": {
-                "file": "source/_posts/前后端开发/uni-app.md",
-                "collapseAll": false,
-                "extraContext": false,
-                "sortOrder": "alphabetical",
-                "showSearch": false,
-                "searchQuery": "",
-                "backlinkCollapsed": false,
-                "unlinkedCollapsed": true
-              }
-            }
-          },
-          {
             "id": "59fcd1373f045d31",
             "type": "leaf",
             "state": {
@@ -129,8 +112,7 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 2
+        ]
       },
       {
         "id": "1c5ef359a3d4c9fe",
@@ -160,17 +142,18 @@
       "command-palette:打开命令面板": false,
       "templater-obsidian:Templater": false,
       "graph:查看关系图谱": false,
-      "obsidian-file-cleaner:清理文件": false
+      "obsidian-file-cleaner:清理文件": false,
+      "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "59fcd1373f045d31",
+  "active": "34cd2537d6c0a8dd",
   "lastOpenFiles": [
+    "source/_posts/前后端开发/uni-app.md",
     "public/2023/04/3dbbbdf5122f.html",
     "public/2023/04/5d72eb9cc9af.html",
     "public/tags/vue/index.html",
     "public/tags/vue",
     "source/_posts/前后端开发/Vue.md",
-    "source/_posts/前后端开发/uni-app.md",
     "source/_posts/前后端开发/网页开发.md",
     "source/_posts/前后端开发/algorithm.md",
     "source/_posts/前后端开发/Html5_Css_Js.md",
@@ -190,7 +173,6 @@
     "source/_posts/机器学习/CV/卷积神经网络基础.md",
     "source/_posts/课程学习/LatexEquationManual.md",
     "Excalidraw/Drawing 2023-04-05 18.11.28.excalidraw.md",
-    "Excalidraw",
     "source/_posts/课程学习/Java_Exercise.md",
     "1.md",
     "source/_obsidian/Cnote Template.md",

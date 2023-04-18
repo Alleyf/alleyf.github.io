@@ -1,7 +1,6 @@
 [
   "calendar",
   "templater-obsidian",
-  "cm-editor-syntax-highlight-obsidian",
   "floating-toc",
   "obsidian-git",
   "obsidian-image-auto-upload-plugin",
@@ -15,9 +14,7 @@
   "obsidian-custom-frames",
   "obsidian-paste-image-rename",
   "obsidian-style-settings",
-  "obsidian-mind-map",
   "cmdr",
   "easy-typing-obsidian",
-  "obsidian-icons-plugin",
-  "obsidian-kanban"
+  "table-editor-obsidian"
 ]
