@@ -27,7 +27,7 @@
     <link href="/2023/04/3dbbbdf5122f.html"/>
     <url>/2023/04/3dbbbdf5122f.html</url>
     
-    <content type="html"><![CDATA[<h1 id=""><a href="#" class="headerlink" title=""></a></h1>]]></content>
+    <content type="html"><![CDATA[<h1 id="生命周期函数"><a href="#生命周期函数" class="headerlink" title="生命周期函数"></a>生命周期函数</h1><table><thead><tr><th>生命周期钩子函数</th><th>实例处于阶段</th><th>描述</th><th>能否获取到 el(this.$el)</th><th>能否获取到 data (this.xxx)</th><th>能否使用 methods 中的方法 (this.xxx())</th></tr></thead><tbody><tr><td>beforeCreate</td><td>创建前</td><td>实例已初始化，但数据观测，watch/event 事件回调还未配置</td><td>获取不到</td><td>不能</td><td>不能</td></tr><tr><td>created</td><td>创建后</td><td>已完成如下配置，数据观测 (data observer)，property 和方法的运算，watch/event 事件回调</td><td>获取不到</td><td>能</td><td>能</td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table>]]></content>
     
     
     <categories>
