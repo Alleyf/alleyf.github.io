@@ -19,7 +19,7 @@
   "blue-topaz-theme@@toggle-divider-lines": false,
   "blue-topaz-theme@@toggle-header-bottom-line": false,
   "blue-topaz-theme@@bg-panel-page-opacity-cp": 0.1,
-  "Blue-Topaz-Codebox-Highlight@@code-theme-selection": "code-theme-monokai",
+  "Blue-Topaz-Codebox-Highlight@@code-theme-selection": "code-theme-custom",
   "Blue-Topaz-Codebox-Highlight@@code-line-number": true,
   "Blue-Topaz-Codebox-Highlight@@code-box-style-option": "codebox-default-style",
   "blue-topaz-theme@@toggle-calendar-shadow": true,

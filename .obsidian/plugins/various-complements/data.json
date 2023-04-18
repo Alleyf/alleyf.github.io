@@ -122,6 +122,38 @@
           "lastUpdated": 1681634974120
         }
       }
+    },
+    "api": {
+      "api": {
+        "internalLink": {
+          "count": 1,
+          "lastUpdated": 1681820252015
+        }
+      }
+    },
+    " 指令，它实际上是上述操作的语法糖：": {
+      " 指令，它实际上是上述操作的语法糖：": {
+        "currentFile": {
+          "count": 2,
+          "lastUpdated": 1681822045599
+        }
+      }
+    },
+    "input": {
+      "input": {
+        "currentFile": {
+          "count": 1,
+          "lastUpdated": 1681822097947
+        }
+      }
+    },
+    "v-model": {
+      "v-model": {
+        "currentFile": {
+          "count": 1,
+          "lastUpdated": 1681822105293
+        }
+      }
     }
   }
 }
