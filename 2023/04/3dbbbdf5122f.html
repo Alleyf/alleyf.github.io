@@ -26,7 +26,7 @@
 <meta property="og:description" content="it is some basic usage of vue.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-04-16T08:29:16.000Z">
-<meta property="article:modified_time" content="2023-04-18T11:55:39.860Z">
+<meta property="article:modified_time" content="2023-04-18T13:41:22.106Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="vue">
 <meta name="twitter:card" content="summary_large_image">
@@ -268,7 +268,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          213 words
+          6k words
         
       </span>
     
@@ -279,7 +279,7 @@
         
         
         
-          2 mins
+          50 mins
         
       </span>
     
@@ -330,7 +330,7 @@
               <p class="note note-info">
                 
                   
-                    Last updated on 2 minutes ago
+                    Last updated on a few seconds ago
                   
                 
               </p>
@@ -338,15 +338,15 @@
             
               <div class="markdown-body">
                 
-                <h1 id="生命周期函数"><a href="#生命周期函数" class="headerlink" title="生命周期函数"></a>生命周期函数</h1><table>
+                <h1 id="1-生命周期函数"><a href="#1-生命周期函数" class="headerlink" title="1. 生命周期函数"></a>1. 生命周期函数</h1><table>
 <thead>
 <tr>
 <th>生命周期钩子函数</th>
 <th>实例处于阶段</th>
 <th>描述</th>
-<th>能否获取到 el(this.$el)</th>
-<th>能否获取到 data (this.xxx)</th>
-<th>能否使用 methods 中的方法 (this.xxx())</th>
+<th>能否获取到 el (this.$el)</th>
+<th>能否获取到 data (this. Xxx)</th>
+<th>能否使用 methods 中的方法 (this. Xxx ())</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -366,6 +366,62 @@
 <td>能</td>
 </tr>
 <tr>
+<td>beforeMount</td>
+<td>挂载前</td>
+<td>dom 已初始化，但并未挂载和渲染</td>
+<td>能</td>
+<td>能</td>
+<td>能</td>
+</tr>
+<tr>
+<td>mounted</td>
+<td>挂载后</td>
+<td>dom 已完成挂载和渲染</td>
+<td>能</td>
+<td>能</td>
+<td>能</td>
+</tr>
+<tr>
+<td>beforeUpdate</td>
+<td>更新前</td>
+<td>数据已改变，但 dom 未更新</td>
+<td>能</td>
+<td>能</td>
+<td>能</td>
+</tr>
+<tr>
+<td>updated</td>
+<td>更新后</td>
+<td>dom 已更新</td>
+<td>能</td>
+<td>能</td>
+<td>能</td>
+</tr>
+<tr>
+<td>beforeDestroy</td>
+<td>销毁前</td>
+<td>实例销毁前，实例仍然可用</td>
+<td>能</td>
+<td>能</td>
+<td>能</td>
+</tr>
+<tr>
+<td>destroyed</td>
+<td>销毁后</td>
+<td>实例已销毁，所有指令被解绑，事件监听器被移除，子实例都被销毁</td>
+<td>能</td>
+<td>能</td>
+<td>能</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
 <td></td>
 <td></td>
 <td></td>
@@ -374,7 +430,87 @@
 <td></td>
 </tr>
 </tbody></table>
+<h1 id="2-API"><a href="#2-API" class="headerlink" title="2. API"></a>2. API</h1><h2 id="声明式-API"><a href="#声明式-API" class="headerlink" title="声明式 API"></a>声明式 API</h2><blockquote>
+<p>Vue 的核心功能是<em><strong>声明式渲染</strong></em>：通过扩展于标准 HTML 的模板语法，我们可以根据 JavaScript 的状态来描述 HTML 应该是什么样子的。当状态改变时，HTML 会自动更新。</p>
+</blockquote>
+<p>我们可以使用 <code>data</code> 组件选项来声明响应式状态，该选项应该是一个返回对象的函数：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;<br>  <span class="hljs-title function_">data</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">return</span> &#123;<br>      <span class="hljs-attr">message</span>: <span class="hljs-string">&#x27;Hello World!&#x27;</span><br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><code>message</code> 属性可以在模板中使用。下面展示了我们如何使用双花括号法，根据 <code>message</code> 的值来渲染动态文本：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>&#123;&#123; message &#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>在双花括号中的内容并<strong>不只限于标识符或路径</strong>——我们可以使用任何<em><strong>有效的 JavaScript 表达式</strong></em>。</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>&#123;&#123; message.split(&#x27;&#x27;).reverse().join(&#x27;&#x27;) &#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<hr>
+<h2 id="组合式-API"><a href="#组合式-API" class="headerlink" title="组合式 API"></a>组合式 API</h2><p>我们可以使用 Vue 的 <code>reactive()</code> API 来声明响应式状态。由 <code>reactive()</code> 创建的对象都是 JavaScript <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy">Proxy</a>，其行为与普通对象一样：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> &#123; reactive &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span><br><span class="hljs-keyword">const</span> counter = <span class="hljs-title function_">reactive</span>(&#123;<br>  <span class="hljs-attr">count</span>: <span class="hljs-number">0</span><br>&#125;)<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(counter.<span class="hljs-property">count</span>) <span class="hljs-comment">// 0</span><br>counter.<span class="hljs-property">count</span>++<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>[!NOTE] Tips<br><code>reactive()</code> 只适用于对象 (包括数组和内置类型，如 <code>Map</code> 和 <code>Set</code>)。而另一个 API <code>ref()</code> 则可以接受任何值类型。<code>ref</code> 会返回一个包裹对象，并在 <code>.value</code> 属性下暴露内部值。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> &#123; ref &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span><br><span class="hljs-keyword">const</span> message = <span class="hljs-title function_">ref</span>(<span class="hljs-string">&#x27;Hello World!&#x27;</span>)<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(message.<span class="hljs-property">value</span>) <span class="hljs-comment">// &quot;Hello World!&quot;</span><br>message.<span class="hljs-property">value</span> = <span class="hljs-string">&#x27;Changed&#x27;</span><br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>在组件的 <code>&lt;script setup&gt;</code> 块中声明的响应式状态，可以直接在模板中使用</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>&#123;&#123; message &#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>count is: &#123;&#123; counter.count &#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>使用任何<em><strong>有效的 JavaScript 表达式</strong></em></p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>&#123;&#123; message.split(&#x27;&#x27;).reverse().join(&#x27;&#x27;) &#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<h1 id="3-基础语法"><a href="#3-基础语法" class="headerlink" title="3. 基础语法"></a>3. 基础语法</h1><h2 id="1-属性绑定"><a href="#1-属性绑定" class="headerlink" title="1. 属性绑定"></a>1. 属性绑定</h2><blockquote>
+<p>双大括号只能进行文本插值，为了给 attribute 绑定一个动态值，需要使用 <code>v-bind</code> 指令, 可以缩写只用 <code>:</code> 表示属性绑定</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">v-bind:id</span>=<span class="hljs-string">&quot;dynamicId&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">:id</span>=<span class="hljs-string">&quot;dynamicId&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<h2 id="2-事件监听"><a href="#2-事件监听" class="headerlink" title="2. 事件监听"></a>2. 事件监听</h2><blockquote>
+<p>使用 <code>v-on</code> 指令监听 DOM 事件，可以简写为 <code>@</code>，表示事件监听</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">v-on:click</span>=<span class="hljs-string">&quot;increment&quot;</span>&gt;</span>&#123;&#123; count &#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">&quot;increment&quot;</span>&gt;</span>&#123;&#123; count &#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;script setup&gt;<br><span class="hljs-keyword">import</span> &#123; ref &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span><br><span class="hljs-keyword">const</span> count = <span class="hljs-title function_">ref</span>(<span class="hljs-number">0</span>)<br><span class="hljs-keyword">function</span> <span class="hljs-title function_">increment</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-comment">// 更新组件状态</span><br>  count.<span class="hljs-property">value</span>++<br>&#125;<br>&lt;/script&gt;<br></code></pre></td></tr></table></figure>
+<h2 id="3-表单绑定"><a href="#3-表单绑定" class="headerlink" title="3. 表单绑定"></a>3. 表单绑定</h2><blockquote>
+<p>同时使用 <code>v-bind</code> 和 <code>v-on</code> 来在表单的输入元素上创建双向绑定</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">:value</span>=<span class="hljs-string">&quot;text&quot;</span> @<span class="hljs-attr">input</span>=<span class="hljs-string">&quot;onInput&quot;</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">onInput</span>(<span class="hljs-params">e</span>) &#123;<br>  <span class="hljs-comment">// v-on 处理函数会接收原生 DOM 事件</span><br>  <span class="hljs-comment">// 作为其参数。</span><br>  text.<span class="hljs-property">value</span> = e.<span class="hljs-property">target</span>.<span class="hljs-property">value</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>简化双向绑定，Vue 提供了一个 <code>v-model</code> 指令，它实际上是上述操作的语法糖</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">&quot;text&quot;</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>[!NOTE] Tips</p>
+<ol>
+<li><code>v-model</code> 会将被绑定的值与 <code>&lt;input&gt;</code> 的值自动同步</li>
+<li><code>v-model</code> 不仅支持文本输入框，也支持诸如多选框、单选框、下拉框之类的输入类型</li>
+</ol>
+</blockquote>
+<p><strong>完整 demo</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;script setup&gt;<br>import &#123; ref &#125; from &#x27;vue&#x27;<br>const text = ref(&#x27;&#x27;)<br>&lt;/script&gt;<br>&lt;template&gt;<br>  &lt;input v-model=&quot;text&quot; placeholder=&quot;Type here&quot;&gt;<br>  &lt;p&gt;&#123;&#123; text &#125;&#125;&lt;/p&gt;<br>&lt;/template&gt;<br></code></pre></td></tr></table></figure>
+<h2 id="4-条件渲染"><a href="#4-条件渲染" class="headerlink" title="4. 条件渲染"></a>4. 条件渲染</h2><blockquote>
+<p>使用 <code>v-if</code> 指令来有条件地渲染元素, 也可以使用 <code>v-else</code> 和 <code>v-else-if</code> 来表示其他的条件分支</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;h1 v-<span class="hljs-keyword">if</span>=<span class="hljs-string">&quot;awesome&quot;</span>&gt;<span class="hljs-title class_">Vue</span> is awesome!&lt;/h1&gt;<br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">v-else</span>&gt;</span>Oh no 😢<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
+<h2 id="5-列表渲染"><a href="#5-列表渲染" class="headerlink" title="5. 列表渲染"></a>5. 列表渲染</h2><blockquote>
+<p>使用 <code>v-for</code> 指令来渲染一个基于源数组的列表</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;ul&gt;<br>  &lt;li v-for=&quot;todo in todos&quot; :key=&quot;todo.id&quot;&gt;<br>    &#123;&#123; todo.text &#125;&#125;<br>  &lt;/li&gt;<br>&lt;/ul&gt;<br></code></pre></td></tr></table></figure>
+<blockquote>
+<ol>
+<li><code>todo</code> 是一个局部变量，表示当前正在迭代的数组元素。它只能在 <code>v-for</code> 所绑定的元素上或是其内部访问，就像函数的作用域一样.</li>
+<li>并且将它作为<a target="_blank" rel="noopener" href="https://cn.vuejs.org/api/built-in-special-attributes.html#key">特殊的 <code>key</code> attribute</a> 绑定到每个 <code>&lt;li&gt;</code></li>
+</ol>
+</blockquote>
+<blockquote>
+<p>更新列表有两种方式：<br>    1. 在源数组上调用变更方法：<br>        <code>todos.value.push(newTodo)</code><br>      2. 使用新的数组替代原数组：<br>        <code>todos.value = todos.value.filter(/* ... */)</code> </p>
+</blockquote>
+<p>完整 demo（实现列表动态增删）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;script setup&gt;<br>import &#123; ref &#125; from &#x27;vue&#x27;<br><br>// 给每个 todo 对象一个唯一的 id<br>let id = 0<br><br>const newTodo = ref(&#x27;&#x27;)<br>const todos = ref([<br>  &#123; id: id++, text: &#x27;Learn HTML&#x27; &#125;,<br>  &#123; id: id++, text: &#x27;Learn JavaScript&#x27; &#125;,<br>  &#123; id: id++, text: &#x27;Learn Vue&#x27; &#125;<br>])<br><br>function addTodo() &#123;<br>  // ...<br>  todos.value.push(&#123;id:id++,text:newTodo.value&#125;)<br>  newTodo.value = &#x27;&#x27;<br>&#125;<br><br>function removeTodo(todo) &#123;<br>  // 方法1<br>  todos.value.pop(todo)<br>  // 方法2<br>  todos.value = todos.value.filter((t) =&gt; t !== todo)<br>&#125;<br>&lt;/script&gt;<br><br>&lt;template&gt;<br>  &lt;form @submit.prevent=&quot;addTodo&quot;&gt;<br>    &lt;input v-model=&quot;newTodo&quot;&gt;<br>    &lt;button&gt;Add Todo&lt;/button&gt;    <br>  &lt;/form&gt;<br>  &lt;ul&gt;<br>    &lt;li v-for=&quot;todo in todos&quot; :key=&quot;todo.id&quot;&gt;<br>      &#123;&#123; todo.text &#125;&#125;<br>      &lt;button @click=&quot;removeTodo(todo)&quot;&gt;X&lt;/button&gt;<br>    &lt;/li&gt;<br>  &lt;/ul&gt;<br>&lt;/template&gt;<br></code></pre></td></tr></table></figure>
 
+<h2 id="6-计算属性"><a href="#6-计算属性" class="headerlink" title="6. 计算属性"></a>6. 计算属性</h2><blockquote>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://cn.vuejs.org/guide/essentials/computed.html"><code>computed()</code></a>。它可以让我们创建一个计算属性 ref，这个 ref 会动态地根据其他响应式数据源来计算其 <code>.value</code></li>
+<li>computed<code>(计算属性)</code>可用于快速计算视图（View）中显示的属性。这些计算将被<strong>缓存</strong>，并且只在需要时更新。computed设置的初衷是能够<strong>解决复杂的计算</strong>，而不是直接在模板字符串里进行运算。</li>
+</ol>
+</blockquote>
+<p>实现显示（隐藏）已完成的todos</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;script setup&gt;<br>import &#123; ref, computed &#125; from &#x27;vue&#x27;<br><br>let id = 0<br><br>const newTodo = ref(&#x27;&#x27;)<br>const hideCompleted = ref(false)<br>const todos = ref([<br>  &#123; id: id++, text: &#x27;Learn HTML&#x27;, done: true &#125;,<br>  &#123; id: id++, text: &#x27;Learn JavaScript&#x27;, done: true &#125;,<br>  &#123; id: id++, text: &#x27;Learn Vue&#x27;, done: false &#125;<br>])<br><br>const filteredTodos = computed(() =&gt; &#123;<br>  return hideCompleted.value<br>    ? todos.value.filter((t) =&gt; !t.done)<br>    : todos.value<br>&#125;)<br><br>function addTodo() &#123;<br>  todos.value.push(&#123; id: id++, text: newTodo.value, done: false &#125;)<br>  newTodo.value = &#x27;&#x27;<br>&#125;<br><br>function removeTodo(todo) &#123;<br>  todos.value = todos.value.filter((t) =&gt; t !== todo)<br>&#125;<br>&lt;/script&gt;<br><br>&lt;template&gt;<br>  &lt;form @submit.prevent=&quot;addTodo&quot;&gt;<br>    &lt;input v-model=&quot;newTodo&quot;&gt;<br>    &lt;button&gt;Add Todo&lt;/button&gt;<br>  &lt;/form&gt;<br>  &lt;ul&gt;<br>    &lt;li v-for=&quot;todo in filteredTodos&quot; :key=&quot;todo.id&quot;&gt;<br>      &lt;input type=&quot;checkbox&quot; v-model=&quot;todo.done&quot;&gt;<br>      &lt;span :class=&quot;&#123; done: todo.done &#125;&quot;&gt;&#123;&#123; todo.text &#125;&#125;&lt;/span&gt;<br>      &lt;button @click=&quot;removeTodo(todo)&quot;&gt;X&lt;/button&gt;<br>    &lt;/li&gt;<br>  &lt;/ul&gt;<br>  &lt;button @click=&quot;hideCompleted = !hideCompleted&quot;&gt;<br>    &#123;&#123; hideCompleted ? &#x27;Show all&#x27; : &#x27;Hide completed&#x27; &#125;&#125;<br>  &lt;/button&gt;<br>&lt;/template&gt;<br><br>&lt;style&gt;<br>.done &#123;<br>  text-decoration: line-through;<br>&#125;<br>&lt;/style&gt;<br></code></pre></td></tr></table></figure>
                 
               </div>
             
