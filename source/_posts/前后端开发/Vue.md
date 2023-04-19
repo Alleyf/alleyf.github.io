@@ -71,6 +71,9 @@ message.value = 'Changed'
 ```html
 <h1>{{ message.split('').reverse().join('') }}</h1>
 ```
+
+---
+
 # 3. 基础语法
 ## 1. 属性绑定
 > 双大括号只能进行文本插值，为了给 attribute 绑定一个动态值，需要使用 `v-bind` 指令, 可以缩写只用 `:` 表示属性绑定
@@ -79,6 +82,32 @@ message.value = 'Changed'
 <div v-bind:id="dynamicId"></div>
 <div :id="dynamicId"></div>
 ```
+
+### 动态绑定多个属性
+
+```js
+const objectOfAttrs = {
+  id: 'container',
+  class: 'wrapper'
+}
+```
+
+> 通过不带参数的 `v-bind`，你可以将它们绑定到单个元素上
+```html
+<div v-bind="objectOfAttrs"></div>
+```
+
+### 调用函数
+
+> 可以在绑定的表达式中使用一个组件暴露的方法
+
+```html
+<span :title="toTitleDate(date)">
+  {{ formatDate(date) }}
+</span>
+```
+
+
 ## 2. 事件监听
 > 使用 `v-on` 指令监听 DOM 事件，可以简写为 `@`，表示事件监听
 
@@ -257,3 +286,23 @@ function removeTodo(todo) {
 }
 </style>
 ```
+
+## 7. 文本插值
+
+> 最基本的数据绑定形式是文本插值，它使用的是“Mustache”语法 (即双大括号)
+
+```html
+<span>Message: {{ msg }}</span>
+```
+
+> 双大括号标签会被替换为[相应组件实例中](https://cn.vuejs.org/guide/essentials/reactivity-fundamentals.html#declaring-reactive-state) `msg` 属性的值。同时每次 `msg` 属性更改时它也会同步更新。
+
+## 8.原始 HTML
+
+> 双大括号会将数据解释为纯文本，而不是 HTML。若想插入 HTML，需要使用 [`v-html` 指令](https://cn.vuejs.org/api/built-in-directives.html#v-html)
+
+```html
+<p>Using text interpolation: {{ rawHtml }}</p>
+<p>Using v-html directive: <span v-html="rawHtml"></span></p>
+```
+
