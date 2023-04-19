@@ -26,7 +26,7 @@
 <meta property="og:description" content="it is some basic usage of vue.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-04-16T08:29:16.000Z">
-<meta property="article:modified_time" content="2023-04-18T13:41:22.106Z">
+<meta property="article:modified_time" content="2023-04-19T13:17:56.327Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="vue">
 <meta name="twitter:card" content="summary_large_image">
@@ -268,7 +268,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          6k words
+          6.6k words
         
       </span>
     
@@ -279,7 +279,7 @@
         
         
         
-          50 mins
+          56 mins
         
       </span>
     
@@ -330,7 +330,7 @@
               <p class="note note-info">
                 
                   
-                    Last updated on a few seconds ago
+                    Last updated on 3 hours ago
                   
                 
               </p>
@@ -456,10 +456,26 @@
 <p>使用任何<em><strong>有效的 JavaScript 表达式</strong></em></p>
 </blockquote>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>&#123;&#123; message.split(&#x27;&#x27;).reverse().join(&#x27;&#x27;) &#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<hr>
 <h1 id="3-基础语法"><a href="#3-基础语法" class="headerlink" title="3. 基础语法"></a>3. 基础语法</h1><h2 id="1-属性绑定"><a href="#1-属性绑定" class="headerlink" title="1. 属性绑定"></a>1. 属性绑定</h2><blockquote>
 <p>双大括号只能进行文本插值，为了给 attribute 绑定一个动态值，需要使用 <code>v-bind</code> 指令, 可以缩写只用 <code>:</code> 表示属性绑定</p>
 </blockquote>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">v-bind:id</span>=<span class="hljs-string">&quot;dynamicId&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">:id</span>=<span class="hljs-string">&quot;dynamicId&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="动态绑定多个属性"><a href="#动态绑定多个属性" class="headerlink" title="动态绑定多个属性"></a>动态绑定多个属性</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> objectOfAttrs = &#123;<br>  <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;container&#x27;</span>,<br>  <span class="hljs-attr">class</span>: <span class="hljs-string">&#x27;wrapper&#x27;</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>通过不带参数的 <code>v-bind</code>，你可以将它们绑定到单个元素上</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">v-bind</span>=<span class="hljs-string">&quot;objectOfAttrs&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="调用函数"><a href="#调用函数" class="headerlink" title="调用函数"></a>调用函数</h3><blockquote>
+<p>可以在绑定的表达式中使用一个组件暴露的方法</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">:title</span>=<span class="hljs-string">&quot;toTitleDate(date)&quot;</span>&gt;</span><br>  &#123;&#123; formatDate(date) &#125;&#125;<br><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+
 <h2 id="2-事件监听"><a href="#2-事件监听" class="headerlink" title="2. 事件监听"></a>2. 事件监听</h2><blockquote>
 <p>使用 <code>v-on</code> 指令监听 DOM 事件，可以简写为 <code>@</code>，表示事件监听</p>
 </blockquote>
@@ -511,6 +527,21 @@
 </blockquote>
 <p>实现显示（隐藏）已完成的todos</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;script setup&gt;<br>import &#123; ref, computed &#125; from &#x27;vue&#x27;<br><br>let id = 0<br><br>const newTodo = ref(&#x27;&#x27;)<br>const hideCompleted = ref(false)<br>const todos = ref([<br>  &#123; id: id++, text: &#x27;Learn HTML&#x27;, done: true &#125;,<br>  &#123; id: id++, text: &#x27;Learn JavaScript&#x27;, done: true &#125;,<br>  &#123; id: id++, text: &#x27;Learn Vue&#x27;, done: false &#125;<br>])<br><br>const filteredTodos = computed(() =&gt; &#123;<br>  return hideCompleted.value<br>    ? todos.value.filter((t) =&gt; !t.done)<br>    : todos.value<br>&#125;)<br><br>function addTodo() &#123;<br>  todos.value.push(&#123; id: id++, text: newTodo.value, done: false &#125;)<br>  newTodo.value = &#x27;&#x27;<br>&#125;<br><br>function removeTodo(todo) &#123;<br>  todos.value = todos.value.filter((t) =&gt; t !== todo)<br>&#125;<br>&lt;/script&gt;<br><br>&lt;template&gt;<br>  &lt;form @submit.prevent=&quot;addTodo&quot;&gt;<br>    &lt;input v-model=&quot;newTodo&quot;&gt;<br>    &lt;button&gt;Add Todo&lt;/button&gt;<br>  &lt;/form&gt;<br>  &lt;ul&gt;<br>    &lt;li v-for=&quot;todo in filteredTodos&quot; :key=&quot;todo.id&quot;&gt;<br>      &lt;input type=&quot;checkbox&quot; v-model=&quot;todo.done&quot;&gt;<br>      &lt;span :class=&quot;&#123; done: todo.done &#125;&quot;&gt;&#123;&#123; todo.text &#125;&#125;&lt;/span&gt;<br>      &lt;button @click=&quot;removeTodo(todo)&quot;&gt;X&lt;/button&gt;<br>    &lt;/li&gt;<br>  &lt;/ul&gt;<br>  &lt;button @click=&quot;hideCompleted = !hideCompleted&quot;&gt;<br>    &#123;&#123; hideCompleted ? &#x27;Show all&#x27; : &#x27;Hide completed&#x27; &#125;&#125;<br>  &lt;/button&gt;<br>&lt;/template&gt;<br><br>&lt;style&gt;<br>.done &#123;<br>  text-decoration: line-through;<br>&#125;<br>&lt;/style&gt;<br></code></pre></td></tr></table></figure>
+
+<h2 id="7-文本插值"><a href="#7-文本插值" class="headerlink" title="7. 文本插值"></a>7. 文本插值</h2><blockquote>
+<p>最基本的数据绑定形式是文本插值，它使用的是“Mustache”语法 (即双大括号)</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>Message: &#123;&#123; msg &#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>双大括号标签会被替换为<a target="_blank" rel="noopener" href="https://cn.vuejs.org/guide/essentials/reactivity-fundamentals.html#declaring-reactive-state">相应组件实例中</a> <code>msg</code> 属性的值。同时每次 <code>msg</code> 属性更改时它也会同步更新。</p>
+</blockquote>
+<h2 id="8-原始-HTML"><a href="#8-原始-HTML" class="headerlink" title="8.原始 HTML"></a>8.原始 HTML</h2><blockquote>
+<p>双大括号会将数据解释为纯文本，而不是 HTML。若想插入 HTML，需要使用 <a target="_blank" rel="noopener" href="https://cn.vuejs.org/api/built-in-directives.html#v-html"><code>v-html</code> 指令</a></p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Using text interpolation: &#123;&#123; rawHtml &#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Using v-html directive: <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">v-html</span>=<span class="hljs-string">&quot;rawHtml&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+
                 
               </div>
             
@@ -574,7 +605,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Updated on</div>
-          <div>April 18, 2023</div>
+          <div>April 19, 2023</div>
         </div>
       
       <div class="license-meta-item">
