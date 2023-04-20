@@ -672,7 +672,7 @@ alert(error.message)
 > 提高相同代码的复用率。
 ## 局部组件
 
-> 局部组件需要挂载到 Vue 根组件上，***components: {  alias: component}  
+> 	局部组件需要挂载到 Vue 根组件上，***components: {  alias: component}  
 
 ```html
 <!DOCTYPE html>  
@@ -844,3 +844,85 @@ router: router
 
 # 8.Demo 3 路由使用
 
+```html
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+<meta charset="UTF-8">  
+<title>vuedemo6</title>  
+<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.10/vue.min.js"></script>  
+<script src="https://cdn.bootcdn.net/ajax/libs/axios/1.3.6/axios.js"></script>  
+<script src="https://unpkg.com/vue-router@3.5.3/dist/vue-router.js"></script>  
+  
+</head>  
+<body>  
+<div id="app">  
+<div class="menu">  
+<div class="container">  
+<router-link to="/">Logo</router-link>  
+<router-link to="/home">首页</router-link>  
+</div>  
+</div>  
+<div class="container">  
+<router-view></router-view>  
+</div>  
+  
+</div>  
+<script>  
+const Home = {  
+data: function () {  
+return {  
+imgls: [],  
+}  
+},  
+created: function () {  
+axios({  
+url: "https://picsum.photos/v2/list",  
+method: "get",  
+headers: {  
+'Content-Type': 'application/json'  
+},
+}).then(res => {  
+this.imgls = res.data;  
+console.log(this.imgls, res.data);  
+}).catch((error) => {  
+// console.log(error);  
+alert(error.message)  
+})  
+},  
+mounted: function () {  
+console.log(this.imgls)  
+},  
+template: `  
+<div class="red">  
+<div v-for="img in imgls">  
+<a :href="img.download_url">  
+<img :src="img.url" style="align-content: center" alt="加载图片失败">  
+</a>  
+</div>  
+</div>  
+`,  
+methods: {},  
+  
+};  
+  
+const router = new VueRouter({  
+routes: [  
+{path: '/', component: Home},  
+{path: '/home', component: Home},  
+],  
+});  
+  
+var app = new Vue({  
+el: "#app",  
+data: {},  
+methods: {},  
+components: {  
+Home: Home,  
+},  
+router: router,  
+})  
+</script>  
+</body>  
+</html>
+```
