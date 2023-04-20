@@ -85,6 +85,8 @@ message.value = 'Changed'
 
 ### 动态绑定多个属性
 
+#### 对象
+
 ```js
 const objectOfAttrs = {
   id: 'container',
@@ -98,8 +100,30 @@ const objectOfAttrs = {
 ```
 
 
-### 多属性
+#### 字典
 
+```html
+<div :class="{info:info,danger:danger}">我叫:{{name}},年龄:{{age}}</div>
+```
+
+```js
+data: {
+info: true,  
+danger: false,  
+},
+```
+
+#### 列表
+
+```html
+<div :class="[info,danger]">我叫:{{name}},年龄:{{age}}</div>
+```
+
+```js
+info: "c1", 
+danger: "c2",  
+},
+```
 
 
 ### 调用函数
@@ -116,6 +140,8 @@ const objectOfAttrs = {
 ## 2. 事件监听
 > 使用 `v-on` 指令监听 DOM 事件，可以简写为 `@`，表示事件监听
 
+### 不带参数
+
 ```html
 <button v-on:click="increment">{{ count }}</button>
 <button @click="increment">{{ count }}</button>
@@ -130,6 +156,22 @@ function increment() {
 }
 </script>
 ```
+
+### 带传参
+
+```html
+<h1 @mouseover="dosomething('过来了')" @mouseout="dosomething('离开了')">注册</h1>
+```
+
+```js
+methods: {  
+dosomething: function (msg){  
+console.log(msg)  
+}  
+}
+```
+
+
 ## 3. 表单绑定
 > 同时使用 `v-bind` 和 `v-on` 来在表单的输入元素上创建双向绑定
 
@@ -163,15 +205,155 @@ const text = ref('')
   <p>{{ text }}</p>
 </template>
 ```
+
+### 常用标签
+
+> demo
+
+```html
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+<meta charset="UTF-8">  
+<title>VueDemo</title>  
+<!-- <script src="https://cdn.bootcdn.net/ajax/libs/vue/3.2.47/vue.global.min.js"></script>-->  
+<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.10/vue.min.js"></script>  
+<style>  
+.info {  
+color: aquamarine;  
+}  
+.danger {  
+color: red;  
+}  
+</style>  
+</head>  
+<body>  
+<div id="app">  
+<h1>注册</h1>  
+<div>  
+<input type="text" v-model="info.username" placeholder="用户名">  
+<input type="password" v-model="info.pwd" placeholder="密码">  
+</div>  
+<div>  
+男：<input type="radio" v-model="info.gender" value="1">  
+女：<input type="radio" v-model="info.gender" value="2">  
+</div>  
+<div>  
+篮球：<input type="checkbox" v-model="info.hobby" value="h1">  
+足球：<input type="checkbox" v-model="info.hobby" value="h2">  
+排球：<input type="checkbox" v-model="info.hobby" value="h3">  
+</div>  
+<div>  
+<select v-model="info.city">  
+<option value="c1">北京</option>  
+<option value="c2">上海</option>  
+<option value="c3">广州</option>  
+<option value="c4">深圳</option>  
+</select>  
+</div>  
+<div>  
+<select v-model="info.field" multiple>  
+<option value="f1">前端</option>  
+<option value="f2">后端</option>  
+<option value="f3">运维</option>  
+<option value="f4">算法</option>  
+</select>  
+</div>  
+<div>  
+<textarea v-model="info.other"></textarea>  
+</div>  
+<input type="button" value="注册" @click="clickme">  
+  
+</div>  
+<script>  
+var app = new Vue({  
+el: "#app",  
+data: {  
+info : {  
+username: "",  
+pwd: "",  
+gender: "1",  
+hobby: ["h1"],  
+city: "c1",  
+field: ["f1"],  
+other: "",  
+}  
+},  
+methods: {  
+clickme: function () {  
+console.log(this.info)  
+}  
+}  
+})  
+</script>  
+</body>  
+</html>
+```
+
+---
 ## 4. 条件渲染
-> 使用 `v-if` 指令来有条件地渲染元素, 也可以使用 `v-else` 和 `v-else-if` 来表示其他的条件分支
+
+### v-if
+
+> 使用 `v-if` 指令来==**有条件地渲染元素**==（不一定渲染）, 也可以使用 `v-else` 和 `v-else-if` 来表示其他的条件分支
 
 ```js
 <h1 v-if="awesome">Vue is awesome!</h1>
 <h1 v-else>Oh no 😢</h1>
 ```
+
+### v-show
+
+> v-show 根据**==变量的真假==**决定是否显示该标签（***一定会渲染但不一定显示***）
+
+```html
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+<meta charset="UTF-8">  
+<title>VueDemo3</title>  
+<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.10/vue.min.js"></script>  
+</head>  
+<body>  
+<div id="app">  
+<div>  
+<button @click="issms=false">用户名登录</button>  
+<button @click="issms=true">手机号登录</button>  
+</div>  
+<div v-show="!issms">  
+<label>用户名</label>  
+<input placeholder="用户名" type="text" v-model="username">  
+<label>密码</label>  
+<input placeholder="密码" type="password" v-model="pwd">  
+</div>  
+<div v-show="issms">  
+<label>手机号</label>  
+<input placeholder="手机号" type="text" v-model="phone">  
+<label>密码</label>  
+<input placeholder="密码" type="password" v-model="pwd">  
+</div>  
+  
+</div>  
+<script>  
+var app = new Vue({  
+el: "#app",  
+data: {  
+issms: false,  
+username: "",  
+phone: "",  
+pwd: "",  
+},  
+methods: {}  
+})  
+</script>  
+</body>  
+</html>
+```
+
 ## 5. 列表渲染
 > 使用 `v-for` 指令来渲染一个基于源数组的列表
+
+### 无索引
 
 ```vue
 <ul>
@@ -231,6 +413,28 @@ function removeTodo(todo) {
   </ul>
 </template>
 ```
+
+### 有索引
+
+```html
+<ul>
+  <li v-for="(todo,index) in todos" :id={{index}}>
+    {{ todo }}
+  </li>
+</ul>
+```
+
+### 有键值
+
+```html
+<ul>
+  <li v-for="(value,key) in item">
+    {{ key }}:{{value}}
+  </li>
+</ul>
+```
+
+
 
 ## 6. 计算属性
 
@@ -309,5 +513,332 @@ function removeTodo(todo) {
 ```html
 <p>Using text interpolation: {{ rawHtml }}</p>
 <p>Using v-html directive: <span v-html="rawHtml"></span></p>
+```
+
+
+# 4. Demo 1表格增删 
+
+```html
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+<meta charset="UTF-8">  
+<title>vuedemo2</title>  
+<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.10/vue.min.js"></script>  
+  
+</head>  
+<body>  
+<div id="app">  
+<h1>用户</h1>  
+<div>  
+<label>用户名</label>  
+<input type="text" v-model="username" placeholder="用户名">  
+<label>密码</label>  
+<input type="password" v-model="pwd" placeholder="密码">  
+</div>  
+<div>  
+<input type="button" value="添加" @click="adduser">  
+</div>  
+<div>  
+<table>  
+<thead>  
+<tr>  
+<th>用户名</th>  
+<th>密码</th>  
+<th>操作</th>  
+</tr>  
+</thead>  
+<tbody>  
+<tr v-for="(user,uid) in users">  
+<td>{{user.name}}</td>  
+<td>{{user.pwd}}</td>  
+<td><button v-if="user.name!='' && user.pwd!=''" @click="deluser(uid)">删除</button></td>  
+</tr>  
+</tbody>  
+</table>  
+</div>  
+</div>  
+<script>  
+var app = new Vue({  
+el: "#app",  
+data: {  
+username: "",  
+pwd: "",  
+users: [  
+{name:"",pwd:""},  
+],  
+},  
+methods: {  
+adduser: function () {  
+let userinfo = {name:this.username,pwd:this.pwd};  
+this.users.push(userinfo);  
+this.username="";  
+this.pwd="";  
+console.log(userinfo);  
+},  
+deluser: function (uid) {  
+this.users.splice(uid,1);  
+}  
+}  
+})  
+</script>  
+</body>  
+</html>
+```
+
+# 5.Demo 2 登录（axios）
+
+```html
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+<meta charset="UTF-8">  
+<title>VueDemo3</title>  
+<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.10/vue.min.js"></script>  
+<script src="https://cdn.bootcdn.net/ajax/libs/axios/1.3.6/axios.js"></script>  
+</head>  
+<body>  
+<div id="app">  
+<div>  
+<button @click="issms=false">用户名登录</button>  
+<button @click="issms=true">手机号登录</button>  
+</div>  
+<div v-show="!issms">  
+<div>  
+<label>用户名</label>  
+<input placeholder="用户名" type="text" v-model="info.username">  
+</div>  
+<div>  
+<label>密码</label>  
+<input placeholder="密码" type="password" v-model="info.pwd">  
+</div>  
+</div>  
+<div v-show="issms">  
+<div>  
+<label>手机号</label>  
+<input placeholder="手机号" type="text" v-model="sms.phone">  
+</div>  
+<div>  
+<label>验证码</label>  
+<input placeholder="验证码" type="text" v-model="sms.code">  
+</div>  
+</div>  
+<input @click="login" type="button" value="登录">  
+</div>  
+<script>  
+var app = new Vue({  
+el: "#app",  
+data: {  
+issms: false,  
+info: {  
+username: "",  
+pwd: "",  
+},  
+sms: {  
+phone: "",  
+code: "",  
+},  
+  
+},  
+methods: {  
+login: function () {  
+let dataobj = this.issms ? this.sms : this.info;  
+axios({  
+url: "http://localhost/login",  
+method: "post",  
+parameters: "",  
+data: dataobj,  
+headers: {  
+'Content-Type': 'application/json'  
+},  
+}).then(function (res) {  
+console.log(res);  
+  
+}).catch(function (error) {  
+console.log(error);  
+alert(error.message)  
+})  
+}  
+}  
+})  
+</script>  
+</body>  
+</html>
+```
+
+
+# 6. 组件
+
+> 提高相同代码的复用率。
+## 局部组件
+
+> 局部组件需要挂载到 Vue 根组件上，***components: {  alias: component}  
+
+```html
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+<meta charset="UTF-8">  
+<title>vuedemo4</title>  
+<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.10/vue.min.js"></script>  
+</head>  
+<body>  
+<div id="app">  
+<!-- 引入局部子组件-->  
+<login></login>  
+</div>  
+<script>  
+const login = {  
+data: function () {  
+return {  
+msg: "局部组件",  
+username: "",  
+pwd: "",  
+}  
+},  
+template: `  
+<div>  
+<label>用户名</label>  
+<input type="text" v-model="username" placeholder="用户名">  
+<label>密码</label>  
+<input type="password" v-model="pwd" placeholder="密码">  
+</div>  
+`,  
+methods: {}  
+};  
+  
+var app = new Vue({  
+el: "#app",  
+data: {},  
+methods: {},  
+components: {  
+login: login,  
+}  
+})  
+</script>  
+</body>  
+</html>
+```
+
+## 全局组件
+
+> 	全局子组件不用挂载到 Vue 上，直接用***Vue. Component ('component_name',{}）***
+
+```html
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+<meta charset="UTF-8">  
+<title>vuedemo5</title>  
+<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.10/vue.min.js"></script>  
+</head>  
+<body>  
+<div id="app">  
+<!-- 引入全局子组件-->  
+<login></login>  
+</div>  
+<script>  
+Vue.component('login', {  
+data: function () {  
+return {  
+msg: "局部组件",  
+username: "",  
+pwd: "",  
+}  
+},  
+template: `  
+<div>  
+<label>用户名</label>  
+<input type="text" v-model="username" placeholder="用户名">  
+<label>密码</label>  
+<input type="password" v-model="pwd" placeholder="密码">  
+</div>  
+`,  
+methods: {}  
+});  
+  
+var app = new Vue({  
+el: "#app",  
+data: {},  
+methods: {},  
+})  
+</script>  
+</body>  
+</html>
+```
+
+# 7. 路由
+> 引入 vue-router：
+> ` <script src="https://cdn.bootcdn.net/ajax/libs/vue-router/4.1.6/vue-router.global.min.js"></script>`
+
+```html
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+<meta charset="UTF-8">  
+<title>vuedemo6</title>  
+<script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.10/vue.min.js"></script>  
+<script src="https://unpkg.com/vue-router@3.5.3/dist/vue-router.js"></script>  
+  
+</head>  
+<body>  
+<div id="app">  
+<div class="menu">  
+<div class="container">  
+<router-link to="/">Logo</router-link>  
+<router-link to="/home">首页</router-link>  
+<router-link to="/course">课程</router-link>  
+</div>  
+</div>  
+<div class="container">  
+<router-view></router-view>  
+</div>  
+  
+</div>  
+<script>  
+const Home = {  
+data: function () {  
+return {  
+msg: "首页组件",  
+}  
+},  
+template: `  
+<h1>{{ msg }}</h1>  
+`,  
+methods: {}  
+};  
+const Course = {  
+data: function () {  
+return {  
+msg: "课程组件",  
+}  
+},  
+template: `  
+<h1>{{ msg }}</h1>  
+`,  
+methods: {}  
+};  
+  
+const router = new VueRouter({  
+routes: [  
+{path: '/', component: Home},  
+{path: '/home', component: Home},  
+{path: '/course', component: Course},  
+],  
+});  
+  
+var app = new Vue({  
+el: "#app",  
+data: {},  
+methods: {},  
+components: {  
+Home: Home,  
+Course: Course,  
+},  
+router: router  
+})  
+</script>  
+</body>  
+</html>
 ```
 
