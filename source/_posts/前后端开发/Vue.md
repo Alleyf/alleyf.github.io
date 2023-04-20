@@ -97,6 +97,11 @@ const objectOfAttrs = {
 <div v-bind="objectOfAttrs"></div>
 ```
 
+
+### 多属性
+
+
+
 ### 调用函数
 
 > 可以在绑定的表达式中使用一个组件暴露的方法
