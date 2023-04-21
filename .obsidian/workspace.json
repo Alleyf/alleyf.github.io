@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/前后端开发/Vue.md",
+                "file": "source/_posts/前后端开发/网页开发.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -39,7 +39,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/前后端开发/Vue.md"
+                "file": "source/_posts/前后端开发/网页开发.md"
               }
             }
           }
@@ -122,12 +122,12 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "c82f1ad7d8489f65",
+  "active": "34cd2537d6c0a8dd",
   "lastOpenFiles": [
+    "source/_posts/前后端开发/Vue.md",
+    "source/_posts/前后端开发/uni-app.md",
     "public/tags/uni-app/index.html",
     "public/tags/uni-app",
-    "source/_posts/前后端开发/uni-app.md",
-    "source/_posts/前后端开发/Vue.md",
     "source/_posts/前后端开发/Html5_Css_Js.md",
     "未命名.md",
     "source/_posts/前后端开发/网页开发.md",
@@ -141,7 +141,6 @@
     "public/2023/04",
     "public/archives/2023/04/index.html",
     "public/archives/2023/04",
-    "public/categories/课程学习/index.html",
     "source/about/index.md",
     "未命名.canvas",
     "source/_posts/机器学习/CV/图像分类.md",
