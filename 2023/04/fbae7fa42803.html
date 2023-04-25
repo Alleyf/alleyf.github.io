@@ -26,7 +26,7 @@
 <meta property="og:description" content="it is some basic usage of drf .">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-04-25T11:29:25.000Z">
-<meta property="article:modified_time" content="2023-04-25T13:27:31.938Z">
+<meta property="article:modified_time" content="2023-04-25T16:39:27.119Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="Django">
 <meta name="twitter:card" content="summary_large_image">
@@ -268,7 +268,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.8k words
+          3.1k words
         
       </span>
     
@@ -279,7 +279,7 @@
         
         
         
-          16 mins
+          26 mins
         
       </span>
     
@@ -330,7 +330,7 @@
               <p class="note note-info">
                 
                   
-                    Last updated on 2 hours ago
+                    Last updated on a few seconds ago
                   
                 
               </p>
@@ -357,18 +357,42 @@
 <li>restful 是以资源为主的 api 接口规范，体现在地址上就是资源就是以名词表达。</li>
 <li>rpc 则以动作为主的 api 接口规范，体现在接口名称上往往附带操作数据的动作。</li>
 </ol>
+<hr>
 <h1 id="2-Django-的-CBV"><a href="#2-Django-的-CBV" class="headerlink" title="2.Django 的 CBV"></a>2.Django 的 CBV</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># CBV模式,views.py</span><br><span class="hljs-keyword">from</span> django.views <span class="hljs-keyword">import</span> View<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">BookView</span>(<span class="hljs-title class_ inherited__">View</span>) ;<br>	<span class="hljs-keyword">def</span> <span class="hljs-title function_">get</span>(<span class="hljs-params">self, reguest</span>):<br>		<span class="hljs-keyword">return</span> HttpResponse(<span class="hljs-string">&quot;View GET请求...&quot;</span>)<br>	<span class="hljs-keyword">def</span> <span class="hljs-title function_">post</span>(<span class="hljs-params">self, reguest</span>):<br>		<span class="hljs-keyword">return</span> HttpResponse(<span class="hljs-string">&quot;View POST请求...&quot;</span>)<br>	<span class="hljs-keyword">def</span> <span class="hljs-title function_">delete</span>(<span class="hljs-params">self,request</span>):<br>		<span class="hljs-keyword">return</span> HttpResponse(<span class="hljs-string">&quot;View DELETE请求&#x27;&#x27;&#x27;&quot;</span>)<br>		<br><span class="hljs-comment"># urls.py</span><br><span class="hljs-keyword">from</span> django. contrib <span class="hljs-keyword">import</span> admin<br><span class="hljs-keyword">from</span> django.urls <span class="hljs-keyword">import</span> path<br><span class="hljs-keyword">from</span> book <span class="hljs-keyword">import</span> views<br><br>urlpatterns = [<br>path(<span class="hljs-string">&#x27;admin/&#x27;</span>, admin. site.urls) ,<br><span class="hljs-comment"># path( &#x27;book/&#x27;, views.book) ,</span><br>path(<span class="hljs-string">&quot;book/&quot;</span>.views . BookView.asTview()) <span class="hljs-comment">#路由中的“/”不能丢，否则自动重定向为get请求</span><br>]<br></code></pre></td></tr></table></figure>
-
+<hr>
 <h1 id="3-反射"><a href="#3-反射" class="headerlink" title="3. 反射"></a>3. 反射</h1><p>通过反射 <code>func = getattr(self,func_name_str)</code> 可以将<strong>字符串转变为变量 (函数)<strong>，接着就可以直接调用 func () 从而</strong>动态调用函数</strong>。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Animal</span>(<span class="hljs-title class_ inherited__">object</span>):<br>	<span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self,name,age,func_str</span>):<br>		self.name = name<br>		self.age = age<br>		func = <span class="hljs-built_in">getattr</span>(self,func_str)<br>		func() <span class="hljs-comment"># 等价于self.slepp() </span><br>a = Animal(<span class="hljs-string">&quot;alleyf&quot;</span>,<span class="hljs-number">21</span>,<span class="hljs-string">&quot;sleep&quot;</span>)<br><br></code></pre></td></tr></table></figure>
 
-
+<hr>
 <h1 id="4-Drf"><a href="#4-Drf" class="headerlink" title="4. Drf"></a>4. Drf</h1><h2 id="1-APIView"><a href="#1-APIView" class="headerlink" title="1. APIView"></a>1. APIView</h2><ol>
 <li>重写了 View 的 as_view ()和 dispatch（）方法，构建了新的 request 对象实现<strong>认证、权限和限流</strong>作用。</li>
 <li><code>request. Get ()-&gt;request. Query_params ()</code>获取 get 请求参数</li>
 <li><code>request. Post ()-&gt;request. Data ()</code> 获取 post(put 等)请求体数据，包括 files 都封装在一起反序列化了，支持前端 urlcoded 格式和 json 等其他任何格式。</li>
 </ol>
-<h2 id="2-Serializer-序列化器"><a href="#2-Serializer-序列化器" class="headerlink" title="2.Serializer 序列化器"></a>2.Serializer 序列化器</h2>
+<h2 id="2-Serializer-序列化器"><a href="#2-Serializer-序列化器" class="headerlink" title="2.Serializer 序列化器"></a>2.Serializer 序列化器</h2><blockquote>
+<p>[!NOTE] keys</p>
+<ul>
+<li>序列化：数据表数据-&gt;前端显示的 json 数据 （get 请求，<strong>取数据</strong>）</li>
+<li>反序列化：前端提交的 json 数据-&gt;数据表数据（post、put、patch、delete 等请求，<strong>存数据</strong>）</li>
+</ul>
+</blockquote>
+<h3 id="1-序列化与反序列化"><a href="#1-序列化与反序列化" class="headerlink" title="1.序列化与反序列化"></a>1.序列化与反序列化</h3><ol>
+<li>新建模型（反）序列化器</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> rest_framework <span class="hljs-keyword">import</span> serializers<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">BookSerializers</span>(serializers.Serializer):<br><span class="hljs-string">&quot;&quot;&quot;Book的(反)序列化器&quot;&quot;&quot;</span><br>	title = serializers.CharField (max_length=<span class="hljs-number">3</span>)<br>	price = serializers.IntegerField(require=<span class="hljs-literal">True</span>)<br>	date = serializers.DateField(source=<span class="hljs-string">&quot;pub_date&quot;</span>)<br><br>	<span class="hljs-comment"># 该方法必须被重写否则无法使用serializer.save(),实现view与serializer解耦</span><br>	<span class="hljs-keyword">def</span> <span class="hljs-title function_">create</span>(<span class="hljs-params">self,validated_data</span>):<br>		new_book = Book.<span class="hljs-built_in">object</span>.create(**serializer.validated_data)<br>		<span class="hljs-keyword">return</span> new_book<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<ol>
+<li>（反）序列化器的字段名与数据表的字段名必须一致，否则需要指定 <code>source</code> 指向某个字段</li>
+<li>字段规则要根据数据表的规则设置</li>
+</ol>
+</blockquote>
+<ol start="2">
+<li>新建模型视图类</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> rest_framework.response <span class="hljs-keyword">import</span> Response<br><span class="hljs-keyword">from</span> rest_framework <span class="hljs-keyword">import</span> viewsets<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">BookViewset</span>(<span class="hljs-title class_ inherited__">APIView</span>):<br>	<span class="hljs-keyword">def</span> <span class="hljs-title function_">get</span>(<span class="hljs-params">self,request</span>):<br>	<span class="hljs-string">&quot;&quot;&quot;序列化&quot;&quot;&quot;</span><br>		<span class="hljs-comment"># query_params = request.query_params() 获取get的url请求参数 </span><br>		queryset = Book.<span class="hljs-built_in">object</span>.<span class="hljs-built_in">all</span>() <span class="hljs-comment"># 当查询过滤得到一个对象时，many=False</span><br>		<span class="hljs-comment"># 构建序列化对象</span><br>		serializer = BookSerializer(instance=queryset,many=<span class="hljs-literal">True</span>)<br>		<span class="hljs-keyword">return</span> Response(serilaizer.data)<br>	<span class="hljs-keyword">def</span> <span class="hljs-title function_">post</span>(<span class="hljs-params">self,request</span>):<br>	<span class="hljs-string">&quot;&quot;&quot;反序列化&quot;&quot;&quot;</span><br>		<span class="hljs-comment"># 构建反序列化对象 </span><br>		serializer = BookSerializer(data=request.data)<br>		<span class="hljs-comment"># 数据校验</span><br>		<span class="hljs-keyword">if</span> serializer.is_valid():<br>			<span class="hljs-comment"># 校验通过创建新数据，返回新建的json数据 </span><br>			serializer.save()<br>			<span class="hljs-keyword">return</span> Response(serializer.data)<br>		<span class="hljs-keyword">else</span>:<br>			<span class="hljs-comment"># 校验失败，返回错误 </span><br>			<span class="hljs-keyword">return</span> Response(serializer.errors) <br></code></pre></td></tr></table></figure>
+
+
                 
               </div>
             
@@ -432,7 +456,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Updated on</div>
-          <div>April 25, 2023</div>
+          <div>April 26, 2023</div>
         </div>
       
       <div class="license-meta-item">
