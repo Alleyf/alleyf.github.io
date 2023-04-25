@@ -36,6 +36,7 @@ restful: 翻译成中文: 资源状态转换.(表征性状态转移)
 
 1. restful 是以资源为主的 api 接口规范，体现在地址上就是资源就是以名词表达。
 2. rpc 则以动作为主的 api 接口规范，体现在接口名称上往往附带操作数据的动作。
+---
 
 # 2.Django 的 CBV
 
@@ -62,6 +63,7 @@ path('admin/', admin. site.urls) ,
 path("book/".views . BookView.asTview()) #路由中的“/”不能丢，否则自动重定向为get请求
 ]
 ```
+---
 
 # 3. 反射
 
@@ -77,7 +79,7 @@ a = Animal("alleyf",21,"sleep")
 
 ```
 
-
+---
 # 4. Drf
 
 ## 1. APIView
@@ -86,6 +88,58 @@ a = Animal("alleyf",21,"sleep")
 2. `request. Get ()->request. Query_params ()`获取 get 请求参数
 3. `request. Post ()->request. Data ()` 获取 post(put 等)请求体数据，包括 files 都封装在一起反序列化了，支持前端 urlcoded 格式和 json 等其他任何格式。
 
-
 ## 2.Serializer 序列化器
+
+> [!NOTE] keys
+> 
+> - 序列化：数据表数据->前端显示的 json 数据 （get 请求，**取数据**）
+> - 反序列化：前端提交的 json 数据->数据表数据（post、put、patch、delete 等请求，**存数据**）
+
+### 1.序列化与反序列化
+
+1. 新建模型（反）序列化器
+
+```python
+from rest_framework import serializers
+class BookSerializers(serializers.Serializer):
+"""Book的(反)序列化器"""
+	title = serializers.CharField (max_length=3)
+	price = serializers.IntegerField(require=True)
+	date = serializers.DateField(source="pub_date")
+
+	# 该方法必须被重写否则无法使用serializer.save(),实现view与serializer解耦
+	def create(self,validated_data):
+		new_book = Book.object.create(**serializer.validated_data)
+		return new_book
+	```
+
+> 1. （反）序列化器的字段名与数据表的字段名必须一致，否则需要指定 `source` 指向某个字段
+> 2. 字段规则要根据数据表的规则设置
+
+2. 新建模型视图类
+
+```python
+from rest_framework.response import Response
+from rest_framework import viewsets
+class BookViewset(APIView):
+	def get(self,request):
+	"""序列化"""
+		# query_params = request.query_params() 获取get的url请求参数 
+		queryset = Book.object.all() # 当查询过滤得到一个对象时，many=False
+		# 构建序列化对象
+		serializer = BookSerializer(instance=queryset,many=True)
+		return Response(serilaizer.data)
+	def post(self,request):
+	"""反序列化"""
+		# 构建反序列化对象 
+		serializer = BookSerializer(data=request.data)
+		# 数据校验
+		if serializer.is_valid():
+			# 校验通过创建新数据，返回新建的json数据 
+			serializer.save()
+			return Response(serializer.data)
+		else:
+			# 校验失败，返回错误 
+			return Response(serializer.errors) 
+```
 
