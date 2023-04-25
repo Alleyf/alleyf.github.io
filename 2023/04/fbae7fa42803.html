@@ -18,24 +18,24 @@
   <meta name="author" content="alleyf">
   <meta name="keywords" content="">
   
-    <meta name="description" content="it is some basic usage of uni-app .">
+    <meta name="description" content="it is some basic usage of drf .">
 <meta property="og:type" content="article">
-<meta property="og:title" content="初识 uni-app">
-<meta property="og:url" content="https://alleyf.github.io/2023/04/5d72eb9cc9af.html">
+<meta property="og:title" content="DRF速通">
+<meta property="og:url" content="https://alleyf.github.io/2023/04/fbae7fa42803.html">
 <meta property="og:site_name" content="alleyf">
-<meta property="og:description" content="it is some basic usage of uni-app .">
+<meta property="og:description" content="it is some basic usage of drf .">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-04-16T08:49:22.000Z">
-<meta property="article:modified_time" content="2023-04-20T16:23:25.932Z">
+<meta property="article:published_time" content="2023-04-25T11:29:25.000Z">
+<meta property="article:modified_time" content="2023-04-25T13:27:31.938Z">
 <meta property="article:author" content="alleyf">
-<meta property="article:tag" content="uni-app">
+<meta property="article:tag" content="Django">
 <meta name="twitter:card" content="summary_large_image">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>初识 uni-app - alleyf</title>
+  <title>DRF速通 - alleyf</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -240,7 +240,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="初识 uni-app"></span>
+            <span id="subtitle" data-typed-text="DRF速通"></span>
           
         </div>
 
@@ -256,8 +256,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-04-16 16:49" pubdate>
-          April 16, 2023 pm
+        <time datetime="2023-04-25 19:29" pubdate>
+          April 25, 2023 pm
         </time>
       </span>
     
@@ -268,7 +268,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          863 words
+          1.8k words
         
       </span>
     
@@ -279,7 +279,7 @@
         
         
         
-          8 mins
+          16 mins
         
       </span>
     
@@ -325,12 +325,12 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">初识 uni-app</h1>
+            <h1 style="display: none">DRF速通</h1>
             
               <p class="note note-info">
                 
                   
-                    Last updated on 5 days ago
+                    Last updated on 2 hours ago
                   
                 
               </p>
@@ -338,116 +338,37 @@
             
               <div class="markdown-body">
                 
-                <h1 id="快速上手"><a href="#快速上手" class="headerlink" title="快速上手"></a>快速上手</h1><blockquote>
-<p>知识点：网络请求、模板语法、打开页面和页面传参。</p>
-</blockquote>
-<h1 id="基础组件"><a href="#基础组件" class="headerlink" title="基础组件"></a>基础组件</h1><blockquote>
-<p>基础组件分为以下十几大类：</p>
-</blockquote>
-<h2 id="视图容器（View-Container）："><a href="#视图容器（View-Container）：" class="headerlink" title="视图容器（View Container）："></a>视图容器（View Container）：</h2><blockquote>
-<p>[!NOTE] 组件</p>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/view">view</a></p>
-<p>视图容器，类似于HTML中的div</p>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/scroll-view">scroll-view</a></p>
-<p>可滚动视图容器</p>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/swiper">swiper</a></p>
-<p>滑块视图容器，比如用于轮播banner</p>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/match-media">match-media</a></p>
-<p>屏幕动态适配组件，比如窄屏上不显示某些内容</p>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/movable-view#movable-area">movable-area</a></p>
-<p>可拖动区域</p>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/movable-view#movable-view">movable-view</a></p>
-<p>可移动的视图容器，在页面中可以拖拽滑动或双指缩放。movable-view必须在movable-area组件中</p>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/cover-view#cover-view">cover-view</a></p>
-<p>可覆盖在原生组件的上的文本组件</p>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/cover-view#cover-image">cover-image</a></p>
-<p>可覆盖在原生组件的上的图片组件</p>
-</blockquote>
-<h2 id="基础内容（Basic-Content）："><a href="#基础内容（Basic-Content）：" class="headerlink" title="基础内容（Basic Content）："></a>基础内容（Basic Content）：</h2><blockquote>
-<p>[!NOTE] 组件</p>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/icon">icon</a></p>
-<p>图标</p>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/text">text</a></p>
-<p>文字</p>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/rich-text">rich-text</a></p>
-<p>富文本显示组件</p>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/progress">progress</a></p>
-<p>进度条</p>
-</blockquote>
-<h2 id="表单组件（Form）："><a href="#表单组件（Form）：" class="headerlink" title="表单组件（Form）："></a>表单组件（Form）：</h2><blockquote>
-<p>[!NOTE] 组件</p>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/button">button</a></p>
-<p>按钮</p>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/checkbox">checkbox</a></p>
-<p>多项选择器</p>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/editor">editor</a></p>
-<p>富文本输入框</p>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/form">form</a></p>
-<p>表单</p>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/input">input</a></p>
-<p>输入框</p>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/label">label</a></p>
-<p>标签</p>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/picker">picker</a></p>
-<p>弹出式列表选择器</p>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/picker-view">picker-view</a></p>
-<p>窗体内嵌式列表选择器</p>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/radio">radio</a></p>
-<p>单项选择器</p>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/slider">slider</a></p>
-<p>滑动选择器</p>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/switch">switch</a></p>
-<p>开关选择器</p>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/textarea">textarea</a></p>
-<p>多行文本输入框</p>
-</blockquote>
-<h2 id="路由与页面跳转（Navigation）："><a href="#路由与页面跳转（Navigation）：" class="headerlink" title="路由与页面跳转（Navigation）："></a>路由与页面跳转（Navigation）：</h2><blockquote>
-<p>[!NOTE] 组件<br><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/navigator">navigator</a></p>
-<p>页面链接。类似于HTML中的a标签</p>
-<h2 id="媒体组件（Media）："><a href="#媒体组件（Media）：" class="headerlink" title="媒体组件（Media）："></a>媒体组件（Media）：</h2><p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/audio">audio</a></p>
-<p>音频</p>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/camera">camera</a></p>
-<p>相机</p>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/image">image</a></p>
-<p>图片</p>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/video">video</a></p>
-<p>视频</p>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/live-player">live-player</a></p>
-<p>直播播放</p>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/live-pusher">live-pusher</a></p>
-<p>实时音视频录制，也称直播推流</p>
-</blockquote>
-<h2 id="地图（Map）："><a href="#地图（Map）：" class="headerlink" title="地图（Map）："></a>地图（Map）：</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/map">map</a></p>
-<p>地图</p>
-</blockquote>
-<h2 id="画布（Canvas）："><a href="#画布（Canvas）：" class="headerlink" title="画布（Canvas）："></a>画布（Canvas）：</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/canvas">canvas</a></p>
-<p>画布</p>
-</blockquote>
-<h2 id="webview（Web-view）："><a href="#webview（Web-view）：" class="headerlink" title="webview（Web-view）："></a>webview（Web-view）：</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/web-view">web-view</a></p>
-<p>web浏览器组件</p>
-</blockquote>
+                <h1 id="1-api-接口"><a href="#1-api-接口" class="headerlink" title="1. api 接口"></a>1. api 接口</h1><p>目前市面上大部分公司开发人员使用的接口实现规范主要有：restful、RPC。</p>
+<p>RPC（ Remote Procedure Call ）: 翻译成中文:远程过程调用[远程服务调用]. 从字面上理解就是访问/调用远程服务端提供的api接口。这种接口一般以服务或者过程式代码提供。<br>restful: 翻译成中文: 资源状态转换.(表征性状态转移)</p>
+<ul>
+<li>把服务端提供的所有的数据/文件都看成资源， 那么通过api接口请求数据的操作，本质上来说就是对资源的操作了.  因此，restful中要求，我们把当前接口对外提供哪种资源进行操作，就把<strong>资源的名称写在url地址</strong>。</li>
+<li>  web开发中操作资源，最常见的最通用的无非就是增删查改，所以restful要求在地址栏中声明要操作的资源是什么。然后通过<strong>http请求动词</strong>来说明对该资源进行哪一种操作.</li>
+</ul>
 <blockquote>
-<h2 id="广告"><a href="#广告" class="headerlink" title="广告"></a>广告</h2><p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/ad">ad</a></p>
-<p>广告组件</p>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/ad-draw">ad-draw</a></p>
-<p>沉浸视频流广告组件</p>
+<p>POST <a target="_blank" rel="noopener" href="http://www.xxx.com/api/students/">http://www.xxx.com/api/students/</a> 添加学生数据</p>
+<p>GET <a target="_blank" rel="noopener" href="http://www.xxx.com/api/students/">http://www.xxx.com/api/students/</a> 获取所有学生</p>
+<p>GET <a target="_blank" rel="noopener" href="http://www.xxx.com/api/students/">http://www.xxx.com/api/students/</a>/ 获取id=pk的学生</p>
+<p>DELETE <a target="_blank" rel="noopener" href="http://www.xxx.com/api/students/">http://www.xxx.com/api/students/</a>/ 删除id=pk的一个学生</p>
+<p>PUT <a target="_blank" rel="noopener" href="http://www.xxx.com/api/students/">http://www.xxx.com/api/students/</a>/ 修改一个学生的全部信息 [id,name,sex,age,]</p>
+<p>PATCH <a target="_blank" rel="noopener" href="http://www.xxx.com/api/students/">http://www.xxx.com/api/students/</a> / 修改一个学生的部分信息[age]</p>
 </blockquote>
-<h2 id="页面属性配置"><a href="#页面属性配置" class="headerlink" title="页面属性配置"></a>页面属性配置</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/custom-tab-bar">custom-tab-bar</a></p>
-<p>底部tabbar自定义组件</p>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/navigation-bar">navigation-bar</a></p>
-<p>页面顶部导航</p>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/page-meta">page-meta</a></p>
-<p>页面属性配置节点</p>
-</blockquote>
-<h2 id="uniCloud"><a href="#uniCloud" class="headerlink" title="uniCloud"></a>uniCloud</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/uniCloud/unicloud-db">unicloud-db组件</a></p>
-<p>uniCloud数据库访问和操作组件</p>
-</blockquote>
+<p>请求方式：<em><strong>增删改查查</strong></em></p>
+<ol>
+<li>restful 是以资源为主的 api 接口规范，体现在地址上就是资源就是以名词表达。</li>
+<li>rpc 则以动作为主的 api 接口规范，体现在接口名称上往往附带操作数据的动作。</li>
+</ol>
+<h1 id="2-Django-的-CBV"><a href="#2-Django-的-CBV" class="headerlink" title="2.Django 的 CBV"></a>2.Django 的 CBV</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># CBV模式,views.py</span><br><span class="hljs-keyword">from</span> django.views <span class="hljs-keyword">import</span> View<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">BookView</span>(<span class="hljs-title class_ inherited__">View</span>) ;<br>	<span class="hljs-keyword">def</span> <span class="hljs-title function_">get</span>(<span class="hljs-params">self, reguest</span>):<br>		<span class="hljs-keyword">return</span> HttpResponse(<span class="hljs-string">&quot;View GET请求...&quot;</span>)<br>	<span class="hljs-keyword">def</span> <span class="hljs-title function_">post</span>(<span class="hljs-params">self, reguest</span>):<br>		<span class="hljs-keyword">return</span> HttpResponse(<span class="hljs-string">&quot;View POST请求...&quot;</span>)<br>	<span class="hljs-keyword">def</span> <span class="hljs-title function_">delete</span>(<span class="hljs-params">self,request</span>):<br>		<span class="hljs-keyword">return</span> HttpResponse(<span class="hljs-string">&quot;View DELETE请求&#x27;&#x27;&#x27;&quot;</span>)<br>		<br><span class="hljs-comment"># urls.py</span><br><span class="hljs-keyword">from</span> django. contrib <span class="hljs-keyword">import</span> admin<br><span class="hljs-keyword">from</span> django.urls <span class="hljs-keyword">import</span> path<br><span class="hljs-keyword">from</span> book <span class="hljs-keyword">import</span> views<br><br>urlpatterns = [<br>path(<span class="hljs-string">&#x27;admin/&#x27;</span>, admin. site.urls) ,<br><span class="hljs-comment"># path( &#x27;book/&#x27;, views.book) ,</span><br>path(<span class="hljs-string">&quot;book/&quot;</span>.views . BookView.asTview()) <span class="hljs-comment">#路由中的“/”不能丢，否则自动重定向为get请求</span><br>]<br></code></pre></td></tr></table></figure>
 
+<h1 id="3-反射"><a href="#3-反射" class="headerlink" title="3. 反射"></a>3. 反射</h1><p>通过反射 <code>func = getattr(self,func_name_str)</code> 可以将<strong>字符串转变为变量 (函数)<strong>，接着就可以直接调用 func () 从而</strong>动态调用函数</strong>。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Animal</span>(<span class="hljs-title class_ inherited__">object</span>):<br>	<span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self,name,age,func_str</span>):<br>		self.name = name<br>		self.age = age<br>		func = <span class="hljs-built_in">getattr</span>(self,func_str)<br>		func() <span class="hljs-comment"># 等价于self.slepp() </span><br>a = Animal(<span class="hljs-string">&quot;alleyf&quot;</span>,<span class="hljs-number">21</span>,<span class="hljs-string">&quot;sleep&quot;</span>)<br><br></code></pre></td></tr></table></figure>
+
+
+<h1 id="4-Drf"><a href="#4-Drf" class="headerlink" title="4. Drf"></a>4. Drf</h1><h2 id="1-APIView"><a href="#1-APIView" class="headerlink" title="1. APIView"></a>1. APIView</h2><ol>
+<li>重写了 View 的 as_view ()和 dispatch（）方法，构建了新的 request 对象实现<strong>认证、权限和限流</strong>作用。</li>
+<li><code>request. Get ()-&gt;request. Query_params ()</code>获取 get 请求参数</li>
+<li><code>request. Post ()-&gt;request. Data ()</code> 获取 post(put 等)请求体数据，包括 files 都封装在一起反序列化了，支持前端 urlcoded 格式和 json 等其他任何格式。</li>
+</ol>
+<h2 id="2-Serializer-序列化器"><a href="#2-Serializer-序列化器" class="headerlink" title="2.Serializer 序列化器"></a>2.Serializer 序列化器</h2>
                 
               </div>
             
@@ -480,7 +401,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/uni-app/">#uni-app</a>
+        <a href="/tags/Django/">#Django</a>
       
     </div>
   
@@ -492,8 +413,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>初识 uni-app</div>
-      <div>https://alleyf.github.io/2023/04/5d72eb9cc9af.html</div>
+      <div>DRF速通</div>
+      <div>https://alleyf.github.io/2023/04/fbae7fa42803.html</div>
     </div>
     <div class="license-meta">
       
@@ -505,13 +426,13 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>April 16, 2023</div>
+          <div>April 25, 2023</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>Updated on</div>
-          <div>April 21, 2023</div>
+          <div>April 25, 2023</div>
         </div>
       
       <div class="license-meta-item">
@@ -540,18 +461,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/04/fbae7fa42803.html" title="DRF速通">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">DRF速通</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/04/3dbbbdf5122f.html" title="初识Vue">
-                        <span class="hidden-mobile">初识Vue</span>
+                      <a href="/2023/04/5d72eb9cc9af.html" title="初识 uni-app">
+                        <span class="hidden-mobile">初识 uni-app</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -572,7 +487,7 @@
         var options = Object.assign(
           {"clientID":"636f2864e051a199b91c","clientSecret":"5185fd11115bbcd8d2f636bc80de6bed98ed14c1","repo":"Gitalk","owner":"Alleyf","admin":["Alleyf"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":false,"proxy":"https://shielded-brushlands-08810.herokuapp.com/https://github.com/login/oauth/access_token"},
           {
-            id: '22f3a2fe9f819930b3accc4fa272be18'
+            id: '308f048f0ebe35ebc5f51391e8fa30a4'
           }
         )
         var gitalk = new Gitalk(options);
