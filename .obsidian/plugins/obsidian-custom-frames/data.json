@@ -1,17 +1,6 @@
 {
   "frames": [
     {
-      "url": "https://chat-gpt-next-web-alleyf.vercel.app/",
-      "displayName": "ChafGPT",
-      "icon": "bot",
-      "hideOnMobile": true,
-      "addRibbonIcon": true,
-      "openInCenter": false,
-      "zoomLevel": 1,
-      "forceIframe": false,
-      "customCss": ""
-    },
-    {
       "url": "https://app.slack.com/client/T0530QH62CE/D053X3USWM6?redir=%2Fapps%2FA04KGS7N9A8&cdn_fallback=1",
       "displayName": "Slack",
       "icon": "slack",

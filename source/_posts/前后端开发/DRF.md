@@ -118,6 +118,9 @@ class BookSerializers(serializers.Serializer):
 
 2. 新建模型视图类
 
+> - **根据需求重写 get、post、put、delete 等方法**
+> - 除了 **delete 返回 none** 外，其他方法都要返回改变的**序列化为 json 后的数据**
+
 ```python
 from rest_framework.response import Response
 from rest_framework import viewsets
