@@ -4,18 +4,31 @@
   "debug": false,
   "editorMenu": [],
   "fileMenu": [],
-  "leftRibbon": [],
-  "rightRibbon": [],
-  "titleBar": [],
-  "statusBar": [],
-  "pageHeader": [
+  "leftRibbon": [
     {
-      "id": "obsidian-mind-map:app:markmap-preview",
-      "icon": "bot",
-      "name": "思维导图",
+      "id": "calendar:show-calendar-view",
+      "icon": "calendar",
+      "name": "Calendar: Open view",
+      "mode": "any"
+    },
+    {
+      "id": "obsidian-git:open-git-view",
+      "icon": "git-pull-request",
+      "name": "Obsidian Git: Open source control view",
       "mode": "any"
     }
   ],
+  "rightRibbon": [],
+  "titleBar": [],
+  "statusBar": [
+    {
+      "id": "workspace:export-pdf",
+      "icon": "file-output",
+      "name": "导出为 PDF",
+      "mode": "any"
+    }
+  ],
+  "pageHeader": [],
   "macros": [],
   "explorer": [],
   "hide": {
