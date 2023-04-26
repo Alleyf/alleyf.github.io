@@ -10,6 +10,7 @@
           {
             "id": "15deeb8ef71c6ff3",
             "type": "tabs",
+            "dimension": 76.905311778291,
             "children": [
               {
                 "id": "e5302631e7650d30",
@@ -29,6 +30,7 @@
           {
             "id": "4ab0440944a22207",
             "type": "tabs",
+            "dimension": 23.094688221709006,
             "children": [
               {
                 "id": "fae6d5e204f96221",
@@ -46,7 +48,8 @@
                   "state": {}
                 }
               }
-            ]
+            ],
+            "stacked": true
           }
         ],
         "direction": "horizontal"

@@ -124,7 +124,7 @@ class BookSerializers(serializers.Serializer):
 ```python
 from rest_framework.response import Response
 from rest_framework import viewsets
-class BookViewset(APIView):
+class BookView(APIView):
 	def get(self,request):
 	"""序列化"""
 		# query_params = request.query_params() 获取get的url请求参数 
@@ -144,5 +144,34 @@ class BookViewset(APIView):
 		else:
 			# 校验失败，返回错误 
 			return Response(serializer.errors) 
+class BookDetailView(APIView):
+	def get(self,request,id):
+	"""
+	从数据库获取指定id的数据
+	"""
+		singleBook = Book.object.get(pk=id)
+		# 构建序列化器转为json数据
+		serializer = Serializer(instance=singleBook,many=False)
+		return Response(serializer.data)
+	def put(self,request,id):
+		"""修改指定id的数据"""
+		update_bookobj = Book.object.get(pk=id)
+		# 构建反序列化器
+		serializer = Serializer(instance=update_bookobj,data=request.data,many=False)
+		# 数据校验
+		if serializer.is_valid():
+			修改数据Book.object.filter(pk=id).update(**serializer.validated_data)
+		# 序列化修改后的对象并返回
+		return Response(serializer.data)
+		
 ```
 
+3. 路由配置（urls.py）
+
+```python
+from views import Bookview , BookDetailview
+urlpatterns = [
+		path('book/',Bookview.as_view()),
+		re_path('book/(/d+)',BookDetailview.as_view()),
+]
+```
