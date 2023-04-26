@@ -64,16 +64,29 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 200
   },
   "right": {
     "id": "ef878eb90911b56c",
     "type": "split",
-    "children": [],
+    "children": [
+      {
+        "id": "4f75ba3623b27268",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "232832bd6b0e3669",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 200
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -90,7 +103,7 @@
       "cmdr:Obsidian Git: Open source control view": false
     }
   },
-  "active": "61dc10b0e925b3c3",
+  "active": "232832bd6b0e3669",
   "lastOpenFiles": [
     "source/_posts/前后端开发/DRF.md",
     "source/_posts/前后端开发/网页开发.md",

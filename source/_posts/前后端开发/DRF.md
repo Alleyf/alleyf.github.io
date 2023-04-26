@@ -366,6 +366,83 @@ def validate_name(self, value):
 
 > 在 APIView 上扩展了一些新方法
 
+可设置的属性变量：
+-   **pagination_class** 指明分页控制类
+-   **filter_backends** 指明过滤控制后端
+
+#### （1）get_serializer_class(self)
+
+> 当出现一个视图类中调用多个序列化器时,那么可以通过条件判断在get_serializer_class方法中通过返回不同的序列化器类名就可以让视图方法执行不同的序列化器对象了。
+> 返回序列化器类，默认返回`serializer_class`，可以重写
+
+#### （2）get_serializer(self, *args, \*\*kwargs)
+
+> 返回序列化器对象，主要用来提供给Mixin扩展类使用，如果我们在视图中想要获取序列化器对象，也可以直接调用此方法。
+> 
+> **注意，该方法在提供序列化器对象的时候，会向序列化器对象的context属性补充三个数据：request、format、view，这三个数据对象可以在定义序列化器时使用。**
+> -   **request** 当前视图的请求对象
+> -   **view** 当前请求的类视图对象
+> -   **format** 当前请求期望返回的数据格式
+
+#### （3）get_queryset(self)
+
+> 返回视图使用的查询集，主要用来提供给 Mixin 扩展类使用，是列表视图与详情视图获取数据的基础，默认返回 `queryset` 属性，可以重写.
+
+#### （4）get_object(self)
+
+> 返回详情视图所需的模型类数据对象，主要用来提供给Mixin扩展类使用。
+> 
+> 在试图中可以调用该方法获取详情信息的模型类对象。
+> 
+> **若详情访问的模型类对象不存在，会返回404。**
+> 
+> 该方法会默认使用APIView提供的check_object_permissions方法检查当前对象是否有权限被访问。
+
+
+### 2. 方法重写
+
+**get：**
+```python
+def get(self, request):  
+    """获取所有岗位信息"""  
+    serializer = self.get_serializer(instance=self.get_queryset(), many=True)  
+    return Response(serializer.data)
+```
+
+
+**post：**
+```python
+def post(self, request):  
+    """  
+    添加岗位信息  
+    :param request:    :return: 添加后的岗位信息  
+    """    serializer = self.get_serializer(data=request.data)  
+    if serializer.is_valid():  
+        serializer.save()  
+        return Response(serializer.data)  
+    else:  
+        return Response(serializer.errors)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
