@@ -64,7 +64,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "ef878eb90911b56c",
@@ -81,6 +82,14 @@
               "type": "git-view",
               "state": {}
             }
+          },
+          {
+            "id": "caed5ad8f548f06d",
+            "type": "leaf",
+            "state": {
+              "type": "calendar",
+              "state": {}
+            }
           }
         ]
       }
@@ -91,7 +100,6 @@
   "left-ribbon": {
     "hiddenItems": {
       "obsidian-custom-frames:Open Slack": false,
-      "obsidian-custom-frames:Open ChafGPT": false,
       "canvas:新建白板": false,
       "daily-notes:打开/创建今天的日记": false,
       "templates:插入模板": false,
