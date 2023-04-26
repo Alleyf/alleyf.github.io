@@ -72,22 +72,14 @@
     "type": "split",
     "children": [
       {
-        "id": "4f75ba3623b27268",
+        "id": "1da0519e317c3166",
         "type": "tabs",
         "children": [
           {
-            "id": "232832bd6b0e3669",
+            "id": "d597751b85212145",
             "type": "leaf",
             "state": {
               "type": "git-view",
-              "state": {}
-            }
-          },
-          {
-            "id": "caed5ad8f548f06d",
-            "type": "leaf",
-            "state": {
-              "type": "calendar",
               "state": {}
             }
           }
@@ -111,7 +103,7 @@
       "cmdr:Obsidian Git: Open source control view": false
     }
   },
-  "active": "232832bd6b0e3669",
+  "active": "61dc10b0e925b3c3",
   "lastOpenFiles": [
     "source/_posts/前后端开发/DRF.md",
     "source/_posts/前后端开发/网页开发.md",

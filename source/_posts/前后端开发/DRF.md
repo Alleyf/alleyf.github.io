@@ -229,7 +229,7 @@ class BookDetailView(APIView):
 		"""修改指定id的数据"""
 		update_bookobj = Book.objects.get(pk=id)
 		# 构建反序列化器
-		serializer = Serializer(instance=update_bookobj,data=request.data,many=False)
+		serializer = Serializer(instance=update_bookobj,data=request.data)
 		# 数据校验
 		if serializer.is_valid():
 			serializer.save()
@@ -364,6 +364,9 @@ def validate_name(self, value):
 
 ### 1. GenericAPIView 
 
+导入 `GenericAPIView`
+> `from rest_framework.viewsets import generics`
+
 > 在 APIView 上扩展了一些新方法
 
 可设置的属性变量：
@@ -399,7 +402,16 @@ def validate_name(self, value):
 > 该方法会默认使用APIView提供的check_object_permissions方法检查当前对象是否有权限被访问。
 
 
-### 2. 方法重写
+#### 1. 方法重写
+
+`设置urls.py中的普通路由，正则路由指定参数为pk`
+```python
+urlpatterns = [
+	path('books/',views.BookView.as_view()),
+	re_path('books/(?P<pk>\d+)',views.BookDetailView.as_view()),
+]
+```
+
 
 **get：**
 ```python
@@ -409,8 +421,7 @@ def get(self, request):
     return Response(serializer.data)
 ```
 
-
-**post：**
+**<font color="#f79646">post</font>：**
 ```python
 def post(self, request):  
     """  
@@ -424,6 +435,35 @@ def post(self, request):
         return Response(serializer.errors)
 ```
 
+**<font color="#2DC26B">get（单个数据）</font>：**
+```python
+def get(self, request, pk):  
+    """获取指定id的岗位信息"""  
+    serializer = self.get_serializer(instance=self.get_object(), many=True)  
+    return Response(serializer.data)
+```
+
+<font color="#00b0f0">put（单个数据）：</font>
+```python
+def put(self, request, pk):  
+    """  
+    修改指定id的岗位信息  
+    :param request:    :return: 添加后的岗位信息  
+    """    serializer = self.get_serializer(instance=self.get_object(), data=request.data)  
+    if serializer.is_valid():  
+        serializer.save()  
+        return Response(serializer.data)  
+    else:  
+        return Response(serializer.errors)
+```
+
+<font color="#7030a0">delete (单个数据)：</font>
+```python
+def delete(self,request,id):
+	self.get_object().delete()
+	# 直接返回空
+	return Response()
+```
 
 
 
@@ -439,11 +479,28 @@ def post(self, request):
 
 
 
+### 2.ViewSet
+
+#### 1. 引言
+继承自 `APIView` 与 `ViewSetMixin`，作用也与 APIView 基本类似，提供了身份认证、权限校验、流量管理等。
+
+**ViewSet主要通过继承ViewSetMixin来实现在调用as_view()时传入字典{“http请求”：“视图方法”}的映射处理工作，如{‘get’:’list’}，**
 
 
+> 1. 通过路由指定不同请求执行不同视图函数，从而修改路由分配方法。
+> 2. 项目加载时执行 `as_view ()` 函数，当发起请求时才执行 `view` 函数根据反射获取重写的**函数变量**，设置**请求映射**到该函数变量，进而根据不同请求分发匹配不同的视图函数。
 
+在 ViewSet 中，没有提供任何动作 action 方法，需要我们自己实现 action 方法。
 
+使用视图集ViewSet，可以将一系列视图相关的代码逻辑和相关的http请求动作封装到一个类中：
 
+<font color="#4bacc6">> -   list() 提供一组数据</font>
+<font color="#4bacc6">> -   retrieve() 提供单个数据</font>
+<font color="#4bacc6">> -   create() 创建数据</font>
+<font color="#4bacc6">> -   update() 保存数据</font>
+<font color="#4bacc6">> -   destory() 删除数据</font>
+
+> ViewSet视图集类不再限制视图方法名只允许get()、post()等这种情况了，而是实现允许开发者根据自己的需要定义自定义方法名，例如 list() 、create() 等，然后经过路由中使用http和这些视图方法名进行绑定调用。
 
 
 ### 4.扩展视图方法
