@@ -660,27 +660,514 @@ class BookView(ModelViewSet):
 
 ### 1. 认证
 
+#### 1. 全局认证
+
+> 没有设置用户配置认证时，默认认证为以下两个认证。
+
+```python
+REST_FRAMEWORK = {  
+'DEFAULT_AUTHENTICATION_CLASSES': [  
+    'rest_framework.authentication.SessionAuthentication',  
+    'rest_framework.authentication.BasicAuthentication'  
+],
+}
+```
+
+#### 2. 局部认证
+
+1. 继承认证基类, 写自己的认证类，并重写 authenticate（）方法
+```python
+class MyAuthentication(SessionAuthentication):  
+    def authenticate(self, request):  
+        token = request.query_params.get('token')  
+        if not token:  
+            raise AuthenticationFailed({"code": 1001, "error": "认证失败"})  
+        user_obj = Puser.objects.filter(token=token).first()  
+        if not user_obj:  
+            raise AuthenticationFailed({"code": 1001, "error": "认证失败"})  
+        return user_obj, token
+    def authenticate_header(self, request):  
+	    return '"MyAPI"'
+```
+
+2. 视图函数设置 authentication_classes
+```python
+authentication_classes = [MyAuthentication,]
+```
+
+
 ### 2. 权限
 
 ### 3. 限流
 
+> 控制用户或管理员等访问接口的频次，减轻服务压力
+
+1） AnonRateThrottle
+
+限制所有匿名未认证用户，使用IP区分用户。【很多公司这样的，IP结合设备信息来判断，当然比IP要靠谱一点点而已】
+
+使用`DEFAULT_THROTTLE_RATES['anon']` 来设置频次
+
+2）UserRateThrottle
+
+限制认证用户，使用User模型的 id主键 来区分。
+
+使用`DEFAULT_THROTTLE_RATES['user']` 来设置频次
+
+3）ScopedRateThrottle
+
+限制用户对于每个视图的访问频次，使用 ip 或 user id。
+
+settings.py，代码：
+
+```python
+REST_FRAMEWORK = {
+    # 限流全局配置
+    'DEFAULT_THROTTLE_CLASSES':[ # 限流配置类
+    #     'rest_framework.throttling.AnonRateThrottle', # 未认证用户[未登录用户]
+    #     'rest_framework.throttling.UserRateThrottle', # 已认证用户[已登录用户]
+        'rest_framework.throttling.ScopedRateThrottle', # 自定义限流
+    ],
+    'DEFAULT_THROTTLE_RATES':{ # 频率配置
+        'anon': '2/day',  # 针对游客的访问频率进行限制，实际上，drf只是识别首字母，但是为了提高代码的维护性，建议写完整单词
+        'user': '5/day', # 针对会员的访问频率进行限制，
+        'vip': '10/day', # 针对会员的访问频率进行限制，
+    }
+}
+```
+
+视图代码：
+
+```python
+from rest_framework.throttling import UserRateThrottle
+class Student2ModelViewSet(ModelViewSet):
+    queryset = Student.objects
+    serializer_class = StudentModelSerializer
+    # 限流局部配置[这里需要配合在全局配置中的DEFAULT_THROTTLE_RATES来设置频率]
+    # throttle_classes = [UserRateThrottle] # 使用drf限流类来配置频率
+    throttle_scope = "vip" # 自定义频率
+```
+
+
+
 ### 4. 过滤
+
+> 安装过滤器：
+`pip install django-filter `
+
+在配置文件中增加过滤后端的设置：
+
+```python
+INSTALLED_APPS = [
+    ...
+    'django_filters',  # 需要注册应用，
+]
+
+REST_FRAMEWORK = {
+    ...
+    'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',)
+}
+```
+
+> 可通过过滤字段检索数据
+```python
+class StudentListView(ListAPIView): queryset = Student.objects.all() serializer_class = StudentSerializer filter_fields = ['age', 'sex']
+```
 
 ### 5. 排序
 
+> 对于列表数据，REST framework 提供了**OrderingFilter**过滤器来帮助我们快速指明数据按照指定字段进行排序。
+
+使用方法：
+
+在类视图中设置filter_backends，使用`rest_framework.filters.OrderingFilter`过滤器，REST framework会在请求的查询字符串参数中检查是否包含了ordering参数，如果包含了ordering参数，则按照ordering参数指明的排序字段对数据集进行排序。
+
+前端可以传递的ordering参数的可选字段值需要在ordering_fields中指明。
+
+示例：
+
+```python
+class StudentListView(ListAPIView):
+    queryset = Student.objects.all()
+    serializer_class = StudentModelSerializer
+    filter_backends = [OrderingFilter]
+    ordering_fields = ['id', 'age']
+
+# 127.0.0.1:8000/books/?ordering=-age
+# -id 表示针对id字段进行倒序排序
+# id  表示针对id字段进行升序排序
+```
+
+如果需要在过滤以后再次进行排序，则需要两者结合!
+
+> 全局配置下的过滤组件不能和排序组件一起使用，只支持局部配置的过滤组件和排序组件一起使用。
+
+```python
+from rest_framework.generics import ListAPIView
+from students.models import Student
+from .serializers import StudentModelSerializer
+from django_filters.rest_framework import DjangoFilterBackend
+class Student3ListView(ListAPIView):
+    queryset = Student.objects.all()
+    serializer_class = StudentModelSerializer
+    filter_fields = ['age', 'sex']
+    # 因为局部配置会覆盖全局配置,所以需要重新把过滤组件核心类再次声明,
+    # 否则过滤功能会失效
+    filter_backends = [OrderingFilter,DjangoFilterBackend]
+    ordering_fields = ['id', 'age']
+```
+
 ### 6. 分页
 
+> 因为 django 默认提供的分页器主要使用于前后端不分离的业务场景，所以 REST framework 也提供了分页的支持。
+> 
+我们可以在配置文件中设置全局的分页方式，如：
+
+```python
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS':  'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 100  # 每页数目
+}
+``````
+
+```python
+# 如果在配置settings.py文件中， 设置了全局分页，那么在drf中凡是调用了ListModelMixin的list()，都会自动分页。如果项目中出现大量需要分页的数据，只有少数部分的分页，则可以在少部分的视图类中关闭分页功能。
+# 另外，视图类在使用过分页以后，务必在编写queryset属性时，模型.objects后面调用结果。例如：
+# Student.objects.all()
+class Student3ModelViewSet(ListAPIView):
+    pagination_class = None
+```
+
+也可通过自定义 Pagination 类，来为视图添加不同分页行为。在视图中通过 `pagination_clas` 属性来指明。
+
+可选分页器：
+
+1） **PageNumberPagination**
+
+前端访问网址形式：
+
+```
+1
+```
+
+```http
+GET  http://127.0.0.1:8000/students/?page=4
+```
+
+可以在子类中定义的属性：
+
+-   page_size 每页数目
+-   page_query_param 前端发送的页数关键字名，默认为"page"
+-   page_size_query_param 前端发送的每页数目关键字名，默认为None
+-   max_page_size 前端最多能设置的每页数量
+
+分页器类，`paginations`，代码：
+
+```python
+from  rest_framework.pagination import PageNumberPagination,LimitOffsetPagination
+# PageNumberPagination，以页码作为分页条件
+# page=1&size=10      第1页
+# page=2&size=10      第2页
+# ...
+# LimitOffsetPagination，以数据库查询的limit和offset数值作为分页条件
+# limit=10&offset=0   第1页
+# limit=10&offset=10  第2页
+# ...
+
+# PageNumberPagination
+class StudentPageNumberPagination(PageNumberPagination):
+    page_query_param = "page" # 查询字符串中代表页码的变量名
+    page_size_query_param = "size" # 查询字符串中代表每一页数据的变量名
+    page_size = 2 # 每一页的数据量
+    max_page_size = 4 # 允许客户端通过查询字符串调整的最大单页数据量
+```
+
+视图，`views` ，代码：
+
+```python
+from .paginations import StudentPageNumberPagination,StudentLimitOffsetPagination
+class Student3ModelViewSet(ModelViewSet):
+    queryset = Student.objects.all()
+    serializer_class = StudentModelSerializer
+    # 取消当前视图类的分页效果
+    # pagination_class = None
+    # 局部分页
+    pagination_class = StudentPageNumberPagination
+```
+
+2）**LimitOffsetPagination**
+
+前端访问网址形式：
+
+```http
+GET http://127.0.0.1/four/students/?limit=100&offset=100
+```
+
+可以在子类中定义的属性：
+
+-   default_limit 默认限制，默认值与`PAGE_SIZE`设置一直
+-   limit_query_param limit参数名，默认’limit’
+-   offset_query_param offset参数名，默认’offset’
+-   max_limit 最大limit限制，默认None
+
+分页类，代码：
+
+```python
+from  rest_framework.pagination import PageNumberPagination,LimitOffsetPagination
+# PageNumberPagination，以页码作为分页条件
+# page=1&size=10      第1页
+# page=2&size=10      第2页
+# LimitOffsetPagination，以数据库查询的limit和offset数值作为分页条件
+# limit=10&offset=0   第1页
+# limit=10&offset=10  第2页
+
+# LimitOffsetPagination
+class StudentLimitOffsetPagination(LimitOffsetPagination):
+    limit_query_param = "limit" # 查询字符串中代表每一页数据的变量名
+    offset_query_param = "offset" # 查询字符串中代表页码的变量名
+    default_limit = 2 # 每一页的数据量
+    max_limit = 4 # 允许客户端通过查询字符串调整的最大单页数据量
+```
+
+视图，`views`，代码：
+
+```python
+from .paginations import StudentPageNumberPagination,StudentLimitOffsetPagination
+class Student3ModelViewSet(ModelViewSet):
+    queryset = Student.objects.all()
+    serializer_class = StudentModelSerializer
+    # 取消当前视图类的分页效果
+    # pagination_class = None
+    # 局部分页
+    pagination_class = StudentLimitOffsetPagination
+```
 ### 7. 异常处理
+
+> REST framework 提供了异常处理，我们可以自定义异常处理函数。例如我们想在要创建一个自定义异常函数，
+> 
+> 这个函数，我们保存到当前子应用opt中[注意，开发时，我们会找个独立的公共目录来保存这种公共的函数/工具/类库]。
+
+```python
+from rest_framework.views import exception_handler
+
+def custom_exception_handler(exc, context):
+    # 先调用REST framework默认的异常处理方法获得标准错误响应对象
+    response = exception_handler(exc, context)
+
+    # 在此处补充自定义的异常处理
+    if response is None:
+        response.data['status_code'] = response.status_code
+
+    return response
+```
+
+在配置文件中声明自定义的异常处理，`settings`，代码：
+
+```python
+REST_FRAMEWORK = {
+    'EXCEPTION_HANDLER': 'drfdemo.exceptions.custom_excetion_handle'
+}
+```
+
+如果未声明，会采用默认的方式，如下
+
+rest_frame/settings.py
+
+```python
+REST_FRAMEWORK = {
+    'EXCEPTION_HANDLER': 'rest_framework.views.exception_handler'
+}
+```
+
+例如：
+
+补充上处理关于数据库的异常，这里使用其他异常来举例：
+
+`主应用.exceptions`，代码：
+
+```python
+# 自定义异常函数: 在drf本身提供的异常函数基础上，我们增加更多的异常处理就可以了。
+from rest_framework.views import exception_handler
+from django.db import DatabaseError
+from rest_framework import status
+from rest_framework.response import Response
+def custom_excetion_handle(exc, context):
+    """
+    自定义异常函数，必须要在配置文件中注册才能被drf使用
+    exc: 异常对象，本次发生的异常对象
+    context: 字典，本次发生异常时，python解析器提供的执行上下文
+    所谓的执行上下文[context]，就是程序执行到当前一行代码时，能提供给开发者调用的环境信息异常发生时，代码所在的路径，时间，视图，客户端http请求等等...]
+    """
+    # 先让drf处理它能识别的异常
+    response = exception_handler(exc, context)
+    # 在经过了drf的异常处理以后，还是返回None则表示有2种情况:
+    if response is None:
+        # 异常发生时的视图对象
+        view = context['view']
+        # 异常发生时的http请求
+        request = context["request"]
+        if isinstance(exc, DatabaseError):
+            print('[%s]: %s' % (view, exc))
+            response = Response({'detail': '服务器内部错误'}, status=status.HTTP_507_INSUFFICIENT_STORAGE)
+
+        if isinstance(exc, TypeError):
+            print("0不能作为除数~")
+            print(request)
+            response = Response({'detail': '0不能作为除数'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+    return response
+```
+
+视图中，故意报错：
+
+```python
+from .paginations import StudentPageNumberPagination,StudentLimitOffsetPagination
+class Student3ModelViewSet(ModelViewSet):
+    queryset = Student.objects  # 去掉 .all()，就会报错。
+    serializer_class = StudentModelSerializer
+    pagination_class = StudentPageNumberPagination
+```
+
+#### REST framework定义的异常
+
+> -   APIException 所有异常的父类
+> -   ParseError 解析错误
+> -   AuthenticationFailed 认证失败
+> -   NotAuthenticated 尚未认证
+> -   PermissionDenied 权限决绝
+> -   NotFound 未找到
+> -   MethodNotAllowed 请求方式不支持
+> -   NotAcceptable 要获取的数据格式不支持
+> -   Throttled 超过限流次数
+> -   ValidationError 校验失败
+
+也就是说，很多的没有在上面列出来的异常，就需要我们在自定义异常中自己处理了。
 
 ### 8. 自动生成接口文档
 
+> REST framework 可以自动帮助我们生成接口文档。
+> 
+> 接口文档以网页的方式呈现。
+> 
+> 自动接口文档能生成的是继承自`APIView`及其子类的视图。
 
+### 11.8.1. 安装依赖
 
+REST framewrok生成接口文档需要`coreapi`库的支持。
 
+```python
+pip install coreapi
+```
+
+### 11.8.2. 设置接口文档访问路径
+
+在总路由中添加接口文档路径。
+
+文档路由对应的视图配置为`rest_framework.documentation.include_docs_urls`，
+
+参数`title`为接口文档网站的标题。总路由，代码：
+
+```python
+from rest_framework.documentation import include_docs_urls
+
+urlpatterns = [
+    ...
+    path('docs/', include_docs_urls(title='站点页面标题'))
+]
+```
+
+在settings.py中配置接口文档。
+
+```python
+REST_FRAMEWORK = {
+    # 。。。 其他选项
+    # 接口文档
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.AutoSchema',
+}
+```
+
+### 11.8.3. 文档描述说明的定义位置
+
+1） 单一方法的视图，可直接使用类视图的文档字符串，如
+
+```python
+class BookListView(generics.ListAPIView):
+    """
+    返回所有图书信息.
+    """
+```
+
+2）包含多个方法的视图，在类视图的文档字符串中，分开方法定义，如
+
+```python
+class BookListCreateView(generics.ListCreateAPIView):
+    """
+    get:
+    返回所有图书信息.
+
+    post:
+    新建图书.
+    """
+```
+
+3）对于视图集ViewSet，仍在类视图的文档字符串中封开定义，但是应使用action名称区分，如
+
+```python
+class BookInfoViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, GenericViewSet):
+    """
+    list:
+    返回图书列表数据
+
+    retrieve:
+    返回图书详情数据
+
+    latest:
+    返回最新的图书数据
+
+    read:
+    修改图书的阅读量
+    """
+```
+
+### 11.8.4. 访问接口文档网页
+
+浏览器访问 127.0.0.1:8000/docs/，即可看到自动生成的接口文档。
+![image.png](https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/20230427154626.png)
+
+swagger 接口文档
+![image.png](https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/20230427154712.png)
+
+两点说明：
+
+1） 视图集ViewSet中的retrieve名称，在接口文档网站中叫做read
+
+2）参数的Description需要在模型类或序列化器类的字段中以help_text选项定义，如：
+
+```python
+class Student(models.Model):
+    ...
+    age = models.IntegerField(default=0, verbose_name='年龄', help_text='年龄')
+    ...
+```
+
+或
+
+```python
+class StudentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Student
+        fields = "__all__"
+        extra_kwargs = {
+            'age': {
+                'required': True,
+                'help_text': '年龄'
+            }
+        }
+```
 
 # 参考文献
 
-> <font color="#ff0000">本文参考了一下文档和视频结合个人感悟记录，若有侵权无意冒犯，及时联系进行处理。如果有看不懂本文的，可以移步查看更加详细的教程文档或者观看相关视频，支持原创作者。 </font>
+> <font color="#ff0000">本文参考了以下文档和视频结合个人感悟记录，若有侵权无意冒犯，及时联系进行处理。如果有看不懂本文的，可以移步查看更加详细的教程文档或者观看相关视频，支持原创作者。 </font>
 
  1. [DRF | YUAN](http://www.yuan316.com/post/DRF/)
  2. [21 DRF应用的认证组件\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1z5411D7BQ/?p=21&spm_id_from=pageDriver&vd_source=9c896fa9c3f9023797e8efe7be0c113e)
