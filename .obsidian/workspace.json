@@ -20,7 +20,8 @@
               }
             }
           }
-        ]
+        ],
+        "stacked": true
       }
     ],
     "direction": "vertical"
@@ -42,8 +43,19 @@
                 "file": "source/_posts/前后端开发/DRF.md"
               }
             }
+          },
+          {
+            "id": "310e3b81d5e438f9",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "tag:#路由"
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       },
       {
         "id": "52a7943f31adb7dc",
@@ -69,10 +81,24 @@
   "right": {
     "id": "ef878eb90911b56c",
     "type": "split",
-    "children": [],
+    "children": [
+      {
+        "id": "453e9c0b8b514322",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f3b455151e44a425",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 200
   },
   "left-ribbon": {
     "hiddenItems": {
