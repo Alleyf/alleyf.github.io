@@ -1051,7 +1051,7 @@ class Student3ModelViewSet(ModelViewSet):
 > 
 > 自动接口文档能生成的是继承自`APIView`及其子类的视图。
 
-### 11.8.1. 安装依赖
+#### 1. 安装依赖
 
 REST framewrok生成接口文档需要`coreapi`库的支持。
 
@@ -1059,7 +1059,7 @@ REST framewrok生成接口文档需要`coreapi`库的支持。
 pip install coreapi
 ```
 
-### 11.8.2. 设置接口文档访问路径
+#### 2. 设置接口文档访问路径
 
 在总路由中添加接口文档路径。
 
@@ -1086,7 +1086,7 @@ REST_FRAMEWORK = {
 }
 ```
 
-### 11.8.3. 文档描述说明的定义位置
+#### 3. 文档描述说明的定义位置
 
 1） 单一方法的视图，可直接使用类视图的文档字符串，如
 
@@ -1129,7 +1129,7 @@ class BookInfoViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, GenericV
     """
 ```
 
-### 11.8.4. 访问接口文档网页
+#### 4. 访问接口文档网页
 
 浏览器访问 127.0.0.1:8000/docs/，即可看到自动生成的接口文档。
 ![image.png](https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/20230427154626.png)

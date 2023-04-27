@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/about/index.md",
+                "file": "source/_posts/前后端开发/DRF.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -48,7 +48,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/about/index.md"
+                "file": "source/_posts/前后端开发/DRF.md"
               }
             }
           }
@@ -80,14 +80,14 @@
     "type": "split",
     "children": [
       {
-        "id": "6794fad7c7b12c9f",
+        "id": "3ff67005500f2cb9",
         "type": "tabs",
         "children": [
           {
-            "id": "464312eb0bafa4e2",
+            "id": "ab935a676f0b5791",
             "type": "leaf",
             "state": {
-              "type": "git-view",
+              "type": "calendar",
               "state": {}
             }
           }
@@ -95,7 +95,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 528.5
+    "width": 528.5,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -111,13 +112,13 @@
       "cmdr:Obsidian Git: Open source control view": false
     }
   },
-  "active": "464312eb0bafa4e2",
+  "active": "d388b86df235a783",
   "lastOpenFiles": [
+    "source/about/index.md",
     "source/_posts/前后端开发/DRF.md",
     "source/_posts/前后端开发/Html5_Css_Js.md",
     "source/_posts/前后端开发/uni-app.md",
     "source/_posts/前后端开发/Vue.md",
-    "source/about/index.md",
     "source/_posts/机器学习/ML_DL.md",
     "source/_posts/前后端开发/网页开发.md",
     "未命名.md",
