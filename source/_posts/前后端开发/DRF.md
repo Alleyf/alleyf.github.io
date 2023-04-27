@@ -88,6 +88,10 @@ INSTALLED_APPS = [
 1. 重写了 View 的 as_view ()和 dispatch（）方法，构建了新的 request 对象实现**认证、权限和限流**作用。
 2. `request. Get ()->request. Query_params ()`获取 get 请求参数
 3. `request. Post ()->request. Data ()` 获取 post(put 等)请求体数据，包括 files 都封装在一起反序列化了，支持前端 urlcoded 格式和 json 等其他任何格式。
+
+路由执行过程：
+<span style="background:#b1ffff">as_view ()->view ()->dispatch ()->get/post· · ·</span>
+
 ---
 ## 2.Serializer （反）序列化器
 ![（反）序列化器|425](https://s2.loli.net/2023/04/26/VukBIX39lj2Kbx6.png)
@@ -95,6 +99,7 @@ INSTALLED_APPS = [
 > 
 > - 序列化：数据表数据->前端显示的 json 数据 （get 请求，**取数据**）
 > - 反序列化：前端提交的 json 数据->数据表数据（post、put、patch、delete 等请求，**存数据**）
+
 
 ### 1.序列化与反序列化
 **常用字段类型**：
