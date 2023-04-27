@@ -26,8 +26,10 @@
 <meta property="og:description" content="it is some basic usage of drf .">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://s2.loli.net/2023/04/26/VukBIX39lj2Kbx6.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/20230427154626.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/20230427154712.png">
 <meta property="article:published_time" content="2023-04-25T11:29:25.000Z">
-<meta property="article:modified_time" content="2023-04-27T05:44:19.760Z">
+<meta property="article:modified_time" content="2023-04-27T08:58:14.493Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="Django">
 <meta name="twitter:card" content="summary_large_image">
@@ -270,7 +272,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          18k words
+          28k words
         
       </span>
     
@@ -281,7 +283,7 @@
         
         
         
-          147 mins
+          230 mins
         
       </span>
     
@@ -332,7 +334,7 @@
               <p class="note note-info">
                 
                   
-                    Last updated on an hour ago
+                    Last updated on a few seconds ago
                   
                 
               </p>
@@ -586,8 +588,178 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">^book/get_new_5/$    name: book-get_new_5<br>^book/&#123;pk&#125;/login/$   name: book-login<br></code></pre></td></tr></table></figure>
 
 <hr>
-<h2 id="6-其它组件"><a href="#6-其它组件" class="headerlink" title="6. 其它组件"></a>6. 其它组件</h2><h3 id="1-认证"><a href="#1-认证" class="headerlink" title="1. 认证"></a>1. 认证</h3><h3 id="2-权限"><a href="#2-权限" class="headerlink" title="2. 权限"></a>2. 权限</h3><h3 id="3-限流"><a href="#3-限流" class="headerlink" title="3. 限流"></a>3. 限流</h3><h3 id="4-过滤"><a href="#4-过滤" class="headerlink" title="4. 过滤"></a>4. 过滤</h3><h3 id="5-排序"><a href="#5-排序" class="headerlink" title="5. 排序"></a>5. 排序</h3><h3 id="6-分页"><a href="#6-分页" class="headerlink" title="6. 分页"></a>6. 分页</h3><h3 id="7-异常处理"><a href="#7-异常处理" class="headerlink" title="7. 异常处理"></a>7. 异常处理</h3><h3 id="8-自动生成接口文档"><a href="#8-自动生成接口文档" class="headerlink" title="8. 自动生成接口文档"></a>8. 自动生成接口文档</h3><h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><blockquote>
-<p><font color="#ff0000">本文参考了一下文档和视频结合个人感悟记录，若有侵权无意冒犯，及时联系进行处理。如果有看不懂本文的，可以移步查看更加详细的教程文档或者观看相关视频，支持原创作者。 </font></p>
+<h2 id="6-其它组件"><a href="#6-其它组件" class="headerlink" title="6. 其它组件"></a>6. 其它组件</h2><h3 id="1-认证"><a href="#1-认证" class="headerlink" title="1. 认证"></a>1. 认证</h3><h4 id="1-全局认证"><a href="#1-全局认证" class="headerlink" title="1. 全局认证"></a>1. 全局认证</h4><blockquote>
+<p>没有设置用户配置认证时，默认认证为以下两个认证。</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python">REST_FRAMEWORK = &#123;  <br><span class="hljs-string">&#x27;DEFAULT_AUTHENTICATION_CLASSES&#x27;</span>: [  <br>    <span class="hljs-string">&#x27;rest_framework.authentication.SessionAuthentication&#x27;</span>,  <br>    <span class="hljs-string">&#x27;rest_framework.authentication.BasicAuthentication&#x27;</span>  <br>],<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="2-局部认证"><a href="#2-局部认证" class="headerlink" title="2. 局部认证"></a>2. 局部认证</h4><ol>
+<li><p>继承认证基类, 写自己的认证类，并重写 authenticate（）方法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyAuthentication</span>(<span class="hljs-title class_ inherited__">SessionAuthentication</span>):  <br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">authenticate</span>(<span class="hljs-params">self, request</span>):  <br>        token = request.query_params.get(<span class="hljs-string">&#x27;token&#x27;</span>)  <br>        <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> token:  <br>            <span class="hljs-keyword">raise</span> AuthenticationFailed(&#123;<span class="hljs-string">&quot;code&quot;</span>: <span class="hljs-number">1001</span>, <span class="hljs-string">&quot;error&quot;</span>: <span class="hljs-string">&quot;认证失败&quot;</span>&#125;)  <br>        user_obj = Puser.objects.<span class="hljs-built_in">filter</span>(token=token).first()  <br>        <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> user_obj:  <br>            <span class="hljs-keyword">raise</span> AuthenticationFailed(&#123;<span class="hljs-string">&quot;code&quot;</span>: <span class="hljs-number">1001</span>, <span class="hljs-string">&quot;error&quot;</span>: <span class="hljs-string">&quot;认证失败&quot;</span>&#125;)  <br>        <span class="hljs-keyword">return</span> user_obj, token<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">authenticate_header</span>(<span class="hljs-params">self, request</span>):  <br>	    <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;&quot;MyAPI&quot;&#x27;</span><br></code></pre></td></tr></table></figure></li>
+<li><p>视图函数设置 authentication_classes</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">authentication_classes = [MyAuthentication,]<br></code></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="2-权限"><a href="#2-权限" class="headerlink" title="2. 权限"></a>2. 权限</h3><h3 id="3-限流"><a href="#3-限流" class="headerlink" title="3. 限流"></a>3. 限流</h3><blockquote>
+<p>控制用户或管理员等访问接口的频次，减轻服务压力</p>
+</blockquote>
+<p>1） AnonRateThrottle</p>
+<p>限制所有匿名未认证用户，使用IP区分用户。【很多公司这样的，IP结合设备信息来判断，当然比IP要靠谱一点点而已】</p>
+<p>使用<code>DEFAULT_THROTTLE_RATES[&#39;anon&#39;]</code> 来设置频次</p>
+<p>2）UserRateThrottle</p>
+<p>限制认证用户，使用User模型的 id主键 来区分。</p>
+<p>使用<code>DEFAULT_THROTTLE_RATES[&#39;user&#39;]</code> 来设置频次</p>
+<p>3）ScopedRateThrottle</p>
+<p>限制用户对于每个视图的访问频次，使用 ip 或 user id。</p>
+<p>settings.py，代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python">REST_FRAMEWORK = &#123;<br>    <span class="hljs-comment"># 限流全局配置</span><br>    <span class="hljs-string">&#x27;DEFAULT_THROTTLE_CLASSES&#x27;</span>:[ <span class="hljs-comment"># 限流配置类</span><br>    <span class="hljs-comment">#     &#x27;rest_framework.throttling.AnonRateThrottle&#x27;, # 未认证用户[未登录用户]</span><br>    <span class="hljs-comment">#     &#x27;rest_framework.throttling.UserRateThrottle&#x27;, # 已认证用户[已登录用户]</span><br>        <span class="hljs-string">&#x27;rest_framework.throttling.ScopedRateThrottle&#x27;</span>, <span class="hljs-comment"># 自定义限流</span><br>    ],<br>    <span class="hljs-string">&#x27;DEFAULT_THROTTLE_RATES&#x27;</span>:&#123; <span class="hljs-comment"># 频率配置</span><br>        <span class="hljs-string">&#x27;anon&#x27;</span>: <span class="hljs-string">&#x27;2/day&#x27;</span>,  <span class="hljs-comment"># 针对游客的访问频率进行限制，实际上，drf只是识别首字母，但是为了提高代码的维护性，建议写完整单词</span><br>        <span class="hljs-string">&#x27;user&#x27;</span>: <span class="hljs-string">&#x27;5/day&#x27;</span>, <span class="hljs-comment"># 针对会员的访问频率进行限制，</span><br>        <span class="hljs-string">&#x27;vip&#x27;</span>: <span class="hljs-string">&#x27;10/day&#x27;</span>, <span class="hljs-comment"># 针对会员的访问频率进行限制，</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>视图代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> rest_framework.throttling <span class="hljs-keyword">import</span> UserRateThrottle<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Student2ModelViewSet</span>(<span class="hljs-title class_ inherited__">ModelViewSet</span>):<br>    queryset = Student.objects<br>    serializer_class = StudentModelSerializer<br>    <span class="hljs-comment"># 限流局部配置[这里需要配合在全局配置中的DEFAULT_THROTTLE_RATES来设置频率]</span><br>    <span class="hljs-comment"># throttle_classes = [UserRateThrottle] # 使用drf限流类来配置频率</span><br>    throttle_scope = <span class="hljs-string">&quot;vip&quot;</span> <span class="hljs-comment"># 自定义频率</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="4-过滤"><a href="#4-过滤" class="headerlink" title="4. 过滤"></a>4. 过滤</h3><blockquote>
+<p>安装过滤器：<br><code>pip install django-filter </code></p>
+</blockquote>
+<p>在配置文件中增加过滤后端的设置：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python">INSTALLED_APPS = [<br>    ...<br>    <span class="hljs-string">&#x27;django_filters&#x27;</span>,  <span class="hljs-comment"># 需要注册应用，</span><br>]<br><br>REST_FRAMEWORK = &#123;<br>    ...<br>    <span class="hljs-string">&#x27;DEFAULT_FILTER_BACKENDS&#x27;</span>: (<span class="hljs-string">&#x27;django_filters.rest_framework.DjangoFilterBackend&#x27;</span>,)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>可通过过滤字段检索数据</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">StudentListView</span>(<span class="hljs-title class_ inherited__">ListAPIView</span>): queryset = Student.objects.<span class="hljs-built_in">all</span>() serializer_class = StudentSerializer filter_fields = [<span class="hljs-string">&#x27;age&#x27;</span>, <span class="hljs-string">&#x27;sex&#x27;</span>]<br></code></pre></td></tr></table></figure>
+
+<h3 id="5-排序"><a href="#5-排序" class="headerlink" title="5. 排序"></a>5. 排序</h3><blockquote>
+<p>对于列表数据，REST framework 提供了<strong>OrderingFilter</strong>过滤器来帮助我们快速指明数据按照指定字段进行排序。</p>
+</blockquote>
+<p>使用方法：</p>
+<p>在类视图中设置filter_backends，使用<code>rest_framework.filters.OrderingFilter</code>过滤器，REST framework会在请求的查询字符串参数中检查是否包含了ordering参数，如果包含了ordering参数，则按照ordering参数指明的排序字段对数据集进行排序。</p>
+<p>前端可以传递的ordering参数的可选字段值需要在ordering_fields中指明。</p>
+<p>示例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">StudentListView</span>(<span class="hljs-title class_ inherited__">ListAPIView</span>):<br>    queryset = Student.objects.<span class="hljs-built_in">all</span>()<br>    serializer_class = StudentModelSerializer<br>    filter_backends = [OrderingFilter]<br>    ordering_fields = [<span class="hljs-string">&#x27;id&#x27;</span>, <span class="hljs-string">&#x27;age&#x27;</span>]<br><br><span class="hljs-comment"># 127.0.0.1:8000/books/?ordering=-age</span><br><span class="hljs-comment"># -id 表示针对id字段进行倒序排序</span><br><span class="hljs-comment"># id  表示针对id字段进行升序排序</span><br></code></pre></td></tr></table></figure>
+
+<p>如果需要在过滤以后再次进行排序，则需要两者结合!</p>
+<blockquote>
+<p>全局配置下的过滤组件不能和排序组件一起使用，只支持局部配置的过滤组件和排序组件一起使用。</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> rest_framework.generics <span class="hljs-keyword">import</span> ListAPIView<br><span class="hljs-keyword">from</span> students.models <span class="hljs-keyword">import</span> Student<br><span class="hljs-keyword">from</span> .serializers <span class="hljs-keyword">import</span> StudentModelSerializer<br><span class="hljs-keyword">from</span> django_filters.rest_framework <span class="hljs-keyword">import</span> DjangoFilterBackend<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Student3ListView</span>(<span class="hljs-title class_ inherited__">ListAPIView</span>):<br>    queryset = Student.objects.<span class="hljs-built_in">all</span>()<br>    serializer_class = StudentModelSerializer<br>    filter_fields = [<span class="hljs-string">&#x27;age&#x27;</span>, <span class="hljs-string">&#x27;sex&#x27;</span>]<br>    <span class="hljs-comment"># 因为局部配置会覆盖全局配置,所以需要重新把过滤组件核心类再次声明,</span><br>    <span class="hljs-comment"># 否则过滤功能会失效</span><br>    filter_backends = [OrderingFilter,DjangoFilterBackend]<br>    ordering_fields = [<span class="hljs-string">&#x27;id&#x27;</span>, <span class="hljs-string">&#x27;age&#x27;</span>]<br></code></pre></td></tr></table></figure>
+
+<h3 id="6-分页"><a href="#6-分页" class="headerlink" title="6. 分页"></a>6. 分页</h3><blockquote>
+<p>因为 django 默认提供的分页器主要使用于前后端不分离的业务场景，所以 REST framework 也提供了分页的支持。</p>
+</blockquote>
+<p>我们可以在配置文件中设置全局的分页方式，如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python">REST_FRAMEWORK = &#123;<br>    <span class="hljs-string">&#x27;DEFAULT_PAGINATION_CLASS&#x27;</span>:  <span class="hljs-string">&#x27;rest_framework.pagination.PageNumberPagination&#x27;</span>,<br>    <span class="hljs-string">&#x27;PAGE_SIZE&#x27;</span>: <span class="hljs-number">100</span>  <span class="hljs-comment"># 每页数目</span><br>&#125;<br>``````<br><br>```python<br><span class="hljs-comment"># 如果在配置settings.py文件中， 设置了全局分页，那么在drf中凡是调用了ListModelMixin的list()，都会自动分页。如果项目中出现大量需要分页的数据，只有少数部分的分页，则可以在少部分的视图类中关闭分页功能。</span><br><span class="hljs-comment"># 另外，视图类在使用过分页以后，务必在编写queryset属性时，模型.objects后面调用结果。例如：</span><br><span class="hljs-comment"># Student.objects.all()</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Student3ModelViewSet</span>(<span class="hljs-title class_ inherited__">ListAPIView</span>):<br>    pagination_class = <span class="hljs-literal">None</span><br></code></pre></td></tr></table></figure>
+
+<p>也可通过自定义 Pagination 类，来为视图添加不同分页行为。在视图中通过 <code>pagination_clas</code> 属性来指明。</p>
+<p>可选分页器：</p>
+<p>1） <strong>PageNumberPagination</strong></p>
+<p>前端访问网址形式：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">1<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs http">GET  http://127.0.0.1:8000/students/?page=4<br></code></pre></td></tr></table></figure>
+
+<p>可以在子类中定义的属性：</p>
+<ul>
+<li>  page_size 每页数目</li>
+<li>  page_query_param 前端发送的页数关键字名，默认为”page”</li>
+<li>  page_size_query_param 前端发送的每页数目关键字名，默认为None</li>
+<li>  max_page_size 前端最多能设置的每页数量</li>
+</ul>
+<p>分页器类，<code>paginations</code>，代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span>  rest_framework.pagination <span class="hljs-keyword">import</span> PageNumberPagination,LimitOffsetPagination<br><span class="hljs-comment"># PageNumberPagination，以页码作为分页条件</span><br><span class="hljs-comment"># page=1&amp;size=10      第1页</span><br><span class="hljs-comment"># page=2&amp;size=10      第2页</span><br><span class="hljs-comment"># ...</span><br><span class="hljs-comment"># LimitOffsetPagination，以数据库查询的limit和offset数值作为分页条件</span><br><span class="hljs-comment"># limit=10&amp;offset=0   第1页</span><br><span class="hljs-comment"># limit=10&amp;offset=10  第2页</span><br><span class="hljs-comment"># ...</span><br><br><span class="hljs-comment"># PageNumberPagination</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">StudentPageNumberPagination</span>(<span class="hljs-title class_ inherited__">PageNumberPagination</span>):<br>    page_query_param = <span class="hljs-string">&quot;page&quot;</span> <span class="hljs-comment"># 查询字符串中代表页码的变量名</span><br>    page_size_query_param = <span class="hljs-string">&quot;size&quot;</span> <span class="hljs-comment"># 查询字符串中代表每一页数据的变量名</span><br>    page_size = <span class="hljs-number">2</span> <span class="hljs-comment"># 每一页的数据量</span><br>    max_page_size = <span class="hljs-number">4</span> <span class="hljs-comment"># 允许客户端通过查询字符串调整的最大单页数据量</span><br></code></pre></td></tr></table></figure>
+
+<p>视图，<code>views</code> ，代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> .paginations <span class="hljs-keyword">import</span> StudentPageNumberPagination,StudentLimitOffsetPagination<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Student3ModelViewSet</span>(<span class="hljs-title class_ inherited__">ModelViewSet</span>):<br>    queryset = Student.objects.<span class="hljs-built_in">all</span>()<br>    serializer_class = StudentModelSerializer<br>    <span class="hljs-comment"># 取消当前视图类的分页效果</span><br>    <span class="hljs-comment"># pagination_class = None</span><br>    <span class="hljs-comment"># 局部分页</span><br>    pagination_class = StudentPageNumberPagination<br></code></pre></td></tr></table></figure>
+
+<p>2）<strong>LimitOffsetPagination</strong></p>
+<p>前端访问网址形式：</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs http">GET http://127.0.0.1/four/students/?limit=100&amp;offset=100<br></code></pre></td></tr></table></figure>
+
+<p>可以在子类中定义的属性：</p>
+<ul>
+<li>  default_limit 默认限制，默认值与<code>PAGE_SIZE</code>设置一直</li>
+<li>  limit_query_param limit参数名，默认’limit’</li>
+<li>  offset_query_param offset参数名，默认’offset’</li>
+<li>  max_limit 最大limit限制，默认None</li>
+</ul>
+<p>分页类，代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span>  rest_framework.pagination <span class="hljs-keyword">import</span> PageNumberPagination,LimitOffsetPagination<br><span class="hljs-comment"># PageNumberPagination，以页码作为分页条件</span><br><span class="hljs-comment"># page=1&amp;size=10      第1页</span><br><span class="hljs-comment"># page=2&amp;size=10      第2页</span><br><span class="hljs-comment"># LimitOffsetPagination，以数据库查询的limit和offset数值作为分页条件</span><br><span class="hljs-comment"># limit=10&amp;offset=0   第1页</span><br><span class="hljs-comment"># limit=10&amp;offset=10  第2页</span><br><br><span class="hljs-comment"># LimitOffsetPagination</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">StudentLimitOffsetPagination</span>(<span class="hljs-title class_ inherited__">LimitOffsetPagination</span>):<br>    limit_query_param = <span class="hljs-string">&quot;limit&quot;</span> <span class="hljs-comment"># 查询字符串中代表每一页数据的变量名</span><br>    offset_query_param = <span class="hljs-string">&quot;offset&quot;</span> <span class="hljs-comment"># 查询字符串中代表页码的变量名</span><br>    default_limit = <span class="hljs-number">2</span> <span class="hljs-comment"># 每一页的数据量</span><br>    max_limit = <span class="hljs-number">4</span> <span class="hljs-comment"># 允许客户端通过查询字符串调整的最大单页数据量</span><br></code></pre></td></tr></table></figure>
+
+<p>视图，<code>views</code>，代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> .paginations <span class="hljs-keyword">import</span> StudentPageNumberPagination,StudentLimitOffsetPagination<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Student3ModelViewSet</span>(<span class="hljs-title class_ inherited__">ModelViewSet</span>):<br>    queryset = Student.objects.<span class="hljs-built_in">all</span>()<br>    serializer_class = StudentModelSerializer<br>    <span class="hljs-comment"># 取消当前视图类的分页效果</span><br>    <span class="hljs-comment"># pagination_class = None</span><br>    <span class="hljs-comment"># 局部分页</span><br>    pagination_class = StudentLimitOffsetPagination<br></code></pre></td></tr></table></figure>
+<h3 id="7-异常处理"><a href="#7-异常处理" class="headerlink" title="7. 异常处理"></a>7. 异常处理</h3><blockquote>
+<p>REST framework 提供了异常处理，我们可以自定义异常处理函数。例如我们想在要创建一个自定义异常函数，</p>
+<p>这个函数，我们保存到当前子应用opt中[注意，开发时，我们会找个独立的公共目录来保存这种公共的函数/工具/类库]。</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> rest_framework.views <span class="hljs-keyword">import</span> exception_handler<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">custom_exception_handler</span>(<span class="hljs-params">exc, context</span>):<br>    <span class="hljs-comment"># 先调用REST framework默认的异常处理方法获得标准错误响应对象</span><br>    response = exception_handler(exc, context)<br><br>    <span class="hljs-comment"># 在此处补充自定义的异常处理</span><br>    <span class="hljs-keyword">if</span> response <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>:<br>        response.data[<span class="hljs-string">&#x27;status_code&#x27;</span>] = response.status_code<br><br>    <span class="hljs-keyword">return</span> response<br></code></pre></td></tr></table></figure>
+
+<p>在配置文件中声明自定义的异常处理，<code>settings</code>，代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">REST_FRAMEWORK = &#123;<br>    <span class="hljs-string">&#x27;EXCEPTION_HANDLER&#x27;</span>: <span class="hljs-string">&#x27;drfdemo.exceptions.custom_excetion_handle&#x27;</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>如果未声明，会采用默认的方式，如下</p>
+<p>rest_frame/settings.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">REST_FRAMEWORK = &#123;<br>    <span class="hljs-string">&#x27;EXCEPTION_HANDLER&#x27;</span>: <span class="hljs-string">&#x27;rest_framework.views.exception_handler&#x27;</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>例如：</p>
+<p>补充上处理关于数据库的异常，这里使用其他异常来举例：</p>
+<p><code>主应用.exceptions</code>，代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 自定义异常函数: 在drf本身提供的异常函数基础上，我们增加更多的异常处理就可以了。</span><br><span class="hljs-keyword">from</span> rest_framework.views <span class="hljs-keyword">import</span> exception_handler<br><span class="hljs-keyword">from</span> django.db <span class="hljs-keyword">import</span> DatabaseError<br><span class="hljs-keyword">from</span> rest_framework <span class="hljs-keyword">import</span> status<br><span class="hljs-keyword">from</span> rest_framework.response <span class="hljs-keyword">import</span> Response<br><span class="hljs-keyword">def</span> <span class="hljs-title function_">custom_excetion_handle</span>(<span class="hljs-params">exc, context</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    自定义异常函数，必须要在配置文件中注册才能被drf使用</span><br><span class="hljs-string">    exc: 异常对象，本次发生的异常对象</span><br><span class="hljs-string">    context: 字典，本次发生异常时，python解析器提供的执行上下文</span><br><span class="hljs-string">    所谓的执行上下文[context]，就是程序执行到当前一行代码时，能提供给开发者调用的环境信息异常发生时，代码所在的路径，时间，视图，客户端http请求等等...]</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    <span class="hljs-comment"># 先让drf处理它能识别的异常</span><br>    response = exception_handler(exc, context)<br>    <span class="hljs-comment"># 在经过了drf的异常处理以后，还是返回None则表示有2种情况:</span><br>    <span class="hljs-keyword">if</span> response <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>:<br>        <span class="hljs-comment"># 异常发生时的视图对象</span><br>        view = context[<span class="hljs-string">&#x27;view&#x27;</span>]<br>        <span class="hljs-comment"># 异常发生时的http请求</span><br>        request = context[<span class="hljs-string">&quot;request&quot;</span>]<br>        <span class="hljs-keyword">if</span> <span class="hljs-built_in">isinstance</span>(exc, DatabaseError):<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;[%s]: %s&#x27;</span> % (view, exc))<br>            response = Response(&#123;<span class="hljs-string">&#x27;detail&#x27;</span>: <span class="hljs-string">&#x27;服务器内部错误&#x27;</span>&#125;, status=status.HTTP_507_INSUFFICIENT_STORAGE)<br><br>        <span class="hljs-keyword">if</span> <span class="hljs-built_in">isinstance</span>(exc, TypeError):<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;0不能作为除数~&quot;</span>)<br>            <span class="hljs-built_in">print</span>(request)<br>            response = Response(&#123;<span class="hljs-string">&#x27;detail&#x27;</span>: <span class="hljs-string">&#x27;0不能作为除数&#x27;</span>&#125;, status=status.HTTP_500_INTERNAL_SERVER_ERROR)<br><br>    <span class="hljs-keyword">return</span> response<br></code></pre></td></tr></table></figure>
+
+<p>视图中，故意报错：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> .paginations <span class="hljs-keyword">import</span> StudentPageNumberPagination,StudentLimitOffsetPagination<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Student3ModelViewSet</span>(<span class="hljs-title class_ inherited__">ModelViewSet</span>):<br>    queryset = Student.objects  <span class="hljs-comment"># 去掉 .all()，就会报错。</span><br>    serializer_class = StudentModelSerializer<br>    pagination_class = StudentPageNumberPagination<br></code></pre></td></tr></table></figure>
+
+<h4 id="REST-framework定义的异常"><a href="#REST-framework定义的异常" class="headerlink" title="REST framework定义的异常"></a>REST framework定义的异常</h4><blockquote>
+<ul>
+<li>  APIException 所有异常的父类</li>
+<li>  ParseError 解析错误</li>
+<li>  AuthenticationFailed 认证失败</li>
+<li>  NotAuthenticated 尚未认证</li>
+<li>  PermissionDenied 权限决绝</li>
+<li>  NotFound 未找到</li>
+<li>  MethodNotAllowed 请求方式不支持</li>
+<li>  NotAcceptable 要获取的数据格式不支持</li>
+<li>  Throttled 超过限流次数</li>
+<li>  ValidationError 校验失败</li>
+</ul>
+</blockquote>
+<p>也就是说，很多的没有在上面列出来的异常，就需要我们在自定义异常中自己处理了。</p>
+<h3 id="8-自动生成接口文档"><a href="#8-自动生成接口文档" class="headerlink" title="8. 自动生成接口文档"></a>8. 自动生成接口文档</h3><blockquote>
+<p>REST framework 可以自动帮助我们生成接口文档。</p>
+<p>接口文档以网页的方式呈现。</p>
+<p>自动接口文档能生成的是继承自<code>APIView</code>及其子类的视图。</p>
+</blockquote>
+<h3 id="11-8-1-安装依赖"><a href="#11-8-1-安装依赖" class="headerlink" title="11.8.1. 安装依赖"></a>11.8.1. 安装依赖</h3><p>REST framewrok生成接口文档需要<code>coreapi</code>库的支持。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">pip install coreapi<br></code></pre></td></tr></table></figure>
+
+<h3 id="11-8-2-设置接口文档访问路径"><a href="#11-8-2-设置接口文档访问路径" class="headerlink" title="11.8.2. 设置接口文档访问路径"></a>11.8.2. 设置接口文档访问路径</h3><p>在总路由中添加接口文档路径。</p>
+<p>文档路由对应的视图配置为<code>rest_framework.documentation.include_docs_urls</code>，</p>
+<p>参数<code>title</code>为接口文档网站的标题。总路由，代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> rest_framework.documentation <span class="hljs-keyword">import</span> include_docs_urls<br><br>urlpatterns = [<br>    ...<br>    path(<span class="hljs-string">&#x27;docs/&#x27;</span>, include_docs_urls(title=<span class="hljs-string">&#x27;站点页面标题&#x27;</span>))<br>]<br></code></pre></td></tr></table></figure>
+
+<p>在settings.py中配置接口文档。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">REST_FRAMEWORK = &#123;<br>    <span class="hljs-comment"># 。。。 其他选项</span><br>    <span class="hljs-comment"># 接口文档</span><br>    <span class="hljs-string">&#x27;DEFAULT_SCHEMA_CLASS&#x27;</span>: <span class="hljs-string">&#x27;rest_framework.schemas.AutoSchema&#x27;</span>,<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="11-8-3-文档描述说明的定义位置"><a href="#11-8-3-文档描述说明的定义位置" class="headerlink" title="11.8.3. 文档描述说明的定义位置"></a>11.8.3. 文档描述说明的定义位置</h3><p>1） 单一方法的视图，可直接使用类视图的文档字符串，如</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">BookListView</span>(generics.ListAPIView):<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    返回所有图书信息.</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>2）包含多个方法的视图，在类视图的文档字符串中，分开方法定义，如</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">BookListCreateView</span>(generics.ListCreateAPIView):<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    get:</span><br><span class="hljs-string">    返回所有图书信息.</span><br><span class="hljs-string"></span><br><span class="hljs-string">    post:</span><br><span class="hljs-string">    新建图书.</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>3）对于视图集ViewSet，仍在类视图的文档字符串中封开定义，但是应使用action名称区分，如</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">BookInfoViewSet</span>(mixins.ListModelMixin, mixins.RetrieveModelMixin, GenericViewSet):<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    list:</span><br><span class="hljs-string">    返回图书列表数据</span><br><span class="hljs-string"></span><br><span class="hljs-string">    retrieve:</span><br><span class="hljs-string">    返回图书详情数据</span><br><span class="hljs-string"></span><br><span class="hljs-string">    latest:</span><br><span class="hljs-string">    返回最新的图书数据</span><br><span class="hljs-string"></span><br><span class="hljs-string">    read:</span><br><span class="hljs-string">    修改图书的阅读量</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="11-8-4-访问接口文档网页"><a href="#11-8-4-访问接口文档网页" class="headerlink" title="11.8.4. 访问接口文档网页"></a>11.8.4. 访问接口文档网页</h3><p>浏览器访问 127.0.0.1:8000/docs/，即可看到自动生成的接口文档。<br><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/20230427154626.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>swagger 接口文档<br><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/20230427154712.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>两点说明：</p>
+<p>1） 视图集ViewSet中的retrieve名称，在接口文档网站中叫做read</p>
+<p>2）参数的Description需要在模型类或序列化器类的字段中以help_text选项定义，如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Student</span>(models.Model):<br>    ...<br>    age = models.IntegerField(default=<span class="hljs-number">0</span>, verbose_name=<span class="hljs-string">&#x27;年龄&#x27;</span>, help_text=<span class="hljs-string">&#x27;年龄&#x27;</span>)<br>    ...<br></code></pre></td></tr></table></figure>
+
+<p>或</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">StudentSerializer</span>(serializers.ModelSerializer):<br>    <span class="hljs-keyword">class</span> <span class="hljs-title class_">Meta</span>:<br>        model = Student<br>        fields = <span class="hljs-string">&quot;__all__&quot;</span><br>        extra_kwargs = &#123;<br>            <span class="hljs-string">&#x27;age&#x27;</span>: &#123;<br>                <span class="hljs-string">&#x27;required&#x27;</span>: <span class="hljs-literal">True</span>,<br>                <span class="hljs-string">&#x27;help_text&#x27;</span>: <span class="hljs-string">&#x27;年龄&#x27;</span><br>            &#125;<br>        &#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><blockquote>
+<p><font color="#ff0000">本文参考了以下文档和视频结合个人感悟记录，若有侵权无意冒犯，及时联系进行处理。如果有看不懂本文的，可以移步查看更加详细的教程文档或者观看相关视频，支持原创作者。 </font></p>
 </blockquote>
 <ol>
 <li><a target="_blank" rel="noopener" href="http://www.yuan316.com/post/DRF/">DRF | YUAN</a></li>
