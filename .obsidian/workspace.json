@@ -70,24 +70,10 @@
   "right": {
     "id": "ef878eb90911b56c",
     "type": "split",
-    "children": [
-      {
-        "id": "453e9c0b8b514322",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "f3b455151e44a425",
-            "type": "leaf",
-            "state": {
-              "type": "git-view",
-              "state": {}
-            }
-          }
-        ]
-      }
-    ],
+    "children": [],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -105,17 +91,18 @@
   },
   "active": "61dc10b0e925b3c3",
   "lastOpenFiles": [
+    "source/_posts/前后端开发/Html5_Css_Js.md",
+    "source/_posts/前后端开发/uni-app.md",
+    "source/_posts/前后端开发/Vue.md",
     "source/about/index.md",
+    "source/_posts/机器学习/ML_DL.md",
     "source/_posts/前后端开发/DRF.md",
     "source/_posts/前后端开发/网页开发.md",
     "未命名.md",
     "2023-04-26.md",
     "public/2023/04/fbae7fa42803.html",
-    "source/_posts/前后端开发/Vue.md",
-    "source/_posts/前后端开发/uni-app.md",
     "public/tags/uni-app/index.html",
     "public/tags/uni-app",
-    "source/_posts/前后端开发/Html5_Css_Js.md",
     "public/2023/04/3dbbbdf5122f.html",
     "public/2023/04/5d72eb9cc9af.html",
     "public/tags/vue/index.html",
@@ -141,7 +128,6 @@
     "ce.md",
     "source/_posts/课程学习/商品管理系统实战.md",
     "source/_posts/英语学习/考研单词.md",
-    "source/_posts/课程学习/Synthesis_Command.md",
     "未命名 1.canvas",
     "Pasted image 20230320194157.png",
     "source/_posts/未命名.canvas"
