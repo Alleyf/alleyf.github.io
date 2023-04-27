@@ -20,8 +20,7 @@
               }
             }
           }
-        ],
-        "stacked": true
+        ]
       }
     ],
     "direction": "vertical"
@@ -70,24 +69,10 @@
   "right": {
     "id": "ef878eb90911b56c",
     "type": "split",
-    "children": [
-      {
-        "id": "1da0519e317c3166",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "d597751b85212145",
-            "type": "leaf",
-            "state": {
-              "type": "git-view",
-              "state": {}
-            }
-          }
-        ]
-      }
-    ],
+    "children": [],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
