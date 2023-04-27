@@ -679,3 +679,5 @@ class BookView(ModelViewSet):
 
  1. [DRF | YUAN](http://www.yuan316.com/post/DRF/)
  2. [21 DRF应用的认证组件\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1z5411D7BQ/?p=21&spm_id_from=pageDriver&vd_source=9c896fa9c3f9023797e8efe7be0c113e)
+
+{% mmedia "meting" "auto= https://y.qq.com/n/ryqq/song/003kIhRR4Vr0cV.html" "autoplay: true" %}

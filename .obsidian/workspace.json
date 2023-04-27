@@ -43,19 +43,8 @@
                 "file": "source/_posts/前后端开发/DRF.md"
               }
             }
-          },
-          {
-            "id": "310e3b81d5e438f9",
-            "type": "leaf",
-            "state": {
-              "type": "search",
-              "state": {
-                "query": "tag:#路由"
-              }
-            }
           }
-        ],
-        "currentTab": 1
+        ]
       },
       {
         "id": "52a7943f31adb7dc",
@@ -116,6 +105,7 @@
   },
   "active": "61dc10b0e925b3c3",
   "lastOpenFiles": [
+    "source/about/index.md",
     "source/_posts/前后端开发/DRF.md",
     "source/_posts/前后端开发/网页开发.md",
     "未命名.md",
@@ -135,7 +125,6 @@
     "public/2023/04/60c00aba037a.html",
     "public/2023/04",
     "public/archives/2023/04/index.html",
-    "source/about/index.md",
     "未命名.canvas",
     "source/_posts/机器学习/CV/图像分类.md",
     "未命名看板.md",
