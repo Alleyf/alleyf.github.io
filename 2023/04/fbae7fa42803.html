@@ -29,7 +29,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/20230427154626.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/20230427154712.png">
 <meta property="article:published_time" content="2023-04-25T11:29:25.000Z">
-<meta property="article:modified_time" content="2023-04-27T08:58:14.493Z">
+<meta property="article:modified_time" content="2023-04-27T09:09:52.606Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="Django">
 <meta name="twitter:card" content="summary_large_image">
@@ -334,7 +334,7 @@
               <p class="note note-info">
                 
                   
-                    Last updated on 8 minutes ago
+                    Last updated on 7 hours ago
                   
                 
               </p>
@@ -728,10 +728,10 @@
 <p>接口文档以网页的方式呈现。</p>
 <p>自动接口文档能生成的是继承自<code>APIView</code>及其子类的视图。</p>
 </blockquote>
-<h3 id="11-8-1-安装依赖"><a href="#11-8-1-安装依赖" class="headerlink" title="11.8.1. 安装依赖"></a>11.8.1. 安装依赖</h3><p>REST framewrok生成接口文档需要<code>coreapi</code>库的支持。</p>
+<h4 id="1-安装依赖"><a href="#1-安装依赖" class="headerlink" title="1. 安装依赖"></a>1. 安装依赖</h4><p>REST framewrok生成接口文档需要<code>coreapi</code>库的支持。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">pip install coreapi<br></code></pre></td></tr></table></figure>
 
-<h3 id="11-8-2-设置接口文档访问路径"><a href="#11-8-2-设置接口文档访问路径" class="headerlink" title="11.8.2. 设置接口文档访问路径"></a>11.8.2. 设置接口文档访问路径</h3><p>在总路由中添加接口文档路径。</p>
+<h4 id="2-设置接口文档访问路径"><a href="#2-设置接口文档访问路径" class="headerlink" title="2. 设置接口文档访问路径"></a>2. 设置接口文档访问路径</h4><p>在总路由中添加接口文档路径。</p>
 <p>文档路由对应的视图配置为<code>rest_framework.documentation.include_docs_urls</code>，</p>
 <p>参数<code>title</code>为接口文档网站的标题。总路由，代码：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> rest_framework.documentation <span class="hljs-keyword">import</span> include_docs_urls<br><br>urlpatterns = [<br>    ...<br>    path(<span class="hljs-string">&#x27;docs/&#x27;</span>, include_docs_urls(title=<span class="hljs-string">&#x27;站点页面标题&#x27;</span>))<br>]<br></code></pre></td></tr></table></figure>
@@ -739,7 +739,7 @@
 <p>在settings.py中配置接口文档。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">REST_FRAMEWORK = &#123;<br>    <span class="hljs-comment"># 。。。 其他选项</span><br>    <span class="hljs-comment"># 接口文档</span><br>    <span class="hljs-string">&#x27;DEFAULT_SCHEMA_CLASS&#x27;</span>: <span class="hljs-string">&#x27;rest_framework.schemas.AutoSchema&#x27;</span>,<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h3 id="11-8-3-文档描述说明的定义位置"><a href="#11-8-3-文档描述说明的定义位置" class="headerlink" title="11.8.3. 文档描述说明的定义位置"></a>11.8.3. 文档描述说明的定义位置</h3><p>1） 单一方法的视图，可直接使用类视图的文档字符串，如</p>
+<h4 id="3-文档描述说明的定义位置"><a href="#3-文档描述说明的定义位置" class="headerlink" title="3. 文档描述说明的定义位置"></a>3. 文档描述说明的定义位置</h4><p>1） 单一方法的视图，可直接使用类视图的文档字符串，如</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">BookListView</span>(generics.ListAPIView):<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    返回所有图书信息.</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br></code></pre></td></tr></table></figure>
 
 <p>2）包含多个方法的视图，在类视图的文档字符串中，分开方法定义，如</p>
@@ -748,7 +748,7 @@
 <p>3）对于视图集ViewSet，仍在类视图的文档字符串中封开定义，但是应使用action名称区分，如</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">BookInfoViewSet</span>(mixins.ListModelMixin, mixins.RetrieveModelMixin, GenericViewSet):<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    list:</span><br><span class="hljs-string">    返回图书列表数据</span><br><span class="hljs-string"></span><br><span class="hljs-string">    retrieve:</span><br><span class="hljs-string">    返回图书详情数据</span><br><span class="hljs-string"></span><br><span class="hljs-string">    latest:</span><br><span class="hljs-string">    返回最新的图书数据</span><br><span class="hljs-string"></span><br><span class="hljs-string">    read:</span><br><span class="hljs-string">    修改图书的阅读量</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br></code></pre></td></tr></table></figure>
 
-<h3 id="11-8-4-访问接口文档网页"><a href="#11-8-4-访问接口文档网页" class="headerlink" title="11.8.4. 访问接口文档网页"></a>11.8.4. 访问接口文档网页</h3><p>浏览器访问 127.0.0.1:8000/docs/，即可看到自动生成的接口文档。<br><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/20230427154626.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="4-访问接口文档网页"><a href="#4-访问接口文档网页" class="headerlink" title="4. 访问接口文档网页"></a>4. 访问接口文档网页</h4><p>浏览器访问 127.0.0.1:8000/docs/，即可看到自动生成的接口文档。<br><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/20230427154626.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p>swagger 接口文档<br><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/20230427154712.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p>两点说明：</p>
 <p>1） 视图集ViewSet中的retrieve名称，在接口文档网站中叫做read</p>
