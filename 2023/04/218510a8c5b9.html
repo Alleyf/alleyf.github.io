@@ -18,24 +18,27 @@
   <meta name="author" content="alleyf">
   <meta name="keywords" content="">
   
-    <meta name="description" content="it is some basic usage of uni-app .">
+    <meta name="description" content="it is some basic usage of SpringBoot .">
 <meta property="og:type" content="article">
-<meta property="og:title" content="初识 uni-app">
-<meta property="og:url" content="https://alleyf.github.io/2023/04/5d72eb9cc9af.html">
+<meta property="og:title" content="SpringBoot启示录">
+<meta property="og:url" content="https://alleyf.github.io/2023/04/218510a8c5b9.html">
 <meta property="og:site_name" content="alleyf">
-<meta property="og:description" content="it is some basic usage of uni-app .">
+<meta property="og:description" content="it is some basic usage of SpringBoot .">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-04-16T08:49:22.000Z">
-<meta property="article:modified_time" content="2023-04-20T16:23:25.932Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/20230428173445.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/20230428185132.png">
+<meta property="article:published_time" content="2023-04-28T08:37:54.000Z">
+<meta property="article:modified_time" content="2023-04-28T10:53:47.234Z">
 <meta property="article:author" content="alleyf">
-<meta property="article:tag" content="uni-app">
+<meta property="article:tag" content="SpringBoot">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/20230428173445.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>初识 uni-app - alleyf</title>
+  <title>SpringBoot启示录 - alleyf</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -240,7 +243,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="初识 uni-app"></span>
+            <span id="subtitle" data-typed-text="SpringBoot启示录"></span>
           
         </div>
 
@@ -256,8 +259,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-04-16 16:49" pubdate>
-          April 16, 2023 pm
+        <time datetime="2023-04-28 16:37" pubdate>
+          April 28, 2023 pm
         </time>
       </span>
     
@@ -268,7 +271,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          863 words
+          4.4k words
         
       </span>
     
@@ -279,7 +282,7 @@
         
         
         
-          8 mins
+          37 mins
         
       </span>
     
@@ -325,12 +328,12 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">初识 uni-app</h1>
+            <h1 style="display: none">SpringBoot启示录</h1>
             
               <p class="note note-info">
                 
                   
-                    Last updated on 8 days ago
+                    Last updated on a few seconds ago
                   
                 
               </p>
@@ -338,115 +341,93 @@
             
               <div class="markdown-body">
                 
-                <h1 id="快速上手"><a href="#快速上手" class="headerlink" title="快速上手"></a>快速上手</h1><blockquote>
-<p>知识点：网络请求、模板语法、打开页面和页面传参。</p>
+                <h1 id="1-开发环境热部署"><a href="#1-开发环境热部署" class="headerlink" title="1.开发环境热部署"></a>1.开发环境热部署</h1><h2 id="1-说明"><a href="#1-说明" class="headerlink" title="1. 说明"></a>1. 说明</h2><blockquote>
+<ol>
+<li>在实际的项目开发调试过程中会频繁地修改后台类文件，导致需要重新编译、重新启动，整个过程非常麻烦，影响开发效率。<ol start="2">
+<li>Spring Boot 提供了 spring-boot-devtools 组件，使得无须手动重启 SpringBoot 应用即可重新编译、启动项目，大大缩短编译启动的时间。devtools 会监听 classpath 下的文件变动，触发 Restart 类加载器重新加载该类,从而实现类文件和属性文件的热部署。</li>
+<li>并不是所有的更改都需要重启应用 (如静态资源、视图模板)，可以通过设置spring. devtools. restart. exclude 属性来指定一些文件或目录的修改不用重启应用</li>
+</ol>
+</li>
+</ol>
 </blockquote>
-<h1 id="基础组件"><a href="#基础组件" class="headerlink" title="基础组件"></a>基础组件</h1><blockquote>
-<p>基础组件分为以下十几大类：</p>
+<h2 id="2-配置"><a href="#2-配置" class="headerlink" title="2. 配置"></a>2. 配置</h2><blockquote>
+<p>在 <strong>pom. xml</strong> 配置文件中添加 <strong>dev-tools 依赖</strong>。<br>使用 <strong>optional=true</strong> 表示依赖<strong>不会传递</strong>，即该项目依赖 devtools; 其他项目如果引入此项目生成的 JAR 包，则不会包含 devtools</p>
 </blockquote>
-<h2 id="视图容器（View-Container）："><a href="#视图容器（View-Container）：" class="headerlink" title="视图容器（View Container）："></a>视图容器（View Container）：</h2><blockquote>
-<p>[!NOTE] 组件</p>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/view">view</a></p>
-<p>视图容器，类似于HTML中的div</p>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/scroll-view">scroll-view</a></p>
-<p>可滚动视图容器</p>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/swiper">swiper</a></p>
-<p>滑块视图容器，比如用于轮播banner</p>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/match-media">match-media</a></p>
-<p>屏幕动态适配组件，比如窄屏上不显示某些内容</p>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/movable-view#movable-area">movable-area</a></p>
-<p>可拖动区域</p>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/movable-view#movable-view">movable-view</a></p>
-<p>可移动的视图容器，在页面中可以拖拽滑动或双指缩放。movable-view必须在movable-area组件中</p>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/cover-view#cover-view">cover-view</a></p>
-<p>可覆盖在原生组件的上的文本组件</p>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/cover-view#cover-image">cover-image</a></p>
-<p>可覆盖在原生组件的上的图片组件</p>
+<h3 id="1-pom-xml"><a href="#1-pom-xml" class="headerlink" title="1.pom. xml"></a>1.pom. xml</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java">&lt;dependency&gt;<br>	&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;<br>	&lt;artifactId&gt;spring-boot-devtools&lt;/artifactId&gt;<br>	&lt;optional&gt;<span class="hljs-literal">true</span>&lt;/optional&gt;<br>&lt;/dependency&gt;<br></code></pre></td></tr></table></figure>
+<h3 id="2-application-properties"><a href="#2-application-properties" class="headerlink" title="2. application. properties"></a>2. application. properties</h3><blockquote>
+<p>在 application. properties 中配置 <strong>devtools.</strong></p>
 </blockquote>
-<h2 id="基础内容（Basic-Content）："><a href="#基础内容（Basic-Content）：" class="headerlink" title="基础内容（Basic Content）："></a>基础内容（Basic Content）：</h2><blockquote>
-<p>[!NOTE] 组件</p>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/icon">icon</a></p>
-<p>图标</p>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/text">text</a></p>
-<p>文字</p>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/rich-text">rich-text</a></p>
-<p>富文本显示组件</p>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/progress">progress</a></p>
-<p>进度条</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java">#热部署生效<br>spring.devtools.restart.enabLed=<span class="hljs-literal">true</span><br>#设置重启目录<br>spring.devtooLs.restart.additional-paths=src/main/java<br>#设置classpath目录下的 WEB-INF 文件夹内容修改不重启<br>spring.devtooLs.restart.exclude=<span class="hljs-keyword">static</span><span class="hljs-comment">/**</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>如果使用了<span style="background:rgba(240, 200, 0, 0.2)"> Eclipse</span>, 那么在修改完代码并保存之后，项目将自动编译并触发重启，而如果使用了 <span style="background:rgba(160, 204, 246, 0.55)">IntelliJ IDEA</span>, 还需要配置项目自动编译。</li>
+<li>打开<font color="#245bdb"> Settings </font>页面，在左边的菜单栏依次找到Build, Execution, Deployment-→Compile, 勾选 <font color="#ffc000">Build project automatically</font></li>
+<li>按 <font color="#4bacc6">Ctrl+ Shift+ Alt+ /</font>快捷键调出 Maintenance 页面，单击 <font color="#9bbb59">Registry</font>, 勾选<font color="#8064a2">compiler.automake.allow.when.app.running </font>复选框 (可能找不到，修改设置为下图即可解决)。</li>
+<li>做完这两步配置之后，若开发者再次在 IntelliJ IDEA 中修改代码，则项目会自动重启。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/20230428173445.png" srcset="/img/loading.gif" lazyload alt="image.png|425"></p>
+<h1 id="2-控制器"><a href="#2-控制器" class="headerlink" title="2. 控制器"></a>2. 控制器</h1><blockquote>
+<ol>
+<li>Spring Boot 提供了<font color="#f79646">@Controller</font> 和<font color="#c0504d">@RestController</font> 两种注解来标识此类负责<span style="background:rgba(240, 107, 5, 0.2)">接收和处理 HTTP 请求</span>。</li>
+<li>如果请求的是<font color="#00b0f0">页面和数据</font>，使用<font color="#0070c0">@Controller </font>注解即可; 如果只是请求<font color="#ff0000">数据</font>,则可以使用<font color="#c00000">@RestController </font>注解。</li>
+</ol>
 </blockquote>
-<h2 id="表单组件（Form）："><a href="#表单组件（Form）：" class="headerlink" title="表单组件（Form）："></a>表单组件（Form）：</h2><blockquote>
-<p>[!NOTE] 组件</p>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/button">button</a></p>
-<p>按钮</p>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/checkbox">checkbox</a></p>
-<p>多项选择器</p>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/editor">editor</a></p>
-<p>富文本输入框</p>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/form">form</a></p>
-<p>表单</p>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/input">input</a></p>
-<p>输入框</p>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/label">label</a></p>
-<p>标签</p>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/picker">picker</a></p>
-<p>弹出式列表选择器</p>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/picker-view">picker-view</a></p>
-<p>窗体内嵌式列表选择器</p>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/radio">radio</a></p>
-<p>单项选择器</p>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/slider">slider</a></p>
-<p>滑动选择器</p>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/switch">switch</a></p>
-<p>开关选择器</p>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/textarea">textarea</a></p>
-<p>多行文本输入框</p>
+<h2 id="1-demo"><a href="#1-demo" class="headerlink" title="1.demo"></a>1.demo</h2><p>@ RestController 的用法<br>默认情况下，@RestController 注解会将返回的对象数据转换为 <strong>JSON 格式</strong>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RestController</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">HelloController</span> &#123;<br>	<span class="hljs-meta">@RequestMapping</span> (<span class="hljs-string">&quot;/user&quot;</span>)<br>	<span class="hljs-keyword">public</span> User <span class="hljs-title function_">getUser</span> <span class="hljs-params">()</span>&#123;<br>		<span class="hljs-type">User</span> <span class="hljs-variable">user</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">User</span>();<br>		user.setUsername (<span class="hljs-string">&quot;zhangsan&quot;</span>);<br>		user.setPassword (<span class="hljs-string">&quot;123&quot;</span>) ;<br>		<span class="hljs-keyword">return</span> user;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="2-路由映射"><a href="#2-路由映射" class="headerlink" title="2.路由映射"></a>2.路由映射</h2><blockquote>
+<p>@RequestMapping 注解主要负责 URL 的路由映射。它可以添加Controller类或者具体的方法上。<br>如果添加在 Controller 类上，则这个 Controller 中的所有路由映射都将会加上此映射规则，如果添加在方法上，则只对当前方法生效。<br>@RequestMapping 注解包含很多属性参数来定义 HTTP 的请求映射规则。常用的属性参数如下:<br><span style="background:#d3f8b6">- value: 请求 URL 的路径, 支持 URL 模板、正则表达式</span><br><span style="background:#d3f8b6">- method: HTTP 请求方法</span></p>
 </blockquote>
-<h2 id="路由与页面跳转（Navigation）："><a href="#路由与页面跳转（Navigation）：" class="headerlink" title="路由与页面跳转（Navigation）："></a>路由与页面跳转（Navigation）：</h2><blockquote>
-<p>[!NOTE] 组件<br><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/navigator">navigator</a></p>
-<p>页面链接。类似于HTML中的a标签</p>
-<h2 id="媒体组件（Media）："><a href="#媒体组件（Media）：" class="headerlink" title="媒体组件（Media）："></a>媒体组件（Media）：</h2><p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/audio">audio</a></p>
-<p>音频</p>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/camera">camera</a></p>
-<p>相机</p>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/image">image</a></p>
-<p>图片</p>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/video">video</a></p>
-<p>视频</p>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/live-player">live-player</a></p>
-<p>直播播放</p>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/live-pusher">live-pusher</a></p>
-<p>实时音视频录制，也称直播推流</p>
+<ul>
+<li>consumes:请求的媒体类型 (Content- Type)，如 application/json</li>
+<li>produces: 响应的媒体类型<br><span style="background:#d3f8b6">- params, headers: 请求的参数及请求头的值</span></li>
+</ul>
+<h3 id="1-路由规则"><a href="#1-路由规则" class="headerlink" title="1. 路由规则"></a>1. 路由规则</h3><ol>
+<li>@RequestMapping 的 <font color="#0070c0">value </font>属性用于<font color="#0070c0">匹配 URL 映射</font>，value 支持简单表达式</li>
+<li>@RequestMapping (“/user”)</li>
+<li>@RequestMapping 支持使用通配符匹配 URL，用于统一映射某些 URL 规则类似的请求: @RequestMapping (“/getJson/*. json”), 当在浏览器中请求/getJson/a.json 或者/getJson/b.json 时都会匹配到后台的 Json 方法</li>
+<li>@RequestMapping 的通配符匹配非常简单实用，支持**<span style="background:#b1ffff">“*“  “?” “**“</span>** 等通配符</li>
+<li>符号<font color="#ffc000"> “*“ </font>匹配<font color="#ffc000">任意字符</font>，符号 <font color="#00b050">“**“</font> 匹配<font color="#00b050">任意路径</font>，符号<font color="#00b0f0"> “?” </font>匹配<font color="#0070c0">单个字符</font>。有通配符的优先级低于没有通配符的，比如/user/addjson 比/user/* .json 优先匹配。有“**” 通配符的优先级低于有”*“ 通配符的。</li>
+</ol>
+<h3 id="2-Method-匹配"><a href="#2-Method-匹配" class="headerlink" title="2. Method 匹配"></a>2. Method 匹配</h3><ul>
+<li>HTTP 请求 Method 有 <span style="background:#affad1">GET、POST、 PUT、DELETE </span>等方式。HTTP 支持的全部Method</li>
+<li>@RequestMapping 注解提供了 method 参数指定请求的 Method 类型，包括<span style="background:rgba(205, 244, 105, 0.55)">RequestMethod. GET、RequestMethod. POST、RequestMethod.DELETE、RequestMethod. PUT</span> 等值，分别对应 HTTP 请求的 Method<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RequestMapping</span> (value = <span class="hljs-string">&quot;/getData&quot;</span> , method = RequestMethod.GET)<br><span class="hljs-keyword">public</span> String <span class="hljs-title function_">getData</span> <span class="hljs-params">()</span>&#123;<br>	<span class="hljs-keyword">return</span> <span class="hljs-string">&quot;hello&quot;</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+Method 匹配也可以使用<span style="background:rgba(3, 135, 102, 0.2)">@GetMapping、@PostMapping </span>等注解代替。</li>
+</ul>
+<h3 id="3-参数传递"><a href="#3-参数传递" class="headerlink" title="3. 参数传递"></a>3. 参数传递</h3><h4 id="1-get-请求"><a href="#1-get-请求" class="headerlink" title="1. get 请求"></a>1. get 请求</h4><blockquote>
+<p>视图函数定义 query_params 路由参数，函数体内可以直接获取该参数。</p>
 </blockquote>
-<h2 id="地图（Map）："><a href="#地图（Map）：" class="headerlink" title="地图（Map）："></a>地图（Map）：</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/map">map</a></p>
-<p>地图</p>
-</blockquote>
-<h2 id="画布（Canvas）："><a href="#画布（Canvas）：" class="headerlink" title="画布（Canvas）："></a>画布（Canvas）：</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/canvas">canvas</a></p>
-<p>画布</p>
-</blockquote>
-<h2 id="webview（Web-view）："><a href="#webview（Web-view）：" class="headerlink" title="webview（Web-view）："></a>webview（Web-view）：</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/web-view">web-view</a></p>
-<p>web浏览器组件</p>
-</blockquote>
+<p>demo：</p>
+<p>方式 1 同参（参数可有可无都能成功响应）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RestController</span>  <br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">HelloController</span> &#123;  <br><span class="hljs-comment">// get注解  </span><br><span class="hljs-meta">@RequestMapping(value = &quot;/index1&quot;,method = RequestMethod.GET)</span><br><span class="hljs-comment">// @GetMapping(&quot;/index1&quot;)  </span><br><span class="hljs-keyword">public</span> String <span class="hljs-title function_">hello1</span><span class="hljs-params">(String name)</span>&#123;  <br>	<span class="hljs-keyword">return</span> <span class="hljs-string">&quot;欢迎您：&quot;</span>+name;  <br>&#125;  <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>方式 2 不同参（参数必须携带，否则 400 错误响应）</p>
 <blockquote>
-<h2 id="广告"><a href="#广告" class="headerlink" title="广告"></a>广告</h2><p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/ad">ad</a></p>
-<p>广告组件</p>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/ad-draw">ad-draw</a></p>
-<p>沉浸视频流广告组件</p>
+<p>将参数 usrname 映射为 name，默认<font color="#0070c0"> require=true</font>（必须携带参数否则报错），设置为 false 可以<font color="#6425d0">不携带参数访问</font><br><code>public String hello2(@RequestParam(value = &quot;usrname&quot;,required = false) String name)</code></p>
 </blockquote>
-<h2 id="页面属性配置"><a href="#页面属性配置" class="headerlink" title="页面属性配置"></a>页面属性配置</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/custom-tab-bar">custom-tab-bar</a></p>
-<p>底部tabbar自定义组件</p>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/navigation-bar">navigation-bar</a></p>
-<p>页面顶部导航</p>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/page-meta">page-meta</a></p>
-<p>页面属性配置节点</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RequestMapping(value = &quot;/index2&quot;,method = RequestMethod.GET)</span>  <br><span class="hljs-comment">// @GetMapping(&quot;/index&quot;)  </span><br><span class="hljs-keyword">public</span> String <span class="hljs-title function_">hello2</span><span class="hljs-params">(<span class="hljs-meta">@RequestParam(&quot;usrname&quot;)</span> String name)</span>&#123;  <br><span class="hljs-keyword">return</span> <span class="hljs-string">&quot;欢迎您：&quot;</span>+name;  <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="2-Post-请求"><a href="#2-Post-请求" class="headerlink" title="2.Post 请求"></a>2.Post 请求</h4><h5 id="1-urlencode-格式数据"><a href="#1-urlencode-格式数据" class="headerlink" title="1. urlencode 格式数据"></a>1. urlencode 格式数据</h5><p>方式 1 直接传数据：</p>
+<blockquote>
+<p>适合参数少的情景</p>
 </blockquote>
-<h2 id="uniCloud"><a href="#uniCloud" class="headerlink" title="uniCloud"></a>uniCloud</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/uniCloud/unicloud-db">unicloud-db组件</a></p>
-<p>uniCloud数据库访问和操作组件</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@PostMapping(&quot;login/&quot;)</span>  <br>	<span class="hljs-keyword">public</span> String <span class="hljs-title function_">login</span><span class="hljs-params">(String name,String pwd)</span>&#123;  <br>	System.out.println(<span class="hljs-string">&quot;name:&quot;</span>+name);  <br>	System.out.println(<span class="hljs-string">&quot;pwd:&quot;</span>+pwd);  <br>	<span class="hljs-keyword">return</span> name!=<span class="hljs-literal">null</span> &amp;&amp; pwd!=<span class="hljs-literal">null</span> ? <span class="hljs-string">&quot;登陆成功&quot;</span> : <span class="hljs-string">&quot;登陆失败&quot;</span>;  <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>方式 2 对象传数据：</p>
+<blockquote>
+<p>适合参数多的情景，<font color="#6425d0">User 为实体类</font></p>
 </blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@PostMapping(&quot;login2/&quot;)</span>  <br><span class="hljs-keyword">public</span> String <span class="hljs-title function_">login2</span><span class="hljs-params">(User user)</span> &#123;  <br>System.out.println(<span class="hljs-string">&quot;name:&quot;</span> + user.getUsername());  <br>System.out.println(<span class="hljs-string">&quot;pwd:&quot;</span> + user.getPassword());  <br>System.out.println(user);  <br><span class="hljs-keyword">return</span> user.getUsername() != <span class="hljs-literal">null</span> &amp;&amp; user.getPassword() != <span class="hljs-literal">null</span> ? <span class="hljs-string">&quot;登陆成功&quot;</span> : <span class="hljs-string">&quot;登陆失败&quot;</span>;  <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>[!NOTE] Tips<br><span style="background:#ff4d4f">上述两种方式，发送的 data 数据必须经过 urlencode 编码，否则接收不到。</span></p>
+</blockquote>
+<h5 id="2-json-格式数据"><a href="#2-json-格式数据" class="headerlink" title="2. json 格式数据"></a>2. json 格式数据</h5><blockquote>
+<p>需要给视图函数形参中添加注解<font color="#245bdb">@RequestBody</font></p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@PostMapping(&quot;login3/&quot;)</span>  <br><span class="hljs-keyword">public</span> String <span class="hljs-title function_">login3</span><span class="hljs-params">(<span class="hljs-meta">@RequestBody</span> User user)</span> &#123;  <br>	System.out.println(<span class="hljs-string">&quot;name:&quot;</span> + user.getUsername());  <br>	System.out.println(<span class="hljs-string">&quot;pwd:&quot;</span> + user.getPassword());  <br>	System.out.println(user);  <br>	<span class="hljs-keyword">return</span> user.getUsername() != <span class="hljs-literal">null</span> &amp;&amp; user.getPassword() != <span class="hljs-literal">null</span> ? <span class="hljs-string">&quot;登陆成功&quot;</span> : <span class="hljs-string">&quot;登陆失败&quot;</span>;  <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/20230428185132.png" srcset="/img/loading.gif" lazyload alt="image.png|500"></p>
 
                 
               </div>
@@ -480,7 +461,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/uni-app/">#uni-app</a>
+        <a href="/tags/SpringBoot/">#SpringBoot</a>
       
     </div>
   
@@ -492,8 +473,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>初识 uni-app</div>
-      <div>https://alleyf.github.io/2023/04/5d72eb9cc9af.html</div>
+      <div>SpringBoot启示录</div>
+      <div>https://alleyf.github.io/2023/04/218510a8c5b9.html</div>
     </div>
     <div class="license-meta">
       
@@ -505,13 +486,13 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>April 16, 2023</div>
+          <div>April 28, 2023</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>Updated on</div>
-          <div>April 21, 2023</div>
+          <div>April 28, 2023</div>
         </div>
       
       <div class="license-meta-item">
@@ -540,18 +521,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/04/fbae7fa42803.html" title="DRF速通">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">DRF速通</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/04/3dbbbdf5122f.html" title="初识Vue">
-                        <span class="hidden-mobile">初识Vue</span>
+                      <a href="/2023/04/fbae7fa42803.html" title="DRF速通">
+                        <span class="hidden-mobile">DRF速通</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -572,7 +547,7 @@
         var options = Object.assign(
           {"clientID":"636f2864e051a199b91c","clientSecret":"5185fd11115bbcd8d2f636bc80de6bed98ed14c1","repo":"Gitalk","owner":"Alleyf","admin":["Alleyf"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":false,"proxy":"https://shielded-brushlands-08810.herokuapp.com/https://github.com/login/oauth/access_token"},
           {
-            id: '22f3a2fe9f819930b3accc4fa272be18'
+            id: '2c17aba5d9cf4d3b5aa470868462f798'
           }
         )
         var gitalk = new Gitalk(options);
