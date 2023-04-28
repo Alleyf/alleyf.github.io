@@ -1,7 +1,7 @@
 ---
 title: SpringBoot启示录
 tags: [SpringBoot]
-categories: Front_end_development
+categories: Java
 date: 2023-04-28 16:37:54
 sticky: 75
 excerpt: it is some basic usage of SpringBoot .
@@ -132,6 +132,17 @@ return "欢迎您："+name;
 }
 ```
 
+通配符匹配路由：
+```java
+@GetMapping("test/*")  // 匹配同级任何路由
+@GetMapping("test/**")  // 匹配任何路由（包括子级）
+public String test() {  
+	return "匹配同级任意路径";  
+}
+```
+
+
+
 #### 2.Post 请求
 
 
@@ -166,7 +177,7 @@ return user.getUsername() != null && user.getPassword() != null ? "登陆成功"
 
 ##### 2. json 格式数据
 
-> 需要给视图函数形参中添加注解<font color="#245bdb">@RequestBody</font>
+> 需要给视图函数形参中添加注解<font color="#245bdb">@RequestBody</font>，且 json data 中的参数键名需要与后端中的实体类的属性并一致。
 
 ```java
 @PostMapping("login3/")  
@@ -179,3 +190,4 @@ public String login3(@RequestBody User user) {
 ```
 
 ![image.png|500](https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/20230428185132.png)
+
