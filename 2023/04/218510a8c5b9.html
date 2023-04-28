@@ -28,7 +28,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/20230428173445.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/20230428185132.png">
 <meta property="article:published_time" content="2023-04-28T08:37:54.000Z">
-<meta property="article:modified_time" content="2023-04-28T10:53:47.234Z">
+<meta property="article:modified_time" content="2023-04-28T10:55:02.669Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="SpringBoot">
 <meta name="twitter:card" content="summary_large_image">
@@ -343,11 +343,9 @@
                 
                 <h1 id="1-开发环境热部署"><a href="#1-开发环境热部署" class="headerlink" title="1.开发环境热部署"></a>1.开发环境热部署</h1><h2 id="1-说明"><a href="#1-说明" class="headerlink" title="1. 说明"></a>1. 说明</h2><blockquote>
 <ol>
-<li>在实际的项目开发调试过程中会频繁地修改后台类文件，导致需要重新编译、重新启动，整个过程非常麻烦，影响开发效率。<ol start="2">
+<li>在实际的项目开发调试过程中会频繁地修改后台类文件，导致需要重新编译、重新启动，整个过程非常麻烦，影响开发效率。</li>
 <li>Spring Boot 提供了 spring-boot-devtools 组件，使得无须手动重启 SpringBoot 应用即可重新编译、启动项目，大大缩短编译启动的时间。devtools 会监听 classpath 下的文件变动，触发 Restart 类加载器重新加载该类,从而实现类文件和属性文件的热部署。</li>
 <li>并不是所有的更改都需要重启应用 (如静态资源、视图模板)，可以通过设置spring. devtools. restart. exclude 属性来指定一些文件或目录的修改不用重启应用</li>
-</ol>
-</li>
 </ol>
 </blockquote>
 <h2 id="2-配置"><a href="#2-配置" class="headerlink" title="2. 配置"></a>2. 配置</h2><blockquote>
