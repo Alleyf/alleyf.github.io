@@ -72,8 +72,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 200
   },
   "right": {
     "id": "ef878eb90911b56c",
@@ -111,8 +110,9 @@
       "cmdr:Obsidian Git: Open source control view": false
     }
   },
-  "active": "7dcaa23c1dda344b",
+  "active": "e019931b538d4aec",
   "lastOpenFiles": [
+    "themes/fluid/source/js/addMusic.js",
     "themes/fluid/source/js/useaplayer.js",
     "themes/fluid/source/js/新建文本文档.txt",
     "public/atom.xml",
@@ -138,7 +138,6 @@
     "未命名.md",
     "2023-04-26.md",
     "public/2023/04/fbae7fa42803.html",
-    "public/tags/uni-app/index.html",
     "source/_posts/前后端开发/algorithm.md",
     "source/_posts/课程学习/软件工程.md",
     "未命名.canvas",
