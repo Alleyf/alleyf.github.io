@@ -202,5 +202,6 @@
   ],
   "obsidian-excalidraw-plugin:save": [],
   "obsidian-pangu:pangu-format": [],
-  "editor:insert-embed": []
+  "editor:insert-embed": [],
+  "editor:toggle-comments": []
 }
