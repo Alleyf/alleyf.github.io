@@ -6,8 +6,8 @@ date: 2023-04-25 19:29:25
 sticky: 75
 excerpt: it is some basic usage of drf .
 ---
->  其他相关文章-> [[网页开发]]
 
+>  其他相关文章-> [[网页开发]]， #DRF #Django
 # 1. api 接口
 目前市面上大部分公司开发人员使用的接口实现规范主要有：restful、RPC。
 RPC（ Remote Procedure Call ）: 翻译成中文:远程过程调用[远程服务调用]. 从字面上理解就是访问/调用远程服务端提供的api接口。这种接口一般以服务或者过程式代码提供。

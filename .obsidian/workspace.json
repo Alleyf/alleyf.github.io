@@ -19,7 +19,13 @@
                 "source": false
               }
             }
-          },
+          }
+        ]
+      },
+      {
+        "id": "33769372cc554db8",
+        "type": "tabs",
+        "children": [
           {
             "id": "76c26627651ac9b4",
             "type": "leaf",
@@ -28,8 +34,7 @@
               "state": {}
             }
           }
-        ],
-        "stacked": true
+        ]
       }
     ],
     "direction": "vertical"
@@ -51,8 +56,19 @@
                 "file": "source/_posts/前后端开发/DRF.md"
               }
             }
+          },
+          {
+            "id": "155a6a4bfb3e1399",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "tag:#DRF"
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       },
       {
         "id": "52a7943f31adb7dc",
