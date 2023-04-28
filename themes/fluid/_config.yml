@@ -1149,3 +1149,17 @@ live2d:
 
 # 图像自动压缩插件
 all_minifier: false
+
+feed:
+  enable: true
+  type: atom
+  path: atom.xml
+  limit: 20
+  hub:
+  content:
+  content_limit: 140
+  content_limit_delim: " "
+  order_by: -date
+  icon: icon.png
+  autodiscovery: true
+  template:

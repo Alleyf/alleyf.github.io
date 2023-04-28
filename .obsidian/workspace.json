@@ -79,27 +79,18 @@
     "type": "split",
     "children": [
       {
-        "id": "3ff67005500f2cb9",
+        "id": "18c2ee9412856208",
         "type": "tabs",
         "children": [
           {
-            "id": "ab935a676f0b5791",
-            "type": "leaf",
-            "state": {
-              "type": "calendar",
-              "state": {}
-            }
-          },
-          {
-            "id": "4fc4d7b866521fd8",
+            "id": "dc54959bf27b85f7",
             "type": "leaf",
             "state": {
               "type": "git-view",
               "state": {}
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -121,6 +112,12 @@
   },
   "active": "7dcaa23c1dda344b",
   "lastOpenFiles": [
+    "public/atom.xml",
+    "themes/fluid/source/img/police_beian.png",
+    "themes/fluid/source/img/loading.gif",
+    "themes/fluid/source/img/fluid.png",
+    "themes/fluid/source/img/default.png",
+    "themes/fluid/source/img/avatar.png",
     "public/2023/04/218510a8c5b9.html",
     "public/archives/2023/page/2/index.html",
     "public/archives/2023/page/2",
@@ -141,7 +138,6 @@
     "public/tags/uni-app/index.html",
     "public/tags/uni-app",
     "public/2023/04/3dbbbdf5122f.html",
-    "public/2023/04/5d72eb9cc9af.html",
     "source/_posts/前后端开发/algorithm.md",
     "source/_posts/课程学习/软件工程.md",
     "未命名.canvas",
