@@ -1164,3 +1164,10 @@ feed:
   icon: icon.png
   autodiscovery: true
   template:
+
+custom_html: 
+              <!--aplayer-->
+              <link rel="stylesheet" href="https://unpkg.com/browse/aplayer@1.10.1/dist/APlayer.min.css">
+              <div id="aplayer"></div>
+              <script src="https://unpkg.com/browse/aplayer@1.10.1/dist/APlayer.min.js"></script>
+              <script src="https://alleyf.github.io/js/useaplayer.js"></script>

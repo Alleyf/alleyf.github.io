@@ -191,3 +191,195 @@ public String login3(@RequestBody User user) {
 
 ![image.png|500](https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/20230428185132.png)
 
+
+# 3. 文件上传
+
+## 1. 静态资源访问
+
+1. 使用 IDEA 创建 Spring Boot 项目，会默认创建出 <font color="#245bdb">classpath:/static/</font>目录, 静态资源一般放在这个目录下即可。
+2. 如果默认的静态资源过滤策略不能满足开发需求，也可以自定义静态资源过滤策略。
+3. 在 <span style="background:#d3f8b6">application. properties </span>中直接定义过滤规则和静态资源位置: 
+- `spring.mvc.static-path-pattern=/static/\*\*` 
+- `spring.web.resources.static-locations=classpath:/static/`
+4. 过滤规则为<font color="#00b0f0">/static/**</font>，静态资源位置为<font color="#00b0f0"> classpath:/static/</font>
+
+```properties
+#设置静态路径过滤规则  
+spring.mvc.static-path-pattern=images/**  
+spring.web.resources.static-locations=classpath:/static/images/
+```
+
+## 2. 文件上传
+
+### 1. 文件上传原理
+
+- 表单的<font color="#ffff00"> enctype 属性</font>规定在发送到服务器之前对表单数据的<font color="#ffff00">编码方式</font>。
+- 当表单的 enctype="<font color="#ffc000">application/x-www-form-urlencoded</font>" (默认)时,
+form 表单中的数据格式为: <font color="#ffc000">key=value&key=value</font>
+- 当表单的 enctype="<font color="#00b0f0">multipart/form-data</font>"时，其传输数据形式如下：
+![image.png|425](https://s2.loli.net/2023/04/28/jh6pWVrx2yZSB43.png)
+
+### 2. 配置文件大小
+
+- Spring Boot 工程嵌入的 tomcat 限制了请求的文件大小，每个文件的配置最大为 1 Mb，单次请求的文件的总数不能大于 10 Mb.
+- 要更改这个默认值需要在配置文件 (如<font color="#00b0f0"> application.properties</font>) 中加入两个配置
+```java
+spring.servlet.multipart.max-file-size=10MB
+spring.servlet.multipart.max-request-size=10MB
+```
+
+> 当表单的 enctype= "<font color="#9bbb59">multipart/form-data</font>“时, 可以使用<font color="#9bbb59"> MultipartFile </font>获取上传的文件数据，再通过 <font color="#9bbb59">transferTo </font>方法将其写入到磁盘中
+
+demo：
+```java
+package com.alleyf.helloworld.controller;  
+  
+import jakarta.servlet.http.HttpServlet;  
+import jakarta.servlet.http.HttpServletRequest;  
+import jakarta.servlet.http.HttpServletResponse;  
+import org.springframework.web.bind.annotation.PostMapping;  
+import org.springframework.web.bind.annotation.RestController;  
+import org.springframework.web.multipart.MultipartFile;  
+  
+import java.io.File;  
+import java.io.IOException;  
+  
+@RestController  
+public class FileUploadController {  
+@PostMapping("/upload")  
+public String upload(String name, MultipartFile avatar, HttpServletRequest request) throws IOException {  
+System.out.println(name);  
+System.out.println("filename:" + avatar.getOriginalFilename());  
+// 获取文件类型  
+System.out.println(avatar.getContentType());  
+// 获取当前程序运行路径，部署时动态改变  
+// String path = request.getServletContext().getRealPath("/upload/");  
+// 固定为本地地址便于测试
+String path = "E:\\IDEAProjects\\helloworld\\src\\main\\resources\\static\\images\\";  
+System.out.println(path);  
+saveFile(avatar, path);  
+return "上传成功";  
+}  
+  
+private void saveFile(MultipartFile avatar, String path) throws IOException {  
+// 获取上传文件夹  
+File dir = new File(path);  
+// 判断文件夹是否存在，不存在则创建  
+if (!dir.exists()) {  
+dir.mkdir();  
+}  
+// 实例化上传文件  
+File file = new File(path + avatar.getOriginalFilename());  
+System.out.println(file.getPath());  
+// 保存上传的文件  
+avatar.transferTo(file);  
+}  
+}
+```
+
+
+## 3. 拦截器
+
+简介：
+> 1. 拦截器在 Web 系统中非常常见，对于某些全局统一-的操作，我们可以把它提取到拦截器中实现。总结起来，拦截器大致有以下几种使用场景:
+> 2. <font color="#7030a0">权限检查:</font> 如登录检测，进入处理程序检测是否登录，如果没有，则直接返回登录页面。
+> 3<font color="#7030a0">. 性能监控: </font>有时系统在某段时间莫名其妙很慢，可以通过拦截器在进入处理程序之前记录开始时间，在处理完后记录结束时间，从而得到该请求的处理时间
+> 4. <font color="#548dd4">通用行为: </font>读取 cookie 得到用户信息并将用户对象放入请求，从而方便后续流程使用，还有提取 Locale、Theme 信息等，只要是多个处理程序都需要的，即可使用拦截器实现。
+
+
+> [!NOTE] tips
+> 1. Spring Boot 定义了 <span style="background:#d2cbff">HandlerInterceptor 接口</span>来实现自定义拦截器的功能
+> 2. HandlerInterceptor 接口定义了<span style="background:#40a9ff"> preHandle、postHandle、 afterCompletion</span> 三种方法，通过重写这三种方法实现请求前、请求后等操作
+![image.png|375](https://s2.loli.net/2023/04/29/dvnpCAF81RxlBK5.png)
+
+### 1. 拦截器定义
+
+> 类似于 django 的<font color="#4bacc6"> Midleware </font>中间件，控制请求。
+
+```java
+pub1ic class LoginInterceptor extends HandlerInterceptor {
+/**
+*在请求处理之前进行调用(Control1er方法调用之前)
+*/
+@override
+pub1ic boolean preHandle(HttpServ1etRequest request, HttpServ1etResponse response, object handTer)
+throws Exception {
+	if (条件) {
+	System.out.print1n("通过");
+	return true;
+	}else{
+	System.out.print1n("不通过");
+	return false;
+}
+}
+}
+
+```
+
+> 返回为 true 则进入下一个拦截器，否则拒绝通过。
+
+### 2. 拦截器注册
+
+- <span style="background:#affad1"> addPathPatterns </span>方法定义拦截的地址
+- <span style="background:#b1ffff">excludePathPatterns </span>定义排除某些地址不被拦截
+- 添加的一个拦截器没有 addPathPattern 任何一个 url 则<font color="#92d050">默认拦截所有请求</font>
+- 如果没有 excludePathPatterns 任何一个请求，则<font color="#92cddc">默认不放过任何一个请求</font>
+
+```java
+@Configuration  
+public class WebConfig implements WebMvcConfigurer {  
+@Override  
+public void addInterceptors(InterceptorRegistry registry) {  
+// 只拦截user路由下的所有路由  
+// registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/admin/**");  
+// 拦截所有路由  
+registry.addInterceptor(new LoginInterceptor());  
+  
+}  
+}
+```
+
+
+# 4. RESTful
+
+## 1.RESTful 介绍
+
+1. HTTP 提供了<font color="#4bacc6"> POST、GET、 PUT、DELETE</font> 等操作类型对某个 Web 资源进行 <font color="#4bacc6">Create、Read、 Update 和 Delete </font>操作。
+2. 一个 HTTP 请求除了利用 URI 标志目标资源之外，还需要通过 HTTP Method 指定针对该资源的操作类型，一些常见的 HTTP 方法及其在 RESTful 风格下的使用:
+
+![image.png|425](https://s2.loli.net/2023/04/29/wokjgHNQVc4TCSW.png)
+
+### HTTP 状态码
+
+- HTTP 状态码就是服务向用户返回的状态码和提示信息，客户端的每一次请求，服务都必须给出回应，回应包括<font color="#8064a2"> HTTP 状态码和数据</font>两部分。
+- HTTP 定义了 40 个标准状态码，可用于传达客户端请求的结果。状态码分为以下
+<font color="#f79646">5 个类别:</font>
+> 1 xx: 信息，通信传输协议级信息
+> 2 xx: 成功，表示客户端的请求已成功接受
+> 3 xx: 重定向，表示客户端必须执行一些其他操作才能完成其请求
+> 4 xx: 客户端错误，此类错误状态码指向客户端
+> 5 xx: 服务器错误，服务器负责这写错误状态码
+
+## 2. 构建 RESTful 应用接口
+
+Spring Boot 提供的<span style="background:rgba(240, 107, 5, 0.2)"> spring-boot-starter-web </span>组件完全支持开发 RESTful API, 提供了与 REST 操作方式 (GET、POST、 PUT、DELETE) 对应的注解。
+1. `@GetMapping:` 处理 GET 请求，获取资源。
+2. `@PostMapping:` 处理 POST 请求，新增资源。
+3. `@PutMapping:` 处理 PUT 请求，更新资源。
+4. `@DeleteMapping:` 处理 DELETE 请求，删除资源。
+5. `@PatchMapping:` 处理 PATCH 请求，用于部分更新资源。
+
+> 类似于 django 的视图装饰器
+
+
+
+
+
+## 3. Swagger 生成 API 接口文档
+
+
+
+# 参考文献
+
+1. [1天搞定SpringBoot+Vue全栈开发\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1nV4y1s7ZN/)
+
