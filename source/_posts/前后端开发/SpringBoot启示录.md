@@ -4,7 +4,6 @@ tags: [SpringBoot]
 categories: Java
 date: 2023-04-28 16:37:54
 sticky: 75
-index_img: /img/example.jpg
 excerpt: it is some basic usage of SpringBoot .
 ---
 
