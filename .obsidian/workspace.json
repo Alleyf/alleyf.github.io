@@ -89,6 +89,14 @@
               "type": "git-view",
               "state": {}
             }
+          },
+          {
+            "id": "726e51501259d5da",
+            "type": "leaf",
+            "state": {
+              "type": "calendar",
+              "state": {}
+            }
           }
         ]
       }
