@@ -28,7 +28,8 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -71,37 +72,16 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "ef878eb90911b56c",
     "type": "split",
-    "children": [
-      {
-        "id": "da14a2e6491d893e",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "e019931b538d4aec",
-            "type": "leaf",
-            "state": {
-              "type": "git-view",
-              "state": {}
-            }
-          },
-          {
-            "id": "726e51501259d5da",
-            "type": "leaf",
-            "state": {
-              "type": "calendar",
-              "state": {}
-            }
-          }
-        ]
-      }
-    ],
+    "children": [],
     "direction": "horizontal",
-    "width": 528.5
+    "width": 528.5,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -117,7 +97,7 @@
       "cmdr:Obsidian Git: Open source control view": false
     }
   },
-  "active": "e019931b538d4aec",
+  "active": "7dcaa23c1dda344b",
   "lastOpenFiles": [
     "themes/fluid/source/js/addMusic.js",
     "themes/fluid/source/js/useaplayer.js",

@@ -371,11 +371,137 @@ Spring Boot 提供的<span style="background:rgba(240, 107, 5, 0.2)"> spring-boo
 
 > 类似于 django 的视图装饰器
 
+```java
+@RestController
+public cLass UserController {
+@GetMapping("/user/{id}")
+public String getUserById (@PathVariable int id){
+return "根据ID获取用户";
+}
+@PostMapping("/user" )
+public String save(User user){
+return "添加用户";
+}
+@PutMapping("/user")
+public String update(User user){
+return "更新用户";
+}
+@DeleteMapping("/user/{id}")
+public String deleteById(@PathVariable int id){
+return " 根据ID删除用户";
+1}
+}
 
-
-
+```
 
 ## 3. Swagger 生成 API 接口文档
+
+> 1. Swagger 是一个规范和完整的框架，用于生成、描述、调用和可视化 RESTful 风格的 Web 服务，是非常流行的 API 表达工具。
+> 2. Swagger 能够自动生成完善的 RESTful API 文档，同时并根据后台代码的修改同步更新，同时提供完整的测试页面来调试 APl。
+
+
+<font color="#f79646">pom. xml 依赖配置:</font>
+```xml
+<!-- swagger依赖-->  
+<dependency>  
+<groupId>io.springfox</groupId>  
+<artifactId>springfox-swagger2</artifactId>  
+<version>2.9.2</version>  
+</dependency>  
+<dependency>  
+<groupId>io.springfox</groupId>  
+<artifactId>springfox-swagger-ui</artifactId>  
+<version>2.9.2</version>  
+</dependency>
+```
+
+添加配置类：
+```java
+package com.alleyf.helloworld.config;  
+  
+import org.springframework.context.annotation.Bean;  
+import org.springframework.context.annotation.Configuration;  
+import springfox.documentation.builders.ApiInfoBuilder;  
+import springfox.documentation.builders.PathSelectors;  
+import springfox.documentation.builders.RequestHandlerSelectors;  
+import springfox.documentation.service.ApiInfo;  
+import springfox.documentation.spi.DocumentationType;  
+import springfox.documentation.spring.web.plugins.Docket;  
+import springfox.documentation.swagger2.annotations.EnableSwagger2;  
+  
+@Configuration //告诉Spring容器， 这个类是一个配置类  
+@EnableSwagger2 //启用Swagger2功能  
+public class SwaggerConfig {  
+@Bean  
+public Docket createRestApi() {  
+return new Docket(DocumentationType.SWAGGER_2)  
+.apiInfo(apiInfo())  
+.select()  
+// com 包下所有API都交给Swagger2管理  
+.apis(RequestHandlerSelectors.basePackage("com"))  
+.paths(PathSelectors.any()).build();  
+}  
+  
+// API文档页面显示信息  
+private ApiInfo apiInfo() {  
+return new ApiInfoBuilder()  
+.title("演示项目API") //标题  
+.description("学习Swagger2的演示项目") //描述  
+.version("1.0")  
+.build();  
+}  
+}
+```
+
+
+spring 3 的依赖：
+```xml
+<!--spring3版本的swagger依赖-->  
+<dependency>  
+<groupId>org.springdoc</groupId>  
+<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>  
+<version>2.0.2</version>  
+</dependency>  
+  
+<dependency>  
+<groupId>org.springdoc</groupId>  
+<artifactId>springdoc-openapi-starter-webmvc-api</artifactId>  
+<version>2.0.2</version>  
+</dependency>
+```
+
+配置文件：
+```java
+package com.alleyf.helloworld.config;  
+  
+import org.springframework.context.annotation.Bean;  
+import org.springframework.context.annotation.Configuration;  
+  
+import io.swagger.v3.oas.models.OpenAPI;  
+import io.swagger.v3.oas.models.info.Info;  
+  
+  
+@Configuration  
+public class OpenApiConfig {  
+  
+@Bean  
+public OpenAPI springOpenAPI() {  
+return new OpenAPI().info(new Info() //  
+.title("SpringDoc API Test") //  
+.description("SpringDoc Simple Application Test") //  
+.version("0.0.1"));  
+}  
+  
+}
+```
+
+
+使用方法：
+```java
+```
+
+
+
 
 
 
