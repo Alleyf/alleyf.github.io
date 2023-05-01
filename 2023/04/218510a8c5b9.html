@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://s2.loli.net/2023/04/29/dvnpCAF81RxlBK5.png">
 <meta property="og:image" content="https://s2.loli.net/2023/04/29/wokjgHNQVc4TCSW.png">
 <meta property="article:published_time" content="2023-04-28T08:37:54.000Z">
-<meta property="article:modified_time" content="2023-04-28T16:56:10.202Z">
+<meta property="article:modified_time" content="2023-05-01T16:30:55.317Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="SpringBoot">
 <meta name="twitter:card" content="summary_large_image">
@@ -275,7 +275,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          8.9k words
+          12k words
         
       </span>
     
@@ -286,7 +286,7 @@
         
         
         
-          74 mins
+          100 mins
         
       </span>
     
@@ -337,7 +337,7 @@
               <p class="note note-info">
                 
                   
-                    Last updated on 3 days ago
+                    Last updated on an hour ago
                   
                 
               </p>
@@ -520,7 +520,37 @@ Method 匹配也可以使用<span style="background:rgba(3, 135, 102, 0.2)">@Get
 <blockquote>
 <p>类似于 django 的视图装饰器</p>
 </blockquote>
-<h2 id="3-Swagger-生成-API-接口文档"><a href="#3-Swagger-生成-API-接口文档" class="headerlink" title="3. Swagger 生成 API 接口文档"></a>3. Swagger 生成 API 接口文档</h2><h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RestController</span><br><span class="hljs-keyword">public</span> cLass UserController &#123;<br><span class="hljs-meta">@GetMapping(&quot;/user/&#123;id&#125;&quot;)</span><br><span class="hljs-keyword">public</span> String <span class="hljs-title function_">getUserById</span> <span class="hljs-params">(<span class="hljs-meta">@PathVariable</span> <span class="hljs-type">int</span> id)</span>&#123;<br><span class="hljs-keyword">return</span> <span class="hljs-string">&quot;根据ID获取用户&quot;</span>;<br>&#125;<br><span class="hljs-meta">@PostMapping(&quot;/user&quot; )</span><br><span class="hljs-keyword">public</span> String <span class="hljs-title function_">save</span><span class="hljs-params">(User user)</span>&#123;<br><span class="hljs-keyword">return</span> <span class="hljs-string">&quot;添加用户&quot;</span>;<br>&#125;<br><span class="hljs-meta">@PutMapping(&quot;/user&quot;)</span><br><span class="hljs-keyword">public</span> String <span class="hljs-title function_">update</span><span class="hljs-params">(User user)</span>&#123;<br><span class="hljs-keyword">return</span> <span class="hljs-string">&quot;更新用户&quot;</span>;<br>&#125;<br><span class="hljs-meta">@DeleteMapping(&quot;/user/&#123;id&#125;&quot;)</span><br><span class="hljs-keyword">public</span> String <span class="hljs-title function_">deleteById</span><span class="hljs-params">(<span class="hljs-meta">@PathVariable</span> <span class="hljs-type">int</span> id)</span>&#123;<br><span class="hljs-keyword">return</span> <span class="hljs-string">&quot; 根据ID删除用户&quot;</span>;<br><span class="hljs-number">1</span>&#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h2 id="3-Swagger-生成-API-接口文档"><a href="#3-Swagger-生成-API-接口文档" class="headerlink" title="3. Swagger 生成 API 接口文档"></a>3. Swagger 生成 API 接口文档</h2><blockquote>
+<ol>
+<li>Swagger 是一个规范和完整的框架，用于生成、描述、调用和可视化 RESTful 风格的 Web 服务，是非常流行的 API 表达工具。</li>
+<li>Swagger 能够自动生成完善的 RESTful API 文档，同时并根据后台代码的修改同步更新，同时提供完整的测试页面来调试 APl。</li>
+</ol>
+</blockquote>
+<p><font color="#f79646">pom. xml 依赖配置:</font></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- swagger依赖--&gt;</span>  <br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>  <br><span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>io.springfox<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>  <br><span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>springfox-swagger2<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>  <br><span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.9.2<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>  <br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>  <br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>  <br><span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>io.springfox<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>  <br><span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>springfox-swagger-ui<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>  <br><span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.9.2<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>  <br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>添加配置类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.alleyf.helloworld.config;  <br>  <br><span class="hljs-keyword">import</span> org.springframework.context.annotation.Bean;  <br><span class="hljs-keyword">import</span> org.springframework.context.annotation.Configuration;  <br><span class="hljs-keyword">import</span> springfox.documentation.builders.ApiInfoBuilder;  <br><span class="hljs-keyword">import</span> springfox.documentation.builders.PathSelectors;  <br><span class="hljs-keyword">import</span> springfox.documentation.builders.RequestHandlerSelectors;  <br><span class="hljs-keyword">import</span> springfox.documentation.service.ApiInfo;  <br><span class="hljs-keyword">import</span> springfox.documentation.spi.DocumentationType;  <br><span class="hljs-keyword">import</span> springfox.documentation.spring.web.plugins.Docket;  <br><span class="hljs-keyword">import</span> springfox.documentation.swagger2.annotations.EnableSwagger2;  <br>  <br><span class="hljs-meta">@Configuration</span> <span class="hljs-comment">//告诉Spring容器， 这个类是一个配置类  </span><br><span class="hljs-meta">@EnableSwagger2</span> <span class="hljs-comment">//启用Swagger2功能  </span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">SwaggerConfig</span> &#123;  <br><span class="hljs-meta">@Bean</span>  <br><span class="hljs-keyword">public</span> Docket <span class="hljs-title function_">createRestApi</span><span class="hljs-params">()</span> &#123;  <br><span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Docket</span>(DocumentationType.SWAGGER_2)  <br>.apiInfo(apiInfo())  <br>.select()  <br><span class="hljs-comment">// com 包下所有API都交给Swagger2管理  </span><br>.apis(RequestHandlerSelectors.basePackage(<span class="hljs-string">&quot;com&quot;</span>))  <br>.paths(PathSelectors.any()).build();  <br>&#125;  <br>  <br><span class="hljs-comment">// API文档页面显示信息  </span><br><span class="hljs-keyword">private</span> ApiInfo <span class="hljs-title function_">apiInfo</span><span class="hljs-params">()</span> &#123;  <br><span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ApiInfoBuilder</span>()  <br>.title(<span class="hljs-string">&quot;演示项目API&quot;</span>) <span class="hljs-comment">//标题  </span><br>.description(<span class="hljs-string">&quot;学习Swagger2的演示项目&quot;</span>) <span class="hljs-comment">//描述  </span><br>.version(<span class="hljs-string">&quot;1.0&quot;</span>)  <br>.build();  <br>&#125;  <br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+<p>spring 3 的依赖：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--spring3版本的swagger依赖--&gt;</span>  <br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>  <br><span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springdoc<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>  <br><span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>springdoc-openapi-starter-webmvc-ui<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>  <br><span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.0.2<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>  <br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>  <br>  <br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>  <br><span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springdoc<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>  <br><span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>springdoc-openapi-starter-webmvc-api<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>  <br><span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.0.2<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>  <br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>配置文件：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.alleyf.helloworld.config;  <br>  <br><span class="hljs-keyword">import</span> org.springframework.context.annotation.Bean;  <br><span class="hljs-keyword">import</span> org.springframework.context.annotation.Configuration;  <br>  <br><span class="hljs-keyword">import</span> io.swagger.v3.oas.models.OpenAPI;  <br><span class="hljs-keyword">import</span> io.swagger.v3.oas.models.info.Info;  <br>  <br>  <br><span class="hljs-meta">@Configuration</span>  <br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">OpenApiConfig</span> &#123;  <br>  <br><span class="hljs-meta">@Bean</span>  <br><span class="hljs-keyword">public</span> OpenAPI <span class="hljs-title function_">springOpenAPI</span><span class="hljs-params">()</span> &#123;  <br><span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">OpenAPI</span>().info(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Info</span>() <span class="hljs-comment">//  </span><br>.title(<span class="hljs-string">&quot;SpringDoc API Test&quot;</span>) <span class="hljs-comment">//  </span><br>.description(<span class="hljs-string">&quot;SpringDoc Simple Application Test&quot;</span>) <span class="hljs-comment">//  </span><br>.version(<span class="hljs-string">&quot;0.0.1&quot;</span>));  <br>&#125;  <br>  <br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+<p>使用方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><br></code></pre></td></tr></table></figure>
+
+
+
+
+
+
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><ol>
 <li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1nV4y1s7ZN/">1天搞定SpringBoot+Vue全栈开发_哔哩哔哩_bilibili</a></li>
 </ol>
 
@@ -587,7 +617,7 @@ Method 匹配也可以使用<span style="background:rgba(3, 135, 102, 0.2)">@Get
       
         <div class="license-meta-item license-meta-date">
           <div>Updated on</div>
-          <div>April 29, 2023</div>
+          <div>May 2, 2023</div>
         </div>
       
       <div class="license-meta-item">
