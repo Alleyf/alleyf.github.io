@@ -496,10 +496,25 @@ return new OpenAPI().info(new Info() //
 ```
 
 
-使用方法：
-```java
-```
+### 注解
 
+swagger 常用注解如下图所示：
+
+![image.png|375](https://s2.loli.net/2023/05/02/sgfWcYZxHa2rJKm.png)
+
+
+从 Springfox 迁移过来的，需要修改注解：
+
+<span style="background:rgba(3, 135, 102, 0.2)">> 1. @Api → @Tag</span>
+<span style="background:rgba(3, 135, 102, 0.2)">> 2. @ApiIgnore → @Parameter (hidden = true) or @Operation (hidden = true) or @Hidden</span>
+<span style="background:rgba(3, 135, 102, 0.2)">> 3. @ApiImplicitParam → @Parameter</span>
+<span style="background:rgba(3, 135, 102, 0.2)">> 4. @ApiImplicitParams → @Parameters</span>
+<span style="background:rgba(3, 135, 102, 0.2)">> 5. @ApiModel → @Schema</span>
+<span style="background:rgba(3, 135, 102, 0.2)">> 6. @ApiModelProperty (hidden = true) → @Schema (accessMode = READ_ONLY)</span>
+<span style="background:rgba(3, 135, 102, 0.2)">> 7. @ApiModelProperty → @Schema</span>
+<span style="background:rgba(3, 135, 102, 0.2)">> 8. @ApiOperation (value = "foo", notes = "bar") → @Operation (summary = "foo", description = "bar")</span>
+<span style="background:rgba(3, 135, 102, 0.2)">> 9. @ApiParam → @Parameter</span>
+<span style="background:rgba(3, 135, 102, 0.2)">> 10. @ApiResponse (code = 404, message = "foo") → @ApiResponse (responseCode = "404", description = "foo")</span>
 
 
 
@@ -508,4 +523,4 @@ return new OpenAPI().info(new Info() //
 # 参考文献
 
 1. [1天搞定SpringBoot+Vue全栈开发\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1nV4y1s7ZN/)
-
+2. [Springdoc和Springfox](https://blog.csdn.net/javaDeveloper2010/article/details/129119489)

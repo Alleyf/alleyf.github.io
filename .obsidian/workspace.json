@@ -78,10 +78,24 @@
   "right": {
     "id": "ef878eb90911b56c",
     "type": "split",
-    "children": [],
+    "children": [
+      {
+        "id": "fa58c8cea60db425",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "06807bd02510ffca",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
     "direction": "horizontal",
-    "width": 528.5,
-    "collapsed": true
+    "width": 528.5
   },
   "left-ribbon": {
     "hiddenItems": {
