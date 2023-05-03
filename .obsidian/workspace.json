@@ -28,8 +28,7 @@
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -90,6 +89,14 @@
               "type": "git-view",
               "state": {}
             }
+          },
+          {
+            "id": "3055d0188ba90235",
+            "type": "leaf",
+            "state": {
+              "type": "calendar",
+              "state": {}
+            }
           }
         ]
       }
@@ -111,7 +118,7 @@
       "cmdr:Obsidian Git: Open source control view": false
     }
   },
-  "active": "7dcaa23c1dda344b",
+  "active": "06807bd02510ffca",
   "lastOpenFiles": [
     "themes/fluid/source/js/addMusic.js",
     "themes/fluid/source/js/useaplayer.js",
