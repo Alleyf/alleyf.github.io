@@ -27,19 +27,8 @@
                 "source": false
               }
             }
-          },
-          {
-            "id": "8f1c2d2e5b297c09",
-            "type": "leaf",
-            "state": {
-              "type": "release-notes",
-              "state": {
-                "currentVersion": "1.2.7"
-              }
-            }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -137,7 +126,7 @@
       "cmdr:Obsidian Git: Open source control view": false
     }
   },
-  "active": "8f1c2d2e5b297c09",
+  "active": "76c26627651ac9b4",
   "lastOpenFiles": [
     "themes/fluid/source/js/addMusic.js",
     "themes/fluid/source/js/useaplayer.js",
