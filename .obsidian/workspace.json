@@ -27,8 +27,19 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "8f1c2d2e5b297c09",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
+              "state": {
+                "currentVersion": "1.2.7"
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -49,6 +60,14 @@
               "state": {
                 "file": "source/_posts/前后端开发/SpringBoot启示录.md"
               }
+            }
+          },
+          {
+            "id": "d18b3503d8b28f68",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
             }
           }
         ]
@@ -118,7 +137,7 @@
       "cmdr:Obsidian Git: Open source control view": false
     }
   },
-  "active": "06807bd02510ffca",
+  "active": "8f1c2d2e5b297c09",
   "lastOpenFiles": [
     "themes/fluid/source/js/addMusic.js",
     "themes/fluid/source/js/useaplayer.js",
