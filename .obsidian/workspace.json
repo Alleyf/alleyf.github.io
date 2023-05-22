@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "操作系统.md",
+                "file": "source/_posts/前后端开发/algorithm.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -39,7 +39,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "操作系统.md"
+                "file": "source/_posts/前后端开发/algorithm.md"
               }
             }
           },
@@ -124,10 +124,10 @@
       "cmdr:Obsidian Git: Open source control view": false
     }
   },
-  "active": "06807bd02510ffca",
+  "active": "3e5ef12e9b38bd53",
   "lastOpenFiles": [
-    "source/_posts/课程学习/嵌入式原理与应用.md",
     "操作系统.md",
+    "source/_posts/课程学习/嵌入式原理与应用.md",
     "source/_posts/课程学习/软件工程.md",
     "source/_posts/课程学习/Synthesis_Command.md",
     "source/_posts/课程学习/QuartusUsage.md",
