@@ -104,25 +104,6 @@
   
   
   <entry>
-    <title></title>
-    <link href="/2023/04/60c00aba037a.html"/>
-    <url>/2023/04/60c00aba037a.html</url>
-    
-    <content type="html"><![CDATA[<h1 id="概要设计（总体设计）"><a href="#概要设计（总体设计）" class="headerlink" title="概要设计（总体设计）"></a>概要设计（总体设计）</h1><h1 id="概要设计中的模块层次结构、调用关系、模块间接口描述方法"><a href="#概要设计中的模块层次结构、调用关系、模块间接口描述方法" class="headerlink" title="概要设计中的模块层次结构、调用关系、模块间接口描述方法"></a>概要设计中的模块层次结构、调用关系、模块间接口描述方法</h1><h2 id="模块层次结构图"><a href="#模块层次结构图" class="headerlink" title="模块层次结构图"></a>模块层次结构图</h2><p>使用树形图表示系统的总体层次结构和模块组织关系。高层模块逻辑上包含低层模块,低层模块可以被多个高层模块调用。</p><ul><li><p>系统</p></li><li><p>模块1  </p></li><li><p>子模块1  </p></li><li><p>子模块2</p></li><li><p>模块2</p></li><li><p>模块3   </p></li></ul><h2 id="调用关系图"><a href="#调用关系图" class="headerlink" title="调用关系图"></a>调用关系图</h2><p>使用线条和箭头表示模块之间的调用关系,箭头指向被调用模块。循环调用也可以在图中表示。该图直观展示模块依赖和控制关系。</p><p>模块1   -&gt;   模块2<br>↑<br>模块3  </p><p>模块2   -&gt;   子模块1<br>↑<br>|-&gt; 子模块2</p><h2 id="接口说明文档"><a href="#接口说明文档" class="headerlink" title="接口说明文档"></a>接口说明文档</h2><p>用表格列出每个模块的输入(Input)、输出(Output)接口规格说明。包括接口名称、参数、参数类型、功能说明等。这更详细和准确地描述了模块接口定义。|模块|接口名|输入参数|输出参数|功能| <br>|-|-|-|-|-|<br>|模块1|接口1|参数1:类型1|返回值:类型2|功能说明|<br>|子模块1|接口2|参数1:类型3|无|功能说明|<br>|子模块2|接口3|参数1:类型4|参数2:类型5|功能说明|这三种方式可以较全面地描述概要设计中的模块信息。但在实际使用中,可以根据需要选择一种或两种,或者结合使用,重点是要清晰和准确地表达设计思想。</p>]]></content>
-    
-    
-    <categories>
-      
-      <category>课程学习</category>
-      
-    </categories>
-    
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>考研单词</title>
     <link href="/2023/03/eda87d97e23c.html"/>
     <url>/2023/03/eda87d97e23c.html</url>
@@ -252,7 +233,7 @@
     <link href="/2023/03/56d5f0383564.html"/>
     <url>/2023/03/56d5f0383564.html</url>
     
-    <content type="html"><![CDATA[<h1 id="1-复杂度与简单排序算法"><a href="#1-复杂度与简单排序算法" class="headerlink" title="1.复杂度与简单排序算法"></a>1.复杂度与简单排序算法</h1>]]></content>
+    <content type="html"><![CDATA[<h1 id="1-基础知识"><a href="#1-基础知识" class="headerlink" title="1. 基础知识"></a>1. 基础知识</h1><h2 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h2><blockquote><p>问题特点</p><ol><li>一个问题的解可以<strong>分解为几个子问题</strong>的解。</li><li>这个问题与分解之后的子问题，<strong>除了数据规模不同，求解思路完全一样</strong>。</li><li><strong>存在基线终止条件</strong>。</li></ol></blockquote>]]></content>
     
     
     <categories>
