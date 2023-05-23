@@ -2,6 +2,8 @@
 title: algorithm  
 date: 2023-03-17 19:06:15  
 tags: [Algorithm]  
+sticky: 55
+excerpt: some solutions about common algorithms
 ---
 # 1. 基础知识
 ## 递归
@@ -68,3 +70,4 @@ return result;
 
 总结：
 > <span style="background:rgba(240, 107, 5, 0.2)">对于多次重复出现的值，可以通过 HashMap 存储，后续先扫描 HashMap 是否存在再做行动。</span>
+
