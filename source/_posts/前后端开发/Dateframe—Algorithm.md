@@ -159,10 +159,7 @@ Status Pop (LinkStack &S,SElemType &e)
 # 3. 队列
 > 队列是一种先进先出（FIFO）的线性表，只允许在表的一端插入，另一端删除。
 
-## 1 初始化
-
-顺序队列：
-
+<font color="#8064a2">顺序队列：</font>
 ```c
 Typedef struct {
 QElemType *base;//初始化的动态分配存储空间
@@ -172,7 +169,104 @@ int rear;//尾指针
 
 ```
 
-<span style="background:#d3f8b6">空对标志：front==rear</span>
+
+<font color="#f79646">链队列：</font>
+
+```c
+
+
+```
+
+
+## 1 初始化
+
+<span style="background:#d3f8b6">顺序队列：</span>
+
+```c
+Status InitQueue (SgQueue &Q)
+{
+Q.base = new QElemType[MAXQSIZE];
+if (!Q.base)
+	exit (OVERFLOW);
+Q.front=Q.rear=0;
+return OK;
+}
+
+```
+
+
+<span style="background:#fdbfff">链队列：</span>
+```c
+
+
+```
+
+
+
+<span style="background:#d3f8b6">队空标志：front==rear</span>
+<span style="background:#d3f8b6">队满标志：（rear+1）%M=front</span>（循环队列）
+
+## 2 入队
+
+<span style="background:#d3f8b6">顺序队列：</span>
+```c
+Status EnQueue(SqQueue &Q,QElemType e)
+{	if((Q.rear+1)%MAXQSIZE==Q.front)
+		return ERROR;
+	Q.base[Q.rear]=e;
+	Q.rear=(Q.rear+1)%MAXQSIZE;
+	return OK;
+}
+
+```
+
+
+<span style="background:#fdbfff">链队列：</span>
+```c
+
+
+```
+
+## 3 出队
+
+<span style="background:#d3f8b6">顺序队列：</span>
+```c
+Status DeQueue (LinkQueue &Q,QElemType &e)
+{
+if(Q.front==Q.rear)
+	return ERROR;
+e=Q.base[Q.front];
+Q.front=(Q.front+1)%MAXQSIZE;
+return OK;
+}
+```
+
+
+<span style="background:#fdbfff">链队列：</span>
+```c
+
+
+```
+
+
+## 4 取队列长度
+
+<span style="background:#d3f8b6">顺序队列：</span>
+```c
+int QueueLength(SqQueue Q)
+{
+	return (Q.rear-Q.front+MAXQSIZE)%MAXQSIZE;
+}
+
+```
+
+<span style="background:#fdbfff">链队列：</span>
+```c
+
+
+```
+
+
 
 
 
