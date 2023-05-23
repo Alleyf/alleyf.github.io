@@ -173,7 +173,16 @@ int rear;//尾指针
 <font color="#f79646">链队列：</font>
 
 ```c
-
+typedef struct QNode
+{
+	QElemType data;
+	struct Qnode *next;
+}Qnode,*QueuePtr;
+typedef struct 
+{
+	QueuePtr front;//队头指针
+	QueuePtr rear;//队尾指针
+}LinkQueue;
 
 ```
 
@@ -196,8 +205,16 @@ return OK;
 
 
 <span style="background:#fdbfff">链队列：</span>
+**有头节点**
 ```c
-
+Status InitQueue (LinkQueue &Q){
+Q.front=(QueuePtr)malloc(sizeof(QNode));
+if(!Q.front)
+exit(OVERFLOW);
+Q.rear=Q.front;
+Q.front->next=NULL;
+return OK;
+}
 
 ```
 
@@ -207,6 +224,7 @@ return OK;
 <span style="background:#d3f8b6">队满标志：（rear+1）%M=front</span>（循环队列）
 
 ## 2 入队
+**链接新节点，更新队尾节点**
 
 <span style="background:#d3f8b6">顺序队列：</span>
 ```c
@@ -223,11 +241,20 @@ Status EnQueue(SqQueue &Q,QElemType e)
 
 <span style="background:#fdbfff">链队列：</span>
 ```c
-
-
+Status EnQueue (LinkQueue &Q,QElemType e){
+p=(QueuePtr)malloc(sizeof (QNode));
+if(!p)
+	exit(OVERFLOW);
+p->data=e;
+p->next=NULL;
+Q.rear->next=p;
+Q.rear=p;
+return OK;
+}
 ```
 
 ## 3 出队
+**临时存储首元节点，队头节点指向首元节点的下一个节点，删除释放首元节点**
 
 <span style="background:#d3f8b6">顺序队列：</span>
 ```c
@@ -244,10 +271,19 @@ return OK;
 
 <span style="background:#fdbfff">链队列：</span>
 ```c
-
-
+Status DeQueue (LinkQueue &Q,QElemType &e{
+if(Q.front==Q.rear)
+	return ERROR;
+p=Q.front->next;
+e=p->data;
+Q.front->next=p->next;
+if(Q.rear==p)
+	Q.rear=Q.front;
+free(p);
+return OK;
+}
 ```
-
+<span style="background:rgba(240, 200, 0, 0.2)">最后一个节点的时候，不删除，要让队头等于队尾节点。</span>
 
 ## 4 取队列长度
 
