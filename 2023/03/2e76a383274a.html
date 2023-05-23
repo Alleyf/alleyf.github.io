@@ -18,32 +18,24 @@
   <meta name="author" content="alleyf">
   <meta name="keywords" content="">
   
-    <meta name="description" content="some ideas about FIR and IIR filter。">
+    <meta name="description" content="some key points with respect to dataframe-algorithm">
 <meta property="og:type" content="article">
-<meta property="og:title" content="FIR and IIR filter design">
-<meta property="og:url" content="https://alleyf.github.io/2022/12/b3288796b118.html">
+<meta property="og:title" content="algorithm">
+<meta property="og:url" content="https://alleyf.github.io/2023/03/2e76a383274a.html">
 <meta property="og:site_name" content="alleyf">
-<meta property="og:description" content="some ideas about FIR and IIR filter。">
+<meta property="og:description" content="some key points with respect to dataframe-algorithm">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/chuiyugin/imgbed/%E6%BB%A4%E6%B3%A2%E5%99%A8.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/chuiyugin/imgbed/%E6%BB%A4%E6%B3%A2%E5%99%A82.png">
-<meta property="og:image" content="d:/IIR.png">
-<meta property="og:image" content="d:/FIRt.png">
-<meta property="og:image" content="d:/DSP实验报告/大作业报告/ch4andch5/图片/FIR窗特性.png">
-<meta property="og:image" content="d:/DSP实验报告/大作业报告/ch4andch5/图片/IIR滤波前后对比图.png">
-<meta property="og:image" content="d:/DSP实验报告/大作业报告/ch4andch5/图片/FIR滤波前后对比图.png">
-<meta property="article:published_time" content="2022-12-21T13:17:00.000Z">
-<meta property="article:modified_time" content="2022-12-21T13:46:59.270Z">
+<meta property="article:published_time" content="2023-03-17T11:06:15.000Z">
+<meta property="article:modified_time" content="2023-05-23T08:16:10.608Z">
 <meta property="article:author" content="alleyf">
-<meta property="article:tag" content="FIR、IIR">
+<meta property="article:tag" content="Dataframe-Algorithm">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/chuiyugin/imgbed/%E6%BB%A4%E6%B3%A2%E5%99%A8.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>FIR and IIR filter design - alleyf</title>
+  <title>algorithm - alleyf</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -249,7 +241,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="FIR and IIR filter design"></span>
+            <span id="subtitle" data-typed-text="algorithm"></span>
           
         </div>
 
@@ -265,8 +257,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-12-21 21:17" pubdate>
-          December 21, 2022 pm
+        <time datetime="2023-03-17 19:06" pubdate>
+          March 17, 2023 pm
         </time>
       </span>
     
@@ -277,7 +269,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.1k words
+          1.6k words
         
       </span>
     
@@ -288,7 +280,7 @@
         
         
         
-          26 mins
+          14 mins
         
       </span>
     
@@ -334,12 +326,12 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">FIR and IIR filter design</h1>
+            <h1 style="display: none">algorithm</h1>
             
               <p class="note note-info">
                 
                   
-                    Last updated on 5 months ago
+                    Last updated on a few seconds ago
                   
                 
               </p>
@@ -347,56 +339,44 @@
             
               <div class="markdown-body">
                 
-                <h1 id="FIR和IIR滤波器设计与实现"><a href="#FIR和IIR滤波器设计与实现" class="headerlink" title="FIR和IIR滤波器设计与实现"></a>FIR和IIR滤波器设计与实现</h1><h2 id="一、要求"><a href="#一、要求" class="headerlink" title="一、要求"></a>一、要求</h2><p>在子作业4的基础上，采用MATLAB的filterDesigner或fdatool工具箱，设计出相应的IIR滤波器和FIR滤波器。</p>
-<h2 id="二、实现思路"><a href="#二、实现思路" class="headerlink" title="二、实现思路"></a>二、实现思路</h2><h3 id="1-IIR滤波器设计实现"><a href="#1-IIR滤波器设计实现" class="headerlink" title="1.IIR滤波器设计实现"></a>1.IIR滤波器设计实现</h3><p>根据作业四得到的性能指标，利用MATLAB滤波器工具箱，输入性能指标参数选择效果最好的IIR滤波器进行滤波。</p>
-<h3 id="2-FIR滤波器设计实现"><a href="#2-FIR滤波器设计实现" class="headerlink" title="2.FIR滤波器设计实现"></a>2.FIR滤波器设计实现</h3><p>根据作业四得到的性能指标，利用MATLAB滤波器工具箱，输入截止频率**$f_c$**选择合适的窗函数设计得到FIR滤波器。</p>
-<h2 id="三、实现过程"><a href="#三、实现过程" class="headerlink" title="三、实现过程"></a>三、实现过程</h2><h3 id="1-性能指标分析"><a href="#1-性能指标分析" class="headerlink" title="1.性能指标分析"></a>1.性能指标分析</h3><p>数字滤波器的频率响应表示为：<br>$$<br>H(e^{j\omega})=|H(e^{j\omega})|e^{j\beta(j\omega)}<br>$$<br>根据下图中理想低通滤波器逼近的误差容限可以看出，频率响应有通带、过渡带、阻带三个范围:</p>
-<p><img src="https://cdn.jsdelivr.net/gh/chuiyugin/imgbed/%E6%BB%A4%E6%B3%A2%E5%99%A8.png" srcset="/img/loading.gif" lazyload></p>
-<p>下图展示了不同滤波器的技术指标：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/chuiyugin/imgbed/%E6%BB%A4%E6%B3%A2%E5%99%A82.png" srcset="/img/loading.gif" lazyload></p>
-<p>依据作业四得到的性能指标，通带截止频率**$w_p=10.7khz$<strong>，阻带截止频率</strong>$w_{st}=11.15khz$<strong>,通带最大衰减系数</strong>$\delta_1=2db$<strong>，阻带最小衰减</strong>$\delta_2=80db$**。可以使用MATLAB滤波器工具箱进行IIR和FIR滤波器的设计。</p>
-<h3 id="2-IIR滤波器设计实现"><a href="#2-IIR滤波器设计实现" class="headerlink" title="2.IIR滤波器设计实现"></a>2.IIR滤波器设计实现</h3><p>采用MATLAB的滤波器设计工具进行设计，在尝试不同种类的滤波器后，对比发现<strong>巴特沃斯滤波器</strong>的效果最佳，因此选择该滤波器来滤除噪声信号，设计得到的IIR滤波器结果如下图所示：</p>
-<img src="D:\IIR.png" srcset="/img/loading.gif" lazyload style="zoom: 50%;" />
-
-
-
-<p>IIR滤波过程代码如下：</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs matlab">clc<br>clear all<br><span class="hljs-comment">%% 数据导入及参数设置</span><br>[x,Fs]=audioread(<span class="hljs-string">&#x27;D:\DSP实验报告\大作业报告\ch4andch5\myaudio_11.15k_11.95k.wav&#x27;</span>);<br>x=x(:,<span class="hljs-number">1</span>);<span class="hljs-comment">%选择左声道</span><br>N=<span class="hljs-built_in">length</span>(x);<br>t=(<span class="hljs-number">0</span>:N<span class="hljs-number">-1</span>)/Fs;<span class="hljs-comment">%时域范围</span><br>df=Fs/<span class="hljs-built_in">length</span>(t); <span class="hljs-comment">%计算谱线间隔</span><br>f=t*df;<span class="hljs-comment">%频域范围</span><br>X=FFT(x,N,Fs,t);<br>X=fftshift(X);<span class="hljs-comment">%将频谱翻转过来</span><br>f=(f*Fs-Fs/<span class="hljs-number">2</span>)/<span class="hljs-number">1e3</span>;<span class="hljs-comment">%只显示正频谱</span><br>X=<span class="hljs-built_in">abs</span>(X);<br><span class="hljs-comment">% 绘出时域图和幅频响应</span><br><span class="hljs-built_in">figure</span>;<br>subplot(<span class="hljs-number">221</span>)<br><span class="hljs-built_in">plot</span>(t,x);<br>title(<span class="hljs-string">&quot;原信号音频时域图&quot;</span>);<br>xlabel(<span class="hljs-string">&quot;t/s&quot;</span>);<br>subplot(<span class="hljs-number">222</span>)<br><span class="hljs-built_in">plot</span>(f(:,<span class="hljs-built_in">ceil</span>(N/<span class="hljs-number">2</span>):<span class="hljs-keyword">end</span>),X(<span class="hljs-built_in">ceil</span>(N/<span class="hljs-number">2</span>):<span class="hljs-keyword">end</span>,<span class="hljs-number">1</span>),<span class="hljs-string">&#x27;c&#x27;</span>)<br>title(<span class="hljs-string">&quot;原信号音频幅频响应&quot;</span>);<br>xlabel(<span class="hljs-string">&quot;f/Khz&quot;</span>); <br><span class="hljs-comment">%% IIR-Butterworth低通滤波器滤除高频噪声</span><br>y=filter(IIR,x);<br>Y=FFT(y,N,Fs,t);<br>Y=fftshift(Y);<br>Y=<span class="hljs-built_in">abs</span>(Y);<br><span class="hljs-comment">% 绘出滤波后的时域图和幅频响应</span><br>subplot(<span class="hljs-number">223</span>)<br><span class="hljs-built_in">plot</span>(t,y,<span class="hljs-string">&#x27;b&#x27;</span>);<br>title(<span class="hljs-string">&quot;IIR滤波后信号音频时域图&quot;</span>);<br>xlabel(<span class="hljs-string">&quot;t/s&quot;</span>); <br>subplot(<span class="hljs-number">224</span>)<br><span class="hljs-built_in">plot</span>(f(<span class="hljs-number">1</span>,<span class="hljs-built_in">ceil</span>(N/<span class="hljs-number">2</span>):<span class="hljs-keyword">end</span>),Y(<span class="hljs-built_in">ceil</span>(N/<span class="hljs-number">2</span>):<span class="hljs-keyword">end</span>,<span class="hljs-number">1</span>),<span class="hljs-string">&#x27;g&#x27;</span>)<br>title(<span class="hljs-string">&quot;IIR滤波后信号音频幅频响应&quot;</span>);<br>xlabel(<span class="hljs-string">&quot;f/Khz&quot;</span>); <br><span class="hljs-comment">%% 试听及保存</span><br>sound(y,Fs);<br>audiowrite(<span class="hljs-string">&#x27;./IIRfilter.wav&#x27;</span>,y,Fs)<br></code></pre></td></tr></table></figure>
-
-<h3 id="3-FIR滤波器设计实现"><a href="#3-FIR滤波器设计实现" class="headerlink" title="3.FIR滤波器设计实现"></a>3.FIR滤波器设计实现</h3><p>采用MATLAB的滤波器设计工具进行设计，在尝试不同种类的窗函数后，对比发现<strong>布莱克曼窗</strong>的效果最佳，因此选择该窗函数来滤除噪声信号，设计得到的FIR滤波器结果如下图所示：</p>
-<img src="D:\FIRt.png" srcset="/img/loading.gif" lazyload style="zoom:50%;" />
-
-
-
-<p>FIR时域和频域特性图如下图上所示：</p>
-<img src="D:\DSP实验报告\大作业报告\ch4andch5\图片\FIR窗特性.png" srcset="/img/loading.gif" lazyload style="zoom: 50%;" />
-
-<p>FIR滤波过程代码如下：</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs matlab">clc<br>clear all<br><span class="hljs-comment">%% 数据导入及参数设置</span><br>[x,Fs]=audioread(<span class="hljs-string">&#x27;D:\DSP实验报告\大作业报告\ch4andch5\myaudio_11.15k_11.95k.wav&#x27;</span>);<br>x=x(:,<span class="hljs-number">1</span>);<span class="hljs-comment">%选择左声道</span><br>Nx=<span class="hljs-built_in">length</span>(x);<br>tx=(<span class="hljs-number">0</span>:Nx<span class="hljs-number">-1</span>)/Fs;<span class="hljs-comment">%时域范围</span><br>df=Fs/<span class="hljs-built_in">length</span>(tx); <span class="hljs-comment">%计算谱线间隔</span><br>fx=tx*df;<span class="hljs-comment">%频域范围</span><br>X=FFT(x,Nx,Fs,tx);<span class="hljs-comment">%快速傅里叶变换</span><br>fx=(fx*Fs)/<span class="hljs-number">1e3</span>;<span class="hljs-comment">%只显示正频谱</span><br>X=<span class="hljs-built_in">abs</span>(X);<br><span class="hljs-comment">% 绘出时域图和幅频响应</span><br><span class="hljs-built_in">figure</span>;<br>subplot(<span class="hljs-number">221</span>)<br><span class="hljs-built_in">plot</span>(tx,x); <br>title(<span class="hljs-string">&quot;原信号音频时域图&quot;</span>);<br>xlabel(<span class="hljs-string">&quot;t/s&quot;</span>); <br>subplot(<span class="hljs-number">222</span>)<br><span class="hljs-built_in">plot</span>(fx(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>:<span class="hljs-built_in">ceil</span>(Nx/<span class="hljs-number">2</span>)),X(<span class="hljs-number">1</span>:<span class="hljs-built_in">ceil</span>(Nx/<span class="hljs-number">2</span>),<span class="hljs-number">1</span>),<span class="hljs-string">&#x27;b&#x27;</span>)<br>title(<span class="hljs-string">&quot;原信号音频幅频响应&quot;</span>);<br>xlabel(<span class="hljs-string">&quot;f/Khz&quot;</span>); <br><span class="hljs-comment">%% blackman窗低通滤波器滤除高频噪声</span><br>y=filter(FIR,x);<br>Ny=<span class="hljs-built_in">length</span>(y);<span class="hljs-comment">%滤波后信号的长度</span><br>ty=(<span class="hljs-number">0</span>:Ny<span class="hljs-number">-1</span>)/Fs;<span class="hljs-comment">%时域范围</span><br>Y=FFT(y,Ny,Fs,ty);<span class="hljs-comment">%快速傅里叶变换求频谱</span><br>df=Fs/<span class="hljs-built_in">length</span>(ty); <span class="hljs-comment">%计算谱线间隔</span><br>fy=ty*df;<span class="hljs-comment">%频域范围</span><br>fy=(fy*Fs)/<span class="hljs-number">1e3</span>;<span class="hljs-comment">%只显示正频谱</span><br>Y=<span class="hljs-built_in">abs</span>(Y);<br><span class="hljs-comment">% 绘出滤波后的时域图和幅频响应</span><br>subplot(<span class="hljs-number">223</span>)<br><span class="hljs-built_in">plot</span>(ty,y,<span class="hljs-string">&quot;b&quot;</span>);<br>title(<span class="hljs-string">&quot;FIR滤波后信号音频时域图&quot;</span>);<br>xlabel(<span class="hljs-string">&quot;t/s&quot;</span>); <br>subplot(<span class="hljs-number">224</span>)<br>stem(fx(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>:<span class="hljs-built_in">ceil</span>(Ny/<span class="hljs-number">2</span>)),Y(<span class="hljs-number">1</span>:<span class="hljs-built_in">ceil</span>(Ny/<span class="hljs-number">2</span>),<span class="hljs-number">1</span>),<span class="hljs-string">&#x27;c&#x27;</span>,<span class="hljs-string">&#x27;.&#x27;</span>)<br>title(<span class="hljs-string">&quot;FIR滤波后信号音频幅频响应&quot;</span>);<br>xlabel(<span class="hljs-string">&quot;f/Khz&quot;</span>); <br><span class="hljs-comment">%% 试听及保存</span><br>sound(y,Fs);<br>audiowrite(<span class="hljs-string">&#x27;./FIRfilter.wav&#x27;</span>,y,Fs)<br></code></pre></td></tr></table></figure>
-
-<h2 id="四、结果展示"><a href="#四、结果展示" class="headerlink" title="四、结果展示"></a>四、结果展示</h2><p>加噪信号经过IIR滤波器和FIR滤波器前后时域、频域对比图如下图所示：</p>
-<table>
-    <thead>
-        <th>
-            <img src="D:\DSP实验报告\大作业报告\ch4andch5\图片\IIR滤波前后对比图.png" srcset="/img/loading.gif" lazyload alt="IIR滤波前后对比图" style="zoom:50%;display:inline" />
-        </th>
-        <th>
-            <img src="D:\DSP实验报告\大作业报告\ch4andch5\图片\FIR滤波前后对比图.png" srcset="/img/loading.gif" lazyload  alt="FIR滤波前后对比图" style="zoom:50%;display:inline" />
-        </th>
-    </thead>
-</table>
-
-<p>由图可知IIR和FIR滤波器都很好的滤除了噪声信号，达到了预期的设计，<u>IIR和FIR滤波后的音频依附录可见</u>。</p>
-<h2 id="五、结果分析"><a href="#五、结果分析" class="headerlink" title="五、结果分析"></a>五、结果分析</h2><blockquote>
-<ol>
-<li>IIR滤波器和FIR滤波器各自有各自的优缺点，都有不同的结构和实现方法。<strong>IIR滤波器结构简单</strong>容易实现，但是一般<strong>阶数较高</strong>，而且<strong>不稳定</strong>，相频响应<strong>不是完全线性相位</strong>。<strong>FIR滤波器</strong>一般<strong>阶数较低</strong>，相频响应具有<strong>完全的线性相位</strong>，系统<strong>绝对稳定</strong>，但是线性相位结构的FIR滤波器<strong>结构相对比较复杂</strong>难以实现。</li>
-<li>IIR和FIR滤波器实际人工设计实现起来相对比较复杂，我们可以利用MATLAB中的滤波器设计工具箱辅助我们完成满足要求的各种滤波器，实现起来比较简单容易，</li>
-</ol>
+                <h1 id="1-线性表"><a href="#1-线性表" class="headerlink" title="1.线性表"></a>1.线性表</h1><blockquote>
+<p>无论哪种数据结构，都存在<font color="#ff0000">增删改查 (按值查找)查（按位查找）</font>操作，对应不同操作的<font color="#4bacc6">时间复杂度不同</font>，要根据实际数据的形式选择合适的数据结构进行存储，再选择合适算法进行处理。</p>
 </blockquote>
-<h2 id="六、源码开源"><a href="#六、源码开源" class="headerlink" title="六、源码开源"></a>六、源码开源</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-24bfcec2-0b23-4547-a957-73ffab276534/2c7c8bdd-2316-47cd-8a94-4882573700a5.zip">源代码资源包</a>有需要的小伙伴可以下载参考。</p>
+<h2 id="顺序表（sequence-list）"><a href="#顺序表（sequence-list）" class="headerlink" title="顺序表（sequence list）"></a>顺序表（sequence list）</h2><h3 id="1初始化"><a href="#1初始化" class="headerlink" title="1初始化"></a>1初始化</h3><h3 id="2增加元素"><a href="#2增加元素" class="headerlink" title="2增加元素"></a>2增加元素</h3><h3 id="3删除元素"><a href="#3删除元素" class="headerlink" title="3删除元素"></a>3删除元素</h3><h3 id="4修改元素"><a href="#4修改元素" class="headerlink" title="4修改元素"></a>4修改元素</h3><h3 id="5查找元素"><a href="#5查找元素" class="headerlink" title="5查找元素"></a>5查找元素</h3><h4 id="按值查找"><a href="#按值查找" class="headerlink" title="按值查找"></a>按值查找</h4><h4 id="按位查找"><a href="#按位查找" class="headerlink" title="按位查找"></a>按位查找</h4><h2 id="链表（link-list）"><a href="#链表（link-list）" class="headerlink" title="链表（link list）"></a>链表（link list）</h2><h3 id="1初始化-1"><a href="#1初始化-1" class="headerlink" title="1初始化"></a>1初始化</h3><h3 id="2增加元素-1"><a href="#2增加元素-1" class="headerlink" title="2增加元素"></a>2增加元素</h3><h4 id="头插"><a href="#头插" class="headerlink" title="头插"></a>头插</h4><h4 id="尾插"><a href="#尾插" class="headerlink" title="尾插"></a>尾插</h4><h3 id="3删除元素-1"><a href="#3删除元素-1" class="headerlink" title="3删除元素"></a>3删除元素</h3><h3 id="4修改元素-1"><a href="#4修改元素-1" class="headerlink" title="4修改元素"></a>4修改元素</h3><h3 id="5查找元素-1"><a href="#5查找元素-1" class="headerlink" title="5查找元素"></a>5查找元素</h3><h4 id="按值查找-1"><a href="#按值查找-1" class="headerlink" title="按值查找"></a>按值查找</h4><h4 id="按位查找-1"><a href="#按位查找-1" class="headerlink" title="按位查找"></a>按位查找</h4><h1 id="2-栈"><a href="#2-栈" class="headerlink" title="2.栈"></a>2.栈</h1><blockquote>
+<p>栈是一种<font color="#8064a2">后进先出（LIFO）</font>的线性表结构。</p>
 </blockquote>
+<p><span style="background:rgba(240, 107, 5, 0.2)">顺序栈：</span></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> &#123;</span>SElemType *base;<br>				SElemType *top;<br>				<span class="hljs-type">int</span> stacksize;&#125; SgStack;<br></code></pre></td></tr></table></figure>
 
+<p><span style="background:#b1ffff">链栈：</span></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">StackNode</span>&#123;</span><br>SElemType data;<br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">StackNode</span> *<span class="hljs-title">next</span>;</span>&#125;StackNode,*LinkStack;<br><br></code></pre></td></tr></table></figure>
+
+
+<h2 id="1初始化-2"><a href="#1初始化-2" class="headerlink" title="1初始化"></a>1初始化</h2><p><span style="background:rgba(240, 107, 5, 0.2)">顺序栈：</span></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c">Status <span class="hljs-title function_">InitStack</span><span class="hljs-params">(SgStack &amp;S,<span class="hljs-type">int</span> MAXSIZE&#123;</span><br><span class="hljs-params">S.base =new SElemType [MAXSIZE]；</span><br><span class="hljs-params"><span class="hljs-keyword">if</span>(!S.base） </span><br><span class="hljs-params">   <span class="hljs-keyword">return</span> OVERFLOW;</span><br><span class="hljs-params">   S.top = S.base;</span><br><span class="hljs-params">   S.stacksize = MAXSIZE；</span><br><span class="hljs-params">   <span class="hljs-keyword">return</span> OK;</span><br></code></pre></td></tr></table></figure>
+
+<p><span style="background:#b1ffff">链栈：</span></p>
+<p><strong>不带头节点：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">void</span> <span class="hljs-title function_">Initstack</span> <span class="hljs-params">(LinkStack &amp;S)</span><br>&#123;<br>	S=<span class="hljs-literal">NULL</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+
+<h2 id="2-入栈"><a href="#2-入栈" class="headerlink" title="2 入栈"></a>2 入栈</h2><p><span style="background:rgba(240, 107, 5, 0.2)">顺序栈：</span><br>时间复杂度：O（1）</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c"><br>Status <span class="hljs-title function_">Push</span><span class="hljs-params">(SqStack &amp;S,SElemType e)</span><br>&#123;<br><span class="hljs-keyword">if</span>(S.top - S.base==S.stacksize）<span class="hljs-keyword">return</span> ERROR;<br>*S.top++=e;<br><span class="hljs-keyword">return</span> OK;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这段代码是一个名为 <code>Push</code> 的函数，它接受两个参数：一个指向栈 <code>S</code> 的指针引用和要入栈的元素 <code>e</code>。<code>SqStack</code> 表示栈的类型，在这里推测它是由结构体或类定义的。<code>&amp;S</code> 表示将栈变量的地址传递给函数，通过引用来修改栈的内容。在 C/C++中，引用有时候也被称为别名(alias)，它允许我们使用类似于指针的语法来操作对象，但是具有更好的安全性和易读性。<code>SElemType</code> 是栈元素的数据类型，可以是任何合法的数据类型。</p>
+<p>这个函数的作用是将元素e压入到栈S中，如果栈已满则返回ERROR，否则在栈顶插入元素e并返回OK。其中<code>S.top - S.base</code> 表示当前栈中已有元素的个数，如果这个值等于<code>S.stacksize</code>就意味着栈已经满了。<code>*S.top++=e</code>表示将元素e存储在栈顶，并将栈指针往上移动一位，准备接收下一个元素。最后，函数返回插入操作的结果，OK表示成功，ERROR表示失败。</p>
+<p><span style="background:#b1ffff">链栈：</span><br><strong>头插</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c">Status <span class="hljs-title function_">Push</span> <span class="hljs-params">(LinkStack&amp;S,ElemType e)</span>&#123;<br>p=new StackNode;<span class="hljs-comment">//生成新结点p</span><br><span class="hljs-keyword">if</span> (!p)<span class="hljs-keyword">return</span> OVERFLOW;<br>p-&gt;data=e;<br>p-&gt;next=S;<br>S=p;<span class="hljs-comment">//S始终指向当前第一个节点(栈顶节点)</span><br><span class="hljs-keyword">return</span> OK;<br><br></code></pre></td></tr></table></figure>
+
+
+<h2 id="3-出栈"><a href="#3-出栈" class="headerlink" title="3 出栈"></a>3 出栈</h2><p><span style="background:rgba(240, 107, 5, 0.2)">顺序栈：</span></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c">Status <span class="hljs-title function_">Pop</span><span class="hljs-params">(SqStack &amp;S,SElemType &amp;e)</span><br>&#123;<br><span class="hljs-keyword">if</span>(S.top == S.base）<span class="hljs-keyword">return</span> ERROR;<br>e=*--S.top;<br><span class="hljs-keyword">return</span> OK;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p><span style="background:#b1ffff">链栈：</span></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs c">Status <span class="hljs-title function_">Pop</span> <span class="hljs-params">(LinkStack &amp;S,SElemType &amp;e)</span><br>&#123;<br>	<span class="hljs-keyword">if</span> (S==<span class="hljs-literal">NULL</span>)<br>		<span class="hljs-keyword">return</span> ERROR;<br>	e = S-&gt;data;<br>	p = S;<br>	S = S-&gt;next;<br>	delete p;<br>	<span class="hljs-keyword">return</span> OK;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+
+<h1 id="3-队列"><a href="#3-队列" class="headerlink" title="3. 队列"></a>3. 队列</h1><h1 id="4-串、数组和广义表"><a href="#4-串、数组和广义表" class="headerlink" title="4. 串、数组和广义表"></a>4. 串、数组和广义表</h1><h1 id="5-树"><a href="#5-树" class="headerlink" title="5. 树"></a>5. 树</h1><h1 id="6-图"><a href="#6-图" class="headerlink" title="6. 图"></a>6. 图</h1><h1 id="7"><a href="#7" class="headerlink" title="7."></a>7.</h1>
                 
               </div>
             
@@ -414,7 +394,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/DSP/" class="category-chain-item">DSP</a>
+  <a href="/categories/%E5%89%8D%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/" class="category-chain-item">前后端开发</a>
   
   
 
@@ -429,7 +409,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/FIR%E3%80%81IIR/">#FIR、IIR</a>
+        <a href="/tags/Dataframe-Algorithm/">#Dataframe-Algorithm</a>
       
     </div>
   
@@ -441,8 +421,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>FIR and IIR filter design</div>
-      <div>https://alleyf.github.io/2022/12/b3288796b118.html</div>
+      <div>algorithm</div>
+      <div>https://alleyf.github.io/2023/03/2e76a383274a.html</div>
     </div>
     <div class="license-meta">
       
@@ -454,13 +434,13 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>December 21, 2022</div>
+          <div>March 17, 2023</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>Updated on</div>
-          <div>December 21, 2022</div>
+          <div>May 23, 2023</div>
         </div>
       
       <div class="license-meta-item">
@@ -489,7 +469,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/03/2e76a383274a.html" title="algorithm">
+                      <a href="/2023/03/56d5f0383564.html" title="algorithm">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">algorithm</span>
                         <span class="visible-mobile">Previous</span>
@@ -499,8 +479,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/12/98f47ed35125.html" title="Frequency——Analysis">
-                        <span class="hidden-mobile">Frequency——Analysis</span>
+                      <a href="/2022/12/b3288796b118.html" title="FIR and IIR filter design">
+                        <span class="hidden-mobile">FIR and IIR filter design</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -521,7 +501,7 @@
         var options = Object.assign(
           {"clientID":"636f2864e051a199b91c","clientSecret":"5185fd11115bbcd8d2f636bc80de6bed98ed14c1","repo":"Gitalk","owner":"Alleyf","admin":["Alleyf"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":false,"proxy":"https://shielded-brushlands-08810.herokuapp.com/https://github.com/login/oauth/access_token"},
           {
-            id: '3c02254d02728d9c800130b8cdbc2359'
+            id: 'fd537a0d5a5e505265039aff3892f4f2'
           }
         )
         var gitalk = new Gitalk(options);
