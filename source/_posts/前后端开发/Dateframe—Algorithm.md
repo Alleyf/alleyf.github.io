@@ -157,7 +157,22 @@ Status Pop (LinkStack &S,SElemType &e)
 
 
 # 3. 队列
-> 队列是一种先进先出（FIFO）的线性表
+> 队列是一种先进先出（FIFO）的线性表，只允许在表的一端插入，另一端删除。
+
+## 1 初始化
+
+顺序队列：
+
+```c
+Typedef struct {
+QElemType *base;//初始化的动态分配存储空间
+int front;//头指针
+int rear;//尾指针
+}SgQueue;
+
+```
+
+<span style="background:#d3f8b6">空对标志：front==rear</span>
 
 
 
