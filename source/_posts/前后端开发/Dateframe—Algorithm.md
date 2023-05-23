@@ -309,7 +309,7 @@ int QueueLength(SqQueue Q)
 # 4. 串、数组和广义表
 
 
-
+dad
 
 # 5. 树
 
