@@ -106,3 +106,68 @@ return results;
 
 ## 2. 合并两个有序数组
 
+
+```c++
+//leetcode submit region begin(Prohibit modification and deletion)  
+#include<bits/stdc++.h>  
+using namespace std;  
+class Solution {  
+public:  
+// 方法1（直插排序法）  
+void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {  
+auto iter1 = nums1.begin()+m;  
+auto iter2 = nums1.end();  
+nums1.erase(iter1,iter2);  
+for (int i = 0; i < n; ++i) {  
+nums1.push_back(nums2[i]);  
+}  
+// nums1.erase(iter1,iter2);  
+// nums1.insert(nums1.end(),nums2.begin(),nums2.end());  
+sort(nums1.begin(), nums1.end());  
+}  
+//方法2（前向双指针法）  
+void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {  
+int l = m+n,j=0,index1 = 0,index2 = 0;  
+vector<int> temp(l);  
+for (int i = 0; i < l; ++i) {  
+if (index1>=m){  
+temp[i]=nums2[index2++];  
+}  
+else if(index2>=n){  
+temp[i]=nums1[index1++];  
+}  
+else if(nums1[index1]<nums2[index2]){  
+temp[i]=nums1[index1++];  
+}  
+else {  
+temp[i]=nums2[index2++];  
+}  
+}  
+for(int item:temp){  
+nums1[j++]=item;  
+}  
+}  
+//方法3（反向双指针）  
+void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {  
+int l = m+n,index1 = m-1,index2 = n-1;  
+for (int i = l-1; i >= 0; i--) {  
+if (index1<0){  
+nums1[i]=nums2[index2--];  
+}  
+else if(index2<0){  
+// nums1[i]=nums1[index1--];  
+break;  
+}  
+else if(nums1[index1]>=nums2[index2]){  
+nums1[i]=nums1[index1--];  
+}  
+else {  
+nums1[i]=nums2[index2--];  
+}  
+}  
+}  
+};  
+//leetcode submit region end(Prohibit modification and deletion)
+
+```
+

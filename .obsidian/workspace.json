@@ -71,8 +71,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 200
   },
   "right": {
     "id": "ef878eb90911b56c",
@@ -108,7 +107,7 @@
       "obsidian-custom-frames:Open Slack": false
     }
   },
-  "active": "4a383e802b683e84",
+  "active": "56cb9fcd32c02c9a",
   "lastOpenFiles": [
     "source/_posts/前后端开发/Dateframe—Algorithm.md",
     "source/_posts/前后端开发/algorithm.md",
