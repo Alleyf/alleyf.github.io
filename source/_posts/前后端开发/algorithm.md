@@ -71,3 +71,38 @@ return result;
 总结：
 > <span style="background:rgba(240, 107, 5, 0.2)">对于多次重复出现的值，可以通过 HashMap 存储，后续先扫描 HashMap 是否存在再做行动。</span>
 
+# 2. LeetCode
+
+## 1. 两数之和
+
+
+```c++
+import java.util.HashMap;  
+  
+class Solution {  
+public int[] twoSum(int[] nums, int target) {  
+HashMap<Integer, Integer> storeNums = new HashMap<Integer, Integer>(nums.length);  
+int[] results = new int[2];  
+for (int i = 0; i < nums.length; i++) {  
+int residue = target - nums[i];  
+Integer index = storeNums.get(residue);  
+if (index != null) {  
+results[0] = index;  
+results[1] = i;  
+break;  
+} else {  
+storeNums.put(nums[i], i);  
+}  
+}  
+return results;  
+}  
+  
+};  
+//runtime:1 ms  
+//memory:42.6 MB
+
+```
+
+
+## 2. 合并两个有序数组
+

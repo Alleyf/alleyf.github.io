@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/前后端开发/Dateframe—Algorithm.md",
+                "file": "source/_posts/前后端开发/algorithm.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -39,7 +39,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/前后端开发/Dateframe—Algorithm.md"
+                "file": "source/_posts/前后端开发/algorithm.md"
               }
             }
           },
@@ -71,7 +71,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "ef878eb90911b56c",
@@ -107,10 +108,10 @@
       "obsidian-custom-frames:Open Slack": false
     }
   },
-  "active": "bd7987cb1c1234c1",
+  "active": "4a383e802b683e84",
   "lastOpenFiles": [
-    "source/_posts/前后端开发/algorithm.md",
     "source/_posts/前后端开发/Dateframe—Algorithm.md",
+    "source/_posts/前后端开发/algorithm.md",
     "public/2023/05/8e2ac1a55f44.html",
     "public/2023/05",
     "public/tags/OS/index.html",
