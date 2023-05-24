@@ -299,9 +299,205 @@ int QueueLength(SqQueue Q)
 ---
 # 4. 串、数组和广义表
 
- 
+>  串就是字符串
+>  数组包括一维数组和二维数组
+>  广义表类似于 python 中的列表，可以表嵌套
 
 # 5. 树
+
+n 个节点的有限集合
+
+## 1性质
+
+- 具有 n 个节点的完全二叉树的深度为 
+$$[log_2 n](取下界)+1$$
+
+两类特殊的二叉树：
+1. 满二叉树：<span style="background:#b1ffff">指深度为 k 且含有</span> $2^k-1$ <span style="background:#b1ffff">个节点的二叉树。</span>
+2. 完全二叉树：<span style="background:#affad1">书中所含的 n 个节点和满二叉树中编号为 1 至 n 的节点一一对应。</span>
+
+## 2存储结构
+
+顺序存储：
+
+```c
+#define IMAXSIZE 100
+typedef TElemType SqBiTree[MAXSIZE];
+SqBiTree bt;
+```
+
+链式存储：
+
+```c
+typedef struct{
+   TEIemType data;
+   struct BiTNode *Ichild, *rchild;
+}BiTNode, *BiTree;
+```
+
+
+## 3遍历方式
+
+> 先中后的顺序指的是根据点访问的顺序，如先序遍历就是<font color="#f79646">根左右</font>，后序遍历就是<font color="#f79646">左右根</font>。
+
+![遍历图|275](https://s2.loli.net/2023/05/24/kyjJIXU7eLSbCFW.png)
+
+
+### 先序遍历
+ABCDEFGHK
+
+```c
+void Preorder (BiTree T)
+{
+   if (T){
+      visit(T->data);
+      Preorder(T->IchiId);
+      Preorder(T->rchiId);
+   }
+}
+```
+
+
+### 中序遍历
+BDCAEHGKF
+
+```c
+void Inorder (BiTree T)
+{
+   if (T) {
+      Inorder(T->lchiId);
+      visit(T->data);
+      Ineorder(T->rchiId);
+   }
+}
+```
+
+中序非递归：
+
+```c
+void Inorder1 (BiTree T)
+{ 
+Initstack(S); p=T;
+while(1) {
+while(p) {Push(S,p);p=p->lchild;}//先将左孩子全部入栈
+if(StackEmpty(S)) return;
+Pop(S,p);//出一个左孩子
+cout<<P->data;
+p=p->rchild;}
+}
+```
+
+### 后序遍历
+DCBHKGFEA
+```c
+void bkorder (BiTree T)
+{
+   if (T) {
+      bkorder(T->lchiId);
+      bkorder(T->rchiId);
+      visit(T->data);
+   }
+}
+```
+
+### 层次遍历
+ABECFDGHK
+
+### 4 常见应用
+
+1. 统计二叉树中叶子节点的个数：
+
+```c
+void CountLeaf (BiTree T, int & count) {
+	if(T){
+		if(!T->lchild&&!T->rchild)
+			count++;
+		CountLeaf(T->lchild, count);
+		CountLeaf(T->rchild, count);
+	}
+}
+
+```
+
+
+2. 求二叉树的深度：
+
+```c
+int Depth (BiTree I){
+ if (!T) depthval = O;
+ else {
+    depthL= Depth(T->IchiId);//求左子树的深度
+    depthR= Depth(T->rchild);//求右子树的深度
+    depthval=1+ (depthL>depthR?depthL:depthR);//取较大者相加
+   }
+ return depthval;
+}
+```
+
+3. 建立二叉树的存储结构：
+
+```c
+void CreateBiTree(BiTree &T){
+	char ch;
+	scanf("%c",&ch);
+	if(ch="")
+		T=NULL;
+	else
+		{
+			T = new BiTNode;
+			T->data = ch;
+			CreteBiTree(T->lchild);//创建左子树
+			CreteBiTree(T->rchild);//创建右子树
+		}
+}
+
+```
+
+4. 查询二叉树中的某个节点：
+
+```c
+bool Preorder (BiTree T, ElemType x, BiTree &p){
+if(T){
+    if(T->data==x)//递归终止条件
+	    { 
+		    p = T;
+		    return TRUE;
+		}
+	elseif{ 
+		if(Preorder(T->lchild, x, p))
+			return TRUE;
+	elseif{
+		if(Preorder(T->rchild, x, p))
+			return TRUE;
+	else{
+			p = NULL;
+			return False;
+		}
+	}
+return False;
+```
+
+5. 线索二叉树：
+
+在中序线索二叉树中，查找结点\*p的中序后继结点
+<span style="background:rgba(240, 200, 0, 0.2)">1. 若 P->Rtag 为 1, 则 P 的右线索指向其后继结点*q;</span>
+<span style="background:rgba(240, 200, 0, 0.2)">2. 若 P->Rtag 为 0, 则其后继结点*q 是右子树中的最左结点。</span>
+
+6. 森林于树之间的转换
+
+> 左孩子右兄弟连接原则：左子树均为孩子节点，右子树均为兄弟节点。
+
+
+7. 哈夫曼树，降序排列，从低到高，两两（多多）做兄弟构造新树，循环往复
+所有叶子节点带权长度之和：
+$$
+WPL(T)=\sum W_kl_k(对所有叶子节点)
+$$
+> WPL 最小的哈夫曼树为<font color="#8db3e2">最优哈夫曼树</font>。
+哈夫曼编码原则：<font color="#ff0000">左 0 右 1 原则</font>
+
+
+
 
 
 

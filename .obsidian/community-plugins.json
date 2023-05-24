@@ -1,17 +1,13 @@
 [
-  "calendar",
-  "obsidian-git",
   "obsidian-image-auto-upload-plugin",
   "mousewheel-image-zoom",
   "editing-toolbar",
   "obsidian-auto-link-title",
   "obsidian-file-cleaner",
-  "mysnippets-plugin",
-  "obsidian-custom-frames",
   "obsidian-paste-image-rename",
   "obsidian-style-settings",
-  "cmdr",
   "easy-typing-obsidian",
-  "floating-toc",
-  "table-editor-obsidian"
+  "table-editor-obsidian",
+  "obsidian-custom-frames",
+  "obsidian-git"
 ]
