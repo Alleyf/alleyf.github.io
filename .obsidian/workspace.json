@@ -71,8 +71,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 200
   },
   "right": {
     "id": "ef878eb90911b56c",
@@ -108,8 +107,10 @@
       "obsidian-custom-frames:Open Slack": false
     }
   },
-  "active": "06807bd02510ffca",
+  "active": "bd7987cb1c1234c1",
   "lastOpenFiles": [
+    "source/_posts/前后端开发/algorithm.md",
+    "source/_posts/前后端开发/Dateframe—Algorithm.md",
     "public/2023/05/8e2ac1a55f44.html",
     "public/2023/05",
     "public/tags/OS/index.html",
@@ -122,9 +123,6 @@
     "public/archives/2023/05",
     "source/_posts/课程学习/操作系统.md",
     "().md",
-    "source/_posts/前后端开发/Dateframe—Algorithm.md",
-    "public/2023/03/2e76a383274a.html",
-    "source/_posts/前后端开发/algorithm.md",
     "source/_posts/前后端开发/网页开发.md",
     "source/_posts/前后端开发/DRF.md",
     "source/_posts/课程学习/嵌入式原理与应用.md",

@@ -1,5 +1,5 @@
 ---
-title: algorithm  
+title: Dateframe—Algorithm  
 date: 2023-03-17 19:06:15  
 tags: [Dataframe-Algorithm] 
 sticky: 65
