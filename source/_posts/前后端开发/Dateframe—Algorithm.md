@@ -296,20 +296,10 @@ int QueueLength(SqQueue Q)
 
 ```
 
-<span style="background:#fdbfff">链队列：</span>
-```c
-
-
-```
-
-
-
-
-
+---
 # 4. 串、数组和广义表
 
-
-dad
+ 
 
 # 5. 树
 
