@@ -71,19 +71,18 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 200
   },
   "right": {
     "id": "ef878eb90911b56c",
     "type": "split",
     "children": [
       {
-        "id": "8dc62a63aa3f4bc1",
+        "id": "ca7eb75bf5cd681d",
         "type": "tabs",
         "children": [
           {
-            "id": "06807bd02510ffca",
+            "id": "6d63308aade0f47e",
             "type": "leaf",
             "state": {
               "type": "git-view",
@@ -105,11 +104,14 @@
       "graph:查看关系图谱": false,
       "obsidian-file-cleaner:清理文件": false,
       "table-editor-obsidian:Advanced Tables Toolbar": false,
-      "obsidian-custom-frames:Open Slack": false
+      "obsidian-custom-frames:Open Slack": false,
+      "cmdr:Calendar: Open view": false,
+      "cmdr:Obsidian Git: Open source control view": false
     }
   },
   "active": "bd7987cb1c1234c1",
   "lastOpenFiles": [
+    "source/_posts/前后端开发/SpringBoot启示录.md",
     "source/_posts/前后端开发/algorithm.md",
     "source/_posts/前后端开发/Dateframe—Algorithm.md",
     "public/2023/05/8e2ac1a55f44.html",
@@ -133,7 +135,6 @@
     "source/_posts/课程学习/SignalSample.md",
     "source/_posts/课程学习/review plans.canvas",
     "canvas/review plans.canvas",
-    "source/_posts/前后端开发/SpringBoot启示录.md",
     "themes/fluid/source/img/police_beian.png",
     "themes/fluid/source/img/loading.gif",
     "themes/fluid/source/img/fluid.png",

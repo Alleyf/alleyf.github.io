@@ -496,7 +496,7 @@ return new OpenAPI().info(new Info() //
 ```
 
 
-### 注解
+### 1.注解
 
 swagger 常用注解如下图所示：
 
@@ -516,8 +516,96 @@ swagger 常用注解如下图所示：
 <span style="background:rgba(3, 135, 102, 0.2)">> 9. @ApiParam → @Parameter</span>
 <span style="background:rgba(3, 135, 102, 0.2)">> 10. @ApiResponse (code = 404, message = "foo") → @ApiResponse (responseCode = "404", description = "foo")</span>
 
+### 2.访问 swagger
 
-# 2. 速成篇
+1. swagger 2： http://localhost:8080/swagger-ui.html
+2. swagger 3: 
+	  - http://localhost:8080/swagger-ui/index.html
+	  - http://localhost:8080/doc.html
+
+# 5. MybatisPlus
+
+## 1.ORM 介绍
+
+- ORM，（Object Relational Mapping，对象关系映射）是为了解决面向对象与关系数据库存在的互不匹配现象的一种技术。
+
+- ORM 通过使用描述对象和数据库之间映射的元数据将程序中的对象自动持久化到关系数据库中。
+
+- ORM 框架的本质是简化编程中操作数据库的编码。
+
+
+![image.png|350](https://s2.loli.net/2023/05/29/PcG5L8ZYouWhyp6.png)
+
+
+## 2.MyBatis-Plus 介绍
+
+- MyBatis 是一款优秀的数据持久层 ORM 框架，被广泛地应用于应用系统。
+- MyBatis 能够非常灵活地实现动态 SQL，可以使用 XML 或注解来配置和映射原生信息，能够轻松地将 Java 的 POJO（PlainOrdinaryJavaObject，普通的Java 对象）与数据库中的表和字段进行映射关联。
+- MyBatis-Plus 是一个 MyBatis 的增强工具，在 MyBatis 的基础上做了增强，简化了开发。
+
+<font color="#8db3e2">添加依赖：</font>
+
+```java
+<! MyBatisPlus依赖
+<dependency>
+   <groupId>com.baomidou</groupId>
+    <artifactId>mybatis-plus-boot-starter</artifactId>
+    <version>3.4.2</version>
+</dependency>
+<!--mysql驱动依赖
+<dependency>
+    <groupId>mysql</groupId>
+     <artifactId>mysql-connector-java</artifactId>
+    <version>5.1.47</version>
+</dependency>
+<!-- 数据连接池druid
+<dependency>
+    <groupId>com.alibaba</groupId>
+    <artifactId>druid-spring-boot-starter</artifactId>
+    <version>1.1.20</version>
+</dependency>
+```
+
+<font color="#f79646">全局配置：</font>
+- 配置数据库相关信息（application.properties）：
+
+```java
+spring.datasource.type=com.alibaba.druid.pool.DruidDatasource
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.datasource.ur1=jdbc:mysql://1ocalhost:3306/mydb?usessL=false
+spring.datasource.username=root
+spring.datasource.password=123456
+mybatis-plus.configuration.1og-impl=org.apache.ibatis.logging.stdout.stdoutImp1
+
+```
+
+- 添加@MapperScan 注解：
+
+```java
+@springBootApplication
+@Mapperscan("com.xx.mapper")
+public class MybatisplusDemoApplication 
+   public static void main(string[] args){
+       SpringApplication.run(MybatisplusDemoApplication.class,args);
+
+```
+
+Mybitis CRUD 注解：
+注解功能
+<font color="#00b0f0">@Insert     实现插入</font>
+<font color="#00b0f0">@Update   实现更新</font>
+<font color="#00b0f0">@Delete    实现删除</font>
+<font color="#00b0f0">@Select    实现查询</font>
+<font color="#00b0f0">@Result    实现结果集封装</font>
+<font color="#00b0f0">@Results  可以与@Result 一起使用，封装多个结果集</font>
+<font color="#00b0f0">@One       实现一对一结果集封装</font>
+<font color="#00b0f0">@Many     实现一对多结果集封装</font>
+
+
+
+## 3.MyBatis-Plus CRUD 操作
+
+
 
 
 
