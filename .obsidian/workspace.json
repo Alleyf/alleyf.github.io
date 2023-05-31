@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/机器学习/深度学习入门篇.md",
+                "file": "source/_posts/前后端开发/algorithm.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -39,7 +39,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/机器学习/深度学习入门篇.md"
+                "file": "source/_posts/前后端开发/algorithm.md"
               }
             }
           },
@@ -71,7 +71,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "ef878eb90911b56c",
@@ -95,15 +96,16 @@
       "cmdr:Obsidian Git: Open source control view": false
     }
   },
-  "active": "4a383e802b683e84",
+  "active": "c6d650646ebedef6",
   "lastOpenFiles": [
+    "public/2023/05/0950da3fc570.html",
+    "source/_posts/机器学习/深度学习入门篇.md",
     "public/page/4/index.html",
     "public/page/4",
     "public/tags/CV，NLP/index.html",
     "public/tags/CV，NLP",
     "public/archives/page/4/index.html",
     "public/archives/page/4",
-    "source/_posts/机器学习/深度学习入门篇.md",
     "source/_posts/机器学习/ML_DL.md",
     "source/_posts/前后端开发/SpringBoot启示录.md",
     "source/_posts/前后端开发/algorithm.md",
@@ -112,7 +114,6 @@
     "public/2023/05",
     "public/tags/OS/index.html",
     "public/tags/OS",
-    "public/tags/CS/index.html",
     "source/_posts/课程学习/操作系统.md",
     "().md",
     "source/_posts/前后端开发/网页开发.md",

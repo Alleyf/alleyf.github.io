@@ -171,3 +171,65 @@ nums1[i]=nums2[index2--];
 
 ```
 
+## 3. 移动零
+
+
+```c++
+//双指针
+#include<vector>  
+  
+using namespace std;  
+class Solution {  
+public:  
+void moveZeroes(vector<int>& nums) {  
+if(!nums.size()){  
+return;  
+}  
+int j = 0;  
+for(int item:nums){  
+if (item!=0)  
+nums[j++]=item;  
+}  
+while (j<nums.size()){  
+nums[j++]=0;  
+}  
+}  
+};
+```
+
+
+## 4. 找到所有数组中消失的数字
+
+
+```c++
+/、
+#include<vector>  
+using namespace std;  
+//leetcode submit region begin(Prohibit modification and deletion)  
+class Solution {  
+public:  
+vector<int> findDisappearedNumbers(vector<int>& nums) {  
+vector<int> disnums;  
+// for(int item:nums){  
+// item = item>0 ? item : -item;  
+// nums[item-1] = nums[item-1]>0 ? nums[item-1] : -nums[item-1];  
+// nums[item-1]=-nums[item-1];  
+// }  
+// for(int i=0;i<nums.size();i++){  
+// if (nums[i]>0)  
+// disnums.push_back(i+1);  
+// }  
+int n = nums.size();  
+for(int item:nums){  
+int x = (item-1)%n;  
+nums[x]+=n;  
+}  
+for(int i=0;i<n;i++){  
+if (nums[i]<=n)  
+disnums.push_back(i+1);  
+}  
+return disnums;  
+}  
+};
+
+```
