@@ -202,10 +202,9 @@ nums[j++]=0;
 
 
 ```c++
-/、
+//数组 哈希表
 #include<vector>  
-using namespace std;  
-//leetcode submit region begin(Prohibit modification and deletion)  
+using namespace std;
 class Solution {  
 public:  
 vector<int> findDisappearedNumbers(vector<int>& nums) {  
@@ -231,5 +230,8 @@ disnums.push_back(i+1);
 return disnums;  
 }  
 };
-
 ```
+
+
+
+## 5.
