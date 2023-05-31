@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>DeepLearing</title>
+    <link href="/2023/05/0950da3fc570.html"/>
+    <url>/2023/05/0950da3fc570.html</url>
+    
+    <content type="html"><![CDATA[<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p><img src="https://s2.loli.net/2023/05/31/mlfBuXI7pt2eCic.png" alt="image.png|400"></p><blockquote><p>特征工程的作用：<br>    - 数据特征决定了模型的上限<br>    - 预处理和特征提取是最核心的<br>    - 算法与参数选择决定了如何逼近这个上限</p></blockquote>]]></content>
+    
+    
+    <categories>
+      
+      <category>机器学习</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>CV，NLP</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>OS</title>
     <link href="/2023/05/8e2ac1a55f44.html"/>
     <url>/2023/05/8e2ac1a55f44.html</url>

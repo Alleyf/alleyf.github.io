@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "87a1c19ea92a4535",
+        "id": "79636adc9ffa1d50",
         "type": "tabs",
         "children": [
           {
-            "id": "bd7987cb1c1234c1",
+            "id": "c6d650646ebedef6",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/前后端开发/SpringBoot启示录.md",
+                "file": "source/_posts/机器学习/深度学习入门篇.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -39,7 +39,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/前后端开发/SpringBoot启示录.md"
+                "file": "source/_posts/机器学习/深度学习入门篇.md"
               }
             }
           },
@@ -76,24 +76,10 @@
   "right": {
     "id": "ef878eb90911b56c",
     "type": "split",
-    "children": [
-      {
-        "id": "ca7eb75bf5cd681d",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "6d63308aade0f47e",
-            "type": "leaf",
-            "state": {
-              "type": "git-view",
-              "state": {}
-            }
-          }
-        ]
-      }
-    ],
+    "children": [],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -109,8 +95,16 @@
       "cmdr:Obsidian Git: Open source control view": false
     }
   },
-  "active": "bd7987cb1c1234c1",
+  "active": "4a383e802b683e84",
   "lastOpenFiles": [
+    "public/page/4/index.html",
+    "public/page/4",
+    "public/tags/CV，NLP/index.html",
+    "public/tags/CV，NLP",
+    "public/archives/page/4/index.html",
+    "public/archives/page/4",
+    "source/_posts/机器学习/深度学习入门篇.md",
+    "source/_posts/机器学习/ML_DL.md",
     "source/_posts/前后端开发/SpringBoot启示录.md",
     "source/_posts/前后端开发/algorithm.md",
     "source/_posts/前后端开发/Dateframe—Algorithm.md",
@@ -119,11 +113,6 @@
     "public/tags/OS/index.html",
     "public/tags/OS",
     "public/tags/CS/index.html",
-    "public/tags/CS",
-    "public/categories/CS/index.html",
-    "public/categories/CS",
-    "public/archives/2023/05/index.html",
-    "public/archives/2023/05",
     "source/_posts/课程学习/操作系统.md",
     "().md",
     "source/_posts/前后端开发/网页开发.md",
@@ -144,7 +133,6 @@
     "source/about/index.md",
     "source/_posts/前后端开发/Html5_Css_Js.md",
     "source/_posts/前后端开发/Vue.md",
-    "source/_posts/机器学习/ML_DL.md",
     "2023-04-26.md",
     "source/_posts/机器学习/CV/图像分类.md",
     "未命名看板.md",
@@ -152,7 +140,6 @@
     "source/_posts/机器学习/CV/目标检测.md",
     "source/_posts/机器学习/CV/卷积神经网络基础.md",
     "source/_posts/课程学习/LatexEquationManual.md",
-    "Excalidraw/Drawing 2023-04-05 18.11.28.excalidraw.md",
     "未命名 1.canvas",
     "Pasted image 20230320194157.png",
     "source/_posts/未命名.canvas"
