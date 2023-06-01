@@ -11,14 +11,12 @@
             "id": "7fb22047e7d177c5",
             "type": "leaf",
             "state": {
-              "type": "canvas",
+              "type": "markdown",
               "state": {
-                "file": "canvas/AI学习思路.canvas",
-                "viewState": {
-                  "x": 72.07639985486716,
-                  "y": 20.929760024879915,
-                  "zoom": 0
-                }
+                "file": "source/_posts/前后端开发/SpringBoot启示录.md",
+                "mode": "preview",
+                "backlinks": false,
+                "source": false
               }
             }
           }
@@ -41,7 +39,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "canvas/AI学习思路.canvas"
+                "file": "source/_posts/前后端开发/SpringBoot启示录.md"
               }
             }
           },
@@ -73,7 +71,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "ef878eb90911b56c",
@@ -100,8 +99,8 @@
   },
   "active": "7fb22047e7d177c5",
   "lastOpenFiles": [
-    "Excalidraw/Drawing 2023-06-01 14.21.03.excalidraw.md",
     "canvas/AI学习思路.canvas",
+    "Excalidraw/Drawing 2023-06-01 14.21.03.excalidraw.md",
     "canvas/review plans.canvas",
     "Excalidraw",
     "source/_posts/机器学习/深度学习入门篇.md",

@@ -606,6 +606,27 @@ Mybitis CRUD 注解：
 ## 3.MyBatis-Plus CRUD 操作
 
 
+```java
+@Mapper
+public interface UserMapper {
+   @Insert("insert into user values(#{id),#(username},#(password),#(birthday)")
+    int add(User user);
+
+   @update("update user set username=#(username},password=#(password),birthday=#(birthday} where id=#{id}")
+    int update(User user);
+
+   @Delete("delete from user where id=#(id")
+    int delete(int id);
+
+   @select("select * from user where id=#(id")
+   User findByid(int id);
+
+   @select("select * from user")
+   List<User> getA11();
+```
+
+
+
 
 
 
