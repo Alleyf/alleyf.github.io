@@ -4,19 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "79636adc9ffa1d50",
+        "id": "d22b6d85fa2c9dec",
         "type": "tabs",
         "children": [
           {
-            "id": "c6d650646ebedef6",
+            "id": "7fb22047e7d177c5",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "canvas",
               "state": {
-                "file": "source/_posts/机器学习/深度学习入门篇.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
+                "file": "canvas/AI学习思路.canvas",
+                "viewState": {
+                  "x": 72.07639985486716,
+                  "y": 20.929760024879915,
+                  "zoom": 0
+                }
               }
             }
           }
@@ -39,7 +41,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/机器学习/深度学习入门篇.md"
+                "file": "canvas/AI学习思路.canvas"
               }
             }
           },
@@ -71,8 +73,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 200
   },
   "right": {
     "id": "ef878eb90911b56c",
@@ -93,14 +94,19 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false,
       "obsidian-custom-frames:Open Slack": false,
       "cmdr:Calendar: Open view": false,
-      "cmdr:Obsidian Git: Open source control view": false
+      "cmdr:Obsidian Git: Open source control view": false,
+      "obsidian-excalidraw-plugin:新建 Excalidraw 绘图": false
     }
   },
-  "active": "4a383e802b683e84",
+  "active": "7fb22047e7d177c5",
   "lastOpenFiles": [
+    "Excalidraw/Drawing 2023-06-01 14.21.03.excalidraw.md",
+    "canvas/AI学习思路.canvas",
+    "canvas/review plans.canvas",
+    "Excalidraw",
+    "source/_posts/机器学习/深度学习入门篇.md",
     "source/_posts/前后端开发/algorithm.md",
     "public/2023/05/0950da3fc570.html",
-    "source/_posts/机器学习/深度学习入门篇.md",
     "public/page/4/index.html",
     "public/page/4",
     "public/tags/CV，NLP/index.html",
@@ -112,7 +118,6 @@
     "source/_posts/前后端开发/Dateframe—Algorithm.md",
     "public/2023/05/8e2ac1a55f44.html",
     "public/2023/05",
-    "public/tags/OS/index.html",
     "source/_posts/课程学习/操作系统.md",
     "().md",
     "source/_posts/前后端开发/网页开发.md",
@@ -123,7 +128,6 @@
     "source/_posts/课程学习/QuartusUsage.md",
     "source/_posts/课程学习/SignalSample.md",
     "source/_posts/课程学习/review plans.canvas",
-    "canvas/review plans.canvas",
     "themes/fluid/source/img/police_beian.png",
     "themes/fluid/source/img/loading.gif",
     "themes/fluid/source/img/fluid.png",
@@ -139,7 +143,6 @@
     "source/_posts/机器学习/CV/计算机视觉概述.md",
     "source/_posts/机器学习/CV/目标检测.md",
     "source/_posts/机器学习/CV/卷积神经网络基础.md",
-    "source/_posts/课程学习/LatexEquationManual.md",
     "未命名 1.canvas",
     "Pasted image 20230320194157.png",
     "source/_posts/未命名.canvas"
