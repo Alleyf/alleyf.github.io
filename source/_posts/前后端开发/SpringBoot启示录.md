@@ -606,10 +606,11 @@ Mybitis CRUD 注解：
 ## 3.MyBatis-Plus CRUD 操作
 
 
+<font color="#ffc000">mybatis 的 Mapper 操作方法</font>
 ```java
 @Mapper
 public interface UserMapper {
-   @Insert("insert into user values(#{id),#(username},#(password),#(birthday)")
+   @Insert("insert into user values(#{id),#(username},#(password),#(birthday)")//id,username等属性为user对象的属性
     int add(User user);
 
    @update("update user set username=#(username},password=#(password),birthday=#(birthday} where id=#{id}")
@@ -624,6 +625,68 @@ public interface UserMapper {
    @select("select * from user")
    List<User> getA11();
 ```
+
+
+<font color="#ff0000">mybatis-plus 的操作方法</font>
+> BaseMapper 泛型类里已经实现了基本的增删改查任务
+```java
+@Mapper  
+public interface UserMapper extends BaseMapper<User> {  
+}
+
+```
+
+> [!NOTE] 注意
+> Mybatis-plus 有一些对 entity 里的实体类的**注解**，标识对应的表名、主键和字段名等，如果不进行注解则实体类的类名必须与数据表名一致，属性必须与数据表的字段名一致。
+[注解细节](https://baomidou.com/pages/24112f/#特性)
+
+
+## 4. 多表查询
+
+> 实现复杂关系映射，可以使用@Results 注解，@Result 注解，@One 注解，
+> @Many 注解组合完成复杂关系的配置。
+
+![注解说明|325](https://s2.loli.net/2023/06/01/Z6TuNLREyqGFazH.png)
+
+
+示例：
+**任务表**
+
+
+
+```java
+@Mapper  
+public interface TaskMapper extends BaseMapper<Task> {  
+    @Select("select * from task where uid = #{uid}")  
+    List<Task> selectByUid(int uid);  
+}
+```
+
+**用户表**
+
+```java
+public interface UserMapper extends BaseMapper<User> {  
+  
+    @Select("select * from user")  
+    @Results(  
+            {  
+                    @Result(column = "id", property = "id"),  
+                    @Result(column = "username", property = "username"),  
+                    @Result(column = "password", property = "password"),  
+                    @Result(column = "id", property = "tasks", javaType = List.class,  
+                            many = @Many(select = "com.alleyf.airesume.mapper.TaskMapper.selectByUid")),  
+            }  
+    )  
+    List<User> queryAllUserAndTasks();  
+}
+
+```
+
+> [!NOTE] 注意
+> 查询用户的同时查出与用户相关联的所有任务
+> Result 中的 column 的字段为查询到的数据库字段值，用来赋值给后面类对象的属性 property，对应的属性与字段相同，含有不存在的属性则使用外键间接查询。
+
+## 5. 分页查询
 
 
 
