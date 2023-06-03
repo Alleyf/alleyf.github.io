@@ -652,18 +652,84 @@ public interface UserMapper extends BaseMapper<User> {
 示例：
 **任务表**
 
+entity：
+```java
+package com.alleyf.airesume.entity;  
+  
+import com.baomidou.mybatisplus.annotation.IdType;  
+import com.baomidou.mybatisplus.annotation.TableField;  
+import com.baomidou.mybatisplus.annotation.TableId;  
+import com.baomidou.mybatisplus.annotation.TableName;  
+  
+import java.sql.Date;  
+import java.time.LocalDateTime;  
+  
+@TableName(value = "u_task")  
+public class Task {  
+    @TableId(value = "id", type = IdType.AUTO)  
+    private int id;  
+    private int uid;  
+    private String name;  
+    private String content;  
+    @TableField(value = "b_date")  
+    private LocalDateTime b_date;  
+    @TableField(value = "e_date")  
+    private LocalDateTime e_date;  
+    @TableField(exist = false)  
+    private User user;  
+}
 
+```
 
+Mapper：
 ```java
 @Mapper  
 public interface TaskMapper extends BaseMapper<Task> {  
     @Select("select * from task where uid = #{uid}")  
     List<Task> selectByUid(int uid);  
+
+	@Select("select * from task")  
+@Results(  
+        {  
+                @Result(column = "id", property = "id"),  
+                @Result(column = "name", property = "name"),  
+                @Result(column = "content", property = "content"),  
+                @Result(column = "b_date", property = "b_date", javaType = LocalDateTime.class, jdbcType = JdbcType.TIMESTAMP),  
+                @Result(column = "e_date", property = "e_date", javaType = LocalDateTime.class, jdbcType = JdbcType.TIMESTAMP),  
+                @Result(column = "uid", property = "user", javaType = User.class,  
+                        one = @One(select = "com.alleyf.airesume.mapper.UserMapper.selectById")),  
+        }  
+)  
+List<Task> queryAllTaskAndUser();
 }
 ```
 
 **用户表**
 
+entity：
+```java
+package com.alleyf.airesume.entity;  
+  
+import com.baomidou.mybatisplus.annotation.IdType;  
+import com.baomidou.mybatisplus.annotation.TableField;  
+import com.baomidou.mybatisplus.annotation.TableId;  
+import com.baomidou.mybatisplus.annotation.TableName;  
+  
+import java.util.List;  
+  
+@TableName(value = "user")  
+public class User {  
+    @TableId(value = "id", type = IdType.AUTO)  
+    private int id;  
+    private String username;  
+    private String password;  
+    @TableField(exist = false)  
+    private List<Task> tasks;  
+}
+
+```
+
+mapper：
 ```java
 public interface UserMapper extends BaseMapper<User> {  
   
@@ -682,13 +748,102 @@ public interface UserMapper extends BaseMapper<User> {
 
 ```
 
+
+
 > [!NOTE] 注意
 > 查询用户的同时查出与用户相关联的所有任务
 > Result 中的 column 的字段为查询到的数据库字段值，用来赋值给后面类对象的属性 property，对应的属性与字段相同，含有不存在的属性则使用外键间接查询。
 
-## 5. 分页查询
+
+## 5. 条件查询
+
+<span style="background:#affad1">Mybatis 实现：</span>
+
+> 在 mapper 的接口中写 sql 语句进行条件查询。
+
+示例：
+mapper：
+```java
+/**  
+ * 按照任务名查询用户 * * @param username 用户名  
+ * @return 所有用户列表  
+ */@Select("select * from user where username = #{username}")  
+@Results({  
+        @Result(column = "id", property = "id"),  
+        @Result(column = "username", property = "username"),  
+        @Result(column = "password", property = "password"),  
+        @Result(column = "id", property = "tasks", javaType = List.class,  
+                many = @Many(select = "com.alleyf.airesume.mapper.TaskMapper.selectByUid")),  
+})  
+User selectByName(String username);
+
+```
+
+controller：
+```java
+    @ApiOperation("按照用户名查询用户")  
+    @GetMapping("/queryByMName")  
+    public User queryByMName(@RequestParam("username") String username) {  
+//        return userMapper.selectList(null);  
+        return userMapper.selectByName(username);  
+    }
+
+```
+
+<span style="background:rgba(136, 49, 204, 0.2)">Mybatis-Plus 实现：</span>
+
+> - 使用 **QueryWrapper** （条件查询）和 **UpdateWrapper**（条件更新） 两个条件查询类进行条件查询。
+> - 可选条件有：eq（等于），lt（大于），st（小于），le（大于等于），se（小于等于）等
+
+示例：
+
+```java
+@ApiOperation("按照用户名查询用户(MP)")  
+@GetMapping("/queryByMPName")  
+public User queryByMPName(@RequestParam("username") String username) {  
+    return userMapper.selectOne(new QueryWrapper<User>().eq("username", username));  
+}
+
+```
 
 
+## 6. 分页查询
+
+编写配置文件
+
+```java
+package com.alleyf.airesume.config;  
+  
+import com.baomidou.mybatisplus.annotation.DbType;  
+import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;  
+import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;  
+import org.springframework.context.annotation.Bean;  
+import org.springframework.context.annotation.Configuration;  
+  
+@Configuration  
+public class PaginationConfig {  
+    @Bean  
+    public MybatisPlusInterceptor paginationInterceptor() {  
+        MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();  
+        PaginationInnerInterceptor paginationInterceptor = new PaginationInnerInterceptor(DbType.MYSQL);  
+        interceptor.addInnerInterceptor(paginationInterceptor);  
+        return interceptor;  
+    }  
+}
+
+```
+
+controller:
+
+```java
+//查询所有用户：1oca1host：8080/findA11
+@GetMapping("findAll")
+public IPage findAl1()t
+   //设置起始值及每页条数
+   Page<User> page = new Page<>(0,2);
+   return userMapper.selectPage(page,nul1);
+
+```
 
 
 
