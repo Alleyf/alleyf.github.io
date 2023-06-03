@@ -845,12 +845,55 @@ public IPage findAl1()t
 
 @ApiOperation("按照页码查询用户(MP)")  
 @GetMapping("/queryByPage/{page}")  
-public Page<User> queryByPage(@PathVariable("page") int page) {  
+public IPage queryByPage(@PathVariable("page") int page) {  
     Page<User> page1 = new Page<>(page, 5);  
-    return userMapper.selectPage(page1, null);  
+    IPage iPage = userMapper.selectPage(page1, null);  
+    return iPage;  
 }
 
 ```
+
+
+# 6.Vue 框架快速上手
+
+[[Vue]]
+
+## 1. 前端环境准备
+Vscode 或者WebStorm
+
+
+## 2.Vue 框架介绍
+
+尤雨溪制作的渐进式 js 框架
+
+## 3.Vue 快速入门
+
+   - 导入 vue. js 的 script 脚本文件
+
+ `<script src="https://unpkg.com/vue@next"></script>`
+
+   - 在页面中声明一个将要被 vue 所控制的 DOM 区域，既 MVVM 中的 View
+
+	`<div id="app">
+	  {{ message }}
+	</div>`
+
+   - 创建 vm 实例对象 (vue 实例对象)
+
+`const hello = {
+   //指定数据源，既 MVVM 中的 Mode1
+   data: function () {
+      return {
+         message: 'Hello Vue!'
+      }
+}
+const app = Vue.createApp (hello)
+app. mount（' #app '）/／指定当前 vue 实例要控制页面的哪个区域`
+
+
+
+
+
 
 
 

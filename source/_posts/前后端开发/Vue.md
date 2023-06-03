@@ -363,7 +363,7 @@ methods: {}
 </ul>
 ```
 > 1. `todo` 是一个局部变量，表示当前正在迭代的数组元素。它只能在 `v-for` 所绑定的元素上或是其内部访问，就像函数的作用域一样.
-> 2. 并且将它作为[特殊的 `key` attribute](https://cn.vuejs.org/api/built-in-special-attributes.html#key) 绑定到每个 `<li>`
+> 2. key 属性将它（唯一标识主键）作为[特殊的 `key` attribute](https://cn.vuejs.org/api/built-in-special-attributes.html#key) 绑定到每个 `<li>`
 
 > 更新列表有两种方式：
 	1. 在源数组上调用变更方法：
@@ -926,3 +926,42 @@ router: router,
 </body>  
 </html>
 ```
+
+
+# 9. Element-UI 使用
+
+> Element 是国内饿了么公司提供的一套开源前端框架，简洁优雅，提供了 Vue、React、Angular等多个版本。
+> 文档地址: [一个 Vue 3 UI 框架 | Element Plus](https://element-plus.org/zh-CN/#/zh-CN)
+> 安装: npm i element-ui
+> 引入 Element：
+> main.js (vue 2):
+```js
+import Vue from 'vue';
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+import App from './App.vue';
+
+Vue.use(ElementUI);
+
+new Vue({
+  el:#app,
+  render: h => h(App)
+);
+```
+
+main. js (vue 3):
+
+```js
+// main.ts
+import { createApp } from 'vue'
+import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
+import App from './App.vue'
+
+const app = createApp(App)
+
+app.use(ElementPlus)
+app.mount('#app')
+```
+
+

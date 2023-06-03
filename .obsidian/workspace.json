@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/前后端开发/SpringBoot启示录.md",
+                "file": "source/_posts/前后端开发/Vue.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -39,7 +39,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/前后端开发/SpringBoot启示录.md"
+                "file": "source/_posts/前后端开发/Vue.md"
               }
             }
           },
@@ -99,6 +99,8 @@
   },
   "active": "7fb22047e7d177c5",
   "lastOpenFiles": [
+    "source/_posts/前后端开发/SpringBoot启示录.md",
+    "source/_posts/前后端开发/Vue.md",
     "canvas/AI学习思路.canvas",
     "Excalidraw/Drawing 2023-06-01 14.21.03.excalidraw.md",
     "canvas/review plans.canvas",
@@ -113,7 +115,6 @@
     "public/archives/page/4/index.html",
     "public/archives/page/4",
     "source/_posts/机器学习/ML_DL.md",
-    "source/_posts/前后端开发/SpringBoot启示录.md",
     "source/_posts/前后端开发/Dateframe—Algorithm.md",
     "public/2023/05/8e2ac1a55f44.html",
     "public/2023/05",
@@ -135,7 +136,6 @@
     "source/_posts/前后端开发/uni-app.md",
     "source/about/index.md",
     "source/_posts/前后端开发/Html5_Css_Js.md",
-    "source/_posts/前后端开发/Vue.md",
     "2023-04-26.md",
     "source/_posts/机器学习/CV/图像分类.md",
     "未命名看板.md",
