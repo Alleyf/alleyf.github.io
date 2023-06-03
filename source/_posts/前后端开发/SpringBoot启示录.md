@@ -843,6 +843,13 @@ public IPage findAl1()t
    Page<User> page = new Page<>(0,2);
    return userMapper.selectPage(page,nul1);
 
+@ApiOperation("按照页码查询用户(MP)")  
+@GetMapping("/queryByPage/{page}")  
+public Page<User> queryByPage(@PathVariable("page") int page) {  
+    Page<User> page1 = new Page<>(page, 5);  
+    return userMapper.selectPage(page1, null);  
+}
+
 ```
 
 
