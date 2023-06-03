@@ -34,7 +34,7 @@
 <meta property="og:image" content="https://s2.loli.net/2023/05/29/PcG5L8ZYouWhyp6.png">
 <meta property="og:image" content="https://s2.loli.net/2023/06/01/Z6TuNLREyqGFazH.png">
 <meta property="article:published_time" content="2023-04-28T08:37:54.000Z">
-<meta property="article:modified_time" content="2023-06-01T13:32:08.892Z">
+<meta property="article:modified_time" content="2023-06-02T13:35:03.147Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="SpringBoot">
 <meta name="twitter:card" content="summary_large_image">
@@ -278,7 +278,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          16k words
+          20k words
         
       </span>
     
@@ -289,7 +289,7 @@
         
         
         
-          134 mins
+          168 mins
         
       </span>
     
@@ -340,7 +340,7 @@
               <p class="note note-info">
                 
                   
-                    Last updated on a day ago
+                    Last updated on 19 hours ago
                   
                 
               </p>
@@ -604,15 +604,56 @@ Method 匹配也可以使用<span style="background:rgba(3, 135, 102, 0.2)">@Get
 </blockquote>
 <p><img src="https://s2.loli.net/2023/06/01/Z6TuNLREyqGFazH.png" srcset="/img/loading.gif" lazyload alt="注解说明|325"></p>
 <p>示例：<br><strong>任务表</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Mapper</span>  <br><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">TaskMapper</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">BaseMapper</span>&lt;Task&gt; &#123;  <br>    <span class="hljs-meta">@Select(&quot;select * from task where uid = #&#123;uid&#125;&quot;)</span>  <br>    List&lt;Task&gt; <span class="hljs-title function_">selectByUid</span><span class="hljs-params">(<span class="hljs-type">int</span> uid)</span>;  <br>&#125;<br></code></pre></td></tr></table></figure>
+<p>entity：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.alleyf.airesume.entity;  <br>  <br><span class="hljs-keyword">import</span> com.baomidou.mybatisplus.annotation.IdType;  <br><span class="hljs-keyword">import</span> com.baomidou.mybatisplus.annotation.TableField;  <br><span class="hljs-keyword">import</span> com.baomidou.mybatisplus.annotation.TableId;  <br><span class="hljs-keyword">import</span> com.baomidou.mybatisplus.annotation.TableName;  <br>  <br><span class="hljs-keyword">import</span> java.sql.Date;  <br><span class="hljs-keyword">import</span> java.time.LocalDateTime;  <br>  <br><span class="hljs-meta">@TableName(value = &quot;u_task&quot;)</span>  <br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Task</span> &#123;  <br>    <span class="hljs-meta">@TableId(value = &quot;id&quot;, type = IdType.AUTO)</span>  <br>    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> id;  <br>    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> uid;  <br>    <span class="hljs-keyword">private</span> String name;  <br>    <span class="hljs-keyword">private</span> String content;  <br>    <span class="hljs-meta">@TableField(value = &quot;b_date&quot;)</span>  <br>    <span class="hljs-keyword">private</span> LocalDateTime b_date;  <br>    <span class="hljs-meta">@TableField(value = &quot;e_date&quot;)</span>  <br>    <span class="hljs-keyword">private</span> LocalDateTime e_date;  <br>    <span class="hljs-meta">@TableField(exist = false)</span>  <br>    <span class="hljs-keyword">private</span> User user;  <br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>Mapper：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Mapper</span>  <br><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">TaskMapper</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">BaseMapper</span>&lt;Task&gt; &#123;  <br>    <span class="hljs-meta">@Select(&quot;select * from task where uid = #&#123;uid&#125;&quot;)</span>  <br>    List&lt;Task&gt; <span class="hljs-title function_">selectByUid</span><span class="hljs-params">(<span class="hljs-type">int</span> uid)</span>;  <br><br>	<span class="hljs-meta">@Select(&quot;select * from task&quot;)</span>  <br><span class="hljs-meta">@Results(  </span><br><span class="hljs-meta">        &#123;  </span><br><span class="hljs-meta">                @Result(column = &quot;id&quot;, property = &quot;id&quot;),  </span><br><span class="hljs-meta">                @Result(column = &quot;name&quot;, property = &quot;name&quot;),  </span><br><span class="hljs-meta">                @Result(column = &quot;content&quot;, property = &quot;content&quot;),  </span><br><span class="hljs-meta">                @Result(column = &quot;b_date&quot;, property = &quot;b_date&quot;, javaType = LocalDateTime.class, jdbcType = JdbcType.TIMESTAMP),  </span><br><span class="hljs-meta">                @Result(column = &quot;e_date&quot;, property = &quot;e_date&quot;, javaType = LocalDateTime.class, jdbcType = JdbcType.TIMESTAMP),  </span><br><span class="hljs-meta">                @Result(column = &quot;uid&quot;, property = &quot;user&quot;, javaType = User.class,  </span><br><span class="hljs-meta">                        one = @One(select = &quot;com.alleyf.airesume.mapper.UserMapper.selectById&quot;)),  </span><br><span class="hljs-meta">        &#125;  </span><br><span class="hljs-meta">)</span>  <br>List&lt;Task&gt; <span class="hljs-title function_">queryAllTaskAndUser</span><span class="hljs-params">()</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p><strong>用户表</strong></p>
+<p>entity：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.alleyf.airesume.entity;  <br>  <br><span class="hljs-keyword">import</span> com.baomidou.mybatisplus.annotation.IdType;  <br><span class="hljs-keyword">import</span> com.baomidou.mybatisplus.annotation.TableField;  <br><span class="hljs-keyword">import</span> com.baomidou.mybatisplus.annotation.TableId;  <br><span class="hljs-keyword">import</span> com.baomidou.mybatisplus.annotation.TableName;  <br>  <br><span class="hljs-keyword">import</span> java.util.List;  <br>  <br><span class="hljs-meta">@TableName(value = &quot;user&quot;)</span>  <br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">User</span> &#123;  <br>    <span class="hljs-meta">@TableId(value = &quot;id&quot;, type = IdType.AUTO)</span>  <br>    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> id;  <br>    <span class="hljs-keyword">private</span> String username;  <br>    <span class="hljs-keyword">private</span> String password;  <br>    <span class="hljs-meta">@TableField(exist = false)</span>  <br>    <span class="hljs-keyword">private</span> List&lt;Task&gt; tasks;  <br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>mapper：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">UserMapper</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">BaseMapper</span>&lt;User&gt; &#123;  <br>  <br>    <span class="hljs-meta">@Select(&quot;select * from user&quot;)</span>  <br>    <span class="hljs-meta">@Results(  </span><br><span class="hljs-meta">            &#123;  </span><br><span class="hljs-meta">                    @Result(column = &quot;id&quot;, property = &quot;id&quot;),  </span><br><span class="hljs-meta">                    @Result(column = &quot;username&quot;, property = &quot;username&quot;),  </span><br><span class="hljs-meta">                    @Result(column = &quot;password&quot;, property = &quot;password&quot;),  </span><br><span class="hljs-meta">                    @Result(column = &quot;id&quot;, property = &quot;tasks&quot;, javaType = List.class,  </span><br><span class="hljs-meta">                            many = @Many(select = &quot;com.alleyf.airesume.mapper.TaskMapper.selectByUid&quot;)),  </span><br><span class="hljs-meta">            &#125;  </span><br><span class="hljs-meta">    )</span>  <br>    List&lt;User&gt; <span class="hljs-title function_">queryAllUserAndTasks</span><span class="hljs-params">()</span>;  <br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+
 
 <blockquote>
 <p>[!NOTE] 注意<br>查询用户的同时查出与用户相关联的所有任务<br>Result 中的 column 的字段为查询到的数据库字段值，用来赋值给后面类对象的属性 property，对应的属性与字段相同，含有不存在的属性则使用外键间接查询。</p>
 </blockquote>
-<h2 id="5-分页查询"><a href="#5-分页查询" class="headerlink" title="5. 分页查询"></a>5. 分页查询</h2><h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><ol>
+<h2 id="5-条件查询"><a href="#5-条件查询" class="headerlink" title="5. 条件查询"></a>5. 条件查询</h2><p><span style="background:#affad1">Mybatis 实现：</span></p>
+<blockquote>
+<p>在 mapper 的接口中写 sql 语句进行条件查询。</p>
+</blockquote>
+<p>示例：<br>mapper：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**  </span><br><span class="hljs-comment"> * 按照任务名查询用户 * * <span class="hljs-doctag">@param</span> username 用户名  </span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return</span> 所有用户列表  </span><br><span class="hljs-comment"> */</span><span class="hljs-meta">@Select(&quot;select * from user where username = #&#123;username&#125;&quot;)</span>  <br><span class="hljs-meta">@Results(&#123;  </span><br><span class="hljs-meta">        @Result(column = &quot;id&quot;, property = &quot;id&quot;),  </span><br><span class="hljs-meta">        @Result(column = &quot;username&quot;, property = &quot;username&quot;),  </span><br><span class="hljs-meta">        @Result(column = &quot;password&quot;, property = &quot;password&quot;),  </span><br><span class="hljs-meta">        @Result(column = &quot;id&quot;, property = &quot;tasks&quot;, javaType = List.class,  </span><br><span class="hljs-meta">                many = @Many(select = &quot;com.alleyf.airesume.mapper.TaskMapper.selectByUid&quot;)),  </span><br><span class="hljs-meta">&#125;)</span>  <br>User <span class="hljs-title function_">selectByName</span><span class="hljs-params">(String username)</span>;<br><br></code></pre></td></tr></table></figure>
+
+<p>controller：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java">    <span class="hljs-meta">@ApiOperation(&quot;按照用户名查询用户&quot;)</span>  <br>    <span class="hljs-meta">@GetMapping(&quot;/queryByMName&quot;)</span>  <br>    <span class="hljs-keyword">public</span> User <span class="hljs-title function_">queryByMName</span><span class="hljs-params">(<span class="hljs-meta">@RequestParam(&quot;username&quot;)</span> String username)</span> &#123;  <br><span class="hljs-comment">//        return userMapper.selectList(null);  </span><br>        <span class="hljs-keyword">return</span> userMapper.selectByName(username);  <br>    &#125;<br><br></code></pre></td></tr></table></figure>
+
+<p><span style="background:rgba(136, 49, 204, 0.2)">Mybatis-Plus 实现：</span></p>
+<blockquote>
+<ul>
+<li>使用 <strong>QueryWrapper</strong> （条件查询）和 <strong>UpdateWrapper</strong>（条件更新） 两个条件查询类进行条件查询。</li>
+<li>可选条件有：eq（等于），lt（大于），st（小于），le（大于等于），se（小于等于）等</li>
+</ul>
+</blockquote>
+<p>示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@ApiOperation(&quot;按照用户名查询用户(MP)&quot;)</span>  <br><span class="hljs-meta">@GetMapping(&quot;/queryByMPName&quot;)</span>  <br><span class="hljs-keyword">public</span> User <span class="hljs-title function_">queryByMPName</span><span class="hljs-params">(<span class="hljs-meta">@RequestParam(&quot;username&quot;)</span> String username)</span> &#123;  <br>    <span class="hljs-keyword">return</span> userMapper.selectOne(<span class="hljs-keyword">new</span> <span class="hljs-title class_">QueryWrapper</span>&lt;User&gt;().eq(<span class="hljs-string">&quot;username&quot;</span>, username));  <br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+
+<h2 id="6-分页查询"><a href="#6-分页查询" class="headerlink" title="6. 分页查询"></a>6. 分页查询</h2><p>编写配置文件</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.alleyf.airesume.config;  <br>  <br><span class="hljs-keyword">import</span> com.baomidou.mybatisplus.annotation.DbType;  <br><span class="hljs-keyword">import</span> com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;  <br><span class="hljs-keyword">import</span> com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;  <br><span class="hljs-keyword">import</span> org.springframework.context.annotation.Bean;  <br><span class="hljs-keyword">import</span> org.springframework.context.annotation.Configuration;  <br>  <br><span class="hljs-meta">@Configuration</span>  <br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">PaginationConfig</span> &#123;  <br>    <span class="hljs-meta">@Bean</span>  <br>    <span class="hljs-keyword">public</span> MybatisPlusInterceptor <span class="hljs-title function_">paginationInterceptor</span><span class="hljs-params">()</span> &#123;  <br>        <span class="hljs-type">MybatisPlusInterceptor</span> <span class="hljs-variable">interceptor</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">MybatisPlusInterceptor</span>();  <br>        <span class="hljs-type">PaginationInnerInterceptor</span> <span class="hljs-variable">paginationInterceptor</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">PaginationInnerInterceptor</span>(DbType.MYSQL);  <br>        interceptor.addInnerInterceptor(paginationInterceptor);  <br>        <span class="hljs-keyword">return</span> interceptor;  <br>    &#125;  <br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>controller:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//查询所有用户：1oca1host：8080/findA11</span><br><span class="hljs-meta">@GetMapping(&quot;findAll&quot;)</span><br><span class="hljs-keyword">public</span> IPage <span class="hljs-title function_">findAl1</span><span class="hljs-params">()</span>t<br>   <span class="hljs-comment">//设置起始值及每页条数</span><br>   Page&lt;User&gt; page = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Page</span>&lt;&gt;(<span class="hljs-number">0</span>,<span class="hljs-number">2</span>);<br>   <span class="hljs-keyword">return</span> userMapper.selectPage(page,nul1);<br><br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><ol>
 <li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1nV4y1s7ZN/">1天搞定SpringBoot+Vue全栈开发_哔哩哔哩_bilibili</a></li>
 <li><a target="_blank" rel="noopener" href="https://blog.csdn.net/javaDeveloper2010/article/details/129119489">Springdoc和Springfox</a></li>
 </ol>
@@ -680,7 +721,7 @@ Method 匹配也可以使用<span style="background:rgba(3, 135, 102, 0.2)">@Get
       
         <div class="license-meta-item license-meta-date">
           <div>Updated on</div>
-          <div>June 1, 2023</div>
+          <div>June 2, 2023</div>
         </div>
       
       <div class="license-meta-item">
