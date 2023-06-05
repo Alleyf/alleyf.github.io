@@ -964,4 +964,15 @@ app.use(ElementPlus)
 app.mount('#app')
 ```
 
+## 第三方图标库
 
+由于 Element UI 提供的字体图符较少，一般会采用其他图表库，如著名的 Font
+Awesome
+
+Font Awesome 提供了 675 个可缩放的矢量图标，可以使用 cSS 所提供的所有特
+性对它们进行更改，包括大小、颜色、阴影或者其他任何支持的效果。
+
+文档地址: http://fontawesome.dashgame.com/
+
+安装: `npm i font-awesome`
+使用: `import 'font-awesome/css/font-awesome.min.css'`
