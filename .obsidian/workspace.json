@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/前后端开发/Vue.md",
+                "file": "source/_posts/前后端开发/SpringBoot启示录.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -39,7 +39,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/前后端开发/Vue.md"
+                "file": "source/_posts/前后端开发/SpringBoot启示录.md"
               }
             }
           },
@@ -71,7 +71,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "ef878eb90911b56c",
@@ -96,13 +97,13 @@
       "obsidian-excalidraw-plugin:新建 Excalidraw 绘图": false
     }
   },
-  "active": "7fb22047e7d177c5",
+  "active": "56cb9fcd32c02c9a",
   "lastOpenFiles": [
-    "source/_posts/前后端开发/SpringBoot启示录.md",
-    "source/_posts/前后端开发/Vue.md",
     "canvas/AI学习思路.canvas",
-    "Excalidraw/Drawing 2023-06-01 14.21.03.excalidraw.md",
     "canvas/review plans.canvas",
+    "source/_posts/前后端开发/Vue.md",
+    "source/_posts/前后端开发/SpringBoot启示录.md",
+    "Excalidraw/Drawing 2023-06-01 14.21.03.excalidraw.md",
     "Excalidraw",
     "source/_posts/机器学习/深度学习入门篇.md",
     "source/_posts/前后端开发/algorithm.md",

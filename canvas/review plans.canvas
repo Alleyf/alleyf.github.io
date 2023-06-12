@@ -1,6 +1,9 @@
 {
 	"nodes":[
-		{"id":"71dd2d65e4523ed9","x":-180,"y":-220,"width":340,"height":260,"color":"6","type":"text","text":"1. 信号与系统\n2. 通信原理\n3. 数字信号处理\n4. 信息论与编码\n5. 高等数学\n6. 线性代数\n7. 概率论与数理统计\n8. 复变函数与积分变换\n9. 数电模电\n10. 电路分析"}
+		{"type":"text","text":"1. 信号与系统\n2. 通信原理\n3. 数字信号处理\n4. 信息论与编码\n5. 高等数学\n6. 线性代数\n7. 概率论与数理统计\n8. 复变函数与积分变换\n9. 数电模电\n10. 电路分析","id":"71dd2d65e4523ed9","x":-380,"y":-260,"width":340,"height":260,"color":"6"},
+		{"id":"5be95d81a2e7e03a","x":40,"y":-260,"width":280,"height":260,"type":"text","text":"北大陈斌的离散数学\n\n数据结构与算法\n\n操作系统\n\n计算机网络\n\n计算机组成原理\n\nletcode 算法刷题\n"}
 	],
-	"edges":[]
+	"edges":[
+		{"id":"4bd773f83cd3e3d9","fromNode":"71dd2d65e4523ed9","fromSide":"right","toNode":"5be95d81a2e7e03a","toSide":"left"}
+	]
 }
