@@ -235,3 +235,284 @@ return disnums;
 
 
 ## 5.
+
+
+# 王道机试指南
+
+## 1. 枚举
+### 1.abc
+
+**三重循环暴力求解**
+```c++
+#include<iostream>
+using namespace std;
+int main() {
+    int a, b, c;
+    for (a = 0; a <= 9; a++) {
+        for (b = 0; b <= 9; b++) {
+            for (c = 0; c <= 9; c++) {
+                if ((a * 100 + b * 10 + c) + (b * 100 + c * 10 + c) == 532) {
+                    printf("%d %d %d\n", a, b, c);
+                }
+            }
+        }
+    }
+}
+```
+
+### 2. 反序数
+
+
+```c++
+#include <iostream>
+
+using namespace std;
+
+  
+
+int main() {
+
+    for (int i = 1000; 9 * i <= 9999; i++) {
+
+        int k = 9 * i;
+
+        if (k / 1000 == i % 10 && k % 1000 / 100 == i % 100 / 10 &&
+
+                k % 100 / 10 == i % 1000 / 100 &&
+
+                k % 10 == i / 1000) {
+
+            printf("%d\n", i);
+
+        }
+
+    }
+
+}
+
+```
+
+### 3. 对称平方数
+
+判断一个数是否为对称数核心:
+<font color="#ff0000">while (j) {</font>
+<font color="#ff0000">sum = sum * 10 + j % 10;</font>
+<font color="#ff0000">j /= 10;</font>
+<font color="#ff0000">}</font>
+<span style="background:#affad1">j 为对称数则 sum 等于 j\*j </span>
+```c++
+#include <iostream>
+
+using namespace std;
+
+  
+
+int main() {
+
+    for(int i = 0;i <= 256 ; i++) {
+
+        int j = i * i, sum = 0;
+
+        while(j) {
+
+            sum = sum * 10 + j % 10;
+
+            j /= 10;
+
+        }
+
+        if(sum == i * i) {
+
+            cout << i << endl;
+
+        }
+
+    }
+
+    return 0;
+
+}
+
+```
+
+### 4. 与 7 无关的数
+
+```c++
+#include <iostream>
+
+using namespace std;
+
+  
+
+int main() {
+
+    int b, c, x, sum;
+
+    cin >> x;
+
+    for (int i = 0; i <= x; ++i) {
+
+        b = i % 10;
+
+        c = (i / 10) % 10;
+
+        if (i % 7 != 0 && b != 7 && c != 7) {
+
+            sum = sum + i * i;
+
+        }
+
+    }
+
+    cout << sum << endl;
+
+}
+
+```
+
+### 5. 百鸡问题
+
+
+```c++
+#include <iostream>
+
+using namespace std;
+
+  
+
+int main() {
+
+    int n;
+
+    cin >> n;
+
+    for (int x = 0; x <= 100; ++x) {
+
+        for (int y = 0; y <= 100; ++y) {
+
+            for (int z = 0; z <= 100; ++z) {
+
+                if (x + y + z == 100 && ((5 * x + 3 * y + z / 3.0) <= n)) {
+
+                    printf("x=%d,y=%d,z=%d\n", x, y, z);
+
+                }
+
+            }
+
+        }
+
+    }
+
+}
+
+```
+
+
+
+### 6.Old Bill
+
+
+```c++
+#include <iostream>  
+#include "title.h"  
+  
+using namespace std;  
+  
+  
+int main() {  
+int n, x, y, z;  
+vector<int> buff;  
+cin >> n;  
+cin >> x >> y >> z;  
+for (int i = 1; i < 100000.0 / n; ++i) {  
+int sum = i * n;  
+if (sum < 10000)  
+continue;  
+int a = sum % 10;  
+int z1 = sum / 10 % 10;  
+int y1 = sum / 100 % 10;  
+int x1 = sum / 1000 % 10;  
+int b = sum / 10000;  
+if (x == x1 && y == y1 && z == z1) {  
+buff.push_back(b);  
+buff.push_back(a);  
+buff.push_back(i);  
+}  
+}  
+if (buff.empty())  
+printf("0");  
+else {  
+printf("%d %d %d\n", buff[buff.size() - 3], buff[buff.size() - 2], buff[buff.size() - 1]);  
+}  
+}
+
+```
+
+方法 2：
+
+```c++
+#include <iostream>
+#include <cstdio>
+using namespace std;
+int main(){
+    int n, x, y, z;//n火鸡数、xyz原价格中间三位
+    while(~scanf("%d", &n)){
+        scanf("%d %d %d", &x, &y, &z);
+        int tot, f = 0;//tot原价格、f标记是否存在能够整除火鸡数n的价格
+        //这里选择从9枚举到1是为了第一次输出就是最高价格
+        for(int a = 9; a >= 1; a--){//a控制原价格的万位[1,9]
+            for(int b = 9; b >= 0; b--){//b控制原价格的个位[0,9]
+                tot = a * 10000 + x * 1000 + y * 100 + z * 10 + b;
+                if(tot % n == 0){//如果原价格tot能够整除火鸡数n
+                    f = 1;//则将整除标记置1
+                    printf("%d %d %d\n", a, b, tot / n);
+                    break;
+                }          
+            }
+            if(f) break;//如果已经整除，则跳出枚举
+        }
+        if(!f) printf("0\n");//如果没有可以整除的价格，则打印0
+    }
+    return 0;
+}
+
+```
+
+
+## 2. 模拟
+### 1. 图形排版
+
+#### 1. 输出梯形
+
+
+```c++
+#include <iostream>  
+#include "title.h"  
+  
+using namespace std;  
+  
+  
+int main() {  
+int h;  
+while (scanf("%d", &h) != EOF) //高度h  
+{  
+int b = h + 2 * (h - 1), t = h; //下底边长，上底边长  
+for (int i = 1; i <= h; i++) {  
+for (int j = 1; j <= b; j++) {  
+if (j > b - t - 2 * (i - 1))  
+printf("*");  
+else  
+printf(" ");  
+}  
+printf("\n");  
+}  
+}  
+return 0;  
+}
+
+```
+
+
+#### 2. 叠筐
+
