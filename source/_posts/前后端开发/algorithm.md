@@ -516,7 +516,8 @@ return 0;
 
 #### 2. 叠筐
 
-```c++#include<iostream>
+```c++
+#include<iostream>
 using namespace std;
 int main(){
     int n;
