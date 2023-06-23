@@ -19,6 +19,14 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "2a7df301896bdc21",
+            "type": "leaf",
+            "state": {
+              "type": "custom-frames-slack",
+              "state": {}
+            }
           }
         ]
       }
@@ -63,14 +71,15 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "ef878eb90911b56c",
     "type": "split",
     "children": [],
     "direction": "horizontal",
-    "width": 200,
+    "width": 674.5,
     "collapsed": true
   },
   "left-ribbon": {
@@ -90,8 +99,8 @@
   },
   "active": "c44765cc49bcd9d4",
   "lastOpenFiles": [
-    "source/_posts/前后端开发/algorithm.md",
     "source/_posts/前后端开发/Dateframe—Algorithm.md",
+    "source/_posts/前后端开发/algorithm.md",
     "source/_posts/前后端开发/Vue.md",
     "source/_posts/前后端开发/SpringBoot启示录.md",
     "canvas/AI学习思路.canvas",

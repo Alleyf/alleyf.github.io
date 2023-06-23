@@ -516,3 +516,47 @@ return 0;
 
 #### 2. 叠筐
 
+```c++#include<iostream>
+using namespace std;
+int main(){
+    int n;
+    char a,b;
+    char S[80][80];
+    while(cin>>n>>a>>b){
+        int mid=n/2;
+        bool flag=true;
+        S[mid][mid]=a;
+        for(int i=1;i<=mid;i++){
+                if(flag){
+                    for(int j=0;j<2*i+1;j++){
+                    S[mid-i][mid-i+j]=b;
+                    S[mid+i][mid-i+j]=b;
+                    S[mid-i+j][mid-i]=b;
+                    S[mid-i+j][mid+i]=b;
+                    flag=false;
+                    }
+                }
+                else{
+                    for(int j=0;j<2*i+1;j++){
+                    S[mid-i][mid-i+j]=a;
+                    S[mid+i][mid-i+j]=a;
+                    S[mid-i+j][mid-i]=a;
+                    S[mid-i+j][mid+i]=a;
+                    flag=true;
+                    }
+                }
+        }
+        S[0][0]=S[0][n-1]=S[n-1][0]=S[n-1][n-1]=' ';
+        for(int i=0;i<n;i++){
+                for(int j=0;j<n;j++)
+                    cout<<S[i][j];
+                cout<<endl;
+            }
+ 
+            cout<<endl;
+    }
+    return 0;
+}
+
+```
+
