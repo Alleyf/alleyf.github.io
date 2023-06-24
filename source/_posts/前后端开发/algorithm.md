@@ -561,3 +561,173 @@ int main(){
 
 ```
 
+## 3. 日期
+
+### 1. 今天是第几天
+
+```c++
+//
+
+// Created by alleyf on 2023/6/23.
+
+//
+
+#include<bits/stdc++.h>
+
+using namespace std;
+
+bool isLeap(int year) {
+
+    return (year % 4 == 0 && year % 100 != 0) || year % 400 == 0;
+
+}
+
+int main() {
+
+  
+
+    int year, month, day;
+
+    while (cin >> year >> month >> day) {
+
+        unordered_map<int, int> monthDay{
+
+            {1, 31}, {2, 28}, {3, 31}, {4, 30}, {5, 31}, {6, 30}, {7, 31}, {8, 31}, {9, 30}, {10, 31}, {11, 30}, {12, 31}
+
+        };
+
+        int sum = 0;
+
+        if (isLeap(year)) {
+
+            monthDay[2] = 29;
+
+        }
+
+        for (int i = 1; i < month; i++) {
+
+            sum += monthDay[i];
+
+        }
+
+        sum += day;
+
+        cout << sum << endl;
+
+    }
+
+}
+
+```
+
+### 2. 打印日期
+
+
+```c++
+//  
+// Created by alleyf on 2023/6/23.  
+//  
+#include<bits/stdc++.h>  
+using namespace std;  
+bool isLeap(int year){  
+return (year%4==0&&year%100!=0)||year%400==0;  
+}  
+int main(){  
+  
+int year,allday;  
+string month,day;  
+while(cin>>year>>allday){  
+unordered_map<int,int> monthDay{  
+{1,31},{2,59},{3,90},{4,120},{5,151},{6,181},{7,212},{8,243},{9,273},{10,304},{11,334},{12,365}  
+};  
+if(isLeap(year)){  
+for(int i=2;i<=12;i++){  
+monthDay[i]+=1;  
+}  
+}  
+for(int i=1;i<=12;i++){  
+if(monthDay[i]>=allday){  
+month = i>=10 ? to_string(i): ('0'+to_string(i));  
+if(i==1){  
+day = allday>=10 ? to_string(allday): ('0'+to_string(allday));  
+}else {  
+allday = allday - monthDay[i - 1];  
+day = allday>=10 ? to_string(allday): ('0'+to_string(allday));  
+}  
+break;  
+};  
+}  
+cout<<year<<'-'<<month<<'-'<<day<<endl;  
+}  
+}
+
+```
+
+
+### 3. 日期累加
+
+#### 套路
+
+以前大一的时候面对这个题，就是单纯按月份纯算，算的可谓是焦头烂额。现在学习了新的方法：
+
+1. 计算是当年的第几天
+2. 这个数值sum加上需要累加的天数
+3. 计算进位的多少年，确定年份
+4. 根据剩下的第几天反解出这是几月几日
+5. 输出
+
+#### 技巧
+
+用到的技巧包括打表、巧用bool。  
+提前写出来每个月有多少天、每年有多少天。  
+还有判断是否闰年函数，用它能够得到bool值，0和1可以分别对应于平年和闰年，所以上面的可以构造成二维数组。
+
+#### 代码
+```c++
+#include <bits/stdc++.h>
+using namespace std;
+
+bool isLeap(int year){
+    if(year%400==0) return true;
+    else if(year%4==0&&year%100!=0) return true;
+    return false;
+}
+
+int main(){
+    int days[2][12]={
+        {31,28,31,30,31,30,31,31,30,31,30,31},
+        {31,29,31,30,31,30,31,31,30,31,30,31},
+    };
+    int n;
+    scanf("%d",&n);
+    for(int current = 0; current<n; current++){
+        int year,month,date,plus;
+        scanf("%d %d %d %d",&year,&month,&date,&plus);
+        int y=0,m=1,d=0;
+        int sum=0;
+        bool leap = isLeap(year);
+        for(int i=1;i<month;i++){
+            sum+=days[leap][i-1];
+        }
+        sum+=date;
+        sum+=plus;
+        y=year;
+        //逐年增加，直到sum<对应天数
+        int total[2] = {365,366};
+        while(sum>total[isLeap(y)]){
+            sum-=total[isLeap(y)];
+            y++;    
+        } 
+        //反解为日期 
+        leap = isLeap(y);
+        for(int i=1;sum>days[leap][i-1];i++){
+            m++;
+            sum-=days[leap][i-1];
+        }
+        d=sum;
+        printf("%04d-%02d-%02d\n",y,m,d);
+    }
+}
+
+```
+
