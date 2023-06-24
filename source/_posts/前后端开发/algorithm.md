@@ -731,3 +731,78 @@ int main(){
 
 ```
 
+## 4. 其他
+
+### 1. 剩余的树
+
+
+```c++
+//
+// Created by alleyf on 2023/6/24.
+//
+#include<bits/stdc++.h>
+
+using namespace std;
+const int MAXL = 100001;
+int main() {
+    bool flag[MAXL];
+    int l, m, num;
+    cin >> l >> m;
+    num = l + 1;
+    for (int i = 0; i <= l; ++i) {
+        flag[i] = true;
+    };
+    while (m--) {
+        int left, right;
+        cin >> left >> right;
+        for (int i = left; i <= right; ++i) {
+            if (flag[i]) {
+                flag[i] = false;
+                num--;
+            }
+        }
+    }
+    cout << num;
+}
+
+```
+
+<font color="#ff0000">1. 使用一个 l+1 长度的 array 存储所有树的存在状态，初始化所有树的状态为真；</font>
+<font color="#ff0000">2. 根据区间循环判每棵树的状态，若为真则修改树输出总数的状态为假并将树的总数自减；</font>
+<font color="#ff0000">3. 输出剩余树的数量。</font>
+
+### 2. 手机键盘
+
+> 1. 用一个数组按顺序保存每个字母所需要的时间段
+> 2. 循环每个输入的字母求和总次数，判断前后两字符是否在一个按键上，若果是则加两个时间段
+
+
+```c++
+//  
+// Created by alleyf on 2023/6/24.  
+//  
+#include<bits/stdc++.h>  
+  
+using namespace std;  
+  
+int main() {  
+int letter_num[26] = {1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 4, 1, 2, 3, 1, 2, 3, 4};  
+string s;  
+while (cin >> s) {  
+int allNum = 0;  
+for (int i = 0; i < s.size(); ++i) {  
+allNum += letter_num[s[i] - 'a'];  
+if (i != 0 && s[i] - s[i - 1] == letter_num[s[i] - 'a'] - letter_num[s[i - 1] - 'a']) {  
+allNum += 2;  
+}  
+}  
+cout << allNum << endl;  
+}  
+}
+
+```
+
+
+### 3.xxx_定律
+
+
