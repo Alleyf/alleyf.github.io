@@ -1085,16 +1085,296 @@ return 0;
 
 ### 3. 成绩排序 2
 
+方法 1：
+<font color="#ff0000">sort是不稳定排序，stable_sort才是稳定排序，稳定排序不改变输入的顺序</font>
+```c++
+//  
+// Created by alleyf on 2023/6/25.  
+//  
+#include<bits/stdc++.h>  
+#include<algorithm>  
+  
+using namespace std;  
+int num, sort_flag;  
+  
+struct Student {  
+string name;  
+int score;  
+  
+Student() {};  
+  
+Student(string n, int s) : name(n), score(s) {}  
+};  
+  
+bool Compare(Student s1, Student s2) {  
+return sort_flag ? s1.score < s2.score : s1.score > s2.score;//sort_flag为真则升序否则降序  
+}  
+  
+int main() {  
+while (cin >> num >> sort_flag) {  
+Student arr[num];  
+for (int i = 0; i < num; ++i) {  
+cin >> arr[i].name >> arr[i].score;  
+}  
+stable_sort(arr, arr + num, Compare);//重点：sort是不稳定排序，stable_sort才是稳定排序，稳定排序不改变输入的顺序  
+for (Student s: arr) {  
+cout << s.name << ' ' << s.score << endl;  
+}  
+}  
+return 0;  
+}
+
+```
+
+方法 2：
+用一个编号保存每个学生的顺序，排序比较器里成绩相等的按照编号升序排
 
 ```c++
+#include<iostream>
+#include<algorithm>
+#include<cstring> 
+using namespace std;
+struct student{
+	string name;
+	int score;
+	int num; 
+};
+int flag; //升序还是降序 
+bool cmp(student a,student b){
+	if(flag==0) {
+		if(a.score==b.score) return a.num<b.num;
+		else return a.score>b.score;
+	}
+	else {
+		if(a.score==b.score) return a.num<b.num;
+		else return a.score<b.score;	//这里必须写else，否则牛客会编译失败 
+	} 
+}
+int main(){
+	int n;
+	while(cin>>n){
+		cin>>flag;
+		student stu[n];
+		for(int i=0;i<n;i++){
+			cin>>stu[i].name>>stu[i].score;
+			stu[i].num=i;
+		} 
+		sort(&stu[0],&stu[n],cmp); //重点：sort是不稳定排序，stable_sort才是稳定排序 
+		for(int i=0;i<n;i++) cout<<stu[i].name<<' '<<stu[i].score<<endl;
+	}
+	return 0;
+}
 
 
 ```
 
 
 
-
-
-
 ## 3.2 查找
 
+### 1. 找 x
+
+方法 1：
+用 flag 标志是否找到
+```c++
+//  
+// Created by alleyf on 2023/6/25.  
+//  
+#include<bits/stdc++.h>  
+#include<algorithm>  
+  
+using namespace std;  
+  
+int main() {  
+int n, t;  
+while (cin >> n) {  
+int arr[n];  
+bool flag = false;  
+for (int i = 0; i < n; ++i) {  
+cin >> arr[i];  
+}  
+cin >> t;  
+for (int i = 0; i < n; ++i) {  
+if (t == arr[i]) {  
+cout << i << endl;  
+flag = ~flag;  
+break;  
+}  
+}  
+if (!flag)  
+cout << -1 << endl;  
+}  
+return 0;  
+}
+
+```
+
+方法 2：
+设置初始默认为-1，找到则修改状态
+```c++
+#include<iostream>
+#include<cstdio>
+using namespace std;
+int maxn=200+10;
+int main(){
+    int arr[maxn];
+    int n;
+    while(scanf("%d",&n)!=EOF){
+        for(int i=0;i<n;i++){
+            scanf("%d",&arr[i]);
+        }
+        int x;
+        int answer=-1;
+        scanf("%d",&x);
+        for(int i=0;i<n;i++){
+            if(arr[i]==x){
+                answer=i;
+                break;
+            }
+            }
+            printf("%d\n",answer);
+        }
+    return 0;
+}
+
+
+```
+
+
+### 2. 查找
+
+
+方法 1：复杂度 O（n）
+
+
+```c++
+#include <iostream>
+#include <map>
+using namespace std;
+
+int main() {
+    int n;
+    int m;
+    while(cin>>n) {
+        map<int,bool> mp;
+        for (int i = 0; i < n; i++) {
+            int temp;
+            cin>>temp;
+            mp[temp] = true;
+        }
+        cin>>m;
+        for (int i = 0; i < m; i++) {
+            int temp;
+            cin>>temp;
+            if (mp.find(temp) != mp.end()) {
+                cout<<"YES"<<endl;
+            } else {
+                cout<<"NO"<<endl;
+            }
+        }
+    }
+}
+
+```
+
+
+
+方法 2：复杂度 O（m·n）
+```c++
+//  
+// Created by alleyf on 2023/6/25.  
+//  
+#include<bits/stdc++.h>  
+  
+using namespace std;  
+  
+int main() {  
+int n, m;  
+while (cin >> n) {  
+int arr[n];  
+for (int i = 0; i < n; ++i) {  
+cin >> arr[i];  
+}  
+cin >> m;  
+int tar[m];  
+for (int i = 0; i < m; ++i) {  
+cin >> tar[i];  
+}  
+for (int i = 0; i < m; ++i) {  
+string status = "NO";  
+for (int j = 0; j < n; ++j) {  
+if (arr[j] == tar[i]) {  
+status = "YES";  
+break;  
+}  
+}  
+cout << status << endl;  
+}  
+}  
+return 0;  
+}
+
+```
+
+
+### 3.extrenum_index
+
+方法 1：
+空间复杂度为 O（1）
+```c++
+#include <iostream>
+using namespace std;
+int main() {
+	int n, i, left, mid, right;
+	while (cin >> n) {
+		cin >> mid >> right;
+		if (mid != right)
+			cout << "0 ";
+		for (i = 1; i < n - 1; ++i) {
+			left = mid;
+			mid = right;
+			cin >> right;
+			if ((mid - left) * (mid - right) > 0)
+				cout << i << ' ';
+		}
+		if (mid != right)
+			cout << i;
+		cout << endl;
+	}
+	return 0;
+}
+
+```
+
+方法 2：
+
+```c++
+#include<bits/stdc++.h>  
+  
+using namespace std;  
+  
+int main() {  
+int n;  
+while (cin >> n) {  
+int arr[n];  
+for (int i = 0; i < n; ++i) {  
+cin >> arr[i];  
+}  
+for (int i = 0; i < n - 1; ++i) {  
+if (i == 0 && arr[i] != arr[i + 1]) {  
+cout << i << ' ';  
+} else if ((arr[i] > arr[i - 1] && arr[i] > arr[i + 1]) || (arr[i] < arr[i - 1] && arr[i] < arr[i + 1])) {  
+cout << i << ' ';  
+}  
+if (i == n - 2 && arr[i] != arr[i + 1]) {  
+cout << i + 1 << ' ';  
+}  
+}  
+cout << endl;  
+}  
+return 0;  
+}
+
+```
+
+##
