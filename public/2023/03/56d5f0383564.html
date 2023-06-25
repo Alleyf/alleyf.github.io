@@ -27,7 +27,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://s2.loli.net/2023/05/22/tcH9QJ726li3Rng.png">
 <meta property="article:published_time" content="2023-03-17T11:06:15.000Z">
-<meta property="article:modified_time" content="2023-06-24T15:21:26.699Z">
+<meta property="article:modified_time" content="2023-06-24T15:22:34.199Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="Algorithm">
 <meta name="twitter:card" content="summary_large_image">
@@ -271,7 +271,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          12k words
+          13k words
         
       </span>
     
@@ -282,7 +282,7 @@
         
         
         
-          101 mins
+          105 mins
         
       </span>
     
@@ -333,7 +333,7 @@
               <p class="note note-info">
                 
                   
-                    Last updated on a few seconds ago
+                    Last updated on 14 hours ago
                   
                 
               </p>
@@ -430,7 +430,12 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">//  </span><br><span class="hljs-comment">// Created by alleyf on 2023/6/24.  </span><br><span class="hljs-comment">//  </span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span>  </span><br>  <br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;  <br>  <br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;  <br><span class="hljs-type">int</span> letter_num[<span class="hljs-number">26</span>] = &#123;<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>&#125;;  <br>string s;  <br><span class="hljs-keyword">while</span> (cin &gt;&gt; s) &#123;  <br><span class="hljs-type">int</span> allNum = <span class="hljs-number">0</span>;  <br><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; s.<span class="hljs-built_in">size</span>(); ++i) &#123;  <br>allNum += letter_num[s[i] - <span class="hljs-string">&#x27;a&#x27;</span>];  <br><span class="hljs-keyword">if</span> (i != <span class="hljs-number">0</span> &amp;&amp; s[i] - s[i - <span class="hljs-number">1</span>] == letter_num[s[i] - <span class="hljs-string">&#x27;a&#x27;</span>] - letter_num[s[i - <span class="hljs-number">1</span>] - <span class="hljs-string">&#x27;a&#x27;</span>]) &#123;  <br>allNum += <span class="hljs-number">2</span>;  <br>&#125;  <br>&#125;  <br>cout &lt;&lt; allNum &lt;&lt; endl;  <br>&#125;  <br>&#125;<br><br></code></pre></td></tr></table></figure>
 
 
-<h3 id="3"><a href="#3" class="headerlink" title="3."></a>3.</h3>
+<h3 id="3-xxx-定律"><a href="#3-xxx-定律" class="headerlink" title="3.xxx_定律"></a>3.xxx_定律</h3><blockquote>
+<p>既可递归实现也可 while 迭代迭代实现。</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">//  </span><br><span class="hljs-comment">// Created by alleyf on 2023/6/24.  </span><br><span class="hljs-comment">//  </span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span>  </span><br>  <br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;  <br>  <br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">xxx_law</span><span class="hljs-params">(<span class="hljs-type">int</span> &amp;num, <span class="hljs-type">int</span> &amp;cnt)</span> </span>&#123;  <br><span class="hljs-keyword">if</span> (num == <span class="hljs-number">1</span>) &#123;  <br><span class="hljs-keyword">return</span> cnt;  <br>&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (num % <span class="hljs-number">2</span> != <span class="hljs-number">0</span>) &#123;  <br>cnt++;  <br>num = <span class="hljs-number">3</span> * num + <span class="hljs-number">1</span>;  <br>num /= <span class="hljs-number">2</span>;  <br><span class="hljs-keyword">return</span> <span class="hljs-built_in">xxx_law</span>(num, cnt);  <br>&#125; <span class="hljs-keyword">else</span> &#123;  <br>cnt++;  <br>num /= <span class="hljs-number">2</span>;  <br><span class="hljs-keyword">return</span> <span class="hljs-built_in">xxx_law</span>(num, cnt);  <br>&#125;  <br>&#125;  <br>  <br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;  <br><span class="hljs-type">int</span> num;  <br><span class="hljs-keyword">while</span> (cin &gt;&gt; num) &#123;  <br><span class="hljs-type">int</span> cnt = <span class="hljs-number">0</span>;  <br>cout &lt;&lt; <span class="hljs-built_in">xxx_law</span>(num, cnt) &lt;&lt; endl;  <br>&#125;  <br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+
                 
               </div>
             

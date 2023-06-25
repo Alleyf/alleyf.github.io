@@ -805,4 +805,39 @@ cout << allNum << endl;
 
 ### 3.xxx_定律
 
+> 既可递归实现也可 while 迭代迭代实现。
+```c++
+//  
+// Created by alleyf on 2023/6/24.  
+//  
+#include<bits/stdc++.h>  
+  
+using namespace std;  
+  
+int xxx_law(int &num, int &cnt) {  
+if (num == 1) {  
+return cnt;  
+} else if (num % 2 != 0) {  
+cnt++;  
+num = 3 * num + 1;  
+num /= 2;  
+return xxx_law(num, cnt);  
+} else {  
+cnt++;  
+num /= 2;  
+return xxx_law(num, cnt);  
+}  
+}  
+  
+int main() {  
+int num;  
+while (cin >> num) {  
+int cnt = 0;  
+cout << xxx_law(num, cnt) << endl;  
+}  
+}
+
+```
+
+
 
