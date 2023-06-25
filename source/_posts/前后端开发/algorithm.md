@@ -234,13 +234,12 @@ return disnums;
 
 
 
-## 5.
-
 
 # 王道机试指南
 
+# 第二章暴力求解
 ## 1. 枚举
-### 1.abc
+### 1. abc
 
 **三重循环暴力求解**
 ```c++
@@ -561,9 +560,9 @@ int main(){
 
 ```
 
-## 3. 日期
+### 2. 日期
 
-### 1. 今天是第几天
+#### 1. 今天是第几天
 
 ```c++
 //
@@ -620,7 +619,7 @@ int main() {
 
 ```
 
-### 2. 打印日期
+#### 2. 打印日期
 
 
 ```c++
@@ -664,9 +663,9 @@ cout<<year<<'-'<<month<<'-'<<day<<endl;
 ```
 
 
-### 3. 日期累加
+#### 3. 日期累加
 
-#### 套路
+##### 套路
 
 以前大一的时候面对这个题，就是单纯按月份纯算，算的可谓是焦头烂额。现在学习了新的方法：
 
@@ -676,13 +675,13 @@ cout<<year<<'-'<<month<<'-'<<day<<endl;
 4. 根据剩下的第几天反解出这是几月几日
 5. 输出
 
-#### 技巧
+##### 技巧
 
 用到的技巧包括打表、巧用bool。  
 提前写出来每个月有多少天、每年有多少天。  
 还有判断是否闰年函数，用它能够得到bool值，0和1可以分别对应于平年和闰年，所以上面的可以构造成二维数组。
 
-#### 代码
+##### 代码
 ```c++
 #include <bits/stdc++.h>
 using namespace std;
@@ -731,9 +730,9 @@ int main(){
 
 ```
 
-## 4. 其他
+### 3. 其他
 
-### 1. 剩余的树
+#### 1. 剩余的树
 
 
 ```c++
@@ -771,7 +770,7 @@ int main() {
 <font color="#ff0000">2. 根据区间循环判每棵树的状态，若为真则修改树输出总数的状态为假并将树的总数自减；</font>
 <font color="#ff0000">3. 输出剩余树的数量。</font>
 
-### 2. 手机键盘
+#### 2. 手机键盘
 
 > 1. 用一个数组按顺序保存每个字母所需要的时间段
 > 2. 循环每个输入的字母求和总次数，判断前后两字符是否在一个按键上，若果是则加两个时间段
@@ -803,7 +802,7 @@ cout << allNum << endl;
 ```
 
 
-### 3.xxx_定律
+#### 3.xxx_定律
 
 > 既可递归实现也可 while 迭代迭代实现。
 ```c++
@@ -840,4 +839,262 @@ cout << xxx_law(num, cnt) << endl;
 ```
 
 
+# 第三章排序与查找
+
+## 3.1 排序
+
+### 1. 排序
+
+<span style="background:#b1ffff">> 冒泡排序：</span>
+<span style="background:#b1ffff">> 	1. 升序：外层循环递减，内层循环递增直到外层循环变量；</span>
+<span style="background:#b1ffff">> 	2. 降序：外层循环递增，内层循环从外层循环变量开始递增。</span>
+```c++
+//  
+// Created by alleyf on 2023/6/25.  
+//  
+#include<bits/stdc++.h>  
+  
+using namespace std;  
+  
+int main() {  
+int n;  
+cin >> n;  
+int array[n];  
+for (int i = 0; i < n; ++i) {  
+cin >> array[i];  
+}  
+for (int i = n; i > 0; --i) {  
+for (int j = 0; j < i; ++j) {  
+if (array[j] > array[j + 1] && j + 1 < n) {  
+int tmp = array[j + 1];  
+array[j + 1] = array[j];  
+array[j] = tmp;  
+}  
+}  
+}  
+for (int value: array) {  
+cout << value << ' ';  
+}  
+return 0;  
+}
+
+```
+
+#### 大部分排序方法
+
+
+```c++
+//所有基本的排序方法了，桶排序、基数排序暂不写了  
+#include<iostream>  
+  
+using namespace std;  
+const int N = 110, MAX = 1e8;  
+int a[N];  
+int n;  
+int h[N], idx;//heap_sort用  
+int tmp[N];//merge_sort用  
+int bkt[MAX];//counting_sort用  
+  
+void buble_sort() {  
+for (int i = 0; i < n - 1; i++)  
+for (int j = 0; j < n - 1 - i; j++) {  
+if (a[j] > a[j + 1]) swap(a[j], a[j + 1]);  
+}  
+}  
+  
+void quick_sort(int l, int r) {  
+if (l >= r) return;  
+int x = a[(l + r) / 2];  
+int i = l - 1, j = r + 1;  
+while (i < j) {  
+do i++; while (a[i] < x);  
+do j--; while (a[j] > x);  
+if (i < j) swap(a[i], a[j]);  
+}  
+quick_sort(l, j);  
+quick_sort(j + 1, r);  
+}  
+  
+void selection_sort() {  
+for (int i = 0; i < n - 1; i++) {  
+int min_pos = i;  
+for (int j = i + 1; j < n; j++)  
+if (a[j] < a[min_pos]) min_pos = j;  
+swap(a[i], a[min_pos]);  
+}  
+}  
+  
+void down(int u) {  
+int t = u;  
+if (u * 2 <= idx && h[u * 2] < h[t]) t = u * 2;  
+if (u * 2 + 1 <= idx && h[u * 2 + 1] < h[t]) t = u * 2 + 1;  
+if (t != u) {  
+swap(h[t], h[u]);  
+down(t);  
+}  
+}  
+  
+void heap_sort() {  
+for (int i = 1; i <= n; i++) h[i] = a[i - 1];  
+idx = n;  
+for (int i = idx / 2; i > 0; i--) down(i);  
+for (int i = 0; i < n; i++) {  
+a[i] = h[1];  
+h[1] = h[idx--];  
+down(1);  
+}  
+}  
+  
+void insertion_sort() {  
+for (int i = 1; i < n; i++) {  
+int cur_idx = a[i];  
+int j;  
+for (j = i - 1; j >= 0 && a[j] > cur_idx; j--) {  
+a[j + 1] = a[j];  
+}  
+a[j + 1] = cur_idx;  
+}  
+}  
+  
+void binary_insertion_sort() {  
+for (int i = 1; i < n; i++) {  
+int cur_idx = a[i];  
+int l = 0, r = i - 1;  
+while (l < r) {  
+int mid = (l + r + 1) / 2;  
+if (a[mid] <= cur_idx) l = mid;  
+else r = mid - 1;  
+}  
+if (a[l] > cur_idx) l = -1;  
+int j;  
+for (j = i - 1; j > l; j--) a[j + 1] = a[j];  
+a[j + 1] = cur_idx;  
+}  
+}  
+  
+void shell_sort() {  
+for (int gap = n / 2; gap >= 1; gap /= 2) {  
+for (int i = gap; i < n; i++) {  
+int cur_idx = a[i];  
+int j;  
+for (j = i - gap; j >= 0 && a[j] > cur_idx; j -= gap) {  
+a[j + gap] = a[j];  
+}  
+a[j + gap] = cur_idx;  
+}  
+}  
+}  
+  
+void merge_sort(int l, int r) {  
+if (l >= r) return;  
+int mid = (l + r) / 2;  
+merge_sort(l, mid), merge_sort(mid + 1, r);  
+int k = 0, i = l, j = mid + 1;  
+while (i <= mid && j <= r) {  
+if (a[i] <= a[j]) tmp[k++] = a[i++];  
+else tmp[k++] = a[j++];  
+}  
+while (i <= mid) tmp[k++] = a[i++];  
+while (j <= r) tmp[k++] = a[j++];  
+for (int i = l, j = 0; i <= r; j++, i++) a[i] = tmp[j];  
+}  
+  
+void counting_sort() {  
+int max = 0;  
+for (int i = 0; i < n; i++) {  
+bkt[a[i]]++;  
+if (a[i] > max) max = a[i];  
+}  
+int j = 0;  
+for (int i = 0; i < max + 1; i++) {  
+while (bkt[i]) {  
+a[j++] = i;  
+bkt[i]--;  
+}  
+}  
+}  
+  
+int main() {  
+scanf("%d", &n);  
+for (int i = 0; i < n; i++) scanf("%d", &a[i]);  
+// buble_sort();  
+// quick_sort(0, n - 1);  
+// selection_sort();  
+// heap_sort();  
+// insertion_sort();  
+// binary_insertion_sort();  
+// shell_sort();  
+// merge_sort(0, n - 1);  
+counting_sort();  
+for (int i = 0; i < n; i++) printf("%d ", a[i]);  
+return 0;  
+}
+
+```
+
+
+### 2. 成绩排序
+
+
+<font color="#f79646">- 定义一个结构体包含学号与成绩</font>
+<font color="#f79646">- 写一个比较器 Compare</font>
+<font color="#f79646">- 使用内置 sort 算法，设置迭代头和尾（地址）以及比较规则（比较器）</font>
+```c++
+#include<iostream>  
+#include<algorithm>  
+  
+using namespace std;  
+  
+//定义学生结构体  
+struct Student {  
+int number;  
+int score;  
+  
+Student() {}  
+  
+Student(int n, int s) : number(n), score(s) {}  
+};  
+  
+//定义比较函数  
+bool Compare(Student s1, Student s2) {  
+//成绩相同比学号  
+if (s1.score == s2.score) {  
+return s1.number < s2.number; //'<',指按照比较的参数由小到大排序  
+} else {  
+return s1.score < s2.score; ////'<',指按照比较的参数由小到大排序,同理，如果是'>'，指按照由大到小排序  
+}  
+}  
+  
+int main() {  
+int n;  
+cin >> n;  
+//定义数组保存比较学生的基本信息  
+Student arr[n];  
+for (int i = 0; i < n; ++i) {  
+cin >> arr[i].number >> arr[i].score;  
+}  
+sort(arr, arr + n, Compare);  
+for (Student s: arr) {  
+cout << s.number << ' ' << s.score << endl;  
+}  
+return 0;  
+}
+
+```
+
+
+### 3. 成绩排序 2
+
+
+```c++
+
+
+```
+
+
+
+
+
+
+## 3.2 查找
 
