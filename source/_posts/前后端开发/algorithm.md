@@ -1377,4 +1377,43 @@ return 0;
 
 ```
 
-##
+### 4. 找位置
+
+
+<span style="background:#b1ffff">时间复杂度为 O(n)</span>
+
+<font color="#ff0000">1. 用一个额外的矢量 orderS 不重复的添加字符，以保证输出时字符顺序</font>
+<font color="#ff0000">2. 用map的key记录字符，value记录重复出现的次数</font>
+<font color="#ff0000">3. 最后按照orderS的顺序遍历输出</font>
+```c++
+#include<bits/stdc++.h>  
+  
+using namespace std;  
+  
+int main() {  
+string s;  
+map<char, vector<int>> sm;  
+vector<char> orderS;  
+cin >> s;  
+for (int i = 0; i < s.length(); ++i) {  
+if (sm.find(s[i]) != sm.end()) {  
+sm[s[i]].push_back(i);  
+} else {  
+sm[s[i]] = vector<int>{i};  
+orderS.push_back(s[i]);  
+}  
+}  
+for (char item: orderS) {  
+auto tmp = sm.find(item);  
+if (tmp != sm.end() && tmp->second.size() > 1) {  
+for (int index: tmp->second) {  
+if (index != tmp->second.back())  
+cout << tmp->first << ':' << index << ',';  
+else  
+cout << tmp->first << ':' << index << endl;  
+}  
+}  
+}  
+}
+
+```

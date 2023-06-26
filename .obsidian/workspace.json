@@ -28,8 +28,7 @@
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -97,7 +96,7 @@
       "obsidian-excalidraw-plugin:新建 Excalidraw 绘图": false
     }
   },
-  "active": "dc2d350f095bc041",
+  "active": "2a7df301896bdc21",
   "lastOpenFiles": [
     "source/_posts/前后端开发/algorithm.md",
     "public/tags/AIGC/index.html",
