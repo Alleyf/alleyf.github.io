@@ -1417,3 +1417,279 @@ cout << tmp->first << ':' << index << endl;
 }
 
 ```
+
+
+# 第四章字符串
+
+## 1. 字符串处理
+
+### 1. 特殊乘法
+
+```c++
+//  
+// Created by alleyf on 2023/6/26.  
+//  
+#include<bits/stdc++.h>  
+#include <string>  
+#include <iostream>  
+  
+using namespace std;  
+  
+int main() {  
+string a, b;  
+int sum = 0;  
+while (cin >> a >> b) {  
+for (char i: a) {  
+for (char j: b) {  
+sum += (i - '0') * (j - '0');  
+}  
+}  
+cout << sum << endl;  
+}  
+}
+
+```
+
+
+### 2. 密码翻译
+
+
+```c++
+//  
+// Created by alleyf on 2023/6/26.  
+//  
+#include<bits/stdc++.h>  
+  
+using namespace std;  
+  
+int main() {  
+string s;  
+while (cin >> s) {  
+for (int i = 0; i < s.length(); ++i) {  
+if ((s[i] >= 'A' && s[i] <= 'Y') || (s[i] >= 'a' && s[i] <= 'y')) {  
+s[i] += 1;  
+} else if (s[i] == 'z' || s[i] == 'Z') {  
+s[i] = s[i] == 'z' ? 'a' : 'A';  
+}  
+}  
+cout << s << ' ';  
+}  
+}
+
+```
+
+
+
+### 3. 简单密码
+
+```c++
+// 方法1：
+
+//
+// Created by alleyf on 2023/6/26.
+//
+#include<bits/stdc++.h>
+using namespace std;
+int main() {
+    string s;
+    while (getline(cin, s)) {
+        if (s != "ENDOFINPUT") {
+            if (s != "START" && s != "END") {
+                int i = 0;
+                for (char item : s) {
+                    if ((item >= 'A' && item <= 'Z'))
+                       s[i] = 'A' + (item - 'A' + 21) % 26;
+                    i++;
+                }
+                cout << s << endl;
+            }
+        } else {
+            break;
+        }
+    }
+    return 0;
+}
+
+// 方法2:
+
+//
+// Created by alleyf on 2023/6/26.
+//
+#include<bits/stdc++.h>
+using namespace std;
+map<char, char> pwd_map{
+    {'A', 'V'},
+    {'B', 'W'},
+    {'C', 'X'},
+    {'D', 'Y'},
+    {'E', 'Z'},
+    {'F', 'A'},
+    {'G', 'B'},
+    {'H', 'C'},
+    {'I', 'D'},
+    {'J', 'E'},
+    {'K', 'F'},
+    {'L', 'G'},
+    {'M', 'H'},
+    {'N', 'I'},
+    {'O', 'J'},
+    {'P', 'K'},
+    {'Q', 'L'},
+    {'R', 'M'},
+    {'S', 'N'},
+    {'T', 'O'},
+    {'U', 'P'},
+    {'V', 'Q'},
+    {'W', 'R'},
+    {'X', 'S'},
+    {'Y', 'T'},
+    {'Z', 'U'},
+};
+int main() {
+    string s;
+    while (getline(cin, s)) {
+        if (s != "ENDOFINPUT") {
+            if (s != "START" && s != "END") {
+                int i = 0;
+                for (char item : s) {
+                    if ((item >= 'A' && item <= 'Z'))
+                       s[i] = pwd_map[item];
+                    i++;
+                }
+                cout << s << endl;
+            }
+        } else {
+            break;
+        }
+    }
+    return 0;
+}
+
+```
+
+
+
+### 4. 统计字符
+
+
+```c++
+//  
+// Created by alleyf on 2023/6/30.  
+//  
+#include<bits/stdc++.h>  
+  
+using namespace std;  
+  
+int main() {  
+string ts, s;  
+while (getline(cin, ts)) {  
+if (ts == "#")  
+break;  
+getline(cin, s);  
+int cnum[ts.length()];  
+for (int i = 0; i < ts.length(); ++i) {  
+cnum[i] = 0;  
+for (char j: s) {  
+if (j == ts[i]) {  
+cnum[i]++;  
+}  
+}  
+cout << ts[i] << ' ' << cnum[i] << endl;  
+}  
+}  
+  
+}  
+/**  
+* 方法2：  
+* using namespace std;  
+//1：注意读题，i ng是当四个字符处理，而非i和ng  
+//2：如何持续输入？while持续输入第一个字符，循环体内输入第二个  
+//如何捕捉结束字符？在第一个字符串输入时识别  
+  
+int number[128];  
+int main()  
+{  
+string str1,str2;  
+while(getline(cin,str1)){  
+if(str1=="#") break;  
+getline(cin,str2);  
+memset(number,0,sizeof(number)); //number数组记录该字符，出现的次数  
+for(int i=0;i<str2.size();i++){  
+number[str2[i]]++; //长字符串的字符对应ASCII码的下标+1  
+}  
+for(int i=0;i<str1.size();i++){  
+printf("%c %d\n",str1[i],number[str1[i]]);  
+}  
+}  
+}  
+//学到的方法：ASCII码不大，想统计每个字符，直接将其对应的ASCII码下标的元素加1即可！  
+  
+*/
+
+```
+
+
+
+### 5. 字母统计
+
+```c++
+//  
+// Created by alleyf on 2023/6/30.  
+//  
+#include<bits/stdc++.h>  
+  
+using namespace std;  
+map<char, int> c_map{  
+{'A', 0},  
+{'B', 0},  
+{'C', 0},  
+{'D', 0},  
+{'E', 0},  
+{'F', 0},  
+{'G', 0},  
+{'H', 0},  
+{'I', 0},  
+{'J', 0},  
+{'K', 0},  
+{'L', 0},  
+{'M', 0},  
+{'N', 0},  
+{'O', 0},  
+{'P', 0},  
+{'Q', 0},  
+{'R', 0},  
+{'S', 0},  
+{'T', 0},  
+{'U', 0},  
+{'V', 0},  
+{'W', 0},  
+{'X', 0},  
+{'Y', 0},  
+{'Z', 0},  
+};  
+  
+int main() {  
+string s;  
+getline(cin, s);  
+for (char c: s) {  
+if (c_map.find(c) != c_map.end()) {  
+c_map[c]++;  
+}  
+}  
+for (auto item: c_map) {  
+cout << item.first << ':' << item.second << endl;  
+}  
+}
+
+```
+
+
+
+
+
+
+
+## 2. 字符串匹配
+
+
+

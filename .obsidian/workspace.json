@@ -21,14 +21,15 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/前后端开发/algorithm.md",
+                "file": "source/_posts/机器学习/机器学习深度学习基础.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -47,7 +48,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/前后端开发/algorithm.md"
+                "file": "source/_posts/机器学习/机器学习深度学习基础.md"
               }
             }
           }
@@ -96,14 +97,14 @@
       "obsidian-excalidraw-plugin:新建 Excalidraw 绘图": false
     }
   },
-  "active": "2a7df301896bdc21",
+  "active": "dc2d350f095bc041",
   "lastOpenFiles": [
+    "canvas/AI学习思路.canvas",
     "source/_posts/前后端开发/algorithm.md",
     "public/tags/AIGC/index.html",
     "public/tags/AIGC",
     "source/_posts/机器学习/机器学习深度学习基础.md",
     "source/_posts/机器学习/深度学习入门篇.md",
-    "canvas/AI学习思路.canvas",
     "canvas/review plans.canvas",
     "source/_posts/前后端开发/Dateframe—Algorithm.md",
     "source/_posts/前后端开发/Vue.md",

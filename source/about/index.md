@@ -26,4 +26,4 @@ Motto：**You know more, you will do not know more.**
     <img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/image-20220910212636463.png" alt="image-20220910212636463" style="zoom: 25%; pic_center" /></div>
 <h3>Music:</h3>
 
-{% mmedia "meting" "auto=https://y.qq.com/n/ryqq/song/003kIhRR4Vr0cV.html" "autoplay:true" %}
+{% mmedia "meting" "auto=https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/%E9%A3%8E%E6%AD%A2%E4%BA%86.mp3" "autoplay:true" %}
