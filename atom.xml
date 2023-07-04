@@ -6,7 +6,7 @@
   <link href="https://alleyf.github.io/atom.xml" rel="self"/>
   
   <link href="https://alleyf.github.io/"/>
-  <updated>2023-05-31T06:34:10.092Z</updated>
+  <updated>2023-07-04T14:04:23.468Z</updated>
   <id>https://alleyf.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://alleyf.github.io/2023/05/0950da3fc570.html"/>
     <id>https://alleyf.github.io/2023/05/0950da3fc570.html</id>
     <published>2023-05-31T06:27:39.000Z</published>
-    <updated>2023-05-31T06:34:10.092Z</updated>
+    <updated>2023-07-04T14:04:23.468Z</updated>
     
     <content type="html"><![CDATA[<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p><img src="https://s2.loli.net/2023/05/31/mlfBuXI7pt2eCic.png" alt="image.png|400"></p><blockquote><p>特征工程的作用：<br>    - 数据特征决定了模型的上限<br>    - 预处理和特征提取是最核心的<br>    - 算法与参数选择决定了如何逼近这个上限</p></blockquote>]]></content>
     
@@ -42,9 +42,9 @@
     <link href="https://alleyf.github.io/2023/05/14870b008a81.html"/>
     <id>https://alleyf.github.io/2023/05/14870b008a81.html</id>
     <published>2023-05-31T06:27:39.000Z</published>
-    <updated>2023-06-24T15:51:25.675Z</updated>
+    <updated>2023-07-04T14:04:11.688Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h1><p>机器学习主要分为以下两种：</p><p><span style="background:#affad1">1. 监督学习（supervised learning）</span><br><span style="background:#affad1">2. 无监督学习（unsupervised learning）</span></p><h1 id="2-监督学习"><a href="#2-监督学习" class="headerlink" title="2. 监督学习"></a>2. 监督学习</h1>]]></content>
+    <content type="html"><![CDATA[<h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h1><p>机器学习主要分为以下两种：</p><p><span style="background:#affad1">1. 监督学习（supervised learning）</span><br><span style="background:#affad1">2. 无监督学习（unsupervised learning）</span></p><h1 id="2-监督学习"><a href="#2-监督学习" class="headerlink" title="2. 监督学习"></a>2. 监督学习</h1><p>分类：</p><p>回归，分类</p><h1 id="3-无监督学习"><a href="#3-无监督学习" class="headerlink" title="3. 无监督学习"></a>3. 无监督学习</h1><p>分类：<br>聚类（clustering）</p>]]></content>
     
     
     <summary type="html">Machine and Deep learning</summary>
