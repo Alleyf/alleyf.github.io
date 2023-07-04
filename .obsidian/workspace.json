@@ -21,7 +21,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/机器学习/机器学习深度学习基础.md",
+                "file": "source/_posts/机器学习/CV/计算机视觉概述.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -48,7 +48,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/机器学习/机器学习深度学习基础.md"
+                "file": "source/_posts/机器学习/CV/计算机视觉概述.md"
               }
             }
           }
@@ -99,12 +99,13 @@
   },
   "active": "dc2d350f095bc041",
   "lastOpenFiles": [
+    "source/_posts/机器学习/ML_DL.md",
+    "source/_posts/机器学习/深度学习入门篇.md",
+    "source/_posts/机器学习/机器学习深度学习基础.md",
     "canvas/AI学习思路.canvas",
     "source/_posts/前后端开发/algorithm.md",
     "public/tags/AIGC/index.html",
     "public/tags/AIGC",
-    "source/_posts/机器学习/机器学习深度学习基础.md",
-    "source/_posts/机器学习/深度学习入门篇.md",
     "canvas/review plans.canvas",
     "source/_posts/前后端开发/Dateframe—Algorithm.md",
     "source/_posts/前后端开发/Vue.md",
@@ -118,7 +119,6 @@
     "public/tags/CV，NLP",
     "public/archives/page/4/index.html",
     "public/archives/page/4",
-    "source/_posts/机器学习/ML_DL.md",
     "source/_posts/课程学习/操作系统.md",
     "().md",
     "source/_posts/前后端开发/网页开发.md",
