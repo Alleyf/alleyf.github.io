@@ -21,7 +21,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/课程学习/操作系统.md",
+                "file": "source/_posts/课程学习/嵌入式原理与应用.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -48,7 +48,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/课程学习/操作系统.md"
+                "file": "source/_posts/课程学习/嵌入式原理与应用.md"
               }
             }
           }
@@ -94,7 +94,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 674.5
+    "width": 219.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -113,6 +113,7 @@
   },
   "active": "dc2d350f095bc041",
   "lastOpenFiles": [
+    "source/_posts/课程学习/操作系统.md",
     "source/_posts/前后端开发/Vue.md",
     "source/_posts/前后端开发/uni-app.md",
     "source/_posts/前后端开发/SpringBoot启示录.md",
@@ -139,7 +140,6 @@
     "public/tags/CV，NLP",
     "public/archives/page/4/index.html",
     "public/archives/page/4",
-    "source/_posts/课程学习/操作系统.md",
     "().md",
     "source/_posts/前后端开发/DRF.md",
     "source/_posts/课程学习/嵌入式原理与应用.md",
