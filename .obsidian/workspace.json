@@ -21,7 +21,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/前后端开发/Vue.md",
+                "file": "source/_posts/课程学习/操作系统.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -48,7 +48,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/前后端开发/Vue.md"
+                "file": "source/_posts/课程学习/操作系统.md"
               }
             }
           }
@@ -113,6 +113,7 @@
   },
   "active": "dc2d350f095bc041",
   "lastOpenFiles": [
+    "source/_posts/前后端开发/Vue.md",
     "source/_posts/前后端开发/uni-app.md",
     "source/_posts/前后端开发/SpringBoot启示录.md",
     "source/_posts/前后端开发/Dateframe—Algorithm.md",
@@ -129,7 +130,6 @@
     "public/tags/AIGC/index.html",
     "public/tags/AIGC",
     "canvas/review plans.canvas",
-    "source/_posts/前后端开发/Vue.md",
     "Excalidraw/Drawing 2023-06-01 14.21.03.excalidraw.md",
     "Excalidraw",
     "public/2023/05/0950da3fc570.html",
