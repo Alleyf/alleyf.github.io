@@ -2,7 +2,7 @@
 title: algorithm  
 date: 2023-03-17 19:06:15  
 tags: [Algorithm]  
-sticky: 55
+sticky: 70
 excerpt: some solutions about common algorithms
 ---
 # 1. 基础知识
