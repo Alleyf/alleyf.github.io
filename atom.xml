@@ -59,6 +59,25 @@
   </entry>
   
   <entry>
+    <title>PyTorch快速入门</title>
+    <link href="https://alleyf.github.io/2023/05/891ff30b7b9b.html"/>
+    <id>https://alleyf.github.io/2023/05/891ff30b7b9b.html</id>
+    <published>2023-05-31T06:27:39.000Z</published>
+    <updated>2023-07-14T08:41:45.477Z</updated>
+    
+    
+    <summary type="html">Machine and Deep learning</summary>
+    
+    
+    
+    <category term="机器学习" scheme="https://alleyf.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="DL" scheme="https://alleyf.github.io/tags/DL/"/>
+    
+  </entry>
+  
+  <entry>
     <title>OS</title>
     <link href="https://alleyf.github.io/2023/05/8e2ac1a55f44.html"/>
     <id>https://alleyf.github.io/2023/05/8e2ac1a55f44.html</id>
@@ -422,27 +441,6 @@
     <category term="Django" scheme="https://alleyf.github.io/tags/Django/"/>
     
     <category term="Flask" scheme="https://alleyf.github.io/tags/Flask/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Fast_Conv Filter Design</title>
-    <link href="https://alleyf.github.io/2022/11/2b8c5a163a43.html"/>
-    <id>https://alleyf.github.io/2022/11/2b8c5a163a43.html</id>
-    <published>2022-11-13T13:17:00.000Z</published>
-    <updated>2023-03-27T12:59:29.031Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="FIR滤波器结合快速卷积滤波"><a href="#FIR滤波器结合快速卷积滤波" class="headerlink" title="FIR滤波器结合快速卷积滤波"></a>FIR滤波器结合快速卷积滤波</h1><h2 id="一、要求"><a href="#一、要求" class="headerlink" title="一、要求"></a>一、要求</h2><p>选择子作业１中的音频信号，自行给定滤波器的单位取样响应，采用<strong>快速卷积</strong>实现对音频信号的滤波，比较滤波前后信号的波形和回放的效果。</p><h2 id="二、实现思路"><a href="#二、实现思路" class="headerlink" title="二、实现思路"></a>二、实现思路</h2><h3 id="设计FIR滤波器"><a href="#设计FIR滤波器" class="headerlink" title="设计FIR滤波器"></a>设计FIR滤波器</h3><ul><li>分析原始音频信号的频谱，观察有用信号和噪声的分布，选择滤波器类型（低通、高通、带通、带阻等）</li><li>设定幅频响应下降三分贝的截止频率和滤波器阶数</li><li>选择合适的窗函数（包括Rectangular、Hanning、Hamming、Bartlett、Blackman、Kaiser、Gaussian、Flat-top等）</li><li>获得滤波器的单位采样响应hn</li></ul><h3 id="快速卷积"><a href="#快速卷积" class="headerlink" title="快速卷积"></a>快速卷积</h3><ul><li>计算原始音频信号x与滤波器的单位采样响应hn的线性卷积长度，L=length(x)+length(hn)</li><li>设计FFT的长度N&gt;=L</li><li>对x和hn分别做N点FFT变换获得Xk、Hk</li><li>将Xk与Hk相乘得到Yk</li><li>将Yk做IFFT逆变换得到yn，即完成快速卷积</li></ul><h2 id="三、实现过程"><a href="#三、实现过程" class="headerlink" title="三、实现过程"></a>三、实现过程</h2><h3 id="FIR滤波器"><a href="#FIR滤波器" class="headerlink" title="FIR滤波器"></a>FIR滤波器</h3><p>设FIR滤波器的单位冲激响应h(n)为一个N点序列，0≤n≤N-1，则滤波器的系统函数为：<br>$$<br>H(\mathrm{z})=\sum_{k=0}^{N-1}h(\mathrm{k})*\mathrm{z}^{-k}<br>$$<br><strong>直接型FIR滤波器</strong>的差分方程为：<br>$$<br>\mathrm{y(n)}=\sum_{m=0}^{N-1}\mathrm{h(m)x(n-m)}<br>$$<br>由差分方程可知只需要求出FIR滤波器的单位冲激响应h(n)，设置<strong>滤波阶数</strong>和<strong>3db通带截止频率fc</strong>，采用<strong>汉明窗函数</strong>处理，再使用<strong>fir1函数</strong>将其与待滤波信号卷积即可完成滤波，具体实现代码如下。</p><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-comment">%% hamming窗低通滤波器设计</span><br>fc=<span class="hljs-number">7.95e3</span>; <span class="hljs-comment">%下降3分贝截止频率</span><br>hn=fir1(<span class="hljs-number">1000</span>,fc*<span class="hljs-number">2</span>/Fs,<span class="hljs-string">&quot;low&quot;</span>);<br>hn=hn&#x27;;<br>Nh=<span class="hljs-built_in">length</span>(hn);<br></code></pre></td></tr></table></figure><p>FIR滤波器的单位冲击响应如下图所示：</p><p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/image-20221013213239697.png"></p><h3 id="快速卷积-1"><a href="#快速卷积-1" class="headerlink" title="快速卷积"></a>快速卷积</h3><p>线性卷积在<strong>满足圆周卷积点数大于等于线性卷积长度</strong>的条件下可以用圆周卷积计算，而圆周卷积可以使用DFT计算，而DFT有快速算法FFT，因此可以利用FFT算法减少运算量快速计算线性卷积。先将做卷积的两个信号<strong>补零</strong>到指定长度，然后分别做<strong>FFT变换</strong>，根据卷积定理可得时域上做卷积，就是在频域上做乘积，将两者<strong>频谱相乘后做IFFT</strong>即可实现快速卷积，整个过程如下图所示：</p><p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/Fast-linear-convolution-realized-by-circular-convolution-in-the-DFT-domain.png" alt="FFT流程图"></p><p>实现快速卷积的代码如下所示：</p><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-comment">%% 快速卷积和线性卷积</span><br>L=<span class="hljs-built_in">pow2</span>(<span class="hljs-built_in">nextpow2</span>(Nx+Nh<span class="hljs-number">-1</span>));<span class="hljs-comment">%确定FFT快速卷积的点数</span><br>fprintf(<span class="hljs-string">&#x27;快速卷积：&#x27;</span>);<br>tic;<br>Xk=fft(x,L);<span class="hljs-comment">%计算x的L点FFT,结果为x(k)</span><br>Hk=fft(hn,L);<span class="hljs-comment">%计算y的L点FFT,结果为y(k)</span><br>Yk=Xk.*Hk;<span class="hljs-comment">%计算YK</span><br>y1n=ifft(Yk,L);<span class="hljs-comment">%对YK调用IFFT，求得y1(n)</span><br>toc;<br>fprintf(<span class="hljs-string">&#x27;直接卷积：&#x27;</span>);<br>tic;<br>y2n=conv(x,hn);<span class="hljs-comment">%计算y2(n)的卷积</span><br>toc;<br></code></pre></td></tr></table></figure><h2 id="四、结果展示"><a href="#四、结果展示" class="headerlink" title="四、结果展示"></a>四、结果展示</h2><h3 id="线性卷积和FFT快速卷积滤波前后对比图"><a href="#线性卷积和FFT快速卷积滤波前后对比图" class="headerlink" title="线性卷积和FFT快速卷积滤波前后对比图"></a>线性卷积和FFT快速卷积滤波前后对比图</h3><p><img src="https://img.gouka.la/i/2022/11/14/z1xwyl.webp" alt="滤波对比图"></p><h3 id="线性卷积和FFT快速卷积滤波时间对比图"><a href="#线性卷积和FFT快速卷积滤波时间对比图" class="headerlink" title="线性卷积和FFT快速卷积滤波时间对比图"></a>线性卷积和FFT快速卷积滤波时间对比图</h3><p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/%E6%97%B6%E9%97%B4%E5%AF%B9%E6%AF%94%E5%9B%BE.png" alt="时间对比图"></p><h2 id="五、结果分析"><a href="#五、结果分析" class="headerlink" title="五、结果分析"></a>五、结果分析</h2><blockquote><ul><li>由上图可知普通线性卷积的结果和快速卷积的结果一样，但快速卷积相比普通线性卷积耗时更短，因此快速卷积可以提高运算速率，减少运算量，提高运算效率。</li><li>离散傅立叶变换（DFT)实现了频域的离散化,方便了计算机处理,在数字信号处理中有着非常重要的作用。但直接计算DFT的运算量与变换长度N的平方成正比,计算量太大。而快速傅立叶变换FFT则是快速计算DFT的有效算法，大大提高了DFT的运算效率，在信号频谱的分析、滤波器频率响应的计算，以及线性卷积的快速计算等方面起着非常重要的作用。</li></ul></blockquote><h2 id="代码开源"><a href="#代码开源" class="headerlink" title="代码开源"></a>代码开源</h2><blockquote><p><a href="https://alist.fcsy.fit/d/mobilepan/PicoImages/ch1andch2.zip">源代码ch1和ch2</a><a href="https://alist.fcsy.fit/d/mobilepan/PicoImages/ch4andch5.zip">源代码ch3和ch4</a>有需要可以自行下载，里面包括源代码、滤波后的音频和PDF参考文档。</p></blockquote>]]></content>
-    
-    
-    <summary type="html">some ideas about FIR filters and FFT。</summary>
-    
-    
-    
-    <category term="DSP" scheme="https://alleyf.github.io/categories/DSP/"/>
-    
-    
-    <category term="FIR" scheme="https://alleyf.github.io/tags/FIR/"/>
     
   </entry>
   
