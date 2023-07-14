@@ -1013,3 +1013,32 @@ public class CorsConfig implements WebMvcConfigurer (
 给控制器类前加 CrossOrigin 注解使用默认跨域配置
 <font color="#ff0000">@CrossOrigin</font>
 
+## 4. 全局配置 Axios
+
+> 在实际项目开发中，几乎每个组件中都会用到 axios 发起数据请求。此时会遇到如下两个问题:
+> 每个组件中都需要导入 axios
+> 每次发请求都需要填写完整的请求路径
+> 可以通过全局配置的方式解决上述问题：
+
+```js
+//配置请求根路径
+axios.defaults.baseURL = 'http://api.com'
+
+//将 axios 作为全局的自定义属性，每个组件可以在内部直接访问 (Vue3)
+app.config.globalProperties.$http = axios
+
+//将 axios 作为全局的自定义属性，每个组件可以在内部直接访问 (Vue2)
+Vue.prototype.$http = axios
+```
+
+# 11. VueRouter
+
+## 1. 安装与使用
+
+## 2. 参数传递
+
+## 3. 子路由
+
+## 4. 导航首位
+
+
