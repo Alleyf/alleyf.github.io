@@ -21,7 +21,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/课程学习/嵌入式原理与应用.md",
+                "file": "source/_posts/前后端开发/网页开发.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -48,7 +48,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/课程学习/嵌入式原理与应用.md"
+                "file": "source/_posts/前后端开发/网页开发.md"
               }
             }
           }
@@ -113,6 +113,10 @@
   },
   "active": "dc2d350f095bc041",
   "lastOpenFiles": [
+    "public/tags/Professional-courses/index.html",
+    "public/tags/Professional-courses",
+    "source/_posts/课程学习/专业问答整理.md",
+    "source/_posts/课程学习/嵌入式原理与应用.md",
     "source/_posts/课程学习/操作系统.md",
     "source/_posts/前后端开发/Vue.md",
     "source/_posts/前后端开发/uni-app.md",
@@ -139,10 +143,8 @@
     "public/tags/CV，NLP/index.html",
     "public/tags/CV，NLP",
     "public/archives/page/4/index.html",
-    "public/archives/page/4",
     "().md",
     "source/_posts/前后端开发/DRF.md",
-    "source/_posts/课程学习/嵌入式原理与应用.md",
     "source/_posts/课程学习/软件工程.md",
     "source/_posts/课程学习/Synthesis_Command.md",
     "source/_posts/课程学习/QuartusUsage.md",
@@ -155,8 +157,6 @@
     "themes/fluid/source/img/avatar.png",
     "source/about/index.md",
     "source/_posts/前后端开发/Html5_Css_Js.md",
-    "2023-04-26.md",
-    "未命名看板.md",
     "未命名 1.canvas",
     "Pasted image 20230320194157.png",
     "source/_posts/未命名.canvas"
