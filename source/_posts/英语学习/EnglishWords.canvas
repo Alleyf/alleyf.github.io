@@ -1,0 +1,7 @@
+{
+	"nodes":[
+		{"type":"text","text":"# Day 1\n1. gorgeous 绚丽的；华丽的\n2. merit n 良好品质；优点\n3. handicap 障碍；残疾；妨碍\n4. paperback 平装书；简装书\n5. accustomed 习惯了的；上瘾的\n6. reform n/v 改革；改良\n7. orthodox adj 正统的；正派的\n8. precious 宝贵的；珍惜的\n9. previous 先前的；\n10. miserable 痛苦的；\n11. negotiate 商定；协商；谈判v\n12. superintendent n 警司；主管\n13. manuscript n 手稿；底稿\n14. supersonic 超声速的；\n15. inventory 存货；清单\n16. cape 海角；斗篷\n17. latent 潜在的；潜藏的\n18. shove 猛推；乱放 n/v\n19. superme 最高的；极大的\n20. bandage 绷带；用绷带包扎","id":"3447fa8f8c8276ef","x":-740,"y":-600,"width":300,"height":560,"color":"4"},
+		{"id":"6c1805ba151c84c1","x":-380,"y":-600,"width":250,"height":560,"type":"text","text":""}
+	],
+	"edges":[]
+}

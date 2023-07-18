@@ -4,32 +4,25 @@
     "type": "split",
     "children": [
       {
-        "id": "e9269e81d050d1b1",
+        "id": "fd006d1b2e378372",
         "type": "tabs",
         "children": [
           {
-            "id": "2a7df301896bdc21",
+            "id": "15ed8a58544f62f9",
             "type": "leaf",
             "state": {
-              "type": "custom-frames-slack",
-              "state": {}
-            }
-          },
-          {
-            "id": "dc2d350f095bc041",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
+              "type": "canvas",
               "state": {
-                "file": "source/_posts/前后端开发/Vue.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
+                "file": "source/_posts/英语学习/EnglishWords.canvas",
+                "viewState": {
+                  "x": -359.5,
+                  "y": -316.94,
+                  "zoom": 0
+                }
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -48,7 +41,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/前后端开发/Vue.md"
+                "file": "source/_posts/英语学习/EnglishWords.canvas"
               }
             }
           }
@@ -111,8 +104,27 @@
       "obsidian-excalidraw-plugin:新建 Excalidraw 绘图": false
     }
   },
-  "active": "4a383e802b683e84",
+  "active": "15ed8a58544f62f9",
   "lastOpenFiles": [
+    "public/2023/07/da7a1552e042.html",
+    "public/2023/07/515b18cb773b.html",
+    "public/2023/07/1c18a5ceb729.html",
+    "public/2023/07",
+    "public/archives/2023/07/index.html",
+    "public/archives/2023/07",
+    "source/_posts/英语学习/EnglishWords.canvas",
+    "Excalidraw/EnglishWords.md",
+    "Excalidraw/Drawing 2023-07-17 11.09.29.excalidraw.md",
+    "canvas/review plans.canvas",
+    "canvas/AI学习思路.canvas",
+    "source/_posts/英语学习/Day1.md",
+    "未命名.md",
+    "source/_posts/英语学习/Day3.md",
+    "source/_posts/英语学习/Day2.md",
+    "Day2 1.md",
+    "Excalidraw/Drawing 2023-07-17 10.49.07.excalidraw.md",
+    "source/_posts/英语学习/考研单词.md",
+    "source/_posts/前后端开发/Vue.md",
     "source/_posts/前后端开发/SpringBoot启示录.md",
     "source/_posts/前后端开发/网页开发.md",
     "public/2023/05/891ff30b7b9b.html",
@@ -121,14 +133,11 @@
     "source/_posts/机器学习/PyTorch.md",
     "source/_posts/机器学习/机器学习深度学习基础.md",
     "source/_posts/机器学习/深度学习入门篇.md",
-    "canvas/AI学习思路.canvas",
-    "canvas/review plans.canvas",
     "public/tags/Professional-courses/index.html",
     "public/tags/Professional-courses",
     "source/_posts/课程学习/专业问答整理.md",
     "source/_posts/课程学习/嵌入式原理与应用.md",
     "source/_posts/课程学习/操作系统.md",
-    "source/_posts/前后端开发/Vue.md",
     "source/_posts/前后端开发/uni-app.md",
     "source/_posts/前后端开发/Dateframe—Algorithm.md",
     "source/_posts/前后端开发/algorithm.md",
@@ -136,26 +145,12 @@
     "source/_posts/机器学习/CV/目标检测.md",
     "source/_posts/机器学习/CV/卷积神经网络基础.md",
     "source/_posts/机器学习/CV/计算机视觉概述.md",
-    "source/_posts/机器学习/ML_DL.md",
-    "public/tags/AIGC/index.html",
-    "public/tags/AIGC",
-    "Excalidraw/Drawing 2023-06-01 14.21.03.excalidraw.md",
-    "Excalidraw",
-    "public/2023/05/0950da3fc570.html",
-    "public/page/4/index.html",
-    "().md",
-    "source/_posts/前后端开发/DRF.md",
-    "source/_posts/课程学习/软件工程.md",
-    "source/_posts/课程学习/Synthesis_Command.md",
-    "source/_posts/课程学习/QuartusUsage.md",
-    "source/_posts/课程学习/SignalSample.md",
     "source/_posts/课程学习/review plans.canvas",
     "themes/fluid/source/img/police_beian.png",
     "themes/fluid/source/img/loading.gif",
     "themes/fluid/source/img/fluid.png",
     "themes/fluid/source/img/default.png",
     "themes/fluid/source/img/avatar.png",
-    "source/about/index.md",
     "未命名 1.canvas",
     "Pasted image 20230320194157.png",
     "source/_posts/未命名.canvas"
