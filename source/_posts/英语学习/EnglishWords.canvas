@@ -1,7 +1,7 @@
 {
 	"nodes":[
 		{"type":"text","text":"# Day 1\n1. gorgeous 绚丽的；华丽的\n2. merit n 良好品质；优点\n3. handicap 障碍；残疾；妨碍\n4. paperback 平装书；简装书\n5. accustomed 习惯了的；上瘾的\n6. reform n/v 改革；改良\n7. orthodox adj 正统的；正派的\n8. precious 宝贵的；珍惜的\n9. previous 先前的；\n10. miserable 痛苦的；\n11. negotiate 商定；协商；谈判v\n12. superintendent n 警司；主管\n13. manuscript n 手稿；底稿\n14. supersonic 超声速的；\n15. inventory 存货；清单\n16. cape 海角；斗篷\n17. latent 潜在的；潜藏的\n18. shove 猛推；乱放 n/v\n19. superme 最高的；极大的\n20. bandage 绷带；用绷带包扎","id":"3447fa8f8c8276ef","x":-740,"y":-600,"width":300,"height":560,"color":"4"},
-		{"id":"6c1805ba151c84c1","x":-380,"y":-600,"width":250,"height":560,"type":"text","text":""}
+		{"id":"6c1805ba151c84c1","x":-380,"y":-600,"width":320,"height":560,"color":"5","type":"text","text":"# Day 2\n1. bang 撞击；巨响\n2. brisk 轻快的；生意红火的\n3. surgery 外科手术\n4. exhibit 展示；表现；展品\n5. radiant 喜洋洋的；容光焕发的\n6. sacred 宗教的；神圣的\n7. interim 暂时的；过渡的\n8. fort 堡垒；要塞\n9. pitch 用力扔；抛；球场\n10. monster 怪物；恶魔；巨大的；\n11. deteriorate 恶化；变坏\n12. conjunction 连词；同时发生\n13. peculiar 奇怪的；异常的\n14. racket 球拍；喧嚷"}
 	],
 	"edges":[]
 }

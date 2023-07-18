@@ -13,11 +13,11 @@
             "state": {
               "type": "canvas",
               "state": {
-                "file": "source/_posts/英语学习/EnglishWords.canvas",
+                "file": "canvas/AI学习思路.canvas",
                 "viewState": {
-                  "x": -359.5,
-                  "y": -316.94,
-                  "zoom": 0
+                  "x": 65,
+                  "y": 20,
+                  "zoom": -0.19431561596989977
                 }
               }
             }
@@ -41,7 +41,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/英语学习/EnglishWords.canvas"
+                "file": "canvas/AI学习思路.canvas"
               }
             }
           }
@@ -106,17 +106,17 @@
   },
   "active": "15ed8a58544f62f9",
   "lastOpenFiles": [
+    "canvas/review plans.canvas",
+    "canvas/AI学习思路.canvas",
+    "source/_posts/英语学习/EnglishWords.canvas",
     "public/2023/07/da7a1552e042.html",
     "public/2023/07/515b18cb773b.html",
     "public/2023/07/1c18a5ceb729.html",
     "public/2023/07",
     "public/archives/2023/07/index.html",
     "public/archives/2023/07",
-    "source/_posts/英语学习/EnglishWords.canvas",
     "Excalidraw/EnglishWords.md",
     "Excalidraw/Drawing 2023-07-17 11.09.29.excalidraw.md",
-    "canvas/review plans.canvas",
-    "canvas/AI学习思路.canvas",
     "source/_posts/英语学习/Day1.md",
     "未命名.md",
     "source/_posts/英语学习/Day3.md",
@@ -134,7 +134,6 @@
     "source/_posts/机器学习/机器学习深度学习基础.md",
     "source/_posts/机器学习/深度学习入门篇.md",
     "public/tags/Professional-courses/index.html",
-    "public/tags/Professional-courses",
     "source/_posts/课程学习/专业问答整理.md",
     "source/_posts/课程学习/嵌入式原理与应用.md",
     "source/_posts/课程学习/操作系统.md",
