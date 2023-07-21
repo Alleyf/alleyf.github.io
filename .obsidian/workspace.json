@@ -13,11 +13,11 @@
             "state": {
               "type": "canvas",
               "state": {
-                "file": "canvas/AI学习思路.canvas",
+                "file": "source/_posts/英语学习/EnglishWords.canvas",
                 "viewState": {
-                  "x": 65,
-                  "y": 20,
-                  "zoom": -0.19431561596989977
+                  "x": -400,
+                  "y": 572.5,
+                  "zoom": 0
                 }
               }
             }
@@ -41,7 +41,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "canvas/AI学习思路.canvas"
+                "file": "source/_posts/英语学习/EnglishWords.canvas"
               }
             }
           }
@@ -106,8 +106,8 @@
   },
   "active": "15ed8a58544f62f9",
   "lastOpenFiles": [
-    "canvas/review plans.canvas",
     "canvas/AI学习思路.canvas",
+    "canvas/review plans.canvas",
     "source/_posts/英语学习/EnglishWords.canvas",
     "public/2023/07/da7a1552e042.html",
     "public/2023/07/515b18cb773b.html",
