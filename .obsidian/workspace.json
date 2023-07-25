@@ -11,9 +11,12 @@
             "id": "15ed8a58544f62f9",
             "type": "leaf",
             "state": {
-              "type": "excalidraw",
+              "type": "markdown",
               "state": {
-                "file": "Excalidraw/Drawing 2023-07-17 11.09.29.excalidraw.md"
+                "file": "source/_posts/机器学习/深度学习入门篇.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
               }
             }
           }
@@ -36,7 +39,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Excalidraw/Drawing 2023-07-17 11.09.29.excalidraw.md"
+                "file": "source/_posts/机器学习/深度学习入门篇.md"
               }
             }
           }
@@ -101,6 +104,8 @@
   },
   "active": "15ed8a58544f62f9",
   "lastOpenFiles": [
+    "source/_posts/机器学习/机器学习深度学习基础.md",
+    "Excalidraw/Drawing 2023-07-17 11.09.29.excalidraw.md",
     "source/_posts/英语学习/EnglishWords.canvas",
     "canvas/AI学习思路.canvas",
     "canvas/review plans.canvas",
@@ -111,7 +116,6 @@
     "public/archives/2023/07/index.html",
     "public/archives/2023/07",
     "Excalidraw/EnglishWords.md",
-    "Excalidraw/Drawing 2023-07-17 11.09.29.excalidraw.md",
     "source/_posts/英语学习/Day1.md",
     "未命名.md",
     "source/_posts/英语学习/Day3.md",
@@ -126,7 +130,6 @@
     "public/tags/DL/index.html",
     "public/tags/DL",
     "source/_posts/机器学习/PyTorch.md",
-    "source/_posts/机器学习/机器学习深度学习基础.md",
     "source/_posts/机器学习/深度学习入门篇.md",
     "public/tags/Professional-courses/index.html",
     "source/_posts/课程学习/专业问答整理.md",
