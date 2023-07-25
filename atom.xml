@@ -94,9 +94,9 @@
     <link href="https://alleyf.github.io/2023/05/0950da3fc570.html"/>
     <id>https://alleyf.github.io/2023/05/0950da3fc570.html</id>
     <published>2023-05-31T06:27:39.000Z</published>
-    <updated>2023-07-04T14:04:23.468Z</updated>
+    <updated>2023-07-25T08:04:56.910Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p><img src="https://s2.loli.net/2023/05/31/mlfBuXI7pt2eCic.png" alt="image.png|400"></p><blockquote><p>特征工程的作用：<br>    - 数据特征决定了模型的上限<br>    - 预处理和特征提取是最核心的<br>    - 算法与参数选择决定了如何逼近这个上限</p></blockquote>]]></content>
+    <content type="html"><![CDATA[<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p><img src="https://s2.loli.net/2023/05/31/mlfBuXI7pt2eCic.png" alt="image.png|400"></p><blockquote><p>特征工程的作用：<br>    - 数据特征决定了模型的上限<br>    - 预处理和特征提取是最核心的<br>    - 算法与参数选择决定了如何逼近这个上限</p></blockquote><h2 id="反向传播"><a href="#反向传播" class="headerlink" title="反向传播"></a>反向传播</h2><p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202307251455407.png" alt="image.png"></p><p>z</p>]]></content>
     
     
     <summary type="html">Deep_learning</summary>
