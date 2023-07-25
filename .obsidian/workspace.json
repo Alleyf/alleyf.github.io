@@ -11,14 +11,9 @@
             "id": "15ed8a58544f62f9",
             "type": "leaf",
             "state": {
-              "type": "canvas",
+              "type": "excalidraw",
               "state": {
-                "file": "source/_posts/英语学习/EnglishWords.canvas",
-                "viewState": {
-                  "x": -400,
-                  "y": 200.5,
-                  "zoom": 0
-                }
+                "file": "Excalidraw/Drawing 2023-07-17 11.09.29.excalidraw.md"
               }
             }
           }
@@ -41,7 +36,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/英语学习/EnglishWords.canvas"
+                "file": "Excalidraw/Drawing 2023-07-17 11.09.29.excalidraw.md"
               }
             }
           }
@@ -106,9 +101,9 @@
   },
   "active": "15ed8a58544f62f9",
   "lastOpenFiles": [
+    "source/_posts/英语学习/EnglishWords.canvas",
     "canvas/AI学习思路.canvas",
     "canvas/review plans.canvas",
-    "source/_posts/英语学习/EnglishWords.canvas",
     "public/2023/07/da7a1552e042.html",
     "public/2023/07/515b18cb773b.html",
     "public/2023/07/1c18a5ceb729.html",
