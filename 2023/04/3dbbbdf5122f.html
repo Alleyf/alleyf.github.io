@@ -26,7 +26,7 @@
 <meta property="og:description" content="it is some basic usage of vue.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-04-16T08:29:16.000Z">
-<meta property="article:modified_time" content="2023-07-14T10:48:46.031Z">
+<meta property="article:modified_time" content="2023-07-26T07:24:01.399Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="vue">
 <meta name="twitter:card" content="summary_large_image">
@@ -280,7 +280,7 @@
         
         
         
-          208 mins
+          209 mins
         
       </span>
     
@@ -331,7 +331,7 @@
               <p class="note note-info">
                 
                   
-                    Last updated on 11 days ago
+                    Last updated on 2 hours ago
                   
                 
               </p>
@@ -618,7 +618,15 @@ axios.patch (url, datal, config]l)
 </blockquote>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//配置请求根路径</span><br>axios.<span class="hljs-property">defaults</span>.<span class="hljs-property">baseURL</span> = <span class="hljs-string">&#x27;http://api.com&#x27;</span><br><br><span class="hljs-comment">//将 axios 作为全局的自定义属性，每个组件可以在内部直接访问 (Vue3)</span><br>app.<span class="hljs-property">config</span>.<span class="hljs-property">globalProperties</span>.<span class="hljs-property">$http</span> = axios<br><br><span class="hljs-comment">//将 axios 作为全局的自定义属性，每个组件可以在内部直接访问 (Vue2)</span><br><span class="hljs-title class_">Vue</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">$http</span> = axios<br></code></pre></td></tr></table></figure>
 
-<h1 id="11-VueRouter"><a href="#11-VueRouter" class="headerlink" title="11. VueRouter"></a>11. VueRouter</h1><h2 id="1-安装与使用"><a href="#1-安装与使用" class="headerlink" title="1. 安装与使用"></a>1. 安装与使用</h2><h2 id="2-参数传递"><a href="#2-参数传递" class="headerlink" title="2. 参数传递"></a>2. 参数传递</h2><h2 id="3-子路由"><a href="#3-子路由" class="headerlink" title="3. 子路由"></a>3. 子路由</h2><h2 id="4-导航首位"><a href="#4-导航首位" class="headerlink" title="4. 导航首位"></a>4. 导航首位</h2>
+<h1 id="11-VueRouter"><a href="#11-VueRouter" class="headerlink" title="11. VueRouter"></a>11. VueRouter</h1><h2 id="1-安装与使用"><a href="#1-安装与使用" class="headerlink" title="1. 安装与使用"></a>1. 安装与使用</h2><blockquote>
+<ul>
+<li>Vue 路由 vue-router 是官方的路由插件，能够轻松的管理 SPA 项目中组件的切换。</li>
+<li>Vue 的单页面应用是基于路由和组件的，路由用于设定访问路径，并将路径和组件映射起来</li>
+<li>vue-router 目前有 3. x 的版本和 4. x 的版本，vue-router 3. x 只能结合 vue 2进行使用，vue-router 4. x 只能结合 vue 3 进行使用</li>
+<li>安装: <strong>npm install vue-router@4</strong></li>
+</ul>
+</blockquote>
+<h2 id="2-参数传递"><a href="#2-参数传递" class="headerlink" title="2. 参数传递"></a>2. 参数传递</h2><h2 id="3-子路由"><a href="#3-子路由" class="headerlink" title="3. 子路由"></a>3. 子路由</h2><h2 id="4-导航首位"><a href="#4-导航首位" class="headerlink" title="4. 导航首位"></a>4. 导航首位</h2>
                 
               </div>
             
@@ -682,7 +690,7 @@ axios.patch (url, datal, config]l)
       
         <div class="license-meta-item license-meta-date">
           <div>Updated on</div>
-          <div>July 14, 2023</div>
+          <div>July 26, 2023</div>
         </div>
       
       <div class="license-meta-item">
