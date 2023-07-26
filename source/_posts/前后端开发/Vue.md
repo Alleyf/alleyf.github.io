@@ -1034,6 +1034,11 @@ Vue.prototype.$http = axios
 # 11. VueRouter
 
 ## 1. 安装与使用
+> - Vue 路由 vue-router 是官方的路由插件，能够轻松的管理 SPA 项目中组件的切换。
+> - Vue 的单页面应用是基于路由和组件的，路由用于设定访问路径，并将路径和组件映射起来
+> - vue-router 目前有 3. x 的版本和 4. x 的版本，vue-router 3. x 只能结合 vue 2进行使用，vue-router 4. x 只能结合 vue 3 进行使用
+> - 安装: **npm install vue-router@4**
+
 
 ## 2. 参数传递
 

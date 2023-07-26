@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/机器学习/深度学习入门篇.md",
+                "file": "source/_posts/前后端开发/Vue.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -39,7 +39,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/机器学习/深度学习入门篇.md"
+                "file": "source/_posts/前后端开发/Vue.md"
               }
             }
           }
@@ -104,6 +104,7 @@
   },
   "active": "15ed8a58544f62f9",
   "lastOpenFiles": [
+    "source/_posts/机器学习/深度学习入门篇.md",
     "source/_posts/机器学习/机器学习深度学习基础.md",
     "Excalidraw/Drawing 2023-07-17 11.09.29.excalidraw.md",
     "source/_posts/英语学习/EnglishWords.canvas",
@@ -130,7 +131,6 @@
     "public/tags/DL/index.html",
     "public/tags/DL",
     "source/_posts/机器学习/PyTorch.md",
-    "source/_posts/机器学习/深度学习入门篇.md",
     "public/tags/Professional-courses/index.html",
     "source/_posts/课程学习/专业问答整理.md",
     "source/_posts/课程学习/嵌入式原理与应用.md",
