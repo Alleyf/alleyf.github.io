@@ -391,9 +391,9 @@ function removeTodo(todo) {
 ```
 ## 6. 计算属性
 > 1. [`computed()`](https://cn.vuejs.org/guide/essentials/computed.html)。它可以让我们创建一个计算属性 ref，这个 ref 会动态地根据其他响应式数据源来计算其 `.value`
-> 2. computed`(计算属性)`可用于快速计算视图（View）中显示的属性。这些计算将被**缓存**，并且只在需要时更新。computed设置的初衷是能够**解决复杂的计算**，而不是直接在模板字符串里进行运算。
+> 2. computed `(计算属性)` 可用于快速计算视图（View）中显示的属性。这些计算将被**缓存**，并且只在需要时更新。computed 设置的初衷是能够**解决复杂的计算**，而不是直接在模板字符串里进行运算。
 
-实现显示（隐藏）已完成的todos
+实现显示（隐藏）已完成的 todos
 ```vue
 <script setup>
 import { ref, computed } from 'vue'
@@ -448,14 +448,14 @@ function removeTodo(todo) {
 ```
 > 双大括号标签会被替换为[相应组件实例中](https://cn.vuejs.org/guide/essentials/reactivity-fundamentals.html#declaring-reactive-state) `msg` 属性的值。同时每次 `msg` 属性更改时它也会同步更新。
 
-## 8.原始 HTML
+## 8. 原始 HTML
 > 双大括号会将数据解释为纯文本，而不是 HTML。若想插入 HTML，需要使用 [`v-html` 指令](https://cn.vuejs.org/api/built-in-directives.html#v-html)
 
 ```html
 <p>Using text interpolation: {{ rawHtml }}</p>
 <p>Using v-html directive: <span v-html="rawHtml"></span></p>
 ```
-# 4. Demo 1表格增删 
+# 4. Demo 1 表格增删 
 ```html
 <!DOCTYPE html>  
 <html lang="en">  
@@ -522,7 +522,7 @@ this.users.splice(uid,1);
 </body>  
 </html>
 ```
-# 5.Demo 2 登录（axios）
+# 5. Demo 2 登录（axios）
 ```html
 <!DOCTYPE html>  
 <html lang="en">  
@@ -761,7 +761,7 @@ router: router
 </body>  
 </html>
 ```
-# 8.Demo 3 路由使用
+# 8. 路由使用
 ```html
 <!DOCTYPE html>  
 <html lang="en">  
@@ -840,11 +840,11 @@ router: router,
 </html>
 ```
 # 9. Element-UI 使用
-> Element 是国内饿了么公司提供的一套开源前端框架，简洁优雅，提供了 Vue、React、Angular等多个版本。
+> Element 是国内饿了么公司提供的一套开源前端框架，简洁优雅，提供了 Vue、React、Angular 等多个版本。
 > 文档地址: [一个 Vue 3 UI 框架 | Element Plus](https://element-plus.org/zh-CN/#/zh-CN)
 > 安装: npm i element-ui
 > 引入 Element：
-> main.js (vue 2):
+> main. js (vue 2):
 ```js
 import Vue from 'vue';
 import ElementUI from 'element-ui';
@@ -875,7 +875,7 @@ Font Awesome 提供了 675 个可缩放的矢量图标，可以使用 cSS 所提
 文档地址: http://fontawesome.dashgame.com/
 安装: `npm i font-awesome`
 使用: `import 'font-awesome/css/font-awesome.min.css'`
-# 10.Axios 
+# 10. Axios 
 ## 1. 使用方法
 > Axios 是一个基于 promise 网络请求库，作用于 node. js 和浏览器中。
 > Axios 在浏览器端使用 XMLHttpRequests 发送网络请求，并能自动完成 JSON
@@ -899,9 +899,7 @@ axios.get(/user?ID=12345')
  .then(function （）{ 
   //总是会执行
  });
-
 ```
-
 ```js
 /／上述请求也可以按以下方式完成（可选）
 axios.get("/user',{
@@ -918,9 +916,7 @@ axios.get("/user',{
  .then(function (){ 
   //总是会执行
  });
-
 ```
-
 2. POST 请求：
 
 ```js
@@ -934,9 +930,7 @@ axios.post('/user', {
  .catch(function (error){
    console.log(error);
  });
-
 ```
-
 3. 异步回调问题（async/await）：
 
 ```js
@@ -947,9 +941,7 @@ async function getUser() (
    console.log(response)
  } catch (error){
    console.error(error);
-
 ```
-
 4. 其他请求方式：
 
 ```js
@@ -962,9 +954,7 @@ axios({
    lastName:"Flintstone'
  }
 });
-
 ```
-
 	axios.get (url, configl)
 	axios.delete (url[, config])
 	axios.head (uri[, config))
@@ -972,14 +962,8 @@ axios({
 	axios.post (url, datal, configl)
 	axios.put (url, datal, config]l)
 	axios.patch (url, datal, config]l)
-
 ## 2. 与 Vue 整合
-
-
-
-
 ## 3. 跨域
-
 > 1. 为了保证浏览器的安全，不同源的客户端脚本在没有明确授权的情况下，不能读写对方资源，称为同源策略，同源策略是浏览器安全的基石
 > 2. 同源策略 （Sameoriginpolicy）是一种约定，它是浏览器最核心也最基本的安全功能
 > 3. 所谓同源 (即指在同一个域) 就是两个页面具有相同的协议（protocol），主机 (host) 和端口号  (port)
@@ -991,13 +975,11 @@ axios({
 - CORS 将请求分为两类：简单请求和非简单请求，分别对跨域通信提供了支持。
 
 ### 1. Spring Boot 中配置 CORS
-
 在传统的 Java EE 开发中，可以通过过滤器统一配置，而 Spring Boot 中对此则提供了更加简洁的解决方案
 **方法 1：**
 ```java
 @Configuration
 public class CorsConfig implements WebMvcConfigurer (
-
   @override
   public void addCorsMappings(CorsRegistry registry) (
      registry.addMapping（"/**"）//允许跨域访问的路径
@@ -1006,15 +988,11 @@ public class CorsConfig implements WebMvcConfigurer (
       .maxAge（168000）/／预检间隔时间
       .allowedHeaders（"*"）//允许头部设置
       .allowCredentials（true）；//是否发送cookie
-
 ```
-
 **方法 2：**
 给控制器类前加 CrossOrigin 注解使用默认跨域配置
 <font color="#ff0000">@CrossOrigin</font>
-
 ## 4. 全局配置 Axios
-
 > 在实际项目开发中，几乎每个组件中都会用到 axios 发起数据请求。此时会遇到如下两个问题:
 > 每个组件中都需要导入 axios
 > 每次发请求都需要填写完整的请求路径
@@ -1023,27 +1001,331 @@ public class CorsConfig implements WebMvcConfigurer (
 ```js
 //配置请求根路径
 axios.defaults.baseURL = 'http://api.com'
-
 //将 axios 作为全局的自定义属性，每个组件可以在内部直接访问 (Vue3)
 app.config.globalProperties.$http = axios
-
 //将 axios 作为全局的自定义属性，每个组件可以在内部直接访问 (Vue2)
 Vue.prototype.$http = axios
 ```
+---
 
 # 11. VueRouter
-
 ## 1. 安装与使用
 > - Vue 路由 vue-router 是官方的路由插件，能够轻松的管理 SPA 项目中组件的切换。
 > - Vue 的单页面应用是基于路由和组件的，路由用于设定访问路径，并将路径和组件映射起来
-> - vue-router 目前有 3. x 的版本和 4. x 的版本，vue-router 3. x 只能结合 vue 2进行使用，vue-router 4. x 只能结合 vue 3 进行使用
-> - 安装: **npm install vue-router@4**
+> - vue-router 目前有 3. x 的版本和 4. x 的版本，vue-router 3. x 只能结合 vue 2 进行使用，vue-router 4. x 只能结合 vue 3 进行使用
+> - 安装: **npm install vue-router@4 **
+
+### 创建路由组件
+在项目中定义 Discover. vue、Friends. vue、MyMusic. vue 三个组件，将来要使用 vue-router 来控制它们的展示与切换：
+Discover. vue:
+```js
+<template>  
+<div>  
+<h1>发现音乐</h1>  
+</div>  
+</template>  
+<script>  
+export default {  
+name: "Discover"  
+}  
+</script>  
+<style scoped>  
+</style>
+```
+ <template>
+     <div>
+        <h1>发现音乐</h1>
+     </div>
+ </template>
+Friends. vue :
+```js
+<template>  
+<div>  
+<h1>关注</h1>  
+</div>  
+</template>  
+<script>  
+export default {  
+name: "Friends"  
+}  
+</script>  
+<style scoped>  
+</style>
+```
+ <template>
+     <div>
+         <h1>关注</h1>
+     </div>
+ </template>
+MyMusic. vue:
+```js
+<template>  
+<div>  
+<h1>我的音乐</h1>  
+</div>  
+</template>  
+<script>  
+export default {  
+name: "MyMusic"  
+}  
+</script>  
+<style scoped>  
+</style>
+```
+---
+### 声明路由链接和占位标签
+可以使用<router-link>标签来声明路由链接，并使用<router-view>标签来声明路由占位符。示例代码如下：
+App. vue:
+```js
+ <template>
+   <div>
+    <h1>APP 组件</h1>
+     <!--声明路由链接-->
+     <router-link to="/discover">发现音乐</router-link>
+     <router-link to="/mymusic">我的音乐</router-link>
+     <router-link to="/friend">关注</router-link>
+    <!--声明路由占位标签-->
+     <router-view></router-view>
+  </div>
+ </template>
+```
+
+### 创建路由模块
+在项目中创建 index.js 路由模块，加入以下代码：
+
+> vue 2 路由的使用
+
+```js
+import VueRouter from 'vue-router'
+import vue from 'vue'
+import Discover from '@/components/Discover. vue'
+import Friends from '@/components/Friends. vue'
+import MyMusic from '@/components/MyMusic. vue'
+
+//将 VueRouter 设置为 Vue 的插件
+Vue.use (VueRouter)
+const router = new VueRouter ({
+     / /指定 hash 属性与组件的对应关系
+     routes: [
+       { path: '/discover', component: Discover },
+       { path: '/friends', component: Friends },
+       { path: "/mymusic', component: MyMusic},
+    ]
+})
+
+export default router
+```
+
+> vue 3 路由的使用
+```js
+import { createRouter, createWebHistory } from 'vue-router'  
+import HomeView from '../views/HomeView.vue'  
+  
+  
+const router = createRouter({  
+history: createWebHistory(import.meta.env.BASE_URL),  
+routes: [  
+{  
+path: '/',  
+name: 'home',  
+component: HomeView  
+},  
+{  
+path: '/about',  
+name: 'about',  
+// route level code-splitting  
+// this generates a separate chunk (About.[hash].js) for this route  
+// which is lazy-loaded when the route is visited.  
+component: () => import('../views/AboutView.vue')  
+}  
+]  
+})  
+  
+export default router
+```
+---
+
+### 挂载路由模块
+在 main.js 中导入并挂载 router
+```js
+import Vue from 'vue'
+import App from './App.vue'
+import router from './router'
+Vue.config.productionTip = false
+
+new Vue ({
+render: h => h (App),
+router
+}).$mount ('#app')
+```
+
+### 路由重定向
+
+> 路由重定向指的是：用户在访问地址 A 的时候，强制用户跳转到地址 C，从而展示特定的组件页面。
+> 
+> 通过路由规则的 redirect 属性，指定一个新的路由地址，可以很方便地设置路由的重定向：
+
+```js
+ const router = new VueRouter (t
+    / /指定 hash 属性与组件的对应关系
+    routes: [
+       //当用户访问／时，跳转到/discover
+      {path: '/, redirect: '/discover',
+      {path: '/discover', component: Discover},
+      {path: '/friends', component: Friends},
+      {path: '/my', component: MyMusic}
+   ]
+})
+```
+---
+## 2. 子路由
+### 嵌套路由
+
+> 在 Discover.vue 组件中，声明 toplist 和 playlist 的子路由链接以及子路由占位符。示例代码如下：
+
+```js
+ <template>
+    <div>
+        <h1>发现音乐</h1>
+        <!--子路由链接-->
+        <router-link to="/discover/toplist">推荐</router-link>
+        <router-link to="/discover/playlist">歌单</router-link>
+       <hr>
+        <router-view></router-view>
+    </div>
+ </template>
+```
+
+> [!NOTE] Tips
+> 在 `src/router/index.js` 路由模块中，导入需要的组件，并使用 children 属性声明子路由规则：
+> 
+```js
+const router = new VueRouter (t
+     / /指定 hash 属性与组件的对应关系
+     routes:[
+       { path: "/', redirect: "/discover'},
+       {
+           path: '/discover',
+           component: Discover,
+           //通过 chi 1 dren 属性，嵌套声明子路由
+           chiidren: [
+               { path: "toplist", component: TopList },
+               { path: "playlist", component: PlayList },
+          ]
+       },
+		{ path: '/friends', component: Friends },
+		{ path: '/mymusic', component: MyMusic },
+   1
+3)
+```
+
+### 动态路由
+思考：有如下 3 个路由链接：
+
+```js
+ <router-link to="/product/1">商品 1</router-link>
+ <router-link to="/product/2">商品 2</router-link>
+ <router-link to="/product/3">商品 3</router-link>
+
+ const router = new VueRouter (t
+    / /指定 hash 属性与组件的对应关系
+    routes: [
+       path: '/product/1', component: Product,
+       path: '/product/2', component: Product,
+       path: '/product/3', component: Product,
+   ]
+})
+```
+
+> 上述方式复用性非常差。
+> 动态路由指的是：把 Hash 地址中可变的部分定义为参数项，从而提高路由规则的复用性。在 vue-router 中使用英文的冒号（:）来定义路由的参数项。示例代码如下：
+> `{path: "/product/: id', component: Product}`
+
+> 通过动态路由匹配的方式染出来的组件中，可以使用`$route.params` 对象访问到动态匹配的参数值，比如在商品详情组件的内部，**根据 id 值，请求不同的商品数据**。
+
+```js
+ <template>
+    <h1>Product 组件</h1>
+    ！--获取动态的 id 值-->
+    <p>($route.params.id)</p>
+ </template>
+
+<script>
+ export default t
+//组件的名称
+  name: 'Product'
+
+</script>
+
+```
+> 为了简化路由参数的获取形式，vue-router 允许在路由规则中开启 **props** 传参。示例代码如下： `{ path:/:id', component: Product, props: true}`
+```js
+<template>
+   <h1>Product 组件</h1>
+   <!--获取动态的id值-->
+   <p>{{id}}</p>
+</template>
+
+<script>
+export default {
+//组件的名称
+ name: 'Product',
+ props : ["id"]
+}
+</script>
+```
+---
+### 编程式导航
+
+|           声明式           |       编程式        |
+|:--------------------------:|:-------------------:|
+| `<router-link :to="..." >` | `router.push (...)` |
+
+> - 除了使用<router-link>创建 a 标签来定义导航链接，我们还可以借助 router 的实例方法，通过编写代码来实现。
+> 
+> - 想要导航到不同的 URL，则使用 `router.push` 方法。这个方法会向 history 栈添加一个新的记录，所以，当用户点击浏览器后退按钮时，则回到之前的 URL。
+> 
+> - 当你点击`<router-link>`时，这个方法会在内部调用，所以说，点击**<router-link：to="...">**等同于调用 **router. push（...）**。
+```js
+ <template>
+    <button@click="gotoProduct(2)">跳转到商品 2</button>
+ </template>
+
+ <script>
+ export default {
+    methods : {
+	       gotoProduct: function (id){
+	          this.$router.push ('/production/${id}')
+	          }
+      }
+}
+ </script>
+```
 
 
-## 2. 参数传递
+---
 
-## 3. 子路由
+## 3. 导航守卫
 
-## 4. 导航首位
+> - 导航守卫可以控制路由的访问权限。示意图如下：
+> 
+> - 全局导航守卫会拦截每个路由规则，从而对每个路由进行访问权限的控制。
+> 
+> - 你可以使用 `router. beforeEach` 注册一个全局前置守卫：
 
-
+```js
+router.beforeEach ((to, from, next) =>{
+   if (to.path ==='/main' && ! isAuthenticated) {
+      next ('/login')
+   }
+   else {
+      next ()
+   }
+})
+```
+ - to：即将要进入的目标
+ - from：当前导航正要离开的路由
+ - 在守卫方法中如果声明了 next 形参，则必须调用 next () 函数，否则不允许用户访问任何一个路由！
+   1. 直接放行：next ()
+   2. 强制其停留在当前页面：next (false)
+   3. 强制其跳转到登录页面：next ('/login')
