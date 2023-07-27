@@ -35,14 +35,6 @@
       "key": "P"
     }
   ],
-  "editor:toggle-highlight": [
-    {
-      "modifiers": [
-        "Mod"
-      ],
-      "key": "`"
-    }
-  ],
   "editor:set-heading-1": [
     {
       "modifiers": [
@@ -203,5 +195,31 @@
   "obsidian-excalidraw-plugin:save": [],
   "obsidian-pangu:pangu-format": [],
   "editor:insert-embed": [],
-  "editor:toggle-comments": []
+  "editor:toggle-comments": [],
+  "theme:use-dark": [
+    {
+      "modifiers": [
+        "Alt"
+      ],
+      "key": "D"
+    }
+  ],
+  "theme:use-light": [
+    {
+      "modifiers": [
+        "Alt"
+      ],
+      "key": "S"
+    }
+  ],
+  "editing-toolbar:header0-text": [],
+  "editing-toolbar:editor:toggle-highlight": [
+    {
+      "modifiers": [
+        "Mod",
+        "Shift"
+      ],
+      "key": "`"
+    }
+  ]
 }

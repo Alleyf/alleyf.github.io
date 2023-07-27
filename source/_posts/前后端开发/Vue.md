@@ -320,7 +320,7 @@ methods: {}
 > 使用 `v-for` 指令来渲染一个基于源数组的列表
 
 ### 无索引
-```vue
+```html
 <ul>
   <li v-for="todo in todos" :key="todo.id">
     {{ todo.text }}
@@ -337,7 +337,7 @@ methods: {}
 		`todos.value = todos.value.filter(/* ... */)` 
 
 完整 demo（实现列表动态增删）
-```vue
+```html
 <script setup>
 import { ref } from 'vue'
 // 给每个 todo 对象一个唯一的 id
@@ -1007,7 +1007,6 @@ app.config.globalProperties.$http = axios
 Vue.prototype.$http = axios
 ```
 ---
-
 # 11. VueRouter
 ## 1. 安装与使用
 > - Vue 路由 vue-router 是官方的路由插件，能够轻松的管理 SPA 项目中组件的切换。
@@ -1074,8 +1073,11 @@ name: "MyMusic"
 ```
 ---
 ### 声明路由链接和占位标签
-可以使用<router-link>标签来声明路由链接，并使用<router-view>标签来声明路由占位符。示例代码如下：
+
+> 可以使用 `<router-link>` 标签来声明路由链接，并使用 `<router-view>` 标签来声明路由占位符。示例代码如下：
+
 App. vue:
+
 ```js
  <template>
    <div>
@@ -1091,19 +1093,16 @@ App. vue:
 ```
 
 ### 创建路由模块
-在项目中创建 index.js 路由模块，加入以下代码：
-
-> vue 2 路由的使用
-
+在项目中创建 index. js 路由模块，加入以下代码：
+vue 2 路由的使用
 ```js
 import VueRouter from 'vue-router'
 import vue from 'vue'
 import Discover from '@/components/Discover. vue'
 import Friends from '@/components/Friends. vue'
 import MyMusic from '@/components/MyMusic. vue'
-
 //将 VueRouter 设置为 Vue 的插件
-Vue.use (VueRouter)
+Vue. use (VueRouter)
 const router = new VueRouter ({
      / /指定 hash 属性与组件的对应关系
      routes: [
@@ -1112,18 +1111,14 @@ const router = new VueRouter ({
        { path: "/mymusic', component: MyMusic},
     ]
 })
-
 export default router
 ```
-
-> vue 3 路由的使用
+vue 3 路由的使用
 ```js
 import { createRouter, createWebHistory } from 'vue-router'  
-import HomeView from '../views/HomeView.vue'  
-  
-  
-const router = createRouter({  
-history: createWebHistory(import.meta.env.BASE_URL),  
+import HomeView from '../views/HomeView. vue'  
+const router = createRouter ({  
+history: createWebHistory (import. meta. env. BASE_URL),  
 routes: [  
 {  
 path: '/',  
@@ -1134,37 +1129,31 @@ component: HomeView
 path: '/about',  
 name: 'about',  
 // route level code-splitting  
-// this generates a separate chunk (About.[hash].js) for this route  
+// this generates a separate chunk (About.[hash]. js) for this route  
 // which is lazy-loaded when the route is visited.  
-component: () => import('../views/AboutView.vue')  
+component: () => import ('../views/AboutView. vue')  
 }  
 ]  
 })  
-  
 export default router
 ```
 ---
-
 ### 挂载路由模块
-在 main.js 中导入并挂载 router
+在 main. js 中导入并挂载 router
 ```js
 import Vue from 'vue'
-import App from './App.vue'
+import App from './App. vue'
 import router from './router'
-Vue.config.productionTip = false
-
+Vue. config. productionTip = false
 new Vue ({
 render: h => h (App),
 router
-}).$mount ('#app')
+}).$mount (' #app ')
 ```
-
 ### 路由重定向
-
 > 路由重定向指的是：用户在访问地址 A 的时候，强制用户跳转到地址 C，从而展示特定的组件页面。
 > 
 > 通过路由规则的 redirect 属性，指定一个新的路由地址，可以很方便地设置路由的重定向：
-
 ```js
  const router = new VueRouter (t
     / /指定 hash 属性与组件的对应关系
@@ -1180,9 +1169,7 @@ router
 ---
 ## 2. 子路由
 ### 嵌套路由
-
-> 在 Discover.vue 组件中，声明 toplist 和 playlist 的子路由链接以及子路由占位符。示例代码如下：
-
+> 在 Discover. vue 组件中，声明 toplist 和 playlist 的子路由链接以及子路由占位符。示例代码如下：
 ```js
  <template>
     <div>
@@ -1195,9 +1182,8 @@ router
     </div>
  </template>
 ```
-
 > [!NOTE] Tips
-> 在 `src/router/index.js` 路由模块中，导入需要的组件，并使用 children 属性声明子路由规则：
+> 在 `src/router/index. js` 路由模块中，导入需要的组件，并使用 children 属性声明子路由规则：
 > 
 ```js
 const router = new VueRouter (t
@@ -1218,15 +1204,12 @@ const router = new VueRouter (t
    1
 3)
 ```
-
 ### 动态路由
 思考：有如下 3 个路由链接：
-
 ```js
  <router-link to="/product/1">商品 1</router-link>
  <router-link to="/product/2">商品 2</router-link>
  <router-link to="/product/3">商品 3</router-link>
-
  const router = new VueRouter (t
     / /指定 hash 属性与组件的对应关系
     routes: [
@@ -1236,36 +1219,29 @@ const router = new VueRouter (t
    ]
 })
 ```
-
 > 上述方式复用性非常差。
 > 动态路由指的是：把 Hash 地址中可变的部分定义为参数项，从而提高路由规则的复用性。在 vue-router 中使用英文的冒号（:）来定义路由的参数项。示例代码如下：
 > `{path: "/product/: id', component: Product}`
-
-> 通过动态路由匹配的方式染出来的组件中，可以使用`$route.params` 对象访问到动态匹配的参数值，比如在商品详情组件的内部，**根据 id 值，请求不同的商品数据**。
-
+> 通过动态路由匹配的方式染出来的组件中，可以使用 `$route. params` 对象访问到动态匹配的参数值，比如在商品详情组件的内部，**根据 id 值，请求不同的商品数据**。
 ```js
  <template>
     <h1>Product 组件</h1>
     ！--获取动态的 id 值-->
-    <p>($route.params.id)</p>
+    <p>($route. params. id)</p>
  </template>
-
 <script>
  export default t
 //组件的名称
   name: 'Product'
-
 </script>
-
 ```
-> 为了简化路由参数的获取形式，vue-router 允许在路由规则中开启 **props** 传参。示例代码如下： `{ path:/:id', component: Product, props: true}`
+> 为了简化路由参数的获取形式，vue-router 允许在路由规则中开启 **props** 传参。示例代码如下： `{ path:/: id', component: Product, props: true}`
 ```js
 <template>
    <h1>Product 组件</h1>
    <!--获取动态的id值-->
-   <p>{{id}}</p>
+   <p> {{id}} </p>
 </template>
-
 <script>
 export default {
 //组件的名称
@@ -1275,47 +1251,39 @@ export default {
 </script>
 ```
 ---
+
 ### 编程式导航
 
-|           声明式           |       编程式        |
-|:--------------------------:|:-------------------:|
-| `<router-link :to="..." >` | `router.push (...)` |
-
-> - 除了使用<router-link>创建 a 标签来定义导航链接，我们还可以借助 router 的实例方法，通过编写代码来实现。
+|           声明式           |        编程式        |
+|:--------------------------:|:--------------------:|
+| `<router-link :to="..." >` | `router. push (...)` |
+> - 除了使用 `<router-link>` 创建 a 标签来定义导航链接，我们还可以借助 router 的实例方法，通过编写代码来实现。
 > 
-> - 想要导航到不同的 URL，则使用 `router.push` 方法。这个方法会向 history 栈添加一个新的记录，所以，当用户点击浏览器后退按钮时，则回到之前的 URL。
+> - 想要导航到不同的 URL，则使用 `router. push` 方法。这个方法会向 history 栈添加一个新的记录，所以，当用户点击浏览器后退按钮时，则回到之前的 URL。
 > 
-> - 当你点击`<router-link>`时，这个方法会在内部调用，所以说，点击**<router-link：to="...">**等同于调用 **router. push（...）**。
+> - 当你点击 `<router-link>` 时，这个方法会在内部调用，所以说，点击<router-link：to="...">等同于调用 router. push（...）。
 ```js
  <template>
     <button@click="gotoProduct(2)">跳转到商品 2</button>
  </template>
-
  <script>
  export default {
     methods : {
 	       gotoProduct: function (id){
-	          this.$router.push ('/production/${id}')
+	          this.$router. push ('/production/${id}')
 	          }
       }
 }
  </script>
 ```
-
-
 ---
-
 ## 3. 导航守卫
-
-> - 导航守卫可以控制路由的访问权限。示意图如下：
-> 
-> - 全局导航守卫会拦截每个路由规则，从而对每个路由进行访问权限的控制。
-> 
-> - 你可以使用 `router. beforeEach` 注册一个全局前置守卫：
-
+> 导航守卫可以控制路由的访问权限。示意图如下：
+> 全局导航守卫会拦截每个路由规则，从而对每个路由进行访问权限的控制。
+> 你可以使用 `router. beforeEach` 注册一个全局前置守卫：
 ```js
-router.beforeEach ((to, from, next) =>{
-   if (to.path ==='/main' && ! isAuthenticated) {
+router. beforeEach ((to, from, next) =>{
+   if (to. path ==='/main' && ! isAuthenticated) {
       next ('/login')
    }
    else {
@@ -1326,6 +1294,46 @@ router.beforeEach ((to, from, next) =>{
  - to：即将要进入的目标
  - from：当前导航正要离开的路由
  - 在守卫方法中如果声明了 next 形参，则必须调用 next () 函数，否则不允许用户访问任何一个路由！
-   1. 直接放行：next ()
-   2. 强制其停留在当前页面：next (false)
-   3. 强制其跳转到登录页面：next ('/login')
+   1. 直接放行：`next ()`
+   2. 强制其停留在当前页面：`next (false)`
+   3. 强制其跳转到登录页面：`next ('/login')`
+
+# 12 VueX
+
+## 1 VueX 介绍
+
+> 对于组件化开发来说，大型应用的状态往往跨越多个组件。在多层嵌套的父子
+> 组件之间传递状态已经十分麻烦，而 Vue 更是没有为兄弟组件提供直接共享数
+> 据的办法。
+> 
+> 基于这个问题，许多框架提供了解决方案使用全局的状态管理器，将所有
+> 分散的共享数据交由状态管理器保管，Vue 也不例外。
+> 
+> Vuex 是一个专为 Vuejs 应用程序开发的状态管理库，采用集中式存储管理应
+> 用的所有组件的状态。
+> 
+> 简单的说，Vuex 用于管理分散在 Vue 各个组件中的数据。
+> 
+> 安装: `npm install vuex@next`
+
+### 状态管理
+
+> 每一个 Vuex 应用的核心都是一个 store，与普通的全局对象不同的是，基于 Vue 数据与视图绑定的特点，当 store 中的状态发生变化时，与之绑定的视图也会被重新渲染。
+
+> store 中的状态不允许被直接修改，改变 store 中的状态的唯一途径就是显式地提交 (commit）mutation，这可以让我们方便地跟踪每一个状态的变化。
+> 
+> 在大型复杂应用中，如果无法有效地跟踪到状态的变化，将会对理解和维护代> 码带来极大的困扰。
+> 
+> Vuex 中有 5 个重要的概念：**State、Getter、Mutation、Action、Module**。
+
+![image.png|400](https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202307272110993.png)
+
+## 2 Vuex 安装与使用
+
+
+
+
+
+
+
+
