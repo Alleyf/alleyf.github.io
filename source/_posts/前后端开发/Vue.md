@@ -1328,12 +1328,256 @@ router. beforeEach ((to, from, next) =>{
 
 ![image.png|400](https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202307272110993.png)
 
+### State
+
+> State 用于维护所有应用层的状态，并确保应用只有唯一的数据源
+
+```js
+import {createStore} from 'vuex'
+//创建一个新的 store 实例
+const store = createstore ({
+  state () {
+   return  {
+    count: 0
+   }
+ },
+  mutations: {
+   increment (state) {
+    state.count++
+   }
+ }
+})
+export default store
+```
+
+> 在组件中，可以直接使用 `this.$store.state.count` 访问数据，也可以先用 **mapState** 辅助函数将其映射下来
+
+```js
+//在单独构建的版本中辅助函数为 Vuex.mapstate
+import { mapState } from 'vuex'
+
+export default {
+ // ...
+ computed: mapState ({
+  //箭头函数可使代码更简练
+   count: state => state.count,
+
+  //传字符串参数‘count'等同于‘state => state. count'
+  countAlias: 'count',
+
+   //为了能够使用‘this＇获取局部状态，必须使用常规函数
+   countplusLocalState (state) {
+    return state.count + this.localcount
+	    }
+	})
+}
+```
+
+
+### Mutation
+
+> Mutation 提供修改 State 状态的方法。
+
+```js
+ //创建一个新的 store 实例
+ const store = createstore ({
+  state return { 
+      count: 0
+    }
+  },
+  mutations: {
+    increment (state) {
+      state.count++
+		}
+	}
+})
+```
+
+> 在组件中，可以直接使用 store.commit 来提交 mutation
+
+```js
+methods: {
+  increment () {
+   this.$store.commit('increment')
+    console.log(this.$store.state.count)
+  }
+}
+```
+
+> 也可以先用 mapMutation 辅助函数将其映射下来
+
+```js
+ methods: {
+   ...mapMutations ([
+    'increment', //将‘this.increment ()'映射为‘this.$store.commit ('increment'）
+
+    //‘mapMutations＇也支持载荷：
+    'incrementBy'//将‘this.incrementBy(amount)’映射为‘this.$store.commit('increment', amount)
+]),
+```
+
+
+### Action
+
+> Action 类似 Mutation，不同在于:
+
+> Action 不能直接修改状态，只能通过提交 mutation 来修改，**Action 可以包含异步操作**
+
+```js
+const store = createstore ({
+ state: {
+  count: 0
+},
+ mutations: {
+  increment (state) {
+    state. count++
+  }
+},
+ actions: {
+  increment (context) 
+    context.commit('increment')
+		}
+	}
+ })
+```
+
+> 在组件中，可以直接使用 `this.$store.dispatch (xxx')` 分发 action，或者使用 `mapActions` 辅助函数先将其映射下来
+
+```js
+// ...
+methods : {
+  ...mapActions([
+   'increment'，//将‘this.increment ()映射为‘this.$store.dispatch ('increment')
+
+   //mapActions＇也支持载荷：
+   'incrementBy'//将‘this.incrementBy (amount)’映射为'this.$store.dispatch ('incrementBy'，amount)'
+ ]),
+
+```
+
+### Getter
+
+> Getter 维护由 State 派生的一些状态，这些状态随着 State 状态的变化而变化
+
+```js
+const store = createstore ({
+  state: {
+    todos:[
+     { id: 1, text: '...', done: true },
+     { id: 2, text: '...', done: false }
+   ]
+  },
+  getters: {
+    doneTodos: (state) => {
+     return state.todos.filter(todo => todo.done)
+     }
+  }
+})
+```
+
+> 在组件中，可以直接使用 `this.$store.getters.doneTodos`，也可以先用 `mapGetters` 辅助函数将其映射下来，代码如下：
+
+```js
+import { mapGetters } from 'vuex'
+
+export default {
+ // ...
+ computed: {
+  //使用对象展开运算符将 getter 混入 computed 对象中
+    ...mapGetters ([
+     'doneTodosCount'
+     "anotherGetter',
+    // ...
+	  ])
+	}
+}
+```
+
+
+
 ## 2 Vuex 安装与使用
 
+> 当一个组件需要获取多个状态的时候，将这些状态都声明为计算属性会有些重复和冗余。为了解决这个问题，我们可以使用 `mapState` 辅助函数帮助我们生成计算属性，让你少按几次键：
+
+```js
+// 在单独构建的版本中辅助函数为 Vuex.mapState
+import { mapState } from 'vuex'
+
+export default {
+  // ...
+  computed: mapState({
+    // 箭头函数可使代码更简练
+    count: state => state.count,
+
+    // 传字符串参数 'count' 等同于 `state => state.count`
+    countAlias: 'count',
+
+    // 为了能够使用 `this` 获取局部状态，必须使用常规函数
+    countPlusLocalState (state) {
+      return state.count + this.localCount
+    }
+  })
+}
+```
+
+> 当映射的计算属性的名称与 state 的子节点名称相同时，我们也可以给 `mapState` 传一个字符串数组。
+
+```js
+computed: mapState([
+  // 映射 this.count 为 store.state.count
+  'count'
+])
+```
 
 
-
-
+**eg：**
+```js
+<template>  
+<div>  
+<h1>我的音乐</h1>  
+<router-link :to="murl">音乐{{ mid }}</router-link>  
+<router-link :to="nmurl">音乐{{ mid + 1 }}</router-link>  
+<div>  
+<router-view></router-view>  
+</div>  
+<button @click="nextMusic">下一首</button>  
+</div>  
+</template>  
+  
+<script>  
+import {mapState} from "vuex";  
+  
+export default {  
+name: "MyMusic",  
+// computed: {  
+// getMid() {  
+// return this.$store.state.mid  
+// }  
+// },  
+computed: mapState([  
+'mid',  
+]),  
+data() {  
+return {  
+murl: "/mymusic/0",  
+nmurl: "/mymusic/1",  
+}  
+},  
+methods: {  
+nextMusic() {  
+this.$store.commit('increment')  
+this.murl = "/mymusic/" + this.mid  
+this.nmurl = "/mymusic/" + (this.mid + 1)  
+console.log(this.$store.state.mid)  
+}  
+}  
+}  
+</script>  
+  
+<style scoped>  
+  
+</style>
+```
 
 
 

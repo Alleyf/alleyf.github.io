@@ -70,7 +70,21 @@
     "type": "split",
     "children": [
       {
-        "id": "21c2ba72deaeafb7",
+        "id": "612f0098096832bc",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "bdaaa10e2f08b79f",
+            "type": "leaf",
+            "state": {
+              "type": "calendar",
+              "state": {}
+            }
+          }
+        ]
+      },
+      {
+        "id": "c22661f0d161383a",
         "type": "tabs",
         "children": [
           {
@@ -101,11 +115,12 @@
       "cmdr:Obsidian Git: Open source control view": false
     }
   },
-  "active": "3a19b50bd310d4a0",
+  "active": "63b461885df0ea6b",
   "lastOpenFiles": [
+    "source/_posts/英语学习/EnglishWords.canvas",
+    "ResNet.pdf",
     "source/_posts/前后端开发/Vue.md",
     "Vue-Continue.md",
-    "ResNet.pdf",
     "source/_posts/前后端开发/uni-app.md",
     "source/categories/index.md",
     "source/galleries/index.md",
@@ -114,7 +129,6 @@
     "Excalidraw/Drawing 2023-07-17 11.09.29.excalidraw.md",
     "canvas/review plans.canvas",
     "canvas/AI学习思路.canvas",
-    "source/_posts/英语学习/EnglishWords.canvas",
     "source/_posts/机器学习/深度学习入门篇.md",
     "source/_posts/机器学习/机器学习深度学习基础.md",
     "public/2023/07/da7a1552e042.html",
