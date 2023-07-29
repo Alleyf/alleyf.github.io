@@ -1696,3 +1696,110 @@ state.mid++
   
 export default store
 ```
+
+
+# 13 MockJS
+
+
+## MockJs 介绍
+
+> Mock.js 是一款前端开发中**拦截 Ajax 请求再生成随机数据响应**的工具，可以用来模拟服务器响应
+> 
+> 优点是非常简单方便，无侵入性，基本覆盖常用的接口数据类型.
+> 
+> 支持生成随机的==文本、数字、布尔值、日期、邮箱、链接、图片、颜色==等。
+> 安装: `npm install mockjs`
+
+
+
+## MockJs 使用
+
+> 在项目中创建 mock 目录，新建 index.js 文件
+
+```js
+//引入 mockjs
+import Mock from 'mockjs'
+//使用 mockjs 模拟数据
+Mock.mock ('/product/search', {
+    "ret": 0,
+    "data":
+	{
+       "mtime": "@datetime",//随机生成日期时间
+       "score|1-800": 800,//随机生成1-800的数字
+       "rank|1-100":  100,//随机生成1-100的数字
+       "stars|1-5": 5,//随机生成1-5的数字
+       "nickname": "@cname",//随机生成中文名字
+       //生成图片
+		"img":"@image('200x100'，'#ffcc33', '#FFF'，'png'，'Fast Mock')"
+    }
+});
+```
+
+> 在 main. js 中导入 mock 下的 index.js
+```js
+import {createApp} from 'vue'  
+import App from './App.vue'  
+import router from './router'  
+import store from './store'  
+import './mock'  
+import './assets/main.css'  
+  
+const app = createApp(App)  
+  
+app.use(router)  
+app.use(store)  
+  
+app.mount('#app')
+```
+
+
+> 组件中调用 **mock. js** 中模拟的数据接口，这时返回的 response 就是 mock.js 中用==Mock.mock ('url', data)中设置的 data==
+
+```js
+import axios from 'axios'
+export default {
+  mounted: function (){
+	axios.get("/prduct/search").then(res => {
+		console.log(res)
+   })
+   }
+}
+```
+
+## 核心方法
+
+`Mock.mock(rurl?, rtype?, template|function ( options ) )`
+
+>  rurl，表示需要拦截的 URL，可以是 **URL 字符串或 URL 正则**
+>  rtype，表示需要拦截的 **Ajax 请求类型**。例如 GET、POST、PUT、DELETE 等。
+>  template，表示数据模板，可以是**对象或字符串**
+>  function，表示用于**生成响应数据的函数**。
+
+> 设置延时请求到数据
+
+```js
+  //延时 400 ms 请求到数据
+  Mock.setup ({
+    timeout: 400
+ })
+  //延时 200-600 毫秒请求到数据
+  Mock.setup ({
+    timeout: '200-600'
+ })
+```
+
+## 数据生成规则
+
+> - mock 的语法规范包含两层规范：数据模板 （DTD）、数据占位符 (DPD)
+> - 数据模板中的每个属性由 3 部分构成：**属性名 name、生成规则 rule、属性值
+	value: 'name|rule': value
+
+> 属性名和生成规则之间用竖线`|`分隔，生成规则是可选的，有 7 种格式：
+
+<font color="#ff0000">'name|min-max': value</font>
+<font color="#ff0000">'namelcount': value</font>
+<font color="#ff0000">'name|min-max.dmin-dmax': value</font>
+<font color="#ff0000">'name|min-max.dcount': value</font>
+<font color="#ff0000">'name|count.dmin-dmax': value</font>
+<font color="#ff0000">'name|count.dcount': value</font>
+<font color="#ff0000">'name|+step': value</font>
