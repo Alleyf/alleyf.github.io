@@ -9,19 +9,19 @@ excerpt: it is some basic usage of vue.
 # 1. 生命周期函数
 | 生命周期钩子函数 | 实例处于阶段 | 描述                                                                                  | 能否获取到 el (this.$el) | 能否获取到 data (this. Xxx) | 能否使用 methods 中的方法 (this. Xxx ()) |
 | ---------------- | ------------ | ------------------------------------------------------------------------------------- | ------------------------ | --------------------------- | ---------------------------------------- |
-| beforeCreate     | 创建前       | 实例已初始化，但数据观测，watch/event 事件回调还未配置                                | 获取不到                 | 不能                        | 不能                                     |
-| created          | 创建后       | 已完成如下配置，数据观测 (data observer)，property 和方法的运算，watch/event 事件回调 | 获取不到                 | 能                          | 能                                       |
-| beforeMount      | 挂载前       | dom 已初始化，但并未挂载和渲染                                                        | 能                       | 能                          | 能                                       |
+| beforeCreate     | 创建前       | 实例已初始化,但数据观测,watch/event 事件回调还未配置                                | 获取不到                 | 不能                        | 不能                                     |
+| created          | 创建后       | 已完成如下配置,数据观测 (data observer),property 和方法的运算,watch/event 事件回调 | 获取不到                 | 能                          | 能                                       |
+| beforeMount      | 挂载前       | dom 已初始化,但并未挂载和渲染                                                        | 能                       | 能                          | 能                                       |
 | mounted          | 挂载后       | dom 已完成挂载和渲染                                                                  | 能                       | 能                          | 能                                       |
-| beforeUpdate     | 更新前       | 数据已改变，但 dom 未更新                                                             | 能                       | 能                          | 能                                       |
+| beforeUpdate     | 更新前       | 数据已改变,但 dom 未更新                                                             | 能                       | 能                          | 能                                       |
 | updated          | 更新后       | dom 已更新                                                                            | 能                       | 能                          | 能                                       |
-| beforeDestroy    | 销毁前       | 实例销毁前，实例仍然可用                                                              | 能                       | 能                          | 能                                       |
-| destroyed        | 销毁后       | 实例已销毁，所有指令被解绑，事件监听器被移除，子实例都被销毁                          | 能                       | 能                          | 能                                        |
+| beforeDestroy    | 销毁前       | 实例销毁前,实例仍然可用                                                              | 能                       | 能                          | 能                                       |
+| destroyed        | 销毁后       | 实例已销毁,所有指令被解绑,事件监听器被移除,子实例都被销毁                          | 能                       | 能                          | 能                                        |
 # 2. API
 ## 声明式 API
-> Vue 的核心功能是***声明式渲染***：通过扩展于标准 HTML 的模板语法，我们可以根据 JavaScript 的状态来描述 HTML 应该是什么样子的。当状态改变时，HTML 会自动更新。
+> Vue 的核心功能是***声明式渲染***:通过扩展于标准 HTML 的模板语法,我们可以根据 JavaScript 的状态来描述 HTML 应该是什么样子的。当状态改变时,HTML 会自动更新。
 
-我们可以使用 `data` 组件选项来声明响应式状态，该选项应该是一个返回对象的函数：
+我们可以使用 `data` 组件选项来声明响应式状态,该选项应该是一个返回对象的函数:
 ```js
 export default {
   data() {
@@ -31,7 +31,7 @@ export default {
   }
 }
 ```
-`message` 属性可以在模板中使用。下面展示了我们如何使用双花括号法，根据 `message` 的值来渲染动态文本：
+`message` 属性可以在模板中使用。下面展示了我们如何使用双花括号法,根据 `message` 的值来渲染动态文本:
 ```html
 <h1>{{ message }}</h1>
 ```
@@ -42,7 +42,7 @@ export default {
 ```
 ---
 ## 组合式 API
-我们可以使用 Vue 的 `reactive()` API 来声明响应式状态。由 `reactive()` 创建的对象都是 JavaScript [Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy)，其行为与普通对象一样：
+我们可以使用 Vue 的 `reactive()` API 来声明响应式状态。由 `reactive()` 创建的对象都是 JavaScript [Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy),其行为与普通对象一样:
 ```js
 import { reactive } from 'vue'
 const counter = reactive({
@@ -52,7 +52,7 @@ console.log(counter.count) // 0
 counter.count++
 ```
 > [!NOTE] Tips
-> `reactive()` 只适用于对象 (包括数组和内置类型，如 `Map` 和 `Set`)。而另一个 API `ref()` 则可以接受任何值类型。`ref` 会返回一个包裹对象，并在 `.value` 属性下暴露内部值。
+> `reactive()` 只适用于对象 (包括数组和内置类型,如 `Map` 和 `Set`)。而另一个 API `ref()` 则可以接受任何值类型。`ref` 会返回一个包裹对象,并在 `.value` 属性下暴露内部值。
 
 ```js
 import { ref } from 'vue'
@@ -60,7 +60,7 @@ const message = ref('Hello World!')
 console.log(message.value) // "Hello World!"
 message.value = 'Changed'
 ```
-> 在组件的 `<script setup>` 块中声明的响应式状态，可以直接在模板中使用
+> 在组件的 `<script setup>` 块中声明的响应式状态,可以直接在模板中使用
 ```html
 <h1>{{ message }}</h1>
 <p>count is: {{ counter.count }}</p>
@@ -73,7 +73,7 @@ message.value = 'Changed'
 ---
 # 3. 基础语法
 ## 1. 属性绑定
-> 双大括号只能进行文本插值，为了给 attribute 绑定一个动态值，需要使用 `v-bind` 指令, 可以缩写只用 `:` 表示属性绑定
+> 双大括号只能进行文本插值,为了给 attribute 绑定一个动态值,需要使用 `v-bind` 指令, 可以缩写只用 `:` 表示属性绑定
 
 ```html
 <div v-bind:id="dynamicId"></div>
@@ -87,7 +87,7 @@ const objectOfAttrs = {
   class: 'wrapper'
 }
 ```
-> 通过不带参数的 `v-bind`，你可以将它们绑定到单个元素上
+> 通过不带参数的 `v-bind`,你可以将它们绑定到单个元素上
 ```html
 <div v-bind="objectOfAttrs"></div>
 ```
@@ -119,7 +119,7 @@ danger: "c2",
 </span>
 ```
 ## 2. 事件监听
-> 使用 `v-on` 指令监听 DOM 事件，可以简写为 `@`，表示事件监听
+> 使用 `v-on` 指令监听 DOM 事件,可以简写为 `@`,表示事件监听
 
 ### 不带参数
 ```html
@@ -160,14 +160,14 @@ function onInput(e) {
   text.value = e.target.value
 }
 ```
-> 简化双向绑定，Vue 提供了一个 `v-model` 指令，它实际上是上述操作的语法糖
+> 简化双向绑定,Vue 提供了一个 `v-model` 指令,它实际上是上述操作的语法糖
 
 ```html
 <input v-model="text">
 ```
 > [!NOTE] Tips
 > 1. `v-model` 会将被绑定的值与 `<input>` 的值自动同步
-> 2. `v-model` 不仅支持文本输入框，也支持诸如多选框、单选框、下拉框之类的输入类型
+> 2. `v-model` 不仅支持文本输入框,也支持诸如多选框、单选框、下拉框之类的输入类型
 
 **完整 demo**
 ```vue
@@ -208,13 +208,13 @@ color: red;
 <input type="password" v-model="info.pwd" placeholder="密码">  
 </div>  
 <div>  
-男：<input type="radio" v-model="info.gender" value="1">  
-女：<input type="radio" v-model="info.gender" value="2">  
+男:<input type="radio" v-model="info.gender" value="1">  
+女:<input type="radio" v-model="info.gender" value="2">  
 </div>  
 <div>  
-篮球：<input type="checkbox" v-model="info.hobby" value="h1">  
-足球：<input type="checkbox" v-model="info.hobby" value="h2">  
-排球：<input type="checkbox" v-model="info.hobby" value="h3">  
+篮球:<input type="checkbox" v-model="info.hobby" value="h1">  
+足球:<input type="checkbox" v-model="info.hobby" value="h2">  
+排球:<input type="checkbox" v-model="info.hobby" value="h3">  
 </div>  
 <div>  
 <select v-model="info.city">  
@@ -327,13 +327,13 @@ methods: {}
   </li>
 </ul>
 ```
-> 1. `todo` 是一个局部变量，表示当前正在迭代的数组元素。它只能在 `v-for` 所绑定的元素上或是其内部访问，就像函数的作用域一样.
+> 1. `todo` 是一个局部变量,表示当前正在迭代的数组元素。它只能在 `v-for` 所绑定的元素上或是其内部访问,就像函数的作用域一样.
 > 2. key 属性将它（唯一标识主键）作为[特殊的 `key` attribute](https://cn.vuejs.org/api/built-in-special-attributes.html#key) 绑定到每个 `<li>`
 
-> 更新列表有两种方式：
-	1. 在源数组上调用变更方法：
+> 更新列表有两种方式:
+	1. 在源数组上调用变更方法:
 		`todos.value.push(newTodo)`
-      2. 使用新的数组替代原数组：
+      2. 使用新的数组替代原数组:
 		`todos.value = todos.value.filter(/* ... */)` 
 
 完整 demo（实现列表动态增删）
@@ -390,8 +390,8 @@ function removeTodo(todo) {
 </ul>
 ```
 ## 6. 计算属性
-> 1. [`computed()`](https://cn.vuejs.org/guide/essentials/computed.html)。它可以让我们创建一个计算属性 ref，这个 ref 会动态地根据其他响应式数据源来计算其 `.value`
-> 2. computed `(计算属性)` 可用于快速计算视图（View）中显示的属性。这些计算将被**缓存**，并且只在需要时更新。computed 设置的初衷是能够**解决复杂的计算**，而不是直接在模板字符串里进行运算。
+> 1. [`computed()`](https://cn.vuejs.org/guide/essentials/computed.html)。它可以让我们创建一个计算属性 ref,这个 ref 会动态地根据其他响应式数据源来计算其 `.value`
+> 2. computed `(计算属性)` 可用于快速计算视图（View）中显示的属性。这些计算将被**缓存**,并且只在需要时更新。computed 设置的初衷是能够**解决复杂的计算**,而不是直接在模板字符串里进行运算。
 
 实现显示（隐藏）已完成的 todos
 ```vue
@@ -441,7 +441,7 @@ function removeTodo(todo) {
 </style>
 ```
 ## 7. 文本插值
-> 最基本的数据绑定形式是文本插值，它使用的是“Mustache”语法 (即双大括号)
+> 最基本的数据绑定形式是文本插值,它使用的是“Mustache”语法 (即双大括号)
 
 ```html
 <span>Message: {{ msg }}</span>
@@ -449,7 +449,7 @@ function removeTodo(todo) {
 > 双大括号标签会被替换为[相应组件实例中](https://cn.vuejs.org/guide/essentials/reactivity-fundamentals.html#declaring-reactive-state) `msg` 属性的值。同时每次 `msg` 属性更改时它也会同步更新。
 
 ## 8. 原始 HTML
-> 双大括号会将数据解释为纯文本，而不是 HTML。若想插入 HTML，需要使用 [`v-html` 指令](https://cn.vuejs.org/api/built-in-directives.html#v-html)
+> 双大括号会将数据解释为纯文本,而不是 HTML。若想插入 HTML,需要使用 [`v-html` 指令](https://cn.vuejs.org/api/built-in-directives.html#v-html)
 
 ```html
 <p>Using text interpolation: {{ rawHtml }}</p>
@@ -601,7 +601,7 @@ alert(error.message)
 # 6. 组件
 > 提高相同代码的复用率。
 ## 局部组件
-> 	局部组件需要挂载到 Vue 根组件上，***components: {  alias: component}  
+> 	局部组件需要挂载到 Vue 根组件上,***components: {  alias: component}  
 
 ```html
 <!DOCTYPE html>  
@@ -648,7 +648,7 @@ login: login,
 </html>
 ```
 ## 全局组件
-> 	全局子组件不用挂载到 Vue 上，直接用***Vue. Component ('component_name',{}）***
+> 	全局子组件不用挂载到 Vue 上,直接用***Vue. Component ('component_name',{}）***
 
 ```html
 <!DOCTYPE html>  
@@ -692,7 +692,7 @@ methods: {},
 </html>
 ```
 # 7. 路由
-> 引入 vue-router：
+> 引入 vue-router:
 > ` <script src="https://cdn.bootcdn.net/ajax/libs/vue-router/4.1.6/vue-router.global.min.js"></script>`
 
 ```html
@@ -840,10 +840,10 @@ router: router,
 </html>
 ```
 # 9. Element-UI 使用
-> Element 是国内饿了么公司提供的一套开源前端框架，简洁优雅，提供了 Vue、React、Angular 等多个版本。
+> Element 是国内饿了么公司提供的一套开源前端框架,简洁优雅,提供了 Vue、React、Angular 等多个版本。
 > 文档地址: [一个 Vue 3 UI 框架 | Element Plus](https://element-plus.org/zh-CN/#/zh-CN)
 > 安装: npm i element-ui
-> 引入 Element：
+> 引入 Element:
 > main. js (vue 2):
 ```js
 import Vue from 'vue';
@@ -868,22 +868,22 @@ app.use(ElementPlus)
 app.mount('#app')
 ```
 ## 第三方图标库
-由于 Element UI 提供的字体图符较少，一般会采用其他图表库，如著名的 Font
+由于 Element UI 提供的字体图符较少,一般会采用其他图表库,如著名的 Font
 Awesome
-Font Awesome 提供了 675 个可缩放的矢量图标，可以使用 cSS 所提供的所有特
-性对它们进行更改，包括大小、颜色、阴影或者其他任何支持的效果。
+Font Awesome 提供了 675 个可缩放的矢量图标,可以使用 cSS 所提供的所有特
+性对它们进行更改,包括大小、颜色、阴影或者其他任何支持的效果。
 文档地址: http://fontawesome.dashgame.com/
 安装: `npm i font-awesome`
 使用: `import 'font-awesome/css/font-awesome.min.css'`
 # 10. Axios 
 ## 1. 使用方法
-> Axios 是一个基于 promise 网络请求库，作用于 node. js 和浏览器中。
-> Axios 在浏览器端使用 XMLHttpRequests 发送网络请求，并能自动完成 JSON
+> Axios 是一个基于 promise 网络请求库,作用于 node. js 和浏览器中。
+> Axios 在浏览器端使用 XMLHttpRequests 发送网络请求,并能自动完成 JSON
 > 数据的转换。
 > 安装: npm install axios
 > 地址: https://www.axios-http.cn/
 
-1. Get 请求：
+1. Get 请求:
 
 ```js
 //向给定ID的用户发起请求
@@ -917,7 +917,7 @@ axios.get("/user',{
   //总是会执行
  });
 ```
-2. POST 请求：
+2. POST 请求:
 
 ```js
 axios.post('/user', {
@@ -931,7 +931,7 @@ axios.post('/user', {
    console.log(error);
  });
 ```
-3. 异步回调问题（async/await）：
+3. 异步回调问题（async/await）:
 
 ```js
 //支持async/await用法
@@ -942,7 +942,7 @@ async function getUser() (
  } catch (error){
    console.error(error);
 ```
-4. 其他请求方式：
+4. 其他请求方式:
 
 ```js
 //发起一个post请求
@@ -964,19 +964,19 @@ axios({
 	axios.patch (url, datal, config]l)
 ## 2. 与 Vue 整合
 ## 3. 跨域
-> 1. 为了保证浏览器的安全，不同源的客户端脚本在没有明确授权的情况下，不能读写对方资源，称为同源策略，同源策略是浏览器安全的基石
-> 2. 同源策略 （Sameoriginpolicy）是一种约定，它是浏览器最核心也最基本的安全功能
-> 3. 所谓同源 (即指在同一个域) 就是两个页面具有相同的协议（protocol），主机 (host) 和端口号  (port)
-> 4. 当一个请求 url 的协议、域名、端口三者之间任意一个与当前页面 url 不同即为跨域，此时无法读取非同源网页的 Cookie，无法向非同源地址发送 AJAX 请求
+> 1. 为了保证浏览器的安全,不同源的客户端脚本在没有明确授权的情况下,不能读写对方资源,称为同源策略,同源策略是浏览器安全的基石
+> 2. 同源策略 （Sameoriginpolicy）是一种约定,它是浏览器最核心也最基本的安全功能
+> 3. 所谓同源 (即指在同一个域) 就是两个页面具有相同的协议（protocol）,主机 (host) 和端口号  (port)
+> 4. 当一个请求 url 的协议、域名、端口三者之间任意一个与当前页面 url 不同即为跨域,此时无法读取非同源网页的 Cookie,无法向非同源地址发送 AJAX 请求
 
-解决方案：
-- CORS（Cross-Origin Resource Sharing）是由 W 3 C 制定的一种跨域资源共享技术标准，其目的就是为了解决前端的跨域请求。
-- CORS 可以在不破坏即有规则的情况下，通过后端服务器实现 CORS 接口，从而实现跨域通信。
-- CORS 将请求分为两类：简单请求和非简单请求，分别对跨域通信提供了支持。
+解决方案:
+- CORS（Cross-Origin Resource Sharing）是由 W 3 C 制定的一种跨域资源共享技术标准,其目的就是为了解决前端的跨域请求。
+- CORS 可以在不破坏即有规则的情况下,通过后端服务器实现 CORS 接口,从而实现跨域通信。
+- CORS 将请求分为两类:简单请求和非简单请求,分别对跨域通信提供了支持。
 
 ### 1. Spring Boot 中配置 CORS
-在传统的 Java EE 开发中，可以通过过滤器统一配置，而 Spring Boot 中对此则提供了更加简洁的解决方案
-**方法 1：**
+在传统的 Java EE 开发中,可以通过过滤器统一配置,而 Spring Boot 中对此则提供了更加简洁的解决方案
+**方法 1:**
 ```java
 @Configuration
 public class CorsConfig implements WebMvcConfigurer (
@@ -984,38 +984,38 @@ public class CorsConfig implements WebMvcConfigurer (
   public void addCorsMappings(CorsRegistry registry) (
      registry.addMapping（"/**"）//允许跨域访问的路径
       .allowedorigins（"*"）//允许跨域访问的源
-.allowedMethods("POST"，"GET"，"PUT"，"OPTIONS"，"DELETE"）//允许请求方法
+.allowedMethods("POST","GET","PUT","OPTIONS","DELETE"）//允许请求方法
       .maxAge（168000）/／预检间隔时间
       .allowedHeaders（"*"）//允许头部设置
       .allowCredentials（true）；//是否发送cookie
 ```
-**方法 2：**
+**方法 2:**
 给控制器类前加 CrossOrigin 注解使用默认跨域配置
 <font color="#ff0000">@CrossOrigin</font>
 ## 4. 全局配置 Axios
-> 在实际项目开发中，几乎每个组件中都会用到 axios 发起数据请求。此时会遇到如下两个问题:
+> 在实际项目开发中,几乎每个组件中都会用到 axios 发起数据请求。此时会遇到如下两个问题:
 > 每个组件中都需要导入 axios
 > 每次发请求都需要填写完整的请求路径
-> 可以通过全局配置的方式解决上述问题：
+> 可以通过全局配置的方式解决上述问题:
 
 ```js
 //配置请求根路径
 axios.defaults.baseURL = 'http://api.com'
-//将 axios 作为全局的自定义属性，每个组件可以在内部直接访问 (Vue3)
+//将 axios 作为全局的自定义属性,每个组件可以在内部直接访问 (Vue3)
 app.config.globalProperties.$http = axios
-//将 axios 作为全局的自定义属性，每个组件可以在内部直接访问 (Vue2)
+//将 axios 作为全局的自定义属性,每个组件可以在内部直接访问 (Vue2)
 Vue.prototype.$http = axios
 ```
 ---
 # 11. VueRouter
 ## 1. 安装与使用
-> - Vue 路由 vue-router 是官方的路由插件，能够轻松的管理 SPA 项目中组件的切换。
-> - Vue 的单页面应用是基于路由和组件的，路由用于设定访问路径，并将路径和组件映射起来
-> - vue-router 目前有 3. x 的版本和 4. x 的版本，vue-router 3. x 只能结合 vue 2 进行使用，vue-router 4. x 只能结合 vue 3 进行使用
+> - Vue 路由 vue-router 是官方的路由插件,能够轻松的管理 SPA 项目中组件的切换。
+> - Vue 的单页面应用是基于路由和组件的,路由用于设定访问路径,并将路径和组件映射起来
+> - vue-router 目前有 3. x 的版本和 4. x 的版本,vue-router 3. x 只能结合 vue 2 进行使用,vue-router 4. x 只能结合 vue 3 进行使用
 > - 安装: **npm install vue-router@4 **
 
 ### 创建路由组件
-在项目中定义 Discover. vue、Friends. vue、MyMusic. vue 三个组件，将来要使用 vue-router 来控制它们的展示与切换：
+在项目中定义 Discover. vue、Friends. vue、MyMusic. vue 三个组件,将来要使用 vue-router 来控制它们的展示与切换:
 Discover. vue:
 ```js
 <template>  
@@ -1074,7 +1074,7 @@ name: "MyMusic"
 ---
 ### 声明路由链接和占位标签
 
-> 可以使用 `<router-link>` 标签来声明路由链接，并使用 `<router-view>` 标签来声明路由占位符。示例代码如下：
+> 可以使用 `<router-link>` 标签来声明路由链接,并使用 `<router-view>` 标签来声明路由占位符。示例代码如下:
 
 App. vue:
 
@@ -1093,7 +1093,7 @@ App. vue:
 ```
 
 ### 创建路由模块
-在项目中创建 index. js 路由模块，加入以下代码：
+在项目中创建 index. js 路由模块,加入以下代码:
 vue 2 路由的使用
 ```js
 import VueRouter from 'vue-router'
@@ -1151,14 +1151,14 @@ router
 }).$mount (' #app ')
 ```
 ### 路由重定向
-> 路由重定向指的是：用户在访问地址 A 的时候，强制用户跳转到地址 C，从而展示特定的组件页面。
+> 路由重定向指的是:用户在访问地址 A 的时候,强制用户跳转到地址 C,从而展示特定的组件页面。
 > 
-> 通过路由规则的 redirect 属性，指定一个新的路由地址，可以很方便地设置路由的重定向：
+> 通过路由规则的 redirect 属性,指定一个新的路由地址,可以很方便地设置路由的重定向:
 ```js
  const router = new VueRouter (t
     / /指定 hash 属性与组件的对应关系
     routes: [
-       //当用户访问／时，跳转到/discover
+       //当用户访问／时,跳转到/discover
       {path: '/, redirect: '/discover',
       {path: '/discover', component: Discover},
       {path: '/friends', component: Friends},
@@ -1169,7 +1169,7 @@ router
 ---
 ## 2. 子路由
 ### 嵌套路由
-> 在 Discover. vue 组件中，声明 toplist 和 playlist 的子路由链接以及子路由占位符。示例代码如下：
+> 在 Discover. vue 组件中,声明 toplist 和 playlist 的子路由链接以及子路由占位符。示例代码如下:
 ```js
  <template>
     <div>
@@ -1183,7 +1183,7 @@ router
  </template>
 ```
 > [!NOTE] Tips
-> 在 `src/router/index. js` 路由模块中，导入需要的组件，并使用 children 属性声明子路由规则：
+> 在 `src/router/index. js` 路由模块中,导入需要的组件,并使用 children 属性声明子路由规则:
 > 
 ```js
 const router = new VueRouter (t
@@ -1193,7 +1193,7 @@ const router = new VueRouter (t
        {
            path: '/discover',
            component: Discover,
-           //通过 chi 1 dren 属性，嵌套声明子路由
+           //通过 chi 1 dren 属性,嵌套声明子路由
            chiidren: [
                { path: "toplist", component: TopList },
                { path: "playlist", component: PlayList },
@@ -1205,7 +1205,7 @@ const router = new VueRouter (t
 3)
 ```
 ### 动态路由
-思考：有如下 3 个路由链接：
+思考:有如下 3 个路由链接:
 ```js
  <router-link to="/product/1">商品 1</router-link>
  <router-link to="/product/2">商品 2</router-link>
@@ -1220,9 +1220,9 @@ const router = new VueRouter (t
 })
 ```
 > 上述方式复用性非常差。
-> 动态路由指的是：把 Hash 地址中可变的部分定义为参数项，从而提高路由规则的复用性。在 vue-router 中使用英文的冒号（:）来定义路由的参数项。示例代码如下：
+> 动态路由指的是:把 Hash 地址中可变的部分定义为参数项,从而提高路由规则的复用性。在 vue-router 中使用英文的冒号（:）来定义路由的参数项。示例代码如下:
 > `{path: "/product/: id', component: Product}`
-> 通过动态路由匹配的方式染出来的组件中，可以使用 `$route. params` 对象访问到动态匹配的参数值，比如在商品详情组件的内部，**根据 id 值，请求不同的商品数据**。
+> 通过动态路由匹配的方式染出来的组件中,可以使用 `$route. params` 对象访问到动态匹配的参数值,比如在商品详情组件的内部,**根据 id 值,请求不同的商品数据**。
 ```js
  <template>
     <h1>Product 组件</h1>
@@ -1235,7 +1235,7 @@ const router = new VueRouter (t
   name: 'Product'
 </script>
 ```
-> 为了简化路由参数的获取形式，vue-router 允许在路由规则中开启 **props** 传参。示例代码如下： `{ path:/: id', component: Product, props: true}`
+> 为了简化路由参数的获取形式,vue-router 允许在路由规则中开启 **props** 传参。示例代码如下: `{ path:/: id', component: Product, props: true}`
 ```js
 <template>
    <h1>Product 组件</h1>
@@ -1257,11 +1257,11 @@ export default {
 |           声明式           |        编程式        |
 |:--------------------------:|:--------------------:|
 | `<router-link :to="..." >` | `router. push (...)` |
-> - 除了使用 `<router-link>` 创建 a 标签来定义导航链接，我们还可以借助 router 的实例方法，通过编写代码来实现。
+> - 除了使用 `<router-link>` 创建 a 标签来定义导航链接,我们还可以借助 router 的实例方法,通过编写代码来实现。
 > 
-> - 想要导航到不同的 URL，则使用 `router. push` 方法。这个方法会向 history 栈添加一个新的记录，所以，当用户点击浏览器后退按钮时，则回到之前的 URL。
+> - 想要导航到不同的 URL,则使用 `router. push` 方法。这个方法会向 history 栈添加一个新的记录,所以,当用户点击浏览器后退按钮时,则回到之前的 URL。
 > 
-> - 当你点击 `<router-link>` 时，这个方法会在内部调用，所以说，点击<router-link：to="...">等同于调用 router. push（...）。
+> - 当你点击 `<router-link>` 时,这个方法会在内部调用,所以说,点击<router-link:to="...">等同于调用 router. push（...）。
 ```js
  <template>
     <button@click="gotoProduct(2)">跳转到商品 2</button>
@@ -1278,9 +1278,9 @@ export default {
 ```
 ---
 ## 3. 导航守卫
-> 导航守卫可以控制路由的访问权限。示意图如下：
-> 全局导航守卫会拦截每个路由规则，从而对每个路由进行访问权限的控制。
-> 你可以使用 `router. beforeEach` 注册一个全局前置守卫：
+> 导航守卫可以控制路由的访问权限。示意图如下:
+> 全局导航守卫会拦截每个路由规则,从而对每个路由进行访问权限的控制。
+> 你可以使用 `router. beforeEach` 注册一个全局前置守卫:
 ```js
 router. beforeEach ((to, from, next) =>{
    if (to. path ==='/main' && ! isAuthenticated) {
@@ -1291,46 +1291,46 @@ router. beforeEach ((to, from, next) =>{
    }
 })
 ```
- - to：即将要进入的目标
- - from：当前导航正要离开的路由
- - 在守卫方法中如果声明了 next 形参，则必须调用 next () 函数，否则不允许用户访问任何一个路由！
-   1. 直接放行：`next ()`
-   2. 强制其停留在当前页面：`next (false)`
-   3. 强制其跳转到登录页面：`next ('/login')`
+ - to:即将要进入的目标
+ - from:当前导航正要离开的路由
+ - 在守卫方法中如果声明了 next 形参,则必须调用 next () 函数,否则不允许用户访问任何一个路由！
+   1. 直接放行:`next ()`
+   2. 强制其停留在当前页面:`next (false)`
+   3. 强制其跳转到登录页面:`next ('/login')`
 
 # 12 VueX
 
 ## 1 VueX 介绍
 
-> 对于组件化开发来说，大型应用的状态往往跨越多个组件。在多层嵌套的父子
-> 组件之间传递状态已经十分麻烦，而 Vue 更是没有为兄弟组件提供直接共享数
+> 对于组件化开发来说,大型应用的状态往往跨越多个组件。在多层嵌套的父子
+> 组件之间传递状态已经十分麻烦,而 Vue 更是没有为兄弟组件提供直接共享数
 > 据的办法。
 > 
-> 基于这个问题，许多框架提供了解决方案使用全局的状态管理器，将所有
-> 分散的共享数据交由状态管理器保管，Vue 也不例外。
+> 基于这个问题,许多框架提供了解决方案使用全局的状态管理器,将所有
+> 分散的共享数据交由状态管理器保管,Vue 也不例外。
 > 
-> Vuex 是一个专为 Vuejs 应用程序开发的状态管理库，采用集中式存储管理应
+> Vuex 是一个专为 Vuejs 应用程序开发的状态管理库,采用集中式存储管理应
 > 用的所有组件的状态。
 > 
-> 简单的说，Vuex 用于管理分散在 Vue 各个组件中的数据。
+> 简单的说,Vuex 用于管理分散在 Vue 各个组件中的数据。
 > 
 > 安装: `npm install vuex@next`
 
 ### 状态管理
 
-> 每一个 Vuex 应用的核心都是一个 store，与普通的全局对象不同的是，基于 Vue 数据与视图绑定的特点，当 store 中的状态发生变化时，与之绑定的视图也会被重新渲染。
+> 每一个 Vuex 应用的核心都是一个 store,与普通的全局对象不同的是,基于 Vue 数据与视图绑定的特点,当 store 中的状态发生变化时,与之绑定的视图也会被重新渲染。
 
-> store 中的状态不允许被直接修改，改变 store 中的状态的唯一途径就是显式地提交 (commit）mutation，这可以让我们方便地跟踪每一个状态的变化。
+> store 中的状态不允许被直接修改,改变 store 中的状态的唯一途径就是显式地提交 (commit）mutation,这可以让我们方便地跟踪每一个状态的变化。
 > 
-> 在大型复杂应用中，如果无法有效地跟踪到状态的变化，将会对理解和维护代> 码带来极大的困扰。
+> 在大型复杂应用中,如果无法有效地跟踪到状态的变化,将会对理解和维护代> 码带来极大的困扰。
 > 
-> Vuex 中有 5 个重要的概念：**State、Getter、Mutation、Action、Module**。
+> Vuex 中有 5 个重要的概念:**State、Getter、Mutation、Action、Module**。
 
 ![image.png|400](https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202307272110993.png)
 
 ### State
 
-> State 用于维护所有应用层的状态，并确保应用只有唯一的数据源
+> State 用于维护所有应用层的状态,并确保应用只有唯一的数据源
 
 ```js
 import {createStore} from 'vuex'
@@ -1350,7 +1350,7 @@ const store = createstore ({
 export default store
 ```
 
-> 在组件中，可以直接使用 `this.$store.state.count` 访问数据，也可以先用 **mapState** 辅助函数将其映射下来
+> 在组件中,可以直接使用 `this.$store.state.count` 访问数据,也可以先用 **mapState** 辅助函数将其映射下来
 
 ```js
 //在单独构建的版本中辅助函数为 Vuex.mapstate
@@ -1365,7 +1365,7 @@ export default {
   //传字符串参数‘count'等同于‘state => state. count'
   countAlias: 'count',
 
-   //为了能够使用‘this＇获取局部状态，必须使用常规函数
+   //为了能够使用‘this＇获取局部状态,必须使用常规函数
    countplusLocalState (state) {
     return state.count + this.localcount
 	    }
@@ -1393,7 +1393,7 @@ export default {
 })
 ```
 
-> 在组件中，可以直接使用 store.commit 来提交 mutation
+> 在组件中,可以直接使用 store.commit 来提交 mutation
 
 ```js
 methods: {
@@ -1411,7 +1411,7 @@ methods: {
    ...mapMutations ([
     'increment', //将‘this.increment ()'映射为‘this.$store.commit ('increment'）
 
-    //‘mapMutations＇也支持载荷：
+    //‘mapMutations＇也支持载荷:
     'incrementBy'//将‘this.incrementBy(amount)’映射为‘this.$store.commit('increment', amount)
 ]),
 ```
@@ -1419,9 +1419,9 @@ methods: {
 
 ### Action
 
-> Action 类似 Mutation，不同在于:
+> Action 类似 Mutation,不同在于:
 
-> Action 不能直接修改状态，只能通过提交 mutation 来修改，**Action 可以包含异步操作**
+> Action 不能直接修改状态,只能通过提交 mutation 来修改,**Action 可以包含异步操作**
 
 ```js
 const store = createstore ({
@@ -1441,23 +1441,23 @@ const store = createstore ({
  })
 ```
 
-> 在组件中，可以直接使用 `this.$store.dispatch (xxx')` 分发 action，或者使用 `mapActions` 辅助函数先将其映射下来
+> 在组件中,可以直接使用 `this.$store.dispatch (xxx')` 分发 action,或者使用 `mapActions` 辅助函数先将其映射下来
 
 ```js
 // ...
 methods : {
   ...mapActions([
-   'increment'，//将‘this.increment ()映射为‘this.$store.dispatch ('increment')
+   'increment',//将‘this.increment ()映射为‘this.$store.dispatch ('increment')
 
-   //mapActions＇也支持载荷：
-   'incrementBy'//将‘this.incrementBy (amount)’映射为'this.$store.dispatch ('incrementBy'，amount)'
+   //mapActions＇也支持载荷:
+   'incrementBy'//将‘this.incrementBy (amount)’映射为'this.$store.dispatch ('incrementBy',amount)'
  ]),
 
 ```
 
 ### Getter
 
-> Getter 维护由 State 派生的一些状态，这些状态随着 State 状态的变化而变化
+> Getter 维护由 State 派生的一些状态,这些状态随着 State 状态的变化而变化
 
 ```js
 const store = createstore ({
@@ -1475,7 +1475,7 @@ const store = createstore ({
 })
 ```
 
-> 在组件中，可以直接使用 `this.$store.getters.doneTodos`，也可以先用 `mapGetters` 辅助函数将其映射下来，代码如下：
+> 在组件中,可以直接使用 `this.$store.getters.doneTodos`,也可以先用 `mapGetters` 辅助函数将其映射下来,代码如下:
 
 ```js
 import { mapGetters } from 'vuex'
@@ -1495,13 +1495,13 @@ export default {
 
 #### 通过属性访问
 
-> Getter 会暴露为 `store.getters` 对象，你可以以属性的形式访问这些值：
+> Getter 会暴露为 `store.getters` 对象,你可以以属性的形式访问这些值:
 
 ```js
 store.getters.doneTodos // -> [{ id: 1, text: '...', done: true }]
 ```
 
-> Getter 也可以接受其他 getter 作为第二个参数：
+> Getter 也可以接受其他 getter 作为第二个参数:
 
 ```js
 getters: {
@@ -1516,7 +1516,7 @@ getters: {
 store.getters.doneTodosCount // -> 1
 ```
 
-> 我们可以很容易地在任何组件中使用它：
+> 我们可以很容易地在任何组件中使用它:
 
 ```js
 computed: {
@@ -1526,11 +1526,11 @@ computed: {
 }
 ```
 
-> 注意，getter 在通过属性访问时是作为 Vue 的响应式系统的一部分缓存其中的。
+> 注意,getter 在通过属性访问时是作为 Vue 的响应式系统的一部分缓存其中的。
 
 #### 通过方法访问
 
-> 你也可以通过让 getter 返回一个函数，来实现给 getter 传参。在你对 store 里的数组进行查询时非常有用。
+> 你也可以通过让 getter 返回一个函数,来实现给 getter 传参。在你对 store 里的数组进行查询时非常有用。
 
  ```js
 getters: {
@@ -1545,11 +1545,11 @@ getters: {
 store.getters.getTodoById(2) // -> { id: 2, text: '...', done: false }
 ```
 
-> 注意，getter 在通过方法访问时，每次都会去进行调用，而不会缓存结果。
+> 注意,getter 在通过方法访问时,每次都会去进行调用,而不会缓存结果。
 
 #### `mapGetters` 辅助函数
 
-`mapGetters` 辅助函数仅仅是将 store 中的 getter 映射到局部计算属性：
+`mapGetters` 辅助函数仅仅是将 store 中的 getter 映射到局部计算属性:
 
 ```js
 import { mapGetters } from 'vuex'
@@ -1567,7 +1567,7 @@ export default {
 }
 ```
 
-> 如果你想将一个 getter 属性另取一个名字，使用对象形式：
+> 如果你想将一个 getter 属性另取一个名字,使用对象形式:
 
 ```js
 ...mapGetters({
@@ -1579,7 +1579,7 @@ export default {
 
 ## 2 Vuex 安装与使用
 
-> 当一个组件需要获取多个状态的时候，将这些状态都声明为计算属性会有些重复和冗余。为了解决这个问题，我们可以使用 `mapState` 辅助函数帮助我们生成计算属性，让你少按几次键：
+> 当一个组件需要获取多个状态的时候,将这些状态都声明为计算属性会有些重复和冗余。为了解决这个问题,我们可以使用 `mapState` 辅助函数帮助我们生成计算属性,让你少按几次键:
 
 ```js
 // 在单独构建的版本中辅助函数为 Vuex.mapState
@@ -1594,7 +1594,7 @@ export default {
     // 传字符串参数 'count' 等同于 `state => state.count`
     countAlias: 'count',
 
-    // 为了能够使用 `this` 获取局部状态，必须使用常规函数
+    // 为了能够使用 `this` 获取局部状态,必须使用常规函数
     countPlusLocalState (state) {
       return state.count + this.localCount
     }
@@ -1602,7 +1602,7 @@ export default {
 }
 ```
 
-> 当映射的计算属性的名称与 state 的子节点名称相同时，我们也可以给 `mapState` 传一个字符串数组。
+> 当映射的计算属性的名称与 state 的子节点名称相同时,我们也可以给 `mapState` 传一个字符串数组。
 
 ```js
 computed: mapState([
@@ -1612,7 +1612,7 @@ computed: mapState([
 ```
 ---
 
-**eg：**
+**eg:**
 ```js
 <template>  
 <div>  
@@ -1703,9 +1703,9 @@ export default store
 
 ## MockJs 介绍
 
-> Mock.js 是一款前端开发中**拦截 Ajax 请求再生成随机数据响应**的工具，可以用来模拟服务器响应
+> Mock.js 是一款前端开发中**拦截 Ajax 请求再生成随机数据响应**的工具,可以用来模拟服务器响应
 > 
-> 优点是非常简单方便，无侵入性，基本覆盖常用的接口数据类型.
+> 优点是非常简单方便,无侵入性,基本覆盖常用的接口数据类型.
 > 
 > 支持生成随机的==文本、数字、布尔值、日期、邮箱、链接、图片、颜色==等。
 > 安装: `npm install mockjs`
@@ -1714,7 +1714,7 @@ export default store
 
 ## MockJs 使用
 
-> 在项目中创建 mock 目录，新建 index.js 文件
+> 在项目中创建 mock 目录,新建 index.js 文件
 
 ```js
 //引入 mockjs
@@ -1730,7 +1730,7 @@ Mock.mock ('/product/search', {
        "stars|1-5": 5,//随机生成1-5的数字
        "nickname": "@cname",//随机生成中文名字
        //生成图片
-		"img":"@image('200x100'，'#ffcc33', '#FFF'，'png'，'Fast Mock')"
+		"img":"@image('200x100','#ffcc33', '#FFF','png','Fast Mock')"
     }
 });
 ```
@@ -1753,7 +1753,7 @@ app.mount('#app')
 ```
 
 
-> 组件中调用 **mock. js** 中模拟的数据接口，这时返回的 response 就是 mock.js 中用==Mock.mock ('url', data)中设置的 data==
+> 组件中调用 **mock. js** 中模拟的数据接口,这时返回的 response 就是 mock.js 中用==Mock.mock ('url', data)中设置的 data==
 
 ```js
 import axios from 'axios'
@@ -1770,10 +1770,10 @@ export default {
 
 `Mock.mock(rurl?, rtype?, template|function ( options ) )`
 
->  rurl，表示需要拦截的 URL，可以是 **URL 字符串或 URL 正则**
->  rtype，表示需要拦截的 **Ajax 请求类型**。例如 GET、POST、PUT、DELETE 等。
->  template，表示数据模板，可以是**对象或字符串**
->  function，表示用于**生成响应数据的函数**。
+>  rurl,表示需要拦截的 URL,可以是 **URL 字符串或 URL 正则**
+>  rtype,表示需要拦截的 **Ajax 请求类型**。例如 GET、POST、PUT、DELETE 等。
+>  template,表示数据模板,可以是**对象或字符串**
+>  function,表示用于**生成响应数据的函数**。
 
 > 设置延时请求到数据
 
@@ -1790,11 +1790,11 @@ export default {
 
 ## 数据生成规则
 
-> - mock 的语法规范包含两层规范：数据模板 （DTD）、数据占位符 (DPD)
-> - 数据模板中的每个属性由 3 部分构成：**属性名 name、生成规则 rule、属性值
+> - mock 的语法规范包含两层规范:数据模板 （DTD）、数据占位符 (DPD)
+> - 数据模板中的每个属性由 3 部分构成:**属性名 name、生成规则 rule、属性值
 	value: 'name|rule': value
 
-> 属性名和生成规则之间用竖线`|`分隔，生成规则是可选的，有 7 种格式：
+> 属性名和生成规则之间用竖线`|`分隔,生成规则是可选的,有 7 种格式:
 
 <font color="#ff0000">'name|min-max': value</font>
 <font color="#ff0000">'namelcount': value</font>
@@ -1803,3 +1803,306 @@ export default {
 <font color="#ff0000">'name|count.dmin-dmax': value</font>
 <font color="#ff0000">'name|count.dcount': value</font>
 <font color="#ff0000">'name|+step': value</font>
+
+## 生成规则与示例
+
+1. 属性值是字符串 String
+
+```js
+//通过重复 string 生成一个字符串,重复次数大于等于 min,小于等于 max。
+'name|min-max': string
+
+//通过重复 string 生成一个字符串,重复次数等于 count。
+'name|count': string
+
+var data = Mock.mock ({
+   'name 1|1-3': 'a',  //重复生成 1 到 3 个 a（随机）
+   'name 2|2': 'b'   / /生成 bb
+})
+```
+
+2. 属性值是数字 Number
+
+```js
+/ /属性值自动加 1,初始值为 number。
+'name|+1': number
+
+//生成一个大于等于 min、小于等于 max 的整数,属性值 number 只是用来确定类型。
+'name|min-max': number
+
+//生成一个浮点数,整数部分大于等于 min、小于等于 max,小数部分保留 dmin 到 dmax 位。
+'name|min-max.dmin-dmax': number
+
+Mock.mock({
+     'number1|1-100.1-10': 1,
+     'number2|123.1-10': 1,
+     'number3|123.3': 1,
+     'number4|123.10': 1 123
+})
+
+//结果:
+{
+    "number1": 12.92,
+    "number2": 123.51,
+    "number3": 123.777,
+    "number4":123.1231091814
+}
+
+var data = Mock.mock({
+    'name1|+1':4,   //生成4,如果循环每次加1
+    'name2|1-7':2,   //生成一个数字,1到7之间
+    'name3|1-4.5-8':1 ////生成一个小数,整数部分1到4,小数部分5到8位,数字1只是为了确定类型
+})
+```
+
+3. 属性值是布尔型 Boolean
+
+```js
+//随机生成一个布尔值,值为 true 的概率是 1/2,值为 false 的概率同样是1/2。
+'namel1': bolean
+//随机生成一个布尔值,值为 value 的概率是 min/（min+max),值为!value 的概率是 max／（min+max）。
+'name|min-max': value
+
+var data = Mock.mock({
+    'name|1': true,   //生成一个布尔值,各一半
+    'name1|1-3': true  //1/4 是 true,3/4 是 false
+})
+```
+
+4. 属性值是对象 Object
+
+```js
+//从属性值 object 中随机选取 count 个属性。
+'name|count': object
+//从属性值 object 中随机选取 min 到 max 个属性。
+'name|min-max': object
+
+var obj = {
+   a: 1,
+   b: 2,
+   c: 3,
+   d: 4
+}
+var data = Mock.mock ({
+    'name|1-3': obj,  //随机从 obj 中寻找 1 到 3 个属性,新对象
+    'name|2': obj   //随机从 onj 中找到两个属性,新对象
+})
+```
+
+5. 属性值是数组 Array
+
+```js
+//从属性值 array 中随机选取 1 个元素,作为最终值。
+'name|1': array
+//从属性值 array 中顺序选取 1 个元素,作为最终值。
+'name|+1': array
+//通过重复属性值 array 生成一个新数组,重复次数大于等于 min,小于等于 max。
+'name|min-max': array
+//通过重复属性值 array 生成一个新数组,重复次数为 count。
+'name|count': array
+
+Mock.mock({
+   //通过重复属性值 array 生成一个新数组,重复次数为 1-3次。
+   "favorite_games|1-3": [3,5,4,6,23,28,42,45],
+}); 
+
+var arr = [1,2,3];
+var data = Mock.mock ({
+   'namel|1': arr,   //从数组里随机取出 1 个值
+   'name2|2': arr,   //数组重复 count 次,这里 count 为2
+   'name3|1-3': arr,  //数组重复 1 到 3 次
+})
+```
+
+6. 属性值是函数 Function
+
+执行函数 function,取其返回值作为最终的属性值,函数的上下文为属性'name’所在的对象。
+'name': function
+
+```js
+var fun = function (x)
+   return x+10;
+1
+var data = Mock.mock ({
+   'name': fun (10)   //返回函数的返回值 20
+})
+```
+
+7. 属性值是正则表达式 RegExp
+
+根据正则表达式 regexp 反向生成可以匹配它的字符串。用于生成自定义格式的字符串。
+'name': regexp
+
+```js
+Mock.mock ({
+    'regexp 1': /[a-z][A-z][0-9]/,
+    'regexp 2': /\w\w\s|s\d\D/,
+    'regexp 3': /d[5,103/
+})
+// =>
+{
+    "regexp1": "pJ7",
+    "regexp2": "F)\fp1G",
+    "regexp3": "561659409"
+}
+```
+
+##  数据占位符 DPD
+
+占位符只是在属性值字符串中占个位置,并不出现在最终的属性值中。
+占位符的格式为:
+
+> **@占位符
+> @占位符 (参数［,参数])**
+
+关于占位符需要知道以下几点
+ - 用`@`标识符标识后面的字符串是占位符
+ - 占位符引用的是 `Mock.Random` 中的方法。
+ - 可以通过 `Mock.Random.extend (）`来扩展自定义占位符。
+ - 占位符也**可以引用数据模板中的属性**。
+ - 占位符会**优先引用数据模板中的属性**。
+ - 占位符支持**相对路径和绝对路径**。
+
+```js
+//引入mockjs
+import Mock from 'mockjs'
+//使用mockjs模拟数据
+Mock.mock('/api/msdk/proxy/query_common_credit', {
+   "ret":0,
+   "data":
+   {
+       "mtime":"@datetime",//随机生成日期时间
+       "score": "@natural(1,800)",//随机生成1-800的数字
+       "rank":"@natural(1,100)",//随机生成1-100的数字
+       "stars":"@natural(0,5)",//随机生成1-5的数字
+       "nickname":"@cname",//随机生成中文名字
+
+}) ;
+```
+
+
+### 基础随机内容的生成
+
+```js
+{
+  "string|1-10":"=",//随机生成 1 到 10 个等号
+  "string2|3":"=",//随机生成 2 个或者三个等号
+  "number|+1":0,//从 o 开始自增
+  "number 2|1-10.1-3":1,//生成一个小数,小数点前面 1 到 10,小数点后 1 到 3 位
+  "boolean":"@boolean（1,2,true）",//生成 boolean 值三个参数,1 表示第三个参数 true 出现的概率,2 表示 false 出现的概率
+  "name":"@cname",//随机生成中文姓名
+  "firstname":"@cfirst",//随机生成中文姓
+  "int":"@integer(1,10)",//随机生成 1-10 的整数
+  "float":"@float (1,2,3,4)",//随机生成浮点数,四个参数分别为,整数部分的最大最小值和小数部分的最大最小值
+  "range":"@range(1,100,10)",//随机生成整数数组,三个参数为,最大最小值和加的步长
+  "natural":"@natural(60,100)",//随机生成自然数（大于零的数）
+  "email":"@email",//邮箱
+  "ip": "@ip",// ip
+  "datatime":"@date（'yy-MM-ddhh:mm: ss')"//随机生成指定格式的时间
+  //
+}
+```
+
+### 列表数据
+
+```js
+ {
+   "code";"0000",
+   "data": {
+     "pageNo": "@integer (1, 100)",
+     "totalRecord": "@integer (100, 1000)",
+     "pagesize": 10,
+     "list|10": [{
+       "id|+1": 1,
+       "name": "@cword(10)",
+       "title": "@cword(20)",
+       "descript": "@csentence(20,50)",
+       "price": "@float(10,100,10,100)",
+    }]
+  },
+   "desc": "成功"
+ }
+```
+
+### 图片
+
+mockjs 可以生成任意大小，任意颜色块，且用文字填充内容的图片，使我们不用到处找图片资源就能轻松实现图片的模拟展示
+
+ 
+```js
+{
+  "code": "0000",
+  "data": {
+    "pageNo": "@integer(1, 100)",
+    "totalRecord": "@integer(100, 1000)",
+    "pagesize": 10,
+    "list|10": [{
+     //参数从左到右依次为，图片尺寸，背景色，前景色（及文字颜色），图片格式，图片中间的填充文字内容
+     "image": "@image ('200 x 100'，'#ffcc33 '，'#FFF'，'png'，'Fast Mock')"
+   }]
+  },
+  "desc":"成功"
+}
+```
+
+### Mock. Random
+
+> Mock. Random 是一个工具类，用于生成各种随机数据。
+> 
+> Mock. Random 的方法在数据模板中称为『占位符』，书写格式为@占位符 (参数[, 参数)。
+> 用法示例:
+
+```js
+ var Random = Mock.Random
+ Random.email()
+ // => " n.clark@mi1ler.io "
+ Mock.mock('@email')
+ // => " y.lee@lewis.org "
+ Mock.mock({email: '@email'})
+ // => { email: "v.lewis@hall.gov" }
+```
+
+
+## 总结
+
+> [!NOTE] tips
+> 如果前端请求的后端接口需要携带参数，那么前端 mock 的 index. js 里的拦截请求的写法应该如下所示（用正则表达式进行匹配接口）：
+> `Mock.mock(RegExp('/product/search.*'),{...})`
+
+# 14 企业级集成方案
+
+## 1. vue-element-admin 介绍
+
+> - vue-element-admin 是一个后台前端解决方案，它基于 vue 和 element-ui 实现。
+> - 内置了 i 18 国际化解决方案，动态路由，权限验证，提炼了典型的业务模型，提供了丰富的功能组件。
+> - 可以快速搭建企业级中后台产品原型。
+> - 地址: https://panjiachen.github.io/vue-element-admin-site/zh/guide/
+
+
+```shell
+# 克隆项目
+git clone https://github.com/PanJiaChen/vue-admin-template.git
+
+# 进入项目目录
+cd vue-admin-template
+
+# 安装依赖
+npm install
+
+# 建议不要直接使用 cnpm 安装以来，会有各种诡异的 bug。可以通过如下操作解决 npm 下载速度慢的问题
+npm install --registry=https://registry.npm.taobao.org
+
+# 启动服务
+npm run dev
+```
+
+
+
+
+## 2. 安装与使用
+
+
+## 3. 源码解读
+
+
+
