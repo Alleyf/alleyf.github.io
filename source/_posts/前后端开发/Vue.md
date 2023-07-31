@@ -2120,10 +2120,245 @@ public static String generateToken(String username){
             .setSubject(username)
             .setIssuedAt(now)
             .setExpiration(expiration)
-            .signwith(SignatureAlgorithm.HS512, secret)
+            .signWith(SignatureAlgorithm.HS512, secret)
             .compact();
 }
 ```
 
+#### 解析 token
 
+```java
+public static Claims getClaimsByToken(String token) {  
+    return Jwts.parser()  
+            .setSigningKey(secret)  
+            .parseClaimsJws(token)  
+            .getBody();  
+  
+}
+```
+
+#### 后端完整部分
+
+`UserController. java:`
+```java
+/*  
+ * Copyright (c) alleyf 2023 - 6 - 1 19:56 * 适度编码益脑，沉迷编码伤身，合理安排时间，享受快乐生活。 * */  
+package com.alleyf.airesume.controller;  
+  
+import com.alleyf.airesume.entity.User;  
+import com.alleyf.airesume.mapper.UserMapper;  
+import com.alleyf.airesume.utils.JwtUtils;  
+import com.alleyf.airesume.utils.Result;  
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;  
+import com.baomidou.mybatisplus.core.metadata.IPage;  
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;  
+import io.swagger.annotations.Api;  
+import io.swagger.annotations.ApiOperation;  
+import org.springframework.beans.factory.annotation.Autowired;  
+import org.springframework.web.bind.annotation.*;  
+  
+import java.util.List;  
+  
+@Api(tags = "用户", value = "用户")  
+@RestController  
+@CrossOrigin  
+@RequestMapping("/user")  
+public class UserController {  
+    @Autowired  
+    UserMapper userMapper;  
+
+    @ApiOperation("用户登录")  
+    @PostMapping("/login")  
+    public Result login(@RequestBody User user) {  
+        String token = JwtUtils.generateToken(user.getUsername());  
+        return Result.ok().data("token", token);  
+    }  
+  
+    @ApiOperation("获取用户信息")  
+    @GetMapping("/info")  //"token:xxx"  
+    public Result info(String token) {  
+        String username = JwtUtils.getClaimsByToken(token).getSubject();  
+        String url = "https://img2.baidu.com/it/u=1325995315,4158780794&fm=26&fmt=auto&gp=0.jpg";  
+        return Result.ok().data("name", username).data("avatar", url);  
+    }  
+  
+    @ApiOperation("注销")  
+    @PostMapping("/logout") // "token:xxx"  
+    public Result logout() {  
+        return Result.ok();  
+    }  
+  
+    @ApiOperation("查询所有用户")  
+    @GetMapping("/queryAll")  
+    public List<User> queryAllUser() {  
+//        return userMapper.selectList(null);  
+        return userMapper.queryAllUserAndTask();  
+    }  
+  
+    @ApiOperation("按照用户名查询用户")  
+    @GetMapping("/queryByMName")  
+    public User queryByMName(@RequestParam("username") String username) {  
+//        return userMapper.selectList(null);  
+        return userMapper.selectByName(username);  
+    }  
+  
+    @ApiOperation("按照用户名查询用户(MP)")  
+    @GetMapping("/queryByMPName")  
+    public User queryByMPName(@RequestParam("username") String username) {  
+        return userMapper.selectOne(new QueryWrapper<User>().eq("username", username));  
+    }  
+  
+    @ApiOperation("按照用户名路径查询用户(MP)")  
+    @GetMapping("/queryByPMPName/{username}")  
+    public User queryByPMPName(@PathVariable("username") String username) {  
+        return userMapper.selectOne(new QueryWrapper<User>().eq("username", username));  
+    }  
+  
+    @ApiOperation("按照页码查询用户(MP)")  
+    @GetMapping("/queryByPage/{page}")  
+    public IPage queryByPage(@PathVariable("page") int page) {  
+        Page<User> page1 = new Page<>(page, 5);  
+        IPage iPage = userMapper.selectPage(page1, null);  
+        return iPage;  
+    }  
+  
+    @ApiOperation("添加用户")  
+    @PostMapping("/add")  
+    public String addUser(User user) {  
+        return userMapper.insert(user) > 0 ? "添加成功" : "添加失败";  
+    }  
+}
+```
+
+`Result.java:`
+```java
+/*  
+ * Copyright (c) alleyf 2023 - 5 - 29 }9:52 * 适度编码益脑，沉迷编码伤身，合理安排时间，享受快乐生活。 * */  
+package com.alleyf.airesume.utils;  
+  
+import java.util.HashMap;  
+import java.util.Map;  
+  
+public class Result {  
+    private Boolean success;  
+    private Integer code;  
+    private String message;  
+    private Map<String, Object> data = new HashMap<>();  
+  
+    private Result() {  
+    }  
+  
+    public static Result ok() {  
+        Result r = new Result();  
+        r.setCode(ResultCode.Success);  
+        r.setSuccess(true);  
+        r.setMessage("成功");  
+        return r;  
+    }  
+  
+    public static Result error() {  
+        Result r = new Result();  
+        r.setCode(ResultCode.Error);  
+        r.setSuccess(false);  
+        r.setMessage("失败");  
+        return r;  
+    }  
+  
+    public Result success(Boolean success) {  
+        this.setSuccess(success);  
+        return this;  
+    }  
+  
+    public Result message(String message) {  
+        this.setMessage(message);  
+        return this;  
+    }  
+  
+    public Result code(Integer code) {  
+        this.setCode(code);  
+        return this;  
+    }  
+  
+    public Result data(String key, Object value) {  
+        this.data.put(key, value);  
+        return this;  
+    }  
+  
+    public Result data(Map<String, Object> map) {  
+        this.setData(map);  
+        return this;  
+    }  
+  
+    public Boolean getSuccess() {  
+        return success;  
+    }  
+  
+    public void setSuccess(Boolean success) {  
+        this.success = success;  
+    }  
+  
+    public Integer getCode() {  
+        return code;  
+    }  
+  
+    public void setCode(Integer code) {  
+        this.code = code;  
+    }  
+  
+    public String getMessage() {  
+        return message;  
+    }  
+  
+    public void setMessage(String message) {  
+        this.message = message;  
+    }  
+  
+    public Map<String, Object> getData() {  
+        return data;  
+    }  
+  
+    public void setData(Map<String, Object> data) {  
+        this.data = data;  
+    }  
+}
+```
+
+`JwtUtils.java:`
+```java
+package com.alleyf.airesume.utils;  
+  
+import io.jsonwebtoken.Claims;  
+import io.jsonwebtoken.Jwts;  
+import io.jsonwebtoken.SignatureAlgorithm;  
+  
+import java.util.Date;  
+  
+public class JwtUtils {  
+    //7 天过期  
+    private static final Long expire = 604800L;  
+    //32 位秘钥  
+    private static final String secret = "abcdfghiabcdfghiabcdfghiabcdfghi";  
+  
+    //生成 token  
+    public static String generateToken(String username) {  
+        Date now = new Date();  
+        Date expiration = new Date(now.getTime() + 1000 * expire);  
+        return Jwts.builder()  
+                .setHeaderParam("type", "JWT")  
+                .setSubject(username)  
+                .setIssuedAt(now)  
+                .setExpiration(expiration)  
+                .signWith(SignatureAlgorithm.HS512, secret)  
+                .compact();  
+    }  
+  
+    public static Claims getClaimsByToken(String token) {  
+        return Jwts.parser()  
+                .setSigningKey(secret)  
+                .parseClaimsJws(token)  
+                .getBody();  
+  
+    }  
+}
+```
 
