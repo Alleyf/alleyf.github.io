@@ -11,12 +11,14 @@
             "id": "3a19b50bd310d4a0",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "canvas",
               "state": {
-                "file": "source/_posts/前后端开发/Vue.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
+                "file": "source/_posts/英语学习/EnglishWords.canvas",
+                "viewState": {
+                  "x": -351.35527994563665,
+                  "y": 1463.4048070906188,
+                  "zoom": -0.3239485223776204
+                }
               }
             }
           }
@@ -39,7 +41,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/前后端开发/Vue.md"
+                "file": "source/_posts/英语学习/EnglishWords.canvas"
               }
             }
           }
@@ -117,9 +119,10 @@
   },
   "active": "3a19b50bd310d4a0",
   "lastOpenFiles": [
-    "未命名.md",
-    "source/_posts/前后端开发/Vue.md",
+    "source/_posts/英语学习/考研单词.md",
     "source/_posts/英语学习/EnglishWords.canvas",
+    "source/_posts/前后端开发/Vue.md",
+    "未命名.md",
     "ResNet.pdf",
     "Vue-Continue.md",
     "source/_posts/前后端开发/uni-app.md",
@@ -144,7 +147,6 @@
     "source/_posts/英语学习/Day2.md",
     "Day2 1.md",
     "Excalidraw/Drawing 2023-07-17 10.49.07.excalidraw.md",
-    "source/_posts/英语学习/考研单词.md",
     "source/_posts/前后端开发/SpringBoot启示录.md",
     "source/_posts/前后端开发/网页开发.md",
     "public/2023/05/891ff30b7b9b.html",
@@ -155,7 +157,6 @@
     "source/_posts/课程学习/嵌入式原理与应用.md",
     "source/_posts/课程学习/操作系统.md",
     "source/_posts/前后端开发/Dateframe—Algorithm.md",
-    "source/_posts/前后端开发/algorithm.md",
     "source/_posts/课程学习/review plans.canvas",
     "themes/fluid/source/img/police_beian.png",
     "themes/fluid/source/img/loading.gif",
