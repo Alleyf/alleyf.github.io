@@ -11,14 +11,12 @@
             "id": "3a19b50bd310d4a0",
             "type": "leaf",
             "state": {
-              "type": "canvas",
+              "type": "markdown",
               "state": {
-                "file": "source/_posts/英语学习/EnglishWords.canvas",
-                "viewState": {
-                  "x": -351.35527994563665,
-                  "y": 1463.4048070906188,
-                  "zoom": -0.3239485223776204
-                }
+                "file": "source/_posts/前后端开发/Vue.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
               }
             }
           }
@@ -41,7 +39,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/英语学习/EnglishWords.canvas"
+                "file": "source/_posts/前后端开发/Vue.md"
               }
             }
           }
@@ -119,8 +117,8 @@
   },
   "active": "3a19b50bd310d4a0",
   "lastOpenFiles": [
-    "source/_posts/英语学习/考研单词.md",
     "source/_posts/英语学习/EnglishWords.canvas",
+    "source/_posts/英语学习/考研单词.md",
     "source/_posts/前后端开发/Vue.md",
     "未命名.md",
     "ResNet.pdf",
