@@ -1,9 +1,6 @@
 {
   "defaultViewMode": "source",
-  "spellcheckLanguages": [
-    "zh-CN",
-    "en-US"
-  ],
+  "spellcheckLanguages": null,
   "userIgnoreFilters": [
     "node_modules/",
     "public/",
