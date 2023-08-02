@@ -48,7 +48,7 @@ spring.devtooLs.restart.exclude=static/**
 
 ![image.png|425](https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/20230428173445.png)
 
-# 2. 控制器
+#  2. 控制器
 
 > 1. Spring Boot 提供了<font color="#f79646">@Controller</font> 和<font color="#c0504d">@RestController</font> 两种注解来标识此类负责<span style="background:rgba(240, 107, 5, 0.2)">接收和处理 HTTP 请求</span>。
 > 2. 如果请求的是<font color="#00b0f0">页面和数据</font>，使用<font color="#0070c0">@Controller </font>注解即可; 如果只是请求<font color="#ff0000">数据</font>,则可以使用<font color="#c00000">@RestController </font>注解。
@@ -890,11 +890,94 @@ Vscode 或者WebStorm
 const app = Vue.createApp (hello)
 app. mount（' #app '）/／指定当前 vue 实例要控制页面的哪个区域`
 
+# 7. 项目部署
 
+## 1. 云端环境准备
 
+### 安装 Mysql
+| 环境                                                                                                      | 准备 |             |                                                                                              |
+| --------------------------------------------------------------------------------------------------------- | ---- |:-----------:| -------------------------------------------------------------------------------------------- |
+| <img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308021153950.png"/> | <img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308021200042.png"/>  |  
+![image.png](https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308021206531.png)
+![image.png](https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308021214865.png)
+### 安装 Nginx
+```shell
+ yum install epel-release
+ yum update
+ yum -y install nginx
+```
 
+nginx 命令
 
+```shell
+ systemctl start nginx #开启nginx服务
+ systemctl stop nginx #停止nginx服务
+ systemctl restart nginx #重启nginx服务
+```
 
+### 配置 JDK
+
+下载 JDK，登录官方 https://www.oracle.com/java/technologies/downloads/java8下载所需版本的JDK ，版本为 JDK1.8
+
+![image.png](https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308021240929.png)
+解压
+
+```shell
+ tar -zvxf jdk-8u131-linux-x64.tar.gz
+```
+
+编辑/etc/profile 文件
+
+```shell
+ vi /etc/profile
+ #文件末尾增加
+ export JAVA_HOME=/usr/server/jdk1.8.0_131
+```
+
+执行 source 命令，使配置立即生效
+```shell
+ source /etc/profile
+```
+检查是否安装成功
+```shell
+ java -version
+```
+
+## 项目部署
+
+### 部署 Vue 项目
+
+#### 打包 vue 项目
+
+进入到 Vue 项目目录，执行
+```shell
+npm run build
+```
+将生成的 dist 目录上传至服务器/usr/vue/dist
+
+#### 配置 nginx
+进入到/etc/nginx/conf.d 目录，创建 vue.conf 文件，内容如下
+```conf
+ server {
+    listen  80;
+    server_name locahost;
+
+    1ocation / {
+        root /usr/app/dist;
+        index index.html;
+	}
+ }
+```
+
+使配置生效
+
+```shell
+ nginx -s reload
+```
+
+### 打包 Java 程序
+
+![image.png](https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308021501320.png)
 
 
 

@@ -11,14 +11,12 @@
             "id": "3a19b50bd310d4a0",
             "type": "leaf",
             "state": {
-              "type": "canvas",
+              "type": "markdown",
               "state": {
-                "file": "source/_posts/英语学习/EnglishWords.canvas",
-                "viewState": {
-                  "x": -360.76323353122984,
-                  "y": 2249.7473331372503,
-                  "zoom": 0.05762681758205512
-                }
+                "file": "source/_posts/前后端开发/SpringBoot启示录.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
               }
             }
           }
@@ -41,7 +39,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/英语学习/EnglishWords.canvas"
+                "file": "source/_posts/前后端开发/SpringBoot启示录.md"
               }
             }
           }
@@ -82,8 +80,17 @@
               "type": "calendar",
               "state": {}
             }
+          },
+          {
+            "id": "2177555f39ee4769",
+            "type": "leaf",
+            "state": {
+              "type": "advanced-tables-toolbar",
+              "state": {}
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       },
       {
         "id": "c22661f0d161383a",
@@ -119,10 +126,11 @@
   },
   "active": "3a19b50bd310d4a0",
   "lastOpenFiles": [
+    "source/_posts/英语学习/EnglishWords.canvas",
+    "source/_posts/前后端开发/SpringBoot启示录.md",
     "source/_posts/机器学习/深度学习入门篇.md",
     "canvas/AI学习思路.canvas",
     "source/_posts/前后端开发/Vue.md",
-    "source/_posts/英语学习/EnglishWords.canvas",
     "source/_posts/英语学习/考研单词.md",
     "未命名.md",
     "ResNet.pdf",
@@ -147,7 +155,6 @@
     "source/_posts/英语学习/Day2.md",
     "Day2 1.md",
     "Excalidraw/Drawing 2023-07-17 10.49.07.excalidraw.md",
-    "source/_posts/前后端开发/SpringBoot启示录.md",
     "source/_posts/前后端开发/网页开发.md",
     "public/2023/05/891ff30b7b9b.html",
     "public/tags/DL/index.html",
