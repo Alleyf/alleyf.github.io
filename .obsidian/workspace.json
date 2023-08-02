@@ -80,17 +80,8 @@
               "type": "calendar",
               "state": {}
             }
-          },
-          {
-            "id": "2177555f39ee4769",
-            "type": "leaf",
-            "state": {
-              "type": "advanced-tables-toolbar",
-              "state": {}
-            }
           }
-        ],
-        "currentTab": 1
+        ]
       },
       {
         "id": "c22661f0d161383a",
@@ -124,7 +115,7 @@
       "cmdr:Obsidian Git: Open source control view": false
     }
   },
-  "active": "3a19b50bd310d4a0",
+  "active": "63b461885df0ea6b",
   "lastOpenFiles": [
     "source/_posts/英语学习/EnglishWords.canvas",
     "source/_posts/前后端开发/SpringBoot启示录.md",

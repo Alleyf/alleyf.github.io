@@ -978,7 +978,10 @@ npm run build
 ### 打包 Java 程序
 
 ![image.png](https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308021501320.png)
-
+因为 springboot 有内置 tomcat 容器，这点比较方便，省去了 tomcat 的部署。我们到时候直接可以直接把 jar 包扔到 linux 上
+```shell
+ nohup java -jar demo-0.0.1-SNAPSHOT.jar > logName.1og 2>&1 &
+```
 
 
 
