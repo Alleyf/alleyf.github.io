@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/前后端开发/SpringBoot启示录.md",
+                "file": "source/_posts/机器学习/深度学习入门篇.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -39,7 +39,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/前后端开发/SpringBoot启示录.md"
+                "file": "source/_posts/机器学习/深度学习入门篇.md"
               }
             }
           }
@@ -115,10 +115,10 @@
       "cmdr:Obsidian Git: Open source control view": false
     }
   },
-  "active": "63b461885df0ea6b",
+  "active": "3a19b50bd310d4a0",
   "lastOpenFiles": [
-    "source/_posts/英语学习/EnglishWords.canvas",
     "source/_posts/前后端开发/SpringBoot启示录.md",
+    "source/_posts/英语学习/EnglishWords.canvas",
     "source/_posts/机器学习/深度学习入门篇.md",
     "canvas/AI学习思路.canvas",
     "source/_posts/前后端开发/Vue.md",
