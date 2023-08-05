@@ -11,14 +11,12 @@
             "id": "3a19b50bd310d4a0",
             "type": "leaf",
             "state": {
-              "type": "canvas",
+              "type": "markdown",
               "state": {
-                "file": "source/_posts/英语学习/EnglishWords.canvas",
-                "viewState": {
-                  "x": -370.00020846824344,
-                  "y": 3067.056364617374,
-                  "zoom": -0.05708484129463742
-                }
+                "file": "source/_posts/机器学习/ML_DL.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
               }
             }
           }
@@ -41,7 +39,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/英语学习/EnglishWords.canvas"
+                "file": "source/_posts/机器学习/ML_DL.md"
               }
             }
           }
@@ -120,8 +118,9 @@
   "active": "3a19b50bd310d4a0",
   "lastOpenFiles": [
     "source/_posts/机器学习/深度学习入门篇.md",
-    "source/_posts/前后端开发/SpringBoot启示录.md",
+    "source/_posts/机器学习/机器学习深度学习基础.md",
     "source/_posts/英语学习/EnglishWords.canvas",
+    "source/_posts/前后端开发/SpringBoot启示录.md",
     "canvas/AI学习思路.canvas",
     "source/_posts/前后端开发/Vue.md",
     "source/_posts/英语学习/考研单词.md",
@@ -135,7 +134,6 @@
     "node_modules/a-sync-waterfall/README.md",
     "Excalidraw/Drawing 2023-07-17 11.09.29.excalidraw.md",
     "canvas/review plans.canvas",
-    "source/_posts/机器学习/机器学习深度学习基础.md",
     "public/2023/07/da7a1552e042.html",
     "public/2023/07/515b18cb773b.html",
     "public/2023/07/1c18a5ceb729.html",
