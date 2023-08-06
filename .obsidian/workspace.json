@@ -11,12 +11,14 @@
             "id": "3a19b50bd310d4a0",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "canvas",
               "state": {
-                "file": "source/_posts/机器学习/PyTorch.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
+                "file": "source/_posts/英语学习/EnglishWords.canvas",
+                "viewState": {
+                  "x": -543.1386566485437,
+                  "y": 3211.3275440747675,
+                  "zoom": -0.5568799587531167
+                }
               }
             }
           }
@@ -39,7 +41,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/机器学习/PyTorch.md"
+                "file": "source/_posts/英语学习/EnglishWords.canvas"
               }
             }
           }
@@ -117,6 +119,7 @@
   },
   "active": "3a19b50bd310d4a0",
   "lastOpenFiles": [
+    "source/_posts/机器学习/PyTorch.md",
     "source/_posts/机器学习/NoteBook.md",
     "source/_posts/机器学习/ML_DL.md",
     "source/_posts/机器学习/深度学习入门篇.md",
@@ -152,7 +155,6 @@
     "public/2023/05/891ff30b7b9b.html",
     "public/tags/DL/index.html",
     "public/tags/DL",
-    "source/_posts/机器学习/PyTorch.md",
     "source/_posts/课程学习/专业问答整理.md",
     "source/_posts/课程学习/嵌入式原理与应用.md",
     "source/_posts/课程学习/操作系统.md",
