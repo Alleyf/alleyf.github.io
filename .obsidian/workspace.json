@@ -11,14 +11,12 @@
             "id": "3a19b50bd310d4a0",
             "type": "leaf",
             "state": {
-              "type": "canvas",
+              "type": "markdown",
               "state": {
-                "file": "source/_posts/英语学习/EnglishWords.canvas",
-                "viewState": {
-                  "x": -543.1386566485437,
-                  "y": 3211.3275440747675,
-                  "zoom": -0.5568799587531167
-                }
+                "file": "source/_posts/前后端开发/Vue.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
               }
             }
           }
@@ -41,7 +39,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/英语学习/EnglishWords.canvas"
+                "file": "source/_posts/前后端开发/Vue.md"
               }
             }
           }
@@ -119,12 +117,12 @@
   },
   "active": "3a19b50bd310d4a0",
   "lastOpenFiles": [
+    "source/_posts/英语学习/EnglishWords.canvas",
     "source/_posts/机器学习/PyTorch.md",
     "source/_posts/机器学习/NoteBook.md",
     "source/_posts/机器学习/ML_DL.md",
     "source/_posts/机器学习/深度学习入门篇.md",
     "source/_posts/机器学习/机器学习深度学习基础.md",
-    "source/_posts/英语学习/EnglishWords.canvas",
     "source/_posts/前后端开发/SpringBoot启示录.md",
     "canvas/AI学习思路.canvas",
     "source/_posts/前后端开发/Vue.md",
@@ -157,7 +155,6 @@
     "public/tags/DL",
     "source/_posts/课程学习/专业问答整理.md",
     "source/_posts/课程学习/嵌入式原理与应用.md",
-    "source/_posts/课程学习/操作系统.md",
     "source/_posts/课程学习/review plans.canvas",
     "themes/fluid/source/img/police_beian.png",
     "themes/fluid/source/img/loading.gif",
