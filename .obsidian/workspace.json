@@ -11,12 +11,14 @@
             "id": "3a19b50bd310d4a0",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "canvas",
               "state": {
-                "file": "source/_posts/前后端开发/Vue.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
+                "file": "source/_posts/英语学习/EnglishWords.canvas",
+                "viewState": {
+                  "x": -452.63064398768637,
+                  "y": 3862.0544637062158,
+                  "zoom": -0.5372511520041837
+                }
               }
             }
           }
@@ -39,7 +41,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/前后端开发/Vue.md"
+                "file": "source/_posts/英语学习/EnglishWords.canvas"
               }
             }
           }
@@ -117,6 +119,7 @@
   },
   "active": "3a19b50bd310d4a0",
   "lastOpenFiles": [
+    "source/_posts/前后端开发/Vue.md",
     "source/_posts/英语学习/EnglishWords.canvas",
     "source/_posts/机器学习/PyTorch.md",
     "source/_posts/机器学习/NoteBook.md",
@@ -125,7 +128,6 @@
     "source/_posts/机器学习/机器学习深度学习基础.md",
     "source/_posts/前后端开发/SpringBoot启示录.md",
     "canvas/AI学习思路.canvas",
-    "source/_posts/前后端开发/Vue.md",
     "source/_posts/英语学习/考研单词.md",
     "未命名.md",
     "ResNet.pdf",
