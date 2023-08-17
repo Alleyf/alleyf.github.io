@@ -4,19 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "81559fb92f8f613f",
+        "id": "127f5773038dee4b",
         "type": "tabs",
         "children": [
           {
-            "id": "3a19b50bd310d4a0",
+            "id": "7ae8dbdc888a6ca4",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "canvas",
               "state": {
-                "file": "source/_posts/机器学习/PyTorch.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
+                "file": "source/_posts/英语学习/EnglishWords.canvas",
+                "viewState": {
+                  "x": -188.65918488758317,
+                  "y": 6153.741768867685,
+                  "zoom": 0.03171042982229122
+                }
               }
             }
           }
@@ -39,7 +41,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/机器学习/PyTorch.md"
+                "file": "source/_posts/英语学习/EnglishWords.canvas"
               }
             }
           }
@@ -112,17 +114,20 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false,
       "obsidian-custom-frames:Open Slack": false,
       "cmdr:Calendar: Open view": false,
-      "cmdr:Obsidian Git: Open source control view": false
+      "cmdr:Obsidian Git: Open source control view": false,
+      "obsidian-excalidraw-plugin:新建 Excalidraw 绘图": false
     }
   },
-  "active": "3a19b50bd310d4a0",
+  "active": "7ae8dbdc888a6ca4",
   "lastOpenFiles": [
-    "source/_posts/机器学习/ML_DL.md",
+    "source/_posts/机器学习/PyTorch.md",
+    "Excalidraw/Drawing 2023-08-16 20.44.05.excalidraw.md",
+    "[.md",
     "source/_posts/英语学习/EnglishWords.canvas",
+    "source/_posts/机器学习/ML_DL.md",
     "source/_posts/机器学习/深度学习入门篇.md",
     "source/_posts/机器学习/机器学习深度学习基础.md",
     "source/_posts/前后端开发/Vue.md",
-    "source/_posts/机器学习/PyTorch.md",
     "source/_posts/机器学习/NoteBook.md",
     "source/_posts/前后端开发/SpringBoot启示录.md",
     "canvas/AI学习思路.canvas",
@@ -154,7 +159,6 @@
     "public/tags/DL/index.html",
     "public/tags/DL",
     "source/_posts/课程学习/专业问答整理.md",
-    "source/_posts/课程学习/嵌入式原理与应用.md",
     "source/_posts/课程学习/review plans.canvas",
     "themes/fluid/source/img/police_beian.png",
     "themes/fluid/source/img/loading.gif",
