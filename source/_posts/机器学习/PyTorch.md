@@ -5,7 +5,6 @@ date: 2023-05-31 14:27:39
 sticky: 80
 excerpt: Machine and Deep learning
 ---
-
 1. [[#1.python|1.python]]
 1. [[#1.数据加载|1.数据加载]]
 	1. [[#1.数据加载#1.1DataSet|1.1DataSet]]
@@ -18,9 +17,7 @@ excerpt: Machine and Deep learning
 
 # 心得体会
 ---
-
 ## 1. python
-
 > Python 类中的双下划线 (double underscore)开头的方法通常被称为"魔法方法" (magic methods)。这些方法可以实现一些特殊的功能或对类进行修改。以下是一些常见的双下划线方法及其作用:
 
 - __init__(): 构造函数, 用于初始化类的实例。
@@ -48,7 +45,6 @@ excerpt: Machine and Deep learning
 - __metaclass__: 元类, 用于创建类对象。
 
 > 所以双下划线方法主要是实现一些内置的功能或魔法方法, 让 Python 类拥有一些特殊的行为。我们自己编写类时, 如果需要实现某些特殊功能, 可以通过编写双下划线方法来实现。
-
 
 # 正文
 ---
@@ -96,6 +92,50 @@ train_dataset = ants_dataset+bees_dataset
 img,label = train_dataset[124]
 img.show()
 ```
+> 加载或下载数据集
+
+```python
+import torchvision
+dataset_trans = torchvision.transforms.Compose([
+    torchvision.transforms.ToTensor()
+])
+train_set = torchvision.datasets.CIFAR10(root="./data/datasets/CIFAR", train=True, transform=dataset_trans, download=False)
+test_set = torchvision.datasets.CIFAR10(root="./data/datasets/CIFAR", train=False, transform=dataset_trans, download=False)
+writer = SummaryWriter("logs")
+for i in range(10):
+    img_tensor, target = test_set[i]
+    writer.add_image("test_set", img_tensor, i)
+writer.close()
+```
+### 1.2 DataLoder
+> 加载数据集将多个数据 Tensor 和和标签分别打包成一个大的整体 batch
+
+```python
+import torchvision
+from torch.utils.data import DataLoader
+from torch.utils.tensorboard import SummaryWriter
+train_set = torchvision.datasets.CIFAR10(root="./data/datasets/CIFAR",train=True,transform=torchvision.transforms.ToTensor(),download=False)
+test_set = torchvision.datasets.CIFAR10(root="./data/datasets/CIFAR",train=False,transform=torchvision.transforms.ToTensor(),download=False)
+test_loder = DataLoader(dataset=test_set,batch_size=64,shuffle=True,num_workers=0,drop_last=False)
+# for data in test_loder:
+#   imgs,target = data
+#   print(imgs.shape,target)
+#   print(type(imgs))
+writer = SummaryWriter("logs")
+for epoch in range(2):
+  step = 0
+  for data in test_loder:
+      imgs,targets = data
+      # imgs = imgs.permute(0, 2, 3, 1)
+      writer.add_image("epoch_{}".format(epoch), imgs, step, dataformats='NCHW')
+      step+=1
+writer.close()
+```
+![image.png|400](https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308172314315.png)
+> [!NOTE] Tip
+> - `shuttle = true`，则每轮打包成 batch 的数据顺序不同，提高训练效果
+> - `writer.add_image("epoch_{}".format(epoch), imgs, step, dataformats='NCHW')` 需要指定图片数据类型 `dataformats`
+
 ## 2. TensorBoard
 > TensorBoard 是一个用于可视化和监控机器学习模型训练过程的工具。它可以帮助您跟踪实验指标（如损失和准确率）、呈现模型计算图以及将嵌入向量投影到较低维度的空间等[1]。以下是使用 TensorBoard 的一般步骤：
 
@@ -134,9 +174,7 @@ writer.close()
 ```
 ![image.png|400](https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308161755844.png)
 ## 3. Transforms
-
 ### 3.1 ToTensor
-
 ![image.png|500](https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308162052347.png)
 > 通过 transforms. ToTensor 去看两个问题
 > 1. transforms 该如何使用 (python)？
@@ -162,8 +200,70 @@ writer.close()
 > 2. **PIL 的 Image. open** 读取的图片类型为 `JpegImageFile`
 
 ### 3.2 Compose
+> Compose 类是将多种 transforms 操作叠加在一起, 初始化 compose 类后, 执行__call__​​方法循环执行组合操作
 
+```python
+transform_compose = transforms.Compose([transforms.CenterCrop(10),transforms.ToTensor(),transforms.ConvertImageDtype(torch.float),])
+img_compose = transform_compose(img_PIL)
+print(type(img_compose))
+writer = SummaryWriter("logs")
+writer.add_image("compose_tensor_image",img_compose)
+writer.close()
+```
+### 3.3 Normalize
+> 对图像进行正则化, 传参包括各通道均值和标准差
 
+```python
+trans_normalize = transforms.Normalize([0.5, 0.5, 0.5],[0.5, 0.5, 0.5])
+img_norm = trans_normalize(img_tensor)
+print(img_norm[0][0][0])
+writer.add_image("Normalize",img_norm)
+```
+![image](![](https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308171425731.png))
+### 3.4 Resize
+> 改变 PILImage 图像尺寸
+
+```python
+from torchvision import transforms
+# 将图像缩放到256x256
+trans_resize= transforms.Resize(256) 
+# 将图像按比例缩放,短边为256
+trans_resize= transforms.Resize(size=(256, 256), interpolation=Image.BICUBIC)
+# 最长边不超过256,短边按2:1的比例缩放 
+trans_resize= transforms.Resize(max_size=256, ratio=2)
+img_resize = trans_resize(img_tensor)
+print(img_resize.shape)
+```
+### 3.5 RandomCrop
+> 随机裁剪图像, 指定裁剪后的图像大小进行随机裁剪, 支持输入格式为 PILImage 和 Tensor​​
+
+```python
+trans_randomcrop = transforms.RandomCrop(512)
+img_randomcrop = trans_randomcrop(img_tensor)
+print(img_randomcrop.shape)
+writer.add_image("randomcrop",img_randomcrop)
+```
+​​ ![|400](https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308171458436.png) ​
+​​
+## 神经网络基本骨架
+### 4.1 nn_module
+> module 是是所有网络模块的**基类**，必须继承该类并重写部分方法，构造方法、前向传播等
+
+```python
+import torch  
+from torch import nn  
+class Simple_Nn(nn.Module):  
+    def __init__(self, *args, **kwargs) -> None:  
+        super().__init__(*args, **kwargs)  
+    def forward(self, input):  
+        output = input + 1  
+        return output  
+simple_nn = Simple_Nn()  
+input = torch.tensor(1.0)  
+output = simple_nn(input)  
+print(output)
+```
+# 常用函数手册
+![[pytorch常用函数手册.pdf]]
 # 参考文献
 [PyTorch快速入门（小土堆）](https://www.bilibili.com/video/BV1hE411t7RN?p=6&vd_source=9c896fa9c3f9023797e8efe7be0c113e)
-<iframe src="//player.bilibili.com/player.html?aid=74281036&bvid=BV1hE411t7RN&cid=134328447&page=7" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>

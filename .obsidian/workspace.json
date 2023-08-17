@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "127f5773038dee4b",
+        "id": "3cad1772b09a570d",
         "type": "tabs",
         "children": [
           {
-            "id": "7ae8dbdc888a6ca4",
+            "id": "dd45164bedec0312",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/前后端开发/algorithm.md",
+                "file": "source/_posts/机器学习/PyTorch.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -39,7 +39,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/前后端开发/algorithm.md"
+                "file": "source/_posts/机器学习/PyTorch.md"
               }
             }
           }
@@ -113,11 +113,14 @@
       "obsidian-excalidraw-plugin:新建 Excalidraw 绘图": false
     }
   },
-  "active": "7ae8dbdc888a6ca4",
+  "active": "dd45164bedec0312",
   "lastOpenFiles": [
+    "().md",
     "source/_posts/机器学习/PyTorch.md",
-    "source/_posts/机器学习/深度学习入门篇.md",
+    "pytorch常用函数手册.pdf",
     "canvas/AI学习思路.canvas",
+    "source/_posts/前后端开发/algorithm.md",
+    "source/_posts/机器学习/深度学习入门篇.md",
     "source/_posts/机器学习/Python_Notes.md",
     "未命名.md",
     "source/_posts/英语学习/EnglishWords.canvas",
@@ -149,10 +152,8 @@
     "source/_posts/英语学习/Day3.md",
     "source/_posts/英语学习/Day2.md",
     "Day2 1.md",
-    "Excalidraw/Drawing 2023-07-17 10.49.07.excalidraw.md",
     "public/2023/05/891ff30b7b9b.html",
     "public/tags/DL/index.html",
-    "public/tags/DL",
     "source/_posts/课程学习/review plans.canvas",
     "themes/fluid/source/img/police_beian.png",
     "themes/fluid/source/img/loading.gif",
