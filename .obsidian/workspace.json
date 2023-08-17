@@ -11,14 +11,12 @@
             "id": "7ae8dbdc888a6ca4",
             "type": "leaf",
             "state": {
-              "type": "canvas",
+              "type": "markdown",
               "state": {
-                "file": "source/_posts/英语学习/EnglishWords.canvas",
-                "viewState": {
-                  "x": -188.65918488758317,
-                  "y": 6153.741768867685,
-                  "zoom": 0.03171042982229122
-                }
+                "file": "source/_posts/机器学习/PyTorch.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
               }
             }
           }
@@ -41,7 +39,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/英语学习/EnglishWords.canvas"
+                "file": "source/_posts/机器学习/PyTorch.md"
               }
             }
           }
@@ -120,19 +118,20 @@
   },
   "active": "7ae8dbdc888a6ca4",
   "lastOpenFiles": [
+    "source/_posts/机器学习/深度学习入门篇.md",
+    "canvas/AI学习思路.canvas",
     "source/_posts/机器学习/PyTorch.md",
+    "source/_posts/机器学习/Python_Notes.md",
+    "未命名.md",
+    "source/_posts/英语学习/EnglishWords.canvas",
     "Excalidraw/Drawing 2023-08-16 20.44.05.excalidraw.md",
     "[.md",
-    "source/_posts/英语学习/EnglishWords.canvas",
     "source/_posts/机器学习/ML_DL.md",
-    "source/_posts/机器学习/深度学习入门篇.md",
     "source/_posts/机器学习/机器学习深度学习基础.md",
     "source/_posts/前后端开发/Vue.md",
     "source/_posts/机器学习/NoteBook.md",
     "source/_posts/前后端开发/SpringBoot启示录.md",
-    "canvas/AI学习思路.canvas",
     "source/_posts/英语学习/考研单词.md",
-    "未命名.md",
     "ResNet.pdf",
     "Vue-Continue.md",
     "source/_posts/前后端开发/uni-app.md",
@@ -154,11 +153,9 @@
     "source/_posts/英语学习/Day2.md",
     "Day2 1.md",
     "Excalidraw/Drawing 2023-07-17 10.49.07.excalidraw.md",
-    "source/_posts/前后端开发/网页开发.md",
     "public/2023/05/891ff30b7b9b.html",
     "public/tags/DL/index.html",
     "public/tags/DL",
-    "source/_posts/课程学习/专业问答整理.md",
     "source/_posts/课程学习/review plans.canvas",
     "themes/fluid/source/img/police_beian.png",
     "themes/fluid/source/img/loading.gif",
