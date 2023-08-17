@@ -409,7 +409,7 @@ int main() {
 
 
 
-### 6.Old Bill
+### 6. Old Bill
 
 
 ```c++
@@ -670,16 +670,16 @@ cout<<year<<'-'<<month<<'-'<<day<<endl;
 以前大一的时候面对这个题，就是单纯按月份纯算，算的可谓是焦头烂额。现在学习了新的方法：
 
 1. 计算是当年的第几天
-2. 这个数值sum加上需要累加的天数
+2. 这个数值 sum 加上需要累加的天数
 3. 计算进位的多少年，确定年份
 4. 根据剩下的第几天反解出这是几月几日
 5. 输出
 
 ##### 技巧
 
-用到的技巧包括打表、巧用bool。  
+用到的技巧包括打表、巧用 bool。  
 提前写出来每个月有多少天、每年有多少天。  
-还有判断是否闰年函数，用它能够得到bool值，0和1可以分别对应于平年和闰年，所以上面的可以构造成二维数组。
+还有判断是否闰年函数，用它能够得到 bool 值，0 和 1 可以分别对应于平年和闰年，所以上面的可以构造成二维数组。
 
 ##### 代码
 ```c++
@@ -802,7 +802,7 @@ cout << allNum << endl;
 ```
 
 
-#### 3.xxx_定律
+#### 3. xxx_定律
 
 > 既可递归实现也可 while 迭代迭代实现。
 ```c++
@@ -1086,7 +1086,7 @@ return 0;
 ### 3. 成绩排序 2
 
 方法 1：
-<font color="#ff0000">sort是不稳定排序，stable_sort才是稳定排序，稳定排序不改变输入的顺序</font>
+<font color="#ff0000">sort 是不稳定排序，stable_sort 才是稳定排序，稳定排序不改变输入的顺序</font>
 ```c++
 //  
 // Created by alleyf on 2023/6/25.  
@@ -1317,7 +1317,7 @@ return 0;
 ```
 
 
-### 3.extrenum_index
+### 3. extrenum_index
 
 方法 1：
 空间复杂度为 O（1）
@@ -1380,11 +1380,11 @@ return 0;
 ### 4. 找位置
 
 
-<span style="background:#b1ffff">时间复杂度为 O(n)</span>
+<span style="background:#b1ffff">时间复杂度为 O (n)</span>
 
 <font color="#ff0000">1. 用一个额外的矢量 orderS 不重复的添加字符，以保证输出时字符顺序</font>
-<font color="#ff0000">2. 用map的key记录字符，value记录重复出现的次数</font>
-<font color="#ff0000">3. 最后按照orderS的顺序遍历输出</font>
+<font color="#ff0000">2. 用 map 的 key 记录字符，value 记录重复出现的次数</font>
+<font color="#ff0000">3. 最后按照 orderS 的顺序遍历输出</font>
 ```c++
 #include<bits/stdc++.h>  
   
@@ -1423,7 +1423,7 @@ cout << tmp->first << ':' << index << endl;
 
 ## 1. 字符串处理
 
-### 1. 特殊乘法
+### 1. [特殊乘法](http://t.cn/Ai8by9vW)
 
 ```c++
 //  
@@ -1451,7 +1451,7 @@ cout << sum << endl;
 ```
 
 
-### 2. 密码翻译
+### 2. [密码翻译](http://t.cn/Ai8bGaIx)
 
 
 ```c++
@@ -1480,7 +1480,7 @@ cout << s << ' ';
 
 
 
-### 3. 简单密码
+### 3. [简单密码](http://t.cn/Ai8bih2z)
 
 ```c++
 // 方法1：
@@ -1569,7 +1569,7 @@ int main() {
 
 
 
-### 4. 统计字符
+### 4. [统计字符](http://t.cn/Ai8fvq4I)
 
 
 ```c++
@@ -1630,7 +1630,7 @@ printf("%c %d\n",str1[i],number[str1[i]]);
 
 
 
-### 5. 字母统计
+### 5. [字母统计](http://t.cn/Ai8VB72e)
 
 ```c++
 //  
@@ -1692,4 +1692,61 @@ cout << item.first << ':' << item.second << endl;
 ## 2. 字符串匹配
 
 
+
+# 第五章基础数据结构
+
+## 5.1 向量
+
+### [完数与盈数](http://t.cn/AiKEyQWW)
+```c++
+//  
+// Created by alleyf on 2023/8/17.  
+//  
+#include<bits/stdc++.h>  
+  
+using namespace std;  
+  
+int judge_EG(int num) {  
+int sum = 0;  
+for (int i = 1; i <= num / 2; ++i) {  
+if (num % i == 0)  
+sum += i;  
+}  
+if (sum == num)  
+return 1;  
+else if (sum > num)  
+return 2;  
+return 0;  
+}  
+  
+int main() {   
+// vector<int> E, G;  
+string E = "E:", G = "G:";  
+for (int i = 2; i <= 60; ++i) {  
+if (judge_EG(i) == 1)  
+E += " " + to_string(i);  
+// E.push_back(i);  
+else if (judge_EG(i) == 2)  
+G += " " + to_string(i);  
+// G.push_back(i);  
+}  
+cout << E << endl << G;  
+// cout << "E:";  
+// for (auto e: E) {  
+// cout << " " << e;  
+// }  
+// cout << endl << "G:";  
+// for (auto g: G) {  
+// cout << " " << g;  
+// }  
+}
+```
+
+> 1. 思路：<font color="#ff0000">获取一个数的所有因子可以通过循环取余，判断余数是否为零来获得，若为零则为因子，反之不为因子</font>
+> 2. 细节：<font color="#ff0000">关键在于格式输出的问题</font>
+
+## 5.2 队列
+
+
+## 5.3 栈
 
