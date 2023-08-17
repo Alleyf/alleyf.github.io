@@ -1,7 +1,7 @@
 ---
 title: PyTorch
 date: 2023-08-17T12:10:24Z
-lastmod: 2023-08-17T12:16:34Z
+lastmod: 2023-08-17T14:59:00Z
 ---
 
 
@@ -25,6 +25,8 @@ lastmod: 2023-08-17T12:16:34Z
 * [@参考文献](siyuan://blocks/20230817121113-9ahl3ut)
 
 ---
+
+<iframe src="/widgets/metadata" data-src="/widgets/metadata" data-subtype="widget" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
 title: PyTorch 快速入门
 tags: [DL]
@@ -133,7 +135,7 @@ for i in range(100):
 writer.close()
 ```
 
-![image.png|500](https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308161754456.png)
+![image.png|500](https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308171505777.png)
 
 ### 2.2 添加图片
 
@@ -149,13 +151,13 @@ writer.add_image("ant_test",img_array,2,dataformats='HWC')
 writer.close()
 ```
 
-![image.png|400](https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308161755844.png)
+![image.png|400](https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308171505077.png)
 
 ## 3.Transforms
 
 ### 3.1 ToTensor
 
-![image.png|500](https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308162052347.png)
+![image.png|500](https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308171505136.png)
 
 > 通过 transforms. ToTensor 去看两个问题
 >
@@ -177,7 +179,7 @@ writer.add_image("tensor_image",img_tensor)
 writer.close()
 ```
 
-![image.png|400](https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308171038445.png)
+![image.png|400](https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308171505460.png)
 
 > [!NOTE] Tips
 >
@@ -185,6 +187,81 @@ writer.close()
 > 2. **PIL 的 Image. open** 读取的图片类型为 `JpegImageFile`
 
 ### 3.2 Compose
+
+> Compose类是将多种transforms操作叠加在一起,初始化compose类后,执行`__call__`​方法循环执行组合操作
+
+```python
+transform_compose = transforms.Compose([transforms.CenterCrop(10),transforms.ToTensor(),transforms.ConvertImageDtype(torch.float),])
+img_compose = transform_compose(img_PIL)
+print(type(img_compose))
+writer = SummaryWriter("logs")
+writer.add_image("compose_tensor_image",img_compose)
+writer.close()
+```
+
+### 3.3 Normalize
+
+‍
+
+‍
+
+  
+
+‍
+
+> 对图像进行正则化,传参包括**各通道均值和标准差**
+
+```python
+trans_normalize = transforms.Normalize([0.5, 0.5, 0.5],[0.5, 0.5, 0.5])
+img_norm = trans_normalize(img_tensor)
+print(img_norm[0][0][0])
+writer.add_image("Normalize",img_norm)
+```
+
+![image](![](https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308171425731.png))
+
+### 3.4 Resize
+
+> 改变PILImage图像尺寸
+
+```python
+from torchvision import transforms
+
+# 将图像缩放到256x256
+trans_resize= transforms.Resize(256) 
+
+# 将图像按比例缩放,短边为256
+trans_resize= transforms.Resize(size=(256, 256), interpolation=Image.BICUBIC)
+
+# 最长边不超过256,短边按2:1的比例缩放 
+trans_resize= transforms.Resize(max_size=256, ratio=2)
+
+img_resize = trans_resize(img_tensor)
+print(img_resize.shape)
+```
+
+### 3.5 RandomCrop
+
+> 随机裁剪图像,指定裁剪后的图像大小进行随机裁剪,支持输入格式为`PILImage和Tensor`​
+
+```python
+trans_randomcrop = transforms.RandomCrop(512)
+img_randomcrop = trans_randomcrop(img_tensor)
+print(img_randomcrop.shape)
+writer.add_image("randomcrop",img_randomcrop)
+```
+
+​​![](https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308171458436.png)
+
+‍
+
+​​
+
+‍
+
+‍
+
+‍
 
 # 参考文献
 
