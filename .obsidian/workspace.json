@@ -104,10 +104,8 @@
   "left-ribbon": {
     "hiddenItems": {
       "canvas:新建白板": false,
-      "daily-notes:打开/创建今天的日记": false,
       "templates:插入模板": false,
       "command-palette:打开命令面板": false,
-      "graph:查看关系图谱": false,
       "obsidian-file-cleaner:清理文件": false,
       "table-editor-obsidian:Advanced Tables Toolbar": false,
       "obsidian-custom-frames:Open Slack": false,
@@ -116,7 +114,7 @@
       "obsidian-excalidraw-plugin:新建 Excalidraw 绘图": false
     }
   },
-  "active": "7ae8dbdc888a6ca4",
+  "active": "bdaaa10e2f08b79f",
   "lastOpenFiles": [
     "source/_posts/机器学习/深度学习入门篇.md",
     "canvas/AI学习思路.canvas",

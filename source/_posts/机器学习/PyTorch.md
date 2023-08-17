@@ -2,14 +2,24 @@
 title: PyTorch快速入门
 tags: [DL]
 date: 2023-05-31 14:27:39
-sticky: 20
+sticky: 80
 excerpt: Machine and Deep learning
 ---
+
+1. [[#1.python|1.python]]
+1. [[#1.数据加载|1.数据加载]]
+	1. [[#1.数据加载#1.1DataSet|1.1DataSet]]
+1. [[#2.TensorBoard|2.TensorBoard]]
+	1. [[#2.TensorBoard#2.1 绘图|2.1 绘图]]
+	1. [[#2.TensorBoard#2.2 添加图片|2.2 添加图片]]
+1. [[#3.Transforms|3.Transforms]]
+	1. [[#3.Transforms#3.1 ToTensor|3.1 ToTensor]]
+	1. [[#3.Transforms#3.2 Compose|3.2 Compose]]
 
 # 心得体会
 ---
 
-## 1.python
+## 1. python
 
 > Python 类中的双下划线 (double underscore)开头的方法通常被称为"魔法方法" (magic methods)。这些方法可以实现一些特殊的功能或对类进行修改。以下是一些常见的双下划线方法及其作用:
 
@@ -42,8 +52,8 @@ excerpt: Machine and Deep learning
 
 # 正文
 ---
-## 1.数据加载
-### 1.1DataSet
+## 1. 数据加载
+### 1.1 DataSet
 > 继承 DataSet 类并重写__getitem__和 __len__ 方法
 
 ```python
@@ -86,7 +96,7 @@ train_dataset = ants_dataset+bees_dataset
 img,label = train_dataset[124]
 img.show()
 ```
-## 2.TensorBoard
+## 2. TensorBoard
 > TensorBoard 是一个用于可视化和监控机器学习模型训练过程的工具。它可以帮助您跟踪实验指标（如损失和准确率）、呈现模型计算图以及将嵌入向量投影到较低维度的空间等[1]。以下是使用 TensorBoard 的一般步骤：
 
 1. 安装 TensorBoard：您可以使用 pip 安装 TensorBoard，例如 `pip install tensorboard`。
@@ -123,7 +133,7 @@ writer.add_image("ant_test",img_array,2,dataformats='HWC')
 writer.close()
 ```
 ![image.png|400](https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308161755844.png)
-## 3.Transforms
+## 3. Transforms
 
 ### 3.1 ToTensor
 
@@ -149,7 +159,7 @@ writer.close()
 ![image.png|400](https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308171038445.png)
 > [!NOTE] Tips
 > 1. **cv 2 的 imread** 读取的图片类型为 `ndarray`
-> 2. **PIL 的 Image. open** 读取的图片类型为`JpegImageFile`
+> 2. **PIL 的 Image. open** 读取的图片类型为 `JpegImageFile`
 
 ### 3.2 Compose
 
