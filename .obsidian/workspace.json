@@ -108,13 +108,12 @@
       "command-palette:打开命令面板": false,
       "obsidian-file-cleaner:清理文件": false,
       "table-editor-obsidian:Advanced Tables Toolbar": false,
-      "obsidian-custom-frames:Open Slack": false,
       "cmdr:Calendar: Open view": false,
       "cmdr:Obsidian Git: Open source control view": false,
       "obsidian-excalidraw-plugin:新建 Excalidraw 绘图": false
     }
   },
-  "active": "bdaaa10e2f08b79f",
+  "active": "63b461885df0ea6b",
   "lastOpenFiles": [
     "source/_posts/机器学习/深度学习入门篇.md",
     "canvas/AI学习思路.canvas",
