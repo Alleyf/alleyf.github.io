@@ -1,0 +1,1112 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="alleyf">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="some overview about CV classical papers。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深度学习论文阅读总结">
+<meta property="og:url" content="https://alleyf.github.io/2023/03/46f9740eaeb1.html">
+<meta property="og:site_name" content="alleyf">
+<meta property="og:description" content="some overview about CV classical papers。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308181911241.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308181930025.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308191508459.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308191506627.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308191506264.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308191524259.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308211604278.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308211613960.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308211621589.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308211631231.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308211631353.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308211632281.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200221174711860.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ1OTYyMDUy,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308211610964.png">
+<meta property="article:published_time" content="2023-03-17T11:09:35.000Z">
+<meta property="article:modified_time" content="2023-08-21T08:39:43.890Z">
+<meta property="article:author" content="alleyf">
+<meta property="article:tag" content="CV">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308181911241.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>深度学习论文阅读总结 - alleyf</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"alleyf.github.io","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":true,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"d57048846da607439cf11718741f2eb0","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?d57048846da607439cf11718741f2eb0";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="alleyf" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Mr.Alleyf</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                Links
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="深度学习论文阅读总结"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        alleyf
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-03-17 19:09" pubdate>
+          March 17, 2023 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          7.1k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          59 mins
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> views
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">深度学习论文阅读总结</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    Last updated on a few seconds ago
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="AlexNet"><a href="#AlexNet" class="headerlink" title="AlexNet"></a>AlexNet</h1><h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>alex 团队使用大规模深度卷积神经网络对 ImageNet 图像分类竞赛中的120万张高分辨率图像进行分类的工作。主要总结如下:</p>
+<ol>
+<li>构建了一个包含<strong>6000万参数、65万个神经元</strong>的大型卷积神经网络,包含<strong>5个卷积层、若干（3）最大池化层和3个全连接层</strong>。</li>
+<li>在ImageNet 2010比赛的数据集上,该模型达到了<strong>top-1错误率37.5%,top-5错误率17.0%</strong>,显著优于此前最佳结果。</li>
+<li>使用<strong>非饱和神经元（ReLU）和高效（并行）的 GPU</strong> 卷积实现加速了训练。使用了新的 <strong>dropout 正则化</strong>方法减少全连接层过拟合。</li>
+<li>在ImageNet 2012比赛中,该模型的变体获得了top-5测试错误率15.3%的获胜结果,优于第二名的26.2%。  </li>
+</ol>
+<hr>
+<h2 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h2><ol>
+<li><p>当前的对象识别方法大量依赖机器学习, 可以通过收集<strong>更大的数据集</strong>、学习<strong>更强大的模型</strong>和使用<strong>更好的技术</strong>来<strong>防止过拟合</strong>来提高性能。</p>
+</li>
+<li><p><strong>以前</strong>的图像<strong>数据集相对较小</strong>, 新的更大数据集如 <strong>ImageNet</strong> 包含了<strong>上千万个带标签的高分辨率图像</strong>。</p>
+</li>
+<li><p><strong>卷积神经网络</strong> (CNN)是一个大容量的模型, 可以通过调节其<strong>深度和广度</strong>来控制其能力。它对图像的假设大多是正确的, 比标准前馈神经网络的<strong>参数更少, 更易训练</strong>。</p>
+</li>
+<li><p>当前的 <strong>GPU 和高度优化的 2 D 卷积</strong>实现足以训练有趣的大型 CNN, 大型数据集如 ImageNet 包含足够的标记样本来训练这些模型而不会严重过拟合。</p>
+</li>
+<li><p>本文训练了迄今为止<strong>最大的卷积神经网络之一</strong>, 在 ImageNet 数据集上取得了最好的结果。作者编写了<strong>高度优化的 GPU 2 D 卷积</strong>等操作实现。</p>
+</li>
+<li><p>网络的大小主要受当前 <strong>GPU 内存和可接受的训练时间</strong>的限制。作者使用了几种技术来防止过拟合。更深的网络层次似乎很重要。</p>
+</li>
+<li><p>实验表明, 可以通过等待<strong>更快的 GPU 和更大的数据集</strong>来进一步改进结果。</p>
+</li>
+</ol>
+<hr>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><h3 id="1-数据集"><a href="#1-数据集" class="headerlink" title="1.数据集"></a>1.数据集</h3><ol>
+<li>将图像<strong>下采样</strong>至固定分辨率 <strong>256 × 256</strong>。</li>
+<li><strong>重新缩放</strong>图像，使<strong>短边</strong>的长度为 <strong>256</strong></li>
+</ol>
+<hr>
+<h3 id="2-架构"><a href="#2-架构" class="headerlink" title="2.架构"></a>2.架构</h3><h4 id="2-1ReLU-Nonlinearity"><a href="#2-1ReLU-Nonlinearity" class="headerlink" title="2.1ReLU Nonlinearity"></a>2.1ReLU Nonlinearity</h4><ol>
+<li><p>传统的神经元模型使用 <strong>tanh 或 sigmoid</strong> 作为激活函数, <strong>训练时间较慢且易于梯度消失</strong>。</p>
+</li>
+<li><p>使用 <code>ReLU (f (x)=max (0, x))</code> 作为激活函数可以显著<strong>加快训练速度并且防止过拟合</strong>, 使大型网络的训练成为可能。</p>
+</li>
+</ol>
+<blockquote>
+<p>总之, 使用 ReLU 等非饱和激活函数可以显著加速训练, 这对于大规模深度学习模型非常重要。文章通过实验确证了这一点。</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308181911241.png" srcset="/img/loading.gif" lazyload alt="image.png|325"></p>
+<blockquote>
+<p>ReLU（实线）在 CIFAR-10 上达到 25% 的训练错误率，比具有 tanh 神经元的等效网络（虚线）快六倍。</p>
+</blockquote>
+<hr>
+<h4 id="2-2Training-on-Multiple-GPUs"><a href="#2-2Training-on-Multiple-GPUs" class="headerlink" title="2.2Training on Multiple GPUs"></a>2.2Training on Multiple GPUs</h4><ol>
+<li><p>采用的并行化方案本质上是在<strong>每个 GPU 上各放一半的内核（或神经元）</strong>，还有一个额外的技巧：<strong>GPU 仅在某些层中进行通信</strong></p>
+<ul>
+<li>缺点：<span style="background:rgba(255, 183, 139, 0.55)">选择连接模式是交叉验证的一个问题</span></li>
+<li>优点：<span style="background:rgba(205, 244, 105, 0.55)">能够精确调整通信量，直到它达到计算量的可接受的分数</span></li>
+</ul>
+</li>
+<li><p>该方案将 top-1 和 top-5 错误率降低了 <strong>1.7% 和 1.2%</strong></p>
+</li>
+<li><p>双 GPU 网络的<strong>训练时间</strong>比单 GPU 网络略少</p>
+</li>
+</ol>
+<hr>
+<h4 id="2-3Local-Response-Normalization"><a href="#2-3Local-Response-Normalization" class="headerlink" title="2.3Local Response Normalization"></a>2.3Local Response Normalization</h4><p>局部正则化表达式：<br>$$b_{x,y}^{i}=a_{x,y}^{i}(k+ \alpha \sum <em>{j= \min(0,i-n/2)}^{min(N-1,i+n/2)}(a</em>{x,y}^{j})^{2})^{\beta}$$<br>参数：$k = 2, n = 5, α = 10−4, β = 0.75$ 均为超参数，N：层中内核总数，n：同一空间位置的 n 个“相邻”核，</p>
+<blockquote>
+<p>效果：该方案将 top-1和 top-5错误率分别降低了<strong>0.4%和0.3%</strong></p>
+</blockquote>
+<hr>
+<h4 id="2-4Overlapping-Pooling"><a href="#2-4Overlapping-Pooling" class="headerlink" title="2.4Overlapping Pooling"></a>2.4Overlapping Pooling</h4><ol>
+<li><p>池化层对同一个核映射中相邻的神经元组输出进行汇总。</p>
+</li>
+<li><p>传统上,相邻池化单元汇总的邻域不重叠 (非重叠池化)。</p>
+</li>
+<li><p>池化层可以看作是一个栅格, 每个池化单元之间间隔 s 像素, 并汇总一个大小为 z x z 的邻域。</p>
+<ul>
+<li>如果 <strong>s=z</strong>, 则为传统的非重叠池化。 </li>
+<li>如果 <strong>s&lt;z</strong>, 则为有重叠的池化, 该网络采用了 s=2, z=3 的重叠池化。</li>
+</ul>
+</li>
+<li><p>该方案将 top-1和 top-5错误率分别降低了**0.4%和0.3%**。</p>
+</li>
+<li><p>具有重叠池化的模型在训练时往往<strong>更难过拟合</strong>。</p>
+</li>
+</ol>
+<blockquote>
+<p>与传统非重叠池化相比, 重叠池化层可以<strong>汇总有重叠的邻域</strong>, 往往可以<strong>提高准确率并减少过拟合</strong>。该网络采用了具体参数为 s=2, z=3 的重叠池化。</p>
+</blockquote>
+<hr>
+<h4 id="2-5Overall-Architecture"><a href="#2-5Overall-Architecture" class="headerlink" title="2.5Overall Architecture"></a>2.5Overall Architecture</h4><p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308181930025.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<blockquote>
+<ol>
+<li>一个 GPU 运行图顶部的层部分，而另一个 GPU 运行底部的层部分。 GPU 仅在某些层进行通信。</li>
+<li>第二到第五个卷积层顺序连接,每层卷积核大小和数量分别为256个5x5x48、384个3x3x256、384个3x3x192和256个3x3x192,全连接层每个有4096个神经元。</li>
+</ol>
+</blockquote>
+<hr>
+<h3 id="3-防止过拟合"><a href="#3-防止过拟合" class="headerlink" title="3.防止过拟合"></a>3.防止过拟合</h3><h4 id="3-1Data-Augmentation"><a href="#3-1Data-Augmentation" class="headerlink" title="3.1Data Augmentation"></a>3.1Data Augmentation</h4><ol>
+<li>普遍通用方式：使用<strong>标签保留转换</strong>人为地<strong>扩大数据集</strong></li>
+<li>本文采用的方式：<ul>
+<li>生成<strong>图像平移和水平反射</strong>（256 x 256 –&gt; 224 × 224 附带水平反射）</li>
+<li><strong>改变</strong>训练图像中 <strong>RGB 通道的强度</strong>（ RGB 像素值集执行 <strong>PCA</strong>，对于每个训练图像，我们添加多个找到的主成分）</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>[!NOTE] Conclusion</p>
+<ul>
+<li>该方案将 top-1错误率降低了1%以上</li>
+<li>对象身份对于<strong>照明强度和颜色</strong>的变化是不变的</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>新概念：<strong>PCA</strong><br>PCA (主成分分析)是一种广泛用于数据分析和机器学习的统计方法。它的主要作用是:</p>
+<ol>
+<li><strong>减维</strong>: PCA 通过正交变换, 将高维数据集投影到低维空间中, 同时尽量保留原数据的信息。</li>
+<li><strong>去相关</strong>: PCA 可以去除数据间的相关性, 将高维数据转换为线性无关的低维特征。</li>
+<li><strong>特征提取</strong>: PCA 可以将数据集中的主要特征提取出来, 去除噪声, 使得数据集中的特征更加显著。<br>其基本思想是利用正交变换把原始数据集投影到某个最佳子空间,使得投影后的样本点能够最大限度保留原样本点的信息 (样本点的方差)。数学上, 它通过求数据协方差矩阵的特征向量来实现。PCA 是一种常用的无监督学习方法。</li>
+</ol>
+</blockquote>
+<hr>
+<h4 id="3-2Dropout"><a href="#3-2Dropout" class="headerlink" title="3.2Dropout"></a>3.2Dropout</h4><blockquote>
+<p>具体做法：在前两个全连接层中使用 dropout，没有 dropout 时会过拟合，Dropout 大约使迭代次数加倍来收敛</p>
+</blockquote>
+<ul>
+<li><p>Dropout 是一种很有效的模型集成技术, 在训练时<strong>随机让一半的隐层单元输出为 0</strong>。</p>
+</li>
+<li><p>Dropout 使得<strong>每次输入时神经网络采样不同的架构</strong>, 但这些架构<strong>共享权重</strong>。</p>
+</li>
+<li><p>这<strong>减少</strong>了<strong>神经元之间的复杂适应性</strong>, 迫使其学习更加鲁棒的特征。</p>
+</li>
+<li><p>在测试时使用所有神经元, 但将其<strong>输出乘以 0.5</strong> 来近似地取指数数量 dropout 网络的预测分布的几何平均。</p>
+</li>
+</ul>
+<blockquote>
+<p>总的来说, dropout 通过随机扰动实现模型集成, 减少过拟合, 但需要更多的迭代次数。</p>
+</blockquote>
+<hr>
+<h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><ol>
+<li>随机梯度下降，批量大小为 128 ，动量为 0.9，权重衰减为 0.0005，轮数为 90</li>
+<li>初始化的每层的权重来自标准差为 0.01 的零均值高斯分布</li>
+<li>第二、第四和第五卷积层以及全连接隐藏层中的神经元偏差为常数 1，其余层中的神经元偏差为常数 0</li>
+<li>学习率初始化为0.01，当验证错误率停止以当前学习率提高时，将学习率除以 10</li>
+</ol>
+<blockquote>
+<p>新概念：L 2</p>
+<ul>
+<li>L 2 在深度学习中通常指 L 2 正则化 (L 2 regularization)。L 2 正则化是一种常用的正则化技术, 主要作用是为了<strong>防止模型过拟合</strong>。</li>
+<li>L 2 正则化的具体做法是在模型的损失函数中<strong>引入权重参数的 L 2 范数作为惩罚项</strong>。也就是在损失函数中添加<em><em>λ</em>||w||^2</em>*, 其中 w 是模型的参数,||w||^2 表示参数 w 的 L 2 范数,λ是超参数用于控制惩罚力度。</li>
+<li>引入 L 2 范数会惩罚模型参数的大小, <strong>使得参数向 0 收缩, 从而达到减小模型复杂度</strong>, 防止过拟合的目的。一般来说, L 2 正则化在实际应用中使用更为广泛, 因为 L 2 正则化更容易优化, 且可以<strong>防止参数爆炸</strong>。</li>
+</ul>
+</blockquote>
+<hr>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><ul>
+<li><p>大型深层卷积神经网络通过<strong>纯监督学习</strong>在一个非常复杂的数据集上取得了<strong>记录性的结果</strong>。</p>
+</li>
+<li><p><strong>删除任何一个卷积层</strong>, 网络的<strong>性能</strong>都会<strong>下降</strong>, 如删除中间层会导致 top-1 性能降低约 <strong>2%</strong> </p>
+</li>
+<li><p>作者希望能在<strong>视频序列</strong>上应用<strong>更大更深的卷积网络</strong>, 因为时间信息可以提供静态图像中没有的有用信息。</p>
+</li>
+</ul>
+<hr>
+<h1 id="VGG"><a href="#VGG" class="headerlink" title="VGG"></a>VGG</h1><blockquote>
+<p>VGGNet 是牛津大学视觉几何组 (Visual Geometry Group)提出的模型，该模型在 2014 ImageNet 图像分类与定位挑战赛 ILSVRC-2014 中取得在分类任务第二，定位任务第一的优异成绩。VGGNet 突出的贡献是证明了很小的卷积，通过增加网络深度可以有效提高性能。VGG 很好的继承了 Alexnet 的衣钵同时拥有着鲜明的特点。相比 Alexnet ，VGG 使用了更深的网络结构，证明了增加网络深度能够在一定程度上影响网络性能。 </p>
+</blockquote>
+<h2 id="摘要-1"><a href="#摘要-1" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li>研究非常深的 CNN 在大规模图像分类中的效果</li>
+<li>主要贡献: 通过增加网络深度来提高 ImageNet 分类性能</li>
+<li>实验中深度从 11 层增加到 19 层, 使用 3 x 3 小卷积核</li>
+<li>分类错误率随网络深度的增加而降低</li>
+<li>在 ILSVRC 2014 分类任务中获得了第二名</li>
+</ul>
+<hr>
+<h2 id="背景介绍-1"><a href="#背景介绍-1" class="headerlink" title="背景介绍"></a>背景介绍</h2><ul>
+<li>CNN 近年来在图像识别中成功, 得益于大数据集和 GPU 计算</li>
+<li>ILSVRC 竞赛推动了从浅层到深层网络的发展</li>
+<li>本文通过增加深度来提升 CNN 性能</li>
+<li>使用全 3 x 3 小卷积核, 增加非线性映射判别性, 减少参数量</li>
+</ul>
+<hr>
+<h2 id="方法-1"><a href="#方法-1" class="headerlink" title="方法"></a>方法</h2><h3 id="卷积网络配置"><a href="#卷积网络配置" class="headerlink" title="卷积网络配置"></a>卷积网络配置</h3><p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308191508459.png" srcset="/img/loading.gif" lazyload alt="image.png|400"></p>
+<p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308191506627.png" srcset="/img/loading.gif" lazyload alt="image.png|400"></p>
+<p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308191506264.png" srcset="/img/loading.gif" lazyload alt="image.png|325"></p>
+<ul>
+<li>输入 224 x 224 RGB 图像, 均值归一化预处理</li>
+<li>所有卷积层使用 3 x 3 小卷积核</li>
+<li>1 x 1 卷积可看作通道上的线性变换</li>
+<li>卷积步长为 1, 使用 padding 保持分辨率  </li>
+<li>5 次最大池化下采样</li>
+<li>3 个全连接层, 最后分类层 1000 个输出</li>
+<li>所有隐层使用 ReLU 激活函数</li>
+<li>提出了 11-19 层的 5 种配置进行比较</li>
+</ul>
+<h3 id="分类框架"><a href="#分类框架" class="headerlink" title="分类框架"></a>分类框架</h3><ul>
+<li>SGD 优化, momentum, dropout, batchsize=256</li>
+<li>先训练 11 层网络 A, 初始化更深网络部分层权重</li>
+<li>训练集数据增强: 随机裁剪, 翻转, 颜色抖动 </li>
+<li>测试时多尺度密集预测, 平均结果</li>
+</ul>
+<hr>
+<h2 id="实验-1"><a href="#实验-1" class="headerlink" title="实验"></a>实验</h2><h3 id="分类实验"><a href="#分类实验" class="headerlink" title="分类实验"></a>分类实验</h3><ul>
+<li>在 ImageNet 上评估不同配置</li>
+<li>错误率随深度减小, 19 层效果趋于饱和</li>
+<li>多尺度评估优于单尺度, 训练尺度抖动也优于固定尺度</li>
+<li>模型融合进一步提升, 2 模型组合 top-5 错误率 6.8%</li>
+</ul>
+<h3 id="定位实验"><a href="#定位实验" class="headerlink" title="定位实验"></a>定位实验</h3><ul>
+<li>使用深度 CNN 预测 bounding box 进行对象定位</li>
+<li>每类回归优于共享回归, 微调所有层优于仅全连接层</li>
+<li>最终定位错误率 25.3%, 优于之前 state-of-the-art (SOTA)</li>
+</ul>
+<h3 id="很深特征泛化性"><a href="#很深特征泛化性" class="headerlink" title="很深特征泛化性"></a>很深特征泛化性</h3><ul>
+<li>在其他数据集上测试 ImageNet 预训练模型作为特征提取器</li>
+<li>在 PASCAL VOC、Caltech 等数据集上获得了 state-of-the-art 的分类效果</li>
+<li>显示了很深 CNN 模型学到的特征具有很强的泛化性</li>
+</ul>
+<hr>
+<h2 id="重点总结"><a href="#重点总结" class="headerlink" title="重点总结"></a>重点总结</h2><blockquote>
+<ol>
+<li><p><strong>小卷积核组</strong>: 作者通过堆叠多个 3*3 的卷积核 (少数使用 1*1）来替代大的卷积核，以减少所需参数；</p>
+</li>
+<li><p><strong>小池化核</strong>: 相比较于 AlexNet 使用的 3*3 的池化核，VGG 全部为 2*2 的池化核；</p>
+</li>
+<li><p><strong>网络更深特征图更宽</strong>: 卷积核专注于扩大通道数，池化专注于缩小高和宽，使得模型更深更宽的同时，计算量的增加不断放缓；</p>
+</li>
+<li><p><strong>将卷积核替代全连接</strong>: 作者在测试阶段将三个全连接层替换为三个卷积，使得测试得到的模型结构可以接收任意高度或宽度的输入。</p>
+</li>
+<li><p><strong>多尺度</strong>: 作者从多尺度训练可以提升性能受到启发，训练和测试时使用整张图片的不同尺度的图像，以提高模型的性能。</p>
+</li>
+<li><p><strong>去掉了 LRN 层</strong>: 作者发现深度网络中 LRN（Local Response Normalization，局部响应归一化）层作用不明显。</p>
+</li>
+</ol>
+</blockquote>
+<hr>
+<h2 id="重要概念"><a href="#重要概念" class="headerlink" title="重要概念"></a>重要概念</h2><h3 id="感受野"><a href="#感受野" class="headerlink" title="感受野"></a>感受野</h3><p><strong>感受野（感受野其实就是结果层一个神经元节点发生变动能影响多少个输入层神经元节点）</strong></p>
+<p>计算公式：<br>$$feature_{i}=(feature_{i+1}-1)\times window_{-}strides+kernel_{-}size$$<br>$f_i$是第i层感受野，times为第i步的步长，kernel_size为卷积核或池化核大小。</p>
+<p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308191524259.png" srcset="/img/loading.gif" lazyload alt="image.png|450"></p>
+<blockquote>
+<ul>
+<li>感受野决定了神经网络能“看到”输入图像的哪一部分。每个神经元只连接到输入图像的一小块区域, 这块区域就是这个神经元的感受野。</li>
+<li>在卷积神经网络中, 通过设置卷积核的大小, 可以控制每个神经元的感受野大小。典型的卷积核大小是 <strong>3 x 3 或 5 x 5</strong>。</li>
+<li><strong>网络层数越深, 神经元的感受野会越来越大</strong>。这是因为每个神经元不仅连接到输入, 还连接到前一层的神经元。所以层与层堆叠, 会逐步扩大感受野。</li>
+<li>扩大感受野有利于<strong>捕捉输入图像的全局信息</strong>, 以及学习更抽象和高级的特征表示。但是计算量也会增加。所以需要在两者之间做 trade-off。</li>
+<li>在<strong>全连接层</strong>, 每个神经元的感受野是<strong>整个输入图像</strong>。</li>
+</ul>
+<p>总体来说, 调整卷积网络的感受野大小, 是控制网络提取<strong>局部还是全局信息</strong>的一个重要方法。这在卷积网络设计中需要特别考虑。</p>
+</blockquote>
+<hr>
+<h1 id="GoogLeNet"><a href="#GoogLeNet" class="headerlink" title="GoogLeNet"></a>GoogLeNet</h1><hr>
+<h1 id="ResNet"><a href="#ResNet" class="headerlink" title="ResNet"></a>ResNet</h1><h2 id="摘要-2"><a href="#摘要-2" class="headerlink" title="摘要"></a>摘要</h2><p>本文提出了一个残差学习框架，用于训练深度神经网络。通过引入残差块，可以让网络更深，同时避免了梯度消失和梯度弥散的问题。在多个视觉识别任务中，残差网络都取得了比传统网络更好的结果。</p>
+<hr>
+<h2 id="背景介绍（相关研究）"><a href="#背景介绍（相关研究）" class="headerlink" title="背景介绍（相关研究）"></a>背景介绍（相关研究）</h2><p>在近些年中，深度网络逐渐往更深的方向发展，但是更深的网络训练更加困难，因为梯度消失和梯度弥散的问题会导致网络难以收敛。之前的研究提出了一些方法，如使用更好的初始化方法、使用更好的激活函数等，但是这些方法并不能完全解决问题。本文提出了一种新的方法，即残差学习框架，通过引入残差块来解决梯度消失和梯度弥散的问题。</p>
+<p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308211604278.png" srcset="/img/loading.gif" lazyload alt="image.png|500"></p>
+<p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308211613960.png" srcset="/img/loading.gif" lazyload alt="image.png|500"></p>
+<hr>
+<h2 id="方法-2"><a href="#方法-2" class="headerlink" title="方法"></a>方法</h2><h3 id="Identity-Mapping-by-Shortcuts"><a href="#Identity-Mapping-by-Shortcuts" class="headerlink" title="Identity Mapping by Shortcuts"></a>Identity Mapping by Shortcuts</h3><p>$$y=F(x, \left{ W_{i}\right})+x$$<br>$$y=F(x, \left{ W_{i}\right})+W_{s}x$$</p>
+<blockquote>
+<p>若残差块输入输出维度一致，则直接短接即可；<br>   若唯独不一致，则对输入进行降维增维处理将输入输出维度统一。</p>
+</blockquote>
+<h3 id="网络架构"><a href="#网络架构" class="headerlink" title="网络架构"></a>网络架构</h3><p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308211621589.png" srcset="/img/loading.gif" lazyload alt="image.png|450"></p>
+<blockquote>
+<p>实现为等维直接短接，虚线为异维进行 A (0 填充) /B（投影快捷映射）</p>
+</blockquote>
+<hr>
+<h2 id="实验-2"><a href="#实验-2" class="headerlink" title="实验"></a>实验</h2><h3 id="ImageNet"><a href="#ImageNet" class="headerlink" title="ImageNet"></a>ImageNet</h3><p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308211631231.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="CIFAR-10"><a href="#CIFAR-10" class="headerlink" title="CIFAR-10"></a>CIFAR-10</h3><p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308211631353.png" srcset="/img/loading.gif" lazyload alt="image.png|450"></p>
+<p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308211632281.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>上图左边指的是 Plain Net, 然而 deeper 的时候，会出现明显的 <strong>degradation</strong>。当深度达到 100+的时候，plain Net 的错误率达到了 60%以上。<br>上图中间这是 ResNet，可以看到当 deeper 的时候，错误率也在降低，并没有出现所谓的 degradation。<br>然而右边则显示 <strong>1202 layers</strong> 的 ResNet 的错误率比 <strong>101 layers</strong> 的<strong>错误率高</strong>，作者认为这<strong>不是 degradation 导致</strong>，而是由于这么<strong>大的参数量在 cifar 10 这个小数据集上过拟合</strong>导致。</p>
+<hr>
+<h2 id="重点总结-1"><a href="#重点总结-1" class="headerlink" title="重点总结"></a>重点总结</h2><h3 id="1-残差块"><a href="#1-残差块" class="headerlink" title="1.残差块"></a>1.残差块</h3><p>作者发现，当加深模型深度时，模型的测试效果没有变好，反而变差。不符合所想的结果，因为浅层的网络应该是深层网络的一个子集，深层网络不应该比浅层网络表现的不好。然而实验的结果表明，当在浅层网络后加恒等映射层，深层网络的效果反而没有浅层网络好。为什么会出现这种原因呢？作者猜想，可能是因为深层网络难以训练。那么为什么会难以训练呢？可能是因为深层网络的最后面的层难以学习到恒等映射，因为浅层网络已经有很好的表现效果了，最后面的层如果找不到更好的表示效果就需要学习恒等映射，而让网络去学习恒等映射是很困难的。</p>
+<blockquote>
+<p>为了解决网络学习恒等映射困难的问题，作者就想，既然学习恒等映射困难，我们就让网络学习 $f(x)=0$ 这个映射。也就引出了参差学习块。</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/20200221174711860.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ1OTYyMDUy,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="20200221174711860.png|400"></p>
+<p>正常网络的输入是 x ，输出是f(x)，如果我们要学习恒等映射，也就是让网络的部分学会 f(x)=x，即图中 f(x) 的部分学会一个 f(x) = x 的映射关系，但是我们说直接让网络去学习恒等映射很困难，怎么办？</p>
+<blockquote>
+<p>假设网络的输出是 h(x)，那么不加 shortcut connection 的网络的输出就是 h(x)=f(x)=x，为了让网络更好拟合恒等映射，我们让 h(x)=f(x)+x，那么我们看网络要学习的映射 f(x)，就变为了 f(x)=h(x)−x，这时我们发现，如果直接让 f(x)=0，那么 h(x)=x，也就是说我们让网络输出的结果和恒等映射相同，而网络只学习了 f(x)=0 这个映射，这个映射要比 f(x)=x 恒等映射更好学习，即模型会更好训练，而不受深层的影响，因为深层中多余的层我们可以都学恒等映射，最起码结果不会比浅层的结果差。然而实验结果表明，加上 shortcut connection 的深层网络比不加 shortcut connection 的浅层网络效果还好，这也就说明了深层网络所能提取的信息更高，抽象能力更强。</p>
+</blockquote>
+<h3 id="2-恒等快捷映射和投影快捷映射"><a href="#2-恒等快捷映射和投影快捷映射" class="headerlink" title="2.恒等快捷映射和投影快捷映射"></a>2.恒等快捷映射和投影快捷映射</h3><p>当 shortcut 的输入通道数和输出通道数相同时，我们可以使用恒等映射即 $f (x)=x$，也就是将 shortcut 的输出直接加上输入即可（恒等快捷映射）。</p>
+<p>但是，当 shortcut connection 的输入不等于输出的时候怎么办？（两种方法）</p>
+<blockquote>
+<p>① 将输入数据扩充维度，多余的维度的数据用 0 填充。<br>② 使用 1 x 1 的卷积扩充维度（投影快捷映射）</p>
+<p>我们实际上有三种方式组合：<br>① 零填充快捷连接用来增加维度，所有的快捷连接是没有参数的。<br>② 投影快捷连接用来增加维度，其它的快捷连接是恒等的。<br>③ 所有的快捷连接都是投影。<br>以上三种情况都比没有加 shortcut connection 的好，效果 ③ &gt; ② &gt; ①，但是 ③ 的计算量太大，提升的效果也不大，所以我们一般不用，我们一般用的最多的是 ②。</p>
+</blockquote>
+<p>投影快捷映射：</p>
+<ul>
+<li>当输入和输出的维度不匹配时，使用一个额外的卷积层来进行维度匹配。</li>
+<li>可以用于解决深度残差网络中的维度不匹配问题，从而提高网络的性能。</li>
+<li>在ResNet中，投影快捷映射是指使用一个1x1的卷积层来进行维度匹配。<h3 id="3-Deeper-Bottleneck-Architectures"><a href="#3-Deeper-Bottleneck-Architectures" class="headerlink" title="3.Deeper Bottleneck Architectures"></a>3.Deeper Bottleneck Architectures</h3></li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308211610964.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<blockquote>
+<p>先用1x1降维，3x3进行卷积，再用1x1进行升维。<br>   事实上，deeper 左边这种结构也能获得很好的效果。那么为什么要用右边这种结构呢？ 主要是源自于<strong>practical</strong>，因为<strong>左边</strong>这种结构在<strong>训练时间上要比右边结构长的多</strong>。</p>
+</blockquote>
+<p align="justify">当换成上图右边这种 Bottleneck 结构的时候，可以发现152层的 ResNet 竟然比VGG16/19 都要少的复杂度</p>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" class="category-chain-item">机器学习</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/CV/">#CV</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>深度学习论文阅读总结</div>
+      <div>https://alleyf.github.io/2023/03/46f9740eaeb1.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>alleyf</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>March 17, 2023</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Updated on</div>
+          <div>August 21, 2023</div>
+        </div>
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/03/cc1560495a8d.html" title="计算机视觉概述">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">计算机视觉概述</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/03/56d5f0383564.html" title="algorithm">
+                        <span class="hidden-mobile">algorithm</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.7.2/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"636f2864e051a199b91c","clientSecret":"5185fd11115bbcd8d2f636bc80de6bed98ed14c1","repo":"Gitalk","owner":"Alleyf","admin":["Alleyf"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":false,"proxy":"https://shielded-brushlands-08810.herokuapp.com/https://github.com/login/oauth/access_token"},
+          {
+            id: 'd1530a99d6f86d0641fe1b7d9bea0e7c'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          <!--aplayer--> <link rel="stylesheet" href="https://unpkg.com/browse/aplayer@1.10.1/dist/APlayer.min.css"> <div id="aplayer"></div> <script src="https://unpkg.com/browse/aplayer@1.10.1/dist/APlayer.min.js"></script> <script src="https://alleyf.github.io/js/useaplayer.js"></script>
+        </div>
+      </div>
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://github.com/Alleyf" target="_blank" rel="nofollow noopener"><span>Alleyf</span></a> <i class="iconfont icon-love"></i> <a href="https://fcsy.fit" target="_blank" rel="nofollow noopener"><span>Homepage</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        Views: 
+        <span id="busuanzi_value_site_pv"></span>
+        
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        Visitors: 
+        <span id="busuanzi_value_site_uv"></span>
+        
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      陕ICP备2022010038号
+    </a>
+  </span>
+  
+    
+      <span>
+        <a
+          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=2022010038"
+          rel="nofollow noopener"
+          class="beian-police"
+          target="_blank"
+        >
+          
+            <span style="visibility: hidden; width: 0">|</span>
+            <img src="/img/police_beian.png" srcset="/img/loading.gif" lazyload alt="police-icon"/>
+          
+          <span>陕公网安备2022010038号</span>
+        </a>
+      </span>
+    
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.1/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/js/addMusic.js"></script><!-- hexo injector body_end end --></body>
+</html>
