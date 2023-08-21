@@ -12,5 +12,7 @@
   "cmdr",
   "calendar",
   "obsidian-excalidraw-plugin",
-  "obsidian-plugin-toc"
+  "obsidian-plugin-toc",
+  "obsidian-banners",
+  "marp"
 ]

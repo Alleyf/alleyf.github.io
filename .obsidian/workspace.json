@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "3cad1772b09a570d",
+        "id": "11d2506ac3e8fd7b",
         "type": "tabs",
         "children": [
           {
-            "id": "dd45164bedec0312",
+            "id": "cfdb25090574dcd1",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/机器学习/PyTorch.md",
+                "file": "source/_posts/机器学习/CV/Papers Reading.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -39,7 +39,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/机器学习/PyTorch.md"
+                "file": "source/_posts/机器学习/CV/Papers Reading.md"
               }
             }
           }
@@ -110,20 +110,36 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false,
       "cmdr:Calendar: Open view": false,
       "cmdr:Obsidian Git: Open source control view": false,
-      "obsidian-excalidraw-plugin:新建 Excalidraw 绘图": false
+      "obsidian-excalidraw-plugin:新建 Excalidraw 绘图": false,
+      "marp:Marp: Open Preview": false
     }
   },
-  "active": "dd45164bedec0312",
+  "active": "cfdb25090574dcd1",
   "lastOpenFiles": [
-    "().md",
-    "source/_posts/机器学习/PyTorch.md",
-    "pytorch常用函数手册.pdf",
-    "canvas/AI学习思路.canvas",
-    "source/_posts/前后端开发/algorithm.md",
+    "1..md",
+    "source/_posts/机器学习/CV/Papers Reading.md",
     "source/_posts/机器学习/深度学习入门篇.md",
+    "source/_posts/机器学习/PyTorch.md",
+    "MarpTheme/rose-pine-dawn.css",
+    "MarpTheme/gradient.css",
+    "MarpTheme/border.css",
+    "MarpTheme/beamer.css",
+    "MarpTheme/Obsidian-marp主题/gradient.css",
+    "MarpTheme/Obsidian-marp主题/rose-pine-dawn.css",
+    "MarpTheme/Obsidian-marp主题/border.css",
+    "MarpTheme/Obsidian-marp主题/beamer.css",
+    "MarpTheme/Obsidian-marp主题",
+    "MarpTheme/Obsidian-marp主题.zip",
+    "source/_posts/机器学习/CV/图像分类.md",
+    "source/_posts/机器学习/CV/计算机视觉概述.md",
+    "source/_posts/机器学习/CV/目标检测.md",
+    "source/_posts/机器学习/CV/卷积神经网络基础.md",
+    "source/_posts/英语学习/EnglishWords.canvas",
+    "canvas/AI学习思路.canvas",
+    "().md",
+    "source/_posts/前后端开发/algorithm.md",
     "source/_posts/机器学习/Python_Notes.md",
     "未命名.md",
-    "source/_posts/英语学习/EnglishWords.canvas",
     "Excalidraw/Drawing 2023-08-16 20.44.05.excalidraw.md",
     "[.md",
     "source/_posts/机器学习/ML_DL.md",
@@ -132,28 +148,13 @@
     "source/_posts/机器学习/NoteBook.md",
     "source/_posts/前后端开发/SpringBoot启示录.md",
     "source/_posts/英语学习/考研单词.md",
-    "ResNet.pdf",
     "Vue-Continue.md",
     "source/_posts/前后端开发/uni-app.md",
     "source/categories/index.md",
     "source/galleries/index.md",
     "source/about/index.md",
     "node_modules/a-sync-waterfall/README.md",
-    "Excalidraw/Drawing 2023-07-17 11.09.29.excalidraw.md",
     "canvas/review plans.canvas",
-    "public/2023/07/da7a1552e042.html",
-    "public/2023/07/515b18cb773b.html",
-    "public/2023/07/1c18a5ceb729.html",
-    "public/2023/07",
-    "public/archives/2023/07/index.html",
-    "public/archives/2023/07",
-    "Excalidraw/EnglishWords.md",
-    "source/_posts/英语学习/Day1.md",
-    "source/_posts/英语学习/Day3.md",
-    "source/_posts/英语学习/Day2.md",
-    "Day2 1.md",
-    "public/2023/05/891ff30b7b9b.html",
-    "public/tags/DL/index.html",
     "source/_posts/课程学习/review plans.canvas",
     "themes/fluid/source/img/police_beian.png",
     "themes/fluid/source/img/loading.gif",

@@ -221,5 +221,14 @@
       ],
       "key": "`"
     }
+  ],
+  "obsidian-advanced-slides:open-advanced-slides-preview": [],
+  "slides:start": [
+    {
+      "modifiers": [
+        "Alt"
+      ],
+      "key": "E"
+    }
   ]
 }
