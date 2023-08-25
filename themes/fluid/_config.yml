@@ -461,7 +461,7 @@ footer:
 index:
   # 首页 Banner 头图，可以是相对路径或绝对路径，以下相同
   # Path of Banner image, can be a relative path or an absolute path, the same on other pages
-  banner_img: /img/default.png
+  banner_img: https://api.likepoems.com/img/nature
 
   # 头图高度，屏幕百分比
   # Height ratio of banner image
@@ -532,7 +532,7 @@ index:
 # Post Page
 #---------------------------
 post:
-  banner_img: /img/default.png
+  banner_img: https://api.likepoems.com/img/nature
   banner_img_height: 70
   banner_mask_alpha: 0.3
   # 默认文章封面图
@@ -888,7 +888,7 @@ giscus:
 # Archive Page
 #---------------------------
 archive:
-  banner_img: /img/default.png
+  banner_img: https://api.likepoems.com/img/nature
   banner_img_height: 60
   banner_mask_alpha: 0.3
 
@@ -898,7 +898,7 @@ archive:
 #---------------------------
 category:
   enable: true
-  banner_img: /img/default.png
+  banner_img: https://api.likepoems.com/img/nature
   banner_img_height: 60
   banner_mask_alpha: 0.3
 
@@ -926,7 +926,7 @@ category:
 #---------------------------
 tag:
   enable: true
-  banner_img: /img/default.png
+  banner_img: https://api.likepoems.com/img/nature
   banner_img_height: 80
   banner_mask_alpha: 0.3
   tagcloud:
@@ -942,11 +942,11 @@ tag:
 #---------------------------
 about:
   enable: true
-  banner_img: /img/default.png
+  banner_img: https://api.likepoems.com/img/nature
   banner_img_height: 60
   banner_mask_alpha: 0.3
   avatar: https://www.helloimg.com/images/2022/09/08/ZDuXfQ.jpg
-  #/img/avatar.png
+  #https://api.likepoems.com/img/nature
   name: "Alleyf"
   intro: "专业-通信工程"
   # 更多图标可从 https://hexo.fluid-dev.com/docs/icon/ 查找，`class` 代表图标的 css class，添加 `qrcode` 后，图标不再是链接而是悬浮二维码
@@ -991,7 +991,7 @@ about:
 # Custom Page through `hexo new page`
 #---------------------------
 page:
-  banner_img: /img/default.png
+  banner_img: https://api.likepoems.com/img/nature
   banner_img_height: 60
   banner_mask_alpha: 0.3
 
@@ -1001,7 +1001,7 @@ page:
 #---------------------------
 page404:
   enable: true
-  banner_img: /img/default.png
+  banner_img: https://api.likepoems.com/img/nature
   banner_img_height: 85
   banner_mask_alpha: 0.3
   # 重定向到首页的延迟(毫秒)
@@ -1014,7 +1014,7 @@ page404:
 #---------------------------
 links:
   enable: true
-  banner_img: /img/default.png
+  banner_img: https://api.likepoems.com/img/nature
   banner_img_height: 60
   banner_mask_alpha: 0.3
   # 友链的成员项
@@ -1024,42 +1024,42 @@ links:
         title: "Chuiyugin Blog",
         intro: "Chuiyugin 博主-硬核的钢铁侠",
         link: "https://chuiyugin.github.io/",
-        avatar: "/img/favicon.png",
+        avatar: "https://api.likepoems.com/img/nature",
       }
     - {
         title: "こ Blog",
         intro: "北海道大猩猩",
         link: "https://hoshino-koo.github.io/",
-        avatar: "/img/favicon.png",
+        avatar: "https://api.likepoems.com/img/nature",
       }
     - {
         title: "Alleyf Docs",
         intro: "主题使用指南",
         link: "https://hexo.fluid-dev.com/docs/",
-        avatar: "/img/favicon.png",
+        avatar: "https://api.likepoems.com/img/nature",
       }
     - {
         title: "Alleyf Repo",
         intro: "主题 GitHub 仓库",
         link: "https://github.com/Alleyf/alleyf.github.io",
-        avatar: "/img/favicon.png",
+        avatar: "https://api.likepoems.com/img/nature",
       }
     - {
         title: "Alleyf Homepage",
         intro: "个人主页",
         link: "https://fcsy.fit",
-        avatar: "/img/favicon.png",
+        avatar: "https://api.likepoems.com/img/nature",
       }
 
   # 当成员头像加载失败时，替换为指定图片
   # When the member avatar fails to load, replace the specified image
-  onerror_avatar: /img/avatar.png
+  onerror_avatar: https://api.likepoems.com/img/nature
 
   # 友链下方自定义区域，支持 HTML，可插入例如申请友链的文字
   # Custom content at the bottom of the links
   custom:
     enable: true
-    content: "<hr><p>在下方留言申请加入我的友链，按如下格式提供信息：</p><ul><li>博客名：Alleyf</li><li>简介：Alleyf 主题官方博客</li><li>链接：https://alleyf.github.io</li><li>图片：https://hexo.fluid-dev.com/img/favicon.png</li></ul>"
+    content: "<hr><p>在下方留言申请加入我的友链，按如下格式提供信息：</p><ul><li>博客名：Alleyf</li><li>简介：Alleyf 主题官方博客</li><li>链接：https://alleyf.github.io</li><li>图片：https://hexo.fluid-dev.comhttps://api.likepoems.com/img/nature</li></ul>"
 
   # 评论插件
   # Comment plugin
@@ -1165,9 +1165,8 @@ feed:
   autodiscovery: true
   template:
 
-custom_html: 
-              <!--aplayer-->
-              <link rel="stylesheet" href="https://unpkg.com/browse/aplayer@1.10.1/dist/APlayer.min.css">
-              <div id="aplayer"></div>
-              <script src="https://unpkg.com/browse/aplayer@1.10.1/dist/APlayer.min.js"></script>
-              <script src="https://alleyf.github.io/js/useaplayer.js"></script>
+custom_html: <!--aplayer-->
+  <link rel="stylesheet" href="https://unpkg.com/browse/aplayer@1.10.1/dist/APlayer.min.css">
+  <div id="aplayer"></div>
+  <script src="https://unpkg.com/browse/aplayer@1.10.1/dist/APlayer.min.js"></script>
+  <script src="https://alleyf.github.io/js/useaplayer.js"></script>
