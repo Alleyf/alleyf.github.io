@@ -13,8 +13,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/机器学习/CV/Papers Reading.md",
-                "mode": "preview",
+                "file": "source/_posts/前后端开发/algorithm.md",
+                "mode": "source",
                 "backlinks": false,
                 "source": false
               }
@@ -39,7 +39,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/机器学习/CV/Papers Reading.md"
+                "file": "source/_posts/前后端开发/algorithm.md"
               }
             }
           }
@@ -116,6 +116,10 @@
   },
   "active": "cfdb25090574dcd1",
   "lastOpenFiles": [
+    "未命名 1.md",
+    "未命名.md",
+    "source/_posts/前后端开发/algorithm.md",
+    "source/_posts/前后端开发/Dateframe—Algorithm.md",
     "source/_posts/英语学习/PaperWords.canvas",
     "source/_posts/英语学习/EnglishWords.canvas",
     "source/_posts/机器学习/CV/Papers Reading.md",
@@ -138,9 +142,7 @@
     "source/_posts/机器学习/CV/卷积神经网络基础.md",
     "canvas/AI学习思路.canvas",
     "().md",
-    "source/_posts/前后端开发/algorithm.md",
     "source/_posts/机器学习/Python_Notes.md",
-    "未命名.md",
     "Excalidraw/Drawing 2023-08-16 20.44.05.excalidraw.md",
     "[.md",
     "source/_posts/机器学习/ML_DL.md",
@@ -153,7 +155,6 @@
     "source/_posts/前后端开发/uni-app.md",
     "source/categories/index.md",
     "source/galleries/index.md",
-    "source/about/index.md",
     "canvas/review plans.canvas",
     "source/_posts/课程学习/review plans.canvas",
     "themes/fluid/source/img/police_beian.png",

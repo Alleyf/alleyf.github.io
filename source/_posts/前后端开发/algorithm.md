@@ -1802,3 +1802,162 @@ cout << E << endl << G;
 
 ## 5.3 栈
 
+
+# 剑指offer
+
+## 简单题
+
+### 1.[数组中重复的数字](https://www.nowcoder.com/practice/6fe361ede7e54db1b84adc81d09d8524)
+
+>**桶排序思想**
+> 1. 首先定义一个与输入长度相等的数组，并将所有值置零；
+> 2. 遍历输入向量，对遇到的值作为数组下标进行自增；
+> 3. 判断自增后的值是否大于1，若是则为重复数则直接返回。
+
+
+```c++
+class Solution {
+  public:
+    /**
+     * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+     *
+     *
+     * @param numbers int整型vector
+     * @return int整型
+     */
+    int duplicate(vector<int>& numbers) {
+        if (numbers.size() != 0) {
+            int a[numbers.size()];
+            //数组元素置零
+            for (int i; i < numbers.size(); i++) {
+                a[i] = 0;
+            }
+            //遍历计数
+            for (int item : numbers) {
+                a[item]++;
+                if (a[item] > 1) {
+                    return item;
+                }
+            }
+        } else {
+            return -1;
+        }
+        return -1;
+    }
+};
+```
+
+> **位置重排**
+>1. 遍历数组，遇到数组元素与下标相同的不用管。
+>2. 遇到数组元素与下标不同，就将其交换到属于它的位置，交换前检查那个位置是否有相同的元素，若有则重复。
+>3. 遍历结束完全交换也没重复，则返回-1.
+
+![|550](https://uploadfiles.nowcoder.com/images/20220421/397721558_1650511844449/985457EF766F228F555A31DC0363FE81)
+```c++
+class Solution {
+public:
+    int duplicate(vector<int>& numbers) {
+        for(int i = 0; i < numbers.size(); i++){
+            //该位置本来就是对的
+            if(numbers[i] == i)
+                continue;
+            //位置不对，需要换到自己对应的位置
+            else{
+                //对应位置相等，重复
+                if(numbers[i] == numbers[numbers[i]])
+                    return numbers[i];
+                //交换位置
+                else{
+                    swap(numbers[i], numbers[numbers[i]]);
+                  	i--;
+                }
+            }
+        }
+        //没有重复
+        return -1;
+    }
+};
+```
+
+> **哈希表**
+> 1. 遍历数组，将没有出现过的元素加入哈希表。
+> 2. 遇到的元素在哈希表中出现过就是重复数组。
+> 3. 遍历结束也没找到就返回-1.
+
+
+```c++
+class Solution {
+public:
+    int duplicate(vector<int>& numbers) {
+        //哈希表记录重复
+        unordered_map<int, int> mp;
+        //遍历数组
+        for(int i = 0; i < numbers.size(); i++){
+            //如果没有出现过就加入哈希表
+            if(mp.find(numbers[i]) == mp.end())
+                mp[numbers[i]]++;
+            //否则就是重复数字
+            else
+                return numbers[i];
+        }
+        //没有重复
+        return -1;
+    }
+};
+
+
+```
+
+
+### 2.[替换空格](https://www.nowcoder.com/practice/0e26e5551f2b489b9f58bc83aa4b6c68)
+
+> python直接用字符串函数`replace`全局替换即可
+
+> **遍历覆盖法**
+> 定义一个新字符串，遍历原字符串，遇到空格新字符串加要求替换的字符，否则添加原字符。
+
+```c++
+class Solution {
+
+  public:
+
+    /**
+
+     * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+
+     *
+
+     *
+
+     * @param s string字符串
+
+     * @return string字符串
+
+     */
+
+    string replaceSpace(string s) {
+
+        string new_s;
+
+        for (int i; i < s.length(); i++) {
+
+            if (s[i] == ' ') {
+
+                new_s += "%20";
+
+            } else {
+
+                new_s += s[i];
+
+            }
+
+        }
+
+        return new_s;
+
+    }
+
+};
+
+```
+
