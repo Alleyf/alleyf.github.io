@@ -14,7 +14,7 @@
               "type": "markdown",
               "state": {
                 "file": "source/_posts/机器学习/CV/Papers Reading.md",
-                "mode": "source",
+                "mode": "preview",
                 "backlinks": false,
                 "source": false
               }
@@ -116,8 +116,10 @@
   },
   "active": "cfdb25090574dcd1",
   "lastOpenFiles": [
-    "1..md",
+    "source/_posts/英语学习/PaperWords.canvas",
+    "source/_posts/英语学习/EnglishWords.canvas",
     "source/_posts/机器学习/CV/Papers Reading.md",
+    "1..md",
     "source/_posts/机器学习/深度学习入门篇.md",
     "source/_posts/机器学习/PyTorch.md",
     "MarpTheme/rose-pine-dawn.css",
@@ -134,7 +136,6 @@
     "source/_posts/机器学习/CV/计算机视觉概述.md",
     "source/_posts/机器学习/CV/目标检测.md",
     "source/_posts/机器学习/CV/卷积神经网络基础.md",
-    "source/_posts/英语学习/EnglishWords.canvas",
     "canvas/AI学习思路.canvas",
     "().md",
     "source/_posts/前后端开发/algorithm.md",
@@ -153,7 +154,6 @@
     "source/categories/index.md",
     "source/galleries/index.md",
     "source/about/index.md",
-    "node_modules/a-sync-waterfall/README.md",
     "canvas/review plans.canvas",
     "source/_posts/课程学习/review plans.canvas",
     "themes/fluid/source/img/police_beian.png",

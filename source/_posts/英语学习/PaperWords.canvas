@@ -1,0 +1,9 @@
+{
+	"nodes":[
+		{"id":"e548223c5a6dcfab","x":40,"y":-340,"width":280,"height":460,"color":"5","type":"text","text":"# VGG\n1. "},
+		{"id":"924fa43a625516c3","x":-360,"y":-340,"width":300,"height":460,"color":"4","type":"text","text":"# AlexNet\n1. "},
+		{"id":"81ef31c4892c7c64","x":-360,"y":200,"width":300,"height":640,"color":"3","type":"text","text":"# GoogLeNet\n1. "},
+		{"id":"820431360ab24451","x":40,"y":200,"width":280,"height":640,"color":"6","type":"text","text":"# ResNet\n1. "}
+	],
+	"edges":[]
+}
