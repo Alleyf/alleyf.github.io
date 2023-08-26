@@ -264,10 +264,188 @@ output = simple_nn(input)
 print(output)
 ```
 
+### 4.2 nn.Conv2d（卷积）
+
+> 卷积层的使用，Conv2d是神经网络结构中的二维卷积结构，也是最常用的模块之一。
 
 
+```python
+import torch  
+import torchvision  
+from torch import nn  
+from torch.nn import Conv2d, MaxPool2d, ReLU  
+from torch.utils.data import DataLoader  
+from torch.utils.tensorboard import SummaryWriter  
+  
+test_sets = torchvision.datasets.CIFAR10("./data/datasets/CIFAR", train=False,  
+                                         transform=torchvision.transforms.ToTensor(),  
+                                         download=True)  
+dataloader = DataLoader(test_sets, batch_size=64, shuffle=True)  
+  
+  
+class My_Cnn(nn.Module):  
+    def __init__(self, ):  
+        super(My_Cnn, self).__init__()  
+        self.conv1 = Conv2d(in_channels=3, out_channels=6, kernel_size=3, stride=1, padding=0)  
+        # self.maxpool1 = MaxPool2d(6, stride=2, padding=0)  
+        # self.nonlinear1 = ReLU()  
+    def forward(self, x):  
+        map1 = self.conv1(x)  
+        output = self.nonlinear1(map1)  
+        return output  
+  
+  
+mycnn = My_Cnn()  
+print(mycnn)  
+step = 0  
+writer = SummaryWriter("logs")  
+for data in dataloader:  
+    imgs, targets = data  
+    output = mycnn(imgs)  
+    output = torch.reshape(output, [-1, 3, 30, 30])  
+    print("Batch:" + str(step), imgs.shape)  
+    print("Batch:" + str(step), output.shape)  
+    writer.add_image("input_img", imgs, step, dataformats="NCHW")  
+    writer.add_image("output_img", output, step, dataformats="NCHW")  
+    step += 1
+
+```
+
+**Tensorboard结果：**
+
+![|350](https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308261350971.png)
+
+---
+### 4.3 nn.MaxPool2d（最大池化）
+
+> 最大池化保持特征图通道数不变的前提下，大小减少约一半左右，起到减小网络参数，提取关键特征，加快收敛速度（本身不具备特征提取作用）。
 
 
+```python
+import torch  
+import torchvision  
+from torch.nn import MaxPool2d  
+from torch import nn  
+from torch.utils.data import DataLoader  
+from torch.utils.tensorboard import SummaryWriter  
+  
+test_sets = torchvision.datasets.CIFAR10("./data/datasets/CIFAR", train=False,  
+                                         transform=torchvision.transforms.ToTensor(),  
+                                         download=True)  
+dataloader = DataLoader(test_sets, batch_size=64, shuffle=True)  
+
+class NiuMa(nn.Module):  
+    def __init__(self):  
+        super(NiuMa, self).__init__()  
+        self.maxpool = MaxPool2d(3, ceil_mode=True)  
+  
+    def forward(self, input):  
+        return self.maxpool(input)  
+  
+  
+writer = SummaryWriter("logs")  
+niuma = NiuMa()  
+step = 0  
+for data in dataloader:  
+    imgs, targets = data  
+    output = niuma(imgs)  
+    writer.add_image("input_maxpool", imgs, step, dataformats="NCHW")  
+    writer.add_image("output_maxpool", output, step, dataformats="NCHW")  
+    print("batch:" + str(step), imgs.shape, output.shape)  
+    step += 1  
+  
+writer.close()
+
+```
+
+**Tensorboard结果：**
+*输入图像*
+![image.png | 225](https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308261448451.png)
+*最大池化输出图像*![image.png | 250](https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308261448510.png)
+
+---
+### 4.4 非线性激活
+
+> 非线性激活对输入进行非线性处理，从而拟合出需要的模型，非线性越多拟合效果越好，但容易过拟合，`ReLU激活函数`是最常用的非线性激活函数。
+
+
+```python
+import torch  
+import torchvision.datasets  
+from torch import nn  
+from torch.nn import ReLU, Sigmoid  
+from torch.utils.data import DataLoader  
+from torch.utils.tensorboard import SummaryWriter  
+    
+dataset = torchvision.datasets.CIFAR10("./data/datasets/CIFAR", train=False,  
+                                       transform=torchvision.transforms.ToTensor(), download=True)  
+dataloader = DataLoader(dataset, batch_size=64, shuffle=True)  
+  
+  
+class NiuMa(nn.Module):  
+    def __init__(self):  
+        super(NiuMa, self).__init__()  
+        self.relu = ReLU()  
+        self.sigmoid = Sigmoid()  
+  
+    def forward(self, input):  
+        return self.sigmoid(input)  
+  
+  
+writer = SummaryWriter("logs")  
+niuma = NiuMa()  
+step = 0  
+for data in dataloader:  
+    imgs, targets = data  
+    output = niuma(imgs)  
+    writer.add_image("output_sigmoid", output, global_step=step, dataformats="NCHW")  
+    step += 1  
+writer.close()
+
+```
+
+**TensorBoard结果：**
+
+*Sigmoid非线性激活*
+![image.png|350](https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308261517218.png)
+
+### 4.5 线性层
+
+> 线性层一般为网络最后的全连接层，分类问题则经过softmax得到各个类别的概率。
+
+
+```python
+import torch  
+import torchvision.datasets  
+from torch import nn  
+from torch.nn import Linear  
+from torch.utils.data import DataLoader  
+  
+dataset = torchvision.datasets.CIFAR10("./data/datasets/CIFAR", train=False,  
+                                       transform=torchvision.transforms.ToTensor(), download=True)  
+dataloader = DataLoader(dataset, batch_size=64, shuffle=True, drop_last=True)  
+  
+  
+class NiuMa(nn.Module):  
+    def __init__(self):  
+        super(NiuMa, self).__init__()  
+        # Linear的参数为输入特征数和输出特征数  
+        self.linear = Linear(196608, 10)  
+  
+    def forward(self, input):  
+        return self.linear(input)  
+  
+  
+niuma = NiuMa()  
+  
+for data in dataloader:  
+    imgs, targets = data  
+    imgs = torch.flatten(imgs)  
+    print(imgs.shape)  
+    output = niuma(imgs)  
+    print(output.shape, output)
+
+```
 
 
 

@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/机器学习/CV/Papers Reading.md",
+                "file": "source/_posts/机器学习/PyTorch.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -39,7 +39,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/机器学习/CV/Papers Reading.md"
+                "file": "source/_posts/机器学习/PyTorch.md"
               }
             }
           }
@@ -80,8 +80,17 @@
               "type": "calendar",
               "state": {}
             }
+          },
+          {
+            "id": "b0f98701f68f5433",
+            "type": "leaf",
+            "state": {
+              "type": "advanced-tables-toolbar",
+              "state": {}
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       },
       {
         "id": "c22661f0d161383a",
@@ -114,12 +123,13 @@
       "marp:Marp: Open Preview": false
     }
   },
-  "active": "4a383e802b683e84",
+  "active": "cfdb25090574dcd1",
   "lastOpenFiles": [
+    "source/_posts/机器学习/Python_Notes.md",
     "source/_posts/机器学习/PyTorch.md",
+    "source/_posts/机器学习/CV/Papers Reading.md",
     "source/_posts/机器学习/深度学习入门篇.md",
     "source/_posts/机器学习/机器学习深度学习基础.md",
-    "source/_posts/机器学习/CV/Papers Reading.md",
     "source/_posts/英语学习/EnglishWords.canvas",
     "source/_posts/前后端开发/algorithm.md",
     "未命名 1.md",
@@ -143,7 +153,6 @@
     "source/_posts/机器学习/CV/卷积神经网络基础.md",
     "canvas/AI学习思路.canvas",
     "().md",
-    "source/_posts/机器学习/Python_Notes.md",
     "Excalidraw/Drawing 2023-08-16 20.44.05.excalidraw.md",
     "[.md",
     "source/_posts/机器学习/ML_DL.md",
