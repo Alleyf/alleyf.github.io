@@ -263,6 +263,14 @@ input = torch.tensor(1.0)
 output = simple_nn(input)  
 print(output)
 ```
+
+
+
+
+
+
+
+
 # 常用函数手册
 ![[pytorch常用函数手册.pdf]]
 # 参考文献
