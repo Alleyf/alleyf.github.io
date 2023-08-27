@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/机器学习/PyTorch.md",
+                "file": "source/_posts/前后端开发/algorithm.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -39,7 +39,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/机器学习/PyTorch.md"
+                "file": "source/_posts/前后端开发/algorithm.md"
               }
             }
           }
@@ -125,13 +125,15 @@
   },
   "active": "cfdb25090574dcd1",
   "lastOpenFiles": [
-    "source/_posts/机器学习/Python_Notes.md",
+    "source/_posts/英语学习/EnglishWords.canvas",
+    "source/_posts/前后端开发/algorithm.md",
+    "Excalidraw/Drawing 2023-08-16 20.44.05.excalidraw.md",
+    "Excalidraw/Drawing 2023-07-17 11.09.29.excalidraw.md",
     "source/_posts/机器学习/PyTorch.md",
+    "source/_posts/机器学习/Python_Notes.md",
     "source/_posts/机器学习/CV/Papers Reading.md",
     "source/_posts/机器学习/深度学习入门篇.md",
     "source/_posts/机器学习/机器学习深度学习基础.md",
-    "source/_posts/英语学习/EnglishWords.canvas",
-    "source/_posts/前后端开发/algorithm.md",
     "未命名 1.md",
     "未命名.md",
     "source/_posts/前后端开发/Dateframe—Algorithm.md",
@@ -153,7 +155,6 @@
     "source/_posts/机器学习/CV/卷积神经网络基础.md",
     "canvas/AI学习思路.canvas",
     "().md",
-    "Excalidraw/Drawing 2023-08-16 20.44.05.excalidraw.md",
     "[.md",
     "source/_posts/机器学习/ML_DL.md",
     "source/_posts/前后端开发/Vue.md",
@@ -162,7 +163,6 @@
     "source/_posts/英语学习/考研单词.md",
     "Vue-Continue.md",
     "source/_posts/前后端开发/uni-app.md",
-    "source/categories/index.md",
     "canvas/review plans.canvas",
     "source/_posts/课程学习/review plans.canvas",
     "themes/fluid/source/img/police_beian.png",

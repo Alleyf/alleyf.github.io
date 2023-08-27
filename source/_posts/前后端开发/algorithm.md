@@ -5,7 +5,6 @@ tags: [Algorithm]
 sticky: 70
 excerpt: some solutions about common algorithms
 ---
-
 1. [[#1.1递归|1.1递归]]
 1. [[#2.1 两数之和|2.1 两数之和]]
 1. [[#2.2 合并两个有序数组|2.2 合并两个有序数组]]
@@ -54,7 +53,11 @@ excerpt: some solutions about common algorithms
 	1. [[#5.1 向量#[完数与盈数](http://t.cn/AiKEyQWW)|[完数与盈数](http://t.cn/AiKEyQWW)]]
 1. [[#5.2 队列|5.2 队列]]
 1. [[#5.3 栈|5.3 栈]]
-
+1. [[#简单题|简单题]]
+	1. [[#简单题#1.[数组中重复的数字](https://www.nowcoder.com/practice/6fe361ede7e54db1b84adc81d09d8524)|1.[数组中重复的数字](https://www.nowcoder.com/practice/6fe361ede7e54db1b84adc81d09d8524)]]
+	1. [[#简单题#2.[替换空格](https://www.nowcoder.com/practice/0e26e5551f2b489b9f58bc83aa4b6c68)|2.[替换空格](https://www.nowcoder.com/practice/0e26e5551f2b489b9f58bc83aa4b6c68)]]
+	1. [[#简单题#3.[从尾到头打印链表](https://www.nowcoder.com/practice/d0267f7f55b3412ba93bd35cfa8e8035)|3.[从尾到头打印链表](https://www.nowcoder.com/practice/d0267f7f55b3412ba93bd35cfa8e8035)]]
+	1. [[#简单题#4.[用两个栈实现队列](https://www.nowcoder.com/practice/54275ddae22f475981afa2244dd448c6)|4.[用两个栈实现队列](https://www.nowcoder.com/practice/54275ddae22f475981afa2244dd448c6)]]
 
 # 1. 基础知识
 ***
@@ -1959,5 +1962,288 @@ class Solution {
 
 };
 
+```
+
+### 3.[从尾到头打印链表](https://www.nowcoder.com/practice/d0267f7f55b3412ba93bd35cfa8e8035)
+
+**1.数组逆向拷贝**
+
+> 1. 遍历链表，用一个数组顺序添加节点值
+> 2. 逆向遍历数组，添加数组值到新数组中
+
+```c++
+/**
+*  struct ListNode {
+*        int val;
+*        struct ListNode *next;
+*        ListNode(int x) :
+*              val(x), next(NULL) {
+*        }
+*  };
+*/
+#include <cmath>
+#include <cstddef>
+#include <vector>
+class Solution {
+  public:
+     vector<int> printListFromTailToHead(ListNode* head) {
+         vector<int> a, b;
+         while (head != nullptr) {
+             a.push_back(head->val);
+             head = head->next;
+         }
+         for (int i = a.size() - 1; i >= 0; i--) {
+             b.push_back(a[i]);
+         }
+         return b;
+     }
+
+};
+
+```
+
+**2.递归**
+
+> 1. 从表头开始往后递归进入每一个节点。
+> 2. 遇到尾节点后开始返回，每次返回依次添加一个值进入输出数组。
+> 3. 直到递归返回表头
+
+```c++
+/**
+*  struct ListNode {
+*        int val;
+*        struct ListNode *next;
+*        ListNode(int x) :
+*              val(x), next(NULL) {
+*        }
+*  };
+*/
+#include <cmath>
+#include <cstddef>
+#include <vector>
+class Solution {
+public:
+    //递归函数
+    void recursion(ListNode* head, vector<int>& res){ 
+        if(head != NULL){
+            //先往链表深处遍历
+            recursion(head->next, res); 
+            //再填充到数组就是逆序
+            res.push_back(head->val); 
+        }
+    }
+    vector<int> printListFromTailToHead(ListNode* head) {
+        vector<int> res;
+        //递归函数打印
+        recursion(head, res); 
+        return res;
+    }
+};
+
+
+```
+
+**3.栈**
+
+> 1. 我们可以顺序遍历链表，将链表的值push到栈中。
+> 2. 然后再依次弹出栈中的元素，加入到数组中，即可实现链表逆序。
+
+![](https://uploadfiles.nowcoder.com/images/20210929/397721558_1632894642785/BE964CB47EFCAE9EDFDA27F797D795C0)
+
+```c++
+#include <cmath>
+#include <cstddef>
+#include <vector>
+class Solution {
+public:
+    vector<int> printListFromTailToHead(ListNode* head) {
+        vector<int> res;
+        stack<int> s;
+        //正序输出链表到栈中
+        while(head != NULL){ 
+            s.push(head->val);
+            head = head->next;
+        }
+        //输出栈中元素到数组中
+        while(!s.empty()){ 
+            res.push_back(s.top());
+            s.pop();
+        }
+        return res;
+    }
+};
+```
+
+### 4.[用两个栈实现队列](https://www.nowcoder.com/practice/54275ddae22f475981afa2244dd448c6)
+
+**解题思路**：
+
+借助栈的**先进后出**规则模拟实现队列的**先进先出**
+
+1. **当插入时，直接插入 stack1
+2. 当弹出时，当 **stack2 不为空**，**弹出 stack2 栈顶元素**，如果 stack2 **为空**，**将 stack1 中的全部数逐个出栈入栈 stack2，再弹出 stack2 栈顶元素**
+
+  
+
+**图解**：
+
+![](https://uploadfiles.nowcoder.com/images/20210630/889362376_1625037262242/6A83CFA85D068C98792D42B93A33518D)  
+
+  
+
+**代码展示：**
+
+
+```c++
+class Solution {
+  public:
+    void push(int node) {
+        stack1.push(node);
+    }
+    int pop() {
+        if (stack2.empty()) {
+            while (!stack1.empty()) {
+                stack2.push(stack1.top());
+                stack1.pop();
+            }
+        }
+        int node = stack2.top();
+        stack2.pop();
+        return node;
+    }
+ 
+  private:
+    stack<int> stack1;
+    stack<int> stack2;
+};
+```
+
+**复杂度分析**：
+
+> - 时间复杂度：对于插入和删除操作，时间复杂度均为 O(1)。插入不多说，对于删除操作，虽然看起来是 O(n) 的时间复杂度，但是仔细考虑下每个元素只会「至多被插入和弹出 stack2 一次」，因此均摊下来每个元素被删除的时间复杂度仍为 O(1)。
+> 
+> - 空间复杂度O(N)：辅助栈的空间，最差的情况下两个栈共存储N个元素.
+
+
+### 5.[旋转数组的最小数字](https://www.nowcoder.com/practice/9f3231a991af4f55b95579b44b7a01ba)
+
+**求解思路：**
+1. 暴力法
+
+> - 特殊情况，如果数组为空，则直接返回0
+> - 创建最小值 min
+> - 遍历数组每一个元素nums，并更新最小值 min = min(min，num)
+> - 遍历结束，直接返回 min
+
+时间复杂度O(N)：N表示数组的长度，遍历整个数组O(N)
+空间复杂度O(1)：仅使用一个额外空间变量O(1)
+
+
+```c++
+class Solution {
+  public:
+    int minNumberInRotateArray(vector<int>& nums) {
+         int min = 10000;
+         for (int item : nums) {
+             if (min >= item)
+                 min = item;
+         }
+         return min;
+    }
+};
+```
+---
+
+2. 二分法
+
+> - **初始化**：定义二分端点双指针`i，j`，`m=（i+j）/ 2`为每次二分的中点（ "/" 代表向下取整除法）
+> - **循环二分**：循环不成立则按照以下规则更新双指针：
+>   1. 当 array[m] > array[j] 时： m 一定在左排序数组中，即旋转点 x 一定在 [m + 1, j] 闭区间内，因此执行 i = m + 1；
+>   2. 当 array[m] < array[j] 时： m 一定在右排序数组中，即旋转点 x 一定在[i, m]闭区间内，因此执行 j = m；
+>   3. 当 array[m] = array[j] 时： 无法判断 mm 在哪个排序数组中，即无法判断旋转点 x 在 [i, m] 还是 [m + 1, j] 区间中。解决方案： 执行 j = j - 1 缩小判断范围
+> - **返回值**： 当 i = j 时跳出二分循环，并返回旋转点的值 array[i] 即可。
+
+![|500](https://uploadfiles.nowcoder.com/images/20210716/889362376_1626418937573/3C28F80DBB0E1E084CB71A32958F04F9)
+
+时间复杂度O(logN)：N表示数组的长度，二分查找O(logN)
+空间复杂度O(1)：仅使用常数（i, j, m）额外空间变量O(1)
+
+
+```c++
+class Solution {
+  public:
+    int minNumberInRotateArray(vector<int>& nums) {
+        int i = 0, j = nums.size() - 1;
+        while (i != j) {
+            int m = (i + j) / 2;
+            if (nums[m] > nums[j])
+                i = m + 1;
+            else if (nums[m] < nums[j])
+                j = m;
+            else
+                j -= 1;
+        }
+        return nums[i];
+    }
+};
+```
+
+### 6.[二进制中1的个数](https://www.nowcoder.com/practice/8ee967e43c2c4ec193b040ea7fbb10b8)
+
+**求解思路：**
+
+1. 循环按位比较法（推荐使用）
+
+**知识点：位运算**
+
+计算机的数字由二进制表示，我们平常的运算是对整个数字进行运算，但是还可以按照二进制的每一位分别进行运算。常见运算有位与、位或、移位、位异或等。
+
+**思路：**
+
+我们可以检查该数字的二进制每一位是否为1，如果遍历二进制每一位呢？可以考虑移位运算，每次移动一位就可以。至于怎么统计到1呢？我们都只知道数字1与数字相位与运算，其实只是最后一位为1就是1，最后一位为0就是0，这样我们只需要将数字1移位运算，就可以遍历二进制的每一位，再去做位与运算，结果为1的就是二进制中为1的。
+
+**具体做法：**
+
+> - 遍历二进制的32位，通过移位0-31次实现。
+> - 将移位后的1与数字进行位与运算，从而判断数字的二进制每一位结果，结果为1就记录一次。
+
+
+```c++
+class Solution {
+public:
+    int  NumberOf1(int n) {
+        int res = 0;
+        //遍历32位
+        for(int i = 0; i < 32; i++){
+            //按位比较
+            if((n & (1 << i)) != 0)   
+                res++;
+        }
+        return res;
+     }
+};
+```
+
+2. 暴力法
+
+> - 判断数n是否为负数，负数则转化为相同二进制表示的正数（$P_b = 2^N+n,N为二进制位数$）
+> - 通过连除法，用结果累加n%2的余数，并更新n=n/2
+
+
+```c++
+class Solution {
+  public:
+    int NumberOf1(int n) {
+        int sum = 0;
+        long m = n;
+        if (n < 0)
+            m = n + pow(2, 32);
+        while (m != 0) {
+            sum += m % 2;
+            m /= 2;
+        }
+        return sum;
+    }
+};
 ```
 

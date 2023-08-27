@@ -27,8 +27,11 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://s2.loli.net/2023/05/22/tcH9QJ726li3Rng.png">
 <meta property="og:image" content="https://uploadfiles.nowcoder.com/images/20220421/397721558_1650511844449/985457EF766F228F555A31DC0363FE81">
+<meta property="og:image" content="https://uploadfiles.nowcoder.com/images/20210929/397721558_1632894642785/BE964CB47EFCAE9EDFDA27F797D795C0">
+<meta property="og:image" content="https://uploadfiles.nowcoder.com/images/20210630/889362376_1625037262242/6A83CFA85D068C98792D42B93A33518D">
+<meta property="og:image" content="https://uploadfiles.nowcoder.com/images/20210716/889362376_1626418937573/3C28F80DBB0E1E084CB71A32958F04F9">
 <meta property="article:published_time" content="2023-03-17T11:06:15.000Z">
-<meta property="article:modified_time" content="2023-08-25T12:45:08.143Z">
+<meta property="article:modified_time" content="2023-08-27T13:20:32.161Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="Algorithm">
 <meta name="twitter:card" content="summary_large_image">
@@ -272,7 +275,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          31k words
+          36k words
         
       </span>
     
@@ -283,7 +286,7 @@
         
         
         
-          262 mins
+          296 mins
         
       </span>
     
@@ -334,7 +337,7 @@
               <p class="note note-info">
                 
                   
-                    Last updated on 20 hours ago
+                    Last updated on 2 minutes ago
                   
                 
               </p>
@@ -413,6 +416,13 @@
 </li>
 <li>[[#5.2 队列|5.2 队列]]</li>
 <li>[[#5.3 栈|5.3 栈]]</li>
+<li>[[#简单题|简单题]]<ol>
+<li>[[#简单题#1.<a target="_blank" rel="noopener" href="https://www.nowcoder.com/practice/6fe361ede7e54db1b84adc81d09d8524">数组中重复的数字</a>|1.<a target="_blank" rel="noopener" href="https://www.nowcoder.com/practice/6fe361ede7e54db1b84adc81d09d8524">数组中重复的数字</a>]]</li>
+<li>[[#简单题#2.<a target="_blank" rel="noopener" href="https://www.nowcoder.com/practice/0e26e5551f2b489b9f58bc83aa4b6c68">替换空格</a>|2.<a target="_blank" rel="noopener" href="https://www.nowcoder.com/practice/0e26e5551f2b489b9f58bc83aa4b6c68">替换空格</a>]]</li>
+<li>[[#简单题#3.<a target="_blank" rel="noopener" href="https://www.nowcoder.com/practice/d0267f7f55b3412ba93bd35cfa8e8035">从尾到头打印链表</a>|3.<a target="_blank" rel="noopener" href="https://www.nowcoder.com/practice/d0267f7f55b3412ba93bd35cfa8e8035">从尾到头打印链表</a>]]</li>
+<li>[[#简单题#4.<a target="_blank" rel="noopener" href="https://www.nowcoder.com/practice/54275ddae22f475981afa2244dd448c6">用两个栈实现队列</a>|4.<a target="_blank" rel="noopener" href="https://www.nowcoder.com/practice/54275ddae22f475981afa2244dd448c6">用两个栈实现队列</a>]]</li>
+</ol>
+</li>
 </ol>
 <h1 id="1-基础知识"><a href="#1-基础知识" class="headerlink" title="1. 基础知识"></a>1. 基础知识</h1><hr>
 <h2 id="1-1递归"><a href="#1-1递归" class="headerlink" title="1.1递归"></a>1.1递归</h2><p>***自顶向下递归<br>自底向上迭代</p>
@@ -628,6 +638,117 @@
 </blockquote>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><br>  <span class="hljs-keyword">public</span>:<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">     * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">     * @param s string字符串</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">     * @return string字符串</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">     */</span><br><br>    <span class="hljs-function">string <span class="hljs-title">replaceSpace</span><span class="hljs-params">(string s)</span> </span>&#123;<br><br>        string new_s;<br><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i; i &lt; s.<span class="hljs-built_in">length</span>(); i++) &#123;<br><br>            <span class="hljs-keyword">if</span> (s[i] == <span class="hljs-string">&#x27; &#x27;</span>) &#123;<br><br>                new_s += <span class="hljs-string">&quot;%20&quot;</span>;<br><br>            &#125; <span class="hljs-keyword">else</span> &#123;<br><br>                new_s += s[i];<br><br>            &#125;<br><br>        &#125;<br><br>        <span class="hljs-keyword">return</span> new_s;<br><br>    &#125;<br><br>&#125;;<br><br></code></pre></td></tr></table></figure>
 
+<h3 id="3-从尾到头打印链表"><a href="#3-从尾到头打印链表" class="headerlink" title="3.从尾到头打印链表"></a>3.<a target="_blank" rel="noopener" href="https://www.nowcoder.com/practice/d0267f7f55b3412ba93bd35cfa8e8035">从尾到头打印链表</a></h3><p><strong>1.数组逆向拷贝</strong></p>
+<blockquote>
+<ol>
+<li>遍历链表，用一个数组顺序添加节点值</li>
+<li>逆向遍历数组，添加数组值到新数组中</li>
+</ol>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">/**</span><br><span class="hljs-comment">*  struct ListNode &#123;</span><br><span class="hljs-comment">*        int val;</span><br><span class="hljs-comment">*        struct ListNode *next;</span><br><span class="hljs-comment">*        ListNode(int x) :</span><br><span class="hljs-comment">*              val(x), next(NULL) &#123;</span><br><span class="hljs-comment">*        &#125;</span><br><span class="hljs-comment">*  &#125;;</span><br><span class="hljs-comment">*/</span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;cmath&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;cstddef&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;vector&gt;</span></span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>  <span class="hljs-keyword">public</span>:<br>     <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">printListFromTailToHead</span><span class="hljs-params">(ListNode* head)</span> </span>&#123;<br>         vector&lt;<span class="hljs-type">int</span>&gt; a, b;<br>         <span class="hljs-keyword">while</span> (head != <span class="hljs-literal">nullptr</span>) &#123;<br>             a.<span class="hljs-built_in">push_back</span>(head-&gt;val);<br>             head = head-&gt;next;<br>         &#125;<br>         <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = a.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; i--) &#123;<br>             b.<span class="hljs-built_in">push_back</span>(a[i]);<br>         &#125;<br>         <span class="hljs-keyword">return</span> b;<br>     &#125;<br><br>&#125;;<br><br></code></pre></td></tr></table></figure>
+
+<p><strong>2.递归</strong></p>
+<blockquote>
+<ol>
+<li>从表头开始往后递归进入每一个节点。</li>
+<li>遇到尾节点后开始返回，每次返回依次添加一个值进入输出数组。</li>
+<li>直到递归返回表头</li>
+</ol>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">/**</span><br><span class="hljs-comment">*  struct ListNode &#123;</span><br><span class="hljs-comment">*        int val;</span><br><span class="hljs-comment">*        struct ListNode *next;</span><br><span class="hljs-comment">*        ListNode(int x) :</span><br><span class="hljs-comment">*              val(x), next(NULL) &#123;</span><br><span class="hljs-comment">*        &#125;</span><br><span class="hljs-comment">*  &#125;;</span><br><span class="hljs-comment">*/</span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;cmath&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;cstddef&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;vector&gt;</span></span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-comment">//递归函数</span><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">recursion</span><span class="hljs-params">(ListNode* head, vector&lt;<span class="hljs-type">int</span>&gt;&amp; res)</span></span>&#123; <br>        <span class="hljs-keyword">if</span>(head != <span class="hljs-literal">NULL</span>)&#123;<br>            <span class="hljs-comment">//先往链表深处遍历</span><br>            <span class="hljs-built_in">recursion</span>(head-&gt;next, res); <br>            <span class="hljs-comment">//再填充到数组就是逆序</span><br>            res.<span class="hljs-built_in">push_back</span>(head-&gt;val); <br>        &#125;<br>    &#125;<br>    <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">printListFromTailToHead</span><span class="hljs-params">(ListNode* head)</span> </span>&#123;<br>        vector&lt;<span class="hljs-type">int</span>&gt; res;<br>        <span class="hljs-comment">//递归函数打印</span><br>        <span class="hljs-built_in">recursion</span>(head, res); <br>        <span class="hljs-keyword">return</span> res;<br>    &#125;<br>&#125;;<br><br><br></code></pre></td></tr></table></figure>
+
+<p><strong>3.栈</strong></p>
+<blockquote>
+<ol>
+<li>我们可以顺序遍历链表，将链表的值push到栈中。</li>
+<li>然后再依次弹出栈中的元素，加入到数组中，即可实现链表逆序。</li>
+</ol>
+</blockquote>
+<p><img src="https://uploadfiles.nowcoder.com/images/20210929/397721558_1632894642785/BE964CB47EFCAE9EDFDA27F797D795C0" srcset="/img/loading.gif" lazyload></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;cmath&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;cstddef&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;vector&gt;</span></span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">printListFromTailToHead</span><span class="hljs-params">(ListNode* head)</span> </span>&#123;<br>        vector&lt;<span class="hljs-type">int</span>&gt; res;<br>        stack&lt;<span class="hljs-type">int</span>&gt; s;<br>        <span class="hljs-comment">//正序输出链表到栈中</span><br>        <span class="hljs-keyword">while</span>(head != <span class="hljs-literal">NULL</span>)&#123; <br>            s.<span class="hljs-built_in">push</span>(head-&gt;val);<br>            head = head-&gt;next;<br>        &#125;<br>        <span class="hljs-comment">//输出栈中元素到数组中</span><br>        <span class="hljs-keyword">while</span>(!s.<span class="hljs-built_in">empty</span>())&#123; <br>            res.<span class="hljs-built_in">push_back</span>(s.<span class="hljs-built_in">top</span>());<br>            s.<span class="hljs-built_in">pop</span>();<br>        &#125;<br>        <span class="hljs-keyword">return</span> res;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<h3 id="4-用两个栈实现队列"><a href="#4-用两个栈实现队列" class="headerlink" title="4.用两个栈实现队列"></a>4.<a target="_blank" rel="noopener" href="https://www.nowcoder.com/practice/54275ddae22f475981afa2244dd448c6">用两个栈实现队列</a></h3><p><strong>解题思路</strong>：</p>
+<p>借助栈的<strong>先进后出</strong>规则模拟实现队列的<strong>先进先出</strong></p>
+<ol>
+<li>**当插入时，直接插入 stack1</li>
+<li>当弹出时，当 <strong>stack2 不为空</strong>，<strong>弹出 stack2 栈顶元素</strong>，如果 stack2 <strong>为空</strong>，<strong>将 stack1 中的全部数逐个出栈入栈 stack2，再弹出 stack2 栈顶元素</strong></li>
+</ol>
+<p><strong>图解</strong>：</p>
+<p><img src="https://uploadfiles.nowcoder.com/images/20210630/889362376_1625037262242/6A83CFA85D068C98792D42B93A33518D" srcset="/img/loading.gif" lazyload>  </p>
+<p><strong>代码展示：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>  <span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">push</span><span class="hljs-params">(<span class="hljs-type">int</span> node)</span> </span>&#123;<br>        stack1.<span class="hljs-built_in">push</span>(node);<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">pop</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">if</span> (stack2.<span class="hljs-built_in">empty</span>()) &#123;<br>            <span class="hljs-keyword">while</span> (!stack1.<span class="hljs-built_in">empty</span>()) &#123;<br>                stack2.<span class="hljs-built_in">push</span>(stack1.<span class="hljs-built_in">top</span>());<br>                stack1.<span class="hljs-built_in">pop</span>();<br>            &#125;<br>        &#125;<br>        <span class="hljs-type">int</span> node = stack2.<span class="hljs-built_in">top</span>();<br>        stack2.<span class="hljs-built_in">pop</span>();<br>        <span class="hljs-keyword">return</span> node;<br>    &#125;<br> <br>  <span class="hljs-keyword">private</span>:<br>    stack&lt;<span class="hljs-type">int</span>&gt; stack1;<br>    stack&lt;<span class="hljs-type">int</span>&gt; stack2;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong>：</p>
+<blockquote>
+<ul>
+<li><p>时间复杂度：对于插入和删除操作，时间复杂度均为 O(1)。插入不多说，对于删除操作，虽然看起来是 O(n) 的时间复杂度，但是仔细考虑下每个元素只会「至多被插入和弹出 stack2 一次」，因此均摊下来每个元素被删除的时间复杂度仍为 O(1)。</p>
+</li>
+<li><p>空间复杂度O(N)：辅助栈的空间，最差的情况下两个栈共存储N个元素.</p>
+</li>
+</ul>
+</blockquote>
+<h3 id="5-旋转数组的最小数字"><a href="#5-旋转数组的最小数字" class="headerlink" title="5.旋转数组的最小数字"></a>5.<a target="_blank" rel="noopener" href="https://www.nowcoder.com/practice/9f3231a991af4f55b95579b44b7a01ba">旋转数组的最小数字</a></h3><p><strong>求解思路：</strong></p>
+<ol>
+<li>暴力法</li>
+</ol>
+<blockquote>
+<ul>
+<li>特殊情况，如果数组为空，则直接返回0</li>
+<li>创建最小值 min</li>
+<li>遍历数组每一个元素nums，并更新最小值 min = min(min，num)</li>
+<li>遍历结束，直接返回 min</li>
+</ul>
+</blockquote>
+<p>时间复杂度O(N)：N表示数组的长度，遍历整个数组O(N)<br>空间复杂度O(1)：仅使用一个额外空间变量O(1)</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>  <span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">minNumberInRotateArray</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums)</span> </span>&#123;<br>         <span class="hljs-type">int</span> min = <span class="hljs-number">10000</span>;<br>         <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> item : nums) &#123;<br>             <span class="hljs-keyword">if</span> (min &gt;= item)<br>                 min = item;<br>         &#125;<br>         <span class="hljs-keyword">return</span> min;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<hr>
+<ol start="2">
+<li>二分法</li>
+</ol>
+<blockquote>
+<ul>
+<li><strong>初始化</strong>：定义二分端点双指针<code>i，j</code>，<code>m=（i+j）/ 2</code>为每次二分的中点（ “/“ 代表向下取整除法）</li>
+<li><strong>循环二分</strong>：循环不成立则按照以下规则更新双指针：<ol>
+<li>当 array[m] &gt; array[j] 时： m 一定在左排序数组中，即旋转点 x 一定在 [m + 1, j] 闭区间内，因此执行 i = m + 1；</li>
+<li>当 array[m] &lt; array[j] 时： m 一定在右排序数组中，即旋转点 x 一定在[i, m]闭区间内，因此执行 j = m；</li>
+<li>当 array[m] = array[j] 时： 无法判断 mm 在哪个排序数组中，即无法判断旋转点 x 在 [i, m] 还是 [m + 1, j] 区间中。解决方案： 执行 j = j - 1 缩小判断范围</li>
+</ol>
+</li>
+<li><strong>返回值</strong>： 当 i = j 时跳出二分循环，并返回旋转点的值 array[i] 即可。</li>
+</ul>
+</blockquote>
+<p><img src="https://uploadfiles.nowcoder.com/images/20210716/889362376_1626418937573/3C28F80DBB0E1E084CB71A32958F04F9" srcset="/img/loading.gif" lazyload alt="|500"></p>
+<p>时间复杂度O(logN)：N表示数组的长度，二分查找O(logN)<br>空间复杂度O(1)：仅使用常数（i, j, m）额外空间变量O(1)</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>  <span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">minNumberInRotateArray</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums)</span> </span>&#123;<br>        <span class="hljs-type">int</span> i = <span class="hljs-number">0</span>, j = nums.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">while</span> (i != j) &#123;<br>            <span class="hljs-type">int</span> m = (i + j) / <span class="hljs-number">2</span>;<br>            <span class="hljs-keyword">if</span> (nums[m] &gt; nums[j])<br>                i = m + <span class="hljs-number">1</span>;<br>            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (nums[m] &lt; nums[j])<br>                j = m;<br>            <span class="hljs-keyword">else</span><br>                j -= <span class="hljs-number">1</span>;<br>        &#125;<br>        <span class="hljs-keyword">return</span> nums[i];<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<h3 id="6-二进制中1的个数"><a href="#6-二进制中1的个数" class="headerlink" title="6.二进制中1的个数"></a>6.<a target="_blank" rel="noopener" href="https://www.nowcoder.com/practice/8ee967e43c2c4ec193b040ea7fbb10b8">二进制中1的个数</a></h3><p><strong>求解思路：</strong></p>
+<ol>
+<li>循环按位比较法（推荐使用）</li>
+</ol>
+<p><strong>知识点：位运算</strong></p>
+<p>计算机的数字由二进制表示，我们平常的运算是对整个数字进行运算，但是还可以按照二进制的每一位分别进行运算。常见运算有位与、位或、移位、位异或等。</p>
+<p><strong>思路：</strong></p>
+<p>我们可以检查该数字的二进制每一位是否为1，如果遍历二进制每一位呢？可以考虑移位运算，每次移动一位就可以。至于怎么统计到1呢？我们都只知道数字1与数字相位与运算，其实只是最后一位为1就是1，最后一位为0就是0，这样我们只需要将数字1移位运算，就可以遍历二进制的每一位，再去做位与运算，结果为1的就是二进制中为1的。</p>
+<p><strong>具体做法：</strong></p>
+<blockquote>
+<ul>
+<li>遍历二进制的32位，通过移位0-31次实现。</li>
+<li>将移位后的1与数字进行位与运算，从而判断数字的二进制每一位结果，结果为1就记录一次。</li>
+</ul>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span>  <span class="hljs-title">NumberOf1</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span> </span>&#123;<br>        <span class="hljs-type">int</span> res = <span class="hljs-number">0</span>;<br>        <span class="hljs-comment">//遍历32位</span><br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">32</span>; i++)&#123;<br>            <span class="hljs-comment">//按位比较</span><br>            <span class="hljs-keyword">if</span>((n &amp; (<span class="hljs-number">1</span> &lt;&lt; i)) != <span class="hljs-number">0</span>)   <br>                res++;<br>        &#125;<br>        <span class="hljs-keyword">return</span> res;<br>     &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>暴力法</li>
+</ol>
+<blockquote>
+<ul>
+<li>判断数n是否为负数，负数则转化为相同二进制表示的正数（$P_b = 2^N+n,N为二进制位数$）</li>
+<li>通过连除法，用结果累加n%2的余数，并更新n=n/2</li>
+</ul>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>  <span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">NumberOf1</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span> </span>&#123;<br>        <span class="hljs-type">int</span> sum = <span class="hljs-number">0</span>;<br>        <span class="hljs-type">long</span> m = n;<br>        <span class="hljs-keyword">if</span> (n &lt; <span class="hljs-number">0</span>)<br>            m = n + <span class="hljs-built_in">pow</span>(<span class="hljs-number">2</span>, <span class="hljs-number">32</span>);<br>        <span class="hljs-keyword">while</span> (m != <span class="hljs-number">0</span>) &#123;<br>            sum += m % <span class="hljs-number">2</span>;<br>            m /= <span class="hljs-number">2</span>;<br>        &#125;<br>        <span class="hljs-keyword">return</span> sum;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
 
                 
               </div>
@@ -692,7 +813,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Updated on</div>
-          <div>August 25, 2023</div>
+          <div>August 27, 2023</div>
         </div>
       
       <div class="license-meta-item">
