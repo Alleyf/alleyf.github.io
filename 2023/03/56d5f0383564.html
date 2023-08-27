@@ -30,8 +30,9 @@
 <meta property="og:image" content="https://uploadfiles.nowcoder.com/images/20210929/397721558_1632894642785/BE964CB47EFCAE9EDFDA27F797D795C0">
 <meta property="og:image" content="https://uploadfiles.nowcoder.com/images/20210630/889362376_1625037262242/6A83CFA85D068C98792D42B93A33518D">
 <meta property="og:image" content="https://uploadfiles.nowcoder.com/images/20210716/889362376_1626418937573/3C28F80DBB0E1E084CB71A32958F04F9">
+<meta property="og:image" content="https://uploadfiles.nowcoder.com/images/20220419/397721558_1650336051737/D2B5CA33BD970F64A6301FA75AE2EB22">
 <meta property="article:published_time" content="2023-03-17T11:06:15.000Z">
-<meta property="article:modified_time" content="2023-08-27T13:20:32.161Z">
+<meta property="article:modified_time" content="2023-08-27T13:27:36.559Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="Algorithm">
 <meta name="twitter:card" content="summary_large_image">
@@ -286,7 +287,7 @@
         
         
         
-          296 mins
+          300 mins
         
       </span>
     
@@ -337,7 +338,7 @@
               <p class="note note-info">
                 
                   
-                    Last updated on 2 minutes ago
+                    Last updated on a few seconds ago
                   
                 
               </p>
@@ -736,6 +737,11 @@
 <li>将移位后的1与数字进行位与运算，从而判断数字的二进制每一位结果，结果为1就记录一次。</li>
 </ul>
 </blockquote>
+<p><strong>复杂度分析：</strong></p>
+<ul>
+<li>时间复杂度：O(k)O(k)O(k)，kkk为int型的32位，一次遍历</li>
+<li>空间复杂度：O(1)O(1)O(1)，常数级变量，没有额外辅助空间</li>
+</ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span>  <span class="hljs-title">NumberOf1</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span> </span>&#123;<br>        <span class="hljs-type">int</span> res = <span class="hljs-number">0</span>;<br>        <span class="hljs-comment">//遍历32位</span><br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">32</span>; i++)&#123;<br>            <span class="hljs-comment">//按位比较</span><br>            <span class="hljs-keyword">if</span>((n &amp; (<span class="hljs-number">1</span> &lt;&lt; i)) != <span class="hljs-number">0</span>)   <br>                res++;<br>        &#125;<br>        <span class="hljs-keyword">return</span> res;<br>     &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
 
 <ol start="2">
@@ -748,6 +754,23 @@
 </ul>
 </blockquote>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>  <span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">NumberOf1</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span> </span>&#123;<br>        <span class="hljs-type">int</span> sum = <span class="hljs-number">0</span>;<br>        <span class="hljs-type">long</span> m = n;<br>        <span class="hljs-keyword">if</span> (n &lt; <span class="hljs-number">0</span>)<br>            m = n + <span class="hljs-built_in">pow</span>(<span class="hljs-number">2</span>, <span class="hljs-number">32</span>);<br>        <span class="hljs-keyword">while</span> (m != <span class="hljs-number">0</span>) &#123;<br>            sum += m % <span class="hljs-number">2</span>;<br>            m /= <span class="hljs-number">2</span>;<br>        &#125;<br>        <span class="hljs-keyword">return</span> sum;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>位运算优化法（扩展思路）</li>
+</ol>
+<p><strong>思路：</strong></p>
+<p><strong>有一个性质：$n&amp;(n−1)$，会将n的二进制中最低位由1变成0</strong></p>
+<p>我们可以不断让当前的 n与 n−1做位与运算，直到 n的二进制全部变为 0 停止。因为每次运算会使得 n 的最低位的 1 被翻转成0，因此运算次数就等于 n 的二进制位中 1 的个数，由此统计1的个数。</p>
+<p><strong>具体做法：</strong></p>
+<blockquote>
+<ul>
+<li>使用循环检查n是否为0.</li>
+<li>不为0就与n−1做位与运算，去掉二进制最后一位的1，并统计次数。</li>
+</ul>
+</blockquote>
+<p><strong>图示：</strong></p>
+<p><img src="https://uploadfiles.nowcoder.com/images/20220419/397721558_1650336051737/D2B5CA33BD970F64A6301FA75AE2EB22" srcset="/img/loading.gif" lazyload></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">NumberOf1</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span> </span>&#123;<br>        <span class="hljs-type">int</span> res = <span class="hljs-number">0</span>;<br>        <span class="hljs-comment">//当n为0时停止比较</span><br>        <span class="hljs-keyword">while</span>(n)&#123;  <br>            n &amp;= n - <span class="hljs-number">1</span>;<br>            res++;<br>        &#125;<br>        <span class="hljs-keyword">return</span> res;<br>     &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
 
 
                 
