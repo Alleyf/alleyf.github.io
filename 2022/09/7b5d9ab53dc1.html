@@ -94,7 +94,7 @@
 <meta property="og:image" content="c:/Users/alleyf/AppData/Roaming/Typora/typora-user-images/image-20221108172233442.png">
 <meta property="og:image" content="c:/Users/alleyf/AppData/Roaming/Typora/typora-user-images/image-20221108214605083.png">
 <meta property="article:published_time" content="2022-09-10T02:00:00.000Z">
-<meta property="article:modified_time" content="2022-11-11T10:08:07.444Z">
+<meta property="article:modified_time" content="2023-08-31T04:46:14.120Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary_large_image">
@@ -400,7 +400,7 @@
               <p class="note note-info">
                 
                   
-                    Last updated on 10 months ago
+                    Last updated on a month ago
                   
                 
               </p>
@@ -408,7 +408,7 @@
             
               <div class="markdown-body">
                 
-                <h1 id="第一章、计算机语言及系统概述"><a href="#第一章、计算机语言及系统概述" class="headerlink" title="第一章、计算机语言及系统概述"></a>第一章、计算机语言及系统概述</h1><p><u><strong>前言：</strong></u></p>
+                <h1 id="第一章、计算机语言及系统概述"><a href="#第一章、计算机语言及系统概述" class="headerlink" title="第一章、计算机语言及系统概述"></a>第一章、计算机语言及系统概述</h1><p><strong>前言：</strong></p>
 <blockquote>
 <p>无论学习任何语言都要先理解每个知识点本身，在此基础上勤加练习，只有练习的越多，才能掌握对应的要点，练习实践过程中会发现一些未可知意外的问题，不断发现问题解决问题，从而扩充自己的知识面，本篇笔记仅仅是Java入门基础，还有很多深层次内容需要靠自己进一步学习，在这里祝愿大家都能有所收获，成为一名优秀的开发者！</p>
 </blockquote>
@@ -508,15 +508,20 @@
 <div align="center">
     <img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/blog/20220907140012.png" srcset="/img/loading.gif" lazyload style="zoom:33%" align="middle" />
 </div>
-> - **Unicode**具有从0到65535之间的编码，他们通常用从’\u0000’到’\uFFFF’ 之间的**十六进制**值来表示（前缀为u表示Unicode）
->
-> - **boolean类型**只有一位，注意不是一个字节！
 
+<blockquote>
+<ul>
+<li><p><strong>Unicode</strong>具有从0到65535之间的编码，他们通常用从’\u0000’到’\uFFFF’ 之间的<strong>十六进制</strong>值来表示（前缀为u表示Unicode）</p>
+</li>
+<li><p><strong>boolean类型</strong>只有一位，注意不是一个字节！</p>
+</li>
+</ul>
+</blockquote>
 <h2 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h2><div align="center">
     <img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/blog/20220907140707.png" srcset="/img/loading.gif" lazyload style="zoom: 53%" align="middle" />
 </div>
-**提升转换不丢失精度;(type)var强制类型转换会丢失精度**
 
+<p><strong>提升转换不丢失精度;(type)var强制类型转换会丢失精度</strong></p>
 <p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/image-20221031195745491.png" srcset="/img/loading.gif" lazyload alt="image-20221031195745491"></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">TypeChange</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>    <span class="hljs-type">double</span> s=<span class="hljs-number">3.1415</span>;<br>    <span class="hljs-type">int</span> n=(<span class="hljs-type">int</span>)s;<br>    <span class="hljs-type">char</span> b=(<span class="hljs-type">char</span>)n;<br>    <span class="hljs-type">char</span> a=<span class="hljs-string">&#x27;a&#x27;</span>;<br>    String c;<br>    System.out.println(n+b);<br>    <span class="hljs-type">int</span> money=<span class="hljs-number">1000000000</span>;<span class="hljs-comment">//int型为4个字节最大为21亿，超出则异常</span><br>    <span class="hljs-type">int</span> years=<span class="hljs-number">20</span>;<br>    <span class="hljs-type">double</span> total=(<span class="hljs-type">double</span>)(money)*years;<span class="hljs-comment">//提前将其中一个整形转换为浮点型以避免精度缺失</span><br>    System.out.println(total);<br>&#125;<br></code></pre></td></tr></table></figure>
 
@@ -2238,7 +2243,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Updated on</div>
-          <div>November 11, 2022</div>
+          <div>August 31, 2023</div>
         </div>
       
       <div class="license-meta-item">
