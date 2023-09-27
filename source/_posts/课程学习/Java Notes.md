@@ -9,7 +9,7 @@ excerpt: some notation about java。
 
 # 第一章、计算机语言及系统概述
 
-<u>**前言：**</u>
+**前言：**
 
 > 无论学习任何语言都要先理解每个知识点本身，在此基础上勤加练习，只有练习的越多，才能掌握对应的要点，练习实践过程中会发现一些未可知意外的问题，不断发现问题解决问题，从而扩充自己的知识面，本篇笔记仅仅是Java入门基础，还有很多深层次内容需要靠自己进一步学习，在这里祝愿大家都能有所收获，成为一名优秀的开发者！
 
@@ -140,6 +140,7 @@ public static void DefineKey(String[] args) throws Exception {
 <div align="center">
     <img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/blog/20220907140012.png" style="zoom:33%" align="middle" />
 </div>
+
 > - **Unicode**具有从0到65535之间的编码，他们通常用从’\u0000’到’\uFFFF’ 之间的**十六进制**值来表示（前缀为u表示Unicode）
 >
 > - **boolean类型**只有一位，注意不是一个字节！
@@ -150,6 +151,7 @@ public static void DefineKey(String[] args) throws Exception {
 <div align="center">
     <img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/blog/20220907140707.png" style="zoom: 53%" align="middle" />
 </div>
+
 **提升转换不丢失精度;(type)var强制类型转换会丢失精度**
 
 ![image-20221031195745491](https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/image-20221031195745491.png)

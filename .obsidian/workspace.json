@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/前后端开发/algorithm.md",
+                "file": "source/_posts/前后端开发/SpringBoot启示录.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -39,7 +39,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/前后端开发/algorithm.md"
+                "file": "source/_posts/前后端开发/SpringBoot启示录.md"
               }
             }
           }
@@ -88,6 +88,16 @@
               "type": "advanced-tables-toolbar",
               "state": {}
             }
+          },
+          {
+            "id": "7e9efcf37acb2127",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency"
+              }
+            }
           }
         ],
         "currentTab": 1
@@ -125,13 +135,18 @@
   },
   "active": "cfdb25090574dcd1",
   "lastOpenFiles": [
+    "source/_posts/前后端开发/Vue.md",
+    "source/_posts/前后端开发/SpringBoot启示录.md",
+    "source/_posts/前后端开发/uni-app.md",
     "source/_posts/英语学习/EnglishWords.canvas",
+    "source/_posts/课程学习/Java Notes.md",
+    "source/_posts/机器学习/CV/Papers Reading.md",
+    "source/_posts/课程学习/FPGA.md",
     "source/_posts/前后端开发/algorithm.md",
     "Excalidraw/Drawing 2023-08-16 20.44.05.excalidraw.md",
     "Excalidraw/Drawing 2023-07-17 11.09.29.excalidraw.md",
     "source/_posts/机器学习/PyTorch.md",
     "source/_posts/机器学习/Python_Notes.md",
-    "source/_posts/机器学习/CV/Papers Reading.md",
     "source/_posts/机器学习/深度学习入门篇.md",
     "source/_posts/机器学习/机器学习深度学习基础.md",
     "未命名 1.md",
@@ -157,12 +172,8 @@
     "().md",
     "[.md",
     "source/_posts/机器学习/ML_DL.md",
-    "source/_posts/前后端开发/Vue.md",
     "source/_posts/机器学习/NoteBook.md",
-    "source/_posts/前后端开发/SpringBoot启示录.md",
     "source/_posts/英语学习/考研单词.md",
-    "Vue-Continue.md",
-    "source/_posts/前后端开发/uni-app.md",
     "canvas/review plans.canvas",
     "source/_posts/课程学习/review plans.canvas",
     "themes/fluid/source/img/police_beian.png",

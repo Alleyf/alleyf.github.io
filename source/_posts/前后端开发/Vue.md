@@ -1,6 +1,7 @@
 ---
 title: 初识Vue
-tags: [vue]
+tags:
+  - vue
 categories: Front_end_development
 date: 2023-04-16 16:29:16
 sticky: 75
@@ -2090,6 +2091,94 @@ secret)
 - 客户端每次与服务器通信，都要带上这个 JWT，可以把它放在 Cookie 里面自动发送，但是这样不能跨域。
 - 更好的做法是放在 HTTP 请求的头信息'Authorization'字段里面，单独发送。
 
+
+### 请求认证
+
+![image.png|525](https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202309262023932.png)
+
+
+### JWT验证拦截器
+
+![image.png|250](https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202309272236587.png)
+
+
+
+定义拦截器：
+
+```java
+package com.alleyf.config;  
+  
+import com.alibaba.fastjson2.JSON;  
+import com.alleyf.sys.utils.Result;  
+import com.alleyf.common.JwtUtils;  
+import lombok.extern.slf4j.Slf4j;  
+import org.springframework.beans.factory.annotation.Autowired;  
+import org.springframework.stereotype.Component;  
+import org.springframework.web.servlet.HandlerInterceptor;  
+  
+import javax.servlet.http.HttpServletRequest;  
+import javax.servlet.http.HttpServletResponse;  
+  
+@Component  
+@Slf4j  
+public class JwtValidateInterceptor implements HandlerInterceptor {  
+    @Autowired  
+    private JwtUtils jwtUtils;  
+  
+    @Override  
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {  
+        String token = request.getHeader("X-Token");  
+        log.debug(request.getRequestURI() + "待验证：" + token);  
+        if (token != null) {  
+            try {  
+                jwtUtils.getClaimsByToken(token);  
+                log.debug(request.getRequestURI() + " 验证通过");  
+                return true;  
+            } catch (Exception e) {  
+                e.printStackTrace();  
+            }  
+        }  
+        log.debug(request.getRequestURI() + " 禁止访问");  
+        response.setContentType("application/json;charset=utf-8");  
+        response.getWriter().write(JSON.toJSONString(Result.error().message("jwt令牌无效，请重新登录")));  
+        return false;  
+    }  
+}
+
+```
+
+配置使用拦截器
+
+
+```java
+package com.alleyf.config;  
+  
+import com.alleyf.config.JwtValidateInterceptor;  
+import org.springframework.beans.factory.annotation.Autowired;  
+import org.springframework.context.annotation.Configuration;  
+import org.springframework.web.servlet.config.annotation.InterceptorRegistration;  
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;  
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;  
+  
+@Configuration  
+public class MyInterceptorConfig implements WebMvcConfigurer {  
+    @Autowired  
+    private JwtValidateInterceptor jwtValidateInterceptor;  
+  
+    @Override  
+    public void addInterceptors(InterceptorRegistry registry) {  
+        InterceptorRegistration registration = registry.addInterceptor(jwtValidateInterceptor);  
+        registration.addPathPatterns("/**").excludePathPatterns(  
+                "/user/login",  
+                "/user/register",  
+                "/user/logout",  
+                "/user/info",  
+                "/error"  
+        );  
+    }  
+}
+
+```
 
 ### 后端实现
 

@@ -48,7 +48,7 @@ spring.devtooLs.restart.exclude=static/**
 
 ![image.png|425](https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/20230428173445.png)
 
-#  2. 控制器
+# 2. 控制器
 
 > 1. Spring Boot 提供了<font color="#f79646">@Controller</font> 和<font color="#c0504d">@RestController</font> 两种注解来标识此类负责<span style="background:rgba(240, 107, 5, 0.2)">接收和处理 HTTP 请求</span>。
 > 2. 如果请求的是<font color="#00b0f0">页面和数据</font>，使用<font color="#0070c0">@Controller </font>注解即可; 如果只是请求<font color="#ff0000">数据</font>,则可以使用<font color="#c00000">@RestController </font>注解。
@@ -854,7 +854,487 @@ public IPage queryByPage(@PathVariable("page") int page) {
 ```
 
 
-# 6.Vue 框架快速上手
+# 6. JWT 跨域认证
+## 1. Session 认证
+互联网服务离不开用户认证。一般流程是下面这样。
+>   - 用户向服务器发送**用户名和密码**。
+>   - 服务器验证通过后，在当前对话（session）里面保存相关数据，比如用户角色、登录时间等。
+>   - 服务器向用户返回一个 session_id，写入用户的 Cookie。
+>   - 用户随后的每一次请求，都会通过 Cookie，将 session_id 传回服务器。
+>   - 服务器收到 session_id，找到前期保存的数据，由此得知用户的身份。
+
+session 认证流程：
+![|350](https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202307311353929.png)
+session 认证的方式应用非常普遍，但也存在一些问题，扩展性不好，如果是服务
+器集群，或者是跨域的服务导向架构，就要求 session 数据共享，每台服务器都能
+够读取 session，针对此种问题一般有两种方案:
+
+>  1. 一种解决方案是 session 数据持久化，写入数据库或别的持久层。各种服务收到请求后，都向持久层请求数据。这种方案的优点是架构清晰，缺点是工程量比较大。
+> 
+>  2. 一种方案是服务器不再保存 session 数据，所有数据都保存在客户端，每次请求都发回服务器。Token 认证就是这种方案的一个代表。
+
+## 2. Token 认证
+
+Token 是在服务端产生的一串字符串, 是客户端访问资源接口（API) 时所需要的资
+源凭证，流程如下：
+
+>   - 客户端使用用户名跟密码请求登录，服务端收到请求，去验证用户名与密码
+>   - 验证成功后，服务端会签发一个 token 并把这个 token 发送给客户端
+>   - 客户端收到 token 以后，会把它存储起来，比如放在 cookie 里或者 localStorage 里
+>   - 客户端每次向服务端请求资源的时候需要带着服务端签发的 token
+>   - 服务端收到请求，然后去验证客户端请求里面带着的 token，如果验证成功，就向客户端返回请求的数据
+
+![image.png|350](https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202307311410745.png)
+- 基于 token 的用户认证是一种服务端无状态的认证方式，服务端不用存放
+token 数据。
+
+- 用解析 token 的计算时间换取 session 的存储空间，从而减轻服务器的压力
+减少频繁的查询数据库
+
+- token 完全由应用管理，所以它可以避开同源策略
+
+---
+## 3. JWT 的使用
+
+> JSON Web Token（简称 JWT）是一个 token 的具体实现方式，是目前最流行
+> 的跨域认证解决方案。
+> JWT 的原理是，服务器认证以后，生成一个 JSON 对象，发回给用户，具体如下:
+
+```json
+ "姓名": "张三",
+ "角色": "管理员",
+ "到期时间": "2018 年 7 月 1 日 0 点 0 分"
+```
+
+> 用户与服务端通信的时候，都要发回这个 JSON 对象。服务器完全只靠这个对象认定用户身份。
+> 为了防止用户篡改数据，服务器在生成这个对象的时候，会加上**签名**。
+
+
+>JWT 的由三个部分组成，依次如下：
+  ***Header (头部)
+  Payload (负载)
+  Signature  (签名)***
+  三部分最终组合为完整的字符串，中间使用·分隔，如下：
+  Header.Payload.Signature
+           `eyJhbGci0iJIUzI1NiIsInR5cCI6IkpXVCJ9. eyJzdwIi0iIxMjMoNTY30DkwIiwibmFtzsI6IkpvaG4 gRG91IiwiaXNTb2NpYWwiOnRydwV9. 4pcPyMD09o1PSyXnrXCjTwXyr4BsezdI1AVTmud2fU4`
+
+### Header
+
+> Header 部分是一个 JSON 对象，描述 JWT 的元数据
+
+```json
+{
+ "alg": "H256",
+ "typ": "JWT"
+}
+```
+
+- alg 属性表示签名的算法（**algorithm**），默认是 HMAC SHA 256 (写成
+**HS256**)
+- typ 属性表示这个令牌（token）的类型（type），JWT 令牌统一写为 JWT
+- 最后，将上面的 JSON 对象使用 Base 64 URL 算法转成字符串。
+
+### Payload
+
+> Payload 部分也是一个 JSON 对象，用来存放实际需要传递的数据。JWT 规定了 7 个官方字段，供选用。
+
+
+- iss (issuer)：签发人
+- exp (expiration time): 过期时间
+- sub (subject): 主题
+- aud (audience): 受众
+- nbf (Not Before): 生效时间
+- iat (Issued At)：签发时间
+- jti (WT ID): 编号
+
+> 注意，JWT 默认是不加密的，任何人都可以读到，所以不要把秘密信息放在个部分。
+   这个 JSON 对象也要使用 **Base 64 URL** 算法转成字符串。
+
+
+### Signature
+
+>  Signature 部分是对前两部分的签名，防止数据篡改。
+	首先，需要指定一个密钥（secret）。这个密钥只有服务器才知道，不能泄露给用户; 然后，使用 Header 里面指定的签名算法 （默认是 HMAC SHA 256），按照下面的公式产生签名。
+
+```json
+HMACSHA 256 (
+base64UrlEncode (header) + "." +
+base64UrlEncode (payload),
+secret)
+```
+
+算出签名以后，把 Header、Payload、Signature 三个部分拼成一个字符串，每个部分之间用"点”（'.'）分隔，就可以返回给用户。
+![image.png|450](https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202307311433682.png)
+
+### 特点
+
+- 客户端收到服务器返回的 JWT，可以储存在 Cookie 里面，也可以储存在 localStorage。
+- 客户端每次与服务器通信，都要带上这个 JWT，可以把它放在 Cookie 里面自动发送，但是这样不能跨域。
+- 更好的做法是放在 HTTP 请求的头信息'Authorization'字段里面，单独发送。
+
+
+### 请求认证
+
+![image.png|525](https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202309262023932.png)
+
+
+### JWT验证拦截器
+
+![image.png|250](https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202309272236587.png)
+
+
+
+定义拦截器：
+
+```java
+package com.alleyf.config;  
+  
+import com.alibaba.fastjson2.JSON;  
+import com.alleyf.sys.utils.Result;  
+import com.alleyf.common.JwtUtils;  
+import lombok.extern.slf4j.Slf4j;  
+import org.springframework.beans.factory.annotation.Autowired;  
+import org.springframework.stereotype.Component;  
+import org.springframework.web.servlet.HandlerInterceptor;  
+  
+import javax.servlet.http.HttpServletRequest;  
+import javax.servlet.http.HttpServletResponse;  
+  
+@Component  
+@Slf4j  
+public class JwtValidateInterceptor implements HandlerInterceptor {  
+    @Autowired  
+    private JwtUtils jwtUtils;  
+  
+    @Override  
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {  
+        String token = request.getHeader("X-Token");  
+        log.debug(request.getRequestURI() + "待验证：" + token);  
+        if (token != null) {  
+            try {  
+                jwtUtils.getClaimsByToken(token);  
+                log.debug(request.getRequestURI() + " 验证通过");  
+                return true;  
+            } catch (Exception e) {  
+                e.printStackTrace();  
+            }  
+        }  
+        log.debug(request.getRequestURI() + " 禁止访问");  
+        response.setContentType("application/json;charset=utf-8");  
+        response.getWriter().write(JSON.toJSONString(Result.error().message("jwt令牌无效，请重新登录")));  
+        return false;  
+    }  
+}
+
+```
+
+配置使用拦截器
+
+
+```java
+package com.alleyf.config;  
+  
+import com.alleyf.config.JwtValidateInterceptor;  
+import org.springframework.beans.factory.annotation.Autowired;  
+import org.springframework.context.annotation.Configuration;  
+import org.springframework.web.servlet.config.annotation.InterceptorRegistration;  
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;  
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;  
+  
+@Configuration  
+public class MyInterceptorConfig implements WebMvcConfigurer {  
+    @Autowired  
+    private JwtValidateInterceptor jwtValidateInterceptor;  
+  
+    @Override  
+    public void addInterceptors(InterceptorRegistry registry) {  
+        InterceptorRegistration registration = registry.addInterceptor(jwtValidateInterceptor);  
+        registration.addPathPatterns("/**").excludePathPatterns(  
+                "/user/login",  
+                "/user/register",  
+                "/user/logout",  
+                "/user/info",  
+                "/error"  
+        );  
+    }  
+}
+
+```
+
+### 后端实现
+
+#### 加入依赖
+
+```xml
+<dependency>
+   <groupId>io.jsonwebtoken</groupId>
+   <artifactId>jjwt</artifactId>
+   <version>0.9.1</version>
+</dependency>
+```
+
+#### 生成 Token
+
+```java
+//7 天过期
+private static Long expire = 604800;
+//32 位秘钥
+private static String secret = "abcdfghiabcdfghiabcdfghiabcdfghi";
+
+//生成 token
+public static String generateToken(String username){
+   Date now = new Date();
+   Date expiration = new Date (now.getTime() + 1000 * expire);
+   return Jwts.builder ()
+            .setHeaderParam("type","JWT")
+            .setSubject(username)
+            .setIssuedAt(now)
+            .setExpiration(expiration)
+            .signWith(SignatureAlgorithm.HS512, secret)
+            .compact();
+}
+```
+
+#### 解析 token
+
+```java
+public static Claims getClaimsByToken(String token) {  
+    return Jwts.parser()  
+            .setSigningKey(secret)  
+            .parseClaimsJws(token)  
+            .getBody();  
+  
+}
+```
+
+#### 后端完整部分
+
+`UserController. java:`
+```java
+/*  
+ * Copyright (c) alleyf 2023 - 6 - 1 19:56 * 适度编码益脑，沉迷编码伤身，合理安排时间，享受快乐生活。 * */  
+package com.alleyf.airesume.controller;  
+  
+import com.alleyf.airesume.entity.User;  
+import com.alleyf.airesume.mapper.UserMapper;  
+import com.alleyf.airesume.utils.JwtUtils;  
+import com.alleyf.airesume.utils.Result;  
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;  
+import com.baomidou.mybatisplus.core.metadata.IPage;  
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;  
+import io.swagger.annotations.Api;  
+import io.swagger.annotations.ApiOperation;  
+import org.springframework.beans.factory.annotation.Autowired;  
+import org.springframework.web.bind.annotation.*;  
+  
+import java.util.List;  
+  
+@Api(tags = "用户", value = "用户")  
+@RestController  
+@CrossOrigin  
+@RequestMapping("/user")  
+public class UserController {  
+    @Autowired  
+    UserMapper userMapper;  
+
+    @ApiOperation("用户登录")  
+    @PostMapping("/login")  
+    public Result login(@RequestBody User user) {  
+        String token = JwtUtils.generateToken(user.getUsername());  
+        return Result.ok().data("token", token);  
+    }  
+  
+    @ApiOperation("获取用户信息")  
+    @GetMapping("/info")  //"token:xxx"  
+    public Result info(String token) {  
+        String username = JwtUtils.getClaimsByToken(token).getSubject();  
+        String url = "https://img2.baidu.com/it/u=1325995315,4158780794&fm=26&fmt=auto&gp=0.jpg";  
+        return Result.ok().data("name", username).data("avatar", url);  
+    }  
+  
+    @ApiOperation("注销")  
+    @PostMapping("/logout") // "token:xxx"  
+    public Result logout() {  
+        return Result.ok();  
+    }  
+  
+    @ApiOperation("查询所有用户")  
+    @GetMapping("/queryAll")  
+    public List<User> queryAllUser() {  
+//        return userMapper.selectList(null);  
+        return userMapper.queryAllUserAndTask();  
+    }  
+  
+    @ApiOperation("按照用户名查询用户")  
+    @GetMapping("/queryByMName")  
+    public User queryByMName(@RequestParam("username") String username) {  
+//        return userMapper.selectList(null);  
+        return userMapper.selectByName(username);  
+    }  
+  
+    @ApiOperation("按照用户名查询用户(MP)")  
+    @GetMapping("/queryByMPName")  
+    public User queryByMPName(@RequestParam("username") String username) {  
+        return userMapper.selectOne(new QueryWrapper<User>().eq("username", username));  
+    }  
+  
+    @ApiOperation("按照用户名路径查询用户(MP)")  
+    @GetMapping("/queryByPMPName/{username}")  
+    public User queryByPMPName(@PathVariable("username") String username) {  
+        return userMapper.selectOne(new QueryWrapper<User>().eq("username", username));  
+    }  
+  
+    @ApiOperation("按照页码查询用户(MP)")  
+    @GetMapping("/queryByPage/{page}")  
+    public IPage queryByPage(@PathVariable("page") int page) {  
+        Page<User> page1 = new Page<>(page, 5);  
+        IPage iPage = userMapper.selectPage(page1, null);  
+        return iPage;  
+    }  
+  
+    @ApiOperation("添加用户")  
+    @PostMapping("/add")  
+    public String addUser(User user) {  
+        return userMapper.insert(user) > 0 ? "添加成功" : "添加失败";  
+    }  
+}
+```
+
+`Result.java:`
+```java
+/*  
+ * Copyright (c) alleyf 2023 - 5 - 29 }9:52 * 适度编码益脑，沉迷编码伤身，合理安排时间，享受快乐生活。 * */  
+package com.alleyf.airesume.utils;  
+  
+import java.util.HashMap;  
+import java.util.Map;  
+  
+public class Result {  
+    private Boolean success;  
+    private Integer code;  
+    private String message;  
+    private Map<String, Object> data = new HashMap<>();  
+  
+    private Result() {  
+    }  
+  
+    public static Result ok() {  
+        Result r = new Result();  
+        r.setCode(ResultCode.Success);  
+        r.setSuccess(true);  
+        r.setMessage("成功");  
+        return r;  
+    }  
+  
+    public static Result error() {  
+        Result r = new Result();  
+        r.setCode(ResultCode.Error);  
+        r.setSuccess(false);  
+        r.setMessage("失败");  
+        return r;  
+    }  
+  
+    public Result success(Boolean success) {  
+        this.setSuccess(success);  
+        return this;  
+    }  
+  
+    public Result message(String message) {  
+        this.setMessage(message);  
+        return this;  
+    }  
+  
+    public Result code(Integer code) {  
+        this.setCode(code);  
+        return this;  
+    }  
+  
+    public Result data(String key, Object value) {  
+        this.data.put(key, value);  
+        return this;  
+    }  
+  
+    public Result data(Map<String, Object> map) {  
+        this.setData(map);  
+        return this;  
+    }  
+  
+    public Boolean getSuccess() {  
+        return success;  
+    }  
+  
+    public void setSuccess(Boolean success) {  
+        this.success = success;  
+    }  
+  
+    public Integer getCode() {  
+        return code;  
+    }  
+  
+    public void setCode(Integer code) {  
+        this.code = code;  
+    }  
+  
+    public String getMessage() {  
+        return message;  
+    }  
+  
+    public void setMessage(String message) {  
+        this.message = message;  
+    }  
+  
+    public Map<String, Object> getData() {  
+        return data;  
+    }  
+  
+    public void setData(Map<String, Object> data) {  
+        this.data = data;  
+    }  
+}
+```
+
+`JwtUtils.java:`
+```java
+package com.alleyf.airesume.utils;  
+  
+import io.jsonwebtoken.Claims;  
+import io.jsonwebtoken.Jwts;  
+import io.jsonwebtoken.SignatureAlgorithm;  
+  
+import java.util.Date;  
+  
+public class JwtUtils {  
+    //7 天过期  
+    private static final Long expire = 604800L;  
+    //32 位秘钥  
+    private static final String secret = "abcdfghiabcdfghiabcdfghiabcdfghi";  
+  
+    //生成 token  
+    public static String generateToken(String username) {  
+        Date now = new Date();  
+        Date expiration = new Date(now.getTime() + 1000 * expire);  
+        return Jwts.builder()  
+                .setHeaderParam("type", "JWT")  
+                .setSubject(username)  
+                .setIssuedAt(now)  
+                .setExpiration(expiration)  
+                .signWith(SignatureAlgorithm.HS512, secret)  
+                .compact();  
+    }  
+  
+    public static Claims getClaimsByToken(String token) {  
+        return Jwts.parser()  
+                .setSigningKey(secret)  
+                .parseClaimsJws(token)  
+                .getBody();  
+  
+    }  
+}
+```
+
+
+
+# 7.Vue 框架快速上手
 
 [[Vue]]
 
