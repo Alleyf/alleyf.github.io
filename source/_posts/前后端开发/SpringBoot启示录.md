@@ -1061,6 +1061,95 @@ public class MyInterceptorConfig implements WebMvcConfigurer {
 
 ```
 
+### Swagger授权配置
+
+
+```java
+/*  
+ * Copyright (c) alleyf 2023 - 5 - 29 20:33 * 适度编码益脑，沉迷编码伤身，合理安排时间，享受快乐生活。 * */  
+package com.alleyf.config;  
+  
+import com.github.xiaoymin.knife4j.spring.annotations.EnableKnife4j;  
+import io.swagger.annotations.Api;  
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;  
+import org.springframework.context.annotation.Bean;  
+import org.springframework.context.annotation.Configuration;  
+import org.springframework.web.bind.annotation.CookieValue;  
+import org.springframework.web.context.request.async.DeferredResult;  
+import springfox.documentation.builders.ApiInfoBuilder;  
+import springfox.documentation.builders.PathSelectors;  
+import springfox.documentation.builders.RequestHandlerSelectors;  
+import springfox.documentation.oas.annotations.EnableOpenApi;  
+import springfox.documentation.service.*;  
+import springfox.documentation.spi.DocumentationType;  
+import springfox.documentation.spi.service.contexts.SecurityContext;  
+import springfox.documentation.spring.web.plugins.Docket;  
+import springfox.documentation.swagger2.annotations.EnableSwagger2;  
+  
+import java.util.Collections;  
+import java.util.List;  
+  
+@Configuration  
+@EnableKnife4j  
+@EnableOpenApi  
+public class SwaggerConfig {  
+  
+    @Bean  
+    public Docket Api() {  
+        return new Docket(DocumentationType.OAS_30)  
+                .enable(true)//是否启用：注意生产环境需要关闭  
+                .groupName("spring-boot-2.7.12")  
+                .genericModelSubstitutes(DeferredResult.class)  
+                .useDefaultResponseMessages(false)  
+                .forCodeGeneration(true)  
+                .ignoredParameterTypes(CookieValue.class)  
+                .apiInfo(apiInfo())  
+                .select()  
+                //以下拦截配置可以三选一，根据需要进行添加,选择扫描哪些接口  
+//                .apis(RequestHandlerSelectors.basePackage("com.alleyf.*.controller"))  
+                .apis(RequestHandlerSelectors.withClassAnnotation(Api.class))  
+//                .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))  
+                .paths(PathSelectors.any())  
+                .build()  
+                .securitySchemes(Collections.singletonList(securityScheme()))  
+                .securityContexts(Collections.singletonList(securityContext()));  
+  
+    }  
+  
+    private SecurityScheme securityScheme() {  
+        //return new ApiKey("Authorization", "Authorization","header");  
+        return new ApiKey("X-Token", "X-Token", "header");  
+    }  
+  
+    private SecurityContext securityContext() {  
+        return SecurityContext.builder()  
+                .securityReferences(defaultAuth())  
+                .forPaths(PathSelectors.regex("^(?!auth).*$"))  
+                .build();  
+    }  
+  
+    private List<SecurityReference> defaultAuth() {  
+        AuthorizationScope authorizationScope = new AuthorizationScope("global", "accessEverything");  
+        AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];  
+        authorizationScopes[0] = authorizationScope;  
+        return Collections.singletonList(  
+                new SecurityReference("X-Token", authorizationScopes));  
+    }  
+  
+    private ApiInfo apiInfo() {  
+        return new ApiInfoBuilder()  
+                .title("WHUT leave Go-Swagger3接口文档")  
+                .description("WHUT leave Go-前后端分离的接口文档")  
+                .version("1.0")  
+                .contact(new Contact("alleyf", "https://fcsy.com", "alleyf@qq.com"))  
+                .build();  
+    }  
+}
+
+```
+
+
+
 ### 后端实现
 
 #### 加入依赖
@@ -1331,6 +1420,1283 @@ public class JwtUtils {
     }  
 }
 ```
+
+
+# 项目实战-角色管理
+
+## 1.预览效果
+
+![image.png](https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310011258914.png)
+
+## 2.前端
+
+<font color="#ff0000">role.vue:</font>
+
+```vue
+<template>  
+<div>  
+<!-- 添加角色-->  
+<el-dialog  
+:title="dialogTitle"  
+:visible.sync="dialogFormVisible"  
+center  
+width="32%"  
+@close="clearForm"  
+>  
+<el-form  
+ref="roleForm"  
+:model="roleForm"  
+:rules="rules"  
+show-message  
+status-icon  
+>  
+<el-form-item label="角色名" label-width="80px" prop="roleName">  
+<el-input  
+v-model="roleForm.roleName"  
+clearable  
+prefix-icon="el-icon-user"  
+/>  
+</el-form-item>  
+<el-form-item label="角色描述" label-width="80px" prop="roleDesc">  
+<el-input  
+v-model="roleForm.roleDesc"  
+clearable  
+prefix-icon="el-icon-key"  
+/>  
+</el-form-item>  
+</el-form>  
+<div slot="footer" class="dialog-footer">  
+<el-button @click="dialogFormVisible = false">取 消</el-button>  
+<el-button type="primary" @click="saveRole('roleForm')">确 定  
+</el-button>  
+</div>  
+</el-dialog>  
+<!-- 角色检索-->  
+<el-card id="search" shadow="hover">  
+<el-row :gutter="5">  
+<el-col :span="18">  
+<div class="grid-content bg-purple">  
+<el-input  
+v-model="searchModel.queryContent"  
+clearable  
+placeholder="请输入用户名"  
+suffix-icon="el-icon-user"  
+>  
+<el-button  
+slot="append"  
+icon="el-icon-search"  
+type="success"  
+@click="getRoles"  
+/>  
+</el-input>  
+</div>  
+</el-col>  
+<el-col :span="6" align="right">  
+<div class="grid-content bg-purple">  
+<el-button  
+icon="el-icon-plus"  
+size="medium"  
+type="success"  
+@click="addRole"  
+/>  
+</div>  
+</el-col>  
+</el-row>  
+</el-card>  
+<!-- 用户信息-->  
+<el-card shadow="hover">  
+<el-table  
+v-loading="loading"  
+:cell-style="{ 'text-align': 'center' }"  
+:data="tableData"  
+:default-sort="{ prop: 'id', order: 'ascending' }"  
+:header-cell-style="{ 'text-align': 'center' }"  
+border  
+max-height="520"  
+style="width: 100%"  
+>  
+<el-table-column label="#" type="index" width="80">  
+<template slot-scope="scope">  
+<!-- (pageNum-1)*pageSize+index+1-->  
+{{  
+(searchModel.pageNum - 1) * searchModel.pageSize + scope.$index + 1  
+}}  
+</template>  
+</el-table-column>  
+<el-table-column label="角色id" prop="roleId" sortable width="200"/>  
+<el-table-column  
+class="name-wrapper"  
+label="角色名称"  
+prop="roleName"  
+width="260"  
+/>  
+<el-table-column label="角色描述" prop="roleDesc" resizable width="280"/>  
+<el-table-column fixed="right" label="操作" width="160">  
+<template slot-scope="scope">  
+<el-button  
+circle  
+icon="el-icon-delete"  
+size="small"  
+type="danger"  
+@click.native.prevent="deleteRole(scope.$index, tableData)"  
+>  
+</el-button>  
+<el-button  
+circle  
+icon="el-icon-edit"  
+size="small"  
+type="primary"  
+@click="editRole(scope.row)"  
+>  
+</el-button>  
+</template>  
+</el-table-column>  
+</el-table>  
+</el-card>  
+<!-- 分页组件-->  
+<el-footer align="center">  
+<div class="block">  
+<el-pagination  
+:current-page="searchModel.currentPage"  
+:page-size="searchModel.pageNum"  
+:page-sizes="pageSizes"  
+:total="total"  
+layout="total, sizes, prev, pager, next, jumper"  
+@size-change="handleSizeChange"  
+@current-change="handleCurrentChange"  
+/>  
+</div>  
+</el-footer>  
+<el-backtop target=".page-component__scroll .el-scrollbar__wrap"></el-backtop>  
+</div>  
+</template>  
+  
+<script>  
+import roleApi from '@/api/roleManage'  
+import current from 'element-ui/packages/table/src/store/current'  
+// import '@/styles/roleManage.css'  
+  
+export default {  
+name: 'Role',  
+data() {  
+return {  
+searchModel: {  
+queryContent: '',  
+pageNum: 1,  
+pageSize: 10  
+},  
+pageSizes: [10, 20, 50, 100],  
+total: 0,  
+tableData: [],  
+loading: true,  
+dialogFormVisible: false,  
+dialogTitle: '添加角色',  
+roleForm: {  
+roleName: '',  
+roleDesc: ''  
+},  
+rules: {  
+roleName: [  
+{ required: true, message: '请输入角色名', trigger: 'blur' },  
+{  
+min: 1,  
+max: 20,  
+message: '长度在 1 到 20 个字符',  
+trigger: 'blur'  
+}  
+],  
+roleDesc: [  
+{ required: true, message: '请输入角色描述', trigger: 'blur' },  
+{  
+min: 1,  
+max: 30,  
+message: '长度在 3 到 30 个字符',  
+trigger: 'blur'  
+}  
+]  
+}  
+}  
+},  
+computed: {  
+current() {  
+return current  
+}  
+},  
+created() {  
+this.getRoles()  
+},  
+methods: {  
+getRoles() {  
+roleApi  
+.search(this.searchModel)  
+.then((res) => {  
+// console.log(res)  
+this.tableData = res.data.data.records  
+this.total = res.data.data.total  
+this.searchModel.pageNum = res.data.data.current  
+this.loading = false  
+// console.log(this.searchModel.queryContent, this.searchModel.queryItem, this.searchModel.pageSize, this.searchModel.pageNum)  
+})  
+.catch((error) => {  
+console.log(error)  
+})  
+},  
+saveRole(formName) {  
+// alert(this.roleForm)  
+// 提交则触发表单验证  
+this.$refs[formName].validate((valid) => {  
+if (valid) {  
+console.log(this.roleForm)  
+// 提交请求到后台  
+roleApi  
+.save(this.roleForm)  
+.then((res) => {  
+// console.log(res)  
+this.dialogFormVisible = false  
+// 提交结果消息提示  
+this.notify(res, this.message)  
+// 刷新表格  
+this.getRoles()  
+})  
+.catch((error) => {  
+console.log(error)  
+})  
+} else {  
+console.log('error submit!!')  
+return false  
+}  
+})  
+},  
+clearForm() {  
+this.roleForm = {}  
+this.$refs.roleForm.clearValidate()  
+},  
+handleSizeChange(pageSize) {  
+this.searchModel.pageSize = pageSize  
+this.getRoles()  
+},  
+handleCurrentChange(pageNum) {  
+this.searchModel.pageNum = pageNum  
+this.getRoles()  
+},  
+addRole() {  
+this.dialogTitle = '添加角色'  
+this.dialogFormVisible = true  
+this.message = '添加角色成功！'  
+},  
+deleteRole(index, rows) {  
+// console.log(rows[index])  
+this.$confirm(`此操作将永久删除角色<strong style="color: red">${rows[index].roleName}</strong>, 是否继续?`, '提示', {  
+confirmButtonText: '确定',  
+cancelButtonText: '取消',  
+type: 'warning',  
+center: true,  
+dangerouslyUseHTMLString: true  
+}).then(() => {  
+roleApi.del(rows[index].roleId).then((res) => {  
+// console.log(res)  
+rows.splice(index, 1)  
+this.$message({  
+type: 'success',  
+message: res.message  
+})  
+})  
+}).catch(() => {  
+this.$message({  
+type: 'info',  
+message: '已取消删除'  
+})  
+})  
+},  
+editRole(row) {  
+roleApi.getById(row.roleId).then(res => {  
+this.roleForm = res.data.data  
+// console.log(this.userForm)  
+this.dialogTitle = '编辑角色'  
+this.dialogFormVisible = true  
+this.message = '更新角色成功！'  
+}).catch(error => {  
+console.log(error)  
+})  
+},  
+notify(res, message = null) {  
+if (res.code === 20000) {  
+// 提交结果消息提示  
+this.$notify({  
+title: '成功',  
+message: message != null ? message : res.message,  
+type: 'success'  
+})  
+} else {  
+this.$notify.error({  
+title: '失败',  
+message: res.message  
+})  
+}  
+}  
+}  
+}  
+</script>  
+  
+<style scoped></style>
+
+```
+
+<font color="#ff0000">roleManage.js:</font>
+
+```js
+import request from '@/utils/request'  
+  
+export default {  
+search (searchModel) {  
+return request({  
+url: '/role/search',  
+method: 'get',  
+params: {  
+queryContent: searchModel.queryContent,  
+pageSize: searchModel.pageSize,  
+pageNum: searchModel.pageNum  
+}  
+})  
+},  
+save (roleForm) {  
+return request({  
+url: '/role/save',  
+method: 'post',  
+data: roleForm  
+})  
+},  
+del (id) {  
+return request({  
+url: `/role/${id}`,  
+method: 'delete'  
+})  
+},  
+getById (id) {  
+return request({  
+url: `/role/${id}`,  
+method: 'get'  
+})  
+}  
+}
+
+```
+
+## 3.后端
+
+<font color="#f79646">RoleController:</font>
+
+```java
+package com.alleyf.sys.controller;  
+  
+import com.alleyf.sys.entity.Role;  
+import com.alleyf.sys.service.IRoleService;  
+import com.alleyf.sys.utils.Result;  
+import com.baomidou.mybatisplus.core.metadata.IPage;  
+import io.swagger.annotations.Api;  
+import io.swagger.annotations.ApiOperation;  
+import io.swagger.util.Json;  
+import lombok.extern.slf4j.Slf4j;  
+import org.springframework.beans.factory.annotation.Autowired;  
+import org.springframework.web.bind.annotation.*;  
+import org.springframework.stereotype.Controller;  
+  
+/**  
+ * <p>  
+ * 前端控制器  
+ * </p>  
+ *  
+ * @author alleyf  
+ * @since 2023-08-06  
+ */@RestController  
+@Slf4j  
+@RequestMapping("/role")  
+@Api(tags = {"角色"})  
+public class RoleController {  
+    @Autowired  
+    IRoleService roleService;  
+  
+  
+    @ApiOperation("按照角色名查询角色(MP)")  
+    @GetMapping("/queryByName")  
+    public Result queryByName(@RequestParam("roleName") String roleName) {  
+        Role role = roleService.queryByName(roleName);  
+        if (role != null) {  
+            return Result.ok().data("data", role);  
+        } else {  
+            return Result.error().message(roleName + "角色不存在");  
+        }  
+    }  
+  
+    @ApiOperation("按照角色名路径查询角色(MP)")  
+    @GetMapping("/queryByPName/{roleName}")  
+    public Result queryByPName(@PathVariable("roleName") String roleName) {  
+        Role role = roleService.queryByName(roleName);  
+        if (role != null) {  
+            return Result.ok().data("data", role);  
+        } else {  
+            return Result.error().message(roleName + "角色不存在");  
+        }  
+    }  
+  
+    @ApiOperation("按照id路径查询角色")  
+    @GetMapping("/{id}")  
+    public Result queryById(@PathVariable("id") Integer id) {  
+        Role role = roleService.getById(id);  
+        if (role != null) {  
+            return Result.ok().data("data", role);  
+        } else {  
+            return Result.error().message("id为:" + id + "的角色不存在");  
+        }  
+    }  
+  
+    @ApiOperation("按照页码查询角色(MP)")  
+    @GetMapping("/queryByPage")  
+    public Result queryByPage(@RequestParam("pageNum") Long pageNum,  
+                              @RequestParam("pageSize") Long pageSize) {  
+        IPage<Role> roleIPage = roleService.queryByPage(pageNum, pageSize, null);  
+        return roleIPage != null ? Result.ok().data("page", roleIPage) : Result.error().message("平台没有角色");  
+    }  
+  
+    @ApiOperation("添加或更新角色")  
+    @PostMapping("/save")  
+    public Result addRole(@RequestBody Role role) {  
+        boolean saveStatus = roleService.saveOrUpdate(role);  
+        return saveStatus ? Result.ok().message("添加或更新角色成功") : Result.error().message("添加或更新角色失败");  
+    }  
+  
+    @ApiOperation("删除角色")  
+    @DeleteMapping("/{id}")  
+    public Result delRole(@PathVariable("id") Integer id) {  
+        boolean saveStatus = roleService.removeById(id);  
+        return saveStatus ? Result.ok().message("删除角色成功") : Result.error().message("删除角色失败");  
+    }  
+  
+    @ApiOperation("搜索角色")  
+    @GetMapping("/search")  
+    public Result search(@RequestParam(value = "queryContent", required = false) String queryContent,  
+                         @RequestParam(value = "pageSize", defaultValue = "10") Long pageSize,  
+                         @RequestParam(value = "pageNum", defaultValue = "1") Long pageNum) {  
+        IPage<Role> roles = roleService.search(queryContent, pageSize, pageNum);  
+        if (roles != null) {  
+            log.debug("roles: " + roles);  
+            return Result.ok().data("data", roles);  
+        } else {  
+            return Result.error().message("平台没有该角色");  
+        }  
+    }  
+}
+
+```
+
+
+## 角色权限设置
+
+### 1.效果预览
+![image.png](https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310031214347.png)
+
+
+### 2.前端
+
+<font color="#f79646">role.vue:</font>
+```vue
+<template>  
+<div>  
+<!-- 添加角色-->  
+<el-dialog  
+:title="dialogTitle"  
+:visible.sync="dialogFormVisible"  
+center  
+width="32%"  
+@close="clearForm"  
+>  
+<el-form  
+ref="roleForm"  
+:model="roleForm"  
+:rules="rules"  
+show-message  
+status-icon  
+>  
+<el-form-item label="角色名" label-width="80px" prop="roleName">  
+<el-input  
+v-model="roleForm.roleName"  
+clearable  
+prefix-icon="el-icon-user"  
+/>  
+</el-form-item>  
+<el-form-item label="角色描述" label-width="80px" prop="roleDesc">  
+<el-input  
+v-model="roleForm.roleDesc"  
+clearable  
+prefix-icon="el-icon-key"  
+/>  
+</el-form-item>  
+<el-form-item label="权限设置" label-width="80px" prop="menuIdList">  
+<el-tree  
+ref="menuRef"  
+:data="menuList"  
+:props="menuProps"  
+default-expand-all  
+node-key="menuId"  
+show-checkbox  
+>  
+</el-tree>  
+</el-form-item>  
+</el-form>  
+<div slot="footer" class="dialog-footer">  
+<el-button @click="dialogFormVisible = false">取 消</el-button>  
+<el-button type="primary" @click="saveRole('roleForm')">确 定  
+</el-button>  
+</div>  
+</el-dialog>  
+<!-- 角色检索-->  
+<el-card id="search" shadow="hover">  
+<el-row :gutter="5">  
+<el-col :span="18">  
+<div class="grid-content bg-purple">  
+<el-input  
+v-model="searchModel.queryContent"  
+clearable  
+placeholder="请输入用户名"  
+suffix-icon="el-icon-user"  
+>  
+<el-button  
+slot="append"  
+icon="el-icon-search"  
+type="success"  
+@click="getRoles"  
+/>  
+</el-input>  
+</div>  
+</el-col>  
+<el-col :span="6" align="right">  
+<div class="grid-content bg-purple">  
+<el-button  
+icon="el-icon-plus"  
+size="medium"  
+type="success"  
+@click="addRole"  
+/>  
+</div>  
+</el-col>  
+</el-row>  
+</el-card>  
+<!-- 用户信息-->  
+<el-card shadow="hover">  
+<el-table  
+v-loading="loading"  
+:cell-style="{ 'text-align': 'center' }"  
+:data="tableData"  
+:default-sort="{ prop: 'id', order: 'ascending' }"  
+:header-cell-style="{ 'text-align': 'center' }"  
+border  
+max-height="520"  
+style="width: 100%"  
+>  
+<el-table-column label="#" type="index" width="80">  
+<template slot-scope="scope">  
+<!-- (pageNum-1)*pageSize+index+1-->  
+{{  
+(searchModel.pageNum - 1) * searchModel.pageSize + scope.$index + 1  
+}}  
+</template>  
+</el-table-column>  
+<el-table-column label="角色id" prop="roleId" sortable width="200"/>  
+<el-table-column  
+class="name-wrapper"  
+label="角色名称"  
+prop="roleName"  
+width="260"  
+/>  
+<el-table-column label="角色描述" prop="roleDesc" resizable width="280"/>  
+<el-table-column fixed="right" label="操作" width="160">  
+<template slot-scope="scope">  
+<el-button  
+circle  
+icon="el-icon-delete"  
+size="small"  
+type="danger"  
+@click.native.prevent="deleteRole(scope.$index, tableData)"  
+>  
+</el-button>  
+<el-button  
+circle  
+icon="el-icon-edit"  
+size="small"  
+type="primary"  
+@click="editRole(scope.row)"  
+>  
+</el-button>  
+</template>  
+</el-table-column>  
+</el-table>  
+</el-card>  
+<!-- 分页组件-->  
+<el-footer align="center">  
+<div class="block">  
+<el-pagination  
+:current-page="searchModel.currentPage"  
+:page-size="searchModel.pageNum"  
+:page-sizes="pageSizes"  
+:total="total"  
+layout="total, sizes, prev, pager, next, jumper"  
+@size-change="handleSizeChange"  
+@current-change="handleCurrentChange"  
+/>  
+</div>  
+</el-footer>  
+<el-backtop target=".page-component__scroll .el-scrollbar__wrap"></el-backtop>  
+</div>  
+</template>  
+  
+<script>  
+import roleApi from '@/api/roleManage'  
+import menuApi from '@/api/menuManage'  
+import current from 'element-ui/packages/table/src/store/current'  
+// import '@/styles/roleManage.css'  
+  
+export default {  
+name: 'Role',  
+data() {  
+return {  
+searchModel: {  
+queryContent: '',  
+pageNum: 1,  
+pageSize: 10  
+},  
+pageSizes: [10, 20, 50, 100],  
+total: 0,  
+tableData: [],  
+loading: true,  
+dialogFormVisible: false,  
+dialogTitle: '添加角色',  
+roleForm: {  
+roleName: '',  
+roleDesc: ''  
+},  
+rules: {  
+roleName: [  
+{ required: true, message: '请输入角色名', trigger: 'blur' },  
+{  
+min: 1,  
+max: 20,  
+message: '长度在 1 到 20 个字符',  
+trigger: 'blur'  
+}  
+],  
+roleDesc: [  
+{ required: true, message: '请输入角色描述', trigger: 'blur' },  
+{  
+min: 1,  
+max: 30,  
+message: '长度在 3 到 30 个字符',  
+trigger: 'blur'  
+}  
+]  
+},  
+menuProps: {  
+label: 'title',  
+children: 'children'  
+},  
+menuList: []  
+}  
+},  
+computed: {  
+current() {  
+return current  
+}  
+},  
+created() {  
+this.getRoles()  
+this.getAllMenu()  
+},  
+methods: {  
+getAllMenu() {  
+menuApi.getAllMenu().then(res => {  
+this.menuList = res.data.data  
+})  
+},  
+getRoles() {  
+roleApi  
+.search(this.searchModel)  
+.then((res) => {  
+// console.log(res)  
+this.tableData = res.data.data.records  
+this.total = res.data.data.total  
+this.searchModel.pageNum = res.data.data.current  
+this.loading = false  
+// console.log(this.searchModel.queryContent, this.searchModel.queryItem, this.searchModel.pageSize, this.searchModel.pageNum)  
+})  
+.catch((error) => {  
+console.log(error)  
+})  
+},  
+saveRole(formName) {  
+// alert(this.roleForm)  
+// 提交则触发表单验证  
+this.$refs[formName].validate((valid) => {  
+if (valid) {  
+const checkedKeys = this.$refs.menuRef.getCheckedKeys()  
+const halfcheckedKeys = this.$refs.menuRef.getHalfCheckedKeys()  
+this.roleForm.menuIdList = checkedKeys.concat(halfcheckedKeys)  
+// console.log(this.roleForm.menuIdList)  
+// console.log(this.roleForm)  
+// 提交请求到后台  
+roleApi  
+.save(this.roleForm)  
+.then((res) => {  
+// console.log(res)  
+this.dialogFormVisible = false  
+// 提交结果消息提示  
+this.notify(res, this.message)  
+// 刷新表格  
+this.getRoles()  
+})  
+.catch((error) => {  
+console.log(error)  
+})  
+} else {  
+console.log('error submit!!')  
+return false  
+}  
+})  
+},  
+clearForm() {  
+this.roleForm = {}  
+this.$refs.roleForm.clearValidate()  
+this.$refs.menuRef.setCheckedKeys([])  
+},  
+handleSizeChange(pageSize) {  
+this.searchModel.pageSize = pageSize  
+this.getRoles()  
+},  
+handleCurrentChange(pageNum) {  
+this.searchModel.pageNum = pageNum  
+this.getRoles()  
+},  
+addRole() {  
+this.dialogTitle = '添加角色'  
+this.dialogFormVisible = true  
+this.message = '添加角色成功！'  
+this.getAllMenu()  
+},  
+deleteRole(index, rows) {  
+// console.log(rows[index])  
+this.$confirm(`此操作将永久删除角色<strong style="color: red">${rows[index].roleName}</strong>, 是否继续?`, '提示', {  
+confirmButtonText: '确定',  
+cancelButtonText: '取消',  
+type: 'warning',  
+center: true,  
+dangerouslyUseHTMLString: true  
+}).then(() => {  
+roleApi.del(rows[index].roleId).then((res) => {  
+// console.log(res)  
+rows.splice(index, 1)  
+this.$message({  
+type: 'success',  
+message: res.message  
+})  
+})  
+}).catch(() => {  
+this.$message({  
+type: 'info',  
+message: '已取消删除'  
+})  
+})  
+},  
+editRole(row) {  
+roleApi.getById(row.roleId).then(res => {  
+this.roleForm = res.data.data  
+console.log(res.data.data.menuIdList)  
+this.dialogTitle = '编辑角色'  
+this.dialogFormVisible = true  
+this.$refs.menuRef.setCheckedKeys(res.data.data.menuIdList)  
+this.message = '更新角色成功！'  
+}).catch(error => {  
+console.log(error)  
+})  
+},  
+notify(res, message = null) {  
+if (res.code === 20000) {  
+// 提交结果消息提示  
+this.$notify({  
+title: '成功',  
+message: message != null ? message : res.message,  
+type: 'success'  
+})  
+} else {  
+this.$notify.error({  
+title: '失败',  
+message: res.message  
+})  
+}  
+}  
+}  
+}  
+</script>  
+  
+<style scoped></style>
+
+```
+
+
+
+### 3.后端
+
+<font color="#ff0000">RoleController.java:</font>
+```java
+package com.alleyf.sys.controller;  
+  
+import com.alleyf.sys.entity.Role;  
+import com.alleyf.sys.service.IRoleService;  
+import com.alleyf.sys.utils.Result;  
+import com.baomidou.mybatisplus.core.metadata.IPage;  
+import io.swagger.annotations.Api;  
+import io.swagger.annotations.ApiOperation;  
+import io.swagger.util.Json;  
+import lombok.extern.slf4j.Slf4j;  
+import org.springframework.beans.factory.annotation.Autowired;  
+import org.springframework.web.bind.annotation.*;  
+import org.springframework.stereotype.Controller;  
+  
+import java.util.List;  
+  
+/**  
+ * <p>  
+ * 前端控制器  
+ * </p>  
+ *  
+ * @author alleyf  
+ * @since 2023-08-06  
+ */@RestController  
+@Slf4j  
+@RequestMapping("/role")  
+@Api(tags = {"角色"})  
+public class RoleController {  
+    @Autowired  
+    IRoleService roleService;  
+  
+  
+    @ApiOperation("按照角色名查询角色(MP)")  
+    @GetMapping("/queryByName")  
+    public Result queryByName(@RequestParam("roleName") String roleName) {  
+        Role role = roleService.queryByName(roleName);  
+        if (role != null) {  
+            return Result.ok().data("data", role);  
+        } else {  
+            return Result.error().message(roleName + "角色不存在");  
+        }  
+    }  
+  
+    @ApiOperation("按照角色名路径查询角色(MP)")  
+    @GetMapping("/queryByPName/{roleName}")  
+    public Result queryByPName(@PathVariable("roleName") String roleName) {  
+        Role role = roleService.queryByName(roleName);  
+        if (role != null) {  
+            return Result.ok().data("data", role);  
+        } else {  
+            return Result.error().message(roleName + "角色不存在");  
+        }  
+    }  
+  
+    @ApiOperation("按照id路径查询角色")  
+    @GetMapping("/{id}")  
+    public Result queryById(@PathVariable("id") Integer id) {  
+        Role role = roleService.getRoleById(id);  
+        if (role != null) {  
+            return Result.ok().data("data", role);  
+        } else {  
+            return Result.error().message("id为:" + id + "的角色不存在");  
+        }  
+    }  
+  
+    @ApiOperation("按照页码查询角色(MP)")  
+    @GetMapping("/queryByPage")  
+    public Result queryByPage(@RequestParam("pageNum") Long pageNum,  
+                              @RequestParam("pageSize") Long pageSize) {  
+        IPage<Role> roleIPage = roleService.queryByPage(pageNum, pageSize, null);  
+        return roleIPage != null ? Result.ok().data("page", roleIPage) : Result.error().message("平台没有角色");  
+    }  
+  
+    @ApiOperation("添加或更新角色")  
+    @PostMapping("/save")  
+    public Result addRole(@RequestBody Role role) {  
+        boolean saveStatus = roleService.addOrUpdate(role);  
+//        boolean saveStatus = roleService.saveOrUpdate(role);  
+        return saveStatus ? Result.ok().message("添加或更新角色成功") : Result.error().message("添加或更新角色失败");  
+    }  
+  
+    @ApiOperation("删除角色")  
+    @DeleteMapping("/{id}")  
+    public Result delRole(@PathVariable("id") Integer id) {  
+        boolean saveStatus = roleService.delete(id);  
+        return saveStatus ? Result.ok().message("删除角色成功") : Result.error().message("删除角色失败");  
+    }  
+  
+    @ApiOperation("搜索角色")  
+    @GetMapping("/search")  
+    public Result search(@RequestParam(value = "queryContent", required = false) String queryContent,  
+                         @RequestParam(value = "pageSize", defaultValue = "10") Long pageSize,  
+                         @RequestParam(value = "pageNum", defaultValue = "1") Long pageNum) {  
+        IPage<Role> roles = roleService.search(queryContent, pageSize, pageNum);  
+        if (roles != null) {  
+            log.debug("roles: " + roles);  
+            return Result.ok().data("data", roles);  
+        } else {  
+            return Result.error().message("平台没有该角色");  
+        }  
+    }  
+  
+    @ApiOperation("获取所有角色")  
+    @GetMapping("/all")  
+    public Result getAll() {  
+        List<Role> roles = roleService.list();  
+        return Result.ok().data("data", roles);  
+    }  
+  
+}
+
+```
+
+
+### 4.数据库
+
+
+```sql
+delete from x_menu;
+insert into‘x_menu’（'menu_id'，‘component'，‘path'，‘redirect'，‘name'，‘title'，‘icon'，‘parent_id'，‘is_leaf',
+"hidden"）values('1",'Layout',"/sys','/sys/user','sysManage',系统管理','userManage','o','N','o');
+insert into‘x_menu'（menu_id'，‘component'，‘path'，‘redirect'，‘name'，‘title'，‘icon'，‘parent_id'，‘is_leaf',
+"hidden"）values('2','sys/user','user',NULL,'userList',用户列表','user','1','Y",'o');
+insert into‘x_menu（'menu_id'，‘component'，‘path'，‘redirect'，‘name'，‘title'，‘icon'，‘parent_id'，‘is_leaf',
+‘hidden'）values('3','sys/role','role',NULL,'roleList'，'角色列表','roleManage', ,'Y''o');
+insert into‘x_menu’（menu_id'，‘component'，‘path'，‘redirect'，‘name'，‘title', ，icon'，‘parent_id'，‘is_leaf',
+"hidden'）values('4','Layout'，'/test','/test/test1','test','功能测试','form','o'  0'）;
+insert into‘x_menu’（menu_id'，‘component'，‘path'，‘redirect'，‘name' 'title' "icon'，‘parent_id'，‘is_leaf',
+"hidden"）values("5','test/test1','test1',"",'test1','测试点-','form',
+insert into‘x_menu’（'menu_id'，‘component'，‘path'，‘redirect'，‘name", 'title' 'icon'，‘parent_id'，is_leaf',
+‘hidden')values('6','test/test2','test2', ，test2'，测试点二"，'form'   0'）;
+insert into‘x_menu（menu_id'，‘component'，path'，‘redirect'，‘name', ，‘title'，icon'，parent_id，‘is_leaf,
+hidden')values('7','test/test3','test3', ,'test3","测试点三','form','4'",'Y",o');
+
+```
+
+
+
+# 动态路由
+
+## 1.前端
+
+### 1.修改原路由配置
+
+src/router/index.js，保留基础路由，其它的删掉或注释
+
+```js
+import Vue from 'vue'  
+import Router from 'vue-router'  
+  
+Vue.use(Router)  
+  
+/* Layout */  
+import Layout from '@/layout'  
+  
+/**  
+* Note: sub-menu only appear when route children.length >= 1  
+* Detail see: https://panjiachen.github.io/vue-element-admin-site/guide/essentials/router-and-nav.html  
+*  
+* hidden: true if set true, item will not show in the sidebar(default is false)  
+* alwaysShow: true if set true, will always show the root menu  
+* if not set alwaysShow, when item has more than one children route,  
+* it will becomes nested mode, otherwise not show the root menu  
+* redirect: noRedirect if set noRedirect will no redirect in the breadcrumb  
+* name:'router-name' the name is used by <keep-alive> (must set!!!)  
+* meta : {  
+roles: ['admin','editor'] control the page roles (you can set multiple roles)  
+title: 'title' the name show in sidebar and breadcrumb (recommend set)  
+icon: 'svg-name'/'el-icon-x' the icon show in the sidebar  
+breadcrumb: false if set false, the item will hidden in breadcrumb(default is true)  
+activeMenu: '/example/list' if set path, the sidebar will highlight the path you set  
+}  
+*/  
+  
+/**  
+* constantRoutes  
+* a base page that does not have permission requirements  
+* all roles can be accessed  
+*/  
+export const constantRoutes = [  
+{  
+path: '/redirect',  
+component: Layout,  
+hidden: true,  
+children: [  
+{  
+path: '/redirect/:path(.*)',  
+component: () => import('@/views/redirect/index')  
+}  
+]  
+},  
+{  
+path: '/login',  
+component: () => import('@/views/login/index'),  
+hidden: true  
+},  
+  
+{  
+path: '/404',  
+component: () => import('@/views/404'),  
+hidden: true  
+},  
+  
+{  
+path: '/',  
+component: Layout,  
+redirect: '/dashboard',  
+children: [{  
+path: 'dashboard',  
+name: 'Dashboard',  
+component: () => import('@/views/dashboard/index'),  
+meta: { title: '首 页', icon: 'dashboard', affix: true }  
+}]  
+},  
+  
+// {  
+// path: '/sys',  
+// component: Layout,  
+// redirect: '/sys/user',  
+// name: 'Sys',  
+// meta: { title: '系统管理', icon: 'el-icon-s-help' },  
+// children: [  
+// {  
+// path: 'user',  
+// name: 'User',  
+// component: () => import('@/views/sys/user'),  
+// meta: { title: '系统用户', icon: 'user' }  
+// },  
+// {  
+// path: 'role',  
+// name: 'Role',  
+// component: () => import('@/views/sys/role'),  
+// meta: { title: '系统身份', icon: 'tree' }  
+// }  
+// ]  
+// },  
+// {  
+// path: '/test',  
+// component: Layout,  
+// redirect: '/test/test1',  
+// name: 'Test',  
+// meta: {  
+// title: '新品尝鲜',  
+// icon: 'nested'  
+// },  
+// children: [  
+// {  
+// path: 'test1',  
+// component: () => import('@/views/test/test1'),  
+// name: 'Test1',  
+// meta: { title: '功能1' }  
+// },  
+// {  
+// path: 'test2',  
+// component: () => import('@/views/test/test2'),  
+// name: 'Test2',  
+// meta: { title: '功能2' }  
+// },  
+// {  
+// path: 'test3',  
+// component: () => import('@/views/test/test3'),  
+// name: 'Test3',  
+// meta: { title: '功能3' }  
+// }  
+// ]  
+// },  
+//  
+// {  
+// path: 'external-link',  
+// component: Layout,  
+// children: [  
+// {  
+// path: 'https://panjiachen.github.io/vue-element-admin-site/#/',  
+// meta: { title: 'External Link', icon: 'link' }  
+// }  
+// ]  
+// },  
+  
+// 404 page must be placed at the end !!!  
+{ path: '*', redirect: '/404', hidden: true }  
+]  
+  
+const createRouter = () => new Router({  
+// mode: 'history', // require service support  
+scrollBehavior: () => ({ y: 0 }),  
+routes: constantRoutes  
+})  
+  
+const router = createRouter()  
+  
+// Detail see: https://github.com/vuejs/vue-router/issues/1234#issuecomment-357941465  
+export function resetRouter() {  
+const newRouter = createRouter()  
+router.matcher = newRouter.matcher // reset router  
+}  
+  
+export default router
+
+```
+
+### 2.获取菜单数据并保存到Vuex
+
+src/store/modules/user.js
+![image.png](https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310031453650.png)
+![image.png](https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310031453642.png)
+![image.png](https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310031453615.png)
+src/store/getters.js
+![image.png](https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310031454406.png)
+
+### 3.路由转换
+修改src目录下的permiss.js
+（1）导入Layout
+
+```js
+import layout from '@/layout'
+```
+（2）添加动态路由
+
+
+```js
+//路由转换  
+let myRoutes = myFilterAsyncRoutes(store.getters.menuList)  
+// 404  
+myRoutes.push({  
+path: '*',  
+redirect: '/404',  
+hidden: true  
+})  
+//动态添加路由  
+router.addRoutes(myRoutes)  
+//存至全局变量  
+global.myRoutes = myRoutes  
+  
+next({ ...to, replace: true })// 防止刷新后页面空白
+```
+
+完整部分：
+
+```js
+import router from './router'  
+import store from './store'  
+import { Message } from 'element-ui'  
+import NProgress from 'nprogress' // progress bar  
+import 'nprogress/nprogress.css' // progress bar style  
+import { getToken } from '@/utils/auth' // get token from cookie  
+import getPageTitle from '@/utils/get-page-title'  
+import Layout from '@/layout'  
+  
+NProgress.configure({ showSpinner: false }) // NProgress Configuration  
+  
+const whiteList = ['/login'] // no redirect whitelist  
+  
+router.beforeEach(async(to, from, next) => {  
+// start progress bar  
+NProgress.start()  
+  
+// set page title  
+document.title = getPageTitle(to.meta.title)  
+  
+// determine whether the user has logged in  
+const hasToken = getToken()  
+  
+if (hasToken) {  
+if (to.path === '/login') {  
+// if is logged in, redirect to the home page  
+next({ path: '/' })  
+NProgress.done()  
+} else {  
+const hasGetUserInfo = store.getters.name  
+if (hasGetUserInfo) {  
+next()  
+} else {  
+try {  
+// get user info  
+await store.dispatch('user/getInfo')  
+// console.log(store.getters.menuList)  
+// 路由转换  
+const myRoutes = myFilterAsyncRoutes(store.getters.menuList)  
+// 404  
+myRoutes.push({  
+path: '*',  
+redirect: '/404',  
+hidden: true  
+})  
+// 动态添加路由  
+router.addRoutes(myRoutes)  
+// 存至全局变量  
+global.myRoutes = myRoutes  
+  
+next({ ...to, replace: true })// 防止刷新后页面空白  
+  
+// next()  
+} catch (error) {  
+// remove token and go to login page to re-login  
+await store.dispatch('user/resetToken')  
+// Message.error(error || 'Has Error')  
+Message.error({ message: error || 'Has Error' })  
+next(`/login?redirect=${to.path}`)  
+NProgress.done()  
+}  
+}  
+}  
+} else {  
+/* has no token*/  
+  
+if (whiteList.indexOf(to.path) !== -1) {  
+// in the free login whitelist, go directly  
+next()  
+} else {  
+// other pages that do not have permission to access are redirected to the login page.  
+next(`/login?redirect=${to.path}`)  
+NProgress.done()  
+}  
+}  
+})  
+  
+router.afterEach(() => {  
+// finish progress bar  
+NProgress.done()  
+})  
+  
+function myFilterAsyncRoutes(menuList) {  
+menuList.filter(menu => {  
+// console.log(menu)  
+if (menu.component === 'Layout') {  
+// console.log(menu.component)  
+menu.component = Layout  
+} else {  
+menu.component = require(`@/views/${menu.component}.vue`).default  
+}  
+// 递归处理子菜单  
+if (menu.children && menu.children.length) {  
+menu.children = myFilterAsyncRoutes(menu.children)  
+}  
+return true  
+})  
+return menuList  
+}
+
+```
+
+### 4.路由合并
+src/layout/components/Sidebar/index.vue
+
+
+```js
+routes() {  
+return this.$router.options.routes.concat(global.myRoutes)  
+},
+
+```
+
 
 
 
