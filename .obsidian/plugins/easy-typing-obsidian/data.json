@@ -1,8 +1,8 @@
 {
   "Tabout": true,
-  "SelectionEnhance": true,
+  "SelectionEnhance": false,
   "IntrinsicSymbolPairs": true,
-  "BaseObEditEnhance": true,
+  "BaseObEditEnhance": false,
   "FW2HWEnhance": true,
   "AutoFormat": true,
   "ExcludeFiles": "",
@@ -51,6 +51,6 @@
   "userDelRuleSettingsOpen": false,
   "userCvtRuleSettingsOpen": false,
   "EnterTwice": false,
-  "TryFixChineseIM": false,
+  "TryFixChineseIM": true,
   "PuncRectify": false
 }

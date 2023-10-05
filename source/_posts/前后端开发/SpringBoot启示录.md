@@ -2700,9 +2700,9 @@ return this.$router.options.routes.concat(global.myRoutes)
 
 
 
-# 7.Vue 框架快速上手
+# Vue 框架快速上手
 
-[[Vue]]
+> **[[Vue]]**
 
 ## 1. 前端环境准备
 Vscode 或者WebStorm

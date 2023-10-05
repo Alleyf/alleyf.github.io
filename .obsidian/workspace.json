@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/前后端开发/SpringBoot启示录.md",
+                "file": "source/_posts/科研学习/学习方法/Paper_Reading_Method.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -39,7 +39,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/前后端开发/SpringBoot启示录.md"
+                "file": "source/_posts/科研学习/学习方法/Paper_Reading_Method.md"
               }
             }
           }
@@ -134,16 +134,27 @@
   },
   "active": "cfdb25090574dcd1",
   "lastOpenFiles": [
+    "public/2023/03/25848e23b2aa.html",
+    "public/categories/科研学习/index.html",
+    "public/categories/科研学习",
+    "public/archives/2023/10/index.html",
+    "public/archives/2023/10",
+    "public/2023/10/e8c7910f93b8.html",
+    "public/2023/10",
+    "source/_posts/科研学习/论文总结/Papers Reading.md",
+    "source/_posts/科研学习/学习方法/Paper_Reading_Method.md",
+    "source/_posts/科研学习/论文总结",
+    "source/_posts/科研学习/学习方法",
+    "Excalidraw/草图.md",
+    "source/_posts/科研学习",
+    "Excalidraw/Drawing 2023-07-17 11.09.29.excalidraw.md",
     "source/_posts/前后端开发/Vue.md",
     "source/_posts/前后端开发/SpringBoot启示录.md",
     "source/_posts/前后端开发/uni-app.md",
     "source/_posts/英语学习/EnglishWords.canvas",
     "source/_posts/课程学习/Java Notes.md",
-    "source/_posts/机器学习/CV/Papers Reading.md",
     "source/_posts/课程学习/FPGA.md",
     "source/_posts/前后端开发/algorithm.md",
-    "Excalidraw/Drawing 2023-08-16 20.44.05.excalidraw.md",
-    "Excalidraw/Drawing 2023-07-17 11.09.29.excalidraw.md",
     "source/_posts/机器学习/PyTorch.md",
     "source/_posts/机器学习/Python_Notes.md",
     "source/_posts/机器学习/深度学习入门篇.md",
@@ -154,15 +165,6 @@
     "source/_posts/英语学习/PaperWords.canvas",
     "1..md",
     "MarpTheme/rose-pine-dawn.css",
-    "MarpTheme/gradient.css",
-    "MarpTheme/border.css",
-    "MarpTheme/beamer.css",
-    "MarpTheme/Obsidian-marp主题/gradient.css",
-    "MarpTheme/Obsidian-marp主题/rose-pine-dawn.css",
-    "MarpTheme/Obsidian-marp主题/border.css",
-    "MarpTheme/Obsidian-marp主题/beamer.css",
-    "MarpTheme/Obsidian-marp主题",
-    "MarpTheme/Obsidian-marp主题.zip",
     "source/_posts/机器学习/CV/图像分类.md",
     "source/_posts/机器学习/CV/计算机视觉概述.md",
     "source/_posts/机器学习/CV/目标检测.md",
@@ -171,8 +173,6 @@
     "().md",
     "[.md",
     "source/_posts/机器学习/ML_DL.md",
-    "source/_posts/机器学习/NoteBook.md",
-    "source/_posts/英语学习/考研单词.md",
     "canvas/review plans.canvas",
     "source/_posts/课程学习/review plans.canvas",
     "themes/fluid/source/img/police_beian.png",
