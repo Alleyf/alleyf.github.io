@@ -18,27 +18,32 @@
   <meta name="author" content="alleyf">
   <meta name="keywords" content="">
   
-    <meta name="description" content="a lot of notes dealing with notebook">
+    <meta name="description" content="摘要本文提出了一个残差学习框架，用于训练深度神经网络。通过引入残差块，可以让网络更深，同时避免了梯度消失和梯度弥散的问题。在多个视觉识别任务中，残差网络都取得了比传统网络更好的结果。  背景介绍（相关研究）在近些年中，深度网络逐渐往更深的方向发展，但是更深的网络训练更加困难，因为梯度消失和梯度弥散的问题会导致网络难以收敛。之前的研究提出了一些方法，如使用更好的初始化方法、使用更好的激活函数等，但是">
 <meta property="og:type" content="article">
-<meta property="og:title" content="NoteBook_notes">
-<meta property="og:url" content="https://alleyf.github.io/2022/09/f049d1d71021.html">
+<meta property="og:title" content="alleyf">
+<meta property="og:url" content="https://alleyf.github.io/2023/10/b75b8061a0e9.html">
 <meta property="og:site_name" content="alleyf">
-<meta property="og:description" content="a lot of notes dealing with notebook">
+<meta property="og:description" content="摘要本文提出了一个残差学习框架，用于训练深度神经网络。通过引入残差块，可以让网络更深，同时避免了梯度消失和梯度弥散的问题。在多个视觉识别任务中，残差网络都取得了比传统网络更好的结果。  背景介绍（相关研究）在近些年中，深度网络逐渐往更深的方向发展，但是更深的网络训练更加困难，因为梯度消失和梯度弥散的问题会导致网络难以收敛。之前的研究提出了一些方法，如使用更好的初始化方法、使用更好的激活函数等，但是">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://ai-studio-static-online.cdn.bcebos.com/3a9f826518cb42e89965641e4eea9a289dbcce74862e4335ba8738d978e37fc2">
-<meta property="og:image" content="https://ai-studio-static-online.cdn.bcebos.com/968cf800086a47129fdda653891c170a1c9b1248296747aeaa766bb5cef2932c">
-<meta property="article:published_time" content="2022-09-10T02:00:00.000Z">
-<meta property="article:modified_time" content="2023-03-20T11:14:26.833Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308211604278.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308211613960.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308211621589.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308211631231.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308211631353.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308211632281.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200221174711860.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308211610964.png">
+<meta property="article:published_time" content="2023-10-05T08:01:45.517Z">
+<meta property="article:modified_time" content="2023-10-05T08:22:41.858Z">
 <meta property="article:author" content="alleyf">
-<meta property="article:tag" content="NoteBook">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://ai-studio-static-online.cdn.bcebos.com/3a9f826518cb42e89965641e4eea9a289dbcce74862e4335ba8738d978e37fc2">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308211604278.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>NoteBook_notes - alleyf</title>
+  <title>alleyf</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -244,7 +249,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="NoteBook_notes"></span>
+            <span id="subtitle" data-typed-text=""></span>
           
         </div>
 
@@ -260,8 +265,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-09-10 10:00" pubdate>
-          September 10, 2022 am
+        <time datetime="2023-10-05 16:01" pubdate>
+          October 5, 2023 pm
         </time>
       </span>
     
@@ -272,7 +277,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.8k words
+          2.1k words
         
       </span>
     
@@ -283,7 +288,7 @@
         
         
         
-          15 mins
+          18 mins
         
       </span>
     
@@ -329,12 +334,12 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">NoteBook_notes</h1>
+            <h1 style="display: none"></h1>
             
               <p class="note note-info">
                 
                   
-                    Last updated on 7 months ago
+                    Last updated on 3 days ago
                   
                 
               </p>
@@ -342,48 +347,47 @@
             
               <div class="markdown-body">
                 
-                <h1 id="NoteBook"><a href="#NoteBook" class="headerlink" title="NoteBook"></a>NoteBook</h1><h2 id="1-notebook快捷键"><a href="#1-notebook快捷键" class="headerlink" title="1.notebook快捷键"></a>1.notebook快捷键</h2><h3 id="命令模式快捷键"><a href="#命令模式快捷键" class="headerlink" title="命令模式快捷键"></a>命令模式快捷键</h3><img src="https://ai-studio-static-online.cdn.bcebos.com/3a9f826518cb42e89965641e4eea9a289dbcce74862e4335ba8738d978e37fc2" srcset="/img/loading.gif" lazyload alt="img" style="zoom: 50%;" />
-
-<h3 id="编辑模式快捷键"><a href="#编辑模式快捷键" class="headerlink" title="编辑模式快捷键"></a>编辑模式快捷键</h3><img src="https://ai-studio-static-online.cdn.bcebos.com/968cf800086a47129fdda653891c170a1c9b1248296747aeaa766bb5cef2932c" srcset="/img/loading.gif" lazyload alt="img" style="zoom: 50%;" />
-
-<h2 id="2-持久化安装（安装到外部库文件夹）"><a href="#2-持久化安装（安装到外部库文件夹）" class="headerlink" title="2.持久化安装（安装到外部库文件夹）"></a>2.持久化安装（安装到外部库文件夹）</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">#</span><span class="language-bash">创建文件夹</span><br>mkdir /home/aistudio/external-libraries <br><span class="hljs-meta prompt_">#</span><span class="language-bash">安装BeautifulSoup4包到外部库</span><br>pip install beautifulsoup4 -t /home/aistudio/external-libraries<br></code></pre></td></tr></table></figure>
-
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">#</span><span class="language-bash">添加环境变量</span><br>import sys<br>sys.path.append(&#x27;/home/aistudio/external-libraries&#x27;)<br></code></pre></td></tr></table></figure>
-
-<h2 id="3-Magic命令"><a href="#3-Magic命令" class="headerlink" title="3.Magic命令"></a>3.Magic命令</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#显示全部可用的Magic命令</span><br>%lsmagic<br><span class="hljs-comment">#%env：设置环境变量</span><br>%env OMP_NUM_THREADS=<span class="hljs-number">4</span><br><span class="hljs-comment">#使用Magic命令来统计运行时长</span><br><span class="hljs-keyword">import</span> random<br><br>%%timeit<br><br>prize = <span class="hljs-number">0</span> <br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">100</span>):<br>    roll = random.randint(<span class="hljs-number">1</span>, <span class="hljs-number">6</span>)<br>    <span class="hljs-keyword">if</span> roll%<span class="hljs-number">2</span> == <span class="hljs-number">0</span>:<br>        prize += roll<br>    <span class="hljs-keyword">else</span>:<br>        prize -= <span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#直接嵌入可视化内容</span><br>%matplotlib inline<br>%config InlineBackend.figure_format = <span class="hljs-string">&#x27;retina&#x27;</span><br><br><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><br>x = np.linspace(<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">300</span>)<br><span class="hljs-keyword">for</span> w <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span> (<span class="hljs-number">2</span>,<span class="hljs-number">6</span>,<span class="hljs-number">2</span>):<br>    plt.plot(x, np.sin(np.pi*x)*np.sin(<span class="hljs-number">2</span>*w*np.pi*x))<br></code></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#%run或者二!python均可执行指定路径的python文件</span><br>%run <span class="hljs-built_in">print</span>.py<br>!python <span class="hljs-built_in">print</span>.py<br></code></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#%%writefile and %pycat: 导出cell内容/显示外部脚本的内容</span><br>%pycat SaveToPythonCode.py <span class="hljs-comment">#将文件打开展示在cell中</span><br>%%writefile SaveToPythonCode.py <span class="hljs-comment">#重写文件为cell中的内容并保存</span><br><br><span class="hljs-keyword">from</span> math <span class="hljs-keyword">import</span> sqrt<br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">2</span>,<span class="hljs-number">10</span>):<br>    flag=<span class="hljs-number">1</span><br>    k=<span class="hljs-built_in">int</span>(sqrt(i))<br>    <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">2</span>,k+<span class="hljs-number">1</span>):<br>        <span class="hljs-keyword">if</span> i%j==<span class="hljs-number">0</span>:<br>            flag=<span class="hljs-number">0</span><br>        <span class="hljs-keyword">break</span><br>        <span class="hljs-keyword">if</span>(flag):<br>            <span class="hljs-built_in">print</span>(i)<br></code></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#PDB调试代码</span><br><span class="hljs-comment">#Notebook自带一个调试器, 叫The Python Debugger (pdb)，我们来看看它是如何工作的</span><br>%pdb<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">reverse</span>(<span class="hljs-params">x: <span class="hljs-built_in">int</span></span>) -&gt; <span class="hljs-built_in">int</span>:<br>    inputnumber = x.__str__()<br>    reversedStr = inputnumber[::-<span class="hljs-number">1</span>]<br>    strOriLen = <span class="hljs-built_in">len</span>(reversedStr)<br>    result = <span class="hljs-built_in">list</span>()<br>    flag = <span class="hljs-number">1</span><br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, strOriLen):<br>        <span class="hljs-keyword">if</span> i == (strOriLen -<span class="hljs-number">1</span>) <span class="hljs-keyword">and</span> reversedStr[i] == <span class="hljs-string">&#x27;-&#x27;</span> :<br>            flag = -<span class="hljs-number">1</span><br>        <span class="hljs-keyword">else</span>:<br>            result.append(reversedStr[i])<br>    outputs = <span class="hljs-string">&#x27;&#x27;</span>.join(result)<br>    outputInt = <span class="hljs-built_in">int</span>(outputs)        <br>     <br>    outputInt = outputInt * flag<br>        <br>    <span class="hljs-keyword">if</span> outputInt &gt; <span class="hljs-built_in">pow</span>(<span class="hljs-number">2</span>,<span class="hljs-number">31</span>)-<span class="hljs-number">1</span>  <span class="hljs-keyword">or</span> outputInt &lt; -<span class="hljs-number">1</span> * <span class="hljs-built_in">pow</span>(<span class="hljs-number">2</span>,<span class="hljs-number">31</span>):<br>        outputInt = <span class="hljs-number">0</span><br>        <br>    <span class="hljs-keyword">return</span> outputInt<br><br><span class="hljs-built_in">print</span>(reverse(<span class="hljs-number">134</span>))<br></code></pre></td></tr></table></figure>
-
-<h2 id="PDB命令（python3-7及以上自带的调试器，ipdb为彩色的交互）"><a href="#PDB命令（python3-7及以上自带的调试器，ipdb为彩色的交互）" class="headerlink" title="PDB命令（python3.7及以上自带的调试器，ipdb为彩色的交互）"></a>PDB命令（python3.7及以上自带的调试器，ipdb为彩色的交互）</h2><ul>
-<li><p><strong>pdb.set_trace():设置断点</strong></p>
-</li>
-<li><p><strong>n（next）:执行下一步</strong></p>
-</li>
-<li><p><strong>p（print）data :打印data</strong></p>
-</li>
-<li><p><strong>l（ls）：显示当前代码</strong></p>
-</li>
-<li><p><strong>q（quit）：强制中断退出</strong></p>
-</li>
-<li><p><strong>b（break）LineNumber：调试中给指定位置设置断点</strong></p>
-</li>
-<li><p><strong>variable = value:动态分配变量</strong></p>
-</li>
-<li><p><strong>c（continue）：继续运行至结束</strong></p>
-</li>
-<li><p><strong>r（return）：运行至子程序结束</strong></p>
-</li>
-<li><p><strong>a（args）：打印当前函数参数</strong></p>
-</li>
-<li><p><strong>ENTER（回车）：重复上次命令</strong></p>
+                <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>本文提出了一个残差学习框架，用于训练深度神经网络。通过引入残差块，可以让网络更深，同时避免了梯度消失和梯度弥散的问题。在多个视觉识别任务中，残差网络都取得了比传统网络更好的结果。</p>
+<hr>
+<h2 id="背景介绍（相关研究）"><a href="#背景介绍（相关研究）" class="headerlink" title="背景介绍（相关研究）"></a>背景介绍（相关研究）</h2><p>在近些年中，深度网络逐渐往更深的方向发展，但是更深的网络训练更加困难，因为梯度消失和梯度弥散的问题会导致网络难以收敛。之前的研究提出了一些方法，如使用更好的初始化方法、使用更好的激活函数等，但是这些方法并不能完全解决问题。本文提出了一种新的方法，即残差学习框架，通过引入残差块来解决梯度消失和梯度弥散的问题。<br><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308211604278.png" srcset="/img/loading.gif" lazyload alt="image.png|500"><br><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308211613960.png" srcset="/img/loading.gif" lazyload alt="image.png|500"></p>
+<hr>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><h3 id="Identity-Mapping-by-Shortcuts"><a href="#Identity-Mapping-by-Shortcuts" class="headerlink" title="Identity Mapping by Shortcuts"></a>Identity Mapping by Shortcuts</h3><p>$$y=F(x, \left{ W_{i}\right})+x$$</p>
+<hr>
+<p>$$y=F(x, \left{ W_{i}\right})+W_{s}x$$</p>
+<blockquote>
+<p>若残差块输入输出维度一致，则直接短接即可；<br>   若唯独不一致，则对输入进行降维增维处理将输入输出维度统一。</p>
+</blockquote>
+<h3 id="网络架构"><a href="#网络架构" class="headerlink" title="网络架构"></a>网络架构</h3><p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308211621589.png" srcset="/img/loading.gif" lazyload alt="image.png|450"></p>
+<blockquote>
+<p>实现为等维直接短接，虚线为异维进行 A (0 填充) /B（投影快捷映射）</p>
+</blockquote>
+<hr>
+<h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><h3 id="ImageNet"><a href="#ImageNet" class="headerlink" title="ImageNet"></a>ImageNet</h3><p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308211631231.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="CIFAR-10"><a href="#CIFAR-10" class="headerlink" title="CIFAR-10"></a>CIFAR-10</h3><p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308211631353.png" srcset="/img/loading.gif" lazyload alt="image.png|450"><br><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308211632281.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>上图左边指的是 Plain Net, 然而 deeper 的时候，会出现明显的 <strong>degradation</strong>。当深度达到 100+的时候，plain Net 的错误率达到了 60%以上。<br>上图中间这是 ResNet，可以看到当 deeper 的时候，错误率也在降低，并没有出现所谓的 degradation。<br>然而右边则显示 <strong>1202 layers</strong> 的 ResNet 的错误率比 <strong>101 layers</strong> 的<strong>错误率高</strong>，作者认为这<strong>不是 degradation 导致</strong>，而是由于这么<strong>大的参数量在 cifar 10 这个小数据集上过拟合</strong>导致。</p>
+<hr>
+<h2 id="重点总结"><a href="#重点总结" class="headerlink" title="重点总结"></a>重点总结</h2><h3 id="1-残差块"><a href="#1-残差块" class="headerlink" title="1. 残差块"></a>1. 残差块</h3><p>作者发现，当加深模型深度时，模型的测试效果没有变好，反而变差。不符合所想的结果，因为浅层的网络应该是深层网络的一个子集，深层网络不应该比浅层网络表现的不好。然而实验的结果表明，当在浅层网络后加恒等映射层，深层网络的效果反而没有浅层网络好。为什么会出现这种原因呢？作者猜想，可能是因为深层网络难以训练。那么为什么会难以训练呢？可能是因为深层网络的最后面的层难以学习到恒等映射，因为浅层网络已经有很好的表现效果了，最后面的层如果找不到更好的表示效果就需要学习恒等映射，而让网络去学习恒等映射是很困难的。</p>
+<blockquote>
+<p>为了解决网络学习恒等映射困难的问题，作者就想，既然学习恒等映射困难，我们就让网络学习 $f(x)=0$ 这个映射。也就引出了参差学习块。</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/20200221174711860.png" srcset="/img/loading.gif" lazyload alt="20200221174711860.png|400"><br>正常网络的输入是 x ，输出是 f (x)，如果我们要学习恒等映射，也就是让网络的部分学会 f (x)=x，即图中 f (x) 的部分学会一个 f (x) = x 的映射关系，但是我们说直接让网络去学习恒等映射很困难，怎么办？</p>
+<blockquote>
+<p>假设网络的输出是 h (x)，那么不加 shortcut connection 的网络的输出就是 h (x)=f (x)=x，为了让网络更好拟合恒等映射，我们让 h (x)=f (x)+x，那么我们看网络要学习的映射 f (x)，就变为了 f (x)=h (x)−x，这时我们发现，如果直接让 f (x)=0，那么 h (x)=x，也就是说我们让网络输出的结果和恒等映射相同，而网络只学习了 f (x)=0 这个映射，这个映射要比 f (x)=x 恒等映射更好学习，即模型会更好训练，而不受深层的影响，因为深层中多余的层我们可以都学恒等映射，最起码结果不会比浅层的结果差。然而实验结果表明，加上 shortcut connection 的深层网络比不加 shortcut connection 的浅层网络效果还好，这也就说明了深层网络所能提取的信息更高，抽象能力更强。</p>
+</blockquote>
+<h3 id="2-恒等快捷映射和投影快捷映射"><a href="#2-恒等快捷映射和投影快捷映射" class="headerlink" title="2. 恒等快捷映射和投影快捷映射"></a>2. 恒等快捷映射和投影快捷映射</h3><p>当 shortcut 的输入通道数和输出通道数相同时，我们可以使用恒等映射即 $f (x)=x$，也就是将 shortcut 的输出直接加上输入即可（恒等快捷映射）。<br>但是，当 shortcut connection 的输入不等于输出的时候怎么办？（两种方法）</p>
+<blockquote>
+<p>① 将输入数据扩充维度，多余的维度的数据用 0 填充。<br>② 使用 1 x 1 的卷积扩充维度（投影快捷映射）</p>
+<p>我们实际上有三种方式组合：<br>① 零填充快捷连接用来增加维度，所有的快捷连接是没有参数的。<br>② 投影快捷连接用来增加维度，其它的快捷连接是恒等的。<br>③ 所有的快捷连接都是投影。<br>以上三种情况都比没有加 shortcut connection 的好，效果 ③ &gt; ② &gt; ①，但是 ③ 的计算量太大，提升的效果也不大，所以我们一般不用，我们一般用的最多的是 ②。</p>
+</blockquote>
+<p>投影快捷映射：</p>
+<ul>
+<li>当输入和输出的维度不匹配时，使用一个额外的卷积层来进行维度匹配。</li>
+<li>可以用于解决深度残差网络中的维度不匹配问题，从而提高网络的性能。</li>
+<li>在 ResNet 中，投影快捷映射是指使用一个 1 x 1 的卷积层来进行维度匹配。<h3 id="3-Deeper-Bottleneck-Architectures"><a href="#3-Deeper-Bottleneck-Architectures" class="headerlink" title="3. Deeper Bottleneck Architectures"></a>3. Deeper Bottleneck Architectures</h3><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308211610964.png" srcset="/img/loading.gif" lazyload alt="image.png"><blockquote>
+<p>先用 1 x 1 降维，3 x 3 进行卷积，再用 1 x 1 进行升维。<br> 事实上，deeper 左边这种结构也能获得很好的效果。那么为什么要用右边这种结构呢？ 主要是源自于<strong>practical</strong>，因为<strong>左边</strong>这种结构在<strong>训练时间上要比右边结构长的多</strong>。</p>
+</blockquote>
 </li>
 </ul>
+<p align="justify">当换成上图右边这种 Bottleneck 结构的时候，可以发现 152 层的 ResNet 竟然比 VGG 16/19 都要少的复杂度</p>
 
                 
               </div>
@@ -402,7 +406,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/PaddleIDE/" class="category-chain-item">PaddleIDE</a>
+  <a href="/categories/%E7%A7%91%E7%A0%94%E5%AD%A6%E4%B9%A0/" class="category-chain-item">科研学习</a>
   
   
 
@@ -414,13 +418,6 @@
     </div>
   
   
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/NoteBook/">#NoteBook</a>
-      
-    </div>
-  
 </div>
 
 
@@ -429,8 +426,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>NoteBook_notes</div>
-      <div>https://alleyf.github.io/2022/09/f049d1d71021.html</div>
+      <div></div>
+      <div>https://alleyf.github.io/2023/10/b75b8061a0e9.html</div>
     </div>
     <div class="license-meta">
       
@@ -442,13 +439,13 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>September 10, 2022</div>
+          <div>October 5, 2023</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>Updated on</div>
-          <div>March 20, 2023</div>
+          <div>October 5, 2023</div>
         </div>
       
       <div class="license-meta-item">
@@ -477,9 +474,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/09/7b5d9ab53dc1.html" title="Java_Notes">
+                      <a href="/2023/10/e2aa66db6ce3.html" title="">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Java_Notes</span>
+                        <span class="hidden-mobile"></span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -487,8 +484,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/09/ecfdf6e6a290.html" title="Python_Notes">
-                        <span class="hidden-mobile">Python_Notes</span>
+                      <a href="/2023/10/777b5316f710.html" title="深度学习论文阅读总结">
+                        <span class="hidden-mobile">深度学习论文阅读总结</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -509,7 +506,7 @@
         var options = Object.assign(
           {"clientID":"636f2864e051a199b91c","clientSecret":"5185fd11115bbcd8d2f636bc80de6bed98ed14c1","repo":"Gitalk","owner":"Alleyf","admin":["Alleyf"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":false,"proxy":"https://shielded-brushlands-08810.herokuapp.com/https://github.com/login/oauth/access_token"},
           {
-            id: 'ce8658920552788b12a9ae89d6e753f2'
+            id: 'c17f528c988a44e6fc8ef73d5622a031'
           }
         )
         var gitalk = new Gitalk(options);
