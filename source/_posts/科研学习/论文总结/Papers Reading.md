@@ -1,7 +1,8 @@
 ---
-title: 深度学习论文阅读总结  
-date: 2023-03-17 19:09:35  
-tags: [CV]  
+title: 深度学习论文阅读总结
+date: 2023-03-17 19:09:35
+tags:
+  - CV
 sticky: 85
 excerpt: some overview about CV classical papers。
 banner: "https://dogefs.s3.ladydaily.com/~/source/wallhaven/small/qz/qzj5ll.jpg?w=400&h=200&fmt=webp"

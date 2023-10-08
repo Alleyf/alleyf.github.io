@@ -167,14 +167,6 @@
       "key": "/"
     }
   ],
-  "insert-current-date": [
-    {
-      "modifiers": [
-        "Alt"
-      ],
-      "key": "\\"
-    }
-  ],
   "buttons:button-maker": [
     {
       "modifiers": [
@@ -248,6 +240,14 @@
         "Shift"
       ],
       "key": "M"
+    }
+  ],
+  "insert-current-date": [
+    {
+      "modifiers": [
+        "Alt"
+      ],
+      "key": "/"
     }
   ]
 }
