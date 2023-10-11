@@ -49,7 +49,7 @@
 <meta property="og:image" content="https://stepimagewm.how2j.cn/5678.png">
 <meta property="og:image" content="https://stepimagewm.how2j.cn/2482.png">
 <meta property="article:published_time" content="2023-10-08T05:29:26.000Z">
-<meta property="article:modified_time" content="2023-10-10T12:10:29.318Z">
+<meta property="article:modified_time" content="2023-10-10T12:19:04.219Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="Mysql">
@@ -356,7 +356,7 @@
               <p class="note note-info">
                 
                   
-                    Last updated on 7 minutes ago
+                    Last updated on 13 hours ago
                   
                 
               </p>
@@ -745,7 +745,26 @@
 <li>是否以子字符串开始或者结束</li>
 </ol>
 <p><strong>startsWith</strong> //以…开始，<strong>endsWith</strong> //以…结束</p>
-<h4 id="StringBuffer"><a href="#StringBuffer" class="headerlink" title="StringBuffer"></a>StringBuffer</h4><p>StringBuffer 是<strong>可变长</strong>的字符串<br>| 关键字                       | 描述                |     |<br>| —————————- | ——————- | — |<br>| append delete insert reverse | 追加 删除 插入 反转 |     |<br>| length capacity              | 长度容量            |     |</p>
+<h4 id="StringBuffer"><a href="#StringBuffer" class="headerlink" title="StringBuffer"></a>StringBuffer</h4><p>StringBuffer 是<strong>可变长</strong>的字符串</p>
+<table>
+<thead>
+<tr>
+<th>关键字</th>
+<th>描述</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>append delete insert reverse</td>
+<td>追加 删除 插入 反转</td>
+<td></td>
+</tr>
+<tr>
+<td>length capacity</td>
+<td>长度容量</td>
+<td></td>
+</tr>
+</tbody></table>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> NumberString;  <br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyStringBuffer</span> &#123;  <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;  <br>        <span class="hljs-type">String</span> <span class="hljs-variable">str1</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;let there &quot;</span>;  <br>        <span class="hljs-type">StringBuffer</span> <span class="hljs-variable">sb</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StringBuffer</span>(str1); <span class="hljs-comment">//根据str1创建一个StringBuffer对象  </span><br>        sb.append(<span class="hljs-string">&quot;be light&quot;</span>); <span class="hljs-comment">//在最后追加  </span><br>        System.out.println(sb);  <br>        sb.delete(<span class="hljs-number">4</span>, <span class="hljs-number">10</span>);<span class="hljs-comment">//删除4-10之间的字符  </span><br>        System.out.println(sb);  <br>        sb.insert(<span class="hljs-number">4</span>, <span class="hljs-string">&quot;there &quot;</span>);<span class="hljs-comment">//在4这个位置插入 there  </span><br>        System.out.println(sb);  <br>        sb.reverse(); <span class="hljs-comment">//反转  </span><br>        System.out.println(sb);  <br>    &#125;  <br>&#125;<br></code></pre></td></tr></table></figure>
 <blockquote>
 <p>StringBuffer 性能明显优于<strong>字符串拼接</strong></p>
