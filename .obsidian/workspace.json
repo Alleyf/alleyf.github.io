@@ -99,8 +99,7 @@
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       },
       {
         "id": "c22661f0d161383a",
@@ -133,7 +132,7 @@
       "marp:Marp: Open Preview": false
     }
   },
-  "active": "b0f98701f68f5433",
+  "active": "bdaaa10e2f08b79f",
   "lastOpenFiles": [
     "public/2023/10/6cd2e75537d2.html",
     "public/tags/NLP/index.html",
