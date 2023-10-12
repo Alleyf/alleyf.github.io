@@ -249,5 +249,14 @@
       ],
       "key": "/"
     }
+  ],
+  "obsidian-excalidraw-plugin:import-svg": [
+    {
+      "modifiers": [
+        "Mod",
+        "Shift"
+      ],
+      "key": "I"
+    }
   ]
 }

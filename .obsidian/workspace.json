@@ -99,8 +99,7 @@
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       },
       {
         "id": "c22661f0d161383a",
@@ -133,27 +132,28 @@
       "marp:Marp: Open Preview": false
     }
   },
-  "active": "b0f98701f68f5433",
+  "active": "63b461885df0ea6b",
   "lastOpenFiles": [
+    "public/2023/10/e2861ffb109d.html",
+    "public/archives/2023/page/3/index.html",
+    "public/archives/2023/page/3",
+    "source/_posts/科研学习/学习方法/论文阅读模板(最好读英文原文).md",
+    "source/_posts/前后端开发/后端学习.md",
+    "source/_posts/科研学习/学习方法/Paper_Reading_Method.md",
     "public/2023/10/6cd2e75537d2.html",
     "public/tags/NLP/index.html",
     "public/tags/NLP",
     "public/categories/Backend-development/index.html",
     "public/categories/Backend-development",
-    "source/_posts/前后端开发/后端学习.md",
     "source/_posts/前后端开发/网页开发.md",
     "source/_posts/科研学习/论文总结/Paper_Reading_Tables.md",
     "source/_posts/科研学习/论文总结/Attention is All you Need.md",
     "source/_posts/科研学习/论文总结/Deep residual learning for image recognition.md",
     "Deep residual learning for image recognition.md",
     "source/_posts/科研学习/论文总结/Papers Reading.md",
-    "source/_posts/科研学习/学习方法/Paper_Reading_Method.md",
     "public/2023/03/25848e23b2aa.html",
     "public/categories/科研学习/index.html",
     "public/categories/科研学习",
-    "public/archives/2023/10/index.html",
-    "public/archives/2023/10",
-    "public/2023/10/e8c7910f93b8.html",
     "Excalidraw/草图.md",
     "Excalidraw/Drawing 2023-07-17 11.09.29.excalidraw.md",
     "source/_posts/前后端开发/Vue.md",
@@ -172,7 +172,6 @@
     "source/_posts/前后端开发/Dateframe—Algorithm.md",
     "source/_posts/英语学习/PaperWords.canvas",
     "1..md",
-    "source/_posts/机器学习/CV/图像分类.md",
     "canvas/AI学习思路.canvas",
     "canvas/review plans.canvas",
     "source/_posts/课程学习/review plans.canvas",
