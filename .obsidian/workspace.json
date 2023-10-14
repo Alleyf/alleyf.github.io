@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "c01f947f219edfe5",
+        "id": "807d13c3f22be787",
         "type": "tabs",
         "children": [
           {
-            "id": "b4034ba858496b47",
+            "id": "19bec34aa1ecefc1",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -132,13 +132,16 @@
       "marp:Marp: Open Preview": false
     }
   },
-  "active": "63b461885df0ea6b",
+  "active": "19bec34aa1ecefc1",
   "lastOpenFiles": [
+    "source/_posts/前后端开发/后端学习.md",
+    "source/_posts/课程学习/Java Notes.md",
+    "未命名.md",
+    "source/_posts/前后端开发/周报.md",
     "public/2023/10/e2861ffb109d.html",
     "public/archives/2023/page/3/index.html",
     "public/archives/2023/page/3",
     "source/_posts/科研学习/学习方法/论文阅读模板(最好读英文原文).md",
-    "source/_posts/前后端开发/后端学习.md",
     "source/_posts/科研学习/学习方法/Paper_Reading_Method.md",
     "public/2023/10/6cd2e75537d2.html",
     "public/tags/NLP/index.html",
@@ -153,14 +156,12 @@
     "source/_posts/科研学习/论文总结/Papers Reading.md",
     "public/2023/03/25848e23b2aa.html",
     "public/categories/科研学习/index.html",
-    "public/categories/科研学习",
     "Excalidraw/草图.md",
     "Excalidraw/Drawing 2023-07-17 11.09.29.excalidraw.md",
     "source/_posts/前后端开发/Vue.md",
     "source/_posts/前后端开发/SpringBoot启示录.md",
     "source/_posts/前后端开发/uni-app.md",
     "source/_posts/英语学习/EnglishWords.canvas",
-    "source/_posts/课程学习/Java Notes.md",
     "source/_posts/课程学习/FPGA.md",
     "source/_posts/前后端开发/algorithm.md",
     "source/_posts/机器学习/PyTorch.md",
@@ -168,7 +169,6 @@
     "source/_posts/机器学习/深度学习入门篇.md",
     "source/_posts/机器学习/机器学习深度学习基础.md",
     "未命名 1.md",
-    "未命名.md",
     "source/_posts/前后端开发/Dateframe—Algorithm.md",
     "source/_posts/英语学习/PaperWords.canvas",
     "1..md",
