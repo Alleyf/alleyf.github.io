@@ -4,17 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "807d13c3f22be787",
+        "id": "4de14c036d3cb916",
         "type": "tabs",
         "children": [
           {
-            "id": "19bec34aa1ecefc1",
+            "id": "4ab2eef363814d9a",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/前后端开发/后端学习.md",
-                "mode": "source",
+                "file": "source/_posts/前后端开发/周报.md",
+                "mode": "preview",
                 "backlinks": false,
                 "source": false
               }
@@ -39,7 +39,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/前后端开发/后端学习.md"
+                "file": "source/_posts/前后端开发/周报.md"
               }
             }
           }
@@ -102,11 +102,11 @@
         ]
       },
       {
-        "id": "c22661f0d161383a",
+        "id": "c712742b5e0ae1de",
         "type": "tabs",
         "children": [
           {
-            "id": "63b461885df0ea6b",
+            "id": "7debd791db616930",
             "type": "leaf",
             "state": {
               "type": "git-view",
@@ -117,10 +117,12 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 331.5
   },
   "left-ribbon": {
     "hiddenItems": {
+      "obsidian-custom-frames:Open Slack": false,
+      "obsidian-custom-frames:Open 小绿鲸": false,
       "canvas:新建白板": false,
       "templates:插入模板": false,
       "command-palette:打开命令面板": false,
@@ -128,21 +130,23 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false,
       "cmdr:Calendar: Open view": false,
       "cmdr:Obsidian Git: Open source control view": false,
-      "obsidian-excalidraw-plugin:新建 Excalidraw 绘图": false,
-      "marp:Marp: Open Preview": false
+      "obsidian-excalidraw-plugin:新建 Excalidraw 绘图": false
     }
   },
-  "active": "19bec34aa1ecefc1",
+  "active": "4ab2eef363814d9a",
   "lastOpenFiles": [
     "source/_posts/前后端开发/后端学习.md",
+    "source/_posts/前后端开发/周报.md",
+    "source/_posts/科研学习/学习方法/Paper_Reading_Method.md",
+    "source/_posts/科研学习/论文总结/20230317_基于知识图谱的司法智能辅助与决策机制研究.md",
+    "source/_posts/科研学习/学习方法/论文阅读模板(最好读英文原文).md",
+    "20230317_基于知识图谱的司法智能辅助与决策机制研究_申请书_v4（系统导出终稿）.pdf",
+    "public/2023/10/cd34163dfc56.html",
     "source/_posts/课程学习/Java Notes.md",
     "未命名.md",
-    "source/_posts/前后端开发/周报.md",
     "public/2023/10/e2861ffb109d.html",
     "public/archives/2023/page/3/index.html",
     "public/archives/2023/page/3",
-    "source/_posts/科研学习/学习方法/论文阅读模板(最好读英文原文).md",
-    "source/_posts/科研学习/学习方法/Paper_Reading_Method.md",
     "public/2023/10/6cd2e75537d2.html",
     "public/tags/NLP/index.html",
     "public/tags/NLP",
@@ -154,8 +158,6 @@
     "source/_posts/科研学习/论文总结/Deep residual learning for image recognition.md",
     "Deep residual learning for image recognition.md",
     "source/_posts/科研学习/论文总结/Papers Reading.md",
-    "public/2023/03/25848e23b2aa.html",
-    "public/categories/科研学习/index.html",
     "Excalidraw/草图.md",
     "Excalidraw/Drawing 2023-07-17 11.09.29.excalidraw.md",
     "source/_posts/前后端开发/Vue.md",
@@ -171,7 +173,6 @@
     "未命名 1.md",
     "source/_posts/前后端开发/Dateframe—Algorithm.md",
     "source/_posts/英语学习/PaperWords.canvas",
-    "1..md",
     "canvas/AI学习思路.canvas",
     "canvas/review plans.canvas",
     "source/_posts/课程学习/review plans.canvas",

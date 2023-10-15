@@ -13,8 +13,7 @@
   "obsidian-excalidraw-plugin",
   "obsidian-plugin-toc",
   "obsidian-banners",
-  "marp",
   "auto-card-link",
-  "floating-toc",
-  "easy-typing-obsidian"
+  "easy-typing-obsidian",
+  "obsidian-custom-frames"
 ]
