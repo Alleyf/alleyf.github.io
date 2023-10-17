@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "b22478baf159acd7",
+        "id": "693b8e19a114251a",
         "type": "tabs",
         "children": [
           {
-            "id": "4d5fc2817caa8765",
+            "id": "2301016337f70c6f",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Spring核心学习.md",
+                "file": "source/_posts/前后端开发/Spring核心学习.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -39,7 +39,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Spring核心学习.md"
+                "file": "source/_posts/前后端开发/Spring核心学习.md"
               }
             }
           }
@@ -106,8 +106,17 @@
               "type": "custom-frames-柏码",
               "state": {}
             }
+          },
+          {
+            "id": "3bee5ff14cc551d8",
+            "type": "leaf",
+            "state": {
+              "type": "custom-frames-小绿鲸",
+              "state": {}
+            }
           }
-        ]
+        ],
+        "currentTab": 4
       },
       {
         "id": "c712742b5e0ae1de",
@@ -141,10 +150,18 @@
       "obsidian-excalidraw-plugin:新建 Excalidraw 绘图": false
     }
   },
-  "active": "4d5fc2817caa8765",
+  "active": "4a383e802b683e84",
   "lastOpenFiles": [
+    "public/archives/page/5/index.html",
+    "public/tags/Spring/index.html",
+    "public/tags/Spring",
+    "public/page/5/index.html",
+    "public/page/5",
+    "public/archives/page/5",
+    "JavaWeb 网站开发 - JavaWeb 笔记（三）Java与数据库.md",
+    "source/_posts/前后端开发/Spring核心学习.md",
+    "source/_posts/前后端开发/SpringBoot启示录.md",
     "source/_posts/前后端开发/后端学习.md",
-    "Spring核心学习.md",
     "source/_posts/前后端开发/周报.md",
     "source/_posts/科研学习/学习方法/Paper_Reading_Method.md",
     "source/_posts/科研学习/论文总结/20230317_基于知识图谱的司法智能辅助与决策机制研究.md",
@@ -155,11 +172,6 @@
     "public/2023/10/e2861ffb109d.html",
     "public/archives/2023/page/3/index.html",
     "public/archives/2023/page/3",
-    "public/2023/10/6cd2e75537d2.html",
-    "public/tags/NLP/index.html",
-    "public/tags/NLP",
-    "public/categories/Backend-development/index.html",
-    "public/categories/Backend-development",
     "source/_posts/前后端开发/网页开发.md",
     "source/_posts/科研学习/论文总结/Paper_Reading_Tables.md",
     "source/_posts/科研学习/论文总结/Attention is All you Need.md",
@@ -169,7 +181,6 @@
     "Excalidraw/草图.md",
     "Excalidraw/Drawing 2023-07-17 11.09.29.excalidraw.md",
     "source/_posts/前后端开发/Vue.md",
-    "source/_posts/前后端开发/SpringBoot启示录.md",
     "source/_posts/前后端开发/uni-app.md",
     "source/_posts/英语学习/EnglishWords.canvas",
     "source/_posts/课程学习/FPGA.md",
@@ -178,8 +189,6 @@
     "source/_posts/机器学习/Python_Notes.md",
     "source/_posts/机器学习/深度学习入门篇.md",
     "source/_posts/机器学习/机器学习深度学习基础.md",
-    "未命名 1.md",
-    "source/_posts/前后端开发/Dateframe—Algorithm.md",
     "source/_posts/英语学习/PaperWords.canvas",
     "canvas/AI学习思路.canvas",
     "canvas/review plans.canvas",
