@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "693b8e19a114251a",
+        "id": "05e5f5de3dd81924",
         "type": "tabs",
         "children": [
           {
-            "id": "2301016337f70c6f",
+            "id": "e0bbc471babcb43f",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -106,17 +106,8 @@
               "type": "custom-frames-柏码",
               "state": {}
             }
-          },
-          {
-            "id": "3bee5ff14cc551d8",
-            "type": "leaf",
-            "state": {
-              "type": "custom-frames-小绿鲸",
-              "state": {}
-            }
           }
-        ],
-        "currentTab": 4
+        ]
       },
       {
         "id": "c712742b5e0ae1de",
@@ -150,8 +141,19 @@
       "obsidian-excalidraw-plugin:新建 Excalidraw 绘图": false
     }
   },
-  "active": "4a383e802b683e84",
+  "active": "e0bbc471babcb43f",
   "lastOpenFiles": [
+    "public/2023/10/c114fe139aab.html",
+    "source/_posts/前后端开发/后端学习.md",
+    "source/_posts/前后端开发/周报.md",
+    "source/_posts/科研学习/国基金项目/司法领域大模型调研一.md",
+    "source/_posts/科研学习/论文总结/Deep residual learning for image recognition.md",
+    "source/_posts/科研学习/论文总结/Paper_Reading_Tables.md",
+    "source/_posts/科研学习/国基金项目",
+    "source/_posts/科研学习/论文总结/Papers Reading.md",
+    "source/_posts/英语学习/EnglishWords.canvas",
+    "source/_posts/英语学习/PaperWords.canvas",
+    "source/_posts/前后端开发/Spring核心学习.md",
     "public/archives/page/5/index.html",
     "public/tags/Spring/index.html",
     "public/tags/Spring",
@@ -159,10 +161,7 @@
     "public/page/5",
     "public/archives/page/5",
     "JavaWeb 网站开发 - JavaWeb 笔记（三）Java与数据库.md",
-    "source/_posts/前后端开发/Spring核心学习.md",
     "source/_posts/前后端开发/SpringBoot启示录.md",
-    "source/_posts/前后端开发/后端学习.md",
-    "source/_posts/前后端开发/周报.md",
     "source/_posts/科研学习/学习方法/Paper_Reading_Method.md",
     "source/_posts/科研学习/论文总结/20230317_基于知识图谱的司法智能辅助与决策机制研究.md",
     "source/_posts/科研学习/学习方法/论文阅读模板(最好读英文原文).md",
@@ -170,26 +169,18 @@
     "public/2023/10/cd34163dfc56.html",
     "source/_posts/课程学习/Java Notes.md",
     "public/2023/10/e2861ffb109d.html",
-    "public/archives/2023/page/3/index.html",
-    "public/archives/2023/page/3",
     "source/_posts/前后端开发/网页开发.md",
-    "source/_posts/科研学习/论文总结/Paper_Reading_Tables.md",
     "source/_posts/科研学习/论文总结/Attention is All you Need.md",
-    "source/_posts/科研学习/论文总结/Deep residual learning for image recognition.md",
     "Deep residual learning for image recognition.md",
-    "source/_posts/科研学习/论文总结/Papers Reading.md",
     "Excalidraw/草图.md",
     "Excalidraw/Drawing 2023-07-17 11.09.29.excalidraw.md",
     "source/_posts/前后端开发/Vue.md",
     "source/_posts/前后端开发/uni-app.md",
-    "source/_posts/英语学习/EnglishWords.canvas",
     "source/_posts/课程学习/FPGA.md",
     "source/_posts/前后端开发/algorithm.md",
     "source/_posts/机器学习/PyTorch.md",
     "source/_posts/机器学习/Python_Notes.md",
     "source/_posts/机器学习/深度学习入门篇.md",
-    "source/_posts/机器学习/机器学习深度学习基础.md",
-    "source/_posts/英语学习/PaperWords.canvas",
     "canvas/AI学习思路.canvas",
     "canvas/review plans.canvas",
     "source/_posts/课程学习/review plans.canvas",
