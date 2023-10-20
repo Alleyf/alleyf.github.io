@@ -8,7 +8,6 @@
       "key": "L"
     }
   ],
-  "editor:insert-wikilink": [],
   "editor:toggle-code": [
     {
       "modifiers": [
@@ -257,6 +256,14 @@
         "Shift"
       ],
       "key": "I"
+    }
+  ],
+  "editor:insert-wikilink": [
+    {
+      "modifiers": [
+        "Alt"
+      ],
+      "key": "L"
     }
   ]
 }

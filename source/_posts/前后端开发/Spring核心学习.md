@@ -1742,7 +1742,1222 @@ public class Main {
 
 ***
 
+# 使用Maven创建Web项目
+
+虽然我们已经可以在Tomcat上部署我们的前端页面了，但是依然只是一个静态页面（每次访问都是同样的样子），那么如何向服务器请求一个动态的页面呢（比如显示我们访问当前页面的时间）这时就需要我们编写一个Web应用程序来实现了，我们需要在用户向服务器发起页面请求时，进行一些处理，再将结果发送给用户的浏览器。
+
+**注意：这里需要使用终极版IDEA，如果你的还是社区版，就很难受了。
+
+我们打开IDEA，新建一个项目，选择Java Enterprise（社区版没有此选项！）项目名称随便，项目模板选择Web应用程序，然后我们需要配置Web应用程序服务器，将我们的Tomcat服务器集成到IDEA中。配置很简单，首先点击新建，然后设置Tomcat主目录即可，配置完成后，点击下一步即可，依赖项使用默认即可，然后点击完成，之后IDEA会自动帮助我们创建Maven项目。
+
+创建完成后，直接点击右上角即可运行此项目了，但是我们发现，有一个Servlet页面不生效。
+
+需要注意的是，Tomcat10以上的版本比较新，Servlet API包名发生了一些变化，因此我们需要修改一下依赖：
+
+```xml
+<dependency>
+    <groupId>jakarta.servlet</groupId>
+    <artifactId>jakarta.servlet-api</artifactId>
+    <version>5.0.0</version>
+    <scope>provided</scope>
+</dependency>
+```
+
+注意包名全部从javax改为jakarta，我们需要手动修改一下。
+
+感兴趣的可以了解一下为什么名称被修改了：
+
+> Eclipse基金会在2019年对 Java EE 标准的每个规范进行了重命名，阐明了每个规范在Jakarta EE平台未来的角色。
+>
+> 新的名称Jakarta EE是Java EE的第二次重命名。2006年5月，“J2EE”一词被弃用，并选择了Java EE这个名称。在YouTube还只是一家独立的公司的时候，数字2就就从名字中消失了，而且当时冥王星仍然被认为是一颗行星。同样，作为Java SE 5（2004）的一部分，数字2也从J2SE中删除了，那时谷歌还没有上市。
+>
+> **因为不能再使用javax名称空间，Jakarta EE提供了非常明显的分界线。**
+>
+> - Jakarta 9（2019及以后）使用jakarta命名空间。
+> - Java EE 5（2005）到Java EE 8（2017）使用javax命名空间。
+> - Java EE 4使用javax命名空间。
+
+我们可以将项目直接打包为war包（默认），打包好之后，放入webapp文件夹，就可以直接运行我们通过Java编写的Web应用程序了，访问路径为文件的名称。
+
+# Servlet
+
+前面我们已经完成了基本的环境搭建，那么现在我们就可以开始来了解我们的第一个重要类——Servlet。
+
+它是Java EE的一个标准，大部分的Web服务器都支持此标准，包括Tomcat，就像之前的JDBC一样，由官方定义了一系列接口，而具体实现由我们来编写，最后交给Web服务器（如Tomcat）来运行我们编写的Servlet。
+ 
+那么，它能做什么呢？我们可以通过实现Servlet来进行动态网页响应，使用Servlet，不再是直接由Tomcat服务器发送我们编写好的静态网页内容（HTML文件），而是由我们通过Java代码进行动态拼接的结果，它能够很好地实现动态网页的返回。
+
+当然，Servlet并不是专用于HTTP协议通信，也可以用于其他的通信，但是一般都是用于HTTP。
+
+### 创建Servlet
+
+那么如何创建一个Servlet呢，非常简单，我们只需要实现`Servlet`类即可，并添加注解`@WebServlet`来进行注册。
+
+```java
+@WebServlet("/test")
+public class TestServlet implements Servlet {
+		...实现接口方法
+}
+```
+
+现在就可以去访问一下我们的页面：http://localhost:8080/test/test
+
+我们发现，直接访问此页面是没有任何内容的，这是因为我们还没有为该请求方法编写实现，这里先不做讲解，后面我们会对浏览器的请求处理做详细的介绍。
+
+除了直接编写一个类，我们也可以在`web.xml`中进行注册，现将类上`@WebServlet`的注解去掉：
+
+```xml
+<servlet>
+    <servlet-name>test</servlet-name>
+    <servlet-class>com.example.webtest.TestServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+    <servlet-name>test</servlet-name>
+    <url-pattern>/test</url-pattern>
+</servlet-mapping>
+```
+
+这样的方式也能注册Servlet，但是显然直接使用**注解更加方便**，因此之后我们一律使用注解进行开发。只有比较新的版本才支持此注解，老的版本是不支持的哦。
+
+实际上，Tomcat服务器会为我们提供一些默认的Servlet，也就是说在服务器启动后，即使我们什么都不编写，**Tomcat也自带了几个默认的Servlet**，他们编写在conf目录下的`web.xml`中：
+
+```xml
+<!-- The mapping for the default servlet -->
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+    <!-- The mappings for the JSP servlet -->
+    <servlet-mapping>
+        <servlet-name>jsp</servlet-name>
+        <url-pattern>*.jsp</url-pattern>
+        <url-pattern>*.jspx</url-pattern>
+    </servlet-mapping>
+
+```
+
+我们发现，默认的Servlet实际上可以帮助我们去访问一些*静态资源*，这也是为什么我们启动Tomcat服务器之后，能够直接访问webapp目录下的静态页面。
+
+我们可以将之前编写的页面放入到webapp目录下，来测试一下是否能直接访问。
+
+### 探究Servlet的生命周期
+
+我们已经了解了如何注册一个Servlet，那么我们接着来看看，一个Servlet是如何运行的。
+
+首先我们需要了解，Servlet中的方法各自是在什么时候被调用的，我们先编写一个打印语句来看看：
+
+```java
+public class TestServlet implements Servlet {
+
+    public TestServlet(){
+        System.out.println("我是构造方法！");
+    }
+
+    @Override
+    public void init(ServletConfig servletConfig) throws ServletException {
+        System.out.println("我是init");
+    }
+
+    @Override
+    public ServletConfig getServletConfig() {
+        System.out.println("我是getServletConfig");
+        return null;
+    }
+
+    @Override
+    public void service(ServletRequest servletRequest, ServletResponse servletResponse) throws ServletException, IOException {
+        System.out.println("我是service");
+    }
+
+    @Override
+    public String getServletInfo() {
+        System.out.println("我是getServletInfo");
+        return null;
+    }
+
+    @Override
+    public void destroy() {
+        System.out.println("我是destroy");
+    }
+}
+```
+
+我们首先启动一次服务器，然后访问我们定义的页面，然后再关闭服务器，得到如下的顺序：
+
+> 我是构造方法！
+> 我是init
+> 我是service
+> 我是service（出现两次是因为浏览器请求了2次，是因为有一次是请求favicon.ico，浏览器通病）
+> 我是destroy
+
+我们可以多次尝试去访问此页面，但是**init和构造方法只会执行一次**，而每次访问都会执行的是`service`方法，因此，一个Servlet的生命周期为：
+
+- 首先执行构造方法完成 Servlet 初始化
+- Servlet 初始化后调用 **init ()** 方法。
+- Servlet 调用 **service()** 方法来处理客户端的请求。
+- Servlet 销毁前调用 **destroy()** 方法。
+- 最后，Servlet 是由 JVM 的垃圾回收器进行垃圾回收的。
+
+现在我们发现，实际上在Web应用程序运行时，每当浏览器向服务器发起一个请求时，都会创建一个线程执行一次`service`方法，来让我们处理用户的请求，并将结果响应给用户。
+
+我们发现`service`方法中，还有两个参数，`ServletRequest`和`ServletResponse`，实际上，用户发起的HTTP请求，就被Tomcat服务器封装为了一个`ServletRequest`对象，我们得到是其实是Tomcat服务器帮助我们创建的一个实现类，HTTP请求报文中的所有内容，都可以从`ServletRequest`对象中获取，同理，`ServletResponse`就是我们需要返回给浏览器的HTTP响应报文实体类封装。
+
+那么我们来看看`ServletRequest`中有哪些内容，我们可以获取请求的一些信息：
+
+```java
+@Override
+public void service(ServletRequest servletRequest, ServletResponse servletResponse) throws ServletException, IOException {
+    //首先将其转换为HttpServletRequest（继承自ServletRequest，一般是此接口实现）
+        HttpServletRequest request = (HttpServletRequest) servletRequest;
+        
+        System.out.println(request.getProtocol());  //获取协议版本
+        System.out.println(request.getRemoteAddr());  //获取访问者的IP地址
+  		  System.out.println(request.getMethod());   //获取请求方法
+        //获取头部信息
+        Enumeration<String> enumeration = request.getHeaderNames();
+        while (enumeration.hasMoreElements()){
+            String name = enumeration.nextElement();
+            System.out.println(name + ": " + request.getHeader(name));
+        }
+}
+```
+
+我们发现，整个HTTP**请求报文中的所有内容**，都可以通过`HttpServletRequest`对象来获取，当然，它的作用肯定不仅仅是获取头部信息，我们还可以使用它来完成更多操作，后面会一一讲解。
+
+那么我们再来看看`ServletResponse`，这个是服务端的响应内容，我们可以在这里填写我们想要发送给浏览器显示的内容：
+
+```java
+//转换为HttpServletResponse（同上）
+HttpServletResponse response = (HttpServletResponse) servletResponse;
+//设定内容类型以及编码格式（普通HTML文本使用text/html，之后会讲解文件传输）
+response.setHeader("Content-type", "text/html;charset=UTF-8");
+//获取Writer直接写入内容
+response.getWriter().write("我是响应内容！");
+//所有内容写入完成之后，再发送给浏览器
+```
+
+现在我们在浏览器中打开此页面，就能够收到服务器发来的响应内容了。其中，响应头部分，是由Tomcat帮助我们生成的一个默认响应头。
+
+![点击查看源网页](https://s2.loli.net/2023/03/06/OpTzXU5b8VjkSiB.jpg)
+
+因此，实际上整个流程就已经很清晰明了了。
+
+### 解读和使用HttpServlet
+
+前面我们已经学习了如何创建、注册和使用Servlet，那么我们继续来深入学习Servlet接口的一些实现类。
+
+首先`Servlet`有一个直接实现抽象类`GenericServlet`，那么我们来看看此类做了什么事情。
+
+我们发现，这个类完善了配置文件读取和Servlet信息相关的的操作，但是依然没有去实现service方法，因此此类仅仅是用于完善一个Servlet的基本操作，那么我们接着来看`HttpServlet`，它是遵循HTTP协议的一种Servlet，继承自`GenericServlet`，它根据HTTP协议的规则，完善了service方法。
+
+在阅读了HttpServlet源码之后，我们发现，其实我们只需要继承HttpServlet来编写我们的Servlet就可以了，并且它已经帮助我们提前实现了一些操作，这样就会给我们省去很多的时间。
+
+```java
+@Log
+@WebServlet("/test")
+public class TestServlet extends HttpServlet {
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("text/html;charset=UTF-8");
+        resp.getWriter().write("<h1>恭喜你解锁了全新玩法</h1>");
+    }
+}
+```
+
+现在，我们只需要重写对应的请求方式，就可以快速完成Servlet的编写。
+
+### @WebServlet注解详解
+
+我们接着来看WebServlet注解，我们前面已经得知，可以直接使用此注解来快速注册一个Servlet，那么我们来想细看看此注解还有什么其他的玩法。
+
+首先name属性就是Servlet名称，而urlPatterns和value实际上是同样功能，就是代表当前Servlet的访问路径，它不仅仅可以是一个固定值，还可以进行通配符匹配：
+
+```java
+@WebServlet("/test/*")
+```
+
+上面的路径表示，所有匹配`/test/随便什么`的路径名称，都可以访问此Servlet，我们可以在浏览器中尝试一下。
+
+也可以进行某个扩展名称的匹配：
+
+```java
+@WebServlet("*.js")
+```
+
+这样的话，获取任何以js结尾的文件，都会由我们自己定义的Servlet处理。
+
+那么如果我们的路径为`/`呢？
+
+```java
+@WebServlet("/")
+```
+
+此路径和Tomcat默认为我们提供的Servlet冲突，会直接替换掉默认的，而使用我们的，此路径的意思为，如果没有找到匹配当前访问路径的Servlet，那么久会使用此Servlet进行处理。
+
+我们还可以为一个Servlet配置多个访问路径：
+
+```java
+@WebServlet({"/test1", "/test2"})
+```
+
+我们接着来看loadOnStartup属性，此属性决定了是否在Tomcat启动时就加载此Servlet，默认情况下，Servlet只有在被访问时才会加载，它的默认值为-1，表示不在启动时加载，我们可以将其修改为大于等于0的数，来开启启动时加载。并且数字的大小决定了此Servlet的启动优先级。
+
+```java
+@Log
+@WebServlet(value = "/test", loadOnStartup = 1)
+public class TestServlet extends HttpServlet {
+
+    @Override
+    public void init() throws ServletException {
+        super.init();
+        log.info("我被初始化了！");
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("text/html;charset=UTF-8");
+        resp.getWriter().write("<h1>恭喜你解锁了全新玩法</h1>");
+    }
+}
+```
+
+其他内容都是Servlet的一些基本配置，这里就不详细讲解了。
+
+### 使用POST请求完成登陆
+
+我们前面已经了解了如何使用Servlet来处理HTTP请求，那么现在，我们就结合前端，来实现一下登陆操作。
+
+我们需要修改一下我们的Servlet，现在我们要让其能够接收一个POST请求：
+
+```java
+@Log
+@WebServlet("/login")
+public class LoginServlet extends HttpServlet {
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getParameterMap().forEach((k, v) -> {
+            System.out.println(k + ": " + Arrays.toString(v));
+        });
+    }
+}
+```
+
+`ParameterMap`存储了我们发送的POST请求所携带的表单数据，我们可以直接将其遍历查看，浏览器发送了什么数据。
+
+现在我们再来修改一下前端：
+
+```html
+<body>
+    <h1>登录到系统</h1>
+    <form method="post" action="login">
+        <hr>
+        <div>
+            <label>
+                <input type="text" placeholder="用户名" name="username">
+            </label>
+        </div>
+        <div>
+            <label>
+                <input type="password" placeholder="密码" name="password">
+            </label>
+        </div>
+        <div>
+            <button>登录</button>
+        </div>
+    </form>
+</body>
+```
+
+通过修改form标签的属性，现在我们点击登录按钮，会自动向后台发送一个POST请求，请求地址为当前地址+/login（注意不同路径的写法），也就是我们上面编写的Servlet路径。
+
+运行服务器，测试后发现，在点击按钮后，确实向服务器发起了一个POST请求，并且携带了表单中文本框的数据。
+
+现在，我们根据已有的基础，将其与数据库打通，我们进行一个真正的用户登录操作，首先修改一下Servlet的逻辑：
+
+```java
+@Override
+protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    //首先设置一下响应类型
+    resp.setContentType("text/html;charset=UTF-8");
+    //获取POST请求携带的表单数据
+    Map<String, String[]> map = req.getParameterMap();
+    //判断表单是否完整
+    if(map.containsKey("username") && map.containsKey("password")) {
+        String username = req.getParameter("username");
+        String password = req.getParameter("password");
+
+        //权限校验（待完善）
+    }else {
+        resp.getWriter().write("错误，您的表单数据不完整！");
+    }
+}
+```
+
+接下来我们再去编写Mybatis的依赖和配置文件，创建一个表，用于存放我们用户的账号和密码。
+
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${驱动类（含包名）}"/>
+                <property name="url" value="${数据库连接URL}"/>
+                <property name="username" value="${用户名}"/>
+                <property name="password" value="${密码}"/>
+            </dataSource>
+        </environment>
+    </environments>
+</configuration>
+```
+
+```xml
+<dependency>
+    <groupId>org.mybatis</groupId>
+    <artifactId>mybatis</artifactId>
+    <version>3.5.7</version>
+</dependency>
+<dependency>
+    <groupId>mysql</groupId>
+    <artifactId>mysql-connector-java</artifactId>
+    <version>8.0.27</version>
+</dependency>
+```
+
+配置完成后，在我们的Servlet的init方法中编写Mybatis初始化代码，因为它只需要初始化一次。
+
+```java
+SqlSessionFactory factory;
+@SneakyThrows
+@Override
+public void init() throws ServletException {
+    factory = new SqlSessionFactoryBuilder().build(Resources.getResourceAsReader("mybatis-config.xml"));
+}
+```
+
+现在我们创建一个实体类以及Mapper来进行用户信息查询：
+
+```java
+@Data
+public class User {
+    String username;
+    String password;
+}
+```
+
+```java
+public interface UserMapper {
+
+    @Select("select * from users where username = #{username} and password = #{password}")
+    User getUser(@Param("username") String username, @Param("password") String password);
+}
+```
+
+```xml
+<mappers>
+    <mapper class="com.example.dao.UserMapper"/>
+</mappers>
+```
+
+好了，现在完事具备，只欠东风了，我们来完善一下登陆验证逻辑：
+
+```java
+//登陆校验（待完善）
+try (SqlSession sqlSession = factory.openSession(true)){
+    UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+    User user = mapper.getUser(username, password);
+    //判断用户是否登陆成功，若查询到信息则表示存在此用户
+    if(user != null){
+        resp.getWriter().write("登陆成功！");
+    }else {
+        resp.getWriter().write("登陆失败，请验证您的用户名或密码！");
+    }
+}
+```
+
+现在再去浏览器上进行测试吧！
+
+注册界面其实是同理的，这里就不多做讲解了。
+
+### 上传和下载文件
+
+首先我们来看看比较简单的下载文件，首先将我们的icon.png放入到resource文件夹中，接着我们编写一个Servlet用于处理文件下载：
+
+```java
+@WebServlet("/file")
+public class FileServlet extends HttpServlet {
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+      resp.setContentType("image/png");  
+      OutputStream outputStream = resp.getOutputStream();
+      InputStream inputStream = Resources.getResourceAsStream("icon.png");
+
+    }
+}
+```
+
+为了更加快速地编写IO代码，我们可以引入一个工具库：
+
+```xml
+<dependency>
+    <groupId>commons-io</groupId>
+    <artifactId>commons-io</artifactId>
+    <version>2.6</version>
+</dependency>
+```
+
+使用此类库可以快速完成IO操作：
+
+```java
+resp.setContentType("image/png");
+OutputStream outputStream = resp.getOutputStream();
+InputStream inputStream = Resources.getResourceAsStream("icon.png");
+//直接使用copy方法完成转换
+IOUtils.copy(inputStream, outputStream);
+```
+
+现在我们在前端页面添加一个链接，用于下载此文件：
+
+```html
+<hr>
+<a href="file" download="icon.png">点我下载高清资源</a>
+```
+
+下载文件搞定，那么如何上传一个文件呢？
+
+首先我们编写前端部分：
+
+```html
+<form method="post" action="file" enctype="multipart/form-data">
+    <div>
+        <input type="file" name="test-file">
+    </div>
+    <div>
+        <button>上传文件</button>
+    </div>
+</form>
+```
+
+注意必须添加`enctype="multipart/form-data"`，来表示此表单用于文件传输。
+
+现在我们来修改一下Servlet代码：
+
+```java
+@MultipartConfig
+@WebServlet("/file")
+public class FileServlet extends HttpServlet {
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        try(FileOutputStream stream = new FileOutputStream("/Users/nagocoler/Documents/IdeaProjects/WebTest/test.png")){
+            Part part = req.getPart("test-file");
+            IOUtils.copy(part.getInputStream(), stream);
+            resp.setContentType("text/html;charset=UTF-8");
+            resp.getWriter().write("文件上传成功！");
+        }
+    }
+}
+```
+
+注意，必须添加`@MultipartConfig`注解来表示此Servlet用于处理文件上传请求。
+
+现在我们再运行服务器，并将我们刚才下载的文件又上传给服务端。
+
+### 使用XHR请求数据
+
+现在我们希望，网页中的部分内容，可以动态显示，比如网页上有一个时间，旁边有一个按钮，点击按钮就可以刷新当前时间。
+
+这个时候就需要我们在网页展示时向后端发起请求了，并根据后端响应的结果，动态地更新页面中的内容，要实现此功能，就需要用到JavaScript来帮助我们，首先在js中编写我们的XHR请求，并在请求中完成动态更新：
+
+```js
+function updateTime() {
+    let xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            document.getElementById("time").innerText = xhr.responseText
+        }
+    };
+    xhr.open('GET', 'time', true);
+    xhr.send();
+}
+```
+
+接着修改一下前端页面，添加一个时间显示区域：
+
+```html
+<hr>
+<div id="time"></div>
+<br>
+<button onclick="updateTime()">更新数据</button>
+<script>
+    updateTime()
+</script>
+```
+
+最后创建一个Servlet用于处理时间更新请求：
+
+```java
+@WebServlet("/time")
+public class TimeServlet extends HttpServlet {
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
+        String date = dateFormat.format(new Date());
+        resp.setContentType("text/html;charset=UTF-8");
+        resp.getWriter().write(date);
+    }
+}
+```
+
+现在点击按钮就可以更新了。
+
+GET请求也能传递参数，这里做一下演示。
+
+### 重定向与请求转发
+
+当我们希望用户登录完成之后，直接跳转到网站的首页，那么这个时候，我们就可以使用重定向来完成。当浏览器收到一个重定向的响应时，会按照重定向响应给出的地址，再次向此地址发出请求。
+
+实现重定向很简单，只需要调用一个方法即可，我们修改一下登陆成功后执行的代码：
+
+```java
+resp.sendRedirect("time");
+```
+
+调用后，响应的状态码会被设置为302，并且响应头中添加了一个Location属性，此属性表示，需要重定向到哪一个网址。
+
+现在，如果我们成功登陆，那么服务器会发送给我们一个重定向响应，这时，我们的浏览器会去重新请求另一个网址。这样，我们在登陆成功之后，就可以直接帮助用户跳转到用户首页了。
+
+那么我们接着来看请求转发，请求转发其实是一种服务器内部的跳转机制，我们知道，重定向会使得浏览器去重新请求一个页面，而请求转发则是服务器内部进行跳转，它的目的是，直接将本次请求转发给其他Servlet进行处理，并由其他Servlet来返回结果，因此它是在进行内部的转发。
+
+```java
+req.getRequestDispatcher("/time").forward(req, resp);
+```
+
+现在，在登陆成功的时候，我们将请求转发给处理时间的Servlet，注意这里的路径规则和之前的不同，我们需要填写Servlet上指明的路径，并且请求转发只能转发到此应用程序内部的Servlet，不能转发给其他站点或是其他Web应用程序。
+
+现在再次进行登陆操作，我们发现，返回结果为一个405页面，证明了，我们的请求现在是被另一个Servlet进行处理，并且请求的信息全部被转交给另一个Servlet，由于此Servlet不支持POST请求，因此返回405状态码。
+
+那么也就是说，该请求包括请求参数也一起被传递了，那么我们可以尝试获取以下POST请求的参数。
+
+现在我们给此Servlet添加POST请求处理，直接转交给Get请求处理：
+
+```java
+@Override
+protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    this.doGet(req, resp);
+}
+```
+
+再次访问，成功得到结果，但是我们发现，浏览器只发起了一次请求，并没有再次请求新的URL，也就是说，这一次请求直接返回了请求转发后的处理结果。
+
+那么，请求转发有什么好处呢？它可以携带数据！
+
+```java
+req.setAttribute("test", "我是请求转发前的数据");
+req.getRequestDispatcher("/time").forward(req, resp);
+```
+
+```java
+System.out.println(req.getAttribute("test"));
+```
+
+通过`setAttribute`方法来给当前请求添加一个附加数据，在请求转发后，我们可以直接获取到该数据。
+
+重定向属于2次请求，因此无法使用这种方式来传递数据，那么，如何在重定向之间传递数据呢？我们可以使用即将要介绍的ServletContext对象。
+
+最后总结，两者的区别为：
+
+* 请求转发是一次请求，重定向是两次请求
+* 请求转发地址栏不会发生改变， 重定向地址栏会发生改变
+* 请求转发可以共享请求参数 ，重定向之后，就获取不了共享参数了
+* 请求转发只能转发给内部的Servlet
+
+### 了解ServletContext对象
+
+ServletContext全局唯一，它是属于整个Web应用程序的，我们可以通过`getServletContext()`来获取到此对象。
+
+此对象也能设置附加值：
+
+```java
+ServletContext context = getServletContext();
+context.setAttribute("test", "我是重定向之前的数据");
+resp.sendRedirect("time");
+```
+
+```java
+System.out.println(getServletContext().getAttribute("test"));
+```
+
+因为无论在哪里，无论什么时间，获取到的ServletContext始终是同一个对象，因此我们可以随时随地获取我们添加的属性。
+
+它不仅仅可以用来进行数据传递，还可以做一些其他的事情，比如请求转发：
+
+```java
+context.getRequestDispatcher("/time").forward(req, resp);
+```
+
+它还可以获取根目录下的资源文件（注意是webapp根目录下的，不是resource中的资源）
+
+### 初始化参数
+
+初始化参数类似于初始化配置需要的一些值，比如我们的数据库连接相关信息，就可以通过初始化参数来给予Servlet，或是一些其他的配置项，也可以使用初始化参数来实现。
+
+我们可以给一个Servlet添加一些初始化参数：
+
+```java
+@WebServlet(value = "/login", initParams = {
+        @WebInitParam(name = "test", value = "我是一个默认的初始化参数")
+})
+```
+
+它也是以键值对形式保存的，我们可以直接通过Servlet的`getInitParameter`方法获取：
+
+```java
+System.out.println(getInitParameter("test"));
+```
+
+但是，这里的初始化参数仅仅是针对于此Servlet，我们也可以定义全局初始化参数，只需要在web.xml编写即可：
+
+```xml
+<context-param>
+    <param-name>lbwnb</param-name>
+    <param-value>我是全局初始化参数</param-value>
+</context-param>
+```
+
+我们需要使用ServletContext来读取全局初始化参数：
+
+```java
+ServletContext context = getServletContext();
+System.out.println(context.getInitParameter("lbwnb"));
+```
+
+有关ServletContext其他的内容，我们需要完成后面内容的学习，才能理解。
+
+***
+
 # Cookie
 
-它可以在浏览器中保存一些信息，并且在下次请求时，请求头中会携带这些信息。
+什么是Cookie？不是曲奇，它可以在浏览器中保存一些信息，并且在下次请求时，请求头中会携带这些信息。
 
+我们可以编写一个测试用例来看看：
+
+```java
+Cookie cookie = new Cookie("test", "yyds");
+resp.addCookie(cookie);
+resp.sendRedirect("time");
+```
+
+```java
+for (Cookie cookie : req.getCookies()) {
+    System.out.println(cookie.getName() + ": " + cookie.getValue());
+}
+```
+
+我们可以观察一下，在`HttpServletResponse`中添加Cookie之后，浏览器的响应头中会包含一个`Set-Cookie`属性，同时，在重定向之后，我们的请求头中，会携带此Cookie作为一个属性，同时，我们可以直接通过`HttpServletRequest`来快速获取有哪些Cookie信息。
+
+![点击查看源网页](https://s2.loli.net/2023/03/06/3JcLpr9GYMnbBHw.jpg)
+
+还有这么神奇的事情吗？那么我们来看看，一个Cookie包含哪些信息：
+
+* name   -   Cookie的名称，Cookie一旦创建，名称便不可更改
+* value  -   Cookie的值，如果值为Unicode字符，需要为字符编码。如果为二进制数据，则需要使用BASE64编码
+* maxAge  -  Cookie失效的时间，单位秒。如果为正数，则该Cookie在maxAge秒后失效。如果为负数，该Cookie为临时Cookie，关闭浏览器即失效，浏览器也不会以任何形式保存该Cookie。如果为0，表示删除该Cookie。默认为-1。
+* secure  -  该Cookie是否仅被使用安全协议传输。安全协议。安全协议有HTTPS，SSL等，在网络上传输数据之前先将数据加密。默认为false。
+* path  -  Cookie的使用路径。如果设置为“/sessionWeb/”，则只有contextPath为“/sessionWeb”的程序可以访问该Cookie。如果设置为“/”，则本域名下contextPath都可以访问该Cookie。注意最后一个字符必须为“/”。
+* domain  -  可以访问该Cookie的域名。如果设置为“.google.com”，则所有以“google.com”结尾的域名都可以访问该Cookie。注意第一个字符必须为“.”。
+* comment  -  该Cookie的用处说明，浏览器显示Cookie信息的时候显示该说明。
+* version  -  Cookie使用的版本号。0表示遵循Netscape的Cookie规范，1表示遵循W3C的RFC 2109规范
+
+我们发现，最关键的其实是`name`、`value`、`maxAge`、`domain`属性。
+
+那么我们来尝试修改一下maxAge来看看失效时间：
+
+```java
+cookie.setMaxAge(20);
+```
+
+设定为20秒，我们可以直接看到，响应头为我们设定了20秒的过期时间。20秒内访问都会携带此Cookie，而超过20秒，Cookie消失。
+
+既然了解了Cookie的作用，我们就可以通过使用Cookie来实现记住我功能，我们可以将用户名和密码全部保存在Cookie中，如果访问我们的首页时携带了这些Cookie，那么我们就可以直接为用户进行登陆，如果登陆成功则直接跳转到首页，如果登陆失败，则清理浏览器中的Cookie。
+
+那么首先，我们先在前端页面的表单中添加一个勾选框：
+
+```html
+<div>
+    <label>
+        <input type="checkbox" placeholder="记住我" name="remember-me">
+        记住我
+    </label>
+</div>
+```
+
+接着，我们在登陆成功时进行判断，如果用户勾选了记住我，那么就讲Cookie存储到本地：
+
+```java
+if(map.containsKey("remember-me")){   //若勾选了勾选框，那么会此表单信息
+    Cookie cookie_username = new Cookie("username", username);
+    cookie_username.setMaxAge(30);
+    Cookie cookie_password = new Cookie("password", password);
+    cookie_password.setMaxAge(30);
+    resp.addCookie(cookie_username);
+    resp.addCookie(cookie_password);
+}
+```
+
+然后，我们修改一下默认的请求地址，现在一律通过`http://localhost:8080/yyds/login`进行登陆，那么我们需要添加GET请求的相关处理：
+
+```java
+@Override
+protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    Cookie[] cookies = req.getCookies();
+    if(cookies != null){
+        String username = null;
+        String password = null;
+        for (Cookie cookie : cookies) {
+            if(cookie.getName().equals("username")) username = cookie.getValue();
+            if(cookie.getName().equals("password")) password = cookie.getValue();
+        }
+        if(username != null && password != null){
+            //登陆校验
+            try (SqlSession sqlSession = factory.openSession(true)){
+                UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+                User user = mapper.getUser(username, password);
+                if(user != null){
+                    resp.sendRedirect("time");
+                    return;   //直接返回
+                }
+            }
+        }
+    }
+    req.getRequestDispatcher("/").forward(req, resp);   //正常情况还是转发给默认的Servlet帮我们返回静态页面
+}
+```
+
+现在，30秒内都不需要登陆，访问登陆页面后，会直接跳转到time页面。
+
+现在已经离我们理想的页面越来越接近了，但是仍然有一个问题，就是我们的首页，无论是否登陆，所有人都可以访问，那么，如何才可以实现只有登陆之后才能访问呢？这就需要用到Session了。
+
+***
+
+# Session
+
+由于HTTP是无连接的，那么如何能够辨别当前的请求是来自哪个用户发起的呢？Session就是用来处理这种问题的，每个用户的会话都会有一个自己的Session对象，来自同一个浏览器的所有请求，就属于同一个会话。
+
+但是HTTP协议是无连接的呀，那Session是如何做到辨别是否来自同一个浏览器呢？Session实际上是基于Cookie实现的，前面我们了解了Cookie，我们知道，服务端可以将Cookie保存到浏览器，当浏览器下次访问时，就会附带这些Cookie信息。
+
+Session也利用了这一点，它会给浏览器设定一个叫做`JSESSIONID`的Cookie，值是一个随机的排列组合，而此Cookie就对应了你属于哪一个对话，只要我们的浏览器携带此Cookie访问服务器，服务器就会通过Cookie的值进行辨别，得到对应的Session对象，因此，这样就可以追踪到底是哪一个浏览器在访问服务器。
+
+![点击查看源网页](https://s2.loli.net/2023/03/06/wCYHNg39tFcK76M.gif)
+
+那么现在，我们在用户登录成功之后，将用户对象添加到Session中，只要是此用户发起的请求，我们都可以从`HttpSession`中读取到存储在会话中的数据：
+
+```java
+HttpSession session = req.getSession();
+session.setAttribute("user", user);
+```
+
+同时，如果用户没有登录就去访问首页，那么我们将发送一个重定向请求，告诉用户，需要先进行登录才可以访问：
+
+```java
+HttpSession session = req.getSession();
+User user = (User) session.getAttribute("user");
+if(user == null) {
+    resp.sendRedirect("login");
+    return;
+}
+```
+
+在访问的过程中，注意观察Cookie变化。
+
+Session并不是永远都存在的，它有着自己的过期时间，默认时间为30分钟，若超过此时间，Session将丢失，我们可以在配置文件中修改过期时间：
+
+```xml
+<session-config>
+    <session-timeout>1</session-timeout>
+</session-config>
+```
+
+我们也可以在代码中使用`invalidate`方法来使Session立即失效：
+
+```java
+session.invalidate();
+```
+
+现在，通过Session，我们就可以更好地控制用户对于资源的访问，只有完成登陆的用户才有资格访问首页。
+
+# Filter
+
+有了Session之后，我们就可以很好地控制用户的登陆验证了，只有授权的用户，才可以访问一些页面，但是我们需要一个一个去进行配置，还是太过复杂，能否一次性地过滤掉没有登录验证的用户呢？
+
+过滤器相当于在所有访问前加了一堵墙，来自浏览器的所有访问请求都会首先经过过滤器，只有过滤器允许通过的请求，才可以顺利地到达对应的Servlet，而过滤器不允许的通过的请求，我们可以自由地进行控制是否进行重定向或是请求转发。并且过滤器可以添加很多个，就相当于添加了很多堵墙，我们的请求只有穿过层层阻碍，才能与Servlet相拥，像极了爱情。
+
+![点击查看源网页](https://s2.loli.net/2023/03/06/md9X75EToshnH8I.jpg)
+
+添加一个过滤器非常简单，只需要实现Filter接口，并添加`@WebFilter`注解即可：
+
+```java
+@WebFilter("/*")   //路径的匹配规则和Servlet一致，这里表示匹配所有请求
+public class TestFilter implements Filter {
+    @Override
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+        
+    }
+}
+```
+
+这样我们就成功地添加了一个过滤器，那么添加一句打印语句看看，是否所有的请求都会经过此过滤器：
+
+```java
+HttpServletRequest request = (HttpServletRequest) servletRequest;
+System.out.println(request.getRequestURL());
+```
+
+我们发现，现在我们发起的所有请求，一律需要经过此过滤器，并且所有的请求都没有任何的响应内容。
+
+那么如何让请求可以顺利地到达对应的Servlet，也就是说怎么让这个请求顺利通过呢？我们只需要在最后添加一句：
+
+```java
+filterChain.doFilter(servletRequest, servletResponse);
+```
+
+那么这行代码是什么意思呢？
+
+由于我们整个应用程序可能存在多个过滤器，那么这行代码的意思实际上是将此请求继续传递给下一个过滤器，当没有下一个过滤器时，才会到达对应的Servlet进行处理，我们可以再来创建一个过滤器看看效果：
+
+```java
+@WebFilter("/*")
+public class TestFilter2 implements Filter {
+    @Override
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+        System.out.println("我是2号过滤器");
+        filterChain.doFilter(servletRequest, servletResponse);
+    }
+}
+```
+
+由于过滤器的过滤顺序是按照类名的自然排序进行的，因此我们将第一个过滤器命名进行调整。
+
+我们发现，在经过第一个过滤器之后，会继续前往第二个过滤器，只有两个过滤器全部经过之后，才会到达我们的Servlet中。
+
+![点击查看源网页](https://s2.loli.net/2023/03/06/LaDmPMWEtAB1HVF.jpg)
+
+实际上，当`doFilter`方法调用时，就会一直向下直到Servlet，在Servlet处理完成之后，又依次返回到最前面的Filter，类似于递归的结构，我们添加几个输出语句来判断一下：
+
+```java
+@Override
+public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+    System.out.println("我是2号过滤器");
+    filterChain.doFilter(servletRequest, servletResponse);
+    System.out.println("我是2号过滤器，处理后");
+}
+```
+
+```java
+@Override
+public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+    System.out.println("我是1号过滤器");
+    filterChain.doFilter(servletRequest, servletResponse);
+    System.out.println("我是1号过滤器，处理后");
+}
+```
+
+最后验证我们的结论。
+
+同Servlet一样，Filter也有对应的HttpFilter专用类，它针对HTTP请求进行了专门处理，因此我们可以直接使用HttpFilter来编写：
+
+```java
+public abstract class HttpFilter extends GenericFilter {
+    private static final long serialVersionUID = 7478463438252262094L;
+
+    public HttpFilter() {
+    }
+
+    public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
+        if (req instanceof HttpServletRequest && res instanceof HttpServletResponse) {
+            this.doFilter((HttpServletRequest)req, (HttpServletResponse)res, chain);
+        } else {
+            throw new ServletException("non-HTTP request or response");
+        }
+    }
+
+    protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
+        chain.doFilter(req, res);
+    }
+}
+```
+
+那么现在，我们就可以给我们的应用程序添加一个过滤器，用户在未登录情况下，只允许静态资源和登陆页面请求通过，登陆之后畅行无阻：
+
+```java
+@WebFilter("/*")
+public class MainFilter extends HttpFilter {
+    @Override
+    protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
+        String url = req.getRequestURL().toString();
+        //判断是否为静态资源
+        if(!url.endsWith(".js") && !url.endsWith(".css") && !url.endsWith(".png")){
+            HttpSession session = req.getSession();
+            User user = (User) session.getAttribute("user");
+            //判断是否未登陆
+            if(user == null && !url.endsWith("login")){
+                res.sendRedirect("login");
+                return;
+            }
+        }
+        //交给过滤链处理
+        chain.doFilter(req, res);
+    }
+}
+```
+
+现在，我们的页面已经基本完善为我们想要的样子了。
+
+当然，可能跟着教程编写的项目比较乱，大家可以自己花费一点时间来重新编写一个Web应用程序，加深对之前讲解知识的理解。我们也会在之后安排一个编程实战进行深化练习。
+
+***
+
+# Listener
+
+监听器并不是我们学习的重点内容，那么什么是监听器呢？
+
+如果我们希望，在应用程序加载的时候，或是Session创建的时候，亦或是在Request对象创建的时候进行一些操作，那么这个时候，我们就可以使用监听器来实现。
+
+![img](https://s2.loli.net/2023/03/06/xl4hzgOaSCdXHcu.png)
+
+默认为我们提供了很多类型的监听器，我们这里就演示一下监听Session的创建即可：
+
+```java
+@WebListener
+public class TestListener implements HttpSessionListener {
+    @Override
+    public void sessionCreated(HttpSessionEvent se) {
+        System.out.println("有一个Session被创建了");
+    }
+}
+```
+
+有关监听器相关内容，了解即可。
+
+***
+
+# 了解JSP页面与加载规则
+
+前面我们已经完成了整个Web应用程序生命周期中所有内容的学习，我们已经完全了解，如何编写一个Web应用程序，并放在Tomcat上部署运行，以及如何控制浏览器发来的请求，通过Session+Filter实现用户登陆验证，通过Cookie实现自动登陆等操作。到目前为止，我们已经具备编写一个完整Web网站的能力。
+
+在之前的教程中，我们的前端静态页面并没有与后端相结合，我们前端页面所需的数据全部需要单独向后端发起请求获取，并动态进行内容填充，这是一种典型的前后端分离写法，前端只负责要数据和显示数据，后端只负责处理数据和提供数据，这也是现在更流行的一种写法，让前端开发者和后端开发者各尽其责，更加专一，这才是我们所希望的开发模式。
+
+JSP并不是我们需要重点学习的内容，因为它已经过时了，使用JSP会导致前后端严重耦合，因此这里只做了解即可。
+
+JSP其实就是一种模板引擎，那么何谓模板引擎呢？顾名思义，它就是一个模板，而模板需要我们填入数据，才可以变成一个页面，也就是说，我们可以直接在前端页面中直接填写数据，填写后生成一个最终的HTML页面返回给前端。
+
+首先我们来创建一个新的项目，项目创建成功后，删除Java目录下的内容，只留下默认创建的jsp文件，我们发现，在webapp目录中，存在一个`index.jsp`文件，现在我们直接运行项目，会直接访问这个JSP页面。
+
+```jsp
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JSP - Hello World</title>
+</head>
+<body>
+<h1><%= "Hello World!" %>
+</h1>
+<br/>
+<a href="hello-servlet">Hello Servlet</a>
+</body>
+</html>
+```
+
+但是我们并没有编写对应的Servlet来解析啊，那么为什么这个JSP页面会被加载呢？
+
+实际上，我们一开始提到的两个Tomcat默认的Servlet中，一个是用于请求静态资源，还有一个就是用于处理jsp的：
+
+```xml
+<!-- The mappings for the JSP servlet -->
+    <servlet-mapping>
+        <servlet-name>jsp</servlet-name>
+        <url-pattern>*.jsp</url-pattern>
+        <url-pattern>*.jspx</url-pattern>
+    </servlet-mapping>
+```
+
+那么，JSP和普通HTML页面有什么区别呢，我们发现它的语法和普通HTML页面几乎一致，我们可以直接在JSP中编写Java代码，并在页面加载的时候执行，我们随便找个地方插入：
+
+```jsp
+<%
+    System.out.println("JSP页面被加载");
+%>
+```
+
+我们发现，请求一次页面，页面就会加载一次，并执行我们填写的Java代码。也就是说，我们可以直接在此页面中执行Java代码来填充我们的数据，这样我们的页面就变成了一个动态页面，使用`<%=  %>`来填写一个值：
+
+```jsp
+<h1><%= new Date() %></h1>
+```
+
+现在访问我们的网站，每次都会创建一个新的Date对象，因此每次访问获取的时间都不一样，我们的网站已经算是一个动态的网站的了。
+
+虽然这样在一定程度上上为我们提供了便利，但是这样的写法相当于整个页面既要编写前端代码，也要编写后端代码，随着项目的扩大，整个页面会显得难以阅读，并且现在都是前后端开发人员职责非常明确的，如果要编写JSP页面，那就必须要招一个既会前端也会后端的程序员，这样显然会导致不必要的开销。
+
+那么我们来研究一下，为什么JSP页面能够在加载的时候执行Java代码呢？
+
+首先我们将此项目打包，并在Tomcat服务端中运行，生成了一个文件夹并且可以正常访问。
+
+我们现在看到`work`目录，我们发现这个里面多了一个`index_jsp.java`和`index_jsp.class`，那么这些东西是干嘛的呢，我们来反编译一下就啥都知道了：
+
+```java
+public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase  //继承自HttpServlet
+    implements org.apache.jasper.runtime.JspSourceDependent,
+                 org.apache.jasper.runtime.JspSourceImports {
+
+ ...
+
+  public void _jspService(final jakarta.servlet.http.HttpServletRequest request, final jakarta.servlet.http.HttpServletResponse response)
+      throws java.io.IOException, jakarta.servlet.ServletException {
+
+    if (!jakarta.servlet.DispatcherType.ERROR.equals(request.getDispatcherType())) {
+      final java.lang.String _jspx_method = request.getMethod();
+      if ("OPTIONS".equals(_jspx_method)) {
+        response.setHeader("Allow","GET, HEAD, POST, OPTIONS");
+        return;
+      }
+      if (!"GET".equals(_jspx_method) && !"POST".equals(_jspx_method) && !"HEAD".equals(_jspx_method)) {
+        response.setHeader("Allow","GET, HEAD, POST, OPTIONS");
+        response.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED, "JSP 只允许 GET、POST 或 HEAD。Jasper 还允许 OPTIONS");
+        return;
+      }
+    }
+
+    final jakarta.servlet.jsp.PageContext pageContext;
+    jakarta.servlet.http.HttpSession session = null;
+    final jakarta.servlet.ServletContext application;
+    final jakarta.servlet.ServletConfig config;
+    jakarta.servlet.jsp.JspWriter out = null;
+    final java.lang.Object page = this;
+    jakarta.servlet.jsp.JspWriter _jspx_out = null;
+    jakarta.servlet.jsp.PageContext _jspx_page_context = null;
+
+
+    try {
+      response.setContentType("text/html; charset=UTF-8");
+      pageContext = _jspxFactory.getPageContext(this, request, response,
+             null, true, 8192, true);
+      _jspx_page_context = pageContext;
+      application = pageContext.getServletContext();
+      config = pageContext.getServletConfig();
+      session = pageContext.getSession();
+      out = pageContext.getOut();
+      _jspx_out = out;
+
+      out.write("\n");
+      out.write("\n");
+      out.write("<!DOCTYPE html>\n");
+      out.write("<html>\n");
+      out.write("<head>\n");
+      out.write("    <title>JSP - Hello World</title>\n");
+      out.write("</head>\n");
+      out.write("<body>\n");
+      out.write("<h1>");
+      out.print( new Date() );
+      out.write("</h1>\n");
+
+    System.out.println("JSP页面被加载");
+
+      out.write("\n");
+      out.write("<br/>\n");
+      out.write("<a href=\"hello-servlet\">Hello Servlet</a>\n");
+      out.write("</body>\n");
+      out.write("</html>");
+    } catch (java.lang.Throwable t) {
+      if (!(t instanceof jakarta.servlet.jsp.SkipPageException)){
+        out = _jspx_out;
+        if (out != null && out.getBufferSize() != 0)
+          try {
+            if (response.isCommitted()) {
+              out.flush();
+            } else {
+              out.clearBuffer();
+            }
+          } catch (java.io.IOException e) {}
+        if (_jspx_page_context != null) _jspx_page_context.handlePageException(t);
+        else throw new ServletException(t);
+      }
+    } finally {
+      _jspxFactory.releasePageContext(_jspx_page_context);
+    }
+  }
+}
+```
+
+我们发现，它是继承自`HttpJspBase`类，我们可以反编译一下jasper.jar（它在tomcat的lib目录中）来看看:
+
+```java
+package org.apache.jasper.runtime;
+
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.jsp.HttpJspPage;
+import java.io.IOException;
+import org.apache.jasper.compiler.Localizer;
+
+public abstract class HttpJspBase extends HttpServlet implements HttpJspPage {
+    private static final long serialVersionUID = 1L;
+
+    protected HttpJspBase() {
+    }
+
+    public final void init(ServletConfig config) throws ServletException {
+        super.init(config);
+        this.jspInit();
+        this._jspInit();
+    }
+
+    public String getServletInfo() {
+        return Localizer.getMessage("jsp.engine.info", new Object[]{"3.0"});
+    }
+
+    public final void destroy() {
+        this.jspDestroy();
+        this._jspDestroy();
+    }
+
+    public final void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        this._jspService(request, response);
+    }
+
+    public void jspInit() {
+    }
+
+    public void _jspInit() {
+    }
+
+    public void jspDestroy() {
+    }
+
+    protected void _jspDestroy() {
+    }
+
+    public abstract void _jspService(HttpServletRequest var1, HttpServletResponse var2) throws ServletException, IOException;
+}
+```
+
+实际上，Tomcat在加载JSP页面时，会将其动态转换为一个java类并编译为class进行加载，而生成的Java类，正是一个Servlet的子类，而页面的内容全部被编译为输出字符串，这便是JSP的加载原理，因此，JSP本质上依然是一个Servlet！
+
+![image-20230306164106712](https://s2.loli.net/2023/03/06/UGJBqvOTDeX5SuM.png)
+
+
+***
+
+# Spring
