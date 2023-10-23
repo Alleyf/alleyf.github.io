@@ -5,7 +5,7 @@
   "nativeMenus": true,
   "translucency": true,
   "interfaceFontFamily": "Arial Black",
-  "baseFontSize": 18,
+  "baseFontSize": 17,
   "enabledCssSnippets": [
     "custom-icons-differing-files-and-folders"
   ]

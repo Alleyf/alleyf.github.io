@@ -140,14 +140,6 @@
       "key": "C"
     }
   ],
-  "insert-template": [
-    {
-      "modifiers": [
-        "Mod"
-      ],
-      "key": "M"
-    }
-  ],
   "file-explorer:open": [],
   "editor:insert-callout": [
     {
@@ -264,6 +256,22 @@
         "Alt"
       ],
       "key": "L"
+    }
+  ],
+  "insert-template": [
+    {
+      "modifiers": [
+        "Alt"
+      ],
+      "key": "M"
+    }
+  ],
+  "editing-toolbar:underline": [
+    {
+      "modifiers": [
+        "Mod"
+      ],
+      "key": "O"
     }
   ]
 }
