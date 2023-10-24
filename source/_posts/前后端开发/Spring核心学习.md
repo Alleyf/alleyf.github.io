@@ -3203,6 +3203,12 @@ Student bean = (Student) context.getBean ("studentFactory");
 StudentFactory bean = (StudentFactory) context.getBean ("&studentFactory");
 ```
 又是一个小细节。
+
+> [!NOTE] 总结
+> 工厂bean可以**间接创建bean**从而**代替构造方法或者setter**直接创建bean，从而实现bean实例化过程中其他的逻辑功能，借助工厂 bean 实例化需要的 bean 有以下两种方式：
+>    1. 写工厂类并添加 **get 产品 bean 的静态方法**，在 `xml` 配置文件中**注册工厂 bean 并设置 factory-method 方法**指定实例化产品 **bean 的静态方法**。
+>    2. 写工厂类并添加 **get 产品 bean 的对象方法**，然后实现 `FactoryBean<产品类>`接口并**重写 getObject（return get 产品 bean）和 getObjectType（return 产品 bean. class）** 方法，接着**注册工厂 bean** 即可（不用配置 `factory-method`）
+
 ## 使用注解开发
 前面我们已经完成了大部分的配置文件学习，但是我们发现，使用配置文件进行配置，貌似有点太累了吧？可以想象一下，如果我们的项目非常庞大，整个配置文件将会充满 Bean 配置，并且会继续庞大下去，能否有一种更加高效的方法能够省去配置呢？还记得我们在 JavaWeb 阶段用到的非常方便东西吗？没错，就是注解。
 既然现在要使用注解来进行开发，那么我们就删掉之前的 xml 配置文件吧，我们来看看使用注解能有多方便。
