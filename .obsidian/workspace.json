@@ -13,8 +13,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/科研学习/国基金项目/司法领域大模型调研二.md",
-                "mode": "source",
+                "file": "source/_posts/前后端开发/Spring核心学习.md",
+                "mode": "preview",
                 "backlinks": false,
                 "source": false
               }
@@ -40,7 +40,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/科研学习/国基金项目/司法领域大模型调研二.md"
+                "file": "source/_posts/前后端开发/Spring核心学习.md"
               }
             }
           }
@@ -97,7 +97,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/科研学习/国基金项目/司法领域大模型调研二.md",
+                "file": "source/_posts/前后端开发/Spring核心学习.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -153,15 +153,18 @@
   },
   "active": "b2253edaefec4eae",
   "lastOpenFiles": [
-    "source/_posts/科研学习/国基金项目/司法领域大模型调研一.md",
+    "source/_posts/科研学习/会议讨论/周会.md",
     "source/_posts/科研学习/国基金项目/司法领域大模型调研二.md",
+    "source/_posts/科研学习/国基金项目/司法领域大模型调研一.md",
+    "source/_posts/前后端开发/Spring核心学习.md",
+    "source/_posts/科研学习/学习方法/Paper_Reading_Method.md",
+    "public/2023/10/d36831b1156c.html",
+    "public/tags/NLP，KG/index.html",
+    "public/tags/NLP，KG",
     "[面向司法案件的案情知识图谱自动构建.md",
     "面向司法案件的案情知识图谱自动构建.md",
-    "source/_posts/科研学习/学习方法/Paper_Reading_Method.md",
     "source/_posts/科研学习/学习方法/论文阅读模板(最好读英文原文).md",
-    "source/_posts/前后端开发/Spring核心学习.md",
     "source/_posts/科研学习/会议讨论/国际会议.md",
-    "source/_posts/科研学习/会议讨论/周会.md",
     "public/2023/10/46c739775d39.html",
     "source/_posts/前后端开发/后端学习.md",
     "会议重点纪要.md",
@@ -179,18 +182,14 @@
     "Generated/images",
     "Generated",
     "source/_posts/科研学习/周会.html",
-    "public/2023/10/55d044931cdb.html",
     "source/_posts/科研学习/论文总结/Paper_Reading_Tables.md",
     "source/_posts/科研学习/论文总结/Papers Reading.md",
     "DISC.md",
     "JavaWeb 网站开发 - JavaWeb 笔记（五）后端开发.md",
-    "public/2023/10/c114fe139aab.html",
     "source/_posts/科研学习/论文总结/Deep residual learning for image recognition.md",
-    "source/_posts/科研学习/国基金项目",
     "source/_posts/英语学习/EnglishWords.canvas",
     "source/_posts/英语学习/PaperWords.canvas",
     "JavaWeb 网站开发 - JavaWeb 笔记（三）Java与数据库.md",
-    "source/_posts/前后端开发/SpringBoot启示录.md",
     "canvas/AI学习思路.canvas",
     "canvas/review plans.canvas",
     "source/_posts/课程学习/review plans.canvas",

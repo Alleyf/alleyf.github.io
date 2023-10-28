@@ -33,29 +33,18 @@ excerpt: Web—study about Spring(IOC,Di,AOP)
 ### SQL 数据类型
 **（1）字符串存储：**
 - char (n)可以存储任意字符串，但是是固定长度为 n，如果插入的长度小于定义长度时，则用空格填充。
-    
 - varchar (n)也可以存储任意数量字符串，长度不固定，但不能超过 n，不会用空格填充。
-    
 **（2）存储数字：**
 - smallint 用于存储小的整数，范围在 (-32768，32767)
-    
 - int 用于存储一般的整数，范围在 (-2147483648，2147483647)
-    
 - bigint 用于存储大型整数，范围在 (-9,223,372,036,854,775,808，9,223,372,036,854,775,807)
-    
 - float 用于存储单精度小数
-    
 - double 用于存储双精度的小数
-    
 **（3）存储时间：**
 - date 存储日期
-    
 - time 存储时间
-    
 - year 存储年份
-    
 - datetime 用于混合存储日期+时间
-    
 ### 列级约束条件
 列级约束有六种：主键 Primary key、外键 foreign key 、唯一 unique、检查 check （MySQL 不支持）、默认 default 、非空/空值 not null/ null
 ### 表级约束条件
@@ -2580,6 +2569,18 @@ public abstract class HttpJspBase extends HttpServlet implements HttpJspPage {
 # Spring
 Spring 就是这样的一个框架（[文档](https://docs.spring.io/spring-framework/docs/6.0.10/reference/html/core.html#spring-core)，它就是为了简化开发而生，它是轻量级的**IoC**和**AOP**的容器框架，主要是针对**Bean**的生命周期进行管理的轻量级容器，并且它的生态已经发展得极为庞大。
 ## IOC 容器基础
+
+```cardlink
+url: https://zhuanlan.zhihu.com/p/637355010
+title: "深入理解spring-IOC<容器的设计>"
+description: "spring在Java中的地位不言而喻，学习Java逃不开spring的学习。有人戏称Java程序员是spring程序员，因为，spring太强大了。它帮助Java程序员实现了很多基础功能，降低了程序员开发应用的难度。而也是有了spring的存…"
+host: zhuanlan.zhihu.com
+```
+[深入理解spring-IOC<容器的设计> - 知乎](https://zhuanlan.zhihu.com/p/637355010)
+
+在 Spring 框架中，IOC（Inversion of Control）是一种设计原则和实现机制，**它将对象的创建、依赖关系的管理和生命周期的控制从应用程序代码中解耦出来，交给容器来完成。**  
+> 简单来说，IOC 就是由容器来控制对象的创建和管理，而不是由应用程序代码直接控制。通过 IOC，应用程序只需要定义好对象的依赖关系和配置信息，容器会根据这些信息来创建对象，并自动注入对象之间的依赖关系
+
 **高耦合度**带来的缺点是很明显的，也是现代软件开发中很致命的问题。如果要改善这种情况，我们只能将各个模块进行解耦，让各个模块之间的依赖性不再那么地强。也就是说，Service 的实现类，不再由我们决定，而是让程序自己决定，所有的实现类对象，全部交给程序来管理，所有对象之间的关系，也由程序来动态决定，这样就引入了 IoC 理论。
 **IOC**是 Inversion of Control 的缩写，翻译为：“**控制反转**”，把复杂系统分解成相互合作的对象，这些对象类通过封装以后，内部实现对外部是透明的，从而降低了解决问题的复杂度，而且可以灵活地被重用和扩展。
 ![](https://image.itbaima.net/markdown/2022/10/08/XsYQRk93CHewISB.png)
@@ -3205,12 +3206,12 @@ StudentFactory bean = (StudentFactory) context.getBean ("&studentFactory");
 又是一个小细节。
 
 > [!NOTE] 总结
-> 工厂bean可以**间接创建bean**从而**代替构造方法或者setter**直接创建bean，从而实现bean实例化过程中其他的逻辑功能，借助工厂 bean 实例化需要的 bean 有以下两种方式：
+> 工厂 bean 可以**间接创建 bean**从而**代替构造方法或者 setter**直接创建 bean，从而实现 bean 实例化过程中其他的逻辑功能，借助工厂 bean 实例化需要的 bean 有以下两种方式：
 >    1. 写工厂类并添加 **get 产品 bean 的静态方法**，在 `xml` 配置文件中**注册工厂 bean 并设置 factory-method 方法**指定实例化产品 **bean 的静态方法**。
->    2. 写工厂类并添加 **get 产品 bean 的对象方法**，然后实现 `FactoryBean<产品类>`接口并**重写 getObject（return get 产品 bean）和 getObjectType（return 产品 bean. class）** 方法，接着**注册工厂 bean** 即可（不用配置 `factory-method`）
+>    2. 写工厂类并添加 **get 产品 bean 的对象方法**，然后实现 `FactoryBean<产品类>` 接口并**重写 getObject（return get 产品 bean）和 getObjectType（return 产品 bean. class）** 方法，接着**注册工厂 bean** 即可（不用配置 `factory-method`）
 
 ## 使用注解开发
-前面我们已经完成了大部分的配置文件学习，但是我们发现，使用配置文件进行配置，貌似有点太累了吧？可以想象一下，如果我们的项目非常庞大，整个配置文件将会充满 Bean 配置，并且会继续庞大下去，能否有一种更加高效的方法能够省去配置呢？还记得我们在 JavaWeb 阶段用到的非常方便东西吗？没错，就是注解。
+使用配置文件进行配置，貌似有点太累了吧？可以想象一下，如果我们的项目非常庞大，整个配置文件将会充满 Bean 配置，并且会继续庞大下去，能否有一种更加高效的方法能够省去配置呢？还记得我们在 JavaWeb 阶段用到的非常方便东西吗？没错，就是注解。
 既然现在要使用注解来进行开发，那么我们就删掉之前的 xml 配置文件吧，我们来看看使用注解能有多方便。
 ```java
 ApplicationContext context = new AnnotationConfigApplicationContext ();
@@ -3259,7 +3260,7 @@ public class MainConfiguration {
     <bean name = "student" class="com.test.bean.Student"/>
 </beans>
 ```
-通过@Import 还可以引入其他配置类：
+通过 `@Import` 还可以引入其他配置类：
 ```java
 @Import (LBWConfiguration. class)  //在讲解到 Spring 原理时，我们还会遇到它，目前只做了解即可。
 @Configuration
@@ -3331,7 +3332,7 @@ public class Student {
     }
 }
 ```
-@Autowired 默认采用 byType 的方式进行自动装配，也就是说会使用类型进行配，那么要是出现了多个相同类型的 Bean，如果我们想要指定使用其中的某一个该怎么办呢？
+*@Autowired 默认采用 byType 的方式*进行自动装配，也就是说会使用类型进行配，那么要是出现了多个相同类型的 Bean，如果我们想要指定使用其中的某一个该怎么办呢？
 ```java
 @Bean ("a")
 public Teacher teacherA (){
@@ -3342,7 +3343,7 @@ public Teacher teacherB (){
     return new Teacher ();
 }
 ```
-此时，我们可以配合@Qualifier 进行名称匹配：
+此时，我们可以配合 `@Qualifier 进行名称匹配`：
 ```java
 public class Student {
     @Autowired
@@ -3350,8 +3351,8 @@ public class Student {
     private Teacher teacher;
 }
 ```
-这里需要提一下，在我们旧版本的 SSM 教程中讲解了@Resource 这个注解，但是现在它没有了。
-随着 Java 版本的更新迭代，某些 javax 包下的包，会被逐渐弃用并移除。在 JDK 11 版本以后，javax. annotation 这个包被移除并且更名为 jakarta. annotation（我们在 JavaWeb 篇已经介绍过为什么要改名字了）其中有一个非常重要的注解，叫做@Resource，它的作用与@Autowired 时相同的，也可以实现自动装配，但是在 IDEA 中并不推荐使用@Autowired 注解对成员字段进行自动装配，而是推荐使用@Resource，如果需要使用这个注解，还需要额外导入包：
+这里需要提一下，在我们旧版本的 SSM 教程中讲解了 `@Resource` 这个注解，但是现在它没有了。
+随着 Java 版本的更新迭代，某些 javax 包下的包，会被逐渐弃用并移除。在 JDK 11 版本以后，javax. annotation 这个包被移除并且更名为 `jakarta. annotation`（我们在 JavaWeb 篇已经介绍过为什么要改名字了）其中有一个非常重要的注解，叫做@Resource，它的作用与@Autowired 时相同的，也可以实现自动装配，但是在 IDEA 中并不推荐使用@Autowired 注解对成员字段进行自动装配，而是推荐使用@Resource，如果需要使用这个注解，还需要额外导入包：
 ```xml
 <dependency>
     <groupId>jakarta. annotation</groupId>
@@ -3367,10 +3368,10 @@ public class Student {
 }
 ```
 只不过，他们两有些机制上的不同：
-- @Resource 默认**ByName**如果找不到则**ByType**，可以添加到 set 方法、字段上。
-- @Autowired 默认是**byType**，只会根据类型寻找，可以添加在构造方法、set 方法、字段、方法参数上。
-因为@Resource 的匹配机制更加合理高效，因此官方并不推荐使用@Autowired 字段注入，当然，实际上 Spring 官方更推荐我们使用基于构造方法或是 Setter 的@Autowired 注入，比如 Setter 注入的一个好处是，Setter 方法使该类的对象能够在以后重新配置或重新注入。其实，最后使用哪个注解，还是看你自己，要是有强迫症不能忍受黄标但是又实在想用字段注入，那就用@Resource 注解。
-除了这个注解之外，还有@PostConstruct 和@PreDestroy，它们效果和 init-method 和 destroy-method 是一样的：
+> - @Resource 默认**ByName**如果找不到则**ByType**，可以添加到 **set 方法、字段**上。
+> - @Autowired 默认是**byType**，只会根据类型寻找，可以添加在**构造方法、set 方法、字段、方法参数**上。
+> 因为@Resource 的匹配机制更加合理高效，因此官方并不推荐使用@Autowired 字段注入，当然，实际上 Spring 官方更推荐我们使用基于构造方法或是 Setter 的@Autowired 注入，比如 Setter 注入的一个好处是，Setter 方法使该类的对象能够在以后重新配置或重新注入。其实，最后使用哪个注解，还是看你自己，要是有强迫症不能忍受黄标但是又实在想用字段注入，那就用@Resource 注解。
+> 除了这个注解之外，还有 `@PostConstruct 和@PreDestroy`，它们效果和 `init-method 和 destroy-method` 是一样的：
 ```java
 @PostConstruct
 public void init (){
@@ -3388,15 +3389,15 @@ Student student = context. getBean (Student. class);
 context. close ();
 ```
 ![image-20221123225232979](https://s2.loli.net/2022/11/23/wXRuAjVF2ykCOJ4.png)
-可以看到效果是完全一样的，这些注解都是 jakarta. annotation 提供的，有关 Spring 和 JakartaEE 的渊源，还请各位小伙伴自行了解。
+可以看到效果是完全一样的，这些注解都是 jakarta. annotation 提供的
 前面我们介绍了使用@Bean 来注册 Bean，但是实际上我们发现，如果只是简单将一个类作为 Bean 的话，这样写还是不太方便，因为都是固定模式，就是单纯的 new 一个对象出来，能不能像之前一样，让容器自己反射获取构造方法去生成这个对象呢？
-肯定是可以的，我们可以在需要注册为 Bean 的类上添加 `@Component` 注解来将一个类进行注册**（现在最常用的方式）**，不过要实现这样的方式，我们需要添加一个自动扫描来告诉 Spring，它需要在哪些包中查找我们提供的 `@Component` 声明的 Bean。
+肯定是可以的，我们可以在需要注册为 Bean 的类上添加 `@Component` 注解来将一个类进行注册（现在最常用的方式），不过要实现这样的方式，我们需要添加一个自动扫描来告诉 Spring，它需要在哪些包中查找我们提供的 `@Component` 声明的 Bean。
 ```java
 @Component ("lbwnb")   //同样可以自己起名字
 public class Student {
 }
 ```
-要注册这个类的 Bean，只需要添加@Component 即可，然后配置一下包扫描：
+要注册这个类的 Bean，只需要添加 `@Component` 即可，然后配置一下包扫描：
 ```java
 @Configuration
 @ComponentScan ("com. test. bean")   //包扫描，这样 Spring 就会去扫描对应包下所有的类
@@ -3404,7 +3405,7 @@ public class MainConfiguration {
 }
 ```
 Spring 在扫描对应包下所有的类时，会自动将那些添加了@Component 的类注册为 Bean，是不是感觉很方便？只不过这种方式只适用于我们自己编写类的情况，如果是第三方包提供的类，只能使用前者完成注册，并且这种方式并不是那么的灵活。
-不过，无论是通过@Bean 还是@Component 形式注册的 Bean，Spring 都会为其添加一个默认的 name 属性，比如：
+不过，无论是通过@Bean 还是@Component 形式注册的 Bean，**Spring 都会为其添加一个默认的 name 属性**，比如：
 ```java
 @Component
 public class Student {
@@ -3461,7 +3462,7 @@ public class StudentFactory implements FactoryBean<Student> {
 > The introduction of annotation-based configuration raised the question of whether this approach is “better” than XML. The short answer is “it depends.” The long answer is that each approach has its pros and cons, and, usually, it is up to the developer to decide which strategy suits them better. Due to the way they are defined, annotations provide a lot of context in their declaration, leading to shorter and more concise configuration. However, XML excels at wiring up components without touching their source code or recompiling them. Some developers prefer having the wiring close to the source while others argue that annotated classes are no longer POJOs and, furthermore, that the configuration becomes decentralized and harder to control.
 >
 > No matter the choice, Spring can accommodate both styles and even mix them together. It is worth pointing out that through its [JavaConfig](https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#beans-java) option, Spring lets annotations be used in a non-invasive way, without touching the target components source code and that, in terms of tooling, all configuration styles are supported by the [Spring Tools for Eclipse](https://spring.io/tools).
-至此，关于 Spring 的 IoC 基础部分，我们就全部介绍完了。在最后，留给各位小伙伴一个问题，现在有两个类：
+> 至此，关于 Spring 的 IoC 基础部分，我们就全部介绍完了。在最后，有一个问题，现在有两个类：
 ```java
 @Component
 public class Student {
@@ -3478,12 +3479,112 @@ public class Teacher {
 ```
 这两个类互相需要注入对方的实例对象，这个时候 Spring 会怎么进行处理呢？如果 Bean 变成原型模式，Spring 又会怎么处理呢？
 这个问题我们会在实现原理探究部分进行详细介绍。
+
+> [!NOTE] 总结
+> 通过使用**注解**来注册配置 bean 可以免去 xml 的繁琐配置，步骤如下:
+>    - 首先需要写一个配置类并标注 `@Configuration` 注解和需要扫描的用 `@Component` 注解注册的 **bean**
+>    - 既可以用 `@Component` 为类注册 bean，也可以手动在 Config 中用 `@Bean` 注册，bean 的属性可以通过 `@Autowire/Resource` 注解进行依赖自动装配，默认注册的 bean 的名称为*首字母小写的类名*
+>    - 多个配置文件可以通过 `@Import` 还可以引入**其他配置类**，也可以注册 [[#工厂模式和工厂 Bean]]，具体如下配置：
+> ```java
+> 	//Config
+> 	package org. example. config;  
+> 	  
+> 	import org. example. entity. ArtTeacher;  
+> 	import org. example. entity. ProgramTeacher;  
+> 	import org. example. entity. Student;  
+> 	import org. example. entity. Teacher;  
+> 	import org. springframework. context. annotation.*;  
+> 	@Import (LBWConfiguration. class)
+> 	@Configuration  
+> 	@ComponentScans ({  
+> 	        @ComponentScan ("org. example. entity")  
+> 	})  
+> 	public class MainConfiguration {  
+> 	//    手动注册为 bean  
+> 	//    @Bean ("art")  
+> 	//    public Teacher artteacher () {  
+> 	//        return new ArtTeacher ("王老师");  
+> 	//    }  
+> 	//  
+> 	//    @Bean ("program")  
+> 	//    public Teacher proteacher () {  
+> 	//        return new ProgramTeacher ("赵老师");  
+> 	//    }  
+> 	//  
+> 	//  
+> 	//    @Bean ("student")  
+> 	////    @DependsOn ("teacher")  
+> 	//    public Student student () {  
+> 	//        return new Student ();  
+> 	//    }  
+> 	}
+> 	//Student
+> 	package org. example. entity;  
+> 	  
+> 	import jakarta. annotation. PostConstruct;  
+> 	import jakarta. annotation. PreDestroy;  
+> 	import jakarta. annotation. Resource;  
+> 	import lombok. AllArgsConstructor;  
+> 	import lombok. Data;  
+> 	import lombok. NoArgsConstructor;  
+> 	import org. springframework. beans. factory. annotation. Autowired;  
+> 	import org. springframework. beans. factory. annotation. Qualifier;  
+> 	import org. springframework. context. annotation. Scope;  
+> 	import org. springframework. stereotype. Component;  
+> 	  
+> 	import java. util. List;  
+> 	  
+> 	@Data  
+> 	@AllArgsConstructor  
+> 	@NoArgsConstructor  
+> 	@Component  //自动注册为 bean，value 参数为 bean 名
+> 	@Scope ("prototype")  //作用为设置为原型模式
+> 	public class Student {  
+> 	    @Qualifier ("artTeacher")  //多个候选依赖 bean 时为避免歧义指定一个
+> 	    @Resource  //依赖自动装配，name 参数为依赖的 bean 名
+> 	    Teacher teacher;  
+> 	    String name;  
+> 	  
+> 	//    Student (Teacher teacher) {  
+> 	//        this. teacher = teacher;  
+> 	//    }  
+> 	  
+> 	    //    public Student (Teacher teacher) {//        this. teacher = teacher;  
+> 	//    }  
+> 	//  
+> 	//    public Student (String name) {  
+> 	//        this. name = name;  
+> 	//    }  
+> 	    @PostConstruct  //构造后初始化方法，类似于 xml 中的 init-method
+> 	    public void init () {  
+> 	        System.out.println (Student.class.getName () + " 初始化完成");  
+> 	    }  
+> 	  
+> 	    @PreDestroy  //销毁前销毁方法，类似于 xml 中的 destroy-method
+> 	    public void destroy () {  
+> 	        System.out.println (this.getClass (). getName () + " 销毁完成");  
+> 	    }  
+> 	  
+> 	    public void study () {  
+> 	        teacher.teach ();  
+> 	    }  
+> 	//    public void setTeacher (Teacher teacher) {  
+> 	//        this. teacher = teacher;  
+> 	//    }  
+> 	//  
+> 	//    public void setName (String name) {  
+> 	//        this. name = name;  
+> 	//    }  
+> 	}
+> ```
+
+
 ***
 ## Spring 高级特性（选学）
-**注意：**本部分为选学内容，如果 Spring 基础部分学的不是很明白，不建议看这一部分，在理解清楚之后再来看也可以，但也不是说以后就不用学了，这些东西在某些项目中可能会用到，你迟早还是要回来补的。
+注意：本部分为选学内容，如果 Spring 基础部分学的不是很明白，不建议看这一部分，在理解清楚之后再来看也可以，但也不是说以后就不用学了，这些东西在某些项目中可能会用到，你迟早还是要回来补的。
 前面我们介绍了 Spring 的基础部分，我们接着来介绍 Spring 的一些其他高级特性。
 ### Bean Aware
-在 Spring 中提供了一些以 Aware 结尾的接口，实现了 Aware 接口的 bean 在被初始化之后，可以获取相应资源。Aware 的中文意思为**感知**。简单来说，他就是一个标识，实现此接口的类会获得某些感知能力，Spring 容器会在 Bean 被加载时，根据类实现的感知接口，会调用类中实现的对应感知方法。
+在 Spring 中提供了一些以 Aware 结尾的接口，实现了 Aware 接口的 bean 在被初始化之后，可以获取相应资源。Aware 的中文意思为感知。**简单来说，他就是一个标识，实现此接口的类会获得某些感知能力，Spring 容器会在 Bean 被加载时，根据类实现的感知接口，会调用类中实现的对应感知方法**。
 比如 BeanNameAware 之类的以 Aware 结尾的接口，这个接口获取的资源就是 BeanName：
 ```java
 @Component
@@ -3504,7 +3605,10 @@ public class Student implements BeanClassLoaderAware {
     }
 }
 ```
-有关其他的 Aware 这里就不一一列举了，我们会在后面的实现原理探究部分逐步认识的。
+
+> [!NOTE] Aware总结
+> Aware特性就是当bean加载的过程中通过实现特定的接口对一些信息自动获取或执行特定的操作，eg：`BeanNameAware，BeanFactoryAware，ApplicationContextAware，ResourceAware等`
+
 ### 任务调度
 为了执行某些任务，我们可能需要一些非常规的操作，比如我们希望使用多线程来处理我们的结果或是执行一些定时任务，到达指定时间再去执行。这时我们首先想到的就是创建一个新的线程来处理，或是使用 TimerTask 来完成定时任务，但是我们有了 Spring 框架之后，就不用这样了，因为 Spring 框架为我们提供了更加便捷的方式进行任务调度。
 首先我们来看异步任务执行，需要使用 Spring 异步任务支持，我们需要在配置类上添加 `@EnableAsync` 注解。
@@ -3544,7 +3648,7 @@ public static void main (String[] args) throws InterruptedException {
 可以看到，我们的任务执行结果为：
 ![image-20221125153110860](https://s2.loli.net/2022/11/25/7VKh3dreROJUTcN.png)
 很明显，异步执行的任务并不是在当前线程启动的，而是在其他线程启动的，所以说并不会在当前线程阻塞，可以看到马上就开始执行下一行代码，调用同步执行的任务了。
-因此，当我们要将 Bean 的某个方法设计为异步执行时，就可以直接添加这个注解。但是需要注意，添加此注解要求方法的返回值只能是 void 或是 Future 类型才可以（Future 类型我们在 JUC 篇视频教程中有详细介绍）
+因此，当我们要将 Bean 的某个方法设计为异步执行时，就可以直接添加这个注解。但是需要注意，添加此注解要求方法的返回值只能是 ***void 或是 Future*** 类型才可以（Future 类型我们在 JUC 篇视频教程中有详细介绍）
 还有，在使用时，可能还会出现这样的信息：
 ![image-20221125153426124](https://s2.loli.net/2022/11/25/7RfCIvYAZhMDPJe.png)
 虽然出现了这样的信息，但是我们的程序依然可以正常运行，这是因为 Spring 默认会从容器中选择一个 `Executor` 类型（这同样是在 JUC 篇视频教程中介绍的类型）的实例，并使用它来创建线程执行任务，这是 Spring 推荐的方式，当然，如果没有找到，那么会使用自带的 SimpleAsyncTaskExecutor 处理异步方法调用。
@@ -3560,7 +3664,7 @@ System. out. println (student. getClass ());   //这里我们通过 getClass 来
 ```java
 @EnableScheduling
 @Configuration
-@ComponentScan ("com. test. bean")
+@ComponentScan ("com.test.bean")
 public class MainConfiguration {
 }
 ```
@@ -3573,12 +3677,18 @@ public void task (){
 ```
 ![image-20221125155352390](https://s2.loli.net/2022/11/25/aGv7f3eBXPsFdYr.png)
 我们注意到 `@Scheduled` 中有很多参数，我们需要指定'cron', 'fixedDelay (String)', or 'fixedRate (String)'的其中一个，否则无法创建定时任务，他们的区别如下：
-- fixedDelay：在上一次定时任务执行完之后，间隔多久继续执行。
-- fixedRate：无论上一次定时任务有没有执行完成，两次任务之间的时间间隔。
-- cron：如果嫌上面两个不够灵活，你还可以使用 cron 表达式来指定任务计划。
-这里简单讲解一下 cron 表达式： https://blog.csdn.net/sunnyzyq/article/details/98597252
+> - fixedDelay：在上一次定时任务执行完之后，间隔多久继续执行。
+> - fixedRate：无论上一次定时任务有没有执行完成，两次任务之间的时间间隔。
+> - cron：如果嫌上面两个不够灵活，你还可以使用 cron 表达式来指定任务计划。
+> 这里简单讲解一下 cron 表达式： https://blog.csdn.net/sunnyzyq/article/details/98597252
+
+
+> [!NOTE] Spring异步和定时总结
+> - 任务调度中异步和定时任务的用法：
+>   1. 在应用配置文件中添加 `@EnableScheduling（定时任务），@EnableAsync （异步任务支持,作用于bean实现异步任务）`注解
+>   2. 在方法前添加 `@Async`注解实现异步方法，添加 `@Scheduled`注解实现定时任务（还要为该注解设置定时属性，包括 *cron*，*fixedDelay*，*fixedRate*等）
+
 ### 监听器
-监听器对我们来说也是一个比较陌生的概念，那么何谓监听呢？
 监听实际上就是等待某个事件的触发，当事件触发时，对应事件的监听器就会被通知，如果你学习过 Java Swing 篇视频教程，应该会深有体会，监听器可是很关键的，只不过在 Spring 中用的不是很频繁罢了。但是这里还是要简单介绍一下：
 ```java
 @Component
@@ -3624,40 +3734,50 @@ public class TaskComponent  implements ApplicationEventPublisherAware {
     }
     @Override
     public void setApplicationEventPublisher (ApplicationEventPublisher publisher) {
-        this. publisher = publisher;
+        this.publisher = publisher;
     }
 }
 ```
 此时，发布事件旁边出现了图标，说明就可以了：
 ![image-20221125161224037](https://s2.loli.net/2022/11/25/fDxYEGPWdyMt7XF.png)
-我们可以点击这个图标快速跳转到哪里监听了这个事件，IDEA 这些细节做的还是挺好的。我们来看看运行结果吧：
+点击这个图标快速跳转到哪里监听了这个事件，运行结果：
 ![image-20221125161125557](https://s2.loli.net/2022/11/25/FKy1jBx3MJvVdDN.png)
-是不是感觉好像也没那么难，这套机制其实还挺简单的，这样，我们就实现了自定义事件发布和监听。
+这样，我们就实现了自定义事件发布和监听。
+
+> [!NOTE] 监听器用法总结
+> - 监听器实现对事件的监听并做出反应，具体使用方法：
+>   1. Spring默认为我们提供了一些**监听事件接口（ContextRefreshedEvent，ContextStartedEvent等）**，只需要实现需要的接口并完成监听反应逻辑功能即可
+>   2. 自定义事件并监听：
+>      - 编写自定义事件需要继承 `ApplicationEvent`类并实现构造方法
+>      - 编写自定义监听器并实现 `ApplicationListener<~>`接口（泛型填自定义事件），并重写 `onApplicationEvent`响应方法
+>      - 在需要应用监听器的类中注入 `ApplicationEventPublisher`属性，并在需要被监听的方法中进行事件发布（*publisher.publishEvent(new TestEvent(this))*）
+
+
 ***
 ## SpringEL 表达式
-SpEL 是一种强大，简洁的装配 Bean 的方式，它可以通过运行期间执行的表达式将值装配到我们的属性或构造函数当中，更可以调用 JDK 中提供的静态常量，获取外部 Properties 文件中的的配置。
+SpEL 是一种强大，简洁的装配 Bean 的方式，它可以通过运行期间执行的表达式将值装配到我们的**属性或构造函数**当中，更可以调用 JDK 中提供的静态常量，获取外部 `Properties` 文件中的的配置。
 ### 外部属性注入
 有些时候，我们甚至可以将一些外部配置文件中的配置进行读取，并完成注入。
-我们需要创建以 `. properties` 结尾的配置文件，这种配置文件格式很简单，类似于 Map，需要一个 Key 和一个 Value，中间使用等号进行连接，这里我们在 resource 目录下创建一个 `test. properties` 文件：
+我们需要创建以 `.properties` 结尾的配置文件，这种配置文件格式很简单，类似于 Map，需要一个 Key 和一个 Value，中间使用等号进行连接，这里我们在 resource 目录下创建一个 `test.properties` 文件：
 ```properties
-test. name=只因
+test.name=只因
 ```
 这样，Key 就是 `test. name`，Value 就是 `只因`，我们可以通过一个注解直接读取到外部配置文件中对应的属性值，首先我们需要引入这个配置文件，我们可以在配置类上添加 `@PropertySource` 注解：
 ```java
 @Configuration
-@ComponentScan ("com. test. bean")
-@PropertySource ("classpath: test. properties")   //注意，类路径下的文件名称需要在前面加上 classpath:
+@ComponentScan ("com.test.bean")
+@PropertySource ("classpath:test.properties")   //注意，类路径下的文件名称需要在前面加上 classpath:
 public class MainConfiguration{
 }
 ```
-接着，我们就可以开始快乐的使用了，我们可以使用 @Value 注解将外部配置文件中的值注入到任何我们想要的位置，就像我们之前使用@Resource 自动注入一样：
+接着，我们就可以开始快乐的使用了，我们可以使用 `@Value` （自动注入基本数据类型）注解结合 *${}占位符* 将外部配置文件中的值注入到任何我们想要的位置，就像我们之前使用 `@Resource` 自动注入依赖 bean 一样：
 ```java
 @Component
 public class Student {
-    @Value ("${test. name}")   //这里需要在外层套上 ${ }
+    @Value ("${test.name}")   //这里需要在外层套上 ${ }
     private String name;   //String 会被自动赋值为配置文件中对应属性的值
     public void hello (){
-        System. out. println ("我的名字是："+name);
+        System.out.println ("我的名字是："+name);
     }
 }
 ```
@@ -3665,7 +3785,7 @@ public class Student {
 ![image-20221125164854022](https://s2.loli.net/2022/11/25/HDZ4l3tcreoOGh8.png)
 我们来测试一下吧：
 ![image-20221125165145332](https://s2.loli.net/2022/11/25/g5tBKW4Sm9lXnrR.png)
-如果遇到乱码的情况，请将配置文件的编码格式切换成 UTF-8（可以在 IDEA 设置中进行配置）然后在@PropertySource 注解中添加属性 encoding = "UTF-8" 这样就正常了，当然，其实一般情况下也很少会在配置文件中用到中文。
+如果遇到乱码的情况，请将配置文件的编码格式切换成 UTF-8（可以在 IDEA 设置中进行配置）然后在@PropertySource 注解中添加属性 `encoding = "UTF-8"` 这样就正常了，当然，其实一般情况下也很少会在配置文件中用到中文。
 除了在字段上进行注入之外，我们也可以在需要注入的方法中使用：
 ```java
 @Component
@@ -3680,7 +3800,7 @@ public class Student {
     }
 }
 ```
-当然，如果我们只是想简单的注入一个常量值，也可以直接填入固定值：
+当然，如果我们只是想简单的**注入一个常量值，也可以直接填入固定值**：
 ```java
 private final String name;
 public Student (@Value ("10") String name){   //只不过，这里都是常量值了，我干嘛不直接写到代码里呢
@@ -3704,7 +3824,7 @@ System. out. println (exp. getValue ());
 ```
 ![image-20221125173157008](https://s2.loli.net/2022/11/25/PZmheYn5EVTvURN.png)
 不仅能调用方法、还可以访问属性、使用构造方法等，是不是感觉挺牛的，居然还能这样玩。
-对于 Getter 方法，我们可以像访问属性一样去使用：
+对于 `Getter` 方法，我们可以像访问属性一样去使用：
 ```java
 //比如 String. getBytes () 方法，就是一个 Getter，那么可以写成 bytes
 Expression exp = parser. parseExpression ("'Hello World'. bytes");
@@ -3715,7 +3835,7 @@ System. out. println (exp. getValue ());
 Expression exp = parser. parseExpression ("'Hello World'. bytes. length");   //继续访问数组的 length 属性
 System. out. println (exp. getValue ());
 ```
-是不是感觉挺好玩的？我们继续来试试看构造方法，其实就是写 Java 代码，只是可以写成这种表达式而已：
+我们继续来试试看构造方法，其实就是写 Java 代码，只是可以写成这种表达式而已：
 ```java
 Expression exp = parser. parseExpression ("new String ('hello world'). toUpperCase ()");
 System. out. println (exp. getValue ());
@@ -3744,12 +3864,12 @@ System. out. println (exp. getValue (student));    //直接读取对象的 name 
 ```java
 Expression exp = parser. parseExpression ("name. bytes. length");   //拿到 name 之后继续 getBytes 然后 length
 ```
-除了获取，我们也可以调用表达式的 setValue 方法来设定属性的值：
+除了获取，我们也可以调用表达式的 `setValue` 方法来设定属性的值：
 ```java
 Expression exp = parser. parseExpression ("name");
 exp. setValue (student, "刻师傅");   //同样的，这个属性得有访问权限且能 set 才可以，否则会报错
 ```
-除了属性调用，我们也可以使用运算符进行各种高级运算：
+除了属性调用，我们也可以使用运算符进行各种**高级运算**：
 ```java
 Expression exp = parser. parseExpression ("66 > 77");   //比较运算
 System. out. println (exp. getValue ());
@@ -3758,11 +3878,11 @@ System. out. println (exp. getValue ());
 Expression exp = parser. parseExpression ("99 + 99 * 3");   //算数运算
 System. out. println (exp. getValue ());
 ```
-对于那些需要导入才能使用的类，我们需要使用一个特殊的语法：
+对于那些**需要导入才能使用的类**，我们需要使用一个特殊的语法：`T (java.lang.Math).random ()`：
 ```java
-Expression exp = parser. parseExpression ("T (java. lang. Math). random ()");   //由 T ()囊括，包含完整包名+类名
+Expression exp = parser. parseExpression ("T (java.lang.Math).random ()");   //由 T ()囊括，包含完整包名+类名
 //Expression exp = parser. parseExpression ("T (System). nanoTime ()");   //默认导入的类可以不加包名
-System. out. println (exp. getValue ());
+System.out.println (exp. etValue ());
 ```
 ### 集合操作相关语法
 现在我们的类中存在一些集合类：
@@ -3819,7 +3939,7 @@ Expression exp = parser. parseExpression ("list.![name]");   //使用.! 创建�
 System. out. println (exp. getValue (student));
 ```
 ![image-20221130153142677](https://s2.loli.net/2022/11/30/yLNHPJnWkoR3Cb2.png)
-我们接着来介绍安全导航运算符，安全导航运算符用于避免 NullPointerException，它来自 Groovy 语言。通常，当您有对对象的引用时，您可能需要在访问对象的方法或属性之前验证它是否为空。为了避免这种情况，安全导航运算符返回 null 而不是抛出异常。以下示例显示了如何使用安全导航运算符：
+我们接着来介绍**安全导航运算符**，安全导航运算符用于避免 NullPointerException，它来自 Groovy 语言。通常，当您有对对象的引用时，您可能需要在访问对象的方法或属性之前验证它是否为空。为了避免这种情况，安全导航运算符返回 null 而不是抛出异常。以下示例显示了如何使用安全导航运算符：
 ```java
 Expression exp = parser. parseExpression ("name. toUpperCase ()");   //如果 Student 对象中的 name 属性为 null
 System. out. println (exp. getValue (student));
@@ -3860,6 +3980,24 @@ public class FieldValueTestBean {
 ```
 这样，我们有时候在使用配置文件中的值时，就能进行一些简单的处理了。
 有关更多详细语法教程，请前往： https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#expressions-language-ref
+
+
+> [!NOTE] 总结
+> - 外部属性注入流程：
+> 	1. 为 Class 添加 `@PropertySource ("classpath:test.properties")` 注解
+> 	2. 为属性添加 `@Value("${student.name}")` 注解自动注入外部文件中的值
+> - SpEL 表达式使用方法：
+> 	   1. `ExpressionParser parser = new SpelExpressionParser ();` 创建 ExpressionParser
+> 	   2. 书写 `Expression exp = parser. parseExpression ("'Hello World'"`) exp 表达式
+> 	   3. `exp.getValue()` 取值，`exp.setValue(Class<?>,value)` 修改值，`parser.parseExpression("T(org.example.entity.Student).test()")` 调用方法
+> - 常见 SpEL 表达式集合操作：
+> 	1. 取元素：`parser.parseExpression("list[2]")`
+> 	2. 创建集合：List：`parser.parseExpression("{{1,2},{3,4}}")`，Map：`parser.parseExpression("{name:'xixi',age:12}")`
+> 	3. 条件过滤：*.?* 过滤 `parser.parseExpression("clazzList.?[score>=90 && name== '国学']")`
+> 	4. 投影复制：*.!* 复制 `parser.parseExpression("clazzList.![name]")`
+> 	5. 安全判空：*?.* 安全导航 `parser.parseExpression("name?.toUpperCase()")`
+> 	6. 如影随形：*#{}* 表示 SpEL 表达式，注解中使用：` @Value ("#{ systemProperties['user. region'] }")`，xml 中使用：`<property name="randomNumber" value="#{ T(java.lang.Math).random() * 100.0 }"/>`
+
 ***
 ## AOP 面向切片
 又是一个听起来很高大上的名词，AOP（Aspect Oriented Programming）思想实际上就是：在运行时，动态地将代码切入到类的指定方法、指定位置上。也就是说，我们可以使用 AOP 来帮助我们在方法执行前或执行之后，做一些额外的操作，实际上，它就是代理！
@@ -3885,7 +4023,7 @@ Spring 是支持 AOP 编程的框架之一（实际上它整合了 AspectJ 框�
     <version>6.0.10</version>
 </dependency>
 ```
-那么，如何使用 AOP 呢？首先我们要明确，要实现 AOP 操作，我们需要知道这些内容：
+要实现 AOP 操作，我们需要知道这些内容：
 1. 需要切入的类，类的哪个方法需要被切入
 2. 切入之后需要执行什么动作
 3. 是在方法执行前切入还是在方法执行后切入
@@ -3941,11 +4079,11 @@ public class StudentAOP {
 ```xml
 修饰符包名. 类名. 方法名称 (方法参数)
 ```
-- 修饰符：public、protected、private、包括返回值类型、static 等等（使用*代表任意修饰符）
-- 包名：如 com. test（* 代表全部，比如 com.*代表 com 包下的全部包）
-- 类名：使用*也可以代表包下的所有类
-- 方法名称：可以使用*代表全部方法
-- 方法参数：填写对应的参数即可，比如 (String, String)，也可以使用*来代表任意一个参数，使用.. 代表所有参数。
+- 修饰符：public、protected、private、包括返回值类型、static 等等（使用\*代表任意修饰符）
+- 包名：如 com. test（* 代表全部，比如 com.\*代表 com 包下的全部包）
+- 类名：使用\*也可以代表包下的所有类
+- 方法名称：可以使用\*代表全部方法
+- 方法参数：填写对应的参数即可，比如 (String, String)，也可以使用\*来代表任意一个参数，使用.. 代表所有参数。
 也可以使用其他属性来进行匹配，比如 `@annotation` 可以用于表示标记了哪些注解的方法被切入，这里我们就只是简单的执行，所以说只需要这样写就可以了：
 ```xml
 <aop:pointcut id="test" expression="execution(* org.example.entity.Student.study())"/>
@@ -3960,7 +4098,7 @@ public class StudentAOP {
 ```
 接着就是添加后续动作了，当然，官方支持的有多种多样的，比如执行前、执行后、抛出异常后、方法返回后等等：
 ![image-20221216155201849](https://s2.loli.net/2022/12/16/uopJ9KyqMvQSwi4.png)
-其中 around 方法为环绕方法，自定义度会更高，我们会在稍后介绍。这里我们按照上面的要求，直接添加后续动作，注意需要指明生效的切点：
+其中 `around 方法` 为环绕方法，自定义度会更高，我们会在稍后介绍。这里我们按照上面的要求，直接添加后续动作，注意需要指明生效的切点：
 ```xml
 <aop:aspect ref="studentAOP">
   	<!--     method就是我们的增强方法，pointcut-ref指向我们刚刚创建的切点     -->
@@ -3987,7 +4125,7 @@ System. out. println (bean. getClass ());
 ```
 ![image-20221216172042146](https://s2.loli.net/2022/12/16/8lsiRj6Q9eTLhSI.png)
 这里其实是 Spring 通过 CGLib 为我们生成的动态代理类，也就不难理解为什么调用方法会直接得到增强之后的结果了。包括我们前面讲解 Spring 的异步任务调度时，为什么能够直接实现异步，其实就是利用了 AOP 机制实现的方法增强。
-虽然这些功能已经非常强大了，但是仅仅只能简单的切入还是不能满足一些需求，在某些情况下，我们可以需求方法执行的一些参数，比如方法执行之后返回了什么，或是方法开始之前传入了什么参数等等，现在我们修改一下 Student 中`study`方法的参数：
+虽然这些功能已经非常强大了，但是仅仅只能简单的切入还是不能满足一些需求，在某些情况下，我们可以需求方法执行的一些参数，比如方法执行之后返回了什么，或是方法开始之前传入了什么参数等等，现在我们修改一下 Student 中 `study` 方法的参数：
 ```java
 public class Student {
     public void study (String str){  //现在方法有一个 String 类型的参数
@@ -4035,7 +4173,7 @@ public Object around (ProceedingJoinPoint joinPoint) throws Throwable {
   	return value;
 }
 ```
-注意，如果代理方法存在返回值，那么环绕方法也需要有一个返回值，通过`proceed`方法来执行代理的方法，也可以修改参数之后调用`proceed (Object[])`，使用我们给定的参数再去执行：
+注意，如果代理方法存在返回值，那么环绕方法也需要有一个返回值，通过 `proceed` 方法来执行代理的方法，也可以修改参数之后调用 `proceed (Object[])`，使用我们给定的参数再去执行：
 ```java
 public Object around (ProceedingJoinPoint joinPoint) throws Throwable {
     System. out. println ("方法开始之前");
@@ -4045,7 +4183,7 @@ public Object around (ProceedingJoinPoint joinPoint) throws Throwable {
     return value;
 }
 ```
-这里我们还是以`study`方法为例，现在我们希望在调用前修改这个方法传入的参数值，改成我们自己的，然后在调用之后对返回值结果也进行处理：
+这里我们还是以 `study` 方法为例，现在我们希望在调用前修改这个方法传入的参数值，改成我们自己的，然后在调用之后对返回值结果也进行处理：
 ```java
 public String study (String str){
     if (str. equals ("Java"))
@@ -4088,15 +4226,21 @@ public static void main (String[] args) {
 ```
 ![image-20221216161855358](https://s2.loli.net/2022/12/16/pGl7n8qboe4tuJf.png)
 这样，我们就实现了环绕方法，通过合理利用 AOP 带来的便捷，可以使得我们的代码更加清爽和优美。这里介绍一下 AOP 领域中的特性术语，防止自己下来看不懂文章：
-- 通知（Advice）: AOP 框架中的增强处理，通知描述了切面何时执行以及如何执行增强处理，也就是我们上面编写的方法实现。
-- 连接点（join point）: 连接点表示应用执行过程中能够插入切面的一个点，这个点可以是方法的调用、异常的抛出，实际上就是我们在方法执行前或是执行后需要做的内容。
-- 切点（PointCut）: 可以插入增强处理的连接点，可以是方法执行之前也可以方法执行之后，还可以是抛出异常之类的。
-- 切面（Aspect）: 切面是通知和切点的结合，我们之前在 xml 中定义的就是切面，包括很多信息。
-- 引入（Introduction）：引入允许我们向现有的类添加新的方法或者属性。
-- 织入（Weaving）: 将增强处理添加到目标对象中，并创建一个被增强的对象，我们之前都是在将我们的增强处理添加到目标对象，也就是织入（这名字挺有文艺范的）
+- 通知（Advice）: AOP 框架中的增强处理，通知描述了**切面何时执行以及如何执行增强处理**，也就是我们上面编写的方法实现。
+- 连接点（join point）: 连接点表示应用执行过程中**能够插入切面的一个点**，这个点可以是方法的调用、异常的抛出，实际上就是我们在方法执行前或是执行后需要做的内容。
+- 切点（PointCut）: **可以插入增强处理的连接点**，可以是方法执行之前也可以方法执行之后，还可以是抛出异常之类的。
+- 切面（Aspect）: 切面是**通知和切点的结合**，我们之前在 xml 中定义的就是切面，包括很多信息。
+- 引入（Introduction）：引入允许我们向现有的类添加**新的方法或者属性**。
+- 织入（Weaving）: **将增强处理添加到目标对象中**，并**创建一个被增强的对象**，我们之前都是在将我们的增强处理添加到目标对象，也就是织入（这名字挺有文艺范的）
+
+> [!NOTE] xml 实现 AOP 总结
+> - 实现切入类和对应属性和方法
+> - 编写 AOP 配置文件，注册相应的 bean，并配置 AOP 切点、切面和切面的操作等
+> - 切入方法可以获取被切入的方法的形参并执行被被切入的方法等
+
 ### 使用接口实现 AOP
-前面我们介绍了如何使用 xml 配置一个 AOP 操作，这节课我们来看看如何使用 Advice 实现 AOP。
-它与我们之前学习的动态代理更接近一些，比如在方法开始执行之前或是执行之后会去调用我们实现的接口，首先我们需要将一个类实现 Advice 接口，只有实现此接口，才可以被通知，比如我们这里使用`MethodBeforeAdvice`表示是一个在方法执行之前的动作：
+前面我们介绍了如何使用 xml 配置一个 AOP 操作，这节课我们来看看如何使用 `Advice` 实现 AOP。
+它与我们之前学习的动态代理更接近一些，比如在方法开始执行之前或是执行之后会去调用我们实现的接口，首先我们需要将一个类实现 Advice 接口，只有实现此接口，才可以被通知，比如我们这里使用 `MethodBeforeAdvice` 表示是一个在方法执行之前的动作：
 ```java
 public class StudentAOP implements MethodBeforeAdvice {
     @Override
@@ -4105,7 +4249,7 @@ public class StudentAOP implements MethodBeforeAdvice {
     }
 }
 ```
-我们发现，方法中包括了很多的参数，其中 args 代表的是方法执行前得到的实参列表，还有 target 表示执行此方法的实例对象。运行之后，效果和之前是一样的，但是在这里我们就可以快速获取到更多信息。还是以简单的 study 方法为例：
+我们发现，方法中包括了很多的参数，其中 `args` 代表的是方法执行前得到的**实参列表**，还有 `target` 表示执行此方法的**实例对象**。运行之后，效果和之前是一样的，但是在这里我们就可以快速获取到更多信息。还是以简单的 study 方法为例：
 ```java
 public class Student {
     public void study (){
@@ -4124,7 +4268,7 @@ public class Student {
 ```
 我们来测试一下吧：
 ![image-20221216164110367](https://s2.loli.net/2022/12/16/ofducpb2mLh9XHi.png)
-除了此接口以外，还有其他的接口，比如`AfterReturningAdvice`就需要实现一个方法执行之后的操作：
+除了此接口以外，还有其他的接口，比如 `AfterReturningAdvice` 就需要实现一个方法执行之后的操作：
 ```java
 public class StudentAOP implements MethodBeforeAdvice, AfterReturningAdvice {
     @Override
@@ -4139,7 +4283,7 @@ public class StudentAOP implements MethodBeforeAdvice, AfterReturningAdvice {
 ```
 因为使用的是接口，就非常方便，直接写一起，配置文件都不需要改了：
 ![image-20221216164242506](https://s2.loli.net/2022/12/16/DUZzqaBSiJKNv8j.png)
-我们也可以使用 MethodInterceptor（同样也是 Advice 的子接口）进行更加环绕那样的自定义的增强，它用起来就真的像代理一样，例子如下：
+我们也可以使用 `MethodInterceptor`（同样也是 Advice 的子接口）进行更加**环绕**那样的自定义的增强，它用起来就真的像代理一样，例子如下：
 ```java
 public class Student {
     public String study (){
@@ -4159,9 +4303,14 @@ public class StudentAOP implements MethodInterceptor {   //实现 MethodIntercep
 ```
 我们来看看结果吧：
 ![image-20221216173211310](https://s2.loli.net/2022/12/16/ARcUW2mJrn7Y6f9.png)
-使用起来还是挺简单的。
+
+> [!NOTE] xml 结合接口实现 AOP 总结
+> - AOP 通知类实现需要的接口（`MethodBeforeAdvice前置通知, AfterReturningAdvice后置通知, MethodInterceptor环绕通知`）
+> - 编写 AOP 配置文件，设置 `<aop:advisor advice-ref="studentAOP" pointcut-ref="study"/>`
+
+
 ### 使用注解实现 AOP
-接着我们来看看如何使用注解实现 AOP 操作，现在变回我们之前的注解开发，首先我们需要在主类添加`@EnableAspectJAutoProxy`注解，开启 AOP 注解支持：
+接着我们来看看如何使用注解实现 AOP 操作，现在变回我们之前的注解开发，首先我们需要在主类添加 `@EnableAspectJAutoProxy` 注解，开启 AOP 注解支持：
 ```java
 @EnableAspectJAutoProxy
 @ComponentScan ("org. example. entity")
@@ -4169,7 +4318,7 @@ public class StudentAOP implements MethodInterceptor {   //实现 MethodIntercep
 public class MainConfiguration {
 }
 ```
-还是熟悉的玩法，类上直接添加`@Component`快速注册 Bean：
+还是熟悉的玩法，类上直接添加 `@Component` 快速注册 Bean：
 ```java
 @Component
 public class Student {
@@ -4178,14 +4327,14 @@ public class Student {
     }
 }
 ```
-接着我们需要在定义 AOP 增强操作的类上添加`@Aspect`注解和`@Component`将其注册为 Bean 即可，就像我们之前在配置文件中也要将其注册为 Bean 那样：
+接着我们需要在定义 AOP 增强操作的类上添加 `@Aspect` 注解和 `@Component` 将其注册为 Bean 即可，就像我们之前在配置文件中也要将其注册为 Bean 那样：
 ```java
 @Aspect
 @Component
 public class StudentAOP {
 }
 ```
-接着，我们可以在里面编写增强方法，并将此方法添加到一个切点中，比如我们希望在 Student 的 study 方法执行之前执行我们的`before`方法：
+接着，我们可以在里面编写增强方法，并将此方法添加到一个切点中，比如我们希望在 Student 的 study 方法执行之前执行我们的 `before` 方法：
 ```java
 public void before (){
     System. out. println ("我是之前执行的内容！");
@@ -4207,7 +4356,7 @@ public static void main (String[] args) {
 }
 ```
 ![image-20221216165625372](https://s2.loli.net/2022/12/16/KpiXcdNt7BglYQh.png)
-同样的，我们可以为其添加`JoinPoint`参数来获取切入点信息，使用方法跟之前一样：
+同样的，我们可以为其添加 `JoinPoint` 参数来获取切入点信息，使用方法跟之前一样：
 ```java
 @Before ("execution (* org. example. entity. Student. study ())")
 public void before (JoinPoint point){
@@ -4255,19 +4404,30 @@ public Object around (ProceedingJoinPoint point) throws Throwable {
 }
 ```
 实际上，无论是使用注解或是 XML 配置，我们要做的流程都是一样的，在之后的学习中，我们还会遇到更多需要使用 AOP 的地方。
+
+> [!NOTE] 注解实现 AOP 总结
+> 注解实现 AOP 代理的步骤：
+> 1. 首先为**配置主类**添加注解 `@EnableAspectJAutoProxy` 开启 AOP 代理
+> 2. 编写**AOP 增强类**并添加 `@Aspect` 和 `@Bean` 注解
+> 3. 实现**代理增强方法**并添加需要的注解（`@Before，@After/AfterReturning/AfterThrowing，@Round` 等），并未注解配置 `value` 属性指定代理增强的*目标*，（**可选**）设置 `argsName` 属性指定对应*形参*，eg：
+>   `@After(value = "execution(* org.example.entity.Student.study(..)) &&  args(msg)",argNames = "msg")`
+> 
+
+
+
 ***
 ## 数据库框架整合
 学习了 Spring 之后，我们已经了解如何将一个类作为 Bean 交由 IoC 容器管理，这样，我们就可以通过更方便的方式来使用 Mybatis 框架，我们可以直接把 SqlSessionFactory、Mapper 交给 Spring 进行管理，并且可以通过注入的方式快速地使用它们。
 因此，我们要学习一下如何将 Mybatis 与 Spring 进行整合，那么首先，我们需要在之前知识的基础上继续深化学习。
 ### 了解数据源
-在之前，我们如果需要创建一个 JDBC 的连接，那么必须使用`DriverManager. getConnection ()`来创建连接，连接建立后，我们才可以进行数据库操作。而学习了 Mybatis 之后，我们就不用再去使用`DriverManager`为我们提供连接对象，而是直接使用 Mybatis 为我们提供的`SqlSessionFactory`工具类来获取对应的`SqlSession`通过会话对象去操作数据库。
-那么，它到底是如何封装 JDBC 的呢？我们可以试着来猜想一下，会不会是 Mybatis 每次都是帮助我们调用`DriverManager`来实现的数据库连接创建？我们可以看看 Mybatis 的源码：
+在之前，我们如果需要创建一个 JDBC 的连接，那么必须使用 `DriverManager. getConnection ()` 来创建连接，连接建立后，我们才可以进行数据库操作。而学习了 Mybatis 之后，我们就不用再去使用 `DriverManager` 为我们提供连接对象，而是直接使用 Mybatis 为我们提供的 `SqlSessionFactory` 工具类来获取对应的 `SqlSession` 通过会话对象去操作数据库。
+那么，它到底是如何封装 JDBC 的呢？我们可以试着来猜想一下，会不会是 Mybatis 每次都是帮助我们调用 `DriverManager` 来实现的数据库连接创建？我们可以看看 Mybatis 的源码：
 ```java
 public SqlSession openSession (boolean autoCommit) {
     return this. openSessionFromDataSource (this. configuration. getDefaultExecutorType (), (TransactionIsolationLevel) null, autoCommit);
 }
 ```
-在通过`SqlSessionFactory`调用`openSession`方法之后，它调用了内部的一个私有的方法`openSessionFromDataSource`，我们接着来看，这个方法里面定义了什么内容：
+在通过 `SqlSessionFactory` 调用 `openSession` 方法之后，它调用了内部的一个私有的方法 `openSessionFromDataSource`，我们接着来看，这个方法里面定义了什么内容：
 ```java
 private SqlSession openSessionFromDataSource (ExecutorType execType, TransactionIsolationLevel level, boolean autoCommit) {
     Transaction tx = null;
@@ -4293,7 +4453,7 @@ private SqlSession openSessionFromDataSource (ExecutorType execType, Transaction
     return var 8;
 }
 ```
-也就是说，我们的数据源配置信息，存放在了`Transaction`对象中，那么现在我们只需要知道执行器到底是如何执行 SQL 语句的，我们就知道到底如何创建`Connection`对象了，这时就需要获取数据库的链接信息了，那么我们来看看，这个`DataSource`到底是个什么：
+也就是说，我们的数据源配置信息，存放在了 `Transaction` 对象中，那么现在我们只需要知道执行器到底是如何执行 SQL 语句的，我们就知道到底如何创建 `Connection` 对象了，这时就需要获取数据库的链接信息了，那么我们来看看，这个 `DataSource` 到底是个什么：
 ```java
 public interface DataSource  extends CommonDataSource, Wrapper {
   Connection getConnection () throws SQLException;
@@ -4301,12 +4461,12 @@ public interface DataSource  extends CommonDataSource, Wrapper {
     throws SQLException;
 }
 ```
-我们发现，它是在`javax. sql`定义的一个接口，它包括了两个方法，都是用于获取连接的。因此，现在我们可以断定，并不是通过之前`DriverManager`的方法去获取连接了，而是使用`DataSource`的实现类来获取的，因此，也就正式引入到我们这一节的话题了：
+我们发现，它是在 `javax. sql` 定义的一个接口，它包括了两个方法，都是用于获取连接的。因此，现在我们可以断定，并不是通过之前 `DriverManager` 的方法去获取连接了，而是使用 `DataSource` 的实现类来获取的，因此，也就正式引入到我们这一节的话题了：
 > 数据库链接的建立和关闭是极其耗费系统资源的操作，通过 DriverManager 获取的数据库连接，一个数据库连接对象均对应一个物理数据库连接，每次操作都打开一个物理连接，使用完后立即关闭连接，频繁的打开、关闭连接会持续消耗网络资源，造成整个系统性能的低下。
-因此，JDBC 为我们定义了一个数据源的标准，也就是`DataSource`接口，告诉数据源数据库的连接信息，并将所有的连接全部交给数据源进行集中管理，当需要一个`Connection`对象时，可以向数据源申请，数据源会根据内部机制，合理地分配连接对象给我们。
-一般比较常用的`DataSource`实现，都是采用池化技术，就是在一开始就创建好 N 个连接，这样之后使用就无需再次进行连接，而是直接使用现成的`Connection`对象进行数据库操作。
+因此，JDBC 为我们定义了一个数据源的标准，也就是 `DataSource` 接口，告诉数据源数据库的连接信息，并将所有的连接全部交给数据源进行集中管理，当需要一个 `Connection` 对象时，可以向数据源申请，数据源会根据内部机制，合理地分配连接对象给我们。
+一般比较常用的 `DataSource` 实现，都是采用池化技术，就是在一开始就创建好 N 个连接，这样之后使用就无需再次进行连接，而是直接使用现成的 `Connection` 对象进行数据库操作。
 ![image-20221217134119558](https://s2.loli.net/2022/12/17/rk4mcdvYn6osOLW.png)
-当然，也可以使用传统的即用即连的方式获取`Connection`对象，Mybatis 为我们提供了几个默认的数据源实现，我们之前一直在使用的是官方的默认配置，也就是池化数据源：
+当然，也可以使用传统的即用即连的方式获取 `Connection` 对象，Mybatis 为我们提供了几个默认的数据源实现，我们之前一直在使用的是官方的默认配置，也就是池化数据源：
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
 <! DOCTYPE configuration
@@ -4326,12 +4486,12 @@ public interface DataSource  extends CommonDataSource, Wrapper {
     </environments>
 </configuration>
 ```
-这里的`type`属性一共三个选项：
+这里的 `type` 属性一共三个选项：
 - UNPOOLED   不使用连接池的数据源
 - POOLED    使用连接池的数据源
 - JNDI     使用 JNDI 实现的数据源
 ### 解读 Mybatis 数据源实现（选学）
-前面我们介绍了 DataSource 数据源，那么我们就来看看，Mybatis 到底是怎么实现的。我们先来看看，不使用池化的数据源实现，它叫做`UnpooledDataSource`，我们来看看源码：
+前面我们介绍了 DataSource 数据源，那么我们就来看看，Mybatis 到底是怎么实现的。我们先来看看，不使用池化的数据源实现，它叫做 `UnpooledDataSource`，我们来看看源码：
 ```java
 public class UnpooledDataSource implements DataSource {
     private ClassLoader driverClassLoader;
@@ -4346,7 +4506,7 @@ public class UnpooledDataSource implements DataSource {
     private Integer defaultNetworkTimeout;
   	...
 ```
-首先这个类中定义了很多的成员，包括数据库的连接信息、数据库驱动信息、事务相关信息等。我们接着来看，它是如何实现`DataSource`中提供的接口方法的：
+首先这个类中定义了很多的成员，包括数据库的连接信息、数据库驱动信息、事务相关信息等。我们接着来看，它是如何实现 `DataSource` 中提供的接口方法的：
 ```java
 public Connection getConnection () throws SQLException {
     return this. doGetConnection (this. username, this. password);
@@ -4355,7 +4515,7 @@ public Connection getConnection (String username, String password) throws SQLExc
     return this. doGetConnection (username, password);
 }
 ```
-实际上，这两个方法都指向了内部的一个`doGetConnection`方法，那么我们接着来看：
+实际上，这两个方法都指向了内部的一个 `doGetConnection` 方法，那么我们接着来看：
 ```java
 private Connection doGetConnection (String username, String password) throws SQLException {
     Properties props = new Properties ();
@@ -4383,7 +4543,7 @@ private Connection doGetConnection (Properties properties) throws SQLException {
     return connection;   //返回得到的 Connection 对象
 }
 ```
-到这里，就返回`Connection`对象了，而此对象正是通过`DriverManager`来创建的，因此，非池化的数据源实现依然使用的是传统的连接创建方式，那我们接着来看池化的数据源实现，它是`PooledDataSource`类：
+到这里，就返回 `Connection` 对象了，而此对象正是通过 `DriverManager` 来创建的，因此，非池化的数据源实现依然使用的是传统的连接创建方式，那我们接着来看池化的数据源实现，它是 `PooledDataSource` 类：
 ```java
 public class PooledDataSource implements DataSource {
     private static final Log log = LogFactory. getLog (PooledDataSource. class);
@@ -4413,7 +4573,7 @@ public Connection getConnection (String username, String password) throws SQLExc
     return this. popConnection (username, password). getProxyConnection ();
 }
 ```
-可以看到，它调用了`popConnection ()`方法来获取连接对象，然后进行了一个代理，通过这方法名字我们可以猜测，有可能整个连接池就是一个类似于栈的集合类型结构实现的。那么我们接着来看看`popConnection`方法：
+可以看到，它调用了 `popConnection ()` 方法来获取连接对象，然后进行了一个代理，通过这方法名字我们可以猜测，有可能整个连接池就是一个类似于栈的集合类型结构实现的。那么我们接着来看看 `popConnection` 方法：
 ```java
 private PooledConnection popConnection (String username, String password) throws SQLException {
     boolean countedWait = false;
@@ -4540,7 +4700,7 @@ private PooledConnection popConnection (String username, String password) throws
 ```
 经过上面一顿猛如虎的操作之后，我们可以得到以下信息：
 > 如果最后得到了连接对象（有可能是从空闲列表中得到，有可能是直接创建的新的，还有可能是经过回收策略回收得到的），那么连接 (Connection)对象一定会被放在活跃列表中 (state. activeConnections)
-那么肯定有一个疑问，现在我们已经知道获取一个链接会直接进入到活跃列表中，那么，如果一个连接被关闭，又会发生什么事情呢，我们来看看此方法返回之后，会调用`getProxyConnection`来获取一个代理对象，实际上就是`PooledConnection`类：
+那么肯定有一个疑问，现在我们已经知道获取一个链接会直接进入到活跃列表中，那么，如果一个连接被关闭，又会发生什么事情呢，我们来看看此方法返回之后，会调用 `getProxyConnection` 来获取一个代理对象，实际上就是 `PooledConnection` 类：
 ```java
 class PooledConnection implements InvocationHandler {
   private static final String CLOSE = "close";
@@ -4577,7 +4737,7 @@ public Object invoke (Object proxy, Method method, Object[] args) throws Throwab
     }
 }
 ```
-这下，池化数据源的大致流程其实就已经很清晰了，那么我们最后再来看看`pushConnection`方法：
+这下，池化数据源的大致流程其实就已经很清晰了，那么我们最后再来看看 `pushConnection` 方法：
 ```java
 protected void pushConnection (PooledConnection conn) throws SQLException {
     synchronized (this. state) {   //老规矩，先来把锁
@@ -4625,7 +4785,7 @@ protected void pushConnection (PooledConnection conn) throws SQLException {
     }
 }
 ```
-这样，我们就已经完全了解了 Mybatis 的池化数据源的执行流程了。只不过，无论 Connection 管理方式如何变换，无论数据源再高级，我们要知道，它都最终都会使用`DriverManager`来创建连接对象，而最终使用的也是`DriverManager`提供的`Connection`对象。
+这样，我们就已经完全了解了 Mybatis 的池化数据源的执行流程了。只不过，无论 Connection 管理方式如何变换，无论数据源再高级，我们要知道，它都最终都会使用 `DriverManager` 来创建连接对象，而最终使用的也是 `DriverManager` 提供的 `Connection` 对象。
 ### 整合 Mybatis 框架
 通过了解数据源，我们已经清楚，Mybatis 实际上是在使用自己编写的数据源（数据源实现其实有很多，之后我们再聊其他的）默认使用的是池化数据源，它预先存储了很多的连接对象。
 那么我们来看一下，如何将 Mybatis 与 Spring 更好的结合呢，比如我们现在希望将 SqlSessionFactory 交给 IoC 容器进行管理，而不是我们自己创建工具类来管理（我们之前一直都在使用工具类管理和创建会话）
@@ -4732,8 +4892,8 @@ public static void main (String[] args) {
     System. out. println (mapper. getStudent ());
 }
 ```
-在我们后续的 SpringBoot 学习阶段，会有更加方便的方式来注册 Mapper，我们只需要一个`@Mapper`注解即可完成，非常简单。
-请一定注意，必须存在`SqlSessionTemplate`或是`SqlSessionFactoryBean`的 Bean，否则会无法初始化（毕竟要数据库的链接信息）我们接着来看，如果我们希望直接去除 Mybatis 的配置文件，完全实现全注解配置，那么改怎么去实现呢？我们可以使用`SqlSessionFactoryBean`类：
+在我们后续的 SpringBoot 学习阶段，会有更加方便的方式来注册 Mapper，我们只需要一个 `@Mapper` 注解即可完成，非常简单。
+请一定注意，必须存在 `SqlSessionTemplate` 或是 `SqlSessionFactoryBean` 的 Bean，否则会无法初始化（毕竟要数据库的链接信息）我们接着来看，如果我们希望直接去除 Mybatis 的配置文件，完全实现全注解配置，那么改怎么去实现呢？我们可以使用 `SqlSessionFactoryBean` 类：
 ```java
 @Configuration
 @ComponentScan ("org. example. entity")
@@ -4752,8 +4912,16 @@ public class MainConfiguration {
     }
 }
 ```
-首先我们需要创建一个数据源的实现类，因为这是数据库最基本的信息，然后再给到`SqlSessionFactoryBean`实例，这样，我们相当于直接在一开始通过 IoC 容器配置了`SqlSessionFactory`，这里只需要传入一个`DataSource`的实现即可，我们采用池化数据源。
+首先我们需要创建一个数据源的实现类，因为这是数据库最基本的信息，然后再给到 `SqlSessionFactoryBean` 实例，这样，我们相当于直接在一开始通过 IoC 容器配置了 `SqlSessionFactory`，这里只需要传入一个 `DataSource` 的实现即可，我们采用池化数据源。
 删除配置文件，重新再来运行，同样可以正常使用 Mapper。从这里开始，通过 IoC 容器，Mybatis 已经不再需要使用配置文件了，在我们之后的学习中，基于 Spring 的开发将不会再出现 Mybatis 的配置文件。
+
+> [!NOTE] **spring 结合 mybatis 使用总结**
+> - spring 结合 mybatis 使用步骤：
+>   1. 编写实体类（对应于数据库的表），写对应 Mapper 接口注解实现对应的 sql 指令，再编写 mybatis-config. xml 文件配置数据库连接环境并注册 mapper。
+>   2. 编写应用配置文件 Configuration 添加 mapper 和 entity 扫描注解，注册 SqlSessionTemplate 的 bean 或 SqlSessionFactoryBean。
+>   3. 服务层直接通过 context.getBean ()获取 mapper，调用 mapper 接口的方法。
+
+
 ### 使用 HikariCP 连接池
 前面我们提到了数据源还有其他实现，比如 C 3 P 0、Druid 等，它们都是非常优秀的数据源实现（可以自行了解），不过我们这里要介绍的，是之后在 SpringBoot 中还会遇到的 HikariCP 连接池。
 > HikariCP 是由日本程序员开源的一个数据库连接池组件，代码非常轻量，并且速度非常的快。根据官方提供的数据，在酷睿 i 7 开启 32 个线程 32 个连接的情况下，进行随机数据库读写操作，HikariCP 的速度是现在常用的 C 3 P 0 数据库连接池的数百倍。在 SpringBoot 3.0 中，官方也是推荐使用 HikariCP。
@@ -4787,12 +4955,12 @@ SLF 4 J: See http://www.slf4j.org/codes.html#noProviders for further details.
 此数据源实际上是采用了 SLF 4 J 日志框架打印日志信息，但是现在没有任何的日志实现（slf 4 j 只是一个 API 标准，它规范了多种日志框架的操作，统一使用 SLF 4 J 定义的方法来操作不同的日志框架，我们会在 SpringBoot 篇进行详细介绍）我们这里就使用 JUL 作为日志实现，我们需要导入另一个依赖：
 ```xml
 <dependency>
-    <groupId>org. slf 4 j</groupId>
-    <artifactId>slf 4 j-jdk 14</artifactId>
+    <groupId>org.slf4j</groupId>
+    <artifactId>slf4j-jdk14</artifactId>
     <version>1.7.25</version>
 </dependency>
 ```
-注意版本一定要和`slf 4 j-api`保持一致，我们可以在这里直接查看：
+注意版本一定要和 `slf4j-api` 保持一致，我们可以在这里直接查看：
 ![image-20221217154216832](https://s2.loli.net/2022/12/17/93OSknRKXwdZsp7.png)
 这样，HikariCP 数据源的启动日志就可以正常打印出来了：
 ```
@@ -4804,10 +4972,10 @@ SLF 4 J: See http://www.slf4j.org/codes.html#noProviders for further details.
 信息: HikariPool-1 - Start completed.
 Student (sid=1, name=小明, sex=男)
 ```
-在 SpringBoot 阶段，我们还会遇到`HikariPool-1 - Starting...`和`HikariPool-1 - Start completed.`同款日志信息。
+在 SpringBoot 阶段，我们还会遇到 `HikariPool-1 - Starting...` 和 `HikariPool-1 - Start completed.` 同款日志信息。
 当然，Lombok 肯定也是支持这个日志框架快速注解的：
 ```java
-@Slf 4 j
+@Slf4j
 public class Main {
     public static void main (String[] args) {
         ApplicationContext context = new AnnotationConfigApplicationContext (MainConfiguration. class);
@@ -4816,7 +4984,13 @@ public class Main {
     }
 }
 ```
-是不是感觉特别方便？
+
+
+> [!NOTE] HikariDataSource用法总结
+> - 使用HikariPool数据库连接池步骤：
+>   1. 引入xml依赖
+>   2. 应用配置中注册DataSource的bean并在内部使用 HikariDataSource
+
 ### Mybatis 事务管理
 我们前面已经讲解了如何让 Mybatis 与 Spring 更好地融合在一起，通过将对应的 Bean 类型注册到容器中，就能更加方便的去使用 Mapper，那么现在，我们接着来看 Spring 的事务控制。
 在开始之前，我们还是回顾一下事务机制。首先事务遵循一个 ACID 原则：
@@ -4828,28 +5002,27 @@ public class Main {
 那么我们接着来深入了解一下事务的**隔离机制**（在之前数据库入门阶段并没有提到）我们说了，事务之间是相互隔离互不干扰的，那么如果出现了下面的情况，会怎么样呢：
 > 当两个事务同时在执行，并且同时在操作同一个数据，这样很容易出现并发相关的问题，比如一个事务先读取了某条数据，而另一个事务此时修改了此数据，当前一个事务紧接着再次读取时，会导致和前一次读取的数据不一致，这就是一种典型的数据虚读现象。
 因此，为了解决这些问题，事务之间实际上是存在一些隔离级别的：
-- ISOLATION_READ_UNCOMMITTED（读未提交）：其他事务会读取当前事务尚未更改的提交（相当于读取的是这个事务暂时缓存的内容，并不是数据库中的内容）
-- ISOLATION_READ_COMMITTED（读已提交）：其他事务会读取当前事务已经提交的数据（也就是直接读取数据库中已经发生更改的内容）
-- ISOLATION_REPEATABLE_READ（可重复读）：其他事务会读取当前事务已经提交的数据并且其他事务执行过程中不允许再进行数据修改（注意这里仅仅是不允许修改数据）
-- ISOLATION_SERIALIZABLE（串行化）：它完全服从 ACID 原则，一个事务必须等待其他事务结束之后才能开始执行，相当于挨个执行，效率很低
-我们依次来看看，不同的隔离级别会导致什么问题。首先是`读未提交`级别，此级别属于最低级别，相当于各个事务共享一个缓存区域，任何事务的操作都在这里进行。那么它会导致以下问题：
+- *ISOLATION_READ_UNCOMMITTED*（读未提交）：其他事务会读取当前事务尚未更改的提交（相当于读取的是这个事务暂时缓存的内容，并不是数据库中的内容）
+- *ISOLATION_READ_COMMITTED*（读已提交）：其他事务会读取当前事务已经提交的数据（也就是直接读取数据库中已经发生更改的内容）
+- *ISOLATION_REPEATABLE_READ*（可重复读）：其他事务会读取当前事务已经提交的数据并且其他事务执行过程中不允许再进行数据修改（注意这里仅仅是不允许修改数据）
+- *ISOLATION_SERIALIZABLE*（串行化）：它完全服从 ACID 原则，一个事务必须等待其他事务结束之后才能开始执行，相当于挨个执行，效率很低
+我们依次来看看，不同的隔离级别会导致什么问题。首先是 `读未提交` 级别，此级别属于最低级别，相当于各个事务共享一个缓存区域，任何事务的操作都在这里进行。那么它会导致以下问题：
 ![image-20221217155511058](https://s2.loli.net/2022/12/17/hQpluLA2bFKo1O8.png)
 也就是说，事务 A 最后得到的实际上是一个毫无意义的数据（事务 B 已经回滚了）我们称此数据为"脏数据"，这种现象称为**脏读**
-我们接着来看`读已提交`级别，事务只能读取其他事务已经提交的内容，相当于直接从数据中读取数据，这样就可以避免**脏读**问题了，但是它还是存在以下问题：
+我们接着来看 `读已提交` 级别，事务只能读取其他事务已经提交的内容，相当于直接从数据中读取数据，这样就可以避免**脏读**问题了，但是它还是存在以下问题：
 ![image-20221217155538073](https://s2.loli.net/2022/12/17/K1sJbDNyudOgAcV.png)
 这正是我们前面例子中提到的问题，虽然它避免了脏读问题，但是如果事件 B 修改并提交了数据，那么实际上事务 A 之前读取到的数据依然不是最新的数据，直接导致两次读取的数据不一致，这种现象称为**虚读**也可以称为**不可重复读**
-因此，下一个隔离级别`可重复读`就能够解决这样的问题（MySQL 的默认隔离级别），它规定在其他事务执行时，不允许修改数据，这样，就可以有效地避免不可重复读的问题，但是这样就一定安全了吗？这里仅仅是禁止了事务执行过程中的 UPDATE 操作，但是它并没有禁止 INSERT 这类操作，因此，如果事务 A 执行过程中事务 B 插入了新的数据，那么 A 这时是毫不知情的，比如：
+因此，下一个隔离级别 `可重复读` 就能够解决这样的问题（MySQL 的默认隔离级别），它规定在其他事务执行时，不允许修改数据，这样，就可以有效地避免不可重复读的问题，但是这样就一定安全了吗？这里仅仅是禁止了事务执行过程中的 UPDATE 操作，但是它并没有禁止 INSERT 这类操作，因此，如果事务 A 执行过程中事务 B 插入了新的数据，那么 A 这时是毫不知情的，比如：
 ![image-20221217160023674](https://s2.loli.net/2022/12/17/uwiHT8AcobeBjL3.png)
 两个人同时报名一个活动，两个报名的事务同时在进行，但是他们一开始读取到的人数都是 5，而这时，它们都会认为报名成功后人数应该变成 6，而正常情况下应该是 7，因此这个时候就发生了数据的**幻读**现象。
-因此，要解决这种问题，只能使用最后一种隔离级别`串行化`来实现了，每个事务不能同时进行，直接避免所有并发问题，简单粗暴，但是效率爆减，并不推荐。
+因此，要解决这种问题，只能使用最后一种隔离级别 `串行化` 来实现了，每个事务不能同时进行，直接避免所有并发问题，简单粗暴，但是效率爆减，并不推荐。
 最后总结三种情况：
-- 脏读：读取到了被回滚的数据，它毫无意义。
-- 虚读（不可重复读）：由于其他事务更新数据，两次读取的数据不一致。
-- 幻读：由于其他事务执行插入删除操作，而又无法感知到表中记录条数发生变化，当下次再读取时会莫名其妙多出或缺失数据，就像产生幻觉一样。
-（对于虚读和幻读的区分：虚读是某个数据前后读取不一致，幻读是整个表的记录数量前后读取不一致
-最后这张图，请务必记在你的脑海，记在你的心中：
-![image-20221217160052616](https://s2.loli.net/2022/12/17/nHfV8R1ZUybTSd2.png)
-Mybatis 对于数据库的事务管理，也有着相应的封装。一个事务无非就是创建、提交、回滚、关闭，因此这些操作被 Mybatis 抽象为一个接口：
+> - 脏读：读取到了被回滚的数据，它毫无意义。
+> - 虚读（不可重复读）：由于其他事务更新数据，两次读取的数据不一致。
+> - 幻读：由于其他事务执行插入删除操作，而又无法感知到表中记录条数发生变化，当下次再读取时会莫名其妙多出或缺失数据，就像产生幻觉一样。
+> （对于虚读和幻读的区分：虚读是某个数据前后读取不一致，幻读是整个表的记录数量前后读取不一致
+![image-20221217160052616|500](https://s2.loli.net/2022/12/17/nHfV8R1ZUybTSd2.png)
+> Mybatis 对于数据库的事务管理，也有着相应的封装。一个事务无非就是创建、提交、回滚、关闭，因此这些操作被 Mybatis 抽象为一个接口：
 ```java
 public interface Transaction {
     Connection getConnection () throws SQLException;
@@ -4860,14 +5033,14 @@ public interface Transaction {
 }
 ```
 对于此接口的实现，MyBatis 的事务管理分为两种形式：
-1. 使用**JDBC**的事务管理机制：即利用对应数据库的驱动生成的`Connection`对象完成对事务的提交（commit ()）、回滚（rollback ()）、关闭（close ()）等，对应的实现类为`JdbcTransaction`
-2. 使用**MANAGED**的事务管理机制：这种机制 MyBatis 自身不会去实现事务管理，而是让程序的容器（比如 Spring）来实现对事务的管理，对应的实现类为`ManagedTransaction`
-3. 如果需要自定义，那么得实现`org. apache. ibatis. transaction. Transaction`接口，然后在`type`属性中指定其类名。使用自定义的事务管理器可以根据具体需求来实现一些特定的事务管理行为。
-而我们之前一直使用的其实就是 JDBC 的事务，相当于直接使用`Connection`对象（之前 JavaWeb 阶段已经讲解过了）在进行事务操作，并没有额外的管理机制，对应的配置为：
+1. 使用**JDBC**的事务管理机制：即利用对应数据库的驱动生成的 `Connection` 对象完成对事务的提交（commit ()）、回滚（rollback ()）、关闭（close ()）等，对应的实现类为 `JdbcTransaction`
+2. 使用**MANAGED**的事务管理机制：这种机制 MyBatis 自身不会去实现事务管理，而是让程序的容器（比如 Spring）来实现对事务的管理，对应的实现类为 `ManagedTransaction`
+3. 如果需要自定义，那么得实现 `org.apache.ibatis.transaction.Transaction` 接口，然后在 `type` 属性中指定其类名。使用自定义的事务管理器可以根据具体需求来实现一些特定的事务管理行为。
+而我们之前一直使用的其实就是 JDBC 的事务，相当于直接使用 `Connection` 对象（之前 JavaWeb 阶段已经讲解过了）在进行事务操作，并没有额外的管理机制，对应的配置为：
 ```xml
 <transactionManager type="JDBC"/>
 ```
-那么我们来看看`JdbcTransaction`是不是像我们上面所说的那样管理事务的，直接上源码：
+那么我们来看看 `JdbcTransaction` 是不是像我们上面所说的那样管理事务的，直接上源码：
 ```java
 public class JdbcTransaction implements Transaction {
     private static final Log log = LogFactory. getLog (JdbcTransaction. class);
@@ -4877,36 +5050,36 @@ public class JdbcTransaction implements Transaction {
     protected boolean autoCommit;
     public JdbcTransaction (DataSource ds, TransactionIsolationLevel desiredLevel, boolean desiredAutoCommit) {
       	//数据源
-        this. dataSource = ds;
+        this.dataSource = ds;
       	//事务隔离级别，上面已经提到过了
-        this. level = desiredLevel;
+        this.level = desiredLevel;
       	//是否自动提交
-        this. autoCommit = desiredAutoCommit;
+        this.autoCommit = desiredAutoCommit;
     }
   //也可以直接给个 Connection 对象
    public JdbcTransaction (Connection connection) {
-        this. connection = connection;
+        this.connection = connection;
     }
     public Connection getConnection () throws SQLException {
       	//没有就通过数据源新开一个 Connection
-        if (this. connection == null) {
-            this. openConnection ();
+        if (this.connection == null) {
+            this.openConnection ();
         }
-        return this. connection;
+        return this.connection;
     }
     public void commit () throws SQLException {
       	//连接已经创建并且没开启自动提交才可以使用
-        if (this. connection != null && !this. connection. getAutoCommit ()) {
-            if (log. isDebugEnabled ()) {
-                log. debug ("Committing JDBC Connection [" + this. connection + "]");
+        if (this.connection != null && !this.connection.getAutoCommit ()) {
+            if (log.isDebugEnabled()) {
+                log.debug ("Committing JDBC Connection [" + this. connection + "]");
             }
 						//实际上使用的是数据库驱动提供的 Connection 对象进行事务操作
-            this. connection. commit ();
+            this.connection.commit();
         }
     }
   	...
 ```
-相当于`JdbcTransaction`只是为数据库驱动提供的`Connection`对象套了层壳，所有的事务操作实际上是直接调用`Connection`对象。那么我们接着来看`ManagedTransaction`的源码：
+相当于 `JdbcTransaction` 只是为数据库驱动提供的 `Connection` 对象套了层壳，所有的事务操作实际上是直接调用 `Connection` 对象。那么我们接着来看 `ManagedTransaction` 的源码：
 ```java
 public class ManagedTransaction implements Transaction {
     ...
@@ -4917,14 +5090,14 @@ public class ManagedTransaction implements Transaction {
     ...
 }
 ```
-我们发现，大体内容和`JdbcTransaction`差不多，但是它并没有实现任何的事务操作。也就是说，它希望将实现交给其他的管理框架来完成，而 Spring 就为 Mybatis 提供了一个非常好的事务管理实现。
+我们发现，大体内容和 `JdbcTransaction` 差不多，但是它并没有实现任何的事务操作。也就是说，它希望将实现交给其他的管理框架来完成，而 Spring 就为 Mybatis 提供了一个非常好的事务管理实现。
 ### 使用 Spring 事务管理
 现在我们来学习一下 Spring 提供的事务管理（Spring 事务管理分为编程式事务和声明式事务，但是编程式事务过于复杂并且具有高度耦合性，违背了 Spring 框架的设计初衷，因此这里只讲解声明式事务）声明式事务是基于 AOP 实现的。
 使用声明式事务非常简单，我们只需要在配置类添加`@EnableTransactionManagement`注解即可，这样就可以开启 Spring 的事务支持了。接着，我们只需要把一个事务要做的所有事情封装到 Service 层的一个方法中即可，首先需要在配置文件中注册一个新的 Bean，事务需要执行必须有一个事务管理器：
 ```java
 @Configuration
-@ComponentScan ("org. example")
-@MapperScan ("org. example. mapper")
+@ComponentScan ("org.example")
+@MapperScan ("org.example.mapper")
 @EnableTransactionManagement
 public class MainConfiguration {
     @Bean
@@ -4964,18 +5137,18 @@ public class TestServiceImpl implements TestService{
 ```
 我们只需在方法上添加`@Transactional`注解，即可表示此方法执行的是一个事务操作，在调用此方法时，Spring 会通过 AOP 机制为其进行增强，一旦发现异常，事务会自动回滚。最后我们来调用一下此方法：
 ```java
-@Slf 4 j
+@Slf4j
 public class Main {
     public static void main (String[] args) {
         log. info ("项目正在启动...");
         ApplicationContext context = new AnnotationConfigApplicationContext (TestConfiguration. class);
-        TestService service = context. getBean (TestService. class);
-        service. test ();
+        TestService service = context.getBean (TestService.class);
+        service.test();
     }
 }
 ```
 得到的结果是出现错误：
-```
+```java
 12 月 17, 2022 4:09:00 下午 com. zaxxer. hikari. HikariDataSource getConnection
 信息: HikariPool-1 - Start completed.
 Exception in thread "main" java. lang. RuntimeException: 我是测试异常！
@@ -5014,12 +5187,12 @@ public @interface Transactional {
 }
 ```
 我们来讲解几个比较关键的属性：
-- transactionManager：指定事务管理器
-- propagation：事务传播规则，一个事务可以包括 N 个子事务
-- isolation：事务隔离级别，不多说了
-- timeout：事务超时时间
-- readOnly：是否为只读事务，不同的数据库会根据只读属性进行优化，比如 MySQL 一旦声明事务为只读，那么久不允许增删改操作了。
-- rollbackFor 和 noRollbackFor：发生指定异常时回滚或是不回滚，默认发生任何异常都回滚。
+	- *transactionManager*：指定事务管理器
+	- *propagation*：事务传播规则，一个事务可以包括 N 个子事务
+	- *isolation*：事务隔离级别，不多说了
+	- *timeout*：事务超时时间
+	- *readOnly*：是否为只读事务，不同的数据库会根据只读属性进行优化，比如 MySQL 一旦声明事务为只读，那么就 不允许增删改操作了。
+	- *rollbackFor* 和 *noRollbackFor*：发生指定异常时回滚或是不回滚，默认发生任何异常都回滚。
 除了事务的传播规则，其他的内容其实已经给大家讲解过了，那么我们就来看看事务的传播。事务传播一共有七种级别：
 ![image-20221217161156859](https://s2.loli.net/2022/12/17/C1RA4mBEoxNDFGl.png)
 Spring 默认的传播级别是`PROPAGATION_REQUIRED`，那么我们来看看，它是如何传播的，现在我们的`Service`类中一共存在两个事务，而一个事务方法包含了另一个事务方法：
@@ -5065,7 +5238,7 @@ public void test 2 () {
 }
 ```
 直接运行`test 2 ()`方法，报错如下：
-```
+```java
 Exception in thread "main" org. springframework. transaction. IllegalTransactionStateException: No existing transaction found for transaction marked with propagation 'mandatory'
 	at org. springframework. transaction. support. AbstractPlatformTransactionManager. getTransaction (AbstractPlatformTransactionManager. java:362)
 	at org. springframework. transaction. interceptor. TransactionAspectSupport. createTransactionIfNecessary (TransactionAspectSupport. java:595)
@@ -5077,6 +5250,12 @@ Exception in thread "main" org. springframework. transaction. IllegalTransaction
 	at com. test. Main. main (Main. java:17)
 ```
 `NESTED`级别表示如果存在外层事务，则此方法单独创建一个子事务，回滚只会影响到此子事务，实际上就是利用创建 Savepoint，然后回滚到此保存点实现的。`NEVER`级别表示此方法不应该加入到任何事务中，其余类型适用于同时操作多数据源情况下的分布式事务管理，这里暂时不做介绍。
+
+> [!NOTE] Spring事务管理总结
+> - 配置类添加`@EnableTransactionManagement`注解开启Spring事务管理。
+> - 当需要执行一组数据库操作时需要在service方法上添加 `@Transactional`注解表示为该方法开启事务。
+> - `@Transactional`注解包括多个属性（*propagation*，*isolation*，*timeout*，*readOnly*，*rollbackFor*等），设置事务的传播级别，隔离级别，超时时间，是否只读和回滚场景等。
+
 ### 集成 JUnit 测试
 既然使用了 Spring，那么怎么集成到 JUnit 中进行测试呢，首先大家能够想到的肯定是：
 ```java
@@ -5106,8 +5285,8 @@ Spring 为我们提供了一个 Test 模块，它会自动集成 Junit 进行测
 ```
 这里导入的是 JUnit 5 和 SpringTest 模块依赖，然后直接在我们的测试类上添加两个注解就可以搞定：
 ```java
-@ExtendWith (SpringExtension. class)
-@ContextConfiguration (classes = TestConfiguration. class)
+@ExtendWith (SpringExtension.class)
+@ContextConfiguration (classes = TestConfiguration.class)
 public class TestMain {
     @Autowired
     TestService service;
@@ -5122,7 +5301,7 @@ public class TestMain {
 至此，SSM 中的其中一个 S（Spring）和一个 M（Mybatis）就已经学完了，我们还剩下一个 SpringMvc 需要去学习，下一章，我们将重新回到 Web 开发，了解在 Spring 框架的加持下，我们如何更高效地开发 Web 应用程序。
 ***
 ## 实现原理探究（选学）
-**注意：**本版块难度很大，所有内容都作为选学内容。
+注意：本版块难度很大，所有内容都作为选学内容。
 如果学习 Spring 基本内容对你来说已经非常困难了，建议跳过此小节，直接进入 MVC 阶段的学习，此小节会从源码角度解释 Spring 的整个运行原理，对初学者来说等同于小学跨越到高中，它并不是必学内容，但是对于个人阅历提升极为重要（推荐完成整个 SSM 阶段的学习并且加以实战之后再来看此部分），如果你还是觉得自己能够跟上节奏继续深入钻研底层原理，那么现在就开始吧。
 ### Bean 工厂与 Bean 定义
 实际上我们之前的所有操作都离不开一个东西，那就是 IoC 容器，那么它到底是如何实现呢？这一部分我们将详细介绍，首先我们大致了解一下 ApplicationContext 的加载流程：
