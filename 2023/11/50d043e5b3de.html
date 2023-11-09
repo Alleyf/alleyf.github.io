@@ -1,0 +1,882 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="范财胜">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="方向参考 大模型生成数据，提升数据质量。大模型生成数据作为训练数据，即便存在问题也可以说明，存在幻觉问题。 司法数据集已经有很多公开的数据集了，并不存在数据稀疏。 大模型对知识图谱数据的获取方面有哪些研究。 司法数据隐私安全方面，联邦学习是否可以解决。 数据时效性，数据动态更新问题，如何更新，更新效率，高低频案件变化问题。 时序知识图谱看能否运用。   调研任务 研究现状：    1. 数据集构建">
+<meta property="og:type" content="article">
+<meta property="og:title" content="司法领域大模型调研二">
+<meta property="og:url" content="https://alleyf.github.io/2023/11/50d043e5b3de.html">
+<meta property="og:site_name" content="alleyf">
+<meta property="og:description" content="方向参考 大模型生成数据，提升数据质量。大模型生成数据作为训练数据，即便存在问题也可以说明，存在幻觉问题。 司法数据集已经有很多公开的数据集了，并不存在数据稀疏。 大模型对知识图谱数据的获取方面有哪些研究。 司法数据隐私安全方面，联邦学习是否可以解决。 数据时效性，数据动态更新问题，如何更新，更新效率，高低频案件变化问题。 时序知识图谱看能否运用。   调研任务 研究现状：    1. 数据集构建">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://mmbiz.qpic.cn/sz_mmbiz_png/GNpj5fw72Er32ZwvWCfObFcRZ88HsBNZCjFrPU0gdnxKv8Y0nBIxYbo8QKibyDYe9ZwRRxfQBadVy8rUKN18CyQ/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/sz_mmbiz_png/GNpj5fw72EoNLcgjjszm2DrnaibS4IYrJ4OChnFNYIAmWiazrb5d52HCnKWfWu32ZaSJrAx2vCwHia4Vt8vzaDmFQ/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="article:published_time" content="2023-11-01T06:14:51.000Z">
+<meta property="article:modified_time" content="2023-11-02T13:17:27.836Z">
+<meta property="article:author" content="alleyf">
+<meta property="article:tag" content="NLP，KG">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mmbiz.qpic.cn/sz_mmbiz_png/GNpj5fw72Er32ZwvWCfObFcRZ88HsBNZCjFrPU0gdnxKv8Y0nBIxYbo8QKibyDYe9ZwRRxfQBadVy8rUKN18CyQ/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>司法领域大模型调研二 - alleyf</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"alleyf.github.io","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":true,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"d57048846da607439cf11718741f2eb0","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?d57048846da607439cf11718741f2eb0";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="alleyf" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Mr.Alleyf</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                Links
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://api.likepoems.com/img/nature') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="司法领域大模型调研二"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        范财胜
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-11-01 14:14" pubdate>
+          November 1, 2023 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.3k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          37 mins
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> views
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">司法领域大模型调研二</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    Last updated on 7 days ago
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="方向参考"><a href="#方向参考" class="headerlink" title="方向参考"></a>方向参考</h1><ol>
+<li>大模型生成数据，提升数据质量。大模型生成数据作为训练数据，即便存在问题也可以说明，存在幻觉问题。</li>
+<li>司法数据集已经有很多公开的数据集了，并不存在数据稀疏。</li>
+<li>大模型对知识图谱数据的获取方面有哪些研究。</li>
+<li>司法数据隐私安全方面，联邦学习是否可以解决。</li>
+<li>数据时效性，数据动态更新问题，如何更新，更新效率，高低频案件变化问题。</li>
+<li>时序知识图谱看能否运用。</li>
+</ol>
+<hr>
+<h1 id="调研任务"><a href="#调研任务" class="headerlink" title="调研任务"></a>调研任务</h1><blockquote>
+<p>研究现状：<br>    1. 数据集构建和信息抽取<br>    2. 知识图谱（重点在更新）<br>    3. 知识图谱和大模型相互促进<br>研究内容：<br>    1. 数据集构建与信息抽取<br>    2. 司法知识图谱构建<br>    3. 图谱融合和动态更新<br>    4. 知识图谱与大模型相互作用</p>
+</blockquote>
+<hr>
+<h1 id="知识图谱与大模型相互增强与协同运用"><a href="#知识图谱与大模型相互增强与协同运用" class="headerlink" title="知识图谱与大模型相互增强与协同运用"></a>知识图谱与大模型相互增强与协同运用</h1><p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/GNpj5fw72Er32ZwvWCfObFcRZ88HsBNZCjFrPU0gdnxKv8Y0nBIxYbo8QKibyDYe9ZwRRxfQBadVy8rUKN18CyQ/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1" srcset="/img/loading.gif" lazyload></p>
+<h2 id="知识图谱增强大模型"><a href="#知识图谱增强大模型" class="headerlink" title="知识图谱增强大模型"></a>知识图谱增强大模型</h2><h3 id="愿景"><a href="#愿景" class="headerlink" title="愿景"></a>愿景</h3><blockquote>
+<p>希望利用<strong>知识图谱</strong>中的<strong>确定性知识</strong>提升大模型回答问题的<strong>可靠性</strong>，增强对答案的<strong>可解释性</strong>，并帮助大模型确定自身的<strong>能力边界</strong>。在这一过程中，研究者需要不断探索知识图谱增强大模型的有效方式，并需对结果进行客观、准确的评估。</p>
+</blockquote>
+<h3 id="研究现状"><a href="#研究现状" class="headerlink" title="研究现状"></a>研究现状</h3><ol>
+<li>**知识图谱作为预训练数据[3]**：由于自然语言文本本身可能只提供有限的信息覆盖，而知识图谱可以为语言模型提供结构化的事实知识，集成知识图谱的语言模型（预）训练方法，使得向模型注入世界知识和实时更新知识更加方便。这种融合了知识图谱信息的语言模型，在知识密集型 QA 任务上展示了具有竞争力的结果，证明了这种方法在提升语言模型的能力具有重要意义。</li>
+<li>**监督微调[2]**：可以通过 KG 2 Instruction技术将知识图谱的转化成指令用于微调，还可以通过 OntoPrompt 将本体用于提示微调；</li>
+<li>**知识融合和更新[2]**：可以通过知识图谱的三元组对大语言模型进行编辑从而实现知识更新[Cao 2021]，并且可以将大语言模型跟知识图谱通过表示学习进行融合[Nayyeri  2023]，以及将一个大模型的知识迁移给另外一个大模型[Choi 2022]；</li>
+<li><strong>模型推理[2]<strong>：</strong>借助外挂知识库/图谱知识增强提升 LLM 效果[1]<strong>：目前比较主流的方式为使用</strong>外挂知识库</strong>的方式增强大模型输出的效果。具体为：将用户输入的问题转换为向量后，将该问题<strong>向量放入知识库中进行检索</strong>，并将相关的<strong>文档片段</strong>取出后与<strong>原始输入问题</strong>进行合并等操作后，将其作为新的输入送入大模型中。这样在输入端就对 LLM 的输出进行了一些限制，能够减轻 LLM 输出的“<em>幻觉</em>”问题。另外的，这种<strong>文本知识库</strong>也可以替换为<strong>图数据库</strong>，即将文本信息转换为图数据后进行检索。<img src="https://mmbiz.qpic.cn/sz_mmbiz_png/GNpj5fw72EoNLcgjjszm2DrnaibS4IYrJ4OChnFNYIAmWiazrb5d52HCnKWfWu32ZaSJrAx2vCwHia4Vt8vzaDmFQ/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1" srcset="/img/loading.gif" lazyload><br>另外，**构建提示模板[3]**：目前使用知识图谱来丰富和微调提示模板，从而在提示的数量、质量和多样性上比手动的方法更具优势，已有方法证明了通过图谱构建的提示模板进行推理比传统方法更具竞争力，但目前该方法仍存在挑战与机遇：<br> 1）生成上下文感知的写作提示，分析不同提示之间的关系，形成具有关联关系的提示模板。<br> 2）动态生成和用户交互的提示模板，由于知识图谱提供了知识的透明表示，因此可以很容易地将从知识图谱生成的提示追溯到它们的底层源。<br> 3）将知识图谱集成到提示模板中，增强模型生成内容的可行度。<br> 4）知识图谱可以创建询问问题的提示，从而触发知识图谱复杂推理能力和中间推理步骤。<br>此外，还可以通过知识图谱生成提示[Chen 2022]或者指令[Du, 2022]用于增强模型的推理能力。此外，思维链可以指导大模型推理[2]，知识图谱可以表示和生成思维链，通过结构化更好的思维链提升大模型的推理能力。</li>
+<li><strong>增强可解释性</strong>：包括用KG来理解LLM所学到的知识并解释LLM推理过程。</li>
+</ol>
+<hr>
+<h2 id="大模型增强知识图谱"><a href="#大模型增强知识图谱" class="headerlink" title="大模型增强知识图谱"></a>大模型增强知识图谱</h2><h3 id="愿景-1"><a href="#愿景-1" class="headerlink" title="愿景"></a>愿景</h3><blockquote>
+<p>利用大模型的<strong>外溢技术</strong>对于提升知识图谱构建任务的<strong>性能和效率</strong>有帮助，研究者还可以充分利用大模型出色的<strong>泛化能力</strong>、以及在一些基础任务上的出色性能来自动构建一些<strong>高质量的知识图谱资源</strong>。这些资源从长远来看，对于文本处理的各项任务而言更有意义。大模型的出色泛化能力可以帮助快速形成一定规模、一定质量的行业知识图谱，为后续可行的“大模型+行业”模式提供重要基础支撑。</p>
+</blockquote>
+<h3 id="研究现状-1"><a href="#研究现状-1" class="headerlink" title="研究现状"></a>研究现状</h3><ol>
+<li>**知识自动建模[4]**：可以为知识抽取生成标注数据，利用大语言模型的知识理解能力，可以设计通用信息抽取方法，利用一个模型抽取实体、关系、属性值、事件，大语言模型还可以做零样本知识生成，利用通用信息抽取得到的三元组，通过人工校对形成大标注数据还可以用于训练监督模型</li>
+<li>**知识融合的自动化 [5] 于冲突解决 [6] ：</li>
+<li>**知识图谱的知识表示学习[7]**：</li>
+<li><strong>本体模式的构建</strong>：该部分包括三方面分别为：<ul>
+<li>从知识图谱中挖掘约束和规则：现有构建知识图谱的方法通常使用 pipeline 的方式，这种方法容易造成<strong>误差传播</strong>问题，通过<strong>引入自动化的规则和约束</strong>来限制构建图谱时错误信息的引入可以<strong>提升数据的质量</strong>。如何生成这些约束和规则是一个根本性的挑战，在此背景下，大语言模型带来了新的机遇：<br>   1）从输入文本中提取<strong>上下文信息</strong>的能力；<br>   2）在训练过程中使用上下文提取信息；<br>   3）通过<strong>归纳推理生成新的规则</strong>。<br>   4）理解词汇信息，<strong>协调同义词和一词多义</strong>现象；<br>   5）提供<strong>规则的解释和生成候选</strong>以及反事实样例。</li>
+<li>本体优化：本体优化包含很多主题：<em>知识补全、错误知识检测和修复和知识规范化</em>等，开发基于大语言模型的本体细化工具仍然存在以下挑战：<br>   1）利用文本及其本体的图结构和逻辑；<br>   2）结合符合推理和大语言模型推理。</li>
+<li>本体对齐：单个本体的<strong>知识通常是不完整的</strong>，许多真实世界的应用通常依赖于跨领域的知识。本体对齐的主要挑战是评估基于大语言模型的本体对齐系统。</li>
+</ul>
+</li>
+</ol>
+<h2 id="现存问题"><a href="#现存问题" class="headerlink" title="现存问题"></a>现存问题</h2><h3 id="知识图谱运用于大模型"><a href="#知识图谱运用于大模型" class="headerlink" title="知识图谱运用于大模型"></a>知识图谱运用于大模型</h3><ol>
+<li><em>外挂知识库</em>引起的问题：<ol>
+<li><strong>检索长度造成的敏感度问题</strong>：检索样本数量的增多，LLM 输入的长度也随之扩大。而已经有相关研究表明，随着 LLM 输入长度的增加，LLM 对输入文本两端的文本敏感，而对输入文本靠近中间的文本越来越不敏感。</li>
+<li><strong>非对称检索问题</strong>：外挂知识库在非对称检索上的效果并不是很好，简单来说就是向量化模型很难将问题和答案映射到统一向量空间。</li>
+<li><strong>外挂知识库的局限性</strong>：外挂知识库只从输入端对“幻觉”问题进行一定的限制，这样可能还会使得大模型的输出存在一些“幻觉”问题，并未从输出端对“幻觉”问题的限制。</li>
+</ol>
+</li>
+</ol>
+<h3 id="大模型运用于知识图谱"><a href="#大模型运用于知识图谱" class="headerlink" title="大模型运用于知识图谱"></a>大模型运用于知识图谱</h3><ol>
+<li>从大模型进行<em>知识抽取提取三元组</em>遇到的挑战：<br> 1）由于实体名称的重复性，需要进行<strong>实体消歧</strong>；<br> 2）由于大语言模型读<strong>长尾实体记忆的不精确</strong>性，导致产生错误的信息；<br> 3）大语言模型面临着<strong>高精度</strong>的要求；<br> 4）大语言模型的输出不提供出处，为核验该<strong>信息的准确性</strong>带来了信息的挑战。<h3 id="个性问题"><a href="#个性问题" class="headerlink" title="个性问题"></a>个性问题</h3><h4 id="知识图谱"><a href="#知识图谱" class="headerlink" title="知识图谱"></a>知识图谱</h4><h4 id="大模型"><a href="#大模型" class="headerlink" title="大模型"></a>大模型</h4></li>
+<li><strong>知识表示与推理</strong>：<br>知识图谱提供了具有明确关系的知识的结构化表示，支持推理和推断。有学者认为大语言模型中“参数化”的知识是基于统计的，并不是真正的理解和推理，并且由于缺乏明确的知识表征，模型会生成看似合理但却荒谬的结果。</li>
+<li><strong>高精度方法</strong>：<br>知识图谱的成功在于其可以精确地提供关于实体的事实信息，如 YAGO，可以提供 95%以上的正确信息。同样知识图谱在用于生产环境时需要较高的精度，例如 Google 的 Knowledge Vault 未能成功落地也是因为其精度达不到要求的 99%。目前基于 BERT 或 GPT 等的方法不能满足以上要求，这知识计算科学家仍然需要探索基于大语言模型的高精度的方法。</li>
+<li><strong>数值计算</strong>：<br>对于语言模型来说，完成数值计算工作是一项具有挑战性的任务，该挑战同样适用于知识图谱补全任务。在基于 Wikidata 的数字事实来评估语言模型数值计算能力中，没有一个模型能准确地得到结果，尽管已有的模型在数值处理的能力上表现不俗，但考虑到数值具有不同的度量和类型，使得该任务难度进一步升级，因此，修改模型来处理数值的问题仍未被解决，以至于利用大语言模型来完成数值知识图谱的补全看起来是不现实的。</li>
+<li><strong>长尾知识</strong>：<br>在对大语言模型的调查过程中发现，使用 Wikidata 中随机的知识对模型进行测试时，模型的性能会急剧的恶化，尤其是在遇到长尾的实体时。这种情况的出现，究其原因就是在预训练过程中实体和关系出现的频率是不一样的，模型对长尾的信息是难以保持精准记忆的。相反，知识图谱在提供长尾实体的知识上具有天然的优势，因此可以进一步提升大语言模型在知识计算任务中的回忆能力。</li>
+<li><strong>偏见、公平等</strong>：<br>一部分学者认为大语言模型会使训练数据中的偏见持续存在并放大，从而导致有偏见的输出。而另一部分学者认为偏见不是大语言模型中所固有的特征，而是训练数据集中嵌入的社会偏见，他们强调了在训练数据中消除偏见和开发能够缓解偏见技术的重要性。知识图谱在构建过程中同样会嵌入“偏见”，并且会被运用到各种下游任务中。除了偏见和公平外，还有侵犯版权和错误信息等问题。与显式知识相比，大语言模型中“参数化”偏见知识更难以被去除或修改。（种族歧视）大模型对黑人有偏见，画黑人医生给儿童治病结果大部分生成结果都是白人医生。</li>
+<li><strong>可解释性</strong>：<br>在可解释性的场景中，知识图谱通常是首选的。对大语言模型持有怀疑态度的学者们认为：大模型是一个黑盒，缺乏可解释性，很难理解他们是如何产生结果的。但支持者们虽然承认了大模型可解释性差的问题，但却通过最近的一些研究，如注意力机制、模型内省等技术可以在一定程度提升模型的可解释性。思维链技术、问题解耦和答案归因等方法，是最近在大语言模型可解释性方法研究中的一些热点话题。</li>
+</ol>
+<h3 id="共性问题"><a href="#共性问题" class="headerlink" title="共性问题"></a>共性问题</h3><h2 id="协同完成复杂知识处理任务"><a href="#协同完成复杂知识处理任务" class="headerlink" title="协同完成复杂知识处理任务"></a>协同完成复杂知识处理任务</h2><ul>
+<li>大语言模型平台可以利用知识图谱平台生成的符号化知识对企业中的各种知识进行集成，对大语言模型平台的指令进行分解，完成复杂任务（比如说微软 Office 365 Copilot）。</li>
+<li>知识图谱平台和大语言模型平台协同完成复杂问题的知识问答，这里可以发挥大语言模型的语义理解能力和知识量大的优势，同时发挥基于知识图谱的问答系统的知识精确性和答案可解释性的优势。</li>
+<li>知识图谱平台用于沉淀大模型平台中任务驱动的关键知识，用于完成需要精确、可解释的问答和行动。</li>
+</ul>
+<hr>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><ol>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/SfG-d-VBdI7hkgRikNtm9Q">任飞亮—大模型与知识图谱研究中的若干问题思考</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzU2NjAxNDYwMg==&mid=2247502433&idx=1&sn=917ed3ac22e689d8ed2441135969667a&chksm=fcb06d84cbc7e492746845c60ec4e3ca69cd5883169339967cc999e855f4caba94b0b3004dcf&scene=178&cur_album_id=3073566525166419969#rd">漆桂林—知识图谱和大语言模型的共存之道</a></li>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2308.06374">Jeff Pan、陈矫彦等——大语言模型与知识图谱的机遇与挑战</a></li>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2307.16648.pdf">Giglou-LLMs4OL: Large Language Models for Ontology Learning</a> ^5d9062</li>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2307.11772.pdf">Zhang-AutoAlign: Fully Automatic and Effective<br>Knowledge Graph Alignment enabled by Large<br>Language Models</a></li>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2304.01664.pdf">Wang-An Embedding-based Approach to<br>Inconsistency-tolerant Reasoning with<br>Inconsistent Ontologies</a></li>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2306.08302.pdf">Pan-Unifying Large Language Models and<br>Knowledge Graphs: A Roadmap</a></li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%A7%91%E7%A0%94%E5%AD%A6%E4%B9%A0/" class="category-chain-item">科研学习</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/NLP%EF%BC%8CKG/">#NLP，KG</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>司法领域大模型调研二</div>
+      <div>https://alleyf.github.io/2023/11/50d043e5b3de.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>范财胜</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>November 1, 2023</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Updated on</div>
+          <div>November 2, 2023</div>
+        </div>
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/11/86d607e7b4ea.html" title="">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/10/7ca8ec33c92b.html" title="SpringBoot 简记">
+                        <span class="hidden-mobile">SpringBoot 简记</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.7.2/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"636f2864e051a199b91c","clientSecret":"5185fd11115bbcd8d2f636bc80de6bed98ed14c1","repo":"Gitalk","owner":"Alleyf","admin":["Alleyf"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":false,"proxy":"https://shielded-brushlands-08810.herokuapp.com/https://github.com/login/oauth/access_token"},
+          {
+            id: '7675577ce6ab1960ac16cefaaa3966ce'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          <!--aplayer--> <link rel="stylesheet" href="https://unpkg.com/browse/aplayer@1.10.1/dist/APlayer.min.css"> <div id="aplayer"></div> <script src="https://unpkg.com/browse/aplayer@1.10.1/dist/APlayer.min.js"></script> <script src="https://alleyf.github.io/js/useaplayer.js"></script>
+        </div>
+      </div>
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://github.com/Alleyf" target="_blank" rel="nofollow noopener"><span>Alleyf</span></a> <i class="iconfont icon-love"></i> <a href="https://fcsy.fit" target="_blank" rel="nofollow noopener"><span>Homepage</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        Views: 
+        <span id="busuanzi_value_site_pv"></span>
+        
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        Visitors: 
+        <span id="busuanzi_value_site_uv"></span>
+        
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      陕ICP备2022010038号
+    </a>
+  </span>
+  
+    
+      <span>
+        <a
+          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=2022010038"
+          rel="nofollow noopener"
+          class="beian-police"
+          target="_blank"
+        >
+          
+            <span style="visibility: hidden; width: 0">|</span>
+            <img src="/img/police_beian.png" srcset="/img/loading.gif" lazyload alt="police-icon"/>
+          
+          <span>陕公网安备2022010038号</span>
+        </a>
+      </span>
+    
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.1/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/js/addMusic.js"></script><!-- hexo injector body_end end --></body>
+</html>
