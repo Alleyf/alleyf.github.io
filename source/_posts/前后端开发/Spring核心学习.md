@@ -2569,7 +2569,6 @@ public abstract class HttpJspBase extends HttpServlet implements HttpJspPage {
 # Spring
 Spring 就是这样的一个框架（[文档](https://docs.spring.io/spring-framework/docs/6.0.10/reference/html/core.html#spring-core)，它就是为了简化开发而生，它是轻量级的**IoC**和**AOP**的容器框架，主要是针对**Bean**的生命周期进行管理的轻量级容器，并且它的生态已经发展得极为庞大。
 ## IOC 容器基础
-
 ```cardlink
 url: https://zhuanlan.zhihu.com/p/637355010
 title: "深入理解spring-IOC<容器的设计>"
@@ -2577,7 +2576,6 @@ description: "spring在Java中的地位不言而喻，学习Java逃不开spring�
 host: zhuanlan.zhihu.com
 ```
 [深入理解spring-IOC<容器的设计> - 知乎](https://zhuanlan.zhihu.com/p/637355010)
-
 在 Spring 框架中，IOC（Inversion of Control）是一种设计原则和实现机制，**它将对象的创建、依赖关系的管理和生命周期的控制从应用程序代码中解耦出来，交给容器来完成。**  
 > 简单来说，IOC 就是由容器来控制对象的创建和管理，而不是由应用程序代码直接控制。通过 IOC，应用程序只需要定义好对象的依赖关系和配置信息，容器会根据这些信息来创建对象，并自动注入对象之间的依赖关系
 
@@ -3204,7 +3202,6 @@ Student bean = (Student) context.getBean ("studentFactory");
 StudentFactory bean = (StudentFactory) context.getBean ("&studentFactory");
 ```
 又是一个小细节。
-
 > [!NOTE] 总结
 > 工厂 bean 可以**间接创建 bean**从而**代替构造方法或者 setter**直接创建 bean，从而实现 bean 实例化过程中其他的逻辑功能，借助工厂 bean 实例化需要的 bean 有以下两种方式：
 >    1. 写工厂类并添加 **get 产品 bean 的静态方法**，在 `xml` 配置文件中**注册工厂 bean 并设置 factory-method 方法**指定实例化产品 **bean 的静态方法**。
@@ -3479,7 +3476,6 @@ public class Teacher {
 ```
 这两个类互相需要注入对方的实例对象，这个时候 Spring 会怎么进行处理呢？如果 Bean 变成原型模式，Spring 又会怎么处理呢？
 这个问题我们会在实现原理探究部分进行详细介绍。
-
 > [!NOTE] 总结
 > 通过使用**注解**来注册配置 bean 可以免去 xml 的繁琐配置，步骤如下:
 >    - 首先需要写一个配置类并标注 `@Configuration` 注解和需要扫描的用 `@Component` 注解注册的 **bean**
@@ -3557,16 +3553,16 @@ public class Teacher {
 > 	//    }  
 > 	    @PostConstruct  //构造后初始化方法，类似于 xml 中的 init-method
 > 	    public void init () {  
-> 	        System.out.println (Student.class.getName () + " 初始化完成");  
+> 	        System. out. println (Student. class. getName () + " 初始化完成");  
 > 	    }  
 > 	  
 > 	    @PreDestroy  //销毁前销毁方法，类似于 xml 中的 destroy-method
 > 	    public void destroy () {  
-> 	        System.out.println (this.getClass (). getName () + " 销毁完成");  
+> 	        System. out. println (this. getClass (). getName () + " 销毁完成");  
 > 	    }  
 > 	  
 > 	    public void study () {  
-> 	        teacher.teach ();  
+> 	        teacher. teach ();  
 > 	    }  
 > 	//    public void setTeacher (Teacher teacher) {  
 > 	//        this. teacher = teacher;  
@@ -3605,9 +3601,8 @@ public class Student implements BeanClassLoaderAware {
     }
 }
 ```
-
-> [!NOTE] Aware总结
-> Aware特性就是当bean加载的过程中通过实现特定的接口对一些信息自动获取或执行特定的操作，eg：`BeanNameAware，BeanFactoryAware，ApplicationContextAware，ResourceAware等`
+> [!NOTE] Aware 总结
+> Aware 特性就是当 bean 加载的过程中通过实现特定的接口对一些信息自动获取或执行特定的操作，eg：`BeanNameAware，BeanFactoryAware，ApplicationContextAware，ResourceAware等`
 
 ### 任务调度
 为了执行某些任务，我们可能需要一些非常规的操作，比如我们希望使用多线程来处理我们的结果或是执行一些定时任务，到达指定时间再去执行。这时我们首先想到的就是创建一个新的线程来处理，或是使用 TimerTask 来完成定时任务，但是我们有了 Spring 框架之后，就不用这样了，因为 Spring 框架为我们提供了更加便捷的方式进行任务调度。
@@ -3682,11 +3677,10 @@ public void task (){
 > - cron：如果嫌上面两个不够灵活，你还可以使用 cron 表达式来指定任务计划。
 > 这里简单讲解一下 cron 表达式： https://blog.csdn.net/sunnyzyq/article/details/98597252
 
-
-> [!NOTE] Spring异步和定时总结
+> [!NOTE] Spring 异步和定时总结
 > - 任务调度中异步和定时任务的用法：
->   1. 在应用配置文件中添加 `@EnableScheduling（定时任务），@EnableAsync （异步任务支持,作用于bean实现异步任务）`注解
->   2. 在方法前添加 `@Async`注解实现异步方法，添加 `@Scheduled`注解实现定时任务（还要为该注解设置定时属性，包括 *cron*，*fixedDelay*，*fixedRate*等）
+>   1. 在应用配置文件中添加 `@EnableScheduling（定时任务），@EnableAsync （异步任务支持,作用于bean实现异步任务）` 注解
+>   2. 在方法前添加 `@Async` 注解实现异步方法，添加 `@Scheduled` 注解实现定时任务（还要为该注解设置定时属性，包括 *cron*，*fixedDelay*，*fixedRate*等）
 
 ### 监听器
 监听实际上就是等待某个事件的触发，当事件触发时，对应事件的监听器就会被通知，如果你学习过 Java Swing 篇视频教程，应该会深有体会，监听器可是很关键的，只不过在 Spring 中用的不是很频繁罢了。但是这里还是要简单介绍一下：
@@ -3743,14 +3737,13 @@ public class TaskComponent  implements ApplicationEventPublisherAware {
 点击这个图标快速跳转到哪里监听了这个事件，运行结果：
 ![image-20221125161125557](https://s2.loli.net/2022/11/25/FKy1jBx3MJvVdDN.png)
 这样，我们就实现了自定义事件发布和监听。
-
 > [!NOTE] 监听器用法总结
 > - 监听器实现对事件的监听并做出反应，具体使用方法：
->   1. Spring默认为我们提供了一些**监听事件接口（ContextRefreshedEvent，ContextStartedEvent等）**，只需要实现需要的接口并完成监听反应逻辑功能即可
+>   1. Spring 默认为我们提供了一些**监听事件接口（ContextRefreshedEvent，ContextStartedEvent 等）**，只需要实现需要的接口并完成监听反应逻辑功能即可
 >   2. 自定义事件并监听：
->      - 编写自定义事件需要继承 `ApplicationEvent`类并实现构造方法
->      - 编写自定义监听器并实现 `ApplicationListener<~>`接口（泛型填自定义事件），并重写 `onApplicationEvent`响应方法
->      - 在需要应用监听器的类中注入 `ApplicationEventPublisher`属性，并在需要被监听的方法中进行事件发布（*publisher.publishEvent(new TestEvent(this))*）
+>      - 编写自定义事件需要继承 `ApplicationEvent` 类并实现构造方法
+>      - 编写自定义监听器并实现 `ApplicationListener<~>` 接口（泛型填自定义事件），并重写 `onApplicationEvent` 响应方法
+>      - 在需要应用监听器的类中注入 `ApplicationEventPublisher` 属性，并在需要被监听的方法中进行事件发布（*publisher. publishEvent (new TestEvent (this))*）
 
 
 ***
@@ -3980,8 +3973,6 @@ public class FieldValueTestBean {
 ```
 这样，我们有时候在使用配置文件中的值时，就能进行一些简单的处理了。
 有关更多详细语法教程，请前往： https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#expressions-language-ref
-
-
 > [!NOTE] 总结
 > - 外部属性注入流程：
 > 	1. 为 Class 添加 `@PropertySource ("classpath:test.properties")` 注解
@@ -4303,11 +4294,9 @@ public class StudentAOP implements MethodInterceptor {   //实现 MethodIntercep
 ```
 我们来看看结果吧：
 ![image-20221216173211310](https://s2.loli.net/2022/12/16/ARcUW2mJrn7Y6f9.png)
-
 > [!NOTE] xml 结合接口实现 AOP 总结
 > - AOP 通知类实现需要的接口（`MethodBeforeAdvice前置通知, AfterReturningAdvice后置通知, MethodInterceptor环绕通知`）
 > - 编写 AOP 配置文件，设置 `<aop:advisor advice-ref="studentAOP" pointcut-ref="study"/>`
-
 
 ### 使用注解实现 AOP
 接着我们来看看如何使用注解实现 AOP 操作，现在变回我们之前的注解开发，首先我们需要在主类添加 `@EnableAspectJAutoProxy` 注解，开启 AOP 注解支持：
@@ -4404,7 +4393,6 @@ public Object around (ProceedingJoinPoint point) throws Throwable {
 }
 ```
 实际上，无论是使用注解或是 XML 配置，我们要做的流程都是一样的，在之后的学习中，我们还会遇到更多需要使用 AOP 的地方。
-
 > [!NOTE] 注解实现 AOP 总结
 > 注解实现 AOP 代理的步骤：
 > 1. 首先为**配置主类**添加注解 `@EnableAspectJAutoProxy` 开启 AOP 代理
@@ -4412,7 +4400,6 @@ public Object around (ProceedingJoinPoint point) throws Throwable {
 > 3. 实现**代理增强方法**并添加需要的注解（`@Before，@After/AfterReturning/AfterThrowing，@Round` 等），并未注解配置 `value` 属性指定代理增强的*目标*，（**可选**）设置 `argsName` 属性指定对应*形参*，eg：
 >   `@After(value = "execution(* org.example.entity.Student.study(..)) &&  args(msg)",argNames = "msg")`
 > 
-
 
 
 ***
@@ -4792,25 +4779,25 @@ protected void pushConnection (PooledConnection conn) throws SQLException {
 ```xml
 <!-- 这两个依赖不用我说了吧 -->
 <dependency>
-    <groupId>org. mybatis</groupId>
+    <groupId>org.mybatis</groupId>
     <artifactId>mybatis</artifactId>
   	<!-- 注意，对于Spring 6.0来说，版本需要在3.5以上 -->
     <version>3.5.13</version>
 </dependency>
 <dependency>
-    <groupId>com. mysql</groupId>
+    <groupId>com.mysql</groupId>
     <artifactId>mysql-connector-j</artifactId>
     <version>8.0.31</version>
 </dependency>
 <!-- Mybatis针对于Spring专门编写的支持框架 -->
 <dependency>
-    <groupId>org. mybatis</groupId>
+    <groupId>org.mybatis</groupId>
     <artifactId>mybatis-spring</artifactId>
     <version>3.0.2</version>
 </dependency>
 <!-- Spring的JDBC支持框架 -->
 <dependency>
-     <groupId>org. springframework</groupId>
+     <groupId>org.springframework</groupId>
      <artifactId>spring-jdbc</artifactId>
      <version>6.0.10</version>
 </dependency>
@@ -4880,8 +4867,8 @@ public static void main (String[] args) {
 虽然这样已经很方便了，但是还不够方便，我们依然需要手动去获取 Mapper 对象，那么能否直接得到对应的 Mapper 对象呢，我们希望让 Spring 直接帮助我们管理所有的 Mapper，当需要时，可以直接从容器中获取，我们可以直接在配置类上方添加注解：
 ```java
 @Configuration
-@ComponentScan ("org. example. entity")
-@MapperScan ("org. example. mapper")
+@ComponentScan ("org.example.entity")
+@MapperScan ("org.example.mapper")
 public class MainConfiguration {
 ```
 这样，Mybatis 就会自动扫描对应包下所有的接口，并直接被注册为对应的 Mapper 作为 Bean 管理，那么我们现在就可以直接通过容器获取了：
@@ -4896,13 +4883,13 @@ public static void main (String[] args) {
 请一定注意，必须存在 `SqlSessionTemplate` 或是 `SqlSessionFactoryBean` 的 Bean，否则会无法初始化（毕竟要数据库的链接信息）我们接着来看，如果我们希望直接去除 Mybatis 的配置文件，完全实现全注解配置，那么改怎么去实现呢？我们可以使用 `SqlSessionFactoryBean` 类：
 ```java
 @Configuration
-@ComponentScan ("org. example. entity")
-@MapperScan ("org. example. mapper")
+@ComponentScan ("org.example.entity")
+@MapperScan ("org.example.mapper")
 public class MainConfiguration {
     @Bean   //单独创建一个 Bean，方便之后更换
     public DataSource dataSource (){
-        return new PooledDataSource ("com. mysql. cj. jdbc. Driver",
-                "jdbc:mysql://localhost: 3306/study", "root", "123456");
+        return new PooledDataSource ("com.mysql.cj.jdbc.Driver",
+                "jdbc:mysql://localhost:3306/study", "root", "123456");
     }
     @Bean
     public SqlSessionFactoryBean sqlSessionFactoryBean (DataSource dataSource){  //直接参数得到 Bean 对象
@@ -4914,13 +4901,11 @@ public class MainConfiguration {
 ```
 首先我们需要创建一个数据源的实现类，因为这是数据库最基本的信息，然后再给到 `SqlSessionFactoryBean` 实例，这样，我们相当于直接在一开始通过 IoC 容器配置了 `SqlSessionFactory`，这里只需要传入一个 `DataSource` 的实现即可，我们采用池化数据源。
 删除配置文件，重新再来运行，同样可以正常使用 Mapper。从这里开始，通过 IoC 容器，Mybatis 已经不再需要使用配置文件了，在我们之后的学习中，基于 Spring 的开发将不会再出现 Mybatis 的配置文件。
-
 > [!NOTE] **spring 结合 mybatis 使用总结**
 > - spring 结合 mybatis 使用步骤：
 >   1. 编写实体类（对应于数据库的表），写对应 Mapper 接口注解实现对应的 sql 指令，再编写 mybatis-config. xml 文件配置数据库连接环境并注册 mapper。
 >   2. 编写应用配置文件 Configuration 添加 mapper 和 entity 扫描注解，注册 SqlSessionTemplate 的 bean 或 SqlSessionFactoryBean。
->   3. 服务层直接通过 context.getBean ()获取 mapper，调用 mapper 接口的方法。
-
+>   3. 服务层直接通过 context. getBean ()获取 mapper，调用 mapper 接口的方法。
 
 ### 使用 HikariCP 连接池
 前面我们提到了数据源还有其他实现，比如 C 3 P 0、Druid 等，它们都是非常优秀的数据源实现（可以自行了解），不过我们这里要介绍的，是之后在 SpringBoot 中还会遇到的 HikariCP 连接池。
@@ -4984,12 +4969,10 @@ public class Main {
     }
 }
 ```
-
-
-> [!NOTE] HikariDataSource用法总结
-> - 使用HikariPool数据库连接池步骤：
->   1. 引入xml依赖
->   2. 应用配置中注册DataSource的bean并在内部使用 HikariDataSource
+> [!NOTE] HikariDataSource 用法总结
+> - 使用 HikariPool 数据库连接池步骤：
+>   1. 引入 xml 依赖
+>   2. 应用配置中注册 DataSource 的 bean 并在内部使用 HikariDataSource
 
 ### Mybatis 事务管理
 我们前面已经讲解了如何让 Mybatis 与 Spring 更好地融合在一起，通过将对应的 Bean 类型注册到容器中，就能更加方便的去使用 Mapper，那么现在，我们接着来看 Spring 的事务控制。
@@ -5093,7 +5076,7 @@ public class ManagedTransaction implements Transaction {
 我们发现，大体内容和 `JdbcTransaction` 差不多，但是它并没有实现任何的事务操作。也就是说，它希望将实现交给其他的管理框架来完成，而 Spring 就为 Mybatis 提供了一个非常好的事务管理实现。
 ### 使用 Spring 事务管理
 现在我们来学习一下 Spring 提供的事务管理（Spring 事务管理分为编程式事务和声明式事务，但是编程式事务过于复杂并且具有高度耦合性，违背了 Spring 框架的设计初衷，因此这里只讲解声明式事务）声明式事务是基于 AOP 实现的。
-使用声明式事务非常简单，我们只需要在配置类添加`@EnableTransactionManagement`注解即可，这样就可以开启 Spring 的事务支持了。接着，我们只需要把一个事务要做的所有事情封装到 Service 层的一个方法中即可，首先需要在配置文件中注册一个新的 Bean，事务需要执行必须有一个事务管理器：
+使用声明式事务非常简单，我们只需要在配置类添加 `@EnableTransactionManagement` 注解即可，这样就可以开启 Spring 的事务支持了。接着，我们只需要把一个事务要做的所有事情封装到 Service 层的一个方法中即可，首先需要在配置文件中注册一个新的 Bean，事务需要执行必须有一个事务管理器：
 ```java
 @Configuration
 @ComponentScan ("org.example")
@@ -5135,7 +5118,7 @@ public class TestServiceImpl implements TestService{
     }
 }
 ```
-我们只需在方法上添加`@Transactional`注解，即可表示此方法执行的是一个事务操作，在调用此方法时，Spring 会通过 AOP 机制为其进行增强，一旦发现异常，事务会自动回滚。最后我们来调用一下此方法：
+我们只需在方法上添加 `@Transactional` 注解，即可表示此方法执行的是一个事务操作，在调用此方法时，Spring 会通过 AOP 机制为其进行增强，一旦发现异常，事务会自动回滚。最后我们来调用一下此方法：
 ```java
 @Slf4j
 public class Main {
@@ -5163,7 +5146,7 @@ Exception in thread "main" java. lang. RuntimeException: 我是测试异常！
 我们发现，整个栈追踪信息中包含了大量 aop 包下的内容，也就印证了它确实是通过 AOP 实现的，那么我们接着来看一下，数据库中的数据是否没有发生变化（出现异常回滚了）
 ![image-20221217161027254](https://s2.loli.net/2022/12/17/TQDbpK2JVP3d9wz.png)
 结果显而易见，第一次的插入操作确实被回滚了，数据库中没有任何新增的内容。
-我们接着来研究一下`@Transactional`注解的一些参数：
+我们接着来研究一下 `@Transactional` 注解的一些参数：
 ```java
 @Target ({ElementType. TYPE, ElementType. METHOD})
 @Retention (RetentionPolicy. RUNTIME)
@@ -5191,11 +5174,11 @@ public @interface Transactional {
 	- *propagation*：事务传播规则，一个事务可以包括 N 个子事务
 	- *isolation*：事务隔离级别，不多说了
 	- *timeout*：事务超时时间
-	- *readOnly*：是否为只读事务，不同的数据库会根据只读属性进行优化，比如 MySQL 一旦声明事务为只读，那么就 不允许增删改操作了。
+	- *readOnly*：是否为只读事务，不同的数据库会根据只读属性进行优化，比如 MySQL 一旦声明事务为只读，那么就不允许增删改操作了。
 	- *rollbackFor* 和 *noRollbackFor*：发生指定异常时回滚或是不回滚，默认发生任何异常都回滚。
 除了事务的传播规则，其他的内容其实已经给大家讲解过了，那么我们就来看看事务的传播。事务传播一共有七种级别：
 ![image-20221217161156859](https://s2.loli.net/2022/12/17/C1RA4mBEoxNDFGl.png)
-Spring 默认的传播级别是`PROPAGATION_REQUIRED`，那么我们来看看，它是如何传播的，现在我们的`Service`类中一共存在两个事务，而一个事务方法包含了另一个事务方法：
+Spring 默认的传播级别是 `PROPAGATION_REQUIRED`，那么我们来看看，它是如何传播的，现在我们的 `Service` 类中一共存在两个事务，而一个事务方法包含了另一个事务方法：
 ```java
 @Component
 public class TestServiceImpl implements TestService{
@@ -5212,8 +5195,8 @@ public class TestServiceImpl implements TestService{
     }
 }
 ```
-最后我们得到结果，另一个事务也被回滚了，也就是说，相当于另一个事务直接加入到此事务中，也就是表中所描述的那样。如果单独执行`test 2 ()`则会开启一个新的事务，而执行`test ()`则会直接让内部的`test 2 ()`加入到当前事务中。
-现在我们将`test 2 ()`的传播级别设定为`SUPPORTS`，那么这时如果单独调用`test 2 ()`方法，并不会以事务的方式执行，当发生异常时，虽然依然存在 AOP 增强，但是不会进行回滚操作，而现在再调用`test ()`方法，才会以事务的方式执行：
+最后我们得到结果，另一个事务也被回滚了，也就是说，相当于另一个事务直接加入到此事务中，也就是表中所描述的那样。如果单独执行 `test 2 ()` 则会开启一个新的事务，而执行 `test ()` 则会直接让内部的 `test 2 ()` 加入到当前事务中。
+现在我们将 `test 2 ()` 的传播级别设定为 `SUPPORTS`，那么这时如果单独调用 `test 2 ()` 方法，并不会以事务的方式执行，当发生异常时，虽然依然存在 AOP 增强，但是不会进行回滚操作，而现在再调用 `test ()` 方法，才会以事务的方式执行：
 ```java
 @Transactional
 public void test () {
@@ -5225,7 +5208,7 @@ public void test 2 () {
     if (true) throw new RuntimeException ("我是测试异常！");
 }
 ```
-我们接着来看`MANDATORY`，它非常严格，如果当前方法并没有在任何事务中进行，会直接出现异常：
+我们接着来看 `MANDATORY`，它非常严格，如果当前方法并没有在任何事务中进行，会直接出现异常：
 ```java
 @Transactional
 public void test () {
@@ -5237,7 +5220,7 @@ public void test 2 () {
     if (true) throw new RuntimeException ("我是测试异常！");
 }
 ```
-直接运行`test 2 ()`方法，报错如下：
+直接运行 `test 2 ()` 方法，报错如下：
 ```java
 Exception in thread "main" org. springframework. transaction. IllegalTransactionStateException: No existing transaction found for transaction marked with propagation 'mandatory'
 	at org. springframework. transaction. support. AbstractPlatformTransactionManager. getTransaction (AbstractPlatformTransactionManager. java:362)
@@ -5249,12 +5232,11 @@ Exception in thread "main" org. springframework. transaction. IllegalTransaction
 	at com. sun. proxy.$Proxy 29. test 2 (Unknown Source)
 	at com. test. Main. main (Main. java:17)
 ```
-`NESTED`级别表示如果存在外层事务，则此方法单独创建一个子事务，回滚只会影响到此子事务，实际上就是利用创建 Savepoint，然后回滚到此保存点实现的。`NEVER`级别表示此方法不应该加入到任何事务中，其余类型适用于同时操作多数据源情况下的分布式事务管理，这里暂时不做介绍。
-
-> [!NOTE] Spring事务管理总结
-> - 配置类添加`@EnableTransactionManagement`注解开启Spring事务管理。
-> - 当需要执行一组数据库操作时需要在service方法上添加 `@Transactional`注解表示为该方法开启事务。
-> - `@Transactional`注解包括多个属性（*propagation*，*isolation*，*timeout*，*readOnly*，*rollbackFor*等），设置事务的传播级别，隔离级别，超时时间，是否只读和回滚场景等。
+`NESTED` 级别表示如果存在外层事务，则此方法单独创建一个子事务，回滚只会影响到此子事务，实际上就是利用创建 Savepoint，然后回滚到此保存点实现的。`NEVER` 级别表示此方法不应该加入到任何事务中，其余类型适用于同时操作多数据源情况下的分布式事务管理，这里暂时不做介绍。
+> [!NOTE] Spring 事务管理总结
+> - 配置类添加 `@EnableTransactionManagement` 注解开启 Spring 事务管理。
+> - 当需要执行一组数据库操作时需要在 service 方法上添加 `@Transactional` 注解表示为该方法开启事务。
+> - `@Transactional` 注解包括多个属性（*propagation*，*isolation*，*timeout*，*readOnly*，*rollbackFor*等），设置事务的传播级别，隔离级别，超时时间，是否只读和回滚场景等。
 
 ### 集成 JUnit 测试
 既然使用了 Spring，那么怎么集成到 JUnit 中进行测试呢，首先大家能够想到的肯定是：
@@ -5268,7 +5250,7 @@ public class TestMain {
     }
 }
 ```
-直接编写一个测试用例即可，但是这样的话，如果我们有很多个测试用例，那么我们不可能每次测试都去创建 ApplicationContext 吧？我们可以使用`@Before`添加一个测试前动作来提前配置 ApplicationContext，但是这样的话，还是不够简便，能不能有更快速高效的方法呢？
+直接编写一个测试用例即可，但是这样的话，如果我们有很多个测试用例，那么我们不可能每次测试都去创建 ApplicationContext 吧？我们可以使用 `@Before` 添加一个测试前动作来提前配置 ApplicationContext，但是这样的话，还是不够简便，能不能有更快速高效的方法呢？
 Spring 为我们提供了一个 Test 模块，它会自动集成 Junit 进行测试，我们可以导入一下依赖：
 ```xml
 <dependency>
@@ -5296,13 +5278,12 @@ public class TestMain {
     }
 }
 ```
-`@ExtendWith`是由 JUnit 提供的注解，等同于旧版本的`@RunWith`注解，然后使用 SpringTest 模块提供的`@ContextConfiguration`注解来表示要加载哪一个配置文件，可以是 XML 文件也可以是类，我们这里就直接使用类进行加载。
-配置完成后，我们可以直接使用`@Autowired`来进行依赖注入，并且直接在测试方法中使用注入的 Bean，现在就非常方便了。
+`@ExtendWith` 是由 JUnit 提供的注解，等同于旧版本的 `@RunWith` 注解，然后使用 SpringTest 模块提供的 `@ContextConfiguration` 注解来表示要加载哪一个配置文件，可以是 XML 文件也可以是类，我们这里就直接使用类进行加载。
+配置完成后，我们可以直接使用 `@Autowired` 来进行依赖注入，并且直接在测试方法中使用注入的 Bean，现在就非常方便了。
 至此，SSM 中的其中一个 S（Spring）和一个 M（Mybatis）就已经学完了，我们还剩下一个 SpringMvc 需要去学习，下一章，我们将重新回到 Web 开发，了解在 Spring 框架的加持下，我们如何更高效地开发 Web 应用程序。
 ***
 ## 实现原理探究（选学）
 注意：本版块难度很大，所有内容都作为选学内容。
-如果学习 Spring 基本内容对你来说已经非常困难了，建议跳过此小节，直接进入 MVC 阶段的学习，此小节会从源码角度解释 Spring 的整个运行原理，对初学者来说等同于小学跨越到高中，它并不是必学内容，但是对于个人阅历提升极为重要（推荐完成整个 SSM 阶段的学习并且加以实战之后再来看此部分），如果你还是觉得自己能够跟上节奏继续深入钻研底层原理，那么现在就开始吧。
 ### Bean 工厂与 Bean 定义
 实际上我们之前的所有操作都离不开一个东西，那就是 IoC 容器，那么它到底是如何实现呢？这一部分我们将详细介绍，首先我们大致了解一下 ApplicationContext 的加载流程：
 ![image-20221217162656678](https://s2.loli.net/2022/12/17/Un6qjPci2uvkL5X.png)
@@ -5430,21 +5411,24 @@ public static void main (String[] args) {
 }
 ```
 当然，除了这些功能之外，BeanFactory 还提供了很多其他的管理 Bean 定义的方法，比如移除 Bean 定义、拷贝 Bean 定义、销毁单例 Bean 实例对象等功能，这里就不一一列出了，各位小伙伴自己调用一下测试就可以了，很简单。
+> [!NOTE] Bean 管理的本质
+> 实际上 `bean` 的创建管理是由 `beanFactory` 进行的，而工厂的管理必须依据 `beanDefinition` 定义作为管理手册，只有工厂里注册了对应 bean 的定义才能对其进行管理
+
 ### 单例 Bean 的创建与循环依赖
-前面我们讲解了配置的 Bean 是如何被读取并加载到容器中的，接着我们来了解一下 Bean 实例对象是如何被创建并得到的，我们知道，如果要得到一个 Bean 的实例很简单，通过`getBean`方法就可以直接拿到了：
+前面我们讲解了配置的 Bean 是如何被读取并加载到容器中的，接着我们来了解一下 Bean 实例对象是如何被创建并得到的，我们知道，如果要得到一个 Bean 的实例很简单，通过 `getBean` 方法就可以直接拿到了：
 ```java
 ApplicationContext context = new ClassPathXmlApplicationContext ("application. xml");
 System. out. println (context. getBean (Student. class));   //通过此方法就能快速得到
 ```
 那么，一个 Bean 的实例对象到底是如何创建出来的呢？我们还要继续对我们之前讲解的 BeanFactory 进行深入介绍。
-我们可以直接找到 BeanFactory 接口的一个抽象实现`AbstractBeanFactory`类，它实现了`getBean ()`方法：
+我们可以直接找到 BeanFactory 接口的一个抽象实现 `AbstractBeanFactory` 类，它实现了 `getBean ()` 方法：
 ```java
 public Object getBean (String name) throws BeansException {
   	//套娃开始了，做好准备
     return this. doGetBean (name, (Class) null, (Object[]) null, false);
 }
 ```
-那么我们`doGetBean ()`接着来看方法里面干了什么，这个方法比较长，我们分段进行讲解：
+那么我们 `doGetBean ()` 接着来看方法里面干了什么，这个方法比较长，我们分段进行讲解：
 ```java
 protected <T> T doGetBean (String name, @Nullable Class<T> requiredType, @Nullable Object[] args, boolean typeCheckOnly) throws BeansException {
     String beanName = this. transformedBeanName (name);   //虽然这里直接传的就是 name，但是万一是别名呢，所以还得要解析一下变成原本的 Bean 名字
@@ -5453,7 +5437,7 @@ protected <T> T doGetBean (String name, @Nullable Class<T> requiredType, @Nullab
     if (sharedInstance != null && args == null) {   //判断是否成功获取到共享的单例对象
     ...
 ```
-因为所有的 Bean 默认都是单例模式，对象只会存在一个，因此它会先调用父类的`getSingleton ()`方法来直接获取单例对象，如果有的话，就可以直接拿到 Bean 的实例。如果 Bean 不是单例模式，那么会进入 else 代码块。这一部分我们先来看单例模式下的处理，其实逻辑非常简单：
+因为所有的 Bean 默认都是单例模式，对象只会存在一个，因此它会先调用父类的 `getSingleton ()` 方法来直接获取单例对象，如果有的话，就可以直接拿到 Bean 的实例。如果 Bean 不是单例模式，那么会进入 else 代码块。这一部分我们先来看单例模式下的处理，其实逻辑非常简单：
 ```java
 protected <T> T doGetBean (String name, @Nullable Class<T> requiredType, @Nullable Object[] args, boolean typeCheckOnly) throws BeansException {
     ...
@@ -5478,12 +5462,12 @@ protected <T> T doGetBean (String name, @Nullable Class<T> requiredType, @Nullab
 }
 ```
 实际上整个单例 Bean 的创建路线还是很清晰的，并没有什么很难理解的地方，在正常情况下，其实就是简单的创建对象实例并返回即可。
-其中最关键的是它对于循环依赖的处理。我们发现，在上面的代码中，得到单例对象后，会有一个很特殊的判断`isSingletonCurrentlyInCreation`，这个是干嘛的？对象不应该直接创建出来吗？为什么会有这种正在创建的状态呢？我们来探究一下。
+其中最关键的是它对于循环依赖的处理。我们发现，在上面的代码中，得到单例对象后，会有一个很特殊的判断 `isSingletonCurrentlyInCreation`，这个是干嘛的？对象不应该直接创建出来吗？为什么会有这种正在创建的状态呢？我们来探究一下。
 开始之前先给大家提个问题：
 > 现在有两个 Bean，A 和 B 都是以原型模式进行创建，而 A 中需要注入 B，B 中需要注入 A，这时就会出现 A 还未创建完成，就需要 B，而 B 这时也没创建完成，因为 B 需要 A，而 A 等着 B，B 又等着 A，这样就只能无限循环下去了（就像死锁那种感觉）所以就出现了循环依赖的问题（同理，一个对象注入自己，还有三个对象之间，甚至多个对象之间也会出现这种情况）
 但是，在单例模式下，由于每个 Bean 只会创建一个实例，只要能够处理好对象之间的引用关系，Spring 完全有机会解决单例对象循环依赖的问题。那么单例模式下是如何解决循环依赖问题的呢？
 ![image-20221217170912302](https://s2.loli.net/2022/12/17/aRjr1968Lc3BkKH.png)
-我们回到一开始的`getSingleton ()`方法中，研究一下它到底是如何处理循环依赖的，它是可以自动解决循环依赖问题的：
+我们回到一开始的 `getSingleton ()` 方法中，研究一下它到底是如何处理循环依赖的，它是可以自动解决循环依赖问题的：
 ```java
 @Nullable
 protected Object getSingleton (String beanName, boolean allowEarlyReference) {
@@ -5540,8 +5524,8 @@ protected Object getEarlyBeanReference (String beanName, RootBeanDefinition mbd,
 ```
 我们会在后面的部分中详细介绍 BeanPostProcessor 以及 AOP 的实现原理，届时各位再回来看就会明白了。
 ### 后置处理器与 AOP
-接着我们来介绍一下`PostProcessor`，它其实是 Spring 提供的一种后置处理机制，它可以让我们能够插手 Bean、BeanFactory、BeanDefinition 的创建过程，相当于进行一个最终的处理，而最后得到的结果（比如 Bean 实例、Bean 定义等）就是经过后置处理器返回的结果，它是整个加载过程的最后一步。
-而 AOP 机制正是通过它来实现的，我们首先来认识一下第一个接口`BeanPostProcessor`，它相当于 Bean 初始化的一个后置动作，我们可以直接实现此接口：
+接着我们来介绍一下 `PostProcessor`，它其实是 Spring 提供的一种后置处理机制，它可以让我们能够插手 Bean、BeanFactory、BeanDefinition 的创建过程，相当于进行一个最终的处理，而最后得到的结果（比如 Bean 实例、Bean 定义等）就是经过后置处理器返回的结果，它是整个加载过程的最后一步。
+而 AOP 机制正是通过它来实现的，我们首先来认识一下第一个接口 `BeanPostProcessor`，它相当于 Bean 初始化的一个后置动作，我们可以直接实现此接口：
 ```java
 //注意它后置处理器也要进行注册
 @Component
@@ -5557,7 +5541,7 @@ public class TestBeanProcessor implements BeanPostProcessor {
     }
 }
 ```
-我们发现，此接口中包括两个方法，一个是`postProcessAfterInitialization`用于在 Bean 初始化之后进行处理，还有一个`postProcessBeforeInitialization`用于在 Bean 初始化之前进行处理，注意这里的初始化不是创建对象，而是调用类的初始化方法，比如：
+我们发现，此接口中包括两个方法，一个是 `postProcessAfterInitialization` 用于在 Bean 初始化之后进行处理，还有一个 `postProcessBeforeInitialization` 用于在 Bean 初始化之前进行处理，注意这里的初始化不是创建对象，而是调用类的初始化方法，比如：
 ```java
 @Component
 public class TestBeanProcessor implements BeanPostProcessor {
@@ -5601,9 +5585,9 @@ public class TestServiceImpl implements TestService{
 ```
 现在我们再来总结一下一个 Bean 的加载流程：
 [Bean 定义]首先扫描 Bean，加载 Bean 定义 -> [依赖注入]根据 Bean 定义通过反射创建 Bean 实例 -> [依赖注入]进行依赖注入（顺便解决循环依赖问题）-> [初始化 Bean]BeanPostProcessor 的初始化之前方法 -> [初始化 Bean]Bean 初始化方法 -> [初始化 Bean]BeanPostProcessor 的初始化之后方法 -> [完成]最终得到的 Bean 加载完成的实例
-利用这种机制，理解 Aop 的实现过程就非常简单了，AOP 实际上也是通过这种机制实现的，它的实现类是`AnnotationAwareAspectJAutoProxyCreator`，而它就是在最后对 Bean 进行了代理，因此最后我们得到的结果实际上就是一个动态代理的对象（有关详细实现过程，这里就不进行列举了，感兴趣的可以继续深入）因此，实际上之前设计的三层缓存，都是由于需要处理 AOP 设计的，因为在 Bean 创建得到最终对象之前，很有可能会被 PostProcessor 给偷梁换柱！
+利用这种机制，理解 Aop 的实现过程就非常简单了，AOP 实际上也是通过这种机制实现的，它的实现类是 `AnnotationAwareAspectJAutoProxyCreator`，而它就是在最后对 Bean 进行了代理，因此最后我们得到的结果实际上就是一个动态代理的对象（有关详细实现过程，这里就不进行列举了，感兴趣的可以继续深入）因此，实际上之前设计的三层缓存，都是由于需要处理 AOP 设计的，因为在 Bean 创建得到最终对象之前，很有可能会被 PostProcessor 给偷梁换柱！
 那么肯定有人有疑问了，这个类没有被注册啊，那按理说它不应该参与到 Bean 的初始化流程中的，为什么它直接就被加载了呢？
-还记得`@EnableAspectJAutoProxy`吗？我们来看看它是如何定义就知道了：
+还记得 `@EnableAspectJAutoProxy` 吗？我们来看看它是如何定义就知道了：
 ```java
 @Target ({ElementType. TYPE})
 @Retention (RetentionPolicy. RUNTIME)
@@ -5614,7 +5598,7 @@ public @interface EnableAspectJAutoProxy {
     boolean exposeProxy () default false;
 }
 ```
-我们发现它使用了`@Import`来注册`AspectJAutoProxyRegistrar`，那么这个类又是什么呢，我们接着来看：
+我们发现它使用了 `@Import` 来注册 `AspectJAutoProxyRegistrar`，那么这个类又是什么呢，我们接着来看：
 ```java
 class AspectJAutoProxyRegistrar implements ImportBeanDefinitionRegistrar {
     AspectJAutoProxyRegistrar () {
@@ -5638,8 +5622,8 @@ class AspectJAutoProxyRegistrar implements ImportBeanDefinitionRegistrar {
 - ImportBeanDefinitionRegistrar 类只能通过其他类@Import 的方式来加载，通常是启动类或配置类。
 - 使用@Import，如果括号中的类是 ImportBeanDefinitionRegistrar 的实现类，则会调用接口中方法（一般用于注册 Bean）
 - 实现该接口的类拥有注册 bean 的能力。
-我们可以看到此接口提供了一个`BeanDefinitionRegistry`正是用于注册 Bean 的定义的。
-因此，当我们打上了`@EnableAspectJAutoProxy`注解之后，首先会通过`@Import`加载 AspectJAutoProxyRegistrar，然后调用其`registerBeanDefinitions`方法，然后使用工具类注册 AnnotationAwareAspectJAutoProxyCreator 到容器中，这样在每个 Bean 创建之后，如果需要使用 AOP，那么就会通过 AOP 的后置处理器进行处理，最后返回一个代理对象。
+我们可以看到此接口提供了一个 `BeanDefinitionRegistry` 正是用于注册 Bean 的定义的。
+因此，当我们打上了 `@EnableAspectJAutoProxy` 注解之后，首先会通过 `@Import` 加载 AspectJAutoProxyRegistrar，然后调用其 `registerBeanDefinitions` 方法，然后使用工具类注册 AnnotationAwareAspectJAutoProxyCreator 到容器中，这样在每个 Bean 创建之后，如果需要使用 AOP，那么就会通过 AOP 的后置处理器进行处理，最后返回一个代理对象。
 我们也可以尝试编写一个自己的 ImportBeanDefinitionRegistrar 实现，首先编写一个测试 Bean：
 ```java
 public class TestBean {
@@ -5659,7 +5643,7 @@ public class TestBeanDefinitionRegistrar implements ImportBeanDefinitionRegistra
 }
 ```
 观察控制台输出，成功加载 Bean 实例。
-与`BeanPostProcessor`差不多的还有`BeanFactoryPostProcessor`，它和前者一样，也是用于我们自己处理后置动作的，不过这里是用于处理 BeanFactory 加载的后置动作，`BeanDefinitionRegistryPostProcessor`直接继承自`BeanFactoryPostProcessor`，并且还添加了新的动作`postProcessBeanDefinitionRegistry`，你可以在这里动态添加 Bean 定义或是修改已经存在的 Bean 定义，这里我们就直接演示`BeanDefinitionRegistryPostProcessor`的实现：
+与 `BeanPostProcessor` 差不多的还有 `BeanFactoryPostProcessor`，它和前者一样，也是用于我们自己处理后置动作的，不过这里是用于处理 BeanFactory 加载的后置动作，`BeanDefinitionRegistryPostProcessor` 直接继承自 `BeanFactoryPostProcessor`，并且还添加了新的动作 `postProcessBeanDefinitionRegistry`，你可以在这里动态添加 Bean 定义或是修改已经存在的 Bean 定义，这里我们就直接演示 `BeanDefinitionRegistryPostProcessor` 的实现：
 ```java
 @Component
 public class TestDefinitionProcessor implements BeanDefinitionRegistryPostProcessor {
@@ -5792,8 +5776,8 @@ public void refresh () throws BeansException, IllegalStateException {
 		}
 }
 ```
-所以，现在流程就很清晰了，实际上最主要的就是`refresh`方法，它从初始化到实例化所有的 Bean 整个流程都已经完成，在这个方法结束之后，整个 IoC 容器基本就可以正常使用了。
-我们继续来研究一下`finishBeanFactoryInitialization`方法，看看它是怎么加载所有 Bean 的：
+所以，现在流程就很清晰了，实际上最主要的就是 `refresh` 方法，它从初始化到实例化所有的 Bean 整个流程都已经完成，在这个方法结束之后，整个 IoC 容器基本就可以正常使用了。
+我们继续来研究一下 `finishBeanFactoryInitialization` 方法，看看它是怎么加载所有 Bean 的：
 ```java
 protected void finishBeanFactoryInitialization (ConfigurableListableBeanFactory beanFactory) {
 		...
@@ -5828,7 +5812,7 @@ protected void finishBeanFactoryInitialization (ConfigurableListableBeanFactory 
 ```
 至此，关于 Spring 容器核心加载流程，我们就探究完毕了，实际单易懂，就是代码量太大了。在后续的 SpringBoot 阶段，我们还会继续深挖 Spring 的某些机制的具体实现细节。
 ### Mybatis 整合原理
-通过之前的了解，我们再来看 Mybatis 的`@MapperScan`是如何实现的，现在理解起来就非常简单了。
+通过之前的了解，我们再来看 Mybatis 的 `@MapperScan` 是如何实现的，现在理解起来就非常简单了。
 我们可以直接打开查看：
 ```java
 @Retention (RetentionPolicy. RUNTIME)
@@ -5841,7 +5825,7 @@ public @interface MapperScan {
     String[] basePackages () default {};
   	...
 ```
-我们发现，和 Aop 一样，它也是通过 Registrar 机制，通过`@Import`来进行 Bean 的注册，我们来看看`MapperScannerRegistrar`是个什么东西，关键代码如下：
+我们发现，和 Aop 一样，它也是通过 Registrar 机制，通过 `@Import` 来进行 Bean 的注册，我们来看看 `MapperScannerRegistrar` 是个什么东西，关键代码如下：
 ```java
 void registerBeanDefinitions (AnnotationMetadata annoMeta, AnnotationAttributes annoAttrs, BeanDefinitionRegistry registry, String beanName) {
     BeanDefinitionBuilder builder = BeanDefinitionBuilder. genericBeanDefinition (MapperScannerConfigurer. class);
@@ -5849,7 +5833,7 @@ void registerBeanDefinitions (AnnotationMetadata annoMeta, AnnotationAttributes 
     ...
 }
 ```
-虽然很长很多，但是这些代码都是在添加一些 Bean 定义的属性，而最关键的则是最上方的`MapperScannerConfigurer`，Mybatis 将其 Bean 信息注册到了容器中，那么这个类又是干嘛的呢？
+虽然很长很多，但是这些代码都是在添加一些 Bean 定义的属性，而最关键的则是最上方的 `MapperScannerConfigurer`，Mybatis 将其 Bean 信息注册到了容器中，那么这个类又是干嘛的呢？
 ```java
 public class MapperScannerConfigurer implements BeanDefinitionRegistryPostProcessor, InitializingBean, ApplicationContextAware, BeanNameAware {
     private String basePackage;
@@ -5885,7 +5869,7 @@ public void postProcessBeanDefinitionRegistry (BeanDefinitionRegistry registry) 
     scanner. scan (StringUtils. tokenizeToStringArray (this. basePackage, ",; \t\n"));
 }
 ```
-开始扫描后，会调用`doScan ()`方法，我们接着来看（这是`ClassPathMapperScanner`中的扫描方法）：
+开始扫描后，会调用 `doScan ()` 方法，我们接着来看（这是 `ClassPathMapperScanner` 中的扫描方法）：
 ```java
 public Set<BeanDefinitionHolder> doScan (String... basePackages) {
     Set<BeanDefinitionHolder> beanDefinitions = super. doScan (basePackages);
@@ -5915,7 +5899,7 @@ public interface FactoryBean<T> {
     }
 }
 ```
-通过`getObject ()`方法，就可以获取到 Bean 的实例了。
+通过 `getObject ()` 方法，就可以获取到 Bean 的实例了。
 注意这里一定要区分 FactoryBean 和 BeanFactory 的概念：
 - BeanFactory 是个 Factory，也就是 IOC 容器或对象工厂，所有的 Bean 都是由 BeanFactory ( 也就是 IOC 容器 ) 来进行管理。
 - FactoryBean 是一个能生产或者修饰生成对象的工厂 Bean (本质上也是一个 Bean)，可以在 BeanFactory（IOC 容器）中被管理，所以它并不是一个简单的 Bean。当使用容器中 factory bean 的时候，该容器不会返回 factory bean 本身，而是返回其生成的对象。要想获取 FactoryBean 的实现类本身，得在 getBean (String BeanName)中的 BeanName 之前加上&, 写成 getBean (String &BeanName)。
@@ -5948,5 +5932,1376 @@ public T getObject () throws Exception {
     return this. getSqlSession (). getMapper (this. mapperInterface);
 }
 ```
-这样，整个 Mybatis 的`@MapperScan`的原理就全部解释完毕了。
+这样，整个 Mybatis 的 `@MapperScan` 的原理就全部解释完毕了。
 在了解完了 Spring 的底层原理之后，我们其实已经完全可以根据这些实现原理来手写一个 Spring 框架了。
+
+---
+# SpringMVC
+**进入之前：**《Spring 核心内容》《JavaWeb》《JDK 9-17 新特性篇》
+此阶段，我们将再次回到 Tomcat 的 Web 应用程序开发中，去感受 Spring 框架为我们带来的巨大便捷。
+## MVC 理论基础
+在之前，我们给大家讲解了三层架构，包括：
+![img](https://s2.loli.net/2023/02/18/2IiK8YrfhF4zyU1.jpg)
+每一层都有着各自的职责，其中最关键的当属表示层，因为它相当于就是直接与用户的浏览器打交道的一层，并且所有的请求都会经过它进行解析，然后再告知业务层进行处理，任何页面的返回和数据填充也全靠表示层来完成，因此它实际上是整个三层架构中最关键的一层，而在之前的实战开发中，我们编写了大量的 Servlet（也就是表示层实现）来处理来自浏览器的各种请求，但是我们发现，仅仅是几个很小的功能，以及几个很基本的页面，我们都要编写将近十个 Servlet，如果是更加大型的网站系统，比如淘宝、B 站，光是一个页面中可能就包含了几十甚至上百个功能，想想那样的话写起来得多恐怖。
+因此，SpringMVC 正是为了解决这种问题而生的，它是一个非常优秀的表示层框架，采用 MVC 思想设计实现。
+MVC 详细解释如下：
+- M 是指业务模型（Model）：通俗的讲就是我们之前用于封装数据传递的实体类。
+- V 是指用户界面（View）：一般指的是前端页面。
+- C 则是控制器（Controller）：控制器就相当于 Servlet 的基本功能，处理请求，返回响应。
+
+![img](https://s2.loli.net/2023/02/18/voy7HYrIbJuw9R3.jpg)
+SpringMVC 正是希望这三者之间进行解耦，实现各干各的，更加精细地划分对应的职责。最后再将 View 和 Model 进行渲染，得到最终的页面并返回给前端（就像之前使用 Thymeleaf 那样，把实体数据对象和前端页面都给到 Thymeleaf，然后它会将其进行整合渲染得到最终有数据的页面，而本教程也会使用 Thymeleaf 作为视图解析器进行讲解）
+
+***
+## 配置环境并搭建项目
+这里我们继续使用之前的 Tomcat 10 服务器，Spring 6 之后要求必须使用 Tomcat 10 或更高版本，跟之前一样，我们直接创建一个新的 JakartaEE 项目。
+![image-20230219162053172](https://s2.loli.net/2023/02/19/4IucyfBKsLzASNJ.png)
+创建完成后会自动生成相关文件，但是还是请注意检查运行配置中的 URL 和应用程序上下文名称是否一致。
+### 传统 XML 配置形式
+SpringMvc 项目依然支持多种配置形式，这里我们首先讲解最传统的 XML 配置形式。
+首先我们需要添加 Mvc 相关依赖：
+```xml
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-webmvc</artifactId>
+    <version>6.0.10</version>
+</dependency>
+```
+接着我们需要配置一下 web. xml，将 DispatcherServlet 替换掉 Tomcat 自带的 Servlet，这里 url-pattern 需要写为 `/`，即可完成替换：
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
+         version="5.0">
+    <servlet>
+        <servlet-name>mvc</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>mvc</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+</web-app>
+```
+接着需要为整个 Web 应用程序配置一个 Spring 上下文环境（也就是容器），因为 SpringMVC 是基于 Spring 开发的，它直接利用 Spring 提供的容器来实现各种功能，那么第一步依然跟之前一样，需要编写一个配置文件：
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+</beans>
+```
+接着我们需要为 DispatcherServlet 配置一些初始化参数来指定刚刚创建的配置文件：
+```xml
+<servlet>
+    <servlet-name>mvc</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      	<!--     指定我们刚刚创建在类路径下的XML配置文件       -->
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:application.xml</param-value>
+    </init-param>
+</servlet>
+```
+这样我们就完成了基本的配置，现在我们可以来测试一下是否配置正确，我们删除项目自带的 Servlet 类，创建一个 Mvc 中使用的 Controller 类，现在还没学没关系，跟着写就行了，这里我们只是测试一下：
+```java
+@Controller
+public class HelloController {
+    @ResponseBody
+    @RequestMapping("/")
+    public String hello(){
+        return "HelloWorld!";
+    }
+}
+```
+接着我们需要将这个类注册为 Bean 才能正常使用，我们来编写一下 Spring 的配置文件，这里我们直接配置包扫描，XML 下的包扫描需要这样开启：
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+  	<!-- 需要先引入context命名空间，然后直接配置base-package属性就可以了 -->
+    <context:component-scan base-package="com.example"/>
+</beans>
+```
+如果可以成功在浏览器中出现 HelloWorld 则说明配置成功：
+![image-20230219170637540](https://s2.loli.net/2023/02/19/D1sAFePzj7d49VL.png)
+实际上我们上面编写的 Controller 就是负责 Servlet 基本功能的，比如这里我们返回的是 HelloWorld 字符串，那么我们在访问这个地址的时候，得到的就是这里返回的字符串。
+### 全注解配置形式
+如果你希望完完全全丢弃配置文件，使用纯注解开发，可以直接添加一个类，Tomcat 会在类路径中查找实现 `ServletContainerInitializer` 接口的类，如果发现的话，就用它来配置 Servlet 容器，Spring 提供了这个接口的实现类 `SpringServletContainerInitializer` , 通过 `@HandlesTypes(WebApplicationInitializer.class)` 设置，这个类反过来会查找实现 `WebApplicationInitializer` 的类，并将配置的任务交给他们来完成，因此直接实现接口即可：
+```java
+public class MainInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+    @Override
+    protected Class<?>[] getRootConfigClasses() {
+        return new Class[]{WebConfiguration.class};   //基本的Spring配置类，一般用于业务层配置
+    }
+    @Override
+    protected Class<?>[] getServletConfigClasses() {
+        return new Class[0];  //配置DispatcherServlet的配置类、主要用于Controller等配置，这里为了教学简单，就不分这么详细了，只使用上面的基本配置类
+    }
+    @Override
+    protected String[] getServletMappings() {
+        return new String[]{"/"};    //匹配路径，与上面一致
+    }
+}
+```
+接着我们需要再配置类中添加一些必要的注解：
+```java
+@Configuration
+@EnableWebMvc   //快速配置SpringMvc注解，如果不添加此注解会导致后续无法通过实现WebMvcConfigurer接口进行自定义配置
+@ComponentScan("com.example.controller")
+public class WebConfiguration {
+}
+```
+这样我们同样可以正常访问：
+![image-20230219170637540](https://s2.loli.net/2023/02/19/D1sAFePzj7d49VL.png)
+之后为了方便，我们就统一使用全注解形式编写。
+如果日志科技有报错无法显示 Mvc 相关的日志，请添加以下依赖：
+```xml
+<dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>1.7.33</version>
+</dependency>
+<dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-jdk14</artifactId>
+      <version>1.7.33</version>
+</dependency>
+```
+添加后就可以正常打印日志了：
+![image-20230630162821105](https://s2.loli.net/2023/06/30/7eti1wuU8Bd4RqZ.png)
+## Controller 控制器
+有了 SpringMVC 之后，我们不必再像之前那样一个请求地址创建一个 Servlet 了，它使用 `DispatcherServlet` 替代 Tomcat 为我们提供的默认的静态资源 Servlet，也就是说，现在所有的请求（除了 jsp，因为 Tomcat 还提供了一个 jsp 的 Servlet）都会经过 `DispatcherServlet` 进行处理。
+那么 `DispatcherServlet` 会帮助我们做什么呢？
+![img](https://s2.loli.net/2023/02/18/SQNnl3yFjhHbp1G.jpg)
+根据图片我们可以了解，我们的请求到达 Tomcat 服务器之后，会交给当前的 Web 应用程序进行处理，而 SpringMVC 使用 `DispatcherServlet` 来处理所有的请求，也就是说它被作为一个统一的访问点，所有的请求全部由它来进行调度。
+当一个请求经过 `DispatcherServlet` 之后，会先走 `HandlerMapping`，它会将请求映射为 `HandlerExecutionChain`，依次经过 `HandlerInterceptor` 有点类似于之前我们所学的过滤器，不过在 SpringMVC 中我们使用的是拦截器，然后再交给 `HandlerAdapter`，根据请求的路径选择合适的控制器进行处理，控制器处理完成之后，会返回一个 `ModelAndView` 对象，包括数据模型和视图，通俗的讲就是页面中数据和页面本身（只包含视图名称即可）。
+返回 `ModelAndView` 之后，会交给 `ViewResolver`（视图解析器）进行处理，视图解析器会对整个视图页面进行解析，SpringMVC 自带了一些视图解析器，但是只适用于 JSP 页面，我们也可以像之前一样使用 Thymeleaf 作为视图解析器，这样我们就可以根据给定的视图名称，直接读取 HTML 编写的页面，解析为一个真正的 View。
+解析完成后，就需要将页面中的数据全部渲染到 View 中，最后返回给 `DispatcherServlet` 一个包含所有数据的成形页面，再响应给浏览器，完成整个过程。
+因此，实际上整个过程我们只需要编写对应请求路径的的 Controller 以及配置好我们需要的 ViewResolver 即可，之后还可以继续补充添加拦截器，而其他的流程已经由 SpringMVC 帮助我们完成了。
+### 配置视图解析器和控制器
+首先我们需要实现最基本的页面解析并返回，第一步就是配置视图解析器，这里我们使用 Thymeleaf 为我们提供的视图解析器，导入需要的依赖：
+```xml
+<dependency>
+    <groupId>org.thymeleaf</groupId>
+    <artifactId>thymeleaf-spring6</artifactId>
+    <version>3.1.1.RELEASE</version>
+</dependency>
+```
+配置视图解析器非常简单，我们只需要将对应的 `ViewResolver` 注册为 Bean 即可，这里我们直接在配置类中编写：
+```java
+@Configuration
+@EnableWebMvc
+@ComponentScan("com.example.controller")
+public class WebConfiguration {
+    //我们需要使用ThymeleafViewResolver作为视图解析器，并解析我们的HTML页面
+    @Bean
+    public ThymeleafViewResolver thymeleafViewResolver(SpringTemplateEngine springTemplateEngine){
+        ThymeleafViewResolver resolver = new ThymeleafViewResolver();
+        resolver.setOrder(1);   //可以存在多个视图解析器，并且可以为他们设定解析顺序
+        resolver.setCharacterEncoding("UTF-8");   //编码格式是重中之重
+        resolver.setTemplateEngine(springTemplateEngine);   //和之前JavaWeb阶段一样，需要使用模板引擎进行解析，所以这里也需要设定一下模板引擎
+        return resolver;
+    }
+    //配置模板解析器
+    @Bean
+    public SpringResourceTemplateResolver templateResolver(){
+        SpringResourceTemplateResolver resolver = new SpringResourceTemplateResolver();
+        resolver.setSuffix(".html");   //需要解析的后缀名称
+        resolver.setPrefix("/");   //需要解析的HTML页面文件存放的位置，默认是webapp目录下，如果是类路径下需要添加classpath:前缀
+        return resolver;
+    }
+    //配置模板引擎Bean
+    @Bean
+    public SpringTemplateEngine springTemplateEngine(ITemplateResolver resolver){
+        SpringTemplateEngine engine = new SpringTemplateEngine();
+        engine.setTemplateResolver(resolver);   //模板解析器，默认即可
+        return engine;
+    }
+}
+```
+现在我们就完成了视图解析器的配置，我们接着来创建一个 Controller，创建 Controller 也非常简单，只需在一个类上添加一个 `@Controller` 注解即可，它会被 Spring 扫描并自动注册为 Controller 类型的 Bean，然后我们只需要在类中编写方法用于处理对应地址的请求即可：
+```java
+@Controller   //直接添加注解即可
+public class HelloController {
+    @RequestMapping("/index")   //直接填写访问路径
+    public ModelAndView index(){
+        return new ModelAndView("index");  //返回ModelAndView对象，这里填入了视图的名称
+      	//返回后会经过视图解析器进行处理
+    }
+}
+```
+接着我们在类路径根目录下创建一个简单 html 文件：
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试</title>
+</head>
+<body>
+    <p>欢迎来到GayHub全球最大同性交友网站</p>
+</body>
+</html>
+```
+我们会发现，打开浏览器之后就可以直接访问我们的 HTML 页面了：
+![image-20230220150905300](https://s2.loli.net/2023/02/20/ru4pBgI75JZxG6F.png)
+我们在之前，使用 Thymeleaf 解析后端的一些数据时，需要通过 Context 进行传递，而使用 SpringMvc 后，数据我们可以直接向 Model 模型层进行提供：
+```java
+@RequestMapping(value = "/index")
+public ModelAndView index(){
+    ModelAndView modelAndView = new ModelAndView("index");
+    modelAndView.getModel().put("name", "啊这");   //将name传递给Model
+    return modelAndView;
+}
+```
+这样 Thymeleaf 就能收到我们传递的数据进行解析：
+```html
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="static/test.js"></script>
+</head>
+<body>
+    HelloWorld！
+    <div th:text="${name}"></div>
+</body>
+</html>
+```
+当然，为了简便，我们可以直接返回 View 名称，SpringMVC 会将其自动包装为 ModelAndView 对象：
+```java
+@RequestMapping(value = "/index")
+public String index(){
+    return "index";
+}
+```
+我们还可以单独添加一个 Model 作为形参进行设置，SpringMVC 通过依赖注入会自动帮助我们传递实例对象：
+```java
+@RequestMapping(value = "/index")
+public String index(Model model){  //这里不仅仅可以是Model，还可以是Map、ModelMap
+    model.addAttribute("name", "yyds");
+    return "index";
+}
+```
+有了 Spring 框架的加持，相比我们之前编写的 Web 应用程序，简直方便了一个层次，你就说你爱不爱吧，你爱不爱。
+注意，一定要保证视图名称下面出现横线并且按住 Ctrl 可以跳转，配置才是正确的（最新版 IDEA）
+我们的页面中可能还会包含一些静态资源，比如 js、css，因此这里我们还需要配置一下，让静态资源通过 Tomcat 提供的默认 Servlet 进行解析，我们需要让配置类实现一下 `WebMvcConfigurer` 接口，这样在 Web 应用程序启动时，会根据我们重写方法里面的内容进行进一步的配置：
+```java
+@Override
+public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
+    configurer.enable();   //开启默认的Servlet
+}
+@Override
+public void addResourceHandlers(ResourceHandlerRegistry registry) {
+    registry.addResourceHandler("/static/**").addResourceLocations("/static/");
+    //配置静态资源的访问路径
+}
+```
+我们编写一下前端内容：
+```html
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>测试</title>
+    <!-- 引用静态资源，这里使用Thymeleaf的网址链接表达式，Thymeleaf会自动添加web应用程序的名称到链接前面 -->
+    <script th:src="@{/static/test.js}"></script>
+</head>
+<body>
+    <p>欢迎来到交友网站</p>
+</body>
+</html>
+```
+创建 `test.js` 并编写如下内容：
+```javascript
+window.alert("欢迎网站")
+```
+最后访问页面，页面在加载时就会显示一个弹窗，这样我们就完成了最基本的页面配置。相比之前的方式，这样就简单很多了，直接避免了编写大量的 Servlet 来处理请求。
+> [!NOTE] 模板视图使用总结
+> - 配置好 `WebConfiguration` 应用配置，若使用前后端耦合借助模板的方式则添加模板相关配置，包括 `ThymeleafViewResolver`、`SpringResourceTemplateResolver`、`SpringTemplateEngine`
+> - 实现 `WebMvcConfigurer` 接口的 `addResourceHandlers` 方法处理静态资源访问问题
+> - 编写 **controller** 控制器返回模板视图（modelAndView）或者 html 文件名的字符串即可，在 **modelAndView** 中可以添加参数，结合 **Thymeleaf** 模板语法进行参数渲染。
+
+---
+### @RequestMapping 详解
+前面我们已经了解了如何创建一个控制器来处理我们的请求，接着我们只需要在控制器添加一个方法用于处理对应的请求即可，之前我们需要完整地编写一个 Servlet 来实现，而现在我们只需要添加一个 `@RequestMapping` 即可实现，其实从它的名字我们也能得知，此注解就是将请求和处理请求的方法建立一个映射关系，当收到请求时就可以根据映射关系调用对应的请求处理方法，那么我们就来先聊聊 `@RequestMapping` 吧，注解定义如下：
+```java
+@Mapping
+public @interface RequestMapping {
+    String name() default "";
+    @AliasFor("path")
+    String[] value() default {};
+    @AliasFor("value")
+    String[] path() default {};
+    RequestMethod[] method() default {};
+    String[] params() default {};
+    String[] headers() default {};
+    String[] consumes() default {};
+    String[] produces() default {};
+}
+```
+其中最关键的是 path 属性（等价于 value），它决定了当前方法处理的请求路径，注意路径必须全局唯一，任何路径只能有一个方法进行处理，它是一个数组，也就是说此方法不仅仅可以只用于处理某一个请求路径，我们可以使用此方法处理多个请求路径：
+```java
+@RequestMapping({"/index", "/test"})
+public ModelAndView index(){
+    return new ModelAndView("index");
+}
+```
+现在我们访问/index 或是/test 都会经过此方法进行处理。
+我们也可以直接将 `@RequestMapping` 添加到类名上，表示为此类中的所有请求映射添加一个路径前缀，比如：
+```java
+@Controller
+@RequestMapping("/yyds")
+public class MainController {
+    @RequestMapping({"/index", "/test"})
+    public ModelAndView index(){
+        return new ModelAndView("index");
+    }
+}
+```
+那么现在我们需要访问 `/yyds/index` 或是 `/yyds/test` 才可以得到此页面。我们可以直接在 IDEA 下方的端点板块中查看当前 Web 应用程序定义的所有请求映射，并且可以通过 IDEA 为我们提供的内置 Web 客户端直接访问某个路径。
+路径还支持使用通配符进行匹配：
+- ?：表示任意一个字符，比如 `@RequestMapping("/index/x?")` 可以匹配/index/xa、/index/xb 等等。
+- *：表示任意 0-n 个字符，比如 `@RequestMapping("/index/*")` 可以匹配/index/lbwnb、/index/yyds 等。
+- **：表示当前目录或基于当前目录的多级目录，比如 `@RequestMapping("/index/**")` 可以匹配/index、/index/xxx 等。
+
+我们接着来看下一个 method 属性，顾名思义，它就是请求的方法类型，我们可以限定请求方式，比如：
+```java
+@RequestMapping(value = "/index", method = RequestMethod.POST)
+public ModelAndView index(){
+    return new ModelAndView("index");
+}
+```
+现在我们如果直接使用浏览器访问此页面，会显示 405 方法不支持，因为浏览器默认是直接使用 GET 方法获取页面，而我们这里指定为 POST 方法访问此地址，所以访问失败，我们现在再去端点中用 POST 方式去访问，成功得到页面。
+![image-20230220152559862](https://s2.loli.net/2023/02/20/JVwN2MhrWBAGni9.png)
+我们也可以使用衍生注解直接设定为指定类型的请求映射：
+```java
+@PostMapping(value = "/index")
+public ModelAndView index(){
+    return new ModelAndView("index");
+}
+```
+这里使用了 `@PostMapping` 直接指定为 POST 请求类型的请求映射，同样的，还有 `@GetMapping` 可以直接指定为 GET 请求方式，这里就不一一列举了。
+我们可以使用 `params` 属性来指定请求必须携带哪些请求参数，比如：
+```java
+@RequestMapping(value = "/index", params = {"username", "password"})
+public ModelAndView index(){
+    return new ModelAndView("index");
+}
+```
+比如这里我们要求请求中必须携带 `username` 和 `password` 属性，否则无法访问。它还支持表达式，比如我们可以这样编写：
+```java
+@RequestMapping(value = "/index", params = {"!username", "password"})
+public ModelAndView index(){
+    return new ModelAndView("index");
+}
+```
+在 username 之前添加一个感叹号表示请求的不允许携带此参数，否则无法访问，我们甚至可以直接设定一个固定值：
+```java
+@RequestMapping(value = "/index", params = {"username!=test", "password=123"})
+public ModelAndView index(){
+    return new ModelAndView("index");
+}
+```
+这样，请求参数 username 不允许为 test，并且 password 必须为 123，否则无法访问。
+`header` 属性用法与 `params` 一致，但是它要求的是请求头中需要携带什么内容，比如：
+```java
+@RequestMapping(value = "/index", headers = "!Connection")
+public ModelAndView index(){
+    return new ModelAndView("index");
+}
+```
+那么，如果请求头中携带了 `Connection` 属性，将无法访问。其他两个属性：
+- consumes： 指定处理请求的提交内容类型（Content-Type），例如 application/json, text/html;
+- produces:  指定返回的内容类型，仅当 request 请求头中的 (Accept)类型中包含该指定类型才返回；
+
+### @RequestParam 和@RequestHeader 详解
+我们接着来看，如何获取到请求中的参数。
+我们只需要为方法添加一个形式参数，并在形式参数前面添加 `@RequestParam` 注解即可：
+```java
+@RequestMapping(value = "/index")
+public ModelAndView index(@RequestParam("username") String username){
+    System.out.println("接受到请求参数："+username);
+    return new ModelAndView("index");
+}
+```
+我们需要在 `@RequestParam` 中填写参数名称，参数的值会自动传递给形式参数，我们可以直接在方法中使用，注意，如果参数名称与形式参数名称相同，即使不添加 `@RequestParam` 也能获取到参数值。
+一旦添加 `@RequestParam`，那么此请求必须携带指定参数，我们也可以将 require 属性设定为 false 来将属性设定为非必须：
+```java
+@RequestMapping(value = "/index")
+public ModelAndView index(@RequestParam(value = "username", required = false) String username){
+    System.out.println("接受到请求参数："+username);
+    return new ModelAndView("index");
+}
+```
+我们还可以直接设定一个默认值，当请求参数缺失时，可以直接使用默认值：
+```java
+@RequestMapping(value = "/index")
+public ModelAndView index(@RequestParam(value = "username", required = false, defaultValue = "伞兵一号") String username){
+    System.out.println("接受到请求参数："+username);
+    return new ModelAndView("index");
+}
+```
+如果需要使用 Servlet 原本的一些类，比如：
+```java
+@RequestMapping(value = "/index")
+public ModelAndView index(HttpServletRequest request){
+    System.out.println("接受到请求参数："+request.getParameterMap().keySet());
+    return new ModelAndView("index");
+}
+```
+直接添加 `HttpServletRequest` 为形式参数即可，SpringMVC 会自动传递该请求原本的 `HttpServletRequest` 对象，同理，我们也可以添加 `HttpServletResponse` 作为形式参数，甚至可以直接将 HttpSession 也作为参数传递：
+```java
+@RequestMapping(value = "/index")
+public ModelAndView index(HttpSession session){
+    System.out.println(session.getAttribute("test"));
+    session.setAttribute("test", "鸡你太美");
+    return new ModelAndView("index");
+}
+```
+我们还可以直接将请求参数传递给一个实体类：
+```java
+@Data
+public class User {
+    String username;
+    String password;
+}
+```
+注意必须携带 set 方法或是构造方法中包含所有参数，请求参数会自动根据类中的字段名称进行匹配：
+```java
+@RequestMapping(value = "/index")
+public ModelAndView index(User user){
+    System.out.println("获取到cookie值为："+user);
+    return new ModelAndView("index");
+}
+```
+`@RequestHeader` 与 `@RequestParam` 用法一致，不过它是用于获取请求头参数的，这里就不再演示了。
+### @CookieValue 和@SessionAttrbutie
+通过使用 `@CookieValue` 注解，我们也可以快速获取请求携带的 Cookie 信息：
+```java
+@RequestMapping(value = "/index")
+public ModelAndView index(HttpServletResponse response,
+                          @CookieValue(value = "test", required = false) String test){
+    System.out.println("获取到cookie值为："+test);
+    response.addCookie(new Cookie("test", "lbwnb"));
+    return new ModelAndView("index");
+}
+```
+同样的，Session 也能使用注解快速获取：
+```java
+@RequestMapping(value = "/index")
+public ModelAndView index(@SessionAttribute(value = "test", required = false) String test,
+                          HttpSession session){
+    session.setAttribute("test", "xxxx");
+    System.out.println(test);
+    return new ModelAndView("index");
+}
+```
+
+---
+### 重定向和请求转发
+重定向和请求转发也非常简单，我们只需要在视图名称前面添加一个前缀即可，比如重定向：
+```java
+@RequestMapping("/index")
+public String index(){
+    return "redirect:home";
+}
+@RequestMapping("/home")
+public String home(){
+    return "home";
+}
+```
+通过添加 `redirect:` 前缀，就可以很方便地实现重定向，那么请求转发呢，其实也是一样的，使用 `forward:` 前缀表示转发给其他请求映射：
+```java
+@RequestMapping("/index")
+public String index(){
+    return "forward:home";
+}
+@RequestMapping("/home")
+public String home(){
+    return "home";
+}
+```
+
+---
+### Bean 的 Web 作用域
+在学习 Spring 时我们讲解了 Bean 的作用域，包括 `singleton` 和 `prototype`，Bean 分别会以单例和多例模式进行创建，而在 SpringMVC 中，它的作用域被继续细分：
+- request：对于每次 HTTP 请求，使用 request 作用域定义的 Bean 都将产生一个新实例，请求结束后 Bean 也消失。
+- session：对于每一个会话，使用 session 作用域定义的 Bean 都将产生一个新实例，会话过期后 Bean 也消失。
+- global session：不常用，不做讲解。
+
+这里我们创建一个测试类来试试看：
+```java
+public class TestBean {
+}
+```
+接着将其注册为 Bean，注意这里需要添加 `@RequestScope` 或是 `@SessionScope` 表示此 Bean 的 Web 作用域：
+```java
+@Bean
+@RequestScope
+public TestBean testBean(){
+    return new TestBean();
+}
+```
+接着我们将其自动注入到 Controller 中：
+```java
+@Controller
+public class MainController {
+    @Resource
+    TestBean bean;
+    @RequestMapping(value = "/index")
+    public ModelAndView index(){
+        System.out.println(bean);
+        return new ModelAndView("index");
+    }
+}
+```
+我们发现，每次发起得到的 Bean 实例都不同，接着我们将其作用域修改为 `@SessionScope`，这样作用域就上升到 Session，只要不清理浏览器的 Cookie，那么都会被认为是同一个会话，只要是同一个会话，那么 Bean 实例始终不变。
+实际上，它也是通过代理实现的，我们调用 Bean 中的方法会被转发到真正的 Bean 对象去执行。
+> [!NOTE] 控制器相关内容总结
+> - `@RequestMapping` 进行对视图函数进行映射，指定 *url、method、params、headers* 等
+> - `@RequestParam` 用于获取请求参数，可配置 *value、required 和 defaultValue*
+> - `@RequestHeader` 用于获取请求头的字段信息，参数同@RequestParam
+> - `@CookieValue` 用于获取请求头的 cookie，参数同@RequestParam
+> - `@SessionAttribute` 用于获取 session，参数仅有 value、required
+> - *重定向*在视图名称前加 `redirect:`，*请求转发*则加 `forward:`
+> - Bean 的常用两种 Web 作用域为：`@SessionScope`（同一个会话 Bean 不变） 和 `@RequestScope`（每次请求到的 Bean 都不一样）
+
+
+***
+## RestFul 风格
+中文释义为“表现层状态转换”，它不是一种标准，而是一种设计风格。它的主要作用是充分并正确利用 HTTP 协议的特性，规范资源获取的 URI 路径。通俗的讲，RESTful 风格的设计允许将参数通过 URL 拼接传到服务端，目的是让 URL 看起来更简洁实用，并且我们可以充分使用多种 HTTP 请求方式（*POST/GET/PUT/DELETE*），来执行相同请求地址的不同类型操作。
+因此，这种风格的连接，我们就可以直接从请求路径中读取参数，比如：
+```
+http://localhost:8080/mvc/index/123456
+```
+我们可以直接将 index 的下一级路径作为请求参数进行处理，也就是说现在的请求参数包含在了请求路径中：
+```java
+@RequestMapping("/index/{str}")
+public String index(@PathVariable String str) {
+    System.out.println(str);
+    return "index";
+}
+```
+注意请求路径我们可以手动添加类似占位符一样的信息，这样占位符位置的所有内容都会被作为请求参数，而方法的形参列表中必须包括一个与占位符同名的并且添加了 `@PathVariable` 注解的参数，或是由 `@PathVariable` 注解指定为占位符名称：
+```java
+@RequestMapping("/index/{str}")
+public String index(@PathVariable("str") String text){
+    System.out.println(text);
+    return "index";
+}
+```
+如果没有配置正确，方法名称上会出现黄线。
+我们可以按照不同功能进行划分：
+- POST http://localhost:8080/mvc/index -  添加用户信息，携带表单数据
+- GET http://localhost:8080/mvc/index/ {id} -  获取用户信息，id 直接放在请求路径中
+- PUT http://localhost:8080/mvc/index -  修改用户信息，携带表单数据
+- DELETE http://localhost:8080/mvc/index/ {id} -  删除用户信息，id 直接放在请求路径中
+
+我们分别编写四个请求映射：
+```java
+@Controller
+public class MainController {
+    @RequestMapping(value = "/index/{id}", method = RequestMethod.GET)
+    public String get(@PathVariable("id") String text){
+        System.out.println("获取用户："+text);
+        return "index";
+    }
+    @RequestMapping(value = "/index", method = RequestMethod.POST)
+    public String post(String username){
+        System.out.println("添加用户："+username);
+        return "index";
+    }
+    @RequestMapping (value = "/index/{id}", method = RequestMethod. DELETE)
+    public String delete (@PathVariable ("id") String text){
+        System.out.println ("删除用户："+text);
+        return "index";
+    }
+    @RequestMapping (value = "/index", method = RequestMethod. PUT)
+    public String put (String username){
+        System.out.println ("修改用户："+username);
+        return "index";
+    }
+}
+```
+这只是一种设计风格而已，各位小伙伴了解即可。
+
+------
+## Interceptor 拦截器
+拦截器是整个 SpringMVC 的一个重要内容，拦截器与过滤器类似，都是用于拦截一些非法请求，但是我们之前讲解的过滤器是作用于 Servlet 之前，只有经过层层的过滤器才可以成功到达 Servlet，而拦截器并不是在 Servlet 之前，它在 Servlet 与 RequestMapping 之间，相当于 DispatcherServlet 在将请求交给对应 Controller 中的方法之前进行拦截处理，它只会拦截所有 Controller 中定义的请求映射对应的请求（**不会拦截静态资源**），这里一定要区分两者的不同。
+![image-20230630194651686](https://s2.loli.net/2023/06/30/6J3D98HdkawAOVK.png)
+### 创建拦截器
+创建一个拦截器我们需要实现一个 `HandlerInterceptor` 接口：
+```java
+public class MainInterceptor implements HandlerInterceptor {
+    @Override
+    public boolean preHandle (HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        System.out.println ("我是处理之前！");
+        return true;   //只有返回 true 才会继续，否则直接结束
+    }
+    @Override
+    public void postHandle (HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+        System.out.println ("我是处理之后！");
+    }
+    @Override
+    public void afterCompletion (HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+      	//在 DispatcherServlet 完全处理完请求后被调用
+        System.out.println ("我是完成之后！");
+    }
+}
+```
+接着我们需要在配置类中进行注册：
+```java
+@Override
+public void addInterceptors (InterceptorRegistry registry) {
+    registry.addInterceptor (new MainInterceptor ())
+      .addPathPatterns ("/**")    //添加拦截器的匹配路径，只要匹配一律拦截
+      .excludePathPatterns ("/home");   //拦截器不进行拦截的路径
+}
+```
+现在我们在浏览器中访问 index 页面，拦截器已经生效。
+得到整理拦截器的执行顺序：
+```
+我是处理之前！
+我是处理！
+我是处理之后！
+我是完成之后！
+```
+也就是说，处理前和处理后，包含了真正的请求映射的处理，在整个流程结束后还执行了一次 `afterCompletion` 方法，其实整个过程与我们之前所认识的 Filter 类似，不过在处理前，我们只需要返回 true 或是 false 表示是否被拦截即可，而不是再去使用 FilterChain 进行向下传递。
+那么我们就来看看，如果处理前返回 false，会怎么样：
+```
+我是处理之前！
+```
+通过结果发现一旦返回 false，之后的所有流程全部取消，那么如果是在处理中发生异常了呢？
+```java
+@RequestMapping ("/index")
+public String index (){
+    System.out.println ("我是处理！");
+    if (true) throw new RuntimeException ("");
+    return "index";
+}
+```
+结果为：
+```
+我是处理之前！
+我是处理！
+我是完成之后！
+```
+我们发现如果处理过程中抛出异常，那么就不会执行处理后 `postHandle` 方法，但是会执行 `afterCompletion` 方法，我们可以在此方法中获取到抛出的异常。
+### 多级拦截器
+前面介绍了仅仅只有一个拦截器的情况，我们接着来看如果存在多个拦截器会如何执行，我们以同样的方式创建二号拦截器：
+```java
+public class SubInterceptor implements HandlerInterceptor {
+    @Override
+    public boolean preHandle (HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        System.out.println ("二号拦截器：我是处理之前！");
+        return true;
+    }
+    @Override
+    public void postHandle (HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+        System.out.println ("二号拦截器：我是处理之后！");
+    }
+    @Override
+    public void afterCompletion (HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+        System.out.println ("二号拦截器：我是完成之后！");
+    }
+}
+```
+注册二号拦截器：
+```java
+@Override
+public void addInterceptors (InterceptorRegistry registry) {
+  	//一号拦截器
+    registry.addInterceptor (new MainInterceptor ()). addPathPatterns ("/**"). excludePathPatterns ("/home");
+  	//二号拦截器
+    registry.addInterceptor (new SubInterceptor ()). addPathPatterns ("/**");
+}
+```
+注意拦截顺序就是注册的顺序，因此拦截器会根据注册顺序依次执行，我们可以打开浏览器运行一次：
+```
+一号拦截器：我是处理之前！
+二号拦截器：我是处理之前！
+我是处理！
+二号拦截器：我是处理之后！
+一号拦截器：我是处理之后！
+二号拦截器：我是完成之后！
+一号拦截器：我是完成之后！
+```
+和多级 Filter 相同，在处理之前，是按照顺序从前向后进行拦截的，但是处理完成之后，就按照倒序执行处理后方法，而完成后是在所有的 `postHandle` 执行之后再同样的以倒序方式执行。
+那么如果这时一号拦截器在处理前就返回了 false 呢？
+```java
+@Override
+public boolean preHandle (HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+    System.out.println ("一号拦截器：我是处理之前！");
+    return false;
+}
+```
+得到结果如下：
+```
+一号拦截器：我是处理之前！
+```
+我们发现，与单个拦截器的情况一样，一旦拦截器返回 false，那么之后无论有无拦截器，都不再继续。
+> [!NOTE] 拦截器用法总结
+> 1. 实现拦截器需要实现 `HandlerInterceptor` 接口并重写 `preHandle、postHandle、和afterCompletion` 方法实现处理前、后以及整个完成后
+> 2. 在应用配置中重写 `WebMvcConfigurer` 接口的 `addInterceptors` 方法注册拦截器并配置拦截模式和拦截器顺序
+> 3. 多个拦截器都需要注册并通过 `order（int）` 方法控制顺序，int 值越小顺序越靠前
+
+
+---
+## 异常处理
+当我们的请求映射方法中出现异常时，会直接展示在前端页面，这是因为 SpringMVC 为我们提供了默认的异常处理页面，当出现异常时，我们的请求会被直接转交给专门用于异常处理的控制器进行处理。
+我们可以自定义一个异常处理控制器，一旦出现指定异常，就会转接到此控制器执行：
+```java
+@ControllerAdvice
+public class ErrorController {
+    @ExceptionHandler (Exception.class)
+    public String error (Exception e, Model model){  //可以直接添加形参来获取异常
+        e.printStackTrace ();
+        model.addAttribute ("e", e);
+        return "500";
+    }
+}
+```
+接着我们编写一个专门显示异常的页面：
+```java
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  500 - 服务器出现了一个内部错误 QAQ
+  <div th:text="${e}"></div>
+</body>
+</html>
+```
+接着修改：
+```java
+@RequestMapping ("/index")
+public String index (){
+    System.out.println ("我是处理！");
+    if (true) throw new RuntimeException ("您的氪金力度不足，无法访问！");
+    return "index";
+}
+```
+访问后，我们发现控制台会输出异常信息，同时页面也是我们自定义的一个页面。
+> [!NOTE] SpringMVC 异常处理总结
+> - SpringMVC 提供了默认的异常处理页面，当出现异常时，我们的请求会被直接转交给专门用于异常处理的控制器进行处理，通过 `@ControllerAdvice` 注解声明错误控制器，并通过 `@ExceptionHandler(Exception.class)` 方法注解声明处理的异常类型。
+
+---
+## JSON 数据格式与 Axios 请求
+JSON (JavaScript Object Notation, JS 对象简谱) 是一种轻量级的数据交换格式。
+我们现在推崇的是前后端分离的开发模式，而不是所有的内容全部交给后端渲染再发送给浏览器，也就是说，整个 Web 页面的内容在一开始就编写完成了，而其中的数据由前端执行 JS 代码来向服务器动态获取，再到前端进行渲染（填充），这样可以大幅度减少后端的压力，并且后端只需要传输关键数据即可（在即将到来的 SpringBoot 阶段，我们将完全采用前后端分离的开发模式）
+### JSON 数据格式
+既然要实现前后端分离，那么我们就必须约定一种更加高效的数据传输模式，来向前端页面传输后端提供的数据。因此 JSON 横空出世，它非常容易理解，并且与前端的兼容性极好，因此现在比较主流的数据传输方式则是通过 JSON 格式承载的。
+一个 JSON 格式的数据长这样，以学生对象为例：
+```json
+{"name": "杰哥", "age": 18}
+```
+多个学生可以以数组的形式表示：
+```json
+[{"name": "杰哥", "age": 18}, {"name": "阿伟", "age": 18}]
+```
+嵌套关系可以表示为：
+```json
+{"studentList": [{"name": "杰哥", "age": 18}, {"name": "阿伟", "age": 18}], "count": 2}
+```
+它直接包括了属性的名称和属性的值，与 JavaScript 的对象极为相似，它到达前端后，可以直接转换为对象，以对象的形式进行操作和内容的读取，相当于以字符串形式表示了一个 JS 对象，我们可以直接在控制台窗口中测试：
+```javascript
+let obj = JSON.parse ('{"studentList": [{"name": "杰哥", "age": 18}, {"name": "阿伟", "age": 18}], "count": 2}')
+//将 JSON 格式字符串转换为 JS 对象
+obj. studentList[0]. name   //直接访问第一个学生的名称
+```
+我们也可以将 JS 对象转换为 JSON 字符串：
+```javascript
+JSON.stringify (obj)
+```
+我们后端就可以以 JSON 字符串的形式向前端返回数据，这样前端在拿到数据之后，就可以快速获取，非常方便。
+那么后端如何快速创建一个 JSON 格式的数据呢？我们首先需要导入以下依赖：
+```xml
+<dependency>
+      <groupId>com.alibaba.fastjson2</groupId>
+      <artifactId>fastjson2</artifactId>
+      <version>2.0.34</version>
+</dependency>
+```
+JSON 解析框架有很多种，比较常用的是 Jackson 和 FastJSON，这里我们使用阿里巴巴的 FastJSON 进行解析，这是目前号称最快的 JSON 解析框架，并且现在已经强势推出 FastJSON 2 版本。
+首先要介绍的是 JSONObject，它和 Map 的使用方法一样，并且是有序的（实现了 LinkedHashMap 接口），比如我们向其中存放几个数据：
+```java
+@RequestMapping (value = "/index")
+public String index (){
+    JSONObject object = new JSONObject ();
+    object.put ("name", "杰哥");
+    object.put ("age", 18);
+    System.out.println (object.toJSONString ());   //以 JSON 格式输出 JSONObject 字符串
+    return "index";
+}
+```
+最后我们得到的结果为：
+```json
+{"name": "杰哥", "age": 18}
+```
+实际上 JSONObject 就是对 JSON 数据的一种对象表示。同样的还有 JSONArray，它表示一个数组，用法和 List 一样，数组中可以嵌套其他的 JSONObject 或是 JSONArray：
+```java
+@RequestMapping (value = "/index")
+public String index (){
+    JSONObject object = new JSONObject ();
+    object.put ("name", "杰哥");
+    object.put ("age", 18);
+    JSONArray array = new JSONArray ();
+    array.add (object);
+    System.out.println (array.toJSONString ());
+    return "index";
+}
+```
+得到的结果为：
+```json
+[{"name": "杰哥", "age": 18}]
+```
+当出现循环引用时，会按照以下语法来解析：
+![img](https://s2.loli.net/2023/08/14/MjO4awH3X1YnlmR.png)
+我们可以也直接创建一个实体类，将实体类转换为 JSON 格式的数据：
+```java
+@RequestMapping (value = "/index", produces = "application/json")
+@ResponseBody
+public String data (){
+    Student student = new Student ();
+    student.setName ("杰哥");
+    student.setAge (18);
+    return JSON.toJSONString (student);
+}
+```
+这里我们修改了 `produces` 的值，将返回的内容类型设定为 `application/json`，表示服务器端返回了一个 JSON 格式的数据（当然不设置也行，也能展示，这样是为了规范）然后我们在方法上添加一个 `@ResponseBody` 表示方法返回（也可以在类上添加 `@RestController` 表示此 Controller 默认返回的是字符串数据）的结果不是视图名称而是直接需要返回一个字符串作为页面数据，这样，返回给浏览器的就是我们直接返回的字符串内容。
+接着我们使用 JSON 工具类将其转换为 JSON 格式的字符串，打开浏览器，得到 JSON 格式数据。
+SpringMVC 非常智能，我们可以直接返回一个对象类型，它会被自动转换为 JSON 字符串格式：
+```java
+@RequestMapping (value = "/data", produces = "application/json")
+@ResponseBody
+public Student data (){
+    Student student = new Student ();
+    student.setName ("杰哥");
+    student.setAge (18);
+    return student;
+}
+```
+注意需要在配置类中添加一下 FastJSON 转换器，这里需要先添加一个依赖：
+```xml
+<dependency>
+    <groupId>com.alibaba.fastjson2</groupId>
+    <artifactId>fastjson2-extension-spring6</artifactId>
+    <version>2.0.34</version>
+</dependency>
+```
+然后编写配置：
+```java
+@Override
+public void configureMessageConverters (List<HttpMessageConverter<?>> converters) {
+    converters.add (new FastJsonHttpMessageConverter ());
+}
+```
+再次尝试，内容就会自动转换为 JSON 格式响应给客户端了。
+### Axios 异步请求
+前面我们讲解了如何向浏览器发送一个 JSON 格式的数据，那么我们现在来看看如何向服务器请求数据。
+![img](https://s2.loli.net/2023/08/14/faYcVC6dpIOuJyA.png)
+前端为什么需要用到异步请求，这是因为我们的网页是动态的（这里的动态不是指有动画效果，而是能够实时更新内容）比如我们点击一个按钮会弹出新的内容、或是跳转到新的页面、更新页面中的数据等等，这些都需要通过 JS 完成异步请求来实现。
+> 前端异步请求指的是在前端中发送请求至服务器或其他资源，并且不阻塞用户界面或其他操作。在传统的同步请求中，当发送请求时，浏览器会等待服务器响应，期间用户无法进行其他操作。而异步请求通过将请求发送到后台，在等待响应的同时，允许用户继续进行其他操作。这种机制能够提升用户体验，并且允许页面进行实时更新。常见的前端异步请求方式包括使用 XMLHttpRequest 对象、Fetch API、以及使用 jQuery 库中的 AJAX 方法，以及目前最常用的 Axios 框架等。
+
+假设我们后端有一个需要实时刷新的数据（随时间而变化）现在需要再前端实时更新展示，这里我们以 axios 框架的简单使用为例子，带各位小伙伴体验如何发起异步请求并更新我们页面中的数据。
+首先是前端页面，直接抄作业就行：
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试</title>
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+</head>
+<body>
+  <p>欢迎来到 GayHub 全球最大同性交友网站</p>
+  <p>用户名: <span id="username"></span></p>
+  <p>密码: <span id="password"></span></p>
+</body>
+</html>
+```
+接着我们使用 axios 框架直接对后端请求 JSON 数据：
+```html
+<script>
+    function getInfo () {
+        axios.get ('/mvc/test'). then (({data}) => {
+            document.getElementById ('username'). innerText = data. username
+            document.getElementById ('password'). innerText = data. password
+        })
+    }
+</script>
+```
+这样，我们就实现了从服务端获取数据并更新到页面中，前端开发者利用 JS 发起异步请求，可以实现各种各样的效果，而我们后端开发者只需要关心接口返回正确的数据即可，这就已经有前后端分离开发的雏形了（实际上之前，我们在 JavaWeb 阶段使用 XHR 请求也演示过，不过当时是纯粹的数据）
+那么我们接着来看，如何向服务端发送一个 JS 对象数据并进行解析，这里以简单的登录为例：
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试</title>
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+</head>
+<body>
+  <p>欢迎来到 GayHub 全球最大同性交友网站</p>
+  <button onclick="login()">立即登录</button>
+</body>
+</html>
+```
+这里依然使用 axios 发送 POST 请求：
+```html
+<script>
+    function login () {
+        axios.post ('/mvc/test', {
+            username: 'test',
+            password: '123456'
+        }, {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded '
+            }
+        }). then (({data}) => {
+            if (data. success) {
+                alert ('登录成功')
+            } else {
+                alert ('登录失败')
+            }
+        })
+    }
+</script>
+```
+服务器端只需要在请求参数位置添加一个对象接收即可（和前面是一样的，因为这里也是提交的表单数据）：
+```java
+@ResponseBody
+@PostMapping (value = "/test", produces = "application/json")
+public String hello (String username, String password){
+    boolean success = "test".equals (user.getUsername ()) && "123456".equals (user.getPassword ());
+    JSONObject object = new JSONObject ();
+    object.put ("success", success);
+    return object.toString ();
+}
+```
+我们也可以将 js 对象转换为 JSON 字符串的形式进行传输，这里需要使用 ajax 方法来处理：
+```html
+<script>
+    function login () {
+        axios.post ('/mvc/test', {
+            username: 'test',
+            password: '123456'
+        }). then (({data}) => {
+            if (data. success) {
+                alert ('登录成功')
+            } else {
+                alert ('登录失败')
+            }
+        })
+    }
+</script>
+```
+如果我们需要读取前端发送给我们的 JSON 格式数据，那么这个时候就需要添加 `@RequestBody` 注解：
+```java
+@ResponseBody
+@PostMapping (value = "/test", produces = "application/json")
+public String hello (@RequestBody User user){
+    boolean success = "test".equals (user.getUsername ()) && "123456".equals (user.getPassword());
+    JSONObject object = new JSONObject();
+    object.put ("success", success);
+    return object.toString ();
+}
+```
+这样，我们就实现了前后端使用 JSON 字符串进行通信。
+> [!NOTE] Json 和Axios总结
+> - 引入 json 格式化和自动转换器 xml 依赖
+> - `JsonObject` 为 map，`JsonArray` 为数组
+> - 调用 `toString` 方法变为 json 字符串
+> - 使用 `@RequestParam` 用于处理URL传参或表单传参
+> - 使用 `@RequestBody` 用于json或xml传参
+
+---
+## 实现文件上传和下载
+利用 SpringMVC，我们可以很轻松地实现文件上传和下载，我们需要在 MainInitializer 中添加一个新的方法：
+```java
+public class MainInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+    ...
+    @Override
+    protected void customizeRegistration (ServletRegistration. Dynamic registration) {
+      	// 直接通过 registration 配置 Multipart 相关配置，必须配置临时上传路径，建议选择方便打开的
+        // 同样可以设置其他属性：maxFileSize, maxRequestSize, fileSizeThreshold
+        registration.setMultipartConfig (new MultipartConfigElement ("/Users/nagocoler/Download"));
+    }
+}
+```
+接着我们直接编写 Controller 即可：
+```java
+@RequestMapping (value = "/upload", method = RequestMethod. POST)
+@ResponseBody
+public String upload (@RequestParam MultipartFile file) throws IOException {
+    File fileObj = new File ("test. png");
+    file.transferTo (fileObj);
+    System.out.println ("用户上传的文件已保存到："+fileObj.getAbsolutePath ());
+    return "文件上传成功！";
+}
+```
+最后在前端添加一个文件的上传点：
+```html
+<div>
+    <form action="upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <input type="submit">
+    </form>
+</div>
+```
+这样，点击提交之后，文件就会上传到服务器了。
+下载其实和我们之前的写法大致一样，直接使用 HttpServletResponse，并向输出流中传输数据即可。
+```java
+@RequestMapping (value = "/download", method = RequestMethod. GET)
+@ResponseBody
+public void download (HttpServletResponse response){
+    response.setContentType ("multipart/form-data");
+    try (OutputStream stream = response.getOutputStream ();
+        InputStream inputStream = new FileInputStream ("test. png")){
+        IOUtils.copy (inputStream, stream);
+    }catch (IOException e){
+        e.printStackTrace ();
+    }
+}
+```
+在前端页面中添加一个下载点：
+```html
+<a href="download" download="test.png">下载最新资源</a>
+```
+
+---
+## 解读 DispatcherServlet 源码
+注意：本部分作为选学内容！
+到目前为止，关于 SpringMVC 的相关内容就学习得差不多了，但是我们在最后还是需要深入了解一下 DispatcherServlet 底层是如何进行调度的，因此，我们会从源码角度进行讲解。
+首先我们需要找到 `DispatcherServlet` 的最顶层 `HttpServletBean`，在这里直接继承的 `HttpServlet`，那么我们首先来看一下，它在初始化方法中做了什么：
+```java
+public final void init () throws ServletException {
+  	//读取配置参数，并进行配置
+    PropertyValues pvs = new HttpServletBean.ServletConfigPropertyValues (this.getServletConfig (), this. requiredProperties);
+    if (! pvs.isEmpty ()) {
+        try {
+            BeanWrapper bw = PropertyAccessorFactory.forBeanPropertyAccess (this);
+            ResourceLoader resourceLoader = new ServletContextResourceLoader (this.getServletContext ());
+            bw.registerCustomEditor (Resource. class, new ResourceEditor (resourceLoader, this.getEnvironment ()));
+            this.initBeanWrapper (bw);
+            bw.setPropertyValues (pvs, true);
+        } catch (BeansException var 4) {
+            if (this.logger.isErrorEnabled ()) {
+                this.logger.error ("Failed to set bean properties on servlet '" + this.getServletName () + "'", var 4);
+            }
+            throw var 4;
+        }
+    }
+		//此初始化阶段由子类实现，
+    this.initServletBean ();
+}
+```
+我们接着来看 `initServletBean ()` 方法是如何实现的，它是在子类 `FrameworkServlet` 中定义的：
+```java
+protected final void initServletBean () throws ServletException {
+    this.getServletContext (). log ("Initializing Spring " + this.getClass (). getSimpleName () + " '" + this.getServletName () + "'");
+    if (this.logger.isInfoEnabled ()) {
+        this.logger.info ("Initializing Servlet '" + this.getServletName () + "'");
+    }
+    long startTime = System.currentTimeMillis ();
+    try {
+      	//注意：我们在一开始说了 SpringMVC 有两个容器，一个是 Web 容器一个是根容器
+      	//Web 容器只负责 Controller 等表现层内容
+      	//根容器就是 Spring 容器，它负责 Service、Dao 等，并且它是 Web 容器的父容器。
+      	//初始化 WebApplicationContext，这个阶段会为根容器和 Web 容器进行父子关系建立
+        this. webApplicationContext = this.initWebApplicationContext ();
+        this.initFrameworkServlet ();
+    } catch (RuntimeException | ServletException var 4) {
+      //... 以下内容全是打印日志
+}
+```
+![img](https://s2.loli.net/2023/06/30/6ZAyRrDw2QMU8Xv.png)
+我们来看看 `initWebApplicationContext` 是如何进行初始化的：
+```java
+protected WebApplicationContext initWebApplicationContext () {
+  	//这里获取的是根容器，一般用于配置 Service、数据源等
+    WebApplicationContext rootContext = WebApplicationContextUtils.getWebApplicationContext (this.getServletContext ());
+    WebApplicationContext wac = null;
+    if (this. webApplicationContext != null) {
+      	//如果 webApplicationContext 在之前已经存在，则直接给到 wac
+        wac = this. webApplicationContext;
+        if (wac instanceof ConfigurableWebApplicationContext) {
+            ConfigurableWebApplicationContext cwac = (ConfigurableWebApplicationContext) wac;
+            if (! cwac.isActive ()) {
+                if (cwac.getParent () == null) {
+                  	//设定根容器为 Web 容器的父容器
+                    cwac.setParent (rootContext);
+                }
+                this.configureAndRefreshWebApplicationContext (cwac);
+            }
+        }
+    }
+    if (wac == null) {
+      	//如果 webApplicationContext 是空，那么就从 ServletContext 找一下有没有初始化上下文
+        wac = this.findWebApplicationContext ();
+    }
+    if (wac == null) {
+      	//如果还是找不到，直接创个新的，并直接将根容器作为父容器
+        wac = this.createWebApplicationContext (rootContext);
+    }
+    if (! this. refreshEventReceived) {
+        synchronized (this. onRefreshMonitor) {
+          	//此方法由 DispatcherServlet 实现
+            this.onRefresh (wac);
+        }
+    }
+    if (this. publishContext) {
+        String attrName = this.getServletContextAttributeName ();
+      	//把 Web 容器丢进 ServletContext
+        this.getServletContext (). setAttribute (attrName, wac);
+    }
+    return wac;
+}
+```
+我们接着来看 DispatcherServlet 中实现的 `onRefresh ()` 方法：
+```java
+@Override
+protected void onRefresh (ApplicationContext context) {
+    initStrategies (context);
+}
+protected void initStrategies (ApplicationContext context) {
+  	//初始化各种解析器
+    initMultipartResolver (context);
+    initLocaleResolver (context);
+    initThemeResolver (context);
+  	//在容器中查找所有的 HandlerMapping，放入集合中
+  	//HandlerMapping 保存了所有的请求映射信息（Controller 中定义的），它可以根据请求找到处理器 Handler，但并不是简单的返回处理器，而是将处理器和拦截器封装，形成一个处理器执行链（类似于之前的 Filter）
+    initHandlerMappings (context);
+  	//在容器中查找所有的 HandlerAdapter，它用于处理请求并返回 ModelAndView 对象
+  	//默认有三种实现 HttpRequestHandlerAdapter，SimpleControllerHandlerAdapter 和 AnnotationMethodHandlerAdapter
+  	//当 HandlerMapping 找到处理请求的 Controller 之后，会选择一个合适的 HandlerAdapter 处理请求
+  	//比如我们之前使用的是注解方式配置 Controller，现在有一个请求携带了一个参数，那么 HandlerAdapter 会对请求的数据进行解析，并传入方法作为实参，最后根据方法的返回值将其封装为 ModelAndView 对象
+    initHandlerAdapters (context);
+  	//其他的内容
+    initHandlerExceptionResolvers (context);
+    initRequestToViewNameTranslator (context);
+    initViewResolvers (context);
+    initFlashMapManager (context);
+}
+```
+DispatcherServlet 初始化过程我们已经了解了，那么我们接着来看 DispatcherServlet 是如何进行调度的，首先我们的请求肯定会经过 `HttpServlet`，然后其交给对应的 doGet、doPost 等方法进行处理，而在 `FrameworkServlet` 中，这些方法都被重写，并且使用 `processRequest` 来进行处理：
+```java
+protected final void doGet (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    this.processRequest (request, response);
+}
+protected final void doPost (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    this.processRequest (request, response);
+}
+```
+我们来看看 `processRequest` 做了什么：
+```java
+protected final void processRequest (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+  	//前期准备工作
+    long startTime = System.currentTimeMillis ();
+    Throwable failureCause = null;
+    LocaleContext previousLocaleContext = LocaleContextHolder.getLocaleContext ();
+    LocaleContext localeContext = this.buildLocaleContext (request);
+    RequestAttributes previousAttributes = RequestContextHolder.getRequestAttributes ();
+    ServletRequestAttributes requestAttributes = this.buildRequestAttributes (request, response, previousAttributes);
+    WebAsyncManager asyncManager = WebAsyncUtils.getAsyncManager (request);
+    asyncManager.registerCallableInterceptor (FrameworkServlet.class.getName (), new FrameworkServlet.RequestBindingInterceptor ());
+    this.initContextHolders (request, localeContext, requestAttributes);
+    try {
+      	//重点在这里，这里进行了 Service 的执行，不过是在 DispatcherServlet 中定义的
+        this.doService (request, response);
+    } catch (IOException | ServletException var 16) {
+        //...
+}
+```
+请各位一定要耐心，这些大型框架的底层一般都是层层套娃，因为这样写起来层次会更加清晰，那么我们来看看 `DispatcherServlet` 中是如何实现的：
+```java
+protected void doService (HttpServletRequest request, HttpServletResponse response) throws Exception {
+   //...
+    try {
+      	//重点在这里，这才是整个处理过程中最核心的部分
+        this.doDispatch (request, response);
+    } finally {
+        //...
+}
+```
+终于找到最核心的部分了：
+```java
+protected void doDispatch (HttpServletRequest request, HttpServletResponse response) throws Exception {
+    HttpServletRequest processedRequest = request;
+    HandlerExecutionChain mappedHandler = null;
+    boolean multipartRequestParsed = false;
+    WebAsyncManager asyncManager = WebAsyncUtils.getAsyncManager (request);
+    try {
+        try {
+            ModelAndView mv = null;
+            Object dispatchException = null;
+            try {
+                processedRequest = this.checkMultipart (request);
+                multipartRequestParsed = processedRequest != request;
+              	//在 HandlerMapping 集合中寻找可以处理当前请求的 HandlerMapping
+                mappedHandler = this.getHandler (processedRequest);
+                if (mappedHandler == null) {
+                    this.noHandlerFound (processedRequest, response);
+                  	//找不到 HandlerMapping 则无法进行处理
+                    return;
+                }
+              	//根据 HandlerMapping 提供的信息，找到可以处理的 HandlerAdapter
+                HandlerAdapter ha = this.getHandlerAdapter (mappedHandler.getHandler ());
+                String method = request.getMethod ();
+                boolean isGet = HttpMethod.GET.matches (method);
+                if (isGet || HttpMethod.HEAD.matches (method)) {
+                    long lastModified = ha.getLastModified (request, mappedHandler.getHandler ());
+                    if ((new ServletWebRequest (request, response)). checkNotModified (lastModified) && isGet) {
+                        return;
+                    }
+                }
+              	//执行所有拦截器的 preHandle ()方法
+                if (! mappedHandler.applyPreHandle (processedRequest, response)) {
+                    return;
+                }
+              	//使用 HandlerAdapter 进行处理（我们编写的请求映射方法在这个位置才真正地执行了）
+              	//HandlerAdapter 会帮助我们将请求的数据进行处理，再来调用我们编写的请求映射方法
+              	//最后 HandlerAdapter 会将结果封装为 ModelAndView 返回给 mv
+                mv = ha.handle (processedRequest, response, mappedHandler.getHandler ());
+                if (asyncManager.isConcurrentHandlingStarted ()) {
+                    return;
+                }
+                this.applyDefaultViewName (processedRequest, mv);
+              	//执行所有拦截器的 postHandle ()方法
+                mappedHandler.applyPostHandle (processedRequest, response, mv);
+            } catch (Exception var 20) {
+                dispatchException = var 20;
+            } catch (Throwable var 21) {
+                dispatchException = new NestedServletException ("Handler dispatch failed", var 21);
+            }
+          	//最后处理结果，对视图进行渲染等，如果抛出异常会出现错误页面
+            this.processDispatchResult (processedRequest, response, mappedHandler, mv, (Exception) dispatchException);
+        } catch (Exception var 22) {
+            this.triggerAfterCompletion (processedRequest, response, mappedHandler, var 22);
+        } catch (Throwable var 23) {
+            this.triggerAfterCompletion (processedRequest, response, mappedHandler, new NestedServletException ("Handler processing failed", var 23));
+        }
+    } finally {
+        if (asyncManager.isConcurrentHandlingStarted ()) {
+            if (mappedHandler != null) {
+                mappedHandler.applyAfterConcurrentHandlingStarted (processedRequest, response);
+            }
+        } else if (multipartRequestParsed) {
+            this.cleanupMultipart (processedRequest);
+        }
+    }
+}
+```
+所以，根据以上源码分析得出最终的流程图：
+![img](https://s2.loli.net/2023/08/14/IzWB8LGjwo1DPml.png)
+虽然完成本章学习后，我们已经基本能够基于 Spring 去重新编写一个更加高级的图书管理系统了，但是登陆验证复杂的问题依然没有解决，如果我们依然按照之前的方式编写登陆验证，显然太过简单，它仅仅只是一个登陆，但是没有任何的权限划分或是加密处理，我们需要更加高级的权限校验框架来帮助我们实现登陆操作，下一章，我们会详细讲解如何使用更加高级的 SpringSecurity 框架来进行权限验证。
+
+---
+# Spring 常用依赖
+```xml
+<dependencies>  
+    <!--        servlet-->  
+    <dependency>  
+        <groupId>jakarta.servlet</groupId>  
+        <artifactId>jakarta.servlet-api</artifactId>  
+        <version>5.0.0</version>  
+        <scope>provided</scope>  
+    </dependency>  
+    <!--        junit测试-->  
+    <dependency>  
+        <groupId>org.junit.jupiter</groupId>  
+        <artifactId>junit-jupiter-api</artifactId>  
+        <version>${junit.version}</version>  
+        <scope>test</scope>  
+    </dependency>  
+    <dependency>  
+        <groupId>org.junit.jupiter</groupId>  
+        <artifactId>junit-jupiter-engine</artifactId>  
+        <version>${junit.version}</version>  
+        <scope>test</scope>  
+    </dependency>  
+    <!--        springmvc-->  
+    <dependency>  
+        <groupId>org.springframework</groupId>  
+        <artifactId>spring-webmvc</artifactId>  
+        <version>6.0.10</version>  
+    </dependency>  
+    <!--        slf4j日志-->  
+    <dependency>  
+        <groupId>org.slf4j</groupId>  
+        <artifactId>slf4j-api</artifactId>  
+        <version>1.7.33</version>  
+    </dependency>  
+    <dependency>  
+        <groupId>org.slf4j</groupId>  
+        <artifactId>slf4j-jdk14</artifactId>  
+        <version>1.7.33</version>  
+    </dependency>  
+    <!--        模板解析器-->  
+    <dependency>  
+        <groupId>org.thymeleaf</groupId>  
+        <artifactId>thymeleaf-spring6</artifactId>  
+        <version>3.1.1.RELEASE</version>  
+    </dependency>  
+    <!--        lombok-->  
+    <dependency>  
+        <groupId>org.projectlombok</groupId>  
+        <artifactId>lombok</artifactId>  
+        <version>1.18.28</version>  
+        <scope>provided</scope>  
+    </dependency>  
+    <!--        json格式化-->  
+    <dependency>  
+        <groupId>com.alibaba.fastjson2</groupId>  
+        <artifactId>fastjson2</artifactId>  
+        <version>2.0.34</version>  
+    </dependency>  
+    <!--        json对象自动转换器-->  
+    <dependency>  
+        <groupId>com.alibaba.fastjson2</groupId>  
+        <artifactId>fastjson2-extension-spring6</artifactId>  
+        <version>2.0.34</version>  
+    </dependency>  
+    <!--        IO工具-->  
+    <dependency>  
+        <groupId>commons-io</groupId>  
+        <artifactId>commons-io</artifactId>  
+        <version>2.11.0</version>  
+    </dependency>  
+    <!-- mybatis -->  
+    <dependency>  
+        <groupId>org.mybatis</groupId>  
+        <artifactId>mybatis</artifactId>  
+        <!-- 注意，对于Spring 6.0来说，版本需要在3.5以上 -->  
+        <version>3.5.13</version>  
+    </dependency>  
+    <dependency>  
+        <groupId>com.mysql</groupId>  
+        <artifactId>mysql-connector-j</artifactId>  
+        <version>8.0.31</version>  
+    </dependency>  
+    <!-- Mybatis针对于Spring专门编写的支持框架 -->  
+    <dependency>  
+        <groupId>org.mybatis</groupId>  
+        <artifactId>mybatis-spring</artifactId>  
+        <version>3.0.2</version>  
+    </dependency>  
+    <!-- Spring的JDBC支持框架 -->  
+    <dependency>  
+        <groupId>org.springframework</groupId>  
+        <artifactId>spring-jdbc</artifactId>  
+        <version>6.0.10</version>  
+    </dependency>  
+</dependencies>
+```

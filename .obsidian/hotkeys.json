@@ -258,14 +258,6 @@
       "key": "L"
     }
   ],
-  "insert-template": [
-    {
-      "modifiers": [
-        "Alt"
-      ],
-      "key": "M"
-    }
-  ],
   "editing-toolbar:underline": [
     {
       "modifiers": [
@@ -286,6 +278,14 @@
     {
       "modifiers": [
         "Alt",
+        "Mod"
+      ],
+      "key": "M"
+    }
+  ],
+  "insert-template": [
+    {
+      "modifiers": [
         "Mod"
       ],
       "key": "M"
