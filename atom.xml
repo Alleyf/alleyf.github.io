@@ -6,7 +6,7 @@
   <link href="https://alleyf.github.io/atom.xml" rel="self"/>
   
   <link href="https://alleyf.github.io/"/>
-  <updated>2023-11-08T05:11:39.864Z</updated>
+  <updated>2023-11-10T14:08:06.193Z</updated>
   <id>https://alleyf.github.io/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="https://alleyf.github.io/2023/11/9f9a776a7dab.html"/>
     <id>https://alleyf.github.io/2023/11/9f9a776a7dab.html</id>
     <published>2023-11-08T05:08:25.000Z</published>
-    <updated>2023-11-08T05:11:39.864Z</updated>
+    <updated>2023-11-10T14:08:06.193Z</updated>
     
-    <content type="html"><![CDATA[<p><img src="https://picsum.photos/800/250"></p>]]></content>
+    <content type="html"><![CDATA[<p><img src="https://picsum.photos/800/250"></p><h2 id="踩坑"><a href="#踩坑" class="headerlink" title="踩坑"></a>踩坑</h2><ol><li>redis 本地安装好需要修改配置文件设置 requirepass <code>password</code> 密码，才可以在 idea 里远程连接使用</li><li>vue 中的 form 表单一定要动态绑定 <code>:model</code>，如果添加了字段验证 <code>:rules</code>，还必须为每个 <code>el-form-item</code> 指定 <code>prop</code> 为 <code>model</code> 的键</li><li></li></ol>]]></content>
     
     
     <summary type="html">A Demo for SpringBoot with Vue.</summary>
