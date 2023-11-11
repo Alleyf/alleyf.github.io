@@ -1066,9 +1066,9 @@ spring:
 spring:
   mail:
       # 163邮箱的地址为smtp.163.com，直接填写即可
-    host: smtp.163.com
+    host: smtp.163.com/smtp.qq.com
     # 你申请的163邮箱
-    username: javastudy111@163.com
+    username: javastudy111@163.com/xxx@qq.com
     # 注意密码是在开启smtp/pop3时自动生成的，记得保存一下，不然就找不到了
     password: AZJTOAWZESLMHTNI
 ```
