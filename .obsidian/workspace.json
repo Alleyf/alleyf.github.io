@@ -59,8 +59,7 @@
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -80,7 +79,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/前后端开发/SpringBoot+Vue项目实战.md"
+                "file": "source/_posts/科研学习/会议讨论/周会.md"
               }
             }
           }
@@ -137,7 +136,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/前后端开发/SpringBoot+Vue项目实战.md",
+                "file": "source/_posts/科研学习/会议讨论/周会.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -191,11 +190,11 @@
       "obsidian-excalidraw-plugin:新建 Excalidraw 绘图": false
     }
   },
-  "active": "92b45246fa341952",
+  "active": "8e85ccb013ecad38",
   "lastOpenFiles": [
+    "source/_posts/前后端开发/SpringBoot+Vue项目实战.md",
     "source/_posts/科研学习/会议讨论/周会.md",
     "source/_posts/前后端开发/SpringBoot.md",
-    "source/_posts/前后端开发/SpringBoot+Vue项目实战.md",
     "source/_posts/科研学习/国基金项目/司法领域大模型调研四.md",
     "source/_posts/前后端开发/Spring核心学习.md",
     "source/_posts/前后端开发/SpringSecurity.md",
