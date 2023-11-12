@@ -138,7 +138,7 @@
 <meta property="og:image" content="https://s2.loli.net/2023/07/24/4o76q5yNHkabuip.png">
 <meta property="og:image" content="https://s2.loli.net/2023/07/24/cqEgnQOZtFp1w7o.png">
 <meta property="article:published_time" content="2023-10-31T07:04:18.000Z">
-<meta property="article:modified_time" content="2023-11-07T13:33:31.442Z">
+<meta property="article:modified_time" content="2023-11-11T02:51:15.599Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="SpringBoot">
 <meta name="twitter:card" content="summary_large_image">
@@ -444,7 +444,7 @@
               <p class="note note-info">
                 
                   
-                    Last updated on 4 days ago
+                    Last updated on a day ago
                   
                 
               </p>
@@ -872,7 +872,7 @@
 <p>实际上每个邮箱服务器都有一个smtp发送服务器和pop3接收服务器，比如要从QQ邮箱发送邮件到163邮箱，那么我们只需要通过QQ邮箱客户端告知QQ邮箱的smtp服务器我们需要发送邮件，以及邮件的相关信息，然后QQ邮箱的smtp服务器就会帮助我们发送到163邮箱的pop3服务器上，163邮箱会通过163邮箱客户端告知对应用户收到一封新邮件。</p>
 <p>而我们如果想要实现给别人发送邮件，那么就需要连接到对应电子邮箱的smtp服务器上，并告知其我们要发送邮件。而SpringBoot已经帮助我们将最基本的底层通信全部实现了，我们只需要关心smtp服务器的地址以及我们要发送的邮件长啥样即可。</p>
 <p>这里以163邮箱 <a target="_blank" rel="noopener" href="https://mail.163.com/">https://mail.163.com</a> 为例，我们需要在配置文件中告诉SpringBootMail我们的smtp服务器的地址以及你的邮箱账号和密码，首先我们要去设置中开启smtp/pop3服务才可以，开启后会得到一个随机生成的密钥，这个就是我们的密码。</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">mail:</span><br>      <span class="hljs-comment"># 163邮箱的地址为smtp.163.com，直接填写即可</span><br>    <span class="hljs-attr">host:</span> <span class="hljs-string">smtp.163.com</span><br>    <span class="hljs-comment"># 你申请的163邮箱</span><br>    <span class="hljs-attr">username:</span> <span class="hljs-string">javastudy111@163.com</span><br>    <span class="hljs-comment"># 注意密码是在开启smtp/pop3时自动生成的，记得保存一下，不然就找不到了</span><br>    <span class="hljs-attr">password:</span> <span class="hljs-string">AZJTOAWZESLMHTNI</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">mail:</span><br>      <span class="hljs-comment"># 163邮箱的地址为smtp.163.com，直接填写即可</span><br>    <span class="hljs-attr">host:</span> <span class="hljs-string">smtp.163.com/smtp.qq.com</span><br>    <span class="hljs-comment"># 你申请的163邮箱</span><br>    <span class="hljs-attr">username:</span> <span class="hljs-string">javastudy111@163.com/xxx@qq.com</span><br>    <span class="hljs-comment"># 注意密码是在开启smtp/pop3时自动生成的，记得保存一下，不然就找不到了</span><br>    <span class="hljs-attr">password:</span> <span class="hljs-string">AZJTOAWZESLMHTNI</span><br></code></pre></td></tr></table></figure>
 
 <p>配置完成后，接着我们来进行一下测试：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@SpringBootTest</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">SpringBootTestApplicationTests</span> &#123;<br><br>      <span class="hljs-comment">//JavaMailSender是专门用于发送邮件的对象，自动配置类已经提供了Bean</span><br>    <span class="hljs-meta">@Autowired</span><br>    JavaMailSender sender;<br><br>    <span class="hljs-meta">@Test</span><br>    <span class="hljs-keyword">void</span> <span class="hljs-title function_">contextLoads</span><span class="hljs-params">()</span> &#123;<br>          <span class="hljs-comment">//SimpleMailMessage是一个比较简易的邮件封装，支持设置一些比较简单内容</span><br>        <span class="hljs-type">SimpleMailMessage</span> <span class="hljs-variable">message</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">SimpleMailMessage</span>();<br>          <span class="hljs-comment">//设置邮件标题</span><br>        message.setSubject(<span class="hljs-string">&quot;【电子科技大学教务处】关于近期学校对您的处分决定&quot;</span>);<br>          <span class="hljs-comment">//设置邮件内容</span><br>        message.setText(<span class="hljs-string">&quot;XXX同学您好，经监控和教务巡查发现，您近期存在旷课、迟到、早退、上课刷抖音行为，&quot;</span> +<br>                <span class="hljs-string">&quot;现已通知相关辅导员，请手写5000字书面检讨，并在2022年4月1日17点前交到辅导员办公室。&quot;</span>);<br>          <span class="hljs-comment">//设置邮件发送给谁，可以多个，这里就发给你的QQ邮箱</span><br>        message.setTo(<span class="hljs-string">&quot;你的QQ号@qq.com&quot;</span>);<br>          <span class="hljs-comment">//邮件发送者，这里要与配置文件中的保持一致</span><br>        message.setFrom(<span class="hljs-string">&quot;javastudy111@163.com&quot;</span>);<br>          <span class="hljs-comment">//OK，万事俱备只欠发送</span><br>        sender.send(message);<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
@@ -2138,7 +2138,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Updated on</div>
-          <div>November 7, 2023</div>
+          <div>November 11, 2023</div>
         </div>
       
       <div class="license-meta-item">
