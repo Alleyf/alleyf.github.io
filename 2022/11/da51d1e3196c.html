@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="en" data-default-color-scheme=auto>
+<html lang="zh-CN" data-default-color-scheme=auto>
 
 
 
@@ -24,7 +24,7 @@
 <meta property="og:url" content="https://alleyf.github.io/2022/11/da51d1e3196c.html">
 <meta property="og:site_name" content="alleyf">
 <meta property="og:description" content="Some knowledge about spealized courses.">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202307052235695.png">
 <meta property="og:image" content="file:///C:/Users/alleyf/AppData/Roaming/Typora/typora-user-images/image-20230705222131991.png?lastModify=1688567633">
 <meta property="og:image" content="file:///C:/Users/alleyf/AppData/Roaming/Typora/typora-user-images/image-20230705223012306.png?lastModify=1688567633">
@@ -119,7 +119,7 @@
 
 
   
-<!-- hexo injector head_end start --><script> let HEXO_MMEDIA_DATA = { js: [], css: [], aplayerData: [], metingData: [], artPlayerData: [], dplayerData: []}; </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="alleyf" type="application/atom+xml">
+<!-- hexo injector head_end start --><script> let HEXO_MMEDIA_DATA = { js: [], css: [], aplayerData: [], metingData: [], artPlayerData: [], dplayerData: []}; </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/atom.xml" title="alleyf" type="application/atom+xml">
 </head>
 
 
@@ -153,7 +153,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
-                Home
+                首页
               </a>
             </li>
           
@@ -165,7 +165,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                Archives
+                归档
               </a>
             </li>
           
@@ -177,7 +177,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
-                Categories
+                分类
               </a>
             </li>
           
@@ -189,7 +189,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                Tags
+                标签
               </a>
             </li>
           
@@ -201,7 +201,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
-                About
+                关于
               </a>
             </li>
           
@@ -213,7 +213,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/links/">
                 <i class="iconfont icon-link-fill"></i>
-                Links
+                友链
               </a>
             </li>
           
@@ -263,7 +263,7 @@
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
         <time datetime="2022-11-21 16:25" pubdate>
-          November 21, 2022 pm
+          2022年11月21日 下午
         </time>
       </span>
     
@@ -274,7 +274,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          852 words
+          857 字
         
       </span>
     
@@ -285,7 +285,7 @@
         
         
         
-          8 mins
+          8 分钟
         
       </span>
     
@@ -295,7 +295,7 @@
       
         <span id="busuanzi_container_page_pv" style="display: none">
           <i class="iconfont icon-eye" aria-hidden="true"></i>
-          <span id="busuanzi_value_page_pv"></span> views
+          <span id="busuanzi_value_page_pv"></span> 次
         </span>
         
       
@@ -336,7 +336,7 @@
               <p class="note note-info">
                 
                   
-                    Last updated on 4 months ago
+                    本文最后更新于：4 个月前
                   
                 
               </p>
@@ -345,26 +345,35 @@
               <div class="markdown-body">
                 
                 <h1 id="综合问题整理"><a href="#综合问题整理" class="headerlink" title="综合问题整理"></a>综合问题整理</h1><h2 id="数字信号处理"><a href="#数字信号处理" class="headerlink" title="数字信号处理"></a>数字信号处理</h2><h3 id="1-FS，FT，DTFT，DFS，DFT，FFT，Z变换，拉普拉斯变换的区别与联系？"><a href="#1-FS，FT，DTFT，DFS，DFT，FFT，Z变换，拉普拉斯变换的区别与联系？" class="headerlink" title="1.FS，FT，DTFT，DFS，DFT，FFT，Z变换，拉普拉斯变换的区别与联系？"></a>1.FS，FT，DTFT，DFS，DFT，FFT，Z变换，拉普拉斯变换的区别与联系？</h3><h3 id="2-FIR和IIR的区别，有哪些常见的滤波器？"><a href="#2-FIR和IIR的区别，有哪些常见的滤波器？" class="headerlink" title="2.FIR和IIR的区别，有哪些常见的滤波器？"></a>2.FIR和IIR的区别，有哪些常见的滤波器？</h3><ul>
-<li><strong>IIR：h（n）无限长，极点位于z平面任意位置，滤波器阶次低，非线性相位，递归结构，不能FFT计算，可用模拟滤波器设计，用于设计规格化的选频滤波器。常见有巴特沃斯、切比雪夫（I型，Ⅱ型）和椭圆滤波器</strong></li>
-<li><strong>FIR：h（n）有限长，极点固定在原点，滤波器阶次高，可严格的线性相位，一般采用非递归结构，可用FFT计算，设计借助于计算机，可设计各种幅频特性和相频特性的滤波器。常见有横截型、级联型、频率抽样型、快速卷积结构</strong></li>
+<li><p><strong>IIR：h（n）无限长，极点位于z平面任意位置，滤波器阶次低，非线性相位，递归结构，不能FFT计算，可用模拟滤波器设计，用于设计规格化的选频滤波器。常见有巴特沃斯、切比雪夫（I型，Ⅱ型）和椭圆滤波器</strong></p>
+</li>
+<li><p><strong>FIR：h（n）有限长，极点固定在原点，滤波器阶次高，可严格的线性相位，一般采用非递归结构，可用FFT计算，设计借助于计算机，可设计各种幅频特性和相频特性的滤波器。常见有横截型、级联型、频率抽样型、快速卷积结构</strong></p>
+</li>
 </ul>
 <h3 id="3-傅里叶变换的存在条件？"><a href="#3-傅里叶变换的存在条件？" class="headerlink" title="3.傅里叶变换的存在条件？"></a>3.傅里叶变换的存在条件？</h3><h3 id="4-FFT，IIFT加速原理？"><a href="#4-FFT，IIFT加速原理？" class="headerlink" title="4.FFT，IIFT加速原理？"></a>4.FFT，IIFT加速原理？</h3><h4 id="1-他们的蝶形结构？"><a href="#1-他们的蝶形结构？" class="headerlink" title="1.他们的蝶形结构？"></a>1.他们的蝶形结构？</h4><h4 id="2-各自的复杂度？"><a href="#2-各自的复杂度？" class="headerlink" title="2.各自的复杂度？"></a>2.各自的复杂度？</h4><h2 id="通信原理"><a href="#通信原理" class="headerlink" title="通信原理"></a>通信原理</h2><h3 id="1-通信系统的框架？"><a href="#1-通信系统的框架？" class="headerlink" title="1.通信系统的框架？"></a>1.通信系统的框架？</h3><h3 id="2-脉冲成型滤波器用在哪？"><a href="#2-脉冲成型滤波器用在哪？" class="headerlink" title="2.脉冲成型滤波器用在哪？"></a>2.脉冲成型滤波器用在哪？</h3><h3 id="3-FDM和TDM的比较？"><a href="#3-FDM和TDM的比较？" class="headerlink" title="3.FDM和TDM的比较？"></a>3.FDM和TDM的比较？</h3><h3 id="4-奈奎斯特采样定理？"><a href="#4-奈奎斯特采样定理？" class="headerlink" title="4.奈奎斯特采样定理？"></a>4.奈奎斯特采样定理？</h3><h3 id="5-信道容量意义和公式？"><a href="#5-信道容量意义和公式？" class="headerlink" title="5.信道容量意义和公式？"></a>5.信道容量意义和公式？</h3><h3 id="6-随机信号为什么使用功率谱不适用频谱？"><a href="#6-随机信号为什么使用功率谱不适用频谱？" class="headerlink" title="6.随机信号为什么使用功率谱不适用频谱？"></a>6.随机信号为什么使用功率谱不适用频谱？</h3><h3 id="7-什么是平稳信号，平稳随机过程，遍历性？"><a href="#7-什么是平稳信号，平稳随机过程，遍历性？" class="headerlink" title="7.什么是平稳信号，平稳随机过程，遍历性？"></a>7.什么是平稳信号，平稳随机过程，遍历性？</h3><h3 id="8-载波同步的方法？"><a href="#8-载波同步的方法？" class="headerlink" title="8.载波同步的方法？"></a>8.载波同步的方法？</h3><ul>
-<li>自同步（直接法）（平方变换法，平方环法，同相正交环法）</li>
-<li>外同步（插入导频法）</li>
+<li><p>自同步（直接法）（平方变换法，平方环法，同相正交环法）</p>
+</li>
+<li><p>外同步（插入导频法）</p>
+</li>
 </ul>
 <h3 id="9-2ASK、2FSK、2PSK，2DPSK带宽和误码率？"><a href="#9-2ASK、2FSK、2PSK，2DPSK带宽和误码率？" class="headerlink" title="9.2ASK、2FSK、2PSK，2DPSK带宽和误码率？"></a>9.2ASK、2FSK、2PSK，2DPSK带宽和误码率？</h3><ol>
-<li>带宽：2ASK：2fs; 2FSK: 2fs+|f1-F2|; 2PSK：2fs ；2DPSK：2fs</li>
-<li>误码率：<img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202307052235695.png" srcset="/img/loading.gif" lazyload alt="image.png|400"></li>
+<li><p>带宽：2ASK：2fs; 2FSK: 2fs+|f1-F2|; 2PSK：2fs ；2DPSK：2fs</p>
+</li>
+<li><p>误码率：<img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202307052235695.png" srcset="/img/loading.gif" lazyload alt="image.png|400"></p>
+</li>
 </ol>
 <h3 id="10-新型调制技术有哪些？"><a href="#10-新型调制技术有哪些？" class="headerlink" title="10.新型调制技术有哪些？"></a>10.新型调制技术有哪些？</h3><p>QAM，MSK，GMSK，OFDM等</p>
 <h3 id="11-QAM星型结构和方形结构区别？"><a href="#11-QAM星型结构和方形结构区别？" class="headerlink" title="11.QAM星型结构和方形结构区别？"></a>11.QAM星型结构和方形结构区别？</h3><p>星形结构振幅环和相位个数都少于方形结构，因此利于实现自动增益控制和载波相位追踪；但产生和接收更为复杂。</p>
 <h3 id="12-QAM-的产生方法？"><a href="#12-QAM-的产生方法？" class="headerlink" title="12.QAM 的产生方法？"></a>12.QAM 的产生方法？</h3><ul>
-<li>正交调幅法：MQAM 信号可由两路载波正交的\sqrt{M}ASK 信号叠加而成 <img src="file:///C:/Users/alleyf/AppData/Roaming/Typora/typora-user-images/image-20230705222131991.png?lastModify=1688567633" srcset="/img/loading.gif" lazyload alt="image-20230705222131991|400"></li>
-<li>复合相移法：用两路独立的 QPSK 信号叠加，即可形成16QAM 信号 <img src="file:///C:/Users/alleyf/AppData/Roaming/Typora/typora-user-images/image-20230705223012306.png?lastModify=1688567633" srcset="/img/loading.gif" lazyload alt="image-20230705223012306|400"><h3 id="13-MSK-特点和优势？"><a href="#13-MSK-特点和优势？" class="headerlink" title="13. MSK 特点和优势？"></a>13. MSK 特点和优势？</h3>优势：旁瓣衰减更快，对邻道干扰小<br>特点：包络恒定、相位连续、频差最小， 并且严格正交的2FSK（CPFSK）信号</li>
+<li><p>正交调幅法：MQAM 信号可由两路载波正交的\sqrt{M}ASK 信号叠加而成 <img src="file:///C:/Users/alleyf/AppData/Roaming/Typora/typora-user-images/image-20230705222131991.png?lastModify=1688567633" srcset="/img/loading.gif" lazyload alt="image-20230705222131991|400"></p>
+</li>
+<li><p>复合相移法：用两路独立的 QPSK 信号叠加，即可形成16QAM 信号 <img src="file:///C:/Users/alleyf/AppData/Roaming/Typora/typora-user-images/image-20230705223012306.png?lastModify=1688567633" srcset="/img/loading.gif" lazyload alt="image-20230705223012306|400"></p>
+</li>
 </ul>
+<h3 id="13-MSK-特点和优势？"><a href="#13-MSK-特点和优势？" class="headerlink" title="13. MSK 特点和优势？"></a>13. MSK 特点和优势？</h3><p>优势：旁瓣衰减更快，对邻道干扰小<br>特点：包络恒定、相位连续、频差最小， 并且严格正交的2FSK（CPFSK）信号</p>
 <h3 id="14-MSK-的最小频率间隔和载波频率及码元频率要求？"><a href="#14-MSK-的最小频率间隔和载波频率及码元频率要求？" class="headerlink" title="14. MSK 的最小频率间隔和载波频率及码元频率要求？"></a>14. MSK 的最小频率间隔和载波频率及码元频率要求？</h3><p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202307052250282.png" srcset="/img/loading.gif" lazyload alt="image.png|400"></p>
 <blockquote>
-<p>调制指数h=0.5；</p>
+<p>调制指数h&#x3D;0.5；</p>
 </blockquote>
 <h2 id="信号与系统"><a href="#信号与系统" class="headerlink" title="信号与系统"></a>信号与系统</h2><h2 id="电路原理"><a href="#电路原理" class="headerlink" title="电路原理"></a>电路原理</h2>
                 
@@ -417,30 +426,30 @@
     <div class="license-meta">
       
         <div class="license-meta-item">
-          <div>Author</div>
+          <div>作者</div>
           <div>alleyf</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
-          <div>Posted on</div>
-          <div>November 21, 2022</div>
+          <div>发布于</div>
+          <div>2022年11月21日</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
-          <div>Updated on</div>
-          <div>July 5, 2023</div>
+          <div>更新于</div>
+          <div>2023年7月5日</div>
         </div>
       
       <div class="license-meta-item">
-        <div>Licensed under</div>
+        <div>许可协议</div>
         <div>
           
             
             
               <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
                 <i class="iconfont icon-by"></i>
               </span>
               </a>
@@ -459,19 +468,19 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/11/8134dd087a1a.html" title="Embeded theory and appliment">
+                      <a href="/2022/12/98f47ed35125.html" title="Frequency——Analysis">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Embeded theory and appliment</span>
-                        <span class="visible-mobile">Previous</span>
+                        <span class="hidden-mobile">Frequency——Analysis</span>
+                        <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/11/aff38a7758c4.html" title="Web_Fast_Development">
-                        <span class="hidden-mobile">Web_Fast_Development</span>
-                        <span class="visible-mobile">Next</span>
+                      <a href="/2022/11/8134dd087a1a.html" title="Embeded theory and appliment">
+                        <span class="hidden-mobile">Embeded theory and appliment</span>
+                        <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -514,7 +523,7 @@
       
   <aside class="sidebar" style="margin-left: -1rem">
     <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div class="toc-body" id="toc-body"></div>
 </div>
 
@@ -575,7 +584,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -583,7 +592,7 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -611,16 +620,16 @@
   
     
       <span id="busuanzi_container_site_pv" style="display: none">
-        Views: 
+        总访问量 
         <span id="busuanzi_value_site_pv"></span>
-        
+         次
       </span>
     
     
       <span id="busuanzi_container_site_uv" style="display: none">
-        Visitors: 
+        总访客数 
         <span id="busuanzi_value_site_uv"></span>
-        
+         人
       </span>
     
     
@@ -823,7 +832,7 @@
   
 
   <noscript>
-    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
   </noscript>
-<!-- hexo injector body_end start --><script src="/assets/mmedia/mmedia-loader.js"></script><script src="/js/addMusic.js"></script><!-- hexo injector body_end end --></body>
+<!-- hexo injector body_end start --><script src="/assets/mmedia/mmedia-loader.js"></script><script src="/js/addMusic.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>

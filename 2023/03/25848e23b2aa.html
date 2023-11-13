@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="en" data-default-color-scheme=auto>
+<html lang="zh-CN" data-default-color-scheme=auto>
 
 
 
@@ -24,7 +24,7 @@
 <meta property="og:url" content="https://alleyf.github.io/2023/03/25848e23b2aa.html">
 <meta property="og:site_name" content="alleyf">
 <meta property="og:description" content="some overview about CV classical papers。">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308181911241.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308181930025.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308191508459.png">
@@ -137,7 +137,7 @@
 
 
   
-<!-- hexo injector head_end start --><script> let HEXO_MMEDIA_DATA = { js: [], css: [], aplayerData: [], metingData: [], artPlayerData: [], dplayerData: []}; </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="alleyf" type="application/atom+xml">
+<!-- hexo injector head_end start --><script> let HEXO_MMEDIA_DATA = { js: [], css: [], aplayerData: [], metingData: [], artPlayerData: [], dplayerData: []}; </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/atom.xml" title="alleyf" type="application/atom+xml">
 </head>
 
 
@@ -171,7 +171,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
-                Home
+                首页
               </a>
             </li>
           
@@ -183,7 +183,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                Archives
+                归档
               </a>
             </li>
           
@@ -195,7 +195,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
-                Categories
+                分类
               </a>
             </li>
           
@@ -207,7 +207,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                Tags
+                标签
               </a>
             </li>
           
@@ -219,7 +219,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
-                About
+                关于
               </a>
             </li>
           
@@ -231,7 +231,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/links/">
                 <i class="iconfont icon-link-fill"></i>
-                Links
+                友链
               </a>
             </li>
           
@@ -281,7 +281,7 @@
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
         <time datetime="2023-03-17 19:09" pubdate>
-          March 17, 2023 pm
+          2023年3月17日 晚上
         </time>
       </span>
     
@@ -292,7 +292,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          11k words
+          12k 字
         
       </span>
     
@@ -303,7 +303,7 @@
         
         
         
-          96 mins
+          97 分钟
         
       </span>
     
@@ -313,7 +313,7 @@
       
         <span id="busuanzi_container_page_pv" style="display: none">
           <i class="iconfont icon-eye" aria-hidden="true"></i>
-          <span id="busuanzi_value_page_pv"></span> views
+          <span id="busuanzi_value_page_pv"></span> 次
         </span>
         
       
@@ -354,7 +354,7 @@
               <p class="note note-info">
                 
                   
-                    Last updated on a month ago
+                    本文最后更新于：1 个月前
                   
                 
               </p>
@@ -364,10 +364,14 @@
                 
                 <h1 id="AlexNet"><a href="#AlexNet" class="headerlink" title="AlexNet"></a>AlexNet</h1><h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>alex 团队使用大规模深度卷积神经网络对 ImageNet 图像分类竞赛中的 120 万张高分辨率图像进行分类的工作。主要总结如下:</p>
 <ol>
-<li>构建了一个包含<strong>6000 万参数、65 万个神经元</strong>的大型卷积神经网络, 包含<strong>5 个卷积层、若干（3）最大池化层和 3 个全连接层</strong>。</li>
-<li>在 ImageNet 2010 比赛的数据集上, 该模型达到了<strong>top-1 错误率 37.5%, top-5 错误率 17.0%</strong>, 显著优于此前最佳结果。</li>
-<li>使用<strong>非饱和神经元（ReLU）和高效（并行）的 GPU</strong> 卷积实现加速了训练。使用了新的 <strong>dropout 正则化</strong>方法减少全连接层过拟合。</li>
-<li>在 ImageNet 2012 比赛中, 该模型的变体获得了 top-5 测试错误率 15.3%的获胜结果, 优于第二名的 26.2%。  </li>
+<li><p>构建了一个包含<strong>6000 万参数、65 万个神经元</strong>的大型卷积神经网络, 包含<strong>5 个卷积层、若干（3）最大池化层和 3 个全连接层</strong>。</p>
+</li>
+<li><p>在 ImageNet 2010 比赛的数据集上, 该模型达到了<strong>top-1 错误率 37.5%, top-5 错误率 17.0%</strong>, 显著优于此前最佳结果。</p>
+</li>
+<li><p>使用<strong>非饱和神经元（ReLU）和高效（并行）的 GPU</strong> 卷积实现加速了训练。使用了新的 <strong>dropout 正则化</strong>方法减少全连接层过拟合。</p>
+</li>
+<li><p>在 ImageNet 2012 比赛中, 该模型的变体获得了 top-5 测试错误率 15.3%的获胜结果, 优于第二名的 26.2%。</p>
+</li>
 </ol>
 <hr>
 <h2 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h2><ol>
@@ -419,7 +423,7 @@
 </li>
 </ol>
 <hr>
-<h4 id="2-3-Local-Response-Normalization"><a href="#2-3-Local-Response-Normalization" class="headerlink" title="2.3 Local Response Normalization"></a>2.3 Local Response Normalization</h4><p>局部正则化表达式：<br>$$b_{x,y}^{i}=a_{x,y}^{i}(k+ \alpha \sum <em>{j= \min(0,i-n/2)}^{min(N-1,i+n/2)}(a</em>{x,y}^{j})^{2})^{\beta}$$<br>参数：$k = 2, n = 5, α = 10−4, β = 0.75$ 均为超参数，N：层中内核总数，n：同一空间位置的 n 个“相邻”核，</p>
+<h4 id="2-3-Local-Response-Normalization"><a href="#2-3-Local-Response-Normalization" class="headerlink" title="2.3 Local Response Normalization"></a>2.3 Local Response Normalization</h4><p>局部正则化表达式：<br>$$b_{x,y}^{i}&#x3D;a_{x,y}^{i}(k+ \alpha \sum <em>{j&#x3D; \min(0,i-n&#x2F;2)}^{min(N-1,i+n&#x2F;2)}(a</em>{x,y}^{j})^{2})^{\beta}$$<br>参数：$k &#x3D; 2, n &#x3D; 5, α &#x3D; 10−4, β &#x3D; 0.75$ 均为超参数，N：层中内核总数，n：同一空间位置的 n 个“相邻”核，</p>
 <blockquote>
 <p>效果：该方案将 top-1 和 top-5 错误率分别降低了<strong>0.4%和 0.3%</strong></p>
 </blockquote>
@@ -431,8 +435,8 @@
 </li>
 <li><p>池化层可以看作是一个栅格, 每个池化单元之间间隔 s 像素, 并汇总一个大小为 z x z 的邻域。</p>
 <ul>
-<li>如果 <strong>s=z</strong>, 则为传统的非重叠池化。 </li>
-<li>如果 <strong>s&lt;z</strong>, 则为有重叠的池化, 该网络采用了 s=2, z=3 的重叠池化。</li>
+<li>如果 <strong>s&#x3D;z</strong>, 则为传统的非重叠池化。 </li>
+<li>如果 <strong>s&lt;z</strong>, 则为有重叠的池化, 该网络采用了 s&#x3D;2, z&#x3D;3 的重叠池化。</li>
 </ul>
 </li>
 <li><p>该方案将 top-1 和 top-5 错误率分别降低了**0.4%和 0.3%**。</p>
@@ -441,7 +445,7 @@
 </li>
 </ol>
 <blockquote>
-<p>与传统非重叠池化相比, 重叠池化层可以<strong>汇总有重叠的邻域</strong>, 往往可以<strong>提高准确率并减少过拟合</strong>。该网络采用了具体参数为 s=2, z=3 的重叠池化。</p>
+<p>与传统非重叠池化相比, 重叠池化层可以<strong>汇总有重叠的邻域</strong>, 往往可以<strong>提高准确率并减少过拟合</strong>。该网络采用了具体参数为 s&#x3D;2, z&#x3D;3 的重叠池化。</p>
 </blockquote>
 <hr>
 <h4 id="2-5-Overall-Architecture"><a href="#2-5-Overall-Architecture" class="headerlink" title="2.5 Overall Architecture"></a>2.5 Overall Architecture</h4><p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308181930025.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
@@ -547,7 +551,7 @@
 <li>提出了 11-19 层的 5 种配置进行比较</li>
 </ul>
 <h3 id="分类框架"><a href="#分类框架" class="headerlink" title="分类框架"></a>分类框架</h3><ul>
-<li>SGD 优化, momentum, dropout, batchsize=256</li>
+<li>SGD 优化, momentum, dropout, batchsize&#x3D;256</li>
 <li>先训练 11 层网络 A, 初始化更深网络部分层权重</li>
 <li>训练集数据增强: 随机裁剪, 翻转, 颜色抖动 </li>
 <li>测试时多尺度密集预测, 平均结果</li>
@@ -587,7 +591,7 @@
 </ol>
 </blockquote>
 <hr>
-<h2 id="重要概念"><a href="#重要概念" class="headerlink" title="重要概念"></a>重要概念</h2><h3 id="感受野"><a href="#感受野" class="headerlink" title="感受野"></a>感受野</h3><p><strong>感受野（感受野其实就是结果层一个神经元节点发生变动能影响多少个输入层神经元节点）</strong><br>计算公式：<br>$$feature_{i}=(feature_{i+1}-1)\times window_{-}strides+kernel_{-}size$$<br>$f_i$ 是第 i 层感受野，times 为第 i 步的步长，kernel_size 为卷积核或池化核大小。<br><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308191524259.png" srcset="/img/loading.gif" lazyload alt="image.png|450"></p>
+<h2 id="重要概念"><a href="#重要概念" class="headerlink" title="重要概念"></a>重要概念</h2><h3 id="感受野"><a href="#感受野" class="headerlink" title="感受野"></a>感受野</h3><p><strong>感受野（感受野其实就是结果层一个神经元节点发生变动能影响多少个输入层神经元节点）</strong><br>计算公式：<br>$$feature_{i}&#x3D;(feature_{i+1}-1)\times window_{-}strides+kernel_{-}size$$<br>$f_i$ 是第 i 层感受野，times 为第 i 步的步长，kernel_size 为卷积核或池化核大小。<br><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308191524259.png" srcset="/img/loading.gif" lazyload alt="image.png|450"></p>
 <blockquote>
 <ul>
 <li>感受野决定了神经网络能“看到”输入图像的哪一部分。每个神经元只连接到输入图像的一小块区域, 这块区域就是这个神经元的感受野。</li>
@@ -647,13 +651,13 @@
 <p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308251448902.png" srcset="/img/loading.gif" lazyload alt="image.png|250"><br>模型参数如下图所示：</p>
 <p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308251449022.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <hr>
-<h2 id="实验-2"><a href="#实验-2" class="headerlink" title="实验"></a>实验</h2><h3 id="训练方法-Training-Method"><a href="#训练方法-Training-Method" class="headerlink" title="训练方法 (Training Method)"></a>训练方法 (Training Method)</h3><h4 id="超参数设置"><a href="#超参数设置" class="headerlink" title="超参数设置"></a>超参数设置</h4><p>dropout：0.7 SGDM：momentum=0.9 learning rate：decreasing learning rate by 4% every 8 epoch。</p>
+<h2 id="实验-2"><a href="#实验-2" class="headerlink" title="实验"></a>实验</h2><h3 id="训练方法-Training-Method"><a href="#训练方法-Training-Method" class="headerlink" title="训练方法 (Training Method)"></a>训练方法 (Training Method)</h3><h4 id="超参数设置"><a href="#超参数设置" class="headerlink" title="超参数设置"></a>超参数设置</h4><p>dropout：0.7 SGDM：momentum&#x3D;0.9 learning rate：decreasing learning rate by 4% every 8 epoch。</p>
 <h3 id="模型集成"><a href="#模型集成" class="headerlink" title="模型集成"></a>模型集成</h3><h4 id="训练阶段"><a href="#训练阶段" class="headerlink" title="训练阶段"></a>训练阶段</h4><p>作者训练了 7 个模型，这七个模型有相同的学习率策略，模型结构，初始化权重（由于作者的疏忽）。不同点： 根据不同的图像采样，随机的图像输入顺序。</p>
 <h4 id="预测阶段"><a href="#预测阶段" class="headerlink" title="预测阶段"></a>预测阶段</h4><ol>
 <li>把图像根据短边 resize 四个尺寸，分别为 256、288，320、352。</li>
 <li>每个尺寸在根据左中右，上中下分别裁剪出三个小图。</li>
 <li>把每张小图取四个角和中央，然后 resize 224 * 224。</li>
-<li>然后每张图做一个镜像操作。根据上述操作，每张图可以变成 4 * 3 * 6 * 2 = 144 张，然后对结果取均值。</li>
+<li>然后每张图做一个镜像操作。根据上述操作，每张图可以变成 4 * 3 * 6 * 2 &#x3D; 144 张，然后对结果取均值。</li>
 </ol>
 <p><img src="https://pic2.zhimg.com/80/v2-1e5a618c963df39db5d6ce274adf4619_1440w.webp" srcset="/img/loading.gif" lazyload></p>
 <hr>
@@ -662,7 +666,7 @@
 </blockquote>
 <p><img src="https://img-blog.csdnimg.cn/20200429112707888.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br><strong>多个尺寸上进行卷积再聚合</strong><br>上图可以看到对输入做了 4 个分支，分别用不同尺寸的 filter 进行卷积或池化，最后再在特征维度上拼接到一起。这种全新的结构有什么好处呢？Szegedy 从多个角度进行了解释：<br><strong>解释 1</strong>：在直观感觉上在<strong>多个尺度上同时进行卷积，能提取到不同尺度的特征</strong>。特征更为丰富也意味着最后分类判断时更加准确。<br><strong>解释 2</strong>：利用<strong>稀疏矩阵分解成密集矩阵</strong>计算的原理来<strong>加快收敛速度</strong>。<br>举个例子下图左侧是个稀疏矩阵（很多元素都为 0，不均匀分布在矩阵中），和一个 2 x 2 的矩阵进行卷积，需要对稀疏矩阵中的每一个元素进行计算；如果像右图那样把稀疏矩阵分解成 2 个子密集矩阵，再和 2 x 2 矩阵进行卷积，稀疏矩阵中 0 较多的区域就可以不用计算，计算量就大大降低。<strong>这个原理应用到 inception 上就是要在特征维度上进行分解！</strong><br>传统的卷积层的输入数据只和一种尺度（比如 3 x 3）的卷积核进行卷积，输出固定维度（比如 256 个特征）的数据，所有 256 个输出特征基本上是均匀分布在 3 x 3 尺度范围上，这可以理解成输出了一个稀疏分布的特征集；而 inception 模块在多个尺度上提取特征（比如 1 x 1，3 x 3，5 x 5），输出的 256 个特征就不再是均匀分布，而是相关性强的特征聚集在一起（比如 1 x 1 的的 96 个特征聚集在一起，3 x 3 的 96 个特征聚集在一起，5 x 5 的 64 个特征聚集在一起），这可以理解成多个密集分布的子特征集。这样的特征集中因为相关性较强的特征聚集在了一起，不相关的非关键特征就被弱化，同样是输出 256 个特征，inception 方法输出的特征“冗余”的信息较少。用这样的“纯”的特征集层层传递最后作为反向计算的输入，自然收敛的速度更快。</p>
 <p><img src="https://img-blog.csdnimg.cn/20200429114501229.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
-<p><strong>解释 3</strong>：Hebbin 赫布原理。<br>Hebbin 原理是神经科学上的一个理论，解释了在学习的过程中脑中的神经元所发生的变化，用一句话概括就是 fire togethter, wire together。赫布认为“两个神经元或者神经元系统，如果总是同时兴奋，就会形成一种‘组合’，其中一个神经元的兴奋会促进另一个的兴奋”。比如狗看到肉会流口水，反复刺激后，脑中识别肉的神经元会和掌管唾液分泌的神经元会相互促进，“缠绕”在一起，以后再看到肉就会更快流出口水。用在 inception 结构中就是要把相关性强的特征汇聚到一起。这有点类似上面的解释 2，把 1 x 1，3 x 3，5 x 5 的特征分开。因为训练收敛的最终目的就是要提取出独立的特征，所以预先把相关性强的特征汇聚，就能起到加速收敛的作用。<br>在 inception 模块中有一个分支使用了 max pooling，作者认为 pooling 也能起到提取特征的作用，所以也加入模块中。注意这个 pooling 的 stride=1，pooling 后没有减少数据的尺寸</p>
+<p><strong>解释 3</strong>：Hebbin 赫布原理。<br>Hebbin 原理是神经科学上的一个理论，解释了在学习的过程中脑中的神经元所发生的变化，用一句话概括就是 fire togethter, wire together。赫布认为“两个神经元或者神经元系统，如果总是同时兴奋，就会形成一种‘组合’，其中一个神经元的兴奋会促进另一个的兴奋”。比如狗看到肉会流口水，反复刺激后，脑中识别肉的神经元会和掌管唾液分泌的神经元会相互促进，“缠绕”在一起，以后再看到肉就会更快流出口水。用在 inception 结构中就是要把相关性强的特征汇聚到一起。这有点类似上面的解释 2，把 1 x 1，3 x 3，5 x 5 的特征分开。因为训练收敛的最终目的就是要提取出独立的特征，所以预先把相关性强的特征汇聚，就能起到加速收敛的作用。<br>在 inception 模块中有一个分支使用了 max pooling，作者认为 pooling 也能起到提取特征的作用，所以也加入模块中。注意这个 pooling 的 stride&#x3D;1，pooling 后没有减少数据的尺寸</p>
 <hr>
 <h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ol>
 <li><a target="_blank" rel="noopener" href="http://www.taodudu.cc/news/show-1217904.html?action=onClick">GoogLeNet——CNN经典网络模型详解（pytorch实现）</a></li>
@@ -675,15 +679,15 @@
 <hr>
 <h2 id="背景介绍（相关研究）"><a href="#背景介绍（相关研究）" class="headerlink" title="背景介绍（相关研究）"></a>背景介绍（相关研究）</h2><p>在近些年中，深度网络逐渐往更深的方向发展，但是更深的网络训练更加困难，因为梯度消失和梯度弥散的问题会导致网络难以收敛。之前的研究提出了一些方法，如使用更好的初始化方法、使用更好的激活函数等，但是这些方法并不能完全解决问题。本文提出了一种新的方法，即残差学习框架，通过引入残差块来解决梯度消失和梯度弥散的问题。<br><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308211604278.png" srcset="/img/loading.gif" lazyload alt="image.png|500"><br><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308211613960.png" srcset="/img/loading.gif" lazyload alt="image.png|500"></p>
 <hr>
-<h2 id="方法-2"><a href="#方法-2" class="headerlink" title="方法"></a>方法</h2><h3 id="Identity-Mapping-by-Shortcuts"><a href="#Identity-Mapping-by-Shortcuts" class="headerlink" title="Identity Mapping by Shortcuts"></a>Identity Mapping by Shortcuts</h3><p>$$y=F(x, \left{ W_{i}\right})+x$$</p>
+<h2 id="方法-2"><a href="#方法-2" class="headerlink" title="方法"></a>方法</h2><h3 id="Identity-Mapping-by-Shortcuts"><a href="#Identity-Mapping-by-Shortcuts" class="headerlink" title="Identity Mapping by Shortcuts"></a>Identity Mapping by Shortcuts</h3><p>$$y&#x3D;F(x, \left{ W_{i}\right})+x$$</p>
 <hr>
-<p>$$y=F(x, \left{ W_{i}\right})+W_{s}x$$</p>
+<p>$$y&#x3D;F(x, \left{ W_{i}\right})+W_{s}x$$</p>
 <blockquote>
 <p>若残差块输入输出维度一致，则直接短接即可；<br>   若唯独不一致，则对输入进行降维增维处理将输入输出维度统一。</p>
 </blockquote>
 <h3 id="网络架构"><a href="#网络架构" class="headerlink" title="网络架构"></a>网络架构</h3><p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308211621589.png" srcset="/img/loading.gif" lazyload alt="image.png|450"></p>
 <blockquote>
-<p>实现为等维直接短接，虚线为异维进行 A (0 填充) /B（投影快捷映射）</p>
+<p>实现为等维直接短接，虚线为异维进行 A (0 填充) &#x2F;B（投影快捷映射）</p>
 </blockquote>
 <hr>
 <h2 id="实验-3"><a href="#实验-3" class="headerlink" title="实验"></a>实验</h2><h3 id="ImageNet"><a href="#ImageNet" class="headerlink" title="ImageNet"></a>ImageNet</h3><p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308211631231.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
@@ -691,13 +695,13 @@
 <hr>
 <h2 id="重点总结-2"><a href="#重点总结-2" class="headerlink" title="重点总结"></a>重点总结</h2><h3 id="1-残差块"><a href="#1-残差块" class="headerlink" title="1. 残差块"></a>1. 残差块</h3><p>作者发现，当加深模型深度时，模型的测试效果没有变好，反而变差。不符合所想的结果，因为浅层的网络应该是深层网络的一个子集，深层网络不应该比浅层网络表现的不好。然而实验的结果表明，当在浅层网络后加恒等映射层，深层网络的效果反而没有浅层网络好。为什么会出现这种原因呢？作者猜想，可能是因为深层网络难以训练。那么为什么会难以训练呢？可能是因为深层网络的最后面的层难以学习到恒等映射，因为浅层网络已经有很好的表现效果了，最后面的层如果找不到更好的表示效果就需要学习恒等映射，而让网络去学习恒等映射是很困难的。</p>
 <blockquote>
-<p>为了解决网络学习恒等映射困难的问题，作者就想，既然学习恒等映射困难，我们就让网络学习 $f(x)=0$ 这个映射。也就引出了参差学习块。</p>
+<p>为了解决网络学习恒等映射困难的问题，作者就想，既然学习恒等映射困难，我们就让网络学习 $f(x)&#x3D;0$ 这个映射。也就引出了参差学习块。</p>
 </blockquote>
-<p><img src="https://img-blog.csdnimg.cn/20200221174711860.png" srcset="/img/loading.gif" lazyload alt="20200221174711860.png|400"><br>正常网络的输入是 x ，输出是 f (x)，如果我们要学习恒等映射，也就是让网络的部分学会 f (x)=x，即图中 f (x) 的部分学会一个 f (x) = x 的映射关系，但是我们说直接让网络去学习恒等映射很困难，怎么办？</p>
+<p><img src="https://img-blog.csdnimg.cn/20200221174711860.png" srcset="/img/loading.gif" lazyload alt="20200221174711860.png|400"><br>正常网络的输入是 x ，输出是 f (x)，如果我们要学习恒等映射，也就是让网络的部分学会 f (x)&#x3D;x，即图中 f (x) 的部分学会一个 f (x) &#x3D; x 的映射关系，但是我们说直接让网络去学习恒等映射很困难，怎么办？</p>
 <blockquote>
-<p>假设网络的输出是 h (x)，那么不加 shortcut connection 的网络的输出就是 h (x)=f (x)=x，为了让网络更好拟合恒等映射，我们让 h (x)=f (x)+x，那么我们看网络要学习的映射 f (x)，就变为了 f (x)=h (x)−x，这时我们发现，如果直接让 f (x)=0，那么 h (x)=x，也就是说我们让网络输出的结果和恒等映射相同，而网络只学习了 f (x)=0 这个映射，这个映射要比 f (x)=x 恒等映射更好学习，即模型会更好训练，而不受深层的影响，因为深层中多余的层我们可以都学恒等映射，最起码结果不会比浅层的结果差。然而实验结果表明，加上 shortcut connection 的深层网络比不加 shortcut connection 的浅层网络效果还好，这也就说明了深层网络所能提取的信息更高，抽象能力更强。</p>
+<p>假设网络的输出是 h (x)，那么不加 shortcut connection 的网络的输出就是 h (x)&#x3D;f (x)&#x3D;x，为了让网络更好拟合恒等映射，我们让 h (x)&#x3D;f (x)+x，那么我们看网络要学习的映射 f (x)，就变为了 f (x)&#x3D;h (x)−x，这时我们发现，如果直接让 f (x)&#x3D;0，那么 h (x)&#x3D;x，也就是说我们让网络输出的结果和恒等映射相同，而网络只学习了 f (x)&#x3D;0 这个映射，这个映射要比 f (x)&#x3D;x 恒等映射更好学习，即模型会更好训练，而不受深层的影响，因为深层中多余的层我们可以都学恒等映射，最起码结果不会比浅层的结果差。然而实验结果表明，加上 shortcut connection 的深层网络比不加 shortcut connection 的浅层网络效果还好，这也就说明了深层网络所能提取的信息更高，抽象能力更强。</p>
 </blockquote>
-<h3 id="2-恒等快捷映射和投影快捷映射"><a href="#2-恒等快捷映射和投影快捷映射" class="headerlink" title="2. 恒等快捷映射和投影快捷映射"></a>2. 恒等快捷映射和投影快捷映射</h3><p>当 shortcut 的输入通道数和输出通道数相同时，我们可以使用恒等映射即 $f (x)=x$，也就是将 shortcut 的输出直接加上输入即可（恒等快捷映射）。<br>但是，当 shortcut connection 的输入不等于输出的时候怎么办？（两种方法）</p>
+<h3 id="2-恒等快捷映射和投影快捷映射"><a href="#2-恒等快捷映射和投影快捷映射" class="headerlink" title="2. 恒等快捷映射和投影快捷映射"></a>2. 恒等快捷映射和投影快捷映射</h3><p>当 shortcut 的输入通道数和输出通道数相同时，我们可以使用恒等映射即 $f (x)&#x3D;x$，也就是将 shortcut 的输出直接加上输入即可（恒等快捷映射）。<br>但是，当 shortcut connection 的输入不等于输出的时候怎么办？（两种方法）</p>
 <blockquote>
 <p>① 将输入数据扩充维度，多余的维度的数据用 0 填充。<br>② 使用 1 x 1 的卷积扩充维度（投影快捷映射）</p>
 <p>我们实际上有三种方式组合：<br>① 零填充快捷连接用来增加维度，所有的快捷连接是没有参数的。<br>② 投影快捷连接用来增加维度，其它的快捷连接是恒等的。<br>③ 所有的快捷连接都是投影。<br>以上三种情况都比没有加 shortcut connection 的好，效果 ③ &gt; ② &gt; ①，但是 ③ 的计算量太大，提升的效果也不大，所以我们一般不用，我们一般用的最多的是 ②。</p>
@@ -706,11 +710,12 @@
 <ul>
 <li>当输入和输出的维度不匹配时，使用一个额外的卷积层来进行维度匹配。</li>
 <li>可以用于解决深度残差网络中的维度不匹配问题，从而提高网络的性能。</li>
-<li>在 ResNet 中，投影快捷映射是指使用一个 1 x 1 的卷积层来进行维度匹配。<h3 id="3-Deeper-Bottleneck-Architectures"><a href="#3-Deeper-Bottleneck-Architectures" class="headerlink" title="3. Deeper Bottleneck Architectures"></a>3. Deeper Bottleneck Architectures</h3><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308211610964.png" srcset="/img/loading.gif" lazyload alt="image.png"><blockquote>
-<p>先用 1 x 1 降维，3 x 3 进行卷积，再用 1 x 1 进行升维。<br> 事实上，deeper 左边这种结构也能获得很好的效果。那么为什么要用右边这种结构呢？ 主要是源自于<strong>practical</strong>，因为<strong>左边</strong>这种结构在<strong>训练时间上要比右边结构长的多</strong>。</p>
-</blockquote>
-</li>
+<li>在 ResNet 中，投影快捷映射是指使用一个 1 x 1 的卷积层来进行维度匹配。</li>
 </ul>
+<h3 id="3-Deeper-Bottleneck-Architectures"><a href="#3-Deeper-Bottleneck-Architectures" class="headerlink" title="3. Deeper Bottleneck Architectures"></a>3. Deeper Bottleneck Architectures</h3><p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308211610964.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<blockquote>
+<p>先用 1 x 1 降维，3 x 3 进行卷积，再用 1 x 1 进行升维。<br>   事实上，deeper 左边这种结构也能获得很好的效果。那么为什么要用右边这种结构呢？ 主要是源自于<strong>practical</strong>，因为<strong>左边</strong>这种结构在<strong>训练时间上要比右边结构长的多</strong>。</p>
+</blockquote>
 <p align="justify">当换成上图右边这种 Bottleneck 结构的时候，可以发现 152 层的 ResNet 竟然比 VGG 16/19 都要少的复杂度</p>
 
                 
@@ -763,30 +768,30 @@
     <div class="license-meta">
       
         <div class="license-meta-item">
-          <div>Author</div>
+          <div>作者</div>
           <div>alleyf</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
-          <div>Posted on</div>
-          <div>March 17, 2023</div>
+          <div>发布于</div>
+          <div>2023年3月17日</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
-          <div>Updated on</div>
-          <div>October 5, 2023</div>
+          <div>更新于</div>
+          <div>2023年10月5日</div>
         </div>
       
       <div class="license-meta-item">
-        <div>Licensed under</div>
+        <div>许可协议</div>
         <div>
           
             
             
               <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
                 <i class="iconfont icon-by"></i>
               </span>
               </a>
@@ -808,16 +813,16 @@
                       <a href="/2023/03/cc1560495a8d.html" title="计算机视觉概述">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">计算机视觉概述</span>
-                        <span class="visible-mobile">Previous</span>
+                        <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/03/56d5f0383564.html" title="algorithm">
-                        <span class="hidden-mobile">algorithm</span>
-                        <span class="visible-mobile">Next</span>
+                      <a href="/2023/03/2e76a383274a.html" title="Dateframe—Algorithm">
+                        <span class="hidden-mobile">Dateframe—Algorithm</span>
+                        <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -860,7 +865,7 @@
       
   <aside class="sidebar" style="margin-left: -1rem">
     <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div class="toc-body" id="toc-body"></div>
 </div>
 
@@ -921,7 +926,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -929,7 +934,7 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -957,16 +962,16 @@
   
     
       <span id="busuanzi_container_site_pv" style="display: none">
-        Views: 
+        总访问量 
         <span id="busuanzi_value_site_pv"></span>
-        
+         次
       </span>
     
     
       <span id="busuanzi_container_site_uv" style="display: none">
-        Visitors: 
+        总访客数 
         <span id="busuanzi_value_site_uv"></span>
-        
+         人
       </span>
     
     
@@ -1169,7 +1174,7 @@
   
 
   <noscript>
-    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
   </noscript>
-<!-- hexo injector body_end start --><script src="/assets/mmedia/mmedia-loader.js"></script><script src="/js/addMusic.js"></script><!-- hexo injector body_end end --></body>
+<!-- hexo injector body_end start --><script src="/assets/mmedia/mmedia-loader.js"></script><script src="/js/addMusic.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>

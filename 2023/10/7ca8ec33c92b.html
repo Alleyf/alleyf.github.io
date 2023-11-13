@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="en" data-default-color-scheme=auto>
+<html lang="zh-CN" data-default-color-scheme=auto>
 
 
 
@@ -24,7 +24,7 @@
 <meta property="og:url" content="https://alleyf.github.io/2023/10/7ca8ec33c92b.html">
 <meta property="og:site_name" content="alleyf">
 <meta property="og:description" content="it is some basic usage of SpringBoot .">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://s2.loli.net/2023/07/10/VBkHuWr83jzpnXe.png">
 <meta property="og:image" content="https://s2.loli.net/2023/07/10/qnjY5MdRrOemFaQ.png">
 <meta property="og:image" content="https://s2.loli.net/2022/11/22/hDGo7m9uBlgVn5A.png">
@@ -227,7 +227,7 @@
 
 
   
-<!-- hexo injector head_end start --><script> let HEXO_MMEDIA_DATA = { js: [], css: [], aplayerData: [], metingData: [], artPlayerData: [], dplayerData: []}; </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="alleyf" type="application/atom+xml">
+<!-- hexo injector head_end start --><script> let HEXO_MMEDIA_DATA = { js: [], css: [], aplayerData: [], metingData: [], artPlayerData: [], dplayerData: []}; </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/atom.xml" title="alleyf" type="application/atom+xml">
 </head>
 
 
@@ -261,7 +261,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
-                Home
+                首页
               </a>
             </li>
           
@@ -273,7 +273,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                Archives
+                归档
               </a>
             </li>
           
@@ -285,7 +285,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
-                Categories
+                分类
               </a>
             </li>
           
@@ -297,7 +297,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                Tags
+                标签
               </a>
             </li>
           
@@ -309,7 +309,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
-                About
+                关于
               </a>
             </li>
           
@@ -321,7 +321,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/links/">
                 <i class="iconfont icon-link-fill"></i>
-                Links
+                友链
               </a>
             </li>
           
@@ -371,7 +371,7 @@
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
         <time datetime="2023-10-31 15:04" pubdate>
-          October 31, 2023 pm
+          2023年10月31日 下午
         </time>
       </span>
     
@@ -382,7 +382,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          118k words
+          118k 字
         
       </span>
     
@@ -393,7 +393,7 @@
         
         
         
-          986 mins
+          988 分钟
         
       </span>
     
@@ -403,7 +403,7 @@
       
         <span id="busuanzi_container_page_pv" style="display: none">
           <i class="iconfont icon-eye" aria-hidden="true"></i>
-          <span id="busuanzi_value_page_pv"></span> views
+          <span id="busuanzi_value_page_pv"></span> 次
         </span>
         
       
@@ -444,7 +444,7 @@
               <p class="note note-info">
                 
                   
-                    Last updated on 2 days ago
+                    本文最后更新于：2 天前
                   
                 
               </p>
@@ -520,7 +520,7 @@
 <td>蓝桥杯</td>
 <td>⭐️⭐️⭐️</td>
 <td>⭐️⭐️⭐️</td>
-<td>蓝桥杯建议参加前端/Java组，稍微简单一点，去C++就是找死</td>
+<td>蓝桥杯建议参加前端&#x2F;Java组，稍微简单一点，去C++就是找死</td>
 </tr>
 <tr>
 <td>CCPC 天梯赛</td>
@@ -585,7 +585,7 @@
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@ResponseBody</span><br><span class="hljs-meta">@GetMapping(&quot;/&quot;)</span><br><span class="hljs-keyword">public</span> Student <span class="hljs-title function_">index</span><span class="hljs-params">()</span>&#123;<br>    <span class="hljs-type">Student</span> <span class="hljs-variable">student</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Student</span>();<br>    student.setName(<span class="hljs-string">&quot;小明&quot;</span>);<br>    student.setSex(<span class="hljs-string">&quot;男&quot;</span>);<br>    student.setSid(<span class="hljs-number">10</span>);<br>    <span class="hljs-keyword">return</span> student;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>![image-20230715171140388](/Users/nagocoler/Library/Application Support/typora-user-images/image-20230715171140388.png)</p>
+<p>![image-20230715171140388](&#x2F;Users&#x2F;nagocoler&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20230715171140388.png)</p>
 <p>最后浏览器能够直接得到<code>application/json</code>的响应数据，就是这么方便，这都得归功于SpringBoot对应的start帮助我们自动将处理JSON数据的Converter进行了配置，我们不需要再单独去配置Converter了。不过SpringBoot官方默认使用的是<code>Jackson</code>和<code>Gson</code> 的HttpMessageConverter来进行配置，不是我们之前教程中使用的FastJSON框架。</p>
 <p>我们最后来看看这个Start包含了哪些依赖：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>3.1.1<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>compile<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-json<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>3.1.1<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>compile<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-tomcat<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>3.1.1<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>compile<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-web<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>6.0.10<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>compile<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-webmvc<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>6.0.10<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>compile<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span><br></code></pre></td></tr></table></figure>
@@ -867,11 +867,11 @@
 <li>SMTP协议（主要用于发送邮件 Simple Mail Transfer Protocol）</li>
 <li>POP3协议（主要用于接收邮件 Post Office Protocol 3）</li>
 </ol>
-<p>整个发送/接收流程大致如下：</p>
+<p>整个发送&#x2F;接收流程大致如下：</p>
 <p><img src="https://s2.loli.net/2023/07/16/sOyWQguFonJKXNw.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p>实际上每个邮箱服务器都有一个smtp发送服务器和pop3接收服务器，比如要从QQ邮箱发送邮件到163邮箱，那么我们只需要通过QQ邮箱客户端告知QQ邮箱的smtp服务器我们需要发送邮件，以及邮件的相关信息，然后QQ邮箱的smtp服务器就会帮助我们发送到163邮箱的pop3服务器上，163邮箱会通过163邮箱客户端告知对应用户收到一封新邮件。</p>
 <p>而我们如果想要实现给别人发送邮件，那么就需要连接到对应电子邮箱的smtp服务器上，并告知其我们要发送邮件。而SpringBoot已经帮助我们将最基本的底层通信全部实现了，我们只需要关心smtp服务器的地址以及我们要发送的邮件长啥样即可。</p>
-<p>这里以163邮箱 <a target="_blank" rel="noopener" href="https://mail.163.com/">https://mail.163.com</a> 为例，我们需要在配置文件中告诉SpringBootMail我们的smtp服务器的地址以及你的邮箱账号和密码，首先我们要去设置中开启smtp/pop3服务才可以，开启后会得到一个随机生成的密钥，这个就是我们的密码。</p>
+<p>这里以163邮箱 <a target="_blank" rel="noopener" href="https://mail.163.com/">https://mail.163.com</a> 为例，我们需要在配置文件中告诉SpringBootMail我们的smtp服务器的地址以及你的邮箱账号和密码，首先我们要去设置中开启smtp&#x2F;pop3服务才可以，开启后会得到一个随机生成的密钥，这个就是我们的密码。</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">mail:</span><br>      <span class="hljs-comment"># 163邮箱的地址为smtp.163.com，直接填写即可</span><br>    <span class="hljs-attr">host:</span> <span class="hljs-string">smtp.163.com/smtp.qq.com</span><br>    <span class="hljs-comment"># 你申请的163邮箱</span><br>    <span class="hljs-attr">username:</span> <span class="hljs-string">javastudy111@163.com/xxx@qq.com</span><br>    <span class="hljs-comment"># 注意密码是在开启smtp/pop3时自动生成的，记得保存一下，不然就找不到了</span><br>    <span class="hljs-attr">password:</span> <span class="hljs-string">AZJTOAWZESLMHTNI</span><br></code></pre></td></tr></table></figure>
 
 <p>配置完成后，接着我们来进行一下测试：</p>
@@ -1076,22 +1076,22 @@
 <tbody><tr>
 <td align="center"><em>@Tag</em></td>
 <td>为RestController添加综合信息</td>
-<td>@Tag(name = “账号验证相关接口”, description = “包括用户登陆、注册、验证码请求等等！”)</td>
+<td>@Tag(name &#x3D; “账号验证相关接口”, description &#x3D; “包括用户登陆、注册、验证码请求等等！”)</td>
 </tr>
 <tr>
 <td align="center"><em>@Operation</em></td>
 <td>为具体某个接口添加注释信息</td>
-<td>@Operation(summary = “请求用户数据测试接口”, description = “根据用户id请求获取用户”)   //接口功能描述</td>
+<td>@Operation(summary &#x3D; “请求用户数据测试接口”, description &#x3D; “根据用户id请求获取用户”)   &#x2F;&#x2F;接口功能描述</td>
 </tr>
 <tr>
 <td align="center"><em>@ApiResponses</em></td>
 <td>为接口返回状态码添加描述</td>
-<td>@ApiResponses({@ApiResponse(responseCode = “200”, description = “测试成功”),@ApiResponse(responseCode = “500”, description = “测试失败”)   //不同返回状态码描述})</td>
+<td>@ApiResponses({@ApiResponse(responseCode &#x3D; “200”, description &#x3D; “测试成功”),@ApiResponse(responseCode &#x3D; “500”, description &#x3D; “测试失败”)   &#x2F;&#x2F;不同返回状态码描述})</td>
 </tr>
 <tr>
 <td align="center"><em>@Parameter</em></td>
 <td>为接口参数添加示例描述</td>
-<td>@Parameter(description = “测试用户id数据”, example = “1”)</td>
+<td>@Parameter(description &#x3D; “测试用户id数据”, example &#x3D; “1”)</td>
 </tr>
 <tr>
 <td align="center"><em>@Hidden</em></td>
@@ -1101,7 +1101,7 @@
 <tr>
 <td align="center"><em>Schema</em></td>
 <td>对实体类添加描述（包括字段）</td>
-<td>@Schema(description = “用户信息实体类”)；@Schema(description = “用户名”)</td>
+<td>@Schema(description &#x3D; “用户信息实体类”)；@Schema(description &#x3D; “用户名”)</td>
 </tr>
 </tbody></table>
 <h3 id="项目运行监控（选学）"><a href="#项目运行监控（选学）" class="headerlink" title="项目运行监控（选学）"></a>项目运行监控（选学）</h3><p>我们的项目开发完成之后，肯定是需要上线运行的，不过在项目的运行过程中，我们可能需要对其进行监控，从而实时观察其运行状态，并在发生问题时做出对应调整，因此，集成项目运行监控就很有必要了。</p>
@@ -1155,7 +1155,7 @@
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">static</span> WebApplicationType <span class="hljs-title function_">deduceFromClasspath</span><span class="hljs-params">()</span> &#123;<br>  	<span class="hljs-comment">//这里的ClassUtils.isPresent是通过反射机制判断类路径下是否存在对应的依赖</span><br>		<span class="hljs-keyword">if</span> (ClassUtils.isPresent(WEBFLUX_INDICATOR_CLASS, <span class="hljs-literal">null</span>) &amp;&amp; !ClassUtils.isPresent(WEBMVC_INDICATOR_CLASS, <span class="hljs-literal">null</span>)<br>				&amp;&amp; !ClassUtils.isPresent(JERSEY_INDICATOR_CLASS, <span class="hljs-literal">null</span>)) &#123;<br>			<span class="hljs-keyword">return</span> WebApplicationType.REACTIVE;   <span class="hljs-comment">//判断出存在WebFlux依赖且其他不存在，返回WebFlux类型</span><br>		&#125;<br>  	<span class="hljs-comment">//如果不包含WebFlux相关依赖，就找找有没有Servlet相关依赖，只要发现缺失直接返回NONE普通类型</span><br>		<span class="hljs-keyword">for</span> (String className : SERVLET_INDICATOR_CLASSES) &#123;<br>			<span class="hljs-keyword">if</span> (!ClassUtils.isPresent(className, <span class="hljs-literal">null</span>)) &#123;<br>				<span class="hljs-keyword">return</span> WebApplicationType.NONE;<br>			&#125;<br>		&#125;<br>		<span class="hljs-keyword">return</span> WebApplicationType.SERVLET; <span class="hljs-comment">//否则就是Servlet环境了，返回SERVLET类型（也就是我们之前用到的）</span><br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>通过阅读上面的源码，我们发现<code>getSpringFactoriesInstances</code>这个方法可以一次性获取指定类型已注册的实现类，我们先来研究一下它是怎么做到的。这里就要提到<code>spring.factories</code>文件了，它是 Spring 仿造Java SPI实现的一种类加载机制。它在 META-INF/spring.factories 文件中配置接口的实现类名称，然后在程序中读取这些配置文件并实例化。这种自定义的SPI机制是 Spring Boot Starter 实现的基础。</p>
+<p>通过阅读上面的源码，我们发现<code>getSpringFactoriesInstances</code>这个方法可以一次性获取指定类型已注册的实现类，我们先来研究一下它是怎么做到的。这里就要提到<code>spring.factories</code>文件了，它是 Spring 仿造Java SPI实现的一种类加载机制。它在 META-INF&#x2F;spring.factories 文件中配置接口的实现类名称，然后在程序中读取这些配置文件并实例化。这种自定义的SPI机制是 Spring Boot Starter 实现的基础。</p>
 <p>SPI的常见例子：</p>
 <ul>
 <li>数据库驱动加载接口实现类的加载：JDBC加载不同类型数据库的驱动</li>
@@ -1335,8 +1335,8 @@
 <li>好康？是什么新框架哦？</li>
 <li>什么新框架，比新框架还刺激，还可以让你的项目登duang郎哦。</li>
 </ul>
-<p>​        在我们之前编写的项目中，我们不难发现，实际上大部分的数据库交互操作，到最后都只会做一个事情，那就是把数据库中的数据映射为Java中的对象。比如我们要通过用户名去查找对应的用户，或是通过ID查找对应的学生信息，在使用Mybatis时，我们只需要编写正确的SQL语句就可以直接将获取的数据映射为对应的Java对象，通过调用Mapper中的方法就能直接获得实体类，这样就方便我们在Java中数据库表中的相关信息了。</p>
-<p>​        但是以上这些操作都有一个共性，那就是它们都是通过某种条件去进行查询，而最后的查询结果，都是一个实体类，所以你会发现你写的很多SQL语句都是一个套路<code>select * from xxx where xxx=xxx</code>，实际上对于这种简单SQL语句，我们完全可以弄成一个模版来使用，那么能否有一种框架，帮我们把这些相同的套路给封装起来，直接把这类相似的SQL语句给屏蔽掉，不再由我们编写，而是让框架自己去组合拼接。</p>
+<p>​		在我们之前编写的项目中，我们不难发现，实际上大部分的数据库交互操作，到最后都只会做一个事情，那就是把数据库中的数据映射为Java中的对象。比如我们要通过用户名去查找对应的用户，或是通过ID查找对应的学生信息，在使用Mybatis时，我们只需要编写正确的SQL语句就可以直接将获取的数据映射为对应的Java对象，通过调用Mapper中的方法就能直接获得实体类，这样就方便我们在Java中数据库表中的相关信息了。</p>
+<p>​		但是以上这些操作都有一个共性，那就是它们都是通过某种条件去进行查询，而最后的查询结果，都是一个实体类，所以你会发现你写的很多SQL语句都是一个套路<code>select * from xxx where xxx=xxx</code>，实际上对于这种简单SQL语句，我们完全可以弄成一个模版来使用，那么能否有一种框架，帮我们把这些相同的套路给封装起来，直接把这类相似的SQL语句给屏蔽掉，不再由我们编写，而是让框架自己去组合拼接。</p>
 <h3 id="认识SpringData-JPA"><a href="#认识SpringData-JPA" class="headerlink" title="认识SpringData JPA"></a>认识SpringData JPA</h3><p>首先我们来看一个国外的统计：</p>
 <p><img src="https://s2.loli.net/2023/03/06/XaoLIPrjDKzO9Tx.png" srcset="/img/loading.gif" lazyload alt="image-20230306224859664"></p>
 <p>不对吧，为什么Mybatis这么好用，这么强大，却只有10%的人喜欢呢？然而事实就是，在国外JPA几乎占据了主导地位，而Mybatis并不像国内那样受待见，所以你会发现，JPA都有SpringBoot的官方直接提供的starter，而Mybatis没有，直到SpringBoot 3才开始加入到官方模版中。</p>
@@ -1409,22 +1409,22 @@
 <tbody><tr>
 <td>Distinct</td>
 <td align="center">findDistinctByLastnameAndFirstname</td>
-<td align="center">select distinct … where x.lastname = ?1 and x.firstname = ?2</td>
+<td align="center">select distinct … where x.lastname &#x3D; ?1 and x.firstname &#x3D; ?2</td>
 </tr>
 <tr>
 <td>And</td>
 <td align="center">findByLastnameAndFirstname</td>
-<td align="center">… where x.lastname = ?1 and x.firstname = ?2</td>
+<td align="center">… where x.lastname &#x3D; ?1 and x.firstname &#x3D; ?2</td>
 </tr>
 <tr>
 <td>Or</td>
 <td align="center">findByLastnameOrFirstname</td>
-<td align="center">… where x.lastname = ?1 or x.firstname = ?2</td>
+<td align="center">… where x.lastname &#x3D; ?1 or x.firstname &#x3D; ?2</td>
 </tr>
 <tr>
 <td>Is，Equals</td>
 <td align="center">findByFirstname<code>,</code>findByFirstnameIs<code>,</code>findByFirstnameEquals</td>
-<td align="center">… where x.firstname = ?1</td>
+<td align="center">… where x.firstname &#x3D; ?1</td>
 </tr>
 <tr>
 <td>Between</td>
@@ -1439,7 +1439,7 @@
 <tr>
 <td>LessThanEqual</td>
 <td align="center">findByAgeLessThanEqual</td>
-<td align="center">… where x.age &lt;= ?1</td>
+<td align="center">… where x.age &lt;&#x3D; ?1</td>
 </tr>
 <tr>
 <td>GreaterThan</td>
@@ -1449,7 +1449,7 @@
 <tr>
 <td>GreaterThanEqual</td>
 <td align="center">findByAgeGreaterThanEqual</td>
-<td align="center">… where x.age &gt;= ?1</td>
+<td align="center">… where x.age &gt;&#x3D; ?1</td>
 </tr>
 <tr>
 <td>After</td>
@@ -1494,7 +1494,7 @@
 <tr>
 <td>OrderBy</td>
 <td align="center">findByAgeOrderByLastnameDesc</td>
-<td align="center">… where x.age = ?1 order by x.lastname desc</td>
+<td align="center">… where x.age &#x3D; ?1 order by x.lastname desc</td>
 </tr>
 <tr>
 <td>Not</td>
@@ -1514,17 +1514,17 @@
 <tr>
 <td>True</td>
 <td align="center">findByActiveTrue</td>
-<td align="center">… where x.active = true</td>
+<td align="center">… where x.active &#x3D; true</td>
 </tr>
 <tr>
 <td>False</td>
 <td align="center">findByActiveFalse</td>
-<td align="center">… where x.active = false</td>
+<td align="center">… where x.active &#x3D; false</td>
 </tr>
 <tr>
 <td>IgnoreCase</td>
 <td align="center">findByFirstnameIgnoreCase</td>
-<td align="center">… where UPPER(x.firstname) = UPPER(?1)</td>
+<td align="center">… where UPPER(x.firstname) &#x3D; UPPER(?1)</td>
 </tr>
 <tr>
 <td>In</td>
@@ -1595,7 +1595,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">void</span> <span class="hljs-title function_">addAccount</span><span class="hljs-params">()</span>&#123;<br>    <span class="hljs-type">Account</span> <span class="hljs-variable">account</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Account</span>();<br>    account.setUsername(<span class="hljs-string">&quot;Nike&quot;</span>);<br>    account.setPassword(<span class="hljs-string">&quot;123456&quot;</span>);<br>    <span class="hljs-type">AccountDetail</span> <span class="hljs-variable">detail</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">AccountDetail</span>();<br>    detail.setAddress(<span class="hljs-string">&quot;重庆市渝中区解放碑&quot;</span>);<br>    detail.setPhone(<span class="hljs-string">&quot;1234567890&quot;</span>);<br>    detail.setEmail(<span class="hljs-string">&quot;73281937@qq.com&quot;</span>);<br>    detail.setRealName(<span class="hljs-string">&quot;张三&quot;</span>);<br>  	account.setDetail(detail);<br>    account = repository.save(account);<br>    System.out.println(<span class="hljs-string">&quot;插入时，自动生成的主键ID为：&quot;</span>+account.getId()+<span class="hljs-string">&quot;，外键ID为：&quot;</span>+account.getDetail().getId());<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>可以看到日志结果：</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs ruby"><span class="hljs-symbol">Hibernate:</span> insert into users_detail (address, email, phone, real_name) values (<span class="hljs-string">?,</span> <span class="hljs-string">?,</span> <span class="hljs-string">?,</span> <span class="hljs-string">?)</span><br><span class="hljs-symbol">Hibernate:</span> insert into users (detail_id, password, username) values (<span class="hljs-string">?,</span> <span class="hljs-string">?,</span> <span class="hljs-string">?)</span><br>插入时，自动生成的主键<span class="hljs-variable constant_">ID</span>为：<span class="hljs-number">6</span>，外键<span class="hljs-variable constant_">ID</span>为：<span class="hljs-number">3</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs ruby"><span class="hljs-title class_">Hibernate</span>: insert into users_detail (address, email, phone, real_name) values (<span class="hljs-string">?,</span> <span class="hljs-string">?,</span> <span class="hljs-string">?,</span> <span class="hljs-string">?)</span><br><span class="hljs-title class_">Hibernate</span>: insert into users (detail_id, password, username) values (<span class="hljs-string">?,</span> <span class="hljs-string">?,</span> <span class="hljs-string">?)</span><br>插入时，自动生成的主键<span class="hljs-variable constant_">ID</span>为：<span class="hljs-number">6</span>，外键<span class="hljs-variable constant_">ID</span>为：<span class="hljs-number">3</span><br></code></pre></td></tr></table></figure>
 
 <p>结束后会发现数据库中两张表都同时存在数据。</p>
 <p>接着我们来看一对多关联，比如每个用户的成绩信息：</p>
@@ -1793,7 +1793,7 @@
 </li>
 <li>代码生成器：<ul>
 <li>在测试文件中编写<strong>代码生成器配置代码</strong>，设置<strong>注释信息、生成目录、项目包名</strong>等</li>
-<li>补充<strong>多表关联表和外键</strong>（<em>JoinTable/JoinColumn</em>）</li>
+<li>补充<strong>多表关联表和外键</strong>（<em>JoinTable&#x2F;JoinColumn</em>）</li>
 </ul>
 </li>
 <li>根据需要补充复杂逻辑Sql功能，完成Controller逻辑功能</li>
@@ -1929,7 +1929,7 @@
 </ol>
 <p>这一部分，我们将深入学习目前比较主流的基于Token的前后端分离方案。</p>
 <h3 id="认识JWT令牌"><a href="#认识JWT令牌" class="headerlink" title="认识JWT令牌"></a>认识JWT令牌</h3><p>在认识Token前后端分离之前，我们需要先学习最常见的JWT令牌，官网：<a target="_blank" rel="noopener" href="https://jwt.io/">https://jwt.io</a></p>
-<p>JSON Web Token令牌（JWT）是一个开放标准（<a target="_blank" rel="noopener" href="https://tools.ietf.org/html/rfc7519">RFC 7519</a>），它定义了一种紧凑和自成一体的方式，用于在各方之间作为JSON对象安全地传输信息。这些信息可以被验证和信任，因为它是数字签名的。JWT可以使用密钥（使用<strong>HMAC</strong>算法）或使用<strong>RSA</strong>或<strong>ECDSA</strong>进行公钥/私钥对进行签名。</p>
+<p>JSON Web Token令牌（JWT）是一个开放标准（<a target="_blank" rel="noopener" href="https://tools.ietf.org/html/rfc7519">RFC 7519</a>），它定义了一种紧凑和自成一体的方式，用于在各方之间作为JSON对象安全地传输信息。这些信息可以被验证和信任，因为它是数字签名的。JWT可以使用密钥（使用<strong>HMAC</strong>算法）或使用<strong>RSA</strong>或<strong>ECDSA</strong>进行公钥&#x2F;私钥对进行签名。</p>
 <p>JWT令牌的格式如下：</p>
 <p><img src="https://s2.loli.net/2023/03/07/Xu8lxYhKoJNr6it.png" srcset="/img/loading.gif" lazyload alt="image-20230307000004710"></p>
 <p>一个JWT令牌由3部分组成：标头(Header)、有效载荷(Payload)和签名(Signature)。在传输的时候，会将JWT的钱2部分分别进行Base64编码后用<code>.</code>进行连接形成最终需要传输的字符串。</p>
@@ -1940,7 +1940,7 @@
 </ul>
 <p>这里还是补充一下一些概念，因为很多东西都是我们之前没有接触过的：</p>
 <ul>
-<li><p><strong>Base64</strong>：就是包括<strong>小写字母a-z、大写字母A-Z、数字0-9、符号”+”、”/“一共64个字符</strong>的字符集（末尾还有1个或多个<code>=</code>用来凑够字节数），任何的符号都可以转换成这个字符集中的字符，这个转换过程就叫做Base64编码，编码之后会生成只包含上述64个字符的字符串。相反，如果需要原本的内容，我们也可以进行Base64解码，回到原有的样子。</p>
+<li><p><strong>Base64</strong>：就是包括<strong>小写字母a-z、大写字母A-Z、数字0-9、符号”+”、”&#x2F;“一共64个字符</strong>的字符集（末尾还有1个或多个<code>=</code>用来凑够字节数），任何的符号都可以转换成这个字符集中的字符，这个转换过程就叫做Base64编码，编码之后会生成只包含上述64个字符的字符串。相反，如果需要原本的内容，我们也可以进行Base64解码，回到原有的样子。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">test</span><span class="hljs-params">()</span>&#123;<br>    <span class="hljs-type">String</span> <span class="hljs-variable">str</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;你们可能不知道只用20万赢到578万是什么概念&quot;</span>;<br>  	<span class="hljs-comment">//Base64不只是可以对字符串进行编码，任何byte[]数据都可以，编码结果可以是byte[]，也可以是字符串</span><br>    <span class="hljs-type">String</span> <span class="hljs-variable">encodeStr</span> <span class="hljs-operator">=</span> Base64.getEncoder().encodeToString(str.getBytes());<br>    System.out.println(<span class="hljs-string">&quot;Base64编码后的字符串：&quot;</span>+encodeStr);<br><br>    System.out.println(<span class="hljs-string">&quot;解码后的字符串：&quot;</span>+<span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(Base64.getDecoder().decode(encodeStr)));<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>注意Base64不是加密算法，只是一种信息的编码方式而已。</p>
@@ -2010,15 +2010,15 @@
 <p>如果以后没有登录或者携带一个错误的JWT访问服务器，都会返回401错误：</p>
 <p><img src="https://s2.loli.net/2023/07/24/ID96yY7lkr5VsPS.png" srcset="/img/loading.gif" lazyload alt="image-20230724200533964"></p>
 <p>我们现在来模拟一下前端操作：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript">  	<span class="hljs-comment">//其他都是跟之前一样的</span></span><br><span class="language-javascript">    <span class="hljs-keyword">function</span> <span class="hljs-title function_">getInfo</span>(<span class="hljs-params"></span>) &#123;</span><br><span class="language-javascript">        axios.<span class="hljs-title function_">post</span>(<span class="hljs-string">&#x27;http://localhost:8081/api/auth/login&#x27;</span>, &#123;</span><br><span class="language-javascript">            <span class="hljs-attr">username</span>: <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;username&#x27;</span>).<span class="hljs-property">value</span>,</span><br><span class="language-javascript">            <span class="hljs-attr">password</span>: <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;password&#x27;</span>).<span class="hljs-property">value</span></span><br><span class="language-javascript">        &#125;, &#123;</span><br><span class="language-javascript">            <span class="hljs-attr">headers</span>: &#123;</span><br><span class="language-javascript">                <span class="hljs-string">&#x27;Content-Type&#x27;</span>: <span class="hljs-string">&#x27;application/x-www-form-urlencoded&#x27;</span></span><br><span class="language-javascript">            &#125;</span><br><span class="language-javascript">        &#125;).<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">&#123;data&#125;</span>) =&gt;</span> &#123;</span><br><span class="language-javascript">            <span class="hljs-keyword">if</span>(data.<span class="hljs-property">code</span> === <span class="hljs-number">200</span>) &#123;</span><br><span class="language-javascript">                <span class="hljs-comment">//将得到的JWT令牌存到sessionStorage用于本次会话</span></span><br><span class="language-javascript">                sessionStorage.<span class="hljs-title function_">setItem</span>(<span class="hljs-string">&quot;access_token&quot;</span>, data.<span class="hljs-property">data</span>)</span><br><span class="language-javascript">                <span class="hljs-variable language_">window</span>.<span class="hljs-property">location</span>.<span class="hljs-property">href</span> = <span class="hljs-string">&#x27;/index.html&#x27;</span></span><br><span class="language-javascript">            &#125; <span class="hljs-keyword">else</span> &#123;</span><br><span class="language-javascript">                <span class="hljs-title function_">alert</span>(<span class="hljs-string">&#x27;登录失败：&#x27;</span>+data.<span class="hljs-property">message</span>)</span><br><span class="language-javascript">            &#125;</span><br><span class="language-javascript">        &#125;)</span><br><span class="language-javascript">    &#125;</span><br><span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript">  	<span class="hljs-comment">//其他都是跟之前一样的</span></span><br><span class="language-javascript">    <span class="hljs-keyword">function</span> <span class="hljs-title function_">getInfo</span>(<span class="hljs-params"></span>) &#123;</span><br><span class="language-javascript">        axios.<span class="hljs-title function_">post</span>(<span class="hljs-string">&#x27;http://localhost:8081/api/auth/login&#x27;</span>, &#123;</span><br><span class="language-javascript">            <span class="hljs-attr">username</span>: <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;username&#x27;</span>).<span class="hljs-property">value</span>,</span><br><span class="language-javascript">            <span class="hljs-attr">password</span>: <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;password&#x27;</span>).<span class="hljs-property">value</span></span><br><span class="language-javascript">        &#125;, &#123;</span><br><span class="language-javascript">            <span class="hljs-attr">headers</span>: &#123;</span><br><span class="language-javascript">                <span class="hljs-string">&#x27;Content-Type&#x27;</span>: <span class="hljs-string">&#x27;application/x-www-form-urlencoded&#x27;</span></span><br><span class="language-javascript">            &#125;</span><br><span class="language-javascript">        &#125;).<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">&#123;data&#125;</span>) =&gt;</span> &#123;</span><br><span class="language-javascript">            <span class="hljs-keyword">if</span>(data.<span class="hljs-property">code</span> === <span class="hljs-number">200</span>) &#123;</span><br><span class="language-javascript">                <span class="hljs-comment">//将得到的JWT令牌存到sessionStorage用于本次会话</span></span><br><span class="language-javascript">                <span class="hljs-variable language_">sessionStorage</span>.<span class="hljs-title function_">setItem</span>(<span class="hljs-string">&quot;access_token&quot;</span>, data.<span class="hljs-property">data</span>)</span><br><span class="language-javascript">                <span class="hljs-variable language_">window</span>.<span class="hljs-property">location</span>.<span class="hljs-property">href</span> = <span class="hljs-string">&#x27;/index.html&#x27;</span></span><br><span class="language-javascript">            &#125; <span class="hljs-keyword">else</span> &#123;</span><br><span class="language-javascript">                <span class="hljs-title function_">alert</span>(<span class="hljs-string">&#x27;登录失败：&#x27;</span>+data.<span class="hljs-property">message</span>)</span><br><span class="language-javascript">            &#125;</span><br><span class="language-javascript">        &#125;)</span><br><span class="language-javascript">    &#125;</span><br><span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <p>接着是首页，获取信息的时候携带上JWT即可，不需要依赖Cookie了：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript">    axios.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;http://localhost:8081/api/user/name&#x27;</span>, &#123;</span><br><span class="language-javascript">        <span class="hljs-attr">headers</span>: &#123;</span><br><span class="language-javascript">            <span class="hljs-string">&#x27;Authorization&#x27;</span>: <span class="hljs-string">&quot;Bearer &quot;</span>+sessionStorage.<span class="hljs-title function_">getItem</span>(<span class="hljs-string">&quot;access_token&quot;</span>)</span><br><span class="language-javascript">        &#125;</span><br><span class="language-javascript">    &#125;).<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">&#123;data&#125;</span>) =&gt;</span> &#123;</span><br><span class="language-javascript">        <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;username&#x27;</span>).<span class="hljs-property">innerText</span> = data.<span class="hljs-property">data</span></span><br><span class="language-javascript">    &#125;)</span><br><span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript">    axios.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;http://localhost:8081/api/user/name&#x27;</span>, &#123;</span><br><span class="language-javascript">        <span class="hljs-attr">headers</span>: &#123;</span><br><span class="language-javascript">            <span class="hljs-string">&#x27;Authorization&#x27;</span>: <span class="hljs-string">&quot;Bearer &quot;</span>+<span class="hljs-variable language_">sessionStorage</span>.<span class="hljs-title function_">getItem</span>(<span class="hljs-string">&quot;access_token&quot;</span>)</span><br><span class="language-javascript">        &#125;</span><br><span class="language-javascript">    &#125;).<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">&#123;data&#125;</span>) =&gt;</span> &#123;</span><br><span class="language-javascript">        <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;username&#x27;</span>).<span class="hljs-property">innerText</span> = data.<span class="hljs-property">data</span></span><br><span class="language-javascript">    &#125;)</span><br><span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <p>这样我们就实现了基于SpringSecurity的JWT校验，整个流程还是非常清晰的。</p>
 <h3 id="退出登录JWT处理"><a href="#退出登录JWT处理" class="headerlink" title="退出登录JWT处理"></a>退出登录JWT处理</h3><p>虽然我们使用JWT已经很方便了，但是有一个很严重的问题就是，我们没办法像Session那样去踢用户下线，什么意思呢？我们之前可以使用退出登录接口直接退出，用户Session中的验证信息也会被销毁，但是现在是无状态的，用户来管理Token令牌，服务端只认Token是否合法，那这个时候该怎么让用户正确退出登录呢？</p>
 <p>首先我们从最简单的方案开始，我们可以直接让客户端删除自己的JWT令牌，这样不就相当于退出登录了吗，这样甚至不需要请求服务器，直接就退了：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript">		...</span><br><span class="language-javascript">  </span><br><span class="language-javascript">    <span class="hljs-keyword">function</span> <span class="hljs-title function_">logout</span>(<span class="hljs-params"></span>) &#123;</span><br><span class="language-javascript">        <span class="hljs-comment">//直接删除存在sessionStorage中的JWT令牌</span></span><br><span class="language-javascript">        sessionStorage.<span class="hljs-title function_">removeItem</span>(<span class="hljs-string">&quot;access_token&quot;</span>)</span><br><span class="language-javascript">        <span class="hljs-comment">//然后回到登录界面</span></span><br><span class="language-javascript">        <span class="hljs-variable language_">window</span>.<span class="hljs-property">location</span>.<span class="hljs-property">href</span> = <span class="hljs-string">&#x27;/login.html&#x27;</span></span><br><span class="language-javascript">    &#125;</span><br><span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript">		...</span><br><span class="language-javascript">  </span><br><span class="language-javascript">    <span class="hljs-keyword">function</span> <span class="hljs-title function_">logout</span>(<span class="hljs-params"></span>) &#123;</span><br><span class="language-javascript">        <span class="hljs-comment">//直接删除存在sessionStorage中的JWT令牌</span></span><br><span class="language-javascript">        <span class="hljs-variable language_">sessionStorage</span>.<span class="hljs-title function_">removeItem</span>(<span class="hljs-string">&quot;access_token&quot;</span>)</span><br><span class="language-javascript">        <span class="hljs-comment">//然后回到登录界面</span></span><br><span class="language-javascript">        <span class="hljs-variable language_">window</span>.<span class="hljs-property">location</span>.<span class="hljs-property">href</span> = <span class="hljs-string">&#x27;/login.html&#x27;</span></span><br><span class="language-javascript">    &#125;</span><br><span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <p>这样虽然是最简单粗暴的，但是存在一个问题，用户可以自行保存这个Token拿来使用。虽然客户端已经删除掉了，但是这个令牌仍然是可用的，如果用户私自保存过，那么依然可以正常使用这个令牌，这显然是有问题的。</p>
 <p>目前有两种比较好的方案：</p>
@@ -2125,30 +2125,30 @@
     <div class="license-meta">
       
         <div class="license-meta-item">
-          <div>Author</div>
+          <div>作者</div>
           <div>alleyf</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
-          <div>Posted on</div>
-          <div>October 31, 2023</div>
+          <div>发布于</div>
+          <div>2023年10月31日</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
-          <div>Updated on</div>
-          <div>November 11, 2023</div>
+          <div>更新于</div>
+          <div>2023年11月11日</div>
         </div>
       
       <div class="license-meta-item">
-        <div>Licensed under</div>
+        <div>许可协议</div>
         <div>
           
             
             
               <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
                 <i class="iconfont icon-by"></i>
               </span>
               </a>
@@ -2170,7 +2170,7 @@
                       <a href="/2023/11/50d043e5b3de.html" title="司法领域大模型调研三">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">司法领域大模型调研三</span>
-                        <span class="visible-mobile">Previous</span>
+                        <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </article>
@@ -2179,7 +2179,7 @@
                     
                       <a href="/2023/10/d36831b1156c.html" title="司法领域大模型调研二">
                         <span class="hidden-mobile">司法领域大模型调研二</span>
-                        <span class="visible-mobile">Next</span>
+                        <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -2222,7 +2222,7 @@
       
   <aside class="sidebar" style="margin-left: -1rem">
     <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div class="toc-body" id="toc-body"></div>
 </div>
 
@@ -2283,7 +2283,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -2291,7 +2291,7 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -2319,16 +2319,16 @@
   
     
       <span id="busuanzi_container_site_pv" style="display: none">
-        Views: 
+        总访问量 
         <span id="busuanzi_value_site_pv"></span>
-        
+         次
       </span>
     
     
       <span id="busuanzi_container_site_uv" style="display: none">
-        Visitors: 
+        总访客数 
         <span id="busuanzi_value_site_uv"></span>
-        
+         人
       </span>
     
     
@@ -2531,7 +2531,7 @@
   
 
   <noscript>
-    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
   </noscript>
-<!-- hexo injector body_end start --><script src="/assets/mmedia/mmedia-loader.js"></script><script src="/js/addMusic.js"></script><!-- hexo injector body_end end --></body>
+<!-- hexo injector body_end start --><script src="/assets/mmedia/mmedia-loader.js"></script><script src="/js/addMusic.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>

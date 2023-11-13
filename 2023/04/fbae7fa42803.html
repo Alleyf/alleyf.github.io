@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="en" data-default-color-scheme=auto>
+<html lang="zh-CN" data-default-color-scheme=auto>
 
 
 
@@ -24,7 +24,7 @@
 <meta property="og:url" content="https://alleyf.github.io/2023/04/fbae7fa42803.html">
 <meta property="og:site_name" content="alleyf">
 <meta property="og:description" content="it is some basic usage of drf .">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://s2.loli.net/2023/04/26/VukBIX39lj2Kbx6.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/20230427154626.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/20230427154712.png">
@@ -118,7 +118,7 @@
 
 
   
-<!-- hexo injector head_end start --><script> let HEXO_MMEDIA_DATA = { js: [], css: [], aplayerData: [], metingData: [], artPlayerData: [], dplayerData: []}; </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="alleyf" type="application/atom+xml">
+<!-- hexo injector head_end start --><script> let HEXO_MMEDIA_DATA = { js: [], css: [], aplayerData: [], metingData: [], artPlayerData: [], dplayerData: []}; </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/atom.xml" title="alleyf" type="application/atom+xml">
 </head>
 
 
@@ -152,7 +152,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
-                Home
+                首页
               </a>
             </li>
           
@@ -164,7 +164,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                Archives
+                归档
               </a>
             </li>
           
@@ -176,7 +176,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
-                Categories
+                分类
               </a>
             </li>
           
@@ -188,7 +188,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                Tags
+                标签
               </a>
             </li>
           
@@ -200,7 +200,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
-                About
+                关于
               </a>
             </li>
           
@@ -212,7 +212,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/links/">
                 <i class="iconfont icon-link-fill"></i>
-                Links
+                友链
               </a>
             </li>
           
@@ -262,7 +262,7 @@
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
         <time datetime="2023-04-25 19:29" pubdate>
-          April 25, 2023 pm
+          2023年4月25日 晚上
         </time>
       </span>
     
@@ -273,7 +273,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          28k words
+          28k 字
         
       </span>
     
@@ -284,7 +284,7 @@
         
         
         
-          230 mins
+          235 分钟
         
       </span>
     
@@ -294,7 +294,7 @@
       
         <span id="busuanzi_container_page_pv" style="display: none">
           <i class="iconfont icon-eye" aria-hidden="true"></i>
-          <span id="busuanzi_value_page_pv"></span> views
+          <span id="busuanzi_value_page_pv"></span> 次
         </span>
         
       
@@ -335,7 +335,7 @@
               <p class="note note-info">
                 
                   
-                    Last updated on 7 months ago
+                    本文最后更新于：7 个月前
                   
                 
               </p>
@@ -346,26 +346,23 @@
                 <blockquote>
 <p> 其他相关文章-&gt; [[网页开发]]， #DRF #Django</p>
 </blockquote>
-<h1 id="1-api-接口"><a href="#1-api-接口" class="headerlink" title="1. api 接口"></a>1. api 接口</h1><p>目前市面上大部分公司开发人员使用的接口实现规范主要有：restful、RPC。<br>RPC（ Remote Procedure Call ）: 翻译成中文:远程过程调用[远程服务调用]. 从字面上理解就是访问/调用远程服务端提供的api接口。这种接口一般以服务或者过程式代码提供。<br>restful: 翻译成中文: 资源状态转换.(表征性状态转移)</p>
+<h1 id="1-api-接口"><a href="#1-api-接口" class="headerlink" title="1. api 接口"></a>1. api 接口</h1><p>目前市面上大部分公司开发人员使用的接口实现规范主要有：restful、RPC。<br>RPC（ Remote Procedure Call ）: 翻译成中文:远程过程调用[远程服务调用]. 从字面上理解就是访问&#x2F;调用远程服务端提供的api接口。这种接口一般以服务或者过程式代码提供。<br>restful: 翻译成中文: 资源状态转换.(表征性状态转移)</p>
 <ul>
-<li>把服务端提供的所有的数据/文件都看成资源， 那么通过api接口请求数据的操作，本质上来说就是对资源的操作了.  因此，restful中要求，我们把当前接口对外提供哪种资源进行操作，就把<strong>资源的名称写在url地址</strong>。</li>
-<li>  web开发中操作资源，最常见的最通用的无非就是增删查改，所以restful要求在地址栏中声明要操作的资源是什么。然后通过<strong>http请求动词</strong>来说明对该资源进行哪一种操作.</li>
+<li><p>把服务端提供的所有的数据&#x2F;文件都看成资源， 那么通过api接口请求数据的操作，本质上来说就是对资源的操作了.</p>
+<p>因此，restful中要求，我们把当前接口对外提供哪种资源进行操作，就把<strong>资源的名称写在url地址</strong>。</p>
+</li>
+<li><p>web开发中操作资源，最常见的最通用的无非就是增删查改，所以restful要求在地址栏中声明要操作的资源是什么。然后通过<strong>http请求动词</strong>来说明对该资源进行哪一种操作.</p>
+</li>
 </ul>
 <blockquote>
 <p>POST <a target="_blank" rel="noopener" href="http://www.xxx.com/api/students/">http://www.xxx.com/api/students/</a> 添加学生数据</p>
 <p>GET <a target="_blank" rel="noopener" href="http://www.xxx.com/api/students/">http://www.xxx.com/api/students/</a> 获取所有学生</p>
-<p>GET <a target="_blank" rel="noopener" href="http://www.xxx.com/api/students/">http://www.xxx.com/api/students/</a>/ 获取id=pk的学生</p>
-<p>DELETE <a target="_blank" rel="noopener" href="http://www.xxx.com/api/students/">http://www.xxx.com/api/students/</a>/ 删除id=pk的一个学生</p>
-<p>PUT <a target="_blank" rel="noopener" href="http://www.xxx.com/api/students/">http://www.xxx.com/api/students/</a>/ 修改一个学生的全部信息 [id,name,sex,age,]</p>
-<p>PATCH <a target="_blank" rel="noopener" href="http://www.xxx.com/api/students/">http://www.xxx.com/api/students/</a> / 修改一个学生的部分信息[age]</p>
+<p>GET <a target="_blank" rel="noopener" href="http://www.xxx.com/api/students/">http://www.xxx.com/api/students/</a>&#x2F; 获取id&#x3D;pk的学生</p>
+<p>DELETE <a target="_blank" rel="noopener" href="http://www.xxx.com/api/students/">http://www.xxx.com/api/students/</a>&#x2F; 删除id&#x3D;pk的一个学生</p>
+<p>PUT <a target="_blank" rel="noopener" href="http://www.xxx.com/api/students/">http://www.xxx.com/api/students/</a>&#x2F; 修改一个学生的全部信息 [id,name,sex,age,]</p>
+<p>PATCH <a target="_blank" rel="noopener" href="http://www.xxx.com/api/students/">http://www.xxx.com/api/students/</a> &#x2F; 修改一个学生的部分信息[age]</p>
 </blockquote>
-<p>请求方式：<em><strong>增删改查查</strong></em></p>
-<ol>
-<li>restful 是以资源为主的 api 接口规范，体现在地址上就是资源就是以名词表达。</li>
-<li>rpc 则以动作为主的 api 接口规范，体现在接口名称上往往附带操作数据的动作。</li>
-</ol>
-<hr>
-<h1 id="2-Django-的-CBV"><a href="#2-Django-的-CBV" class="headerlink" title="2.Django 的 CBV"></a>2.Django 的 CBV</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># CBV模式,views.py</span><br><span class="hljs-keyword">from</span> django.views <span class="hljs-keyword">import</span> View<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">BookView</span>(<span class="hljs-title class_ inherited__">View</span>) ;<br>	<span class="hljs-keyword">def</span> <span class="hljs-title function_">get</span>(<span class="hljs-params">self, reguest</span>):<br>		<span class="hljs-keyword">return</span> HttpResponse(<span class="hljs-string">&quot;View GET请求...&quot;</span>)<br>	<span class="hljs-keyword">def</span> <span class="hljs-title function_">post</span>(<span class="hljs-params">self, reguest</span>):<br>		<span class="hljs-keyword">return</span> HttpResponse(<span class="hljs-string">&quot;View POST请求...&quot;</span>)<br>	<span class="hljs-keyword">def</span> <span class="hljs-title function_">delete</span>(<span class="hljs-params">self,request</span>):<br>		<span class="hljs-keyword">return</span> HttpResponse(<span class="hljs-string">&quot;View DELETE请求&#x27;&#x27;&#x27;&quot;</span>)<br><span class="hljs-comment"># urls.py</span><br><span class="hljs-keyword">from</span> django. contrib <span class="hljs-keyword">import</span> admin<br><span class="hljs-keyword">from</span> django.urls <span class="hljs-keyword">import</span> path<br><span class="hljs-keyword">from</span> book <span class="hljs-keyword">import</span> views<br>urlpatterns = [<br>path(<span class="hljs-string">&#x27;admin/&#x27;</span>, admin. site.urls) ,<br><span class="hljs-comment"># path( &#x27;book/&#x27;, views.book) ,</span><br>path(<span class="hljs-string">&quot;book/&quot;</span>.views . BookView.asTview()) <span class="hljs-comment">#路由中的“/”不能丢，否则自动重定向为get请求</span><br>]<br></code></pre></td></tr></table></figure>
+<h2 id="请求方式：增删改查查1-restful-是以资源为主的-api-接口规范，体现在地址上就是资源就是以名词表达。2-rpc-则以动作为主的-api-接口规范，体现在接口名称上往往附带操作数据的动作。"><a href="#请求方式：增删改查查1-restful-是以资源为主的-api-接口规范，体现在地址上就是资源就是以名词表达。2-rpc-则以动作为主的-api-接口规范，体现在接口名称上往往附带操作数据的动作。" class="headerlink" title="请求方式：增删改查查1. restful 是以资源为主的 api 接口规范，体现在地址上就是资源就是以名词表达。2. rpc 则以动作为主的 api 接口规范，体现在接口名称上往往附带操作数据的动作。"></a>请求方式：<em><strong>增删改查查</strong></em><br>1. restful 是以资源为主的 api 接口规范，体现在地址上就是资源就是以名词表达。<br>2. rpc 则以动作为主的 api 接口规范，体现在接口名称上往往附带操作数据的动作。</h2><h1 id="2-Django-的-CBV"><a href="#2-Django-的-CBV" class="headerlink" title="2.Django 的 CBV"></a>2.Django 的 CBV</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># CBV模式,views.py</span><br><span class="hljs-keyword">from</span> django.views <span class="hljs-keyword">import</span> View<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">BookView</span>(<span class="hljs-title class_ inherited__">View</span>) ;<br>	<span class="hljs-keyword">def</span> <span class="hljs-title function_">get</span>(<span class="hljs-params">self, reguest</span>):<br>		<span class="hljs-keyword">return</span> HttpResponse(<span class="hljs-string">&quot;View GET请求...&quot;</span>)<br>	<span class="hljs-keyword">def</span> <span class="hljs-title function_">post</span>(<span class="hljs-params">self, reguest</span>):<br>		<span class="hljs-keyword">return</span> HttpResponse(<span class="hljs-string">&quot;View POST请求...&quot;</span>)<br>	<span class="hljs-keyword">def</span> <span class="hljs-title function_">delete</span>(<span class="hljs-params">self,request</span>):<br>		<span class="hljs-keyword">return</span> HttpResponse(<span class="hljs-string">&quot;View DELETE请求&#x27;&#x27;&#x27;&quot;</span>)<br><span class="hljs-comment"># urls.py</span><br><span class="hljs-keyword">from</span> django. contrib <span class="hljs-keyword">import</span> admin<br><span class="hljs-keyword">from</span> django.urls <span class="hljs-keyword">import</span> path<br><span class="hljs-keyword">from</span> book <span class="hljs-keyword">import</span> views<br>urlpatterns = [<br>path(<span class="hljs-string">&#x27;admin/&#x27;</span>, admin. site.urls) ,<br><span class="hljs-comment"># path( &#x27;book/&#x27;, views.book) ,</span><br>path(<span class="hljs-string">&quot;book/&quot;</span>.views . BookView.asTview()) <span class="hljs-comment">#路由中的“/”不能丢，否则自动重定向为get请求</span><br>]<br></code></pre></td></tr></table></figure>
 <hr>
 <h1 id="3-反射"><a href="#3-反射" class="headerlink" title="3. 反射"></a>3. 反射</h1><p>通过反射 <code>func = getattr(self,func_name_str)</code> 可以将<strong>字符串转变为变量 (函数)<strong>，接着就可以直接调用 func () 从而</strong>动态调用函数</strong>。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Animal</span>(<span class="hljs-title class_ inherited__">object</span>):<br>	<span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self,name,age,func_str</span>):<br>		self.name = name<br>		self.age = age<br>		func = <span class="hljs-built_in">getattr</span>(self,func_str)<br>		func() <span class="hljs-comment"># 等价于self.slepp() </span><br>a = Animal(<span class="hljs-string">&quot;alleyf&quot;</span>,<span class="hljs-number">21</span>,<span class="hljs-string">&quot;sleep&quot;</span>)<br></code></pre></td></tr></table></figure>
@@ -385,7 +382,7 @@
 <li><code>request. Get ()-&gt;request. Query_params ()</code>获取 get 请求参数</li>
 <li><code>request. Post ()-&gt;request. Data ()</code> 获取 post(put 等)请求体数据，包括 files 都封装在一起反序列化了，支持前端 urlcoded 格式和 json 等其他任何格式。</li>
 </ol>
-<p>路由执行过程：<br><span style="background:#b1ffff">as_view ()-&gt;view ()-&gt;dispatch ()-&gt;get/post· · ·</span></p>
+<p>路由执行过程：<br><span style="background:#b1ffff">as_view ()-&gt;view ()-&gt;dispatch ()-&gt;get&#x2F;post· · ·</span></p>
 <hr>
 <h2 id="2-Serializer-（反）序列化器"><a href="#2-Serializer-（反）序列化器" class="headerlink" title="2.Serializer （反）序列化器"></a>2.Serializer （反）序列化器</h2><p><img src="https://s2.loli.net/2023/04/26/VukBIX39lj2Kbx6.png" srcset="/img/loading.gif" lazyload alt="（反）序列化器|425"></p>
 <blockquote>
@@ -395,7 +392,163 @@
 <li>反序列化：前端提交的 json 数据-&gt;数据表数据（post、put、patch、delete 等请求，<strong>存数据</strong>）</li>
 </ul>
 </blockquote>
-<h3 id="1-序列化与反序列化"><a href="#1-序列化与反序列化" class="headerlink" title="1.序列化与反序列化"></a>1.序列化与反序列化</h3><p><strong>常用字段类型</strong>：<br>| 字段                    | 构造方式                                                                             |<br>| ———————– | ———————————————————————————— |<br>| <strong>BooleanField</strong>        | BooleanField()                                                                       |<br>| <strong>CharField</strong>           | CharField(max_length=None, min_length=None, allow_blank=False, trim_whitespace=True) |<br>| <strong>EmailField</strong>          | EmailField(max_length=None, min_length=None, allow_blank=False)                      |<br>| <strong>URLField</strong>            | URLField(max_length=200, min_length=None, allow_blank=False)                         |<br>| <strong>IPAddressField</strong>      | IPAddressField(protocol=‘both’, unpack_ipv4=False, options)                          |<br>| <strong>IntegerField</strong>        | IntegerField(max_value=None, min_value=None)                                         |<br>| <strong>FloatField</strong>          | FloatField(max_value=None, min_value=None)                                           |<br>| <strong>DateTimeField</strong>       | DateTimeField(format=api_settings.DATETIME_FORMAT, input_formats=None)               |<br>| <strong>DateField</strong>           | DateField(format=api_settings.DATE_FORMAT, input_formats=None)                       |<br>| <strong>TimeField</strong>           | TimeField(format=api_settings.TIME_FORMAT, input_formats=None)                       |<br>| <strong>ChoiceField</strong>         | ChoiceField(choices) choices 与 Django 的用法相同                                    |<br>| <strong>MultipleChoiceField</strong> | MultipleChoiceField(choices)                                                         |<br>| <strong>FileField</strong>           | FileField(max_length=None, allow_empty_file=False, use_url=UPLOADED_FILES_USE_URL)   |<br>| <strong>ImageField</strong>          | ImageField(max_length=None, allow_empty_file=False, use_url=UPLOADED_FILES_USE_URL)  |<br>| <strong>ListField</strong>           | ListField(child=, min_length=None, max_length=None)                                  |<br>| <strong>DictField</strong>           | DictField(child=)                                                                    |<br><strong>选项参数：</strong><br>| 参数名称            | 作用             |<br>| ——————- | —————- |<br>| <strong>max_length</strong>      | 最大长度         |<br>| <strong>min_lenght</strong>      | 最小长度         |<br>| <strong>allow_blank</strong>     | 是否允许为空     |<br>| <strong>trim_whitespace</strong> | 是否截断空白字符 |<br>| <strong>max_value</strong>       | 最小值           |<br>| <strong>min_value</strong>       |     最大值             |<br><strong>通用参数：</strong><br>| 参数名称           | 说明                                      |<br>| —————— | —————————————– |<br>| <strong>read_only</strong>      | 表明该字段仅用于序列化输出，默认False     |<br>| <strong>write_only</strong>     | 表明该字段仅用于反序列化输入，默认False   |<br>| <strong>required</strong>       | 表明该字段在反序列化时必须输入，默认True  |<br>| <strong>default</strong>        | 反序列化时使用的默认值                    |<br>| <strong>allow_null</strong>     | 表明该字段是否允许传入 None，默认 False   |<br>| <strong>validators</strong>     | 该字段使用的验证器                        |<br>| <strong>error_messages</strong> | 包含错误编号与错误信息的字典              |<br>| <strong>label</strong>          | 用于 HTML 展示 API 页面时，显示的字段名称 |<br>| <strong>help_text</strong>      |  用于HTML展示API页面时，显示的字段帮助提示信息                                         |</p>
+<h3 id="1-序列化与反序列化"><a href="#1-序列化与反序列化" class="headerlink" title="1.序列化与反序列化"></a>1.序列化与反序列化</h3><p><strong>常用字段类型</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>构造方式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>BooleanField</strong></td>
+<td>BooleanField()</td>
+</tr>
+<tr>
+<td><strong>CharField</strong></td>
+<td>CharField(max_length&#x3D;None, min_length&#x3D;None, allow_blank&#x3D;False, trim_whitespace&#x3D;True)</td>
+</tr>
+<tr>
+<td><strong>EmailField</strong></td>
+<td>EmailField(max_length&#x3D;None, min_length&#x3D;None, allow_blank&#x3D;False)</td>
+</tr>
+<tr>
+<td><strong>URLField</strong></td>
+<td>URLField(max_length&#x3D;200, min_length&#x3D;None, allow_blank&#x3D;False)</td>
+</tr>
+<tr>
+<td><strong>IPAddressField</strong></td>
+<td>IPAddressField(protocol&#x3D;‘both’, unpack_ipv4&#x3D;False, options)</td>
+</tr>
+<tr>
+<td><strong>IntegerField</strong></td>
+<td>IntegerField(max_value&#x3D;None, min_value&#x3D;None)</td>
+</tr>
+<tr>
+<td><strong>FloatField</strong></td>
+<td>FloatField(max_value&#x3D;None, min_value&#x3D;None)</td>
+</tr>
+<tr>
+<td><strong>DateTimeField</strong></td>
+<td>DateTimeField(format&#x3D;api_settings.DATETIME_FORMAT, input_formats&#x3D;None)</td>
+</tr>
+<tr>
+<td><strong>DateField</strong></td>
+<td>DateField(format&#x3D;api_settings.DATE_FORMAT, input_formats&#x3D;None)</td>
+</tr>
+<tr>
+<td><strong>TimeField</strong></td>
+<td>TimeField(format&#x3D;api_settings.TIME_FORMAT, input_formats&#x3D;None)</td>
+</tr>
+<tr>
+<td><strong>ChoiceField</strong></td>
+<td>ChoiceField(choices) choices 与 Django 的用法相同</td>
+</tr>
+<tr>
+<td><strong>MultipleChoiceField</strong></td>
+<td>MultipleChoiceField(choices)</td>
+</tr>
+<tr>
+<td><strong>FileField</strong></td>
+<td>FileField(max_length&#x3D;None, allow_empty_file&#x3D;False, use_url&#x3D;UPLOADED_FILES_USE_URL)</td>
+</tr>
+<tr>
+<td><strong>ImageField</strong></td>
+<td>ImageField(max_length&#x3D;None, allow_empty_file&#x3D;False, use_url&#x3D;UPLOADED_FILES_USE_URL)</td>
+</tr>
+<tr>
+<td><strong>ListField</strong></td>
+<td>ListField(child&#x3D;, min_length&#x3D;None, max_length&#x3D;None)</td>
+</tr>
+<tr>
+<td><strong>DictField</strong></td>
+<td>DictField(child&#x3D;)</td>
+</tr>
+<tr>
+<td><strong>选项参数：</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>参数名称</td>
+<td>作用</td>
+</tr>
+<tr>
+<td>——————-</td>
+<td>—————-</td>
+</tr>
+<tr>
+<td><strong>max_length</strong></td>
+<td>最大长度</td>
+</tr>
+<tr>
+<td><strong>min_lenght</strong></td>
+<td>最小长度</td>
+</tr>
+<tr>
+<td><strong>allow_blank</strong></td>
+<td>是否允许为空</td>
+</tr>
+<tr>
+<td><strong>trim_whitespace</strong></td>
+<td>是否截断空白字符</td>
+</tr>
+<tr>
+<td><strong>max_value</strong></td>
+<td>最小值</td>
+</tr>
+<tr>
+<td><strong>min_value</strong></td>
+<td>最大值</td>
+</tr>
+<tr>
+<td><strong>通用参数：</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>参数名称</td>
+<td>说明</td>
+</tr>
+<tr>
+<td>——————</td>
+<td>—————————————–</td>
+</tr>
+<tr>
+<td><strong>read_only</strong></td>
+<td>表明该字段仅用于序列化输出，默认False</td>
+</tr>
+<tr>
+<td><strong>write_only</strong></td>
+<td>表明该字段仅用于反序列化输入，默认False</td>
+</tr>
+<tr>
+<td><strong>required</strong></td>
+<td>表明该字段在反序列化时必须输入，默认True</td>
+</tr>
+<tr>
+<td><strong>default</strong></td>
+<td>反序列化时使用的默认值</td>
+</tr>
+<tr>
+<td><strong>allow_null</strong></td>
+<td>表明该字段是否允许传入 None，默认 False</td>
+</tr>
+<tr>
+<td><strong>validators</strong></td>
+<td>该字段使用的验证器</td>
+</tr>
+<tr>
+<td><strong>error_messages</strong></td>
+<td>包含错误编号与错误信息的字典</td>
+</tr>
+<tr>
+<td><strong>label</strong></td>
+<td>用于 HTML 展示 API 页面时，显示的字段名称</td>
+</tr>
+<tr>
+<td><strong>help_text</strong></td>
+<td>用于HTML展示API页面时，显示的字段帮助提示信息</td>
+</tr>
+</tbody></table>
 <ol>
 <li>新建模型（反）序列化器</li>
 </ol>
@@ -429,8 +582,8 @@
 <li><code>data</code> ：python 的基本数据类型或者序列化后的数据</li>
 <li><code>status</code>：返回状态码，eg：200，403 etc</li>
 <li><code>template_name</code>: 模板名称，如果使用 <code>HTMLRenderer</code> 时需指明；</li>
-<li> <code>headers</code>: 用于存放响应头信息的字典；</li>
-<li> <code>content_type</code>: 响应数据的 Content-Type，通常此参数无需传递，REST framework 会根据前端所需类型数据来设置该参数</li>
+<li><code>headers</code>: 用于存放响应头信息的字典；</li>
+<li><code>content_type</code>: 响应数据的 Content-Type，通常此参数无需传递，REST framework 会根据前端所需类型数据来设置该参数</li>
 </ol>
 </blockquote>
 <h3 id="3-状态码"><a href="#3-状态码" class="headerlink" title="3. 状态码"></a>3. 状态码</h3><blockquote>
@@ -455,8 +608,8 @@
 </blockquote>
 <p>可设置的属性变量：</p>
 <ul>
-<li>  <strong>pagination_class</strong> 指明分页控制类</li>
-<li>  <strong>filter_backends</strong> 指明过滤控制后端</li>
+<li><strong>pagination_class</strong> 指明分页控制类</li>
+<li><strong>filter_backends</strong> 指明过滤控制后端</li>
 </ul>
 <h4 id="1-常用方法"><a href="#1-常用方法" class="headerlink" title="1. 常用方法"></a>1. 常用方法</h4><h5 id="（1）get-serializer-class-self"><a href="#（1）get-serializer-class-self" class="headerlink" title="（1）get_serializer_class(self)"></a>（1）get_serializer_class(self)</h5><blockquote>
 <p>当出现一个视图类中调用多个序列化器时,那么可以通过条件判断在get_serializer_class方法中通过返回不同的序列化器类名就可以让视图方法执行不同的序列化器对象了。<br>返回序列化器类，默认返回<code>serializer_class</code>，可以重写</p>
@@ -465,9 +618,9 @@
 <p>返回序列化器对象，主要用来提供给Mixin扩展类使用，如果我们在视图中想要获取序列化器对象，也可以直接调用此方法。</p>
 <p><strong>注意，该方法在提供序列化器对象的时候，会向序列化器对象的context属性补充三个数据：request、format、view，这三个数据对象可以在定义序列化器时使用。</strong></p>
 <ul>
-<li>  <strong>request</strong> 当前视图的请求对象</li>
-<li>  <strong>view</strong> 当前请求的类视图对象</li>
-<li>  <strong>format</strong> 当前请求期望返回的数据格式</li>
+<li><strong>request</strong> 当前视图的请求对象</li>
+<li><strong>view</strong> 当前请求的类视图对象</li>
+<li><strong>format</strong> 当前请求期望返回的数据格式</li>
 </ul>
 </blockquote>
 <h5 id="（3）get-queryset-self"><a href="#（3）get-queryset-self" class="headerlink" title="（3）get_queryset(self)"></a>（3）get_queryset(self)</h5><blockquote>
@@ -536,8 +689,8 @@
 </blockquote>
 <p>REST framework提供了两个router</p>
 <ul>
-<li>  <strong>SimpleRouter</strong></li>
-<li>  <strong>DefaultRouter</strong></li>
+<li><strong>SimpleRouter</strong></li>
+<li><strong>DefaultRouter</strong></li>
 </ul>
 <h3 id="1-用法"><a href="#1-用法" class="headerlink" title="1. 用法"></a>1. 用法</h3><p><span style="background:rgba(240, 200, 0, 0.2)">1. 创建 router 对象，并注册视图集</span></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> rest_framework <span class="hljs-keyword">import</span> routers <br>router = routers.DefaultRouter() router.register(<span class="hljs-string">&#x27;book&#x27;</span>, BookView, base_name=<span class="hljs-string">&#x27;book&#x27;</span>)<br></code></pre></td></tr></table></figure>
@@ -545,9 +698,9 @@
 <p>register(prefix, viewset, base_name)</p>
 <blockquote>
 <ul>
-<li>  prefix 该视图集的路由前缀</li>
-<li>  viewset 视图集</li>
-<li>  base_name 路由别名的前缀</li>
+<li>prefix 该视图集的路由前缀</li>
+<li>viewset 视图集</li>
+<li>base_name 路由别名的前缀</li>
 </ul>
 </blockquote>
 <p>如上述代码会形成的路由如下：</p>
@@ -556,7 +709,8 @@
 <p><span style="background:rgba(136, 49, 204, 0.2)">2. 添加路由数据：</span></p>
 <ul>
 <li><p>方式 1</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">urlpatterns = [<br>    ...<br>]<br>urlpatterns += router.urls<br></code></pre></td></tr></table></figure></li>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">urlpatterns = [<br>    ...<br>]<br>urlpatterns += router.urls<br></code></pre></td></tr></table></figure>
+</li>
 <li><p>方式 2</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">urlpatterns = [<br>    ...<br>    path(<span class="hljs-string">&#x27;^&#x27;</span>, include(router.urls))<br>]<br></code></pre></td></tr></table></figure></li>
 </ul>
@@ -573,14 +727,18 @@
 </code></pre>
 <p>action装饰器可以接收两个参数：</p>
 <ul>
-<li><strong>methods</strong>: 声明该action对应的请求方式，列表传递</li>
-<li><strong>detail</strong>: 声明该action的路径是否与单一资源对应  <figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arcade">路由前缀/&lt;pk&gt;<span class="hljs-regexp">/action方法名/</span><br></code></pre></td></tr></table></figure>
+<li><p><strong>methods</strong>: 声明该action对应的请求方式，列表传递</p>
+</li>
+<li><p><strong>detail</strong>: 声明该action的路径是否与单一资源对应</p>
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arcade">路由前缀/&lt;pk&gt;<span class="hljs-regexp">/action方法名/</span><br></code></pre></td></tr></table></figure>
+
 <ul>
-<li>  True 表示路径格式是<code>xxx/&lt;pk&gt;/action方法名/</code></li>
-<li>  False 表示路径格式是<code>xxx/action方法名/</code></li>
+<li>True 表示路径格式是<code>xxx/&lt;pk&gt;/action方法名/</code></li>
+<li>False 表示路径格式是<code>xxx/action方法名/</code></li>
 </ul>
 </li>
-<li>  url_path：声明该 action 的路由尾缀。</li>
+<li><p>url_path：声明该 action 的路由尾缀。</p>
+</li>
 </ul>
 <p>demo：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> rest_framework.viewsets <span class="hljs-keyword">import</span> ModelViewSet<br><span class="hljs-keyword">from</span> rest_framework.decorators <span class="hljs-keyword">import</span> action<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">BookView</span>(<span class="hljs-title class_ inherited__">ModelViewSet</span>):<br>    queryset = Book.objects<br>    serializer_class = BookSerializer<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    action装饰器的作用：告诉路由类给视图集的自定义方法生成路由信息</span><br><span class="hljs-string">    methods, 列表，允许哪些http请求能访问当前视图方法</span><br><span class="hljs-string">    detail，布尔，生成路由时是否拼接pk参数</span><br><span class="hljs-string">            detail为True，表示路径名格式应该为 book/&#123;pk&#125;/login/</span><br><span class="hljs-string">    url_path，字符串，生成路由时末尾路由路径，如果没有声明，则自动以当前方法名作为路由尾缀</span><br><span class="hljs-string">    </span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br><span class="hljs-meta">    @action(<span class="hljs-params">methods=[<span class="hljs-string">&#x27;get&#x27;</span>], detail=<span class="hljs-literal">True</span>,url_path=<span class="hljs-string">&quot;login&quot;</span></span>)</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">login</span>(<span class="hljs-params">self, request,pk</span>):<br>        <span class="hljs-string">&quot;&quot;&quot;登录&quot;&quot;&quot;</span><br>        <span class="hljs-keyword">return</span> Response(&#123;<span class="hljs-string">&quot;msg&quot;</span>:request.method&#125;)<br><br>    <span class="hljs-comment"># detail为False 表示路径名格式应该为 book/get_new_5/</span><br><span class="hljs-meta">    @action(<span class="hljs-params">methods=[<span class="hljs-string">&#x27;get&#x27;</span>], detail=<span class="hljs-literal">False</span></span>)</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">get_new_5</span>(<span class="hljs-params">self, request</span>):<br>        <span class="hljs-string">&quot;&quot;&quot;获取最新添加的5本书&quot;&quot;&quot;</span><br>        ...<br></code></pre></td></tr></table></figure>
@@ -596,7 +754,8 @@
 
 <h4 id="2-局部认证"><a href="#2-局部认证" class="headerlink" title="2. 局部认证"></a>2. 局部认证</h4><ol>
 <li><p>继承认证基类, 写自己的认证类，并重写 authenticate（）方法</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyAuthentication</span>(<span class="hljs-title class_ inherited__">SessionAuthentication</span>):  <br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">authenticate</span>(<span class="hljs-params">self, request</span>):  <br>        token = request.query_params.get(<span class="hljs-string">&#x27;token&#x27;</span>)  <br>        <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> token:  <br>            <span class="hljs-keyword">raise</span> AuthenticationFailed(&#123;<span class="hljs-string">&quot;code&quot;</span>: <span class="hljs-number">1001</span>, <span class="hljs-string">&quot;error&quot;</span>: <span class="hljs-string">&quot;认证失败&quot;</span>&#125;)  <br>        user_obj = Puser.objects.<span class="hljs-built_in">filter</span>(token=token).first()  <br>        <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> user_obj:  <br>            <span class="hljs-keyword">raise</span> AuthenticationFailed(&#123;<span class="hljs-string">&quot;code&quot;</span>: <span class="hljs-number">1001</span>, <span class="hljs-string">&quot;error&quot;</span>: <span class="hljs-string">&quot;认证失败&quot;</span>&#125;)  <br>        <span class="hljs-keyword">return</span> user_obj, token<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">authenticate_header</span>(<span class="hljs-params">self, request</span>):  <br>	    <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;&quot;MyAPI&quot;&#x27;</span><br></code></pre></td></tr></table></figure></li>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyAuthentication</span>(<span class="hljs-title class_ inherited__">SessionAuthentication</span>):  <br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">authenticate</span>(<span class="hljs-params">self, request</span>):  <br>        token = request.query_params.get(<span class="hljs-string">&#x27;token&#x27;</span>)  <br>        <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> token:  <br>            <span class="hljs-keyword">raise</span> AuthenticationFailed(&#123;<span class="hljs-string">&quot;code&quot;</span>: <span class="hljs-number">1001</span>, <span class="hljs-string">&quot;error&quot;</span>: <span class="hljs-string">&quot;认证失败&quot;</span>&#125;)  <br>        user_obj = Puser.objects.<span class="hljs-built_in">filter</span>(token=token).first()  <br>        <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> user_obj:  <br>            <span class="hljs-keyword">raise</span> AuthenticationFailed(&#123;<span class="hljs-string">&quot;code&quot;</span>: <span class="hljs-number">1001</span>, <span class="hljs-string">&quot;error&quot;</span>: <span class="hljs-string">&quot;认证失败&quot;</span>&#125;)  <br>        <span class="hljs-keyword">return</span> user_obj, token<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">authenticate_header</span>(<span class="hljs-params">self, request</span>):  <br>	    <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;&quot;MyAPI&quot;&#x27;</span><br></code></pre></td></tr></table></figure>
+</li>
 <li><p>视图函数设置 authentication_classes</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">authentication_classes = [MyAuthentication,]<br></code></pre></td></tr></table></figure></li>
 </ol>
@@ -661,10 +820,10 @@
 
 <p>可以在子类中定义的属性：</p>
 <ul>
-<li>  page_size 每页数目</li>
-<li>  page_query_param 前端发送的页数关键字名，默认为”page”</li>
-<li>  page_size_query_param 前端发送的每页数目关键字名，默认为None</li>
-<li>  max_page_size 前端最多能设置的每页数量</li>
+<li>page_size 每页数目</li>
+<li>page_query_param 前端发送的页数关键字名，默认为”page”</li>
+<li>page_size_query_param 前端发送的每页数目关键字名，默认为None</li>
+<li>max_page_size 前端最多能设置的每页数量</li>
 </ul>
 <p>分页器类，<code>paginations</code>，代码：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span>  rest_framework.pagination <span class="hljs-keyword">import</span> PageNumberPagination,LimitOffsetPagination<br><span class="hljs-comment"># PageNumberPagination，以页码作为分页条件</span><br><span class="hljs-comment"># page=1&amp;size=10      第1页</span><br><span class="hljs-comment"># page=2&amp;size=10      第2页</span><br><span class="hljs-comment"># ...</span><br><span class="hljs-comment"># LimitOffsetPagination，以数据库查询的limit和offset数值作为分页条件</span><br><span class="hljs-comment"># limit=10&amp;offset=0   第1页</span><br><span class="hljs-comment"># limit=10&amp;offset=10  第2页</span><br><span class="hljs-comment"># ...</span><br><br><span class="hljs-comment"># PageNumberPagination</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">StudentPageNumberPagination</span>(<span class="hljs-title class_ inherited__">PageNumberPagination</span>):<br>    page_query_param = <span class="hljs-string">&quot;page&quot;</span> <span class="hljs-comment"># 查询字符串中代表页码的变量名</span><br>    page_size_query_param = <span class="hljs-string">&quot;size&quot;</span> <span class="hljs-comment"># 查询字符串中代表每一页数据的变量名</span><br>    page_size = <span class="hljs-number">2</span> <span class="hljs-comment"># 每一页的数据量</span><br>    max_page_size = <span class="hljs-number">4</span> <span class="hljs-comment"># 允许客户端通过查询字符串调整的最大单页数据量</span><br></code></pre></td></tr></table></figure>
@@ -678,10 +837,10 @@
 
 <p>可以在子类中定义的属性：</p>
 <ul>
-<li>  default_limit 默认限制，默认值与<code>PAGE_SIZE</code>设置一直</li>
-<li>  limit_query_param limit参数名，默认’limit’</li>
-<li>  offset_query_param offset参数名，默认’offset’</li>
-<li>  max_limit 最大limit限制，默认None</li>
+<li>default_limit 默认限制，默认值与<code>PAGE_SIZE</code>设置一直</li>
+<li>limit_query_param limit参数名，默认’limit’</li>
+<li>offset_query_param offset参数名，默认’offset’</li>
+<li>max_limit 最大limit限制，默认None</li>
 </ul>
 <p>分页类，代码：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span>  rest_framework.pagination <span class="hljs-keyword">import</span> PageNumberPagination,LimitOffsetPagination<br><span class="hljs-comment"># PageNumberPagination，以页码作为分页条件</span><br><span class="hljs-comment"># page=1&amp;size=10      第1页</span><br><span class="hljs-comment"># page=2&amp;size=10      第2页</span><br><span class="hljs-comment"># LimitOffsetPagination，以数据库查询的limit和offset数值作为分页条件</span><br><span class="hljs-comment"># limit=10&amp;offset=0   第1页</span><br><span class="hljs-comment"># limit=10&amp;offset=10  第2页</span><br><br><span class="hljs-comment"># LimitOffsetPagination</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">StudentLimitOffsetPagination</span>(<span class="hljs-title class_ inherited__">LimitOffsetPagination</span>):<br>    limit_query_param = <span class="hljs-string">&quot;limit&quot;</span> <span class="hljs-comment"># 查询字符串中代表每一页数据的变量名</span><br>    offset_query_param = <span class="hljs-string">&quot;offset&quot;</span> <span class="hljs-comment"># 查询字符串中代表页码的变量名</span><br>    default_limit = <span class="hljs-number">2</span> <span class="hljs-comment"># 每一页的数据量</span><br>    max_limit = <span class="hljs-number">4</span> <span class="hljs-comment"># 允许客户端通过查询字符串调整的最大单页数据量</span><br></code></pre></td></tr></table></figure>
@@ -690,7 +849,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> .paginations <span class="hljs-keyword">import</span> StudentPageNumberPagination,StudentLimitOffsetPagination<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Student3ModelViewSet</span>(<span class="hljs-title class_ inherited__">ModelViewSet</span>):<br>    queryset = Student.objects.<span class="hljs-built_in">all</span>()<br>    serializer_class = StudentModelSerializer<br>    <span class="hljs-comment"># 取消当前视图类的分页效果</span><br>    <span class="hljs-comment"># pagination_class = None</span><br>    <span class="hljs-comment"># 局部分页</span><br>    pagination_class = StudentLimitOffsetPagination<br></code></pre></td></tr></table></figure>
 <h3 id="7-异常处理"><a href="#7-异常处理" class="headerlink" title="7. 异常处理"></a>7. 异常处理</h3><blockquote>
 <p>REST framework 提供了异常处理，我们可以自定义异常处理函数。例如我们想在要创建一个自定义异常函数，</p>
-<p>这个函数，我们保存到当前子应用opt中[注意，开发时，我们会找个独立的公共目录来保存这种公共的函数/工具/类库]。</p>
+<p>这个函数，我们保存到当前子应用opt中[注意，开发时，我们会找个独立的公共目录来保存这种公共的函数&#x2F;工具&#x2F;类库]。</p>
 </blockquote>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> rest_framework.views <span class="hljs-keyword">import</span> exception_handler<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">custom_exception_handler</span>(<span class="hljs-params">exc, context</span>):<br>    <span class="hljs-comment"># 先调用REST framework默认的异常处理方法获得标准错误响应对象</span><br>    response = exception_handler(exc, context)<br><br>    <span class="hljs-comment"># 在此处补充自定义的异常处理</span><br>    <span class="hljs-keyword">if</span> response <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>:<br>        response.data[<span class="hljs-string">&#x27;status_code&#x27;</span>] = response.status_code<br><br>    <span class="hljs-keyword">return</span> response<br></code></pre></td></tr></table></figure>
 
@@ -698,7 +857,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">REST_FRAMEWORK = &#123;<br>    <span class="hljs-string">&#x27;EXCEPTION_HANDLER&#x27;</span>: <span class="hljs-string">&#x27;drfdemo.exceptions.custom_excetion_handle&#x27;</span><br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>如果未声明，会采用默认的方式，如下</p>
-<p>rest_frame/settings.py</p>
+<p>rest_frame&#x2F;settings.py</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">REST_FRAMEWORK = &#123;<br>    <span class="hljs-string">&#x27;EXCEPTION_HANDLER&#x27;</span>: <span class="hljs-string">&#x27;rest_framework.views.exception_handler&#x27;</span><br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>例如：</p>
@@ -711,16 +870,16 @@
 
 <h4 id="REST-framework定义的异常"><a href="#REST-framework定义的异常" class="headerlink" title="REST framework定义的异常"></a>REST framework定义的异常</h4><blockquote>
 <ul>
-<li>  APIException 所有异常的父类</li>
-<li>  ParseError 解析错误</li>
-<li>  AuthenticationFailed 认证失败</li>
-<li>  NotAuthenticated 尚未认证</li>
-<li>  PermissionDenied 权限决绝</li>
-<li>  NotFound 未找到</li>
-<li>  MethodNotAllowed 请求方式不支持</li>
-<li>  NotAcceptable 要获取的数据格式不支持</li>
-<li>  Throttled 超过限流次数</li>
-<li>  ValidationError 校验失败</li>
+<li>APIException 所有异常的父类</li>
+<li>ParseError 解析错误</li>
+<li>AuthenticationFailed 认证失败</li>
+<li>NotAuthenticated 尚未认证</li>
+<li>PermissionDenied 权限决绝</li>
+<li>NotFound 未找到</li>
+<li>MethodNotAllowed 请求方式不支持</li>
+<li>NotAcceptable 要获取的数据格式不支持</li>
+<li>Throttled 超过限流次数</li>
+<li>ValidationError 校验失败</li>
 </ul>
 </blockquote>
 <p>也就是说，很多的没有在上面列出来的异常，就需要我们在自定义异常中自己处理了。</p>
@@ -749,7 +908,7 @@
 <p>3）对于视图集ViewSet，仍在类视图的文档字符串中封开定义，但是应使用action名称区分，如</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">BookInfoViewSet</span>(mixins.ListModelMixin, mixins.RetrieveModelMixin, GenericViewSet):<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    list:</span><br><span class="hljs-string">    返回图书列表数据</span><br><span class="hljs-string"></span><br><span class="hljs-string">    retrieve:</span><br><span class="hljs-string">    返回图书详情数据</span><br><span class="hljs-string"></span><br><span class="hljs-string">    latest:</span><br><span class="hljs-string">    返回最新的图书数据</span><br><span class="hljs-string"></span><br><span class="hljs-string">    read:</span><br><span class="hljs-string">    修改图书的阅读量</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br></code></pre></td></tr></table></figure>
 
-<h4 id="4-访问接口文档网页"><a href="#4-访问接口文档网页" class="headerlink" title="4. 访问接口文档网页"></a>4. 访问接口文档网页</h4><p>浏览器访问 127.0.0.1:8000/docs/，即可看到自动生成的接口文档。<br><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/20230427154626.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="4-访问接口文档网页"><a href="#4-访问接口文档网页" class="headerlink" title="4. 访问接口文档网页"></a>4. 访问接口文档网页</h4><p>浏览器访问 127.0.0.1:8000&#x2F;docs&#x2F;，即可看到自动生成的接口文档。<br><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/20230427154626.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p>swagger 接口文档<br><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/20230427154712.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p>两点说明：</p>
 <p>1） 视图集ViewSet中的retrieve名称，在接口文档网站中叫做read</p>
@@ -766,7 +925,7 @@
 <li><a target="_blank" rel="noopener" href="http://www.yuan316.com/post/DRF/">DRF | YUAN</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1z5411D7BQ/?p=21&spm_id_from=pageDriver&vd_source=9c896fa9c3f9023797e8efe7be0c113e">21 DRF应用的认证组件_哔哩哔哩_bilibili</a></li>
 </ol>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1/dist/APlayer.min.css"><script src="https://cdn.jsdelivr.net/npm/aplayer@1/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script><meting-js metin="meting" auto=" https://y.qq.com/n/ryqq/song/003kIhRR4Vr0cV.html" autoplay=" true" ></meting-js>
+<div id="mmedia-sPzgcsGRMpHaUVQB"></div><script> var sPzgcsGRMpHaUVQB_options = JSON.parse('{\"id\":\"mmedia-sPzgcsGRMpHaUVQB\",\"data\":{\"metin\":\"meting\",\"auto\":\" https://y.qq.com/n/ryqq/song/003kIhRR4Vr0cV.html\",\"autoplay\":\" true\"}}'); HEXO_MMEDIA_DATA.css.push("https://cdn.jsdelivr.net/npm/aplayer@1/dist/APlayer.min.css");HEXO_MMEDIA_DATA.js.push("https://cdn.jsdelivr.net/npm/aplayer@1/dist/APlayer.min.js");HEXO_MMEDIA_DATA.js.push("https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js");HEXO_MMEDIA_DATA.metingData.push(sPzgcsGRMpHaUVQB_options); </script>
 
                 
               </div>
@@ -818,30 +977,30 @@
     <div class="license-meta">
       
         <div class="license-meta-item">
-          <div>Author</div>
+          <div>作者</div>
           <div>alleyf</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
-          <div>Posted on</div>
-          <div>April 25, 2023</div>
+          <div>发布于</div>
+          <div>2023年4月25日</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
-          <div>Updated on</div>
-          <div>April 28, 2023</div>
+          <div>更新于</div>
+          <div>2023年4月28日</div>
         </div>
       
       <div class="license-meta-item">
-        <div>Licensed under</div>
+        <div>许可协议</div>
         <div>
           
             
             
               <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
                 <i class="iconfont icon-by"></i>
               </span>
               </a>
@@ -863,7 +1022,7 @@
                       <a href="/2023/04/218510a8c5b9.html" title="SpringBoot启示录">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">SpringBoot启示录</span>
-                        <span class="visible-mobile">Previous</span>
+                        <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </article>
@@ -872,7 +1031,7 @@
                     
                       <a href="/2023/04/5d72eb9cc9af.html" title="初识 uni-app">
                         <span class="hidden-mobile">初识 uni-app</span>
-                        <span class="visible-mobile">Next</span>
+                        <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -915,7 +1074,7 @@
       
   <aside class="sidebar" style="margin-left: -1rem">
     <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div class="toc-body" id="toc-body"></div>
 </div>
 
@@ -976,7 +1135,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -984,7 +1143,7 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -1012,16 +1171,16 @@
   
     
       <span id="busuanzi_container_site_pv" style="display: none">
-        Views: 
+        总访问量 
         <span id="busuanzi_value_site_pv"></span>
-        
+         次
       </span>
     
     
       <span id="busuanzi_container_site_uv" style="display: none">
-        Visitors: 
+        总访客数 
         <span id="busuanzi_value_site_uv"></span>
-        
+         人
       </span>
     
     
@@ -1224,7 +1383,7 @@
   
 
   <noscript>
-    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
   </noscript>
-<!-- hexo injector body_end start --><script src="/assets/mmedia/mmedia-loader.js"></script><script src="/js/addMusic.js"></script><!-- hexo injector body_end end --></body>
+<!-- hexo injector body_end start --><script src="/assets/mmedia/mmedia-loader.js"></script><script src="/js/addMusic.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>

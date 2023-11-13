@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="en" data-default-color-scheme=auto>
+<html lang="zh-CN" data-default-color-scheme=auto>
 
 
 
@@ -24,7 +24,7 @@
 <meta property="og:url" content="https://alleyf.github.io/2023/03/2e76a383274a.html">
 <meta property="og:site_name" content="alleyf">
 <meta property="og:description" content="some key points with respect to dataframe-algorithm">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://s2.loli.net/2023/05/24/kyjJIXU7eLSbCFW.png">
 <meta property="article:published_time" content="2023-03-17T11:06:15.000Z">
 <meta property="article:modified_time" content="2023-05-24T09:15:40.453Z">
@@ -116,7 +116,7 @@
 
 
   
-<!-- hexo injector head_end start --><script> let HEXO_MMEDIA_DATA = { js: [], css: [], aplayerData: [], metingData: [], artPlayerData: [], dplayerData: []}; </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="alleyf" type="application/atom+xml">
+<!-- hexo injector head_end start --><script> let HEXO_MMEDIA_DATA = { js: [], css: [], aplayerData: [], metingData: [], artPlayerData: [], dplayerData: []}; </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/atom.xml" title="alleyf" type="application/atom+xml">
 </head>
 
 
@@ -150,7 +150,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
-                Home
+                首页
               </a>
             </li>
           
@@ -162,7 +162,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                Archives
+                归档
               </a>
             </li>
           
@@ -174,7 +174,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
-                Categories
+                分类
               </a>
             </li>
           
@@ -186,7 +186,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                Tags
+                标签
               </a>
             </li>
           
@@ -198,7 +198,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
-                About
+                关于
               </a>
             </li>
           
@@ -210,7 +210,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/links/">
                 <i class="iconfont icon-link-fill"></i>
-                Links
+                友链
               </a>
             </li>
           
@@ -260,7 +260,7 @@
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
         <time datetime="2023-03-17 19:06" pubdate>
-          March 17, 2023 pm
+          2023年3月17日 晚上
         </time>
       </span>
     
@@ -271,7 +271,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5.3k words
+          5.4k 字
         
       </span>
     
@@ -282,7 +282,7 @@
         
         
         
-          45 mins
+          45 分钟
         
       </span>
     
@@ -292,7 +292,7 @@
       
         <span id="busuanzi_container_page_pv" style="display: none">
           <i class="iconfont icon-eye" aria-hidden="true"></i>
-          <span id="busuanzi_value_page_pv"></span> views
+          <span id="busuanzi_value_page_pv"></span> 次
         </span>
         
       
@@ -333,7 +333,7 @@
               <p class="note note-info">
                 
                   
-                    Last updated on 6 months ago
+                    本文最后更新于：6 个月前
                   
                 
               </p>
@@ -365,7 +365,7 @@
 <h2 id="2-入栈"><a href="#2-入栈" class="headerlink" title="2 入栈"></a>2 入栈</h2><p><span style="background:rgba(240, 107, 5, 0.2)">顺序栈：</span><br>时间复杂度：O（1）</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c"><br>Status <span class="hljs-title function_">Push</span><span class="hljs-params">(SqStack &amp;S,SElemType e)</span><br>&#123;<br><span class="hljs-keyword">if</span>(S.top - S.base==S.stacksize）<span class="hljs-keyword">return</span> ERROR;<br>*S.top++=e;<br><span class="hljs-keyword">return</span> OK;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>这段代码是一个名为 <code>Push</code> 的函数，它接受两个参数：一个指向栈 <code>S</code> 的指针引用和要入栈的元素 <code>e</code>。<code>SqStack</code> 表示栈的类型，在这里推测它是由结构体或类定义的。<code>&amp;S</code> 表示将栈变量的地址传递给函数，通过引用来修改栈的内容。在 C/C++中，引用有时候也被称为别名(alias)，它允许我们使用类似于指针的语法来操作对象，但是具有更好的安全性和易读性。<code>SElemType</code> 是栈元素的数据类型，可以是任何合法的数据类型。</p>
+<p>这段代码是一个名为 <code>Push</code> 的函数，它接受两个参数：一个指向栈 <code>S</code> 的指针引用和要入栈的元素 <code>e</code>。<code>SqStack</code> 表示栈的类型，在这里推测它是由结构体或类定义的。<code>&amp;S</code> 表示将栈变量的地址传递给函数，通过引用来修改栈的内容。在 C&#x2F;C++中，引用有时候也被称为别名(alias)，它允许我们使用类似于指针的语法来操作对象，但是具有更好的安全性和易读性。<code>SElemType</code> 是栈元素的数据类型，可以是任何合法的数据类型。</p>
 <p>这个函数的作用是将元素e压入到栈S中，如果栈已满则返回ERROR，否则在栈顶插入元素e并返回OK。其中<code>S.top - S.base</code> 表示当前栈中已有元素的个数，如果这个值等于<code>S.stacksize</code>就意味着栈已经满了。<code>*S.top++=e</code>表示将元素e存储在栈顶，并将栈指针往上移动一位，准备接收下一个元素。最后，函数返回插入操作的结果，OK表示成功，ERROR表示失败。</p>
 <p><span style="background:#b1ffff">链栈：</span><br><strong>头插</strong></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c">Status <span class="hljs-title function_">Push</span> <span class="hljs-params">(LinkStack&amp;S,ElemType e)</span>&#123;<br>p=new StackNode;<span class="hljs-comment">//生成新结点p</span><br><span class="hljs-keyword">if</span> (!p)<span class="hljs-keyword">return</span> OVERFLOW;<br>p-&gt;data=e;<br>p-&gt;next=S;<br>S=p;<span class="hljs-comment">//S始终指向当前第一个节点(栈顶节点)</span><br><span class="hljs-keyword">return</span> OK;<br><br></code></pre></td></tr></table></figure>
@@ -398,7 +398,7 @@
 
 
 
-<p><span style="background:#d3f8b6">队空标志：front==rear</span><br><span style="background:#d3f8b6">队满标志：（rear+1）%M=front</span>（循环队列）</p>
+<p><span style="background:#d3f8b6">队空标志：front&#x3D;&#x3D;rear</span><br><span style="background:#d3f8b6">队满标志：（rear+1）%M&#x3D;front</span>（循环队列）</p>
 <h2 id="2-入队"><a href="#2-入队" class="headerlink" title="2 入队"></a>2 入队</h2><p><strong>链接新节点，更新队尾节点</strong></p>
 <p><span style="background:#d3f8b6">顺序队列：</span></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c">Status <span class="hljs-title function_">EnQueue</span><span class="hljs-params">(SqQueue &amp;Q,QElemType e)</span><br>&#123;	<span class="hljs-keyword">if</span>((Q.rear+<span class="hljs-number">1</span>)%MAXQSIZE==Q.front)<br>		<span class="hljs-keyword">return</span> ERROR;<br>	Q.base[Q.rear]=e;<br>	Q.rear=(Q.rear+<span class="hljs-number">1</span>)%MAXQSIZE;<br>	<span class="hljs-keyword">return</span> OK;<br>&#125;<br><br></code></pre></td></tr></table></figure>
@@ -488,7 +488,7 @@
 <p>左孩子右兄弟连接原则：左子树均为孩子节点，右子树均为兄弟节点。</p>
 </blockquote>
 <ol start="7">
-<li>哈夫曼树，降序排列，从低到高，两两（多多）做兄弟构造新树，循环往复<br>所有叶子节点带权长度之和：<br>$$<br>WPL(T)=\sum W_kl_k(对所有叶子节点)<br>$$<blockquote>
+<li>哈夫曼树，降序排列，从低到高，两两（多多）做兄弟构造新树，循环往复<br>所有叶子节点带权长度之和：<br>$$<br>WPL(T)&#x3D;\sum W_kl_k(对所有叶子节点)<br>$$<blockquote>
 <p>WPL 最小的哈夫曼树为<font color="#8db3e2">最优哈夫曼树</font>。<br>哈夫曼编码原则：<font color="#ff0000">左 0 右 1 原则</font></p>
 </blockquote>
 </li>
@@ -544,30 +544,30 @@
     <div class="license-meta">
       
         <div class="license-meta-item">
-          <div>Author</div>
+          <div>作者</div>
           <div>alleyf</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
-          <div>Posted on</div>
-          <div>March 17, 2023</div>
+          <div>发布于</div>
+          <div>2023年3月17日</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
-          <div>Updated on</div>
-          <div>May 24, 2023</div>
+          <div>更新于</div>
+          <div>2023年5月24日</div>
         </div>
       
       <div class="license-meta-item">
-        <div>Licensed under</div>
+        <div>许可协议</div>
         <div>
           
             
             
               <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
                 <i class="iconfont icon-by"></i>
               </span>
               </a>
@@ -586,19 +586,19 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/03/56d5f0383564.html" title="algorithm">
+                      <a href="/2023/03/25848e23b2aa.html" title="深度学习论文阅读总结">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">algorithm</span>
-                        <span class="visible-mobile">Previous</span>
+                        <span class="hidden-mobile">深度学习论文阅读总结</span>
+                        <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/12/b3288796b118.html" title="FIR and IIR filter design">
-                        <span class="hidden-mobile">FIR and IIR filter design</span>
-                        <span class="visible-mobile">Next</span>
+                      <a href="/2023/03/56d5f0383564.html" title="algorithm">
+                        <span class="hidden-mobile">algorithm</span>
+                        <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -641,7 +641,7 @@
       
   <aside class="sidebar" style="margin-left: -1rem">
     <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div class="toc-body" id="toc-body"></div>
 </div>
 
@@ -702,7 +702,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -710,7 +710,7 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -738,16 +738,16 @@
   
     
       <span id="busuanzi_container_site_pv" style="display: none">
-        Views: 
+        总访问量 
         <span id="busuanzi_value_site_pv"></span>
-        
+         次
       </span>
     
     
       <span id="busuanzi_container_site_uv" style="display: none">
-        Visitors: 
+        总访客数 
         <span id="busuanzi_value_site_uv"></span>
-        
+         人
       </span>
     
     
@@ -950,7 +950,7 @@
   
 
   <noscript>
-    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
   </noscript>
-<!-- hexo injector body_end start --><script src="/assets/mmedia/mmedia-loader.js"></script><script src="/js/addMusic.js"></script><!-- hexo injector body_end end --></body>
+<!-- hexo injector body_end start --><script src="/assets/mmedia/mmedia-loader.js"></script><script src="/js/addMusic.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>

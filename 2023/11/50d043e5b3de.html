@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="en" data-default-color-scheme=auto>
+<html lang="zh-CN" data-default-color-scheme=auto>
 
 
 
@@ -24,7 +24,7 @@
 <meta property="og:url" content="https://alleyf.github.io/2023/11/50d043e5b3de.html">
 <meta property="og:site_name" content="alleyf">
 <meta property="og:description" content="方向参考 大模型生成数据，提升数据质量。大模型生成数据作为训练数据，即便存在问题也可以说明，存在幻觉问题。 司法数据集已经有很多公开的数据集了，并不存在数据稀疏。 大模型对知识图谱数据的获取方面有哪些研究。 司法数据隐私安全方面，联邦学习是否可以解决。 数据时效性，数据动态更新问题，如何更新，更新效率，高低频案件变化问题。 时序知识图谱看能否运用。   调研任务 研究现状：    1. 数据集构建">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://mmbiz.qpic.cn/sz_mmbiz_png/GNpj5fw72Er32ZwvWCfObFcRZ88HsBNZCjFrPU0gdnxKv8Y0nBIxYbo8QKibyDYe9ZwRRxfQBadVy8rUKN18CyQ/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1">
 <meta property="og:image" content="https://mmbiz.qpic.cn/sz_mmbiz_png/GNpj5fw72EoNLcgjjszm2DrnaibS4IYrJ4OChnFNYIAmWiazrb5d52HCnKWfWu32ZaSJrAx2vCwHia4Vt8vzaDmFQ/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1">
 <meta property="article:published_time" content="2023-11-01T06:14:51.000Z">
@@ -117,7 +117,7 @@
 
 
   
-<!-- hexo injector head_end start --><script> let HEXO_MMEDIA_DATA = { js: [], css: [], aplayerData: [], metingData: [], artPlayerData: [], dplayerData: []}; </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="alleyf" type="application/atom+xml">
+<!-- hexo injector head_end start --><script> let HEXO_MMEDIA_DATA = { js: [], css: [], aplayerData: [], metingData: [], artPlayerData: [], dplayerData: []}; </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/atom.xml" title="alleyf" type="application/atom+xml">
 </head>
 
 
@@ -151,7 +151,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
-                Home
+                首页
               </a>
             </li>
           
@@ -163,7 +163,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                Archives
+                归档
               </a>
             </li>
           
@@ -175,7 +175,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
-                Categories
+                分类
               </a>
             </li>
           
@@ -187,7 +187,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                Tags
+                标签
               </a>
             </li>
           
@@ -199,7 +199,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
-                About
+                关于
               </a>
             </li>
           
@@ -211,7 +211,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/links/">
                 <i class="iconfont icon-link-fill"></i>
-                Links
+                友链
               </a>
             </li>
           
@@ -261,7 +261,7 @@
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
         <time datetime="2023-11-01 14:14" pubdate>
-          November 1, 2023 pm
+          2023年11月1日 下午
         </time>
       </span>
     
@@ -272,7 +272,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.3k words
+          4.3k 字
         
       </span>
     
@@ -283,7 +283,7 @@
         
         
         
-          37 mins
+          37 分钟
         
       </span>
     
@@ -293,7 +293,7 @@
       
         <span id="busuanzi_container_page_pv" style="display: none">
           <i class="iconfont icon-eye" aria-hidden="true"></i>
-          <span id="busuanzi_value_page_pv"></span> views
+          <span id="busuanzi_value_page_pv"></span> 次
         </span>
         
       
@@ -334,7 +334,7 @@
               <p class="note note-info">
                 
                   
-                    Last updated on 4 hours ago
+                    本文最后更新于：9 小时前
                   
                 
               </p>
@@ -363,7 +363,7 @@
 <li>**知识图谱作为预训练数据[3]**：由于自然语言文本本身可能只提供有限的信息覆盖，而知识图谱可以为语言模型提供结构化的事实知识，集成知识图谱的语言模型（预）训练方法，使得向模型注入世界知识和实时更新知识更加方便。这种融合了知识图谱信息的语言模型，在知识密集型 QA 任务上展示了具有竞争力的结果，证明了这种方法在提升语言模型的能力具有重要意义。</li>
 <li>**监督微调[2]**：可以通过 KG 2 Instruction技术将知识图谱的转化成指令用于微调，还可以通过 OntoPrompt 将本体用于提示微调；</li>
 <li>**知识融合和更新[2]**：可以通过知识图谱的三元组对大语言模型进行编辑从而实现知识更新[Cao 2021]，并且可以将大语言模型跟知识图谱通过表示学习进行融合[Nayyeri  2023]，以及将一个大模型的知识迁移给另外一个大模型[Choi 2022]；</li>
-<li><strong>模型推理[2]<strong>：</strong>借助外挂知识库/图谱知识增强提升 LLM 效果[1]<strong>：目前比较主流的方式为使用</strong>外挂知识库</strong>的方式增强大模型输出的效果。具体为：将用户输入的问题转换为向量后，将该问题<strong>向量放入知识库中进行检索</strong>，并将相关的<strong>文档片段</strong>取出后与<strong>原始输入问题</strong>进行合并等操作后，将其作为新的输入送入大模型中。这样在输入端就对 LLM 的输出进行了一些限制，能够减轻 LLM 输出的“<em>幻觉</em>”问题。另外的，这种<strong>文本知识库</strong>也可以替换为<strong>图数据库</strong>，即将文本信息转换为图数据后进行检索。<img src="https://mmbiz.qpic.cn/sz_mmbiz_png/GNpj5fw72EoNLcgjjszm2DrnaibS4IYrJ4OChnFNYIAmWiazrb5d52HCnKWfWu32ZaSJrAx2vCwHia4Vt8vzaDmFQ/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1" srcset="/img/loading.gif" lazyload><br>另外，**构建提示模板[3]**：目前使用知识图谱来丰富和微调提示模板，从而在提示的数量、质量和多样性上比手动的方法更具优势，已有方法证明了通过图谱构建的提示模板进行推理比传统方法更具竞争力，但目前该方法仍存在挑战与机遇：<br> 1）生成上下文感知的写作提示，分析不同提示之间的关系，形成具有关联关系的提示模板。<br> 2）动态生成和用户交互的提示模板，由于知识图谱提供了知识的透明表示，因此可以很容易地将从知识图谱生成的提示追溯到它们的底层源。<br> 3）将知识图谱集成到提示模板中，增强模型生成内容的可行度。<br> 4）知识图谱可以创建询问问题的提示，从而触发知识图谱复杂推理能力和中间推理步骤。<br>此外，还可以通过知识图谱生成提示[Chen 2022]或者指令[Du, 2022]用于增强模型的推理能力。此外，思维链可以指导大模型推理[2]，知识图谱可以表示和生成思维链，通过结构化更好的思维链提升大模型的推理能力。</li>
+<li><strong>模型推理[2]<strong>：</strong>借助外挂知识库&#x2F;图谱知识增强提升 LLM 效果[1]<strong>：目前比较主流的方式为使用</strong>外挂知识库</strong>的方式增强大模型输出的效果。具体为：将用户输入的问题转换为向量后，将该问题<strong>向量放入知识库中进行检索</strong>，并将相关的<strong>文档片段</strong>取出后与<strong>原始输入问题</strong>进行合并等操作后，将其作为新的输入送入大模型中。这样在输入端就对 LLM 的输出进行了一些限制，能够减轻 LLM 输出的“<em>幻觉</em>”问题。另外的，这种<strong>文本知识库</strong>也可以替换为<strong>图数据库</strong>，即将文本信息转换为图数据后进行检索。<img src="https://mmbiz.qpic.cn/sz_mmbiz_png/GNpj5fw72EoNLcgjjszm2DrnaibS4IYrJ4OChnFNYIAmWiazrb5d52HCnKWfWu32ZaSJrAx2vCwHia4Vt8vzaDmFQ/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1" srcset="/img/loading.gif" lazyload><br>另外，**构建提示模板[3]**：目前使用知识图谱来丰富和微调提示模板，从而在提示的数量、质量和多样性上比手动的方法更具优势，已有方法证明了通过图谱构建的提示模板进行推理比传统方法更具竞争力，但目前该方法仍存在挑战与机遇：<br> 1）生成上下文感知的写作提示，分析不同提示之间的关系，形成具有关联关系的提示模板。<br> 2）动态生成和用户交互的提示模板，由于知识图谱提供了知识的透明表示，因此可以很容易地将从知识图谱生成的提示追溯到它们的底层源。<br> 3）将知识图谱集成到提示模板中，增强模型生成内容的可行度。<br> 4）知识图谱可以创建询问问题的提示，从而触发知识图谱复杂推理能力和中间推理步骤。<br>此外，还可以通过知识图谱生成提示[Chen 2022]或者指令[Du, 2022]用于增强模型的推理能力。此外，思维链可以指导大模型推理[2]，知识图谱可以表示和生成思维链，通过结构化更好的思维链提升大模型的推理能力。</li>
 <li><strong>增强可解释性</strong>：包括用KG来理解LLM所学到的知识并解释LLM推理过程。</li>
 </ol>
 <hr>
@@ -390,7 +390,9 @@
 </li>
 </ol>
 <h3 id="大模型运用于知识图谱"><a href="#大模型运用于知识图谱" class="headerlink" title="大模型运用于知识图谱"></a>大模型运用于知识图谱</h3><ol>
-<li>从大模型进行<em>知识抽取提取三元组</em>遇到的挑战：<br> 1）由于实体名称的重复性，需要进行<strong>实体消歧</strong>；<br> 2）由于大语言模型读<strong>长尾实体记忆的不精确</strong>性，导致产生错误的信息；<br> 3）大语言模型面临着<strong>高精度</strong>的要求；<br> 4）大语言模型的输出不提供出处，为核验该<strong>信息的准确性</strong>带来了信息的挑战。<h3 id="个性问题"><a href="#个性问题" class="headerlink" title="个性问题"></a>个性问题</h3><h4 id="知识图谱"><a href="#知识图谱" class="headerlink" title="知识图谱"></a>知识图谱</h4><h4 id="大模型"><a href="#大模型" class="headerlink" title="大模型"></a>大模型</h4></li>
+<li>从大模型进行<em>知识抽取提取三元组</em>遇到的挑战：<br> 1）由于实体名称的重复性，需要进行<strong>实体消歧</strong>；<br> 2）由于大语言模型读<strong>长尾实体记忆的不精确</strong>性，导致产生错误的信息；<br> 3）大语言模型面临着<strong>高精度</strong>的要求；<br> 4）大语言模型的输出不提供出处，为核验该<strong>信息的准确性</strong>带来了信息的挑战。</li>
+</ol>
+<h3 id="个性问题"><a href="#个性问题" class="headerlink" title="个性问题"></a>个性问题</h3><h4 id="知识图谱"><a href="#知识图谱" class="headerlink" title="知识图谱"></a>知识图谱</h4><h4 id="大模型"><a href="#大模型" class="headerlink" title="大模型"></a>大模型</h4><ol>
 <li><strong>知识表示与推理</strong>：<br>知识图谱提供了具有明确关系的知识的结构化表示，支持推理和推断。有学者认为大语言模型中“参数化”的知识是基于统计的，并不是真正的理解和推理，并且由于缺乏明确的知识表征，模型会生成看似合理但却荒谬的结果。</li>
 <li><strong>高精度方法</strong>：<br>知识图谱的成功在于其可以精确地提供关于实体的事实信息，如 YAGO，可以提供 95%以上的正确信息。同样知识图谱在用于生产环境时需要较高的精度，例如 Google 的 Knowledge Vault 未能成功落地也是因为其精度达不到要求的 99%。目前基于 BERT 或 GPT 等的方法不能满足以上要求，这知识计算科学家仍然需要探索基于大语言模型的高精度的方法。</li>
 <li><strong>数值计算</strong>：<br>对于语言模型来说，完成数值计算工作是一项具有挑战性的任务，该挑战同样适用于知识图谱补全任务。在基于 Wikidata 的数字事实来评估语言模型数值计算能力中，没有一个模型能准确地得到结果，尽管已有的模型在数值处理的能力上表现不俗，但考虑到数值具有不同的度量和类型，使得该任务难度进一步升级，因此，修改模型来处理数值的问题仍未被解决，以至于利用大语言模型来完成数值知识图谱的补全看起来是不现实的。</li>
@@ -464,30 +466,30 @@
     <div class="license-meta">
       
         <div class="license-meta-item">
-          <div>Author</div>
+          <div>作者</div>
           <div>范财胜</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
-          <div>Posted on</div>
-          <div>November 1, 2023</div>
+          <div>发布于</div>
+          <div>2023年11月1日</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
-          <div>Updated on</div>
-          <div>November 13, 2023</div>
+          <div>更新于</div>
+          <div>2023年11月13日</div>
         </div>
       
       <div class="license-meta-item">
-        <div>Licensed under</div>
+        <div>许可协议</div>
         <div>
           
             
             
               <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
                 <i class="iconfont icon-by"></i>
               </span>
               </a>
@@ -509,7 +511,7 @@
                       <a href="/2023/11/86d607e7b4ea.html" title="">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile"></span>
-                        <span class="visible-mobile">Previous</span>
+                        <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </article>
@@ -518,7 +520,7 @@
                     
                       <a href="/2023/10/7ca8ec33c92b.html" title="SpringBoot 简记">
                         <span class="hidden-mobile">SpringBoot 简记</span>
-                        <span class="visible-mobile">Next</span>
+                        <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -561,7 +563,7 @@
       
   <aside class="sidebar" style="margin-left: -1rem">
     <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div class="toc-body" id="toc-body"></div>
 </div>
 
@@ -622,7 +624,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -630,7 +632,7 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -658,16 +660,16 @@
   
     
       <span id="busuanzi_container_site_pv" style="display: none">
-        Views: 
+        总访问量 
         <span id="busuanzi_value_site_pv"></span>
-        
+         次
       </span>
     
     
       <span id="busuanzi_container_site_uv" style="display: none">
-        Visitors: 
+        总访客数 
         <span id="busuanzi_value_site_uv"></span>
-        
+         人
       </span>
     
     
@@ -870,7 +872,7 @@
   
 
   <noscript>
-    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
   </noscript>
-<!-- hexo injector body_end start --><script src="/assets/mmedia/mmedia-loader.js"></script><script src="/js/addMusic.js"></script><!-- hexo injector body_end end --></body>
+<!-- hexo injector body_end start --><script src="/assets/mmedia/mmedia-loader.js"></script><script src="/js/addMusic.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>
