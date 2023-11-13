@@ -21,7 +21,7 @@
             }
           },
           {
-            "id": "92b45246fa341952",
+            "id": "c592f2571e97f628",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -59,7 +59,8 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -79,7 +80,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/科研学习/会议讨论/周会.md"
+                "file": "source/_posts/前后端开发/SpringBoot+Vue项目实战.md"
               }
             }
           }
@@ -136,7 +137,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/科研学习/会议讨论/周会.md",
+                "file": "source/_posts/前后端开发/SpringBoot+Vue项目实战.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -190,24 +191,28 @@
       "obsidian-excalidraw-plugin:新建 Excalidraw 绘图": false
     }
   },
-  "active": "8e85ccb013ecad38",
+  "active": "c592f2571e97f628",
   "lastOpenFiles": [
-    "source/_posts/前后端开发/SpringBoot+Vue项目实战.md",
     "source/_posts/科研学习/会议讨论/周会.md",
+    "source/about/index.md",
+    "public/assets/mmedia/mmedia-loader.js",
+    "public/assets/mmedia",
+    "public/assets",
+    "node_modules/fsevents",
+    "public/2023/10/5a6e7a32f864.html",
+    "public/archives/2023/10/page/2/index.html",
+    "public/archives/2023/10/page/2",
+    "public/categories/科研学习/page/2/index.html",
+    "public/categories/科研学习/page/2",
+    "public/categories/科研学习/page",
+    "node_modules/luxon/build/readme.md",
+    "node_modules/hexo-generator-feed/README.md",
+    "node_modules/filelist/node_modules/minimatch/README.md",
+    "source/_posts/前后端开发/SpringBoot+Vue项目实战.md",
     "source/_posts/前后端开发/SpringBoot.md",
     "source/_posts/科研学习/国基金项目/司法领域大模型调研四.md",
     "source/_posts/前后端开发/Spring核心学习.md",
     "source/_posts/前后端开发/SpringSecurity.md",
-    "public/2023/11/f62aae04555b.html",
-    "public/2023/11/50d043e5b3de.html",
-    "public/2023/11/86d607e7b4ea.html",
-    "public/2023/11/9f9a776a7dab.html",
-    "public/2023/11",
-    "public/categories/Spring/index.html",
-    "public/categories/Spring",
-    "public/tags/KG/index.html",
-    "public/tags/KG",
-    "public/tags/JWT/index.html",
     "source/_posts/科研学习/国基金项目/司法领域大模型调研一.md",
     "source/_obsidian/Post Template.md",
     "source/_obsidian/Weekly Report.md",
@@ -226,10 +231,6 @@
     "canvas/review plans.canvas",
     "canvas/AI学习思路.canvas",
     "未命名.canvas",
-    "JavaSSM 基础部分 - SSM笔记（二）SpringMvc基础.md",
-    "scaffolds/post.md",
-    "scaffolds/page.md",
-    "scaffolds/draft.md",
     "source/_posts/英语学习/EnglishWords.canvas",
     "source/_posts/英语学习/PaperWords.canvas",
     "source/_posts/课程学习/review plans.canvas",
