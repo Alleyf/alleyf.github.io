@@ -69,7 +69,7 @@
 <meta property="og:image" content="https://s2.loli.net/2023/07/05/LVxihksHZu2qN6X.png">
 <meta property="og:image" content="https://s2.loli.net/2023/07/06/uPjdsgbhv9NqA8B.png">
 <meta property="article:published_time" content="2023-11-13T15:37:51.000Z">
-<meta property="article:modified_time" content="2023-11-13T15:38:53.533Z">
+<meta property="article:modified_time" content="2023-11-14T02:40:56.945Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="JWT">
 <meta property="article:tag" content="SpingSecurity">
@@ -325,7 +325,7 @@
         
         
         
-          497 分钟
+          499 分钟
         
       </span>
     
@@ -376,7 +376,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：31 分钟前
+                    本文最后更新于：8 小时前
                   
                 
               </p>
@@ -900,6 +900,10 @@
 
 <p><strong>自定义验证：</strong></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.example.springsecurity.service.impl;  <br>  <br><span class="hljs-keyword">import</span> com.example.springsecurity.entity.User;  <br><span class="hljs-keyword">import</span> com.example.springsecurity.mapper.UserMapper;  <br><span class="hljs-keyword">import</span> jakarta.annotation.Resource;  <br><span class="hljs-keyword">import</span> org.springframework.security.core.userdetails.UserDetails;  <br><span class="hljs-keyword">import</span> org.springframework.security.core.userdetails.UserDetailsService;  <br><span class="hljs-keyword">import</span> org.springframework.security.core.userdetails.UsernameNotFoundException;  <br><span class="hljs-keyword">import</span> org.springframework.stereotype.Service;  <br>  <br><span class="hljs-comment">/**  </span><br><span class="hljs-comment"> * 自定义SpringSecurity认证校验规则 */</span><span class="hljs-meta">@Service</span>  <br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">AuthorizeService</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">UserDetailsService</span> &#123;  <br>    <span class="hljs-meta">@Resource</span>  <br>    UserMapper mapper;  <br>  <br>    <span class="hljs-meta">@Override</span>  <br>    <span class="hljs-keyword">public</span> UserDetails <span class="hljs-title function_">loadUserByUsername</span><span class="hljs-params">(String username)</span> <span class="hljs-keyword">throws</span> UsernameNotFoundException &#123;  <br>        <span class="hljs-type">User</span> <span class="hljs-variable">user</span> <span class="hljs-operator">=</span> mapper.getUserByUsername(username);  <br><span class="hljs-comment">//        System.out.println(user);  </span><br>        <span class="hljs-keyword">if</span> (user == <span class="hljs-literal">null</span>) &#123;  <br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">UsernameNotFoundException</span>(<span class="hljs-string">&quot;用户名或密码错误&quot;</span>);  <br>        &#125;  <br>        <span class="hljs-keyword">return</span> org.springframework.security.core.userdetails.User  <br>                .withUsername(user.getName())  <br>                .password(user.getPwd())  <br>                .roles(user.getRole())  <br>                .build();  <br>    &#125;  <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cardlink">url: https://itbaima.net/<br>title: &quot;柏码 - 让每一行代码都闪耀智慧的光芒！&quot;<br>host: itbaima.net<br>favicon: /favicon.ico<br></code></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://itbaima.net/">柏码 - 让每一行代码都闪耀智慧的光芒！</a></p>
+
                 
               </div>
             
@@ -965,7 +969,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2023年11月13日</div>
+          <div>2023年11月14日</div>
         </div>
       
       <div class="license-meta-item">
@@ -1360,5 +1364,5 @@
   <noscript>
     <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
   </noscript>
-<!-- hexo injector body_end start --><script src="/assets/mmedia/mmedia-loader.js"></script><script src="/js/addMusic.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+<!-- hexo injector body_end start --><script src="/assets/mmedia/mmedia-loader.js"></script><script src="/js/addMusic.js"></script><!-- hexo injector body_end end --></body>
 </html>

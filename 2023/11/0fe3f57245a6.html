@@ -1,0 +1,1031 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="alleyf">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="title: PyTorch date: 2023-08-17T12:10:24Z lastmod: 2023-08-17T14:59:00Z   @心得体会  @1.python    @正文   @1.数据加载  @1.1DataSet    @2.TensorBoard  @2.1 绘图 @2.2 添加图片    @3.Transforms  @3.1 ToTensor @3.2 Compo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="alleyf">
+<meta property="og:url" content="https://alleyf.github.io/2023/11/0fe3f57245a6.html">
+<meta property="og:site_name" content="alleyf">
+<meta property="og:description" content="title: PyTorch date: 2023-08-17T12:10:24Z lastmod: 2023-08-17T14:59:00Z   @心得体会  @1.python    @正文   @1.数据加载  @1.1DataSet    @2.TensorBoard  @2.1 绘图 @2.2 添加图片    @3.Transforms  @3.1 ToTensor @3.2 Compo">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308171509416.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308171509840.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308171509807.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308171505460.png">
+<meta property="og:image" content="https://alleyf.github.io/2023/11/!%5B%5D(https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308171425731.png)">
+<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308171458436.png">
+<meta property="article:published_time" content="2023-11-14T02:39:20.852Z">
+<meta property="article:modified_time" content="2023-11-14T02:42:07.340Z">
+<meta property="article:author" content="alleyf">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308171509416.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>alleyf</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"alleyf.github.io","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":true,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"d57048846da607439cf11718741f2eb0","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?d57048846da607439cf11718741f2eb0";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<!-- hexo injector head_end start --><script> let HEXO_MMEDIA_DATA = { js: [], css: [], aplayerData: [], metingData: [], artPlayerData: [], dplayerData: []}; </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/atom.xml" title="alleyf" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Mr.Alleyf</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://api.likepoems.com/img/nature') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text=""></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        alleyf
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-11-14 10:39" pubdate>
+          2023年11月14日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          38 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none"></h1>
+            
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：8 小时前
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <pre class="vditor-yml-front-matter"><code class="language-yaml">title: PyTorch
+date: 2023-08-17T12:10:24Z
+lastmod: 2023-08-17T14:59:00Z</code></pre>
+<ul>
+<li>
+<p><a href="siyuan://blocks/20230817121028-w7nyyc3">@心得体会</a></p>
+<ul>
+<li><a href="siyuan://blocks/20230817121030-n35add1">@1.python</a></li>
+</ul>
+</li>
+<li>
+<p><a href="siyuan://blocks/20230817121060-tiief1g">@正文</a></p>
+<ul>
+<li>
+<p><a href="siyuan://blocks/20230817121062-iq1quyh">@1.数据加载</a></p>
+<ul>
+<li><a href="siyuan://blocks/20230817121063-82dcpx9">@1.1DataSet</a></li>
+</ul>
+</li>
+<li>
+<p><a href="siyuan://blocks/20230817121071-q3mapen">@2.TensorBoard</a></p>
+<ul>
+<li><a href="siyuan://blocks/20230817121087-t69jfrt">@2.1 绘图</a></li>
+<li><a href="siyuan://blocks/20230817121090-ht9sci3">@2.2 添加图片</a></li>
+</ul>
+</li>
+<li>
+<p><a href="siyuan://blocks/20230817121093-bmk2qob">@3.Transforms</a></p>
+<ul>
+<li><a href="siyuan://blocks/20230817121094-3y9wxog">@3.1 ToTensor</a></li>
+<li><a href="siyuan://blocks/20230817121112-7h31n7i">@3.2 Compose</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><a href="siyuan://blocks/20230817121113-9ahl3ut">@参考文献</a></p>
+</li>
+</ul>
+<hr />
+<iframe src="/widgets/metadata" data-src="/widgets/metadata" data-subtype="widget" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+<p>title: PyTorch 快速入门<br />
+tags: [DL]<br />
+date: 2023-05-31 14:27:39<br />
+sticky: 20<br />
+excerpt: Machine and Deep learning</p>
+<hr />
+<h1>心得体会</h1>
+<hr />
+<h2>1.python</h2>
+<blockquote>
+<p>Python 类中的双下划线 (double underscore)开头的方法通常被称为&quot;魔法方法&quot; (magic methods)。这些方法可以实现一些特殊的功能或对类进行修改。以下是一些常见的双下划线方法及其作用:</p>
+</blockquote>
+<ul>
+<li><strong>init</strong>(): 构造函数, 用于初始化类的实例。</li>
+<li><strong>str</strong>(): 当使用 print 输出对象时, 打印该方法的返回值。</li>
+<li><strong>repr</strong>(): 返回对象的机器可读字符串表示形式。</li>
+<li><strong>del</strong>(): 析构函数, 删除对象时被调用。</li>
+<li><strong>call</strong>(): 允许将对象视为函数调用。</li>
+<li><strong>getitem</strong>(): 通过索引访问元素的方法, 使得对象可以像列表那样进行切片。</li>
+<li><strong>len</strong>(): 返回对象长度的方法, 使得对象可以对 len () 函数生效。</li>
+<li><strong>eq</strong>(): 判断两个对象是否相等的方法, 使得对象可以使用 == 进行比较。</li>
+<li><strong>lt</strong>(): 小于比较的方法, 可以使用 &lt; 进行比较。</li>
+<li><strong>add</strong>(): 实现对象的加法运算。</li>
+<li><strong>iter</strong>(): 实现迭代器接口, 使得对象可以被用于 for 循环。</li>
+<li><strong>metaclass</strong>: 元类, 用于创建类对象。</li>
+</ul>
+<blockquote>
+<p>所以双下划线方法主要是实现一些内置的功能或魔法方法, 让 Python 类拥有一些特殊的行为。我们自己编写类时, 如果需要实现某些特殊功能, 可以通过编写双下划线方法来实现。</p>
+</blockquote>
+<h1>正文</h1>
+<hr />
+<h2>1.数据加载</h2>
+<h3>1.1DataSet</h3>
+<blockquote>
+<p>继承 DataSet 类并重写__getitem__和 <strong>len</strong> 方法</p>
+</blockquote>
+<pre><code class="language-python">import torch
+from PIL import Image
+from torch.utils.data import Dataset
+import os
+# 快捷键ctrl+B快速打开关闭文件编辑区
+class CustomDataset(Dataset):
+    def __init__(self, root_dir,label_dir):
+        self.root_dir = root_dir
+        self.label_dir = label_dir
+        self.path = os.path.join(self.root_dir,self.label_dir)
+        self.img_path = os.listdir(self.path)
+    def __getitem__(self, index):
+        # 根据索引index获取数据和标签
+        img_name = self.img_path[index]
+        img_item_path = os.path.join(self.path,img_name)
+        img = Image.open(img_item_path)
+        label = self.label_dir
+        return img,label
+    def __len__(self):
+        # 返回数据集的长度
+        return len(self.img_path)
+</code></pre>
+<pre><code class="language-python">root_dir = 'dataset/train'
+ants_label_dir = 'ants_image'
+bees_label_dir = 'bees_image'
+ants_dataset = CustomDataset(root_dir,ants_label_dir)
+bees_dataset = CustomDataset(root_dir,bees_label_dir)
+</code></pre>
+<blockquote>
+<p><strong>小数据集可以通过 ➕ 叠加为大数据集</strong></p>
+</blockquote>
+<pre><code class="language-python">img,label = ants_dataset[1]
+img.show()
+img,label = bees_dataset[0]
+img.show()
+train_dataset = ants_dataset+bees_dataset
+img,label = train_dataset[124]
+img.show()
+</code></pre>
+<h2>2.TensorBoard</h2>
+<blockquote>
+<p>TensorBoard 是一个用于可视化和监控机器学习模型训练过程的工具。它可以帮助您跟踪实验指标（如损失和准确率）、呈现模型计算图以及将嵌入向量投影到较低维度的空间等[1]。以下是使用 TensorBoard 的一般步骤：</p>
+</blockquote>
+<ol>
+<li>安装 TensorBoard：您可以使用 pip 安装 TensorBoard，例如 <code>pip install tensorboard</code>。</li>
+<li>导入 TensorBoard：在 Python 代码中，导入 TensorBoard 库，例如 <code>import tensorflow as tf</code>。</li>
+<li>在代码中添加 TensorBoard 回调：在您的机器学习模型训练代码中，添加 TensorBoard 回调函数。这将允许 TensorBoard 在训练过程中记录指定的指标和数据。</li>
+<li>启动 TensorBoard 服务器：在终端中，使用命令 <code>tensorboard --logdir=&lt;log_directory&gt;</code> 启动 TensorBoard 服务器。其中，<code>&lt;log_directory&gt;</code> 是您保存 TensorBoard 日志文件的目录。</li>
+<li>在浏览器中查看 TensorBoard：在浏览器中输入 <code>http://localhost:6006</code>，您将能够查看 TensorBoard 的可视化界面。</li>
+</ol>
+<blockquote>
+<p>在 TensorBoard 界面中，您可以查看训练过程中的损失曲线、准确率曲线等指标图表。您还可以查看模型计算图、嵌入向量的投影等[1]。</p>
+</blockquote>
+<h3>2.1 绘图</h3>
+<pre><code class="language-python">from torch.utils.tensorboard import SummaryWriter
+writer  = SummaryWriter(&quot;logs&quot;)
+for i in range(100):
+    writer.add_scalar(&quot;y=x&quot;,i,i)
+writer.close()
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308171509416.png" srcset="/img/loading.gif" lazyload alt="image.png|500" /></p>
+<h3>2.2 添加图片</h3>
+<pre><code class="language-python">from torch.utils.tensorboard import SummaryWriter
+import numpy as np
+from PIL import Image
+writer  = SummaryWriter(&quot;logs&quot;)
+img_path = &quot;dataset/train/ants_image/1030023514_aad5c608f9.jpg&quot;
+img_pil = Image.open(img_path)
+img_array = np.array(img_pil)
+writer.add_image(&quot;ant_test&quot;,img_array,2,dataformats='HWC')
+writer.close()
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308171509840.png" srcset="/img/loading.gif" lazyload alt="image.png|400" /></p>
+<h2>3.Transforms</h2>
+<h3>3.1 ToTensor</h3>
+<p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308171509807.png" srcset="/img/loading.gif" lazyload alt="image.png|500" /></p>
+<blockquote>
+<p>通过 transforms. ToTensor 去看两个问题</p>
+<ol>
+<li>transforms 该如何使用 (python)？</li>
+<li>为什么我们需要 Tensor 数据类型？</li>
+</ol>
+</blockquote>
+<pre><code class="language-python">from torchvision import transforms
+from PIL import Image
+import cv2
+img_path = &quot;./dataset/train/ants_image/0013035.jpg&quot;
+img_PIL=Image.open(img_path)
+img_cv = cv2.imread(img_path)
+transform_tensor = transforms.ToTensor()
+img_tensor = transform_tensor(img_cv)
+print(img_tensor.shape)
+writer = SummaryWriter(&quot;logs&quot;)
+writer.add_image(&quot;tensor_image&quot;,img_tensor)
+writer.close()
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308171505460.png" srcset="/img/loading.gif" lazyload alt="image.png|400" /></p>
+<blockquote>
+<p>[!NOTE] Tips</p>
+<ol>
+<li><strong>cv 2 的 imread</strong> 读取的图片类型为 <code>ndarray</code></li>
+<li><strong>PIL 的 Image. open</strong> 读取的图片类型为 <code>JpegImageFile</code></li>
+</ol>
+</blockquote>
+<h3>3.2 Compose</h3>
+<blockquote>
+<p>Compose类是将多种transforms操作叠加在一起,初始化compose类后,执行<code>__call__</code>​方法循环执行组合操作</p>
+</blockquote>
+<pre><code class="language-python">transform_compose = transforms.Compose([transforms.CenterCrop(10),transforms.ToTensor(),transforms.ConvertImageDtype(torch.float),])
+img_compose = transform_compose(img_PIL)
+print(type(img_compose))
+writer = SummaryWriter(&quot;logs&quot;)
+writer.add_image(&quot;compose_tensor_image&quot;,img_compose)
+writer.close()
+</code></pre>
+<h3>3.3 Normalize</h3>
+<p>‍</p>
+<p>‍</p>
+<p>‍</p>
+<blockquote>
+<p>对图像进行正则化,传参包括<strong>各通道均值和标准差</strong></p>
+</blockquote>
+<pre><code class="language-python">trans_normalize = transforms.Normalize([0.5, 0.5, 0.5],[0.5, 0.5, 0.5])
+img_norm = trans_normalize(img_tensor)
+print(img_norm[0][0][0])
+writer.add_image(&quot;Normalize&quot;,img_norm)
+</code></pre>
+<p><img src="!%5B%5D(https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308171425731.png)" srcset="/img/loading.gif" lazyload alt="image" /></p>
+<h3>3.4 Resize</h3>
+<blockquote>
+<p>改变PILImage图像尺寸</p>
+</blockquote>
+<pre><code class="language-python">from torchvision import transforms
+
+<h1 id="将图像缩放到256x256"><a href="#将图像缩放到256x256" class="headerlink" title="将图像缩放到256x256"></a>将图像缩放到256x256</h1><p>trans_resize&#x3D; transforms.Resize(256) </p>
+<h1 id="将图像按比例缩放-短边为256"><a href="#将图像按比例缩放-短边为256" class="headerlink" title="将图像按比例缩放,短边为256"></a>将图像按比例缩放,短边为256</h1><p>trans_resize&#x3D; transforms.Resize(size&#x3D;(256, 256), interpolation&#x3D;Image.BICUBIC)</p>
+<h1 id="最长边不超过256-短边按2-1的比例缩放"><a href="#最长边不超过256-短边按2-1的比例缩放" class="headerlink" title="最长边不超过256,短边按2:1的比例缩放"></a>最长边不超过256,短边按2:1的比例缩放</h1><p>trans_resize&#x3D; transforms.Resize(max_size&#x3D;256, ratio&#x3D;2)</p>
+<p>img_resize &#x3D; trans_resize(img_tensor)<br>print(img_resize.shape)<br></code></pre></p>
+<h3>3.5 RandomCrop</h3>
+<blockquote>
+<p>随机裁剪图像,指定裁剪后的图像大小进行随机裁剪,支持输入格式为<code>PILImage和Tensor</code>​</p>
+</blockquote>
+<pre><code class="language-python">trans_randomcrop = transforms.RandomCrop(512)
+img_randomcrop = trans_randomcrop(img_tensor)
+print(img_randomcrop.shape)
+writer.add_image(&quot;randomcrop&quot;,img_randomcrop)
+</code></pre>
+<p>​​<img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202308171458436.png" srcset="/img/loading.gif" lazyload alt="" /></p>
+<p>‍</p>
+<p>​​</p>
+<p>‍</p>
+<p>‍</p>
+<p>‍</p>
+<h1>参考文献</h1>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1hE411t7RN?p=6&amp;vd_source=9c896fa9c3f9023797e8efe7be0c113e">PyTorch 快速入门（小土堆）</a></p>
+<div>
+<iframe src="https://player.bilibili.com/player.html?aid=74281036&bvid=BV1hE411t7RN&cid=134328447&page=7" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+</div>
+<p>‍</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" class="category-chain-item">机器学习</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div></div>
+      <div>https://alleyf.github.io/2023/11/0fe3f57245a6.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>alleyf</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年11月14日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2023年11月14日</div>
+        </div>
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/11/743744fa87aa.html" title="SpringCloud">
+                        <span class="hidden-mobile">SpringCloud</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.7.2/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"636f2864e051a199b91c","clientSecret":"5185fd11115bbcd8d2f636bc80de6bed98ed14c1","repo":"Gitalk","owner":"Alleyf","admin":["Alleyf"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":false,"proxy":"https://shielded-brushlands-08810.herokuapp.com/https://github.com/login/oauth/access_token"},
+          {
+            id: '57ddd2cafc8eac6a76c0aa776eec7920'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://github.com/Alleyf" target="_blank" rel="nofollow noopener"><span>Alleyf</span></a> <i class="iconfont icon-love"></i> <a href="https://fcsy.fit" target="_blank" rel="nofollow noopener"><span>Homepage</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      陕ICP备2022010038号
+    </a>
+  </span>
+  
+    
+      <span>
+        <a
+          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=2022010038"
+          rel="nofollow noopener"
+          class="beian-police"
+          target="_blank"
+        >
+          
+            <span style="visibility: hidden; width: 0">|</span>
+            <img src="/img/police_beian.png" srcset="/img/loading.gif" lazyload alt="police-icon"/>
+          
+          <span>陕公网安备2022010038号</span>
+        </a>
+      </span>
+    
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.1/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/assets/mmedia/mmedia-loader.js"></script><script src="/js/addMusic.js"></script><!-- hexo injector body_end end --></body>
+</html>
