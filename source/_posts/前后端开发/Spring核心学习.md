@@ -7305,3 +7305,14 @@ protected void doDispatch (HttpServletRequest request, HttpServletResponse respo
     </dependency>  
 </dependencies>
 ```
+
+
+# Reference
+
+```cardlink
+url: https://itbaima.net/
+title: "柏码 - 让每一行代码都闪耀智慧的光芒！"
+host: itbaima.net
+favicon: /favicon.ico
+```
+[柏码 - 让每一行代码都闪耀智慧的光芒！](https://itbaima.net/)

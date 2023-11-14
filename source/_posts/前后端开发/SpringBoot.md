@@ -4415,3 +4415,14 @@ public class AuthorizeController {
 4. 无法分布式共享: 传统Session方案不适用于多个服务器之间共享会话信息的场景，需要额外的管理和同步机制。
 
 综上所述，JWT校验方案适用于无状态、分布式系统，几乎所有常见的前后端分离的架构都可以采用这种方案。而传统Session校验方案适用于需要即时失效、即时撤销和灵活权限管理的场景，适合传统的服务器端渲染应用，以及客户端支持Cookie功能的前后端分离架构。在选择校验方案时，需要根据具体的业务需求和技术场景进行选择。
+
+
+# Reference
+
+```cardlink
+url: https://itbaima.net/
+title: "柏码 - 让每一行代码都闪耀智慧的光芒！"
+host: itbaima.net
+favicon: /favicon.ico
+```
+[柏码 - 让每一行代码都闪耀智慧的光芒！](https://itbaima.net/)

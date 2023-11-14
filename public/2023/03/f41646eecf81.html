@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="en" data-default-color-scheme=auto>
+<html lang="zh-CN" data-default-color-scheme=auto>
 
 
 
@@ -24,7 +24,7 @@
 <meta property="og:url" content="https://alleyf.github.io/2023/03/f41646eecf81.html">
 <meta property="og:site_name" content="alleyf">
 <meta property="og:description" content="some konwledge about CNN.">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202303201948212.png">
 <meta property="og:image" content="https://s2.loli.net/2023/03/20/dC7PyWFI5ZmHhxr.png">
 <meta property="og:image" content="https://alist.fcsy.fit/d/mobilepan/PicoImages/20230320203438.png">
@@ -129,7 +129,7 @@
 
 
   
-<!-- hexo injector head_end start --><script> let HEXO_MMEDIA_DATA = { js: [], css: [], aplayerData: [], metingData: [], artPlayerData: [], dplayerData: []}; </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="alleyf" type="application/atom+xml">
+<!-- hexo injector head_end start --><script> let HEXO_MMEDIA_DATA = { js: [], css: [], aplayerData: [], metingData: [], artPlayerData: [], dplayerData: []}; </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/atom.xml" title="alleyf" type="application/atom+xml">
 </head>
 
 
@@ -163,7 +163,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
-                Home
+                首页
               </a>
             </li>
           
@@ -175,7 +175,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                Archives
+                归档
               </a>
             </li>
           
@@ -187,7 +187,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
-                Categories
+                分类
               </a>
             </li>
           
@@ -199,7 +199,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                Tags
+                标签
               </a>
             </li>
           
@@ -211,7 +211,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
-                About
+                关于
               </a>
             </li>
           
@@ -223,7 +223,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/links/">
                 <i class="iconfont icon-link-fill"></i>
-                Links
+                友链
               </a>
             </li>
           
@@ -273,7 +273,7 @@
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
         <time datetime="2023-03-17 19:10" pubdate>
-          March 17, 2023 pm
+          2023年3月17日 晚上
         </time>
       </span>
     
@@ -284,7 +284,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5.3k words
+          5.5k 字
         
       </span>
     
@@ -295,7 +295,7 @@
         
         
         
-          45 mins
+          46 分钟
         
       </span>
     
@@ -305,7 +305,7 @@
       
         <span id="busuanzi_container_page_pv" style="display: none">
           <i class="iconfont icon-eye" aria-hidden="true"></i>
-          <span id="busuanzi_value_page_pv"></span> views
+          <span id="busuanzi_value_page_pv"></span> 次
         </span>
         
       
@@ -346,7 +346,7 @@
               <p class="note note-info">
                 
                   
-                    Last updated on 4 months ago
+                    本文最后更新于：4 个月前
                   
                 
               </p>
@@ -355,16 +355,14 @@
               <div class="markdown-body">
                 
                 <h1 id="卷积"><a href="#卷积" class="headerlink" title="卷积"></a>卷积</h1><h2 id="形状"><a href="#形状" class="headerlink" title="形状"></a>形状</h2><p><code>[N,C,H,W]</code></p>
-<h2 id="步幅（stride）"><a href="#步幅（stride）" class="headerlink" title="步幅（stride）"></a>步幅（stride）</h2><p>卷积核运算过程中==移动的距离大小==。<br>卷积后的输出尺寸计算公式如下：<br>$$ H_{out}= \frac{H+2p_{h}-k_{h}}{s_{h}}+1 $$<br>$$ W_{out}= \frac{W+2p_{w}-k_{w}}{s_{w}}+1 $$</p>
+<h2 id="步幅（stride）"><a href="#步幅（stride）" class="headerlink" title="步幅（stride）"></a>步幅（stride）</h2><p>卷积核运算过程中&#x3D;&#x3D;移动的距离大小&#x3D;&#x3D;。<br>卷积后的输出尺寸计算公式如下：<br>$$ H_{out}&#x3D; \frac{H+2p_{h}-k_{h}}{s_{h}}+1 $$<br>$$ W_{out}&#x3D; \frac{W+2p_{w}-k_{w}}{s_{w}}+1 $$</p>
 <blockquote>
 <p>其中 $p_h$ 和 $p_w$ 分别为高度和宽度<strong>填充</strong>，$k_h$ 和 $k_w$ 分别为卷积核的高宽<strong>大小</strong>，$s_h$ 和 $s_w$ 分别为高度和宽度<strong>步幅</strong>。</p>
 </blockquote>
 <blockquote>
-<p>[!NOTE] 提示<br>步幅越大，特征越小，<em><strong>stride=2</strong></em>，则<em><strong>特征缩小一半</strong></em>。</p>
+<p>[!NOTE] 提示<br>步幅越大，特征越小，<em><strong>stride&#x3D;2</strong></em>，则<em><strong>特征缩小一半</strong></em>。</p>
 </blockquote>
-<h2 id="批量卷积"><a href="#批量卷积" class="headerlink" title="批量卷积"></a>批量卷积</h2><p>对RGB三通道，同时输入一个批次（batch）张图片做卷积运算，每张图像卷积后通道叠在一起（不是叠加），如下图所示：<br><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202303201948212.png" srcset="/img/loading.gif" lazyload alt="image.png|525"></p>
-<hr>
-<h2 id="感受野"><a href="#感受野" class="headerlink" title="感受野"></a>感受野</h2><blockquote>
+<h2 id="批量卷积"><a href="#批量卷积" class="headerlink" title="批量卷积"></a>批量卷积</h2><h2 id="对RGB三通道，同时输入一个批次（batch）张图片做卷积运算，每张图像卷积后通道叠在一起（不是叠加），如下图所示："><a href="#对RGB三通道，同时输入一个批次（batch）张图片做卷积运算，每张图像卷积后通道叠在一起（不是叠加），如下图所示：" class="headerlink" title="对RGB三通道，同时输入一个批次（batch）张图片做卷积运算，每张图像卷积后通道叠在一起（不是叠加），如下图所示："></a>对RGB三通道，同时输入一个批次（batch）张图片做卷积运算，每张图像卷积后通道叠在一起（不是叠加），如下图所示：<br><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202303201948212.png" srcset="/img/loading.gif" lazyload alt="image.png|525"></h2><h2 id="感受野"><a href="#感受野" class="headerlink" title="感受野"></a>感受野</h2><blockquote>
 <p>感受野是指输出特征图上的像素点所能感受到的输入数据的范围。</p>
 </blockquote>
 <p>从下图可以看出感受野的大小：<br><img src="https://s2.loli.net/2023/03/20/dC7PyWFI5ZmHhxr.png" srcset="/img/loading.gif" lazyload alt="image.png|250"><br><code>网络越深，越深层特征图的感受野越大，主要从输入的主对角线反映。</code></p>
@@ -405,22 +403,26 @@
 <hr>
 <h1 id="池化"><a href="#池化" class="headerlink" title="池化"></a>池化</h1><h2 id="形状-1"><a href="#形状-1" class="headerlink" title="形状"></a>形状</h2><p><code>[N,C,H,W]</code></p>
 <blockquote>
-<p><code>池化</code>是使用某一位置的相邻输出的总体统计特征来代替网络在该位置的输出<br><code>理解</code>：取输入的局部统计特征作为输出，==可以掩盖变化的细节==。</p>
+<p><code>池化</code>是使用某一位置的相邻输出的总体统计特征来代替网络在该位置的输出<br><code>理解</code>：取输入的局部统计特征作为输出，&#x3D;&#x3D;可以掩盖变化的细节&#x3D;&#x3D;。</p>
 </blockquote>
 <h2 id="池化方法"><a href="#池化方法" class="headerlink" title="池化方法"></a>池化方法</h2><ol>
-<li>平均池化<br><img src="https://alist.fcsy.fit/d/mobilepan/PicoImages/20230405140612.png" srcset="/img/loading.gif" lazyload alt="image.png|200"></li>
+<li><p>平均池化<br><img src="https://alist.fcsy.fit/d/mobilepan/PicoImages/20230405140612.png" srcset="/img/loading.gif" lazyload alt="image.png|200"></p>
+</li>
+<li><p>最大池化<br><img src="https://alist.fcsy.fit/d/mobilepan/PicoImages/20230405140630.png" srcset="/img/loading.gif" lazyload alt="image.png|200"></p>
+</li>
 </ol>
-<ol start="2">
-<li>最大池化<br><img src="https://alist.fcsy.fit/d/mobilepan/PicoImages/20230405140630.png" srcset="/img/loading.gif" lazyload alt="image.png|200"><h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2></li>
+<h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><ol>
 <li>池化的好处是当输入数据做出<strong>少量平移</strong>时，经过池化函数后的大多数输出还能<strong>保持不变</strong>,池化能够<strong>帮助输入的表示近似不变</strong>。</li>
-<li>由于池化之后特征图会变得更小，如果后面连接的是全连接层，能<strong>有效的减小神经元的个数</strong>,<strong>节省存储空间并提高计算效率</strong>。<h2 id="相关参数"><a href="#相关参数" class="headerlink" title="相关参数"></a>相关参数</h2></li>
+<li>由于池化之后特征图会变得更小，如果后面连接的是全连接层，能<strong>有效的减小神经元的个数</strong>,<strong>节省存储空间并提高计算效率</strong>。</li>
 </ol>
-<ul>
-<li>池化<strong>窗口大小</strong>：$pool_size = [k_h,k_w]$</li>
-<li>池化窗口<strong>滑动步幅</strong>：$pool_stride = [stride_ h, stride_w]$</li>
-<li>图片<strong>填充</strong>：$padding=[ph,pw]$</li>
-<li>比较常见的参数配置是：$k_n =k_w=2,stride_h=stride_w=2,p_h=p_w=0$</li>
-<li>采用这样的设置将会使得输出图片高和宽都减半<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2></li>
+<h2 id="相关参数"><a href="#相关参数" class="headerlink" title="相关参数"></a>相关参数</h2><ul>
+<li>池化<strong>窗口大小</strong>：$pool_size &#x3D; [k_h,k_w]$</li>
+<li>池化窗口<strong>滑动步幅</strong>：$pool_stride &#x3D; [stride_ h, stride_w]$</li>
+<li>图片<strong>填充</strong>：$padding&#x3D;[ph,pw]$</li>
+<li>比较常见的参数配置是：$k_n &#x3D;k_w&#x3D;2,stride_h&#x3D;stride_w&#x3D;2,p_h&#x3D;p_w&#x3D;0$</li>
+<li>采用这样的设置将会使得输出图片高和宽都减半</li>
+</ul>
+<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><ul>
 <li><strong>没有学习参数</strong></li>
 <li><strong>通道数不变</strong>，每个通道独立进行池化</li>
 <li>对<strong>微小的位置</strong>变化具有<strong>鲁棒性</strong></li>
@@ -430,16 +432,15 @@
 <p>通常在卷积或者全连接这样的线形操作之后，会加上一个非线性的函数，作用在每一个神经元的输出上，从而实现非线性变换的效果。</p>
 </blockquote>
 <h2 id="sigmoid激活函数"><a href="#sigmoid激活函数" class="headerlink" title="sigmoid激活函数"></a>sigmoid激活函数</h2><blockquote>
-<p><strong>说明：</strong> Sigmoid函数只有在x接近于0的地方，导数才比较大，但最大值也只有1/4；在X的数值非常大或者非常小的地方，导数都接近于0<br>$$\begin{array}<br>\text { 反向传播 } \frac{\partial L}{\partial x}=\frac{\partial L}{\partial y} \cdot \frac{\partial y}{\partial x}<br>\text { 这将导致 } \frac{\partial L}{\partial x} \ \text { 会显著的小于 } \frac{\partial L}{\partial y}<br>这将导致张会显著的小于光<br>\end{array}$$</p>
+<p><strong>说明：</strong> Sigmoid函数只有在x接近于0的地方，导数才比较大，但最大值也只有1&#x2F;4；在X的数值非常大或者非常小的地方，导数都接近于0<br>$$\begin{array}<br>\text { 反向传播 } \frac{\partial L}{\partial x}&#x3D;\frac{\partial L}{\partial y} \cdot \frac{\partial y}{\partial x}<br>\text { 这将导致 } \frac{\partial L}{\partial x} \ \text { 会显著的小于 } \frac{\partial L}{\partial y}<br>这将导致张会显著的小于光<br>\end{array}$$</p>
 </blockquote>
 <ol>
 <li>如果X是非常大整数或者非常小的负数，则<strong>x的梯度将接近于0</strong></li>
-<li>即使x的数值接近于0，其梯度最大不超过y的<strong>梯度的1/4</strong>，如果有多层网络使用Sigmoid激活函数，将导致<strong>较靠前</strong>的那些层，<strong>梯度变得非常的小</strong></li>
+<li>即使x的数值接近于0，其梯度最大不超过y的<strong>梯度的1&#x2F;4</strong>，如果有多层网络使用Sigmoid激活函数，将导致<strong>较靠前</strong>的那些层，<strong>梯度变得非常的小</strong><br><em>在神经网络里面，将这种经过反向传播之后，梯度值衰减到接近于0的现象称作<strong>梯度消失</strong>现象</em><br>$$y&#x3D;\frac{1}{1+e^{-x}}$$</li>
 </ol>
-<p><em>在神经网络里面，将这种经过反向传播之后，梯度值衰减到接近于0的现象称作<strong>梯度消失</strong>现象</em><br>$$y=\frac{1}{1+e^{-x}}$$</p>
 <p><img src="https://alist.fcsy.fit/d/mobilepan/PicoImages/20230405151136.png" srcset="/img/loading.gif" lazyload alt="image.png|250"></p>
 <hr>
-<h2 id="ReLU激活函数"><a href="#ReLU激活函数" class="headerlink" title="ReLU激活函数"></a>ReLU激活函数</h2><p>$$<br>y= \begin{cases}0, &amp; (x&lt;0) \ x, &amp; (x \geq 0)\end{cases}<br>$$<br><img src="https://alist.fcsy.fit/d/mobilepan/PicoImages/20230405154029.png" srcset="/img/loading.gif" lazyload alt="image.png|250"></p>
+<h2 id="ReLU激活函数"><a href="#ReLU激活函数" class="headerlink" title="ReLU激活函数"></a>ReLU激活函数</h2><p>$$<br>y&#x3D; \begin{cases}0, &amp; (x&lt;0) \ x, &amp; (x \geq 0)\end{cases}<br>$$<br><img src="https://alist.fcsy.fit/d/mobilepan/PicoImages/20230405154029.png" srcset="/img/loading.gif" lazyload alt="image.png|250"></p>
 <blockquote>
 <p>[!note]</p>
 <ul>
@@ -450,8 +451,8 @@
 <hr>
 <h1 id="批归一化BatchNorm"><a href="#批归一化BatchNorm" class="headerlink" title="批归一化BatchNorm"></a>批归一化BatchNorm</h1><h2 id="数据分布和模型的数值稳定性"><a href="#数据分布和模型的数值稳定性" class="headerlink" title="数据分布和模型的数值稳定性"></a>数据分布和模型的数值稳定性</h2><p><strong>模型收敛</strong>：需要稳定的数据分布</p>
 <blockquote>
-<p>[!note]<br>                       浅层神经网络—&gt;对输入数据做标准化（也称作归一化)</p>
-<pre><code class="hljs">                   深度神经网络---&gt;仅仅标准化输入数据还不够
+<p>[!note]<br>                    浅层神经网络—&gt;对输入数据做标准化（也称作归一化)</p>
+<pre><code class="hljs">                深度神经网络---&gt;仅仅标准化输入数据还不够
 </code></pre>
 <p><img src="https://alist.fcsy.fit/d/mobilepan/PicoImages/20230405155315.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 </blockquote>
@@ -465,7 +466,7 @@
 <li>可以从一定程度上<strong>抑制过拟合</strong></li>
 </ul>
 <h3 id="归一化公式"><a href="#归一化公式" class="headerlink" title="归一化公式"></a>归一化公式</h3><blockquote>
-<p>每一项减去均值，除以方差加一个无穷小的数（$10^{-6}$）防止方差为0无意义.<br>$$<br>\hat{x_i} \leftarrow \frac{x_i-\mu_B}{\sqrt{\left(\sigma_B^2+\epsilon\right)}}<br>$$<br>对标准化输出进行平移和缩放<br>$$<br>y_i \leftarrow \gamma \hat{x}_i+\beta<br>$$<br>其中$\gamma$和$\beta$是可学习的参数，可以赋初始值$\gamma=1$,$\beta=0$,在训练过程中自动不断学习调整.</p>
+<p>每一项减去均值，除以方差加一个无穷小的数（$10^{-6}$）防止方差为0无意义.<br>$$<br>\hat{x_i} \leftarrow \frac{x_i-\mu_B}{\sqrt{\left(\sigma_B^2+\epsilon\right)}}<br>$$<br>对标准化输出进行平移和缩放<br>$$<br>y_i \leftarrow \gamma \hat{x}_i+\beta<br>$$<br>其中$\gamma$和$\beta$是可学习的参数，可以赋初始值$\gamma&#x3D;1$,$\beta&#x3D;0$,在训练过程中自动不断学习调整.</p>
 </blockquote>
 <h2 id="预测时使用BatchNorm"><a href="#预测时使用BatchNorm" class="headerlink" title="预测时使用BatchNorm"></a>预测时使用BatchNorm</h2><blockquote>
 <p>[!解决方案]<br><strong>训练时</strong>计算在<strong>整个数据集上的均值和方差</strong>，并将<strong>结果保存预测时</strong>不计算样本内均值和方差，而是<strong>使用训练时保存的值</strong></p>
@@ -482,12 +483,12 @@
 <p>训练时随机丢弃了一部分神经元的信息，输出数据的总大小变小了<br>预测时不丢弃神经元，导致预测和训练时的数据分布不一样</p>
 </blockquote>
 <h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><ol>
-<li>==downgrade_in_infer==</li>
-</ol>
-<p><strong>训练</strong>时<strong>随机丢弃</strong>一部分神经元；<strong>预测时</strong>不丢弃神经元，但把它们<strong>数值变小</strong><br>2. ==<strong>upscale_in_train</strong>==<br><strong>训练</strong>时<strong>随机丢弃</strong>一部分神经元，但是把<strong>保留</strong>的那些<strong>神经元数值放大</strong>；<strong>预测</strong>时<strong>原样输出</strong>所有神经元的信息</p>
-<blockquote>
+<li>&#x3D;&#x3D;downgrade_in_infer&#x3D;&#x3D;<br><strong>训练</strong>时<strong>随机丢弃</strong>一部分神经元；<strong>预测时</strong>不丢弃神经元，但把它们<strong>数值变小</strong></li>
+<li>&#x3D;&#x3D;<strong>upscale_in_train</strong>&#x3D;&#x3D;<br><strong>训练</strong>时<strong>随机丢弃</strong>一部分神经元，但是把<strong>保留</strong>的那些<strong>神经元数值放大</strong>；<strong>预测</strong>时<strong>原样输出</strong>所有神经元的信息<blockquote>
 <p>Paddle中默认是<code>downgrade_in_infer</code></p>
 </blockquote>
+</li>
+</ol>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#设置随机数种子，这样可以保证每次运行结果一致</span><br>np.random.seed(<span class="hljs-number">100</span>)<br><span class="hljs-comment">#创建数据N,C,H,WM,一般对应卷积层的输出</span><br>data1 = np.random.rand(<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">3</span>,<span class="hljs-number">3</span>).astype(<span class="hljs-string">&#x27;float32&#x27;</span>)<br><span class="hljs-comment">#创建数据N,K),一般对应全连接层的输出</span><br>data2 = np.arange(<span class="hljs-number">1</span>,<span class="hljs-number">13</span>).reshape([-<span class="hljs-number">1</span>,<span class="hljs-number">3</span>]).astype(<span class="hljs-string">&#x27;float32&#x27;</span>)<br><span class="hljs-comment">#使用dropout作用在输入数据上</span><br><span class="hljs-keyword">with</span> fluid.dygraph.guard():<br>	x1 = fluid.dygraph.to_variable(data1)<br>	out1_1 = fluid.layers.dropout(x1,dropout_prob=<span class="hljs-number">0.5</span>,is_test=<span class="hljs-literal">False</span>)<br>	out1_2 = fluid.layers.dropout(x1,dropout_prob=<span class="hljs-number">0.5</span>,is_test=<span class="hljs-literal">True</span>)<br>	<br>	x2 = fluid.dygraph.to_variable(data2)<br>	out2_1 = fluid.layers.dropout(x2,dropout_prob=<span class="hljs-number">0.5</span>,\<br>	dropout_implementation=<span class="hljs-string">&#x27;upscale_in_train&#x27;</span>)<br>	out2_2 = fluid.layers.dropout(x2,dropout_prob=<span class="hljs-number">0.5</span>,\<br>	dropout_implementation=<span class="hljs-string">&#x27;upscale_in_train&#x27;</span>,is_test=<span class="hljs-literal">True</span>)<br></code></pre></td></tr></table></figure>
 
 <h1 id="全连接层"><a href="#全连接层" class="headerlink" title="全连接层"></a>全连接层</h1><blockquote>
@@ -495,7 +496,7 @@
 </blockquote>
 <h2 id="形状-2"><a href="#形状-2" class="headerlink" title="形状"></a>形状</h2><p><code>[N,C]</code></p>
 <blockquote>
-<p>[!NOTE] 数据变换<br>尺寸的逻辑：输入层将数据拉平[B,C,H,W] -&gt; [B,C*H*W]<br>        x = paddle.reshape(x, [x.shape[0], -1])</p>
+<p>[!NOTE] 数据变换<br>尺寸的逻辑：输入层将数据拉平[B,C,H,W] -&gt; [B,C*H*W]<br>        x &#x3D; paddle.reshape(x, [x.shape[0], -1])</p>
 </blockquote>
 
                 
@@ -548,30 +549,30 @@
     <div class="license-meta">
       
         <div class="license-meta-item">
-          <div>Author</div>
+          <div>作者</div>
           <div>alleyf</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
-          <div>Posted on</div>
-          <div>March 17, 2023</div>
+          <div>发布于</div>
+          <div>2023年3月17日</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
-          <div>Updated on</div>
-          <div>July 4, 2023</div>
+          <div>更新于</div>
+          <div>2023年7月4日</div>
         </div>
       
       <div class="license-meta-item">
-        <div>Licensed under</div>
+        <div>许可协议</div>
         <div>
           
             
             
               <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
                 <i class="iconfont icon-by"></i>
               </span>
               </a>
@@ -593,7 +594,7 @@
                       <a href="/2023/03/3962ffddc056.html" title="目标检测">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">目标检测</span>
-                        <span class="visible-mobile">Previous</span>
+                        <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </article>
@@ -602,7 +603,7 @@
                     
                       <a href="/2023/03/cc1560495a8d.html" title="计算机视觉概述">
                         <span class="hidden-mobile">计算机视觉概述</span>
-                        <span class="visible-mobile">Next</span>
+                        <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -645,7 +646,7 @@
       
   <aside class="sidebar" style="margin-left: -1rem">
     <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div class="toc-body" id="toc-body"></div>
 </div>
 
@@ -706,7 +707,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -714,7 +715,7 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -742,16 +743,16 @@
   
     
       <span id="busuanzi_container_site_pv" style="display: none">
-        Views: 
+        总访问量 
         <span id="busuanzi_value_site_pv"></span>
-        
+         次
       </span>
     
     
       <span id="busuanzi_container_site_uv" style="display: none">
-        Visitors: 
+        总访客数 
         <span id="busuanzi_value_site_uv"></span>
-        
+         人
       </span>
     
     
@@ -954,7 +955,7 @@
   
 
   <noscript>
-    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
   </noscript>
-<!-- hexo injector body_end start --><script src="/assets/mmedia/mmedia-loader.js"></script><script src="/js/addMusic.js"></script><!-- hexo injector body_end end --></body>
+<!-- hexo injector body_end start --><script src="/assets/mmedia/mmedia-loader.js"></script><script src="/js/addMusic.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>

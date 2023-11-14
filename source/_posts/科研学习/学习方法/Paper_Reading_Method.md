@@ -1,3 +1,13 @@
+---
+title: Paper_Reading_Method
+date: 2023-11-13 23:40:30
+tags:
+  - Paper
+sticky: 60
+excerpt: some keypoints about paperReading
+---
+![](https://picsum.photos/800/250)
+
 ## 1. 论文主要有那些组成部分及其相应的作用？
 1. 论文标题：所有工作的凝练总结
 2. 摘要：包括研究目的，研究方法，研究结果等关键信息

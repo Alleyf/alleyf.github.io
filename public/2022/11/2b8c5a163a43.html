@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="en" data-default-color-scheme=auto>
+<html lang="zh-CN" data-default-color-scheme=auto>
 
 
 
@@ -24,7 +24,7 @@
 <meta property="og:url" content="https://alleyf.github.io/2022/11/2b8c5a163a43.html">
 <meta property="og:site_name" content="alleyf">
 <meta property="og:description" content="some ideas about FIR filters and FFT。">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/image-20221013213239697.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/Fast-linear-convolution-realized-by-circular-convolution-in-the-DFT-domain.png">
 <meta property="og:image" content="https://img.gouka.la/i/2022/11/14/z1xwyl.webp">
@@ -119,7 +119,7 @@
 
 
   
-<!-- hexo injector head_end start --><script> let HEXO_MMEDIA_DATA = { js: [], css: [], aplayerData: [], metingData: [], artPlayerData: [], dplayerData: []}; </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="alleyf" type="application/atom+xml">
+<!-- hexo injector head_end start --><script> let HEXO_MMEDIA_DATA = { js: [], css: [], aplayerData: [], metingData: [], artPlayerData: [], dplayerData: []}; </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/atom.xml" title="alleyf" type="application/atom+xml">
 </head>
 
 
@@ -153,7 +153,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
-                Home
+                首页
               </a>
             </li>
           
@@ -165,7 +165,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                Archives
+                归档
               </a>
             </li>
           
@@ -177,7 +177,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
-                Categories
+                分类
               </a>
             </li>
           
@@ -189,7 +189,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                Tags
+                标签
               </a>
             </li>
           
@@ -201,7 +201,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
-                About
+                关于
               </a>
             </li>
           
@@ -213,7 +213,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/links/">
                 <i class="iconfont icon-link-fill"></i>
-                Links
+                友链
               </a>
             </li>
           
@@ -263,7 +263,7 @@
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
         <time datetime="2022-11-13 21:17" pubdate>
-          November 13, 2022 pm
+          2022年11月13日 晚上
         </time>
       </span>
     
@@ -274,7 +274,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.6k words
+          1.6k 字
         
       </span>
     
@@ -285,7 +285,7 @@
         
         
         
-          14 mins
+          14 分钟
         
       </span>
     
@@ -295,7 +295,7 @@
       
         <span id="busuanzi_container_page_pv" style="display: none">
           <i class="iconfont icon-eye" aria-hidden="true"></i>
-          <span id="busuanzi_value_page_pv"></span> views
+          <span id="busuanzi_value_page_pv"></span> 次
         </span>
         
       
@@ -336,7 +336,7 @@
               <p class="note note-info">
                 
                   
-                    Last updated on 8 months ago
+                    本文最后更新于：8 个月前
                   
                 
               </p>
@@ -352,13 +352,13 @@
 <li>获得滤波器的单位采样响应hn</li>
 </ul>
 <h3 id="快速卷积"><a href="#快速卷积" class="headerlink" title="快速卷积"></a>快速卷积</h3><ul>
-<li>计算原始音频信号x与滤波器的单位采样响应hn的线性卷积长度，L=length(x)+length(hn)</li>
-<li>设计FFT的长度N&gt;=L</li>
+<li>计算原始音频信号x与滤波器的单位采样响应hn的线性卷积长度，L&#x3D;length(x)+length(hn)</li>
+<li>设计FFT的长度N&gt;&#x3D;L</li>
 <li>对x和hn分别做N点FFT变换获得Xk、Hk</li>
 <li>将Xk与Hk相乘得到Yk</li>
 <li>将Yk做IFFT逆变换得到yn，即完成快速卷积</li>
 </ul>
-<h2 id="三、实现过程"><a href="#三、实现过程" class="headerlink" title="三、实现过程"></a>三、实现过程</h2><h3 id="FIR滤波器"><a href="#FIR滤波器" class="headerlink" title="FIR滤波器"></a>FIR滤波器</h3><p>设FIR滤波器的单位冲激响应h(n)为一个N点序列，0≤n≤N-1，则滤波器的系统函数为：<br>$$<br>H(\mathrm{z})=\sum_{k=0}^{N-1}h(\mathrm{k})*\mathrm{z}^{-k}<br>$$<br><strong>直接型FIR滤波器</strong>的差分方程为：<br>$$<br>\mathrm{y(n)}=\sum_{m=0}^{N-1}\mathrm{h(m)x(n-m)}<br>$$<br>由差分方程可知只需要求出FIR滤波器的单位冲激响应h(n)，设置<strong>滤波阶数</strong>和<strong>3db通带截止频率fc</strong>，采用<strong>汉明窗函数</strong>处理，再使用<strong>fir1函数</strong>将其与待滤波信号卷积即可完成滤波，具体实现代码如下。</p>
+<h2 id="三、实现过程"><a href="#三、实现过程" class="headerlink" title="三、实现过程"></a>三、实现过程</h2><h3 id="FIR滤波器"><a href="#FIR滤波器" class="headerlink" title="FIR滤波器"></a>FIR滤波器</h3><p>设FIR滤波器的单位冲激响应h(n)为一个N点序列，0≤n≤N-1，则滤波器的系统函数为：<br>$$<br>H(\mathrm{z})&#x3D;\sum_{k&#x3D;0}^{N-1}h(\mathrm{k})*\mathrm{z}^{-k}<br>$$<br><strong>直接型FIR滤波器</strong>的差分方程为：<br>$$<br>\mathrm{y(n)}&#x3D;\sum_{m&#x3D;0}^{N-1}\mathrm{h(m)x(n-m)}<br>$$<br>由差分方程可知只需要求出FIR滤波器的单位冲激响应h(n)，设置<strong>滤波阶数</strong>和<strong>3db通带截止频率fc</strong>，采用<strong>汉明窗函数</strong>处理，再使用<strong>fir1函数</strong>将其与待滤波信号卷积即可完成滤波，具体实现代码如下。</p>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-comment">%% hamming窗低通滤波器设计</span><br>fc=<span class="hljs-number">7.95e3</span>; <span class="hljs-comment">%下降3分贝截止频率</span><br>hn=fir1(<span class="hljs-number">1000</span>,fc*<span class="hljs-number">2</span>/Fs,<span class="hljs-string">&quot;low&quot;</span>);<br>hn=hn&#x27;;<br>Nh=<span class="hljs-built_in">length</span>(hn);<br></code></pre></td></tr></table></figure>
 
 <p>FIR滤波器的单位冲击响应如下图所示：</p>
@@ -430,30 +430,30 @@
     <div class="license-meta">
       
         <div class="license-meta-item">
-          <div>Author</div>
+          <div>作者</div>
           <div>alleyf</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
-          <div>Posted on</div>
-          <div>November 13, 2022</div>
+          <div>发布于</div>
+          <div>2022年11月13日</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
-          <div>Updated on</div>
-          <div>March 27, 2023</div>
+          <div>更新于</div>
+          <div>2023年3月27日</div>
         </div>
       
       <div class="license-meta-item">
-        <div>Licensed under</div>
+        <div>许可协议</div>
         <div>
           
             
             
               <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
                 <i class="iconfont icon-by"></i>
               </span>
               </a>
@@ -475,7 +475,7 @@
                       <a href="/2022/11/aff38a7758c4.html" title="Web_Fast_Development">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">Web_Fast_Development</span>
-                        <span class="visible-mobile">Previous</span>
+                        <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </article>
@@ -484,7 +484,7 @@
                     
                       <a href="/2022/10/7fb9350bc4f2.html" title="GoodsManageSystem">
                         <span class="hidden-mobile">GoodsManageSystem</span>
-                        <span class="visible-mobile">Next</span>
+                        <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -527,7 +527,7 @@
       
   <aside class="sidebar" style="margin-left: -1rem">
     <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div class="toc-body" id="toc-body"></div>
 </div>
 
@@ -588,7 +588,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -596,7 +596,7 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -624,16 +624,16 @@
   
     
       <span id="busuanzi_container_site_pv" style="display: none">
-        Views: 
+        总访问量 
         <span id="busuanzi_value_site_pv"></span>
-        
+         次
       </span>
     
     
       <span id="busuanzi_container_site_uv" style="display: none">
-        Visitors: 
+        总访客数 
         <span id="busuanzi_value_site_uv"></span>
-        
+         人
       </span>
     
     
@@ -836,7 +836,7 @@
   
 
   <noscript>
-    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
   </noscript>
-<!-- hexo injector body_end start --><script src="/assets/mmedia/mmedia-loader.js"></script><script src="/js/addMusic.js"></script><!-- hexo injector body_end end --></body>
+<!-- hexo injector body_end start --><script src="/assets/mmedia/mmedia-loader.js"></script><script src="/js/addMusic.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>

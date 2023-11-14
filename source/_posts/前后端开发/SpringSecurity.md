@@ -1,4 +1,13 @@
-![image-20230701170904832](https://s2.loli.net/2023/07/01/FyOIH7ZU5sE2gen.png)
+---
+title: SpringSecurity
+date: 2023-11-13 23:37:51
+tags:
+  - SpingSecurity
+  - JWT
+sticky: 70
+excerpt: a lot of notes dealing with SpringSecurity
+---
+![](https://picsum.photos/800/250)
 
 # SpringSecurity
 
@@ -2091,3 +2100,13 @@ public class AuthorizeService implements UserDetailsService {
     }  
 }
 ```
+
+# Reference
+
+```cardlink
+url: https://itbaima.net/
+title: "柏码 - 让每一行代码都闪耀智慧的光芒！"
+host: itbaima.net
+favicon: /favicon.ico
+```
+[柏码 - 让每一行代码都闪耀智慧的光芒！](https://itbaima.net/)

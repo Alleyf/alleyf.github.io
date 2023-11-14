@@ -8,7 +8,7 @@ subtitle: ""
 description: "一个有趣的业余博主"
 keywords:
 author: alleyf
-language: en
+language: zh-CN # 指定语言，会影响主题显示的语言，按需修改 英文：en
 timezone: ""
 
 # URL
@@ -130,7 +130,6 @@ mmedia:
     cdn: https://cdn.jsdelivr.net/npm/meting/dist/Meting.min.js
     api:
     default:
-      order: random
   dplayer:
     cdn: https://cdn.jsdelivr.net/npm/dplayer/dist/DPlayer.min.js
     style_cdn: https://cdn.jsdelivr.net/npm/dplayer/dist/DPlayer.min.css

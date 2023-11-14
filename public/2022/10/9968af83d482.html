@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="en" data-default-color-scheme=auto>
+<html lang="zh-CN" data-default-color-scheme=auto>
 
 
 
@@ -24,7 +24,7 @@
 <meta property="og:url" content="https://alleyf.github.io/2022/10/9968af83d482.html">
 <meta property="og:site_name" content="alleyf">
 <meta property="og:description" content="some ideas about FIR and IIR filters。">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://img.gouka.la/i/2022/10/15/ystu0e.webp">
 <meta property="og:image" content="https://img.gouka.la/i/2022/10/15/yukca3.webp">
 <meta property="og:image" content="https://img.gouka.la/i/2022/10/15/yy5o7x.webp">
@@ -125,7 +125,7 @@
 
 
   
-<!-- hexo injector head_end start --><script> let HEXO_MMEDIA_DATA = { js: [], css: [], aplayerData: [], metingData: [], artPlayerData: [], dplayerData: []}; </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="alleyf" type="application/atom+xml">
+<!-- hexo injector head_end start --><script> let HEXO_MMEDIA_DATA = { js: [], css: [], aplayerData: [], metingData: [], artPlayerData: [], dplayerData: []}; </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/atom.xml" title="alleyf" type="application/atom+xml">
 </head>
 
 
@@ -159,7 +159,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
-                Home
+                首页
               </a>
             </li>
           
@@ -171,7 +171,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                Archives
+                归档
               </a>
             </li>
           
@@ -183,7 +183,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
-                Categories
+                分类
               </a>
             </li>
           
@@ -195,7 +195,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                Tags
+                标签
               </a>
             </li>
           
@@ -207,7 +207,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
-                About
+                关于
               </a>
             </li>
           
@@ -219,7 +219,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/links/">
                 <i class="iconfont icon-link-fill"></i>
-                Links
+                友链
               </a>
             </li>
           
@@ -269,7 +269,7 @@
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
         <time datetime="2022-10-13 14:56" pubdate>
-          October 13, 2022 pm
+          2022年10月13日 下午
         </time>
       </span>
     
@@ -280,7 +280,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.6k words
+          3.7k 字
         
       </span>
     
@@ -291,7 +291,7 @@
         
         
         
-          31 mins
+          31 分钟
         
       </span>
     
@@ -301,7 +301,7 @@
       
         <span id="busuanzi_container_page_pv" style="display: none">
           <i class="iconfont icon-eye" aria-hidden="true"></i>
-          <span id="busuanzi_value_page_pv"></span> views
+          <span id="busuanzi_value_page_pv"></span> 次
         </span>
         
       
@@ -342,7 +342,7 @@
               <p class="note note-info">
                 
                   
-                    Last updated on a year ago
+                    本文最后更新于：1 年前
                   
                 
               </p>
@@ -396,7 +396,7 @@
 
 <p><img src="https://img.gouka.la/i/2022/10/15/yy5o7x.webp" srcset="/img/loading.gif" lazyload></p>
 <p>观察其幅频响应发现有用信号的频率在8Khz以下，以上则为能量较大的高频噪声，因此我采用低通滤波器对其进行滤波。</p>
-<h4 id="FIR滤波器"><a href="#FIR滤波器" class="headerlink" title="FIR滤波器"></a>FIR滤波器</h4><p>设FIR滤波器的单位冲激响应h(n)为一个N点序列，0≤n≤N-1，则滤波器的系统函数为：<br>$$<br>H(\mathrm{z})=\sum_{k=0}^{N-1}h(\mathrm{k})*\mathrm{z}^{-k}<br>$$<br><strong>直接型FIR滤波器</strong>的差分方程为：<br>$$<br>\mathrm{y(n)}=\sum_{m=0}^{N-1}\mathrm{h(m)x(n-m)}<br>$$<br>由差分方程可知只需要求出FIR滤波器的单位冲激响应h(n)，设置<strong>滤波阶数</strong>和<strong>3db通带截止频率fc</strong>，采用<strong>汉林窗函数</strong>处理，再使用<strong>fir1函数</strong>将其与待滤波信号卷积即可完成滤波，具体实现代码如下。</p>
+<h4 id="FIR滤波器"><a href="#FIR滤波器" class="headerlink" title="FIR滤波器"></a>FIR滤波器</h4><p>设FIR滤波器的单位冲激响应h(n)为一个N点序列，0≤n≤N-1，则滤波器的系统函数为：<br>$$<br>H(\mathrm{z})&#x3D;\sum_{k&#x3D;0}^{N-1}h(\mathrm{k})*\mathrm{z}^{-k}<br>$$<br><strong>直接型FIR滤波器</strong>的差分方程为：<br>$$<br>\mathrm{y(n)}&#x3D;\sum_{m&#x3D;0}^{N-1}\mathrm{h(m)x(n-m)}<br>$$<br>由差分方程可知只需要求出FIR滤波器的单位冲激响应h(n)，设置<strong>滤波阶数</strong>和<strong>3db通带截止频率fc</strong>，采用<strong>汉林窗函数</strong>处理，再使用<strong>fir1函数</strong>将其与待滤波信号卷积即可完成滤波，具体实现代码如下。</p>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-comment">%% hamming窗低通滤波器滤除高频噪声</span><br>fc=<span class="hljs-number">7.95e3</span>; <span class="hljs-comment">%下降3分贝截止频率</span><br>h_n=fir1(<span class="hljs-number">1000</span>,fc*<span class="hljs-number">2</span>/Fs,<span class="hljs-string">&quot;low&quot;</span>);<br>y=conv(h_n,x);<br><br>Ny=<span class="hljs-built_in">length</span>(y);<span class="hljs-comment">%滤波后信号的长度</span><br>ty=(<span class="hljs-number">0</span>:Ny<span class="hljs-number">-1</span>)/Fs;<span class="hljs-comment">%时域范围</span><br>Y=FFT(y,Ny,Fs,ty);<span class="hljs-comment">%快速傅里叶变换求频谱</span><br>df=Fs/<span class="hljs-built_in">length</span>(ty); <span class="hljs-comment">%计算谱线间隔</span><br>fy=ty*df;<span class="hljs-comment">%频域范围</span><br>fy=(fy*Fs)/<span class="hljs-number">1e3</span>;<span class="hljs-comment">%只显示正频谱</span><br>Y=<span class="hljs-built_in">abs</span>(Y);<br><span class="hljs-comment">% 绘出滤波后的时域图和幅频响应</span><br>subplot(<span class="hljs-number">223</span>)<br><span class="hljs-built_in">plot</span>(ty,y,<span class="hljs-string">&quot;g&quot;</span>);<br>title(<span class="hljs-string">&quot;滤波后信号音频时域图&quot;</span>);<br>xlabel(<span class="hljs-string">&quot;t/s&quot;</span>); <br>subplot(<span class="hljs-number">224</span>)<br>stem(fx(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>:<span class="hljs-built_in">ceil</span>(Ny/<span class="hljs-number">2</span>)),Y(<span class="hljs-number">1</span>:<span class="hljs-built_in">ceil</span>(Ny/<span class="hljs-number">2</span>),<span class="hljs-number">1</span>),<span class="hljs-string">&#x27;c&#x27;</span>,<span class="hljs-string">&#x27;.&#x27;</span>)<br>title(<span class="hljs-string">&quot;滤波后信号音频相频响应&quot;</span>);<br>xlabel(<span class="hljs-string">&quot;f/Khz&quot;</span>); <br><span class="hljs-comment">%% 试听及保存</span><br><span class="hljs-comment">% sound(y,Fs);</span><br>audiowrite(<span class="hljs-string">&quot;D:\数据\FIRfilter.wav&quot;</span>,y,Fs);<br><span class="hljs-comment">%% 快速傅里叶变换函数</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">FourierTransform</span> = <span class="hljs-title">FFT</span><span class="hljs-params">(signal,N,fs,t)</span></span><br>Y=fft(signal,N);<br>df=fs/<span class="hljs-built_in">length</span>(t); <span class="hljs-comment">%计算谱线间隔</span><br>f=t*df;<span class="hljs-comment">%频域范围</span><br>Ys=<span class="hljs-built_in">abs</span>(Y); <span class="hljs-comment">%幅度响应</span><br>FourierTransform=Ys;<br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
 
 <p>FIR滤波器的单位冲激响应如下图所示：</p>
@@ -405,7 +405,7 @@
 <p><img src="https://img.gouka.la/i/2022/10/15/yx0y7f.webp" srcset="/img/loading.gif" lazyload></p>
 <p>由图可知，发现经过<strong>1000阶</strong>的3分贝截止频率为<strong>7.95e3Khz</strong>的低通滤波器处理后，8Khz及以上的高频噪声基本被完全滤除，成功从原始音频信号中提取到有用信号。</p>
 <h3 id="2-差分方程"><a href="#2-差分方程" class="headerlink" title="2.差分方程"></a>2.差分方程</h3><p>首先也是先对原始音频信号做傅里叶变换分析其频谱，频谱结果同上，这里不在赘述。</p>
-<h4 id="IIR切比雪夫低通滤波"><a href="#IIR切比雪夫低通滤波" class="headerlink" title="IIR切比雪夫低通滤波"></a>IIR切比雪夫低通滤波</h4><p>IIR(infinite impulse response)滤波器，无限冲激响应滤波器,IIR滤波器定义如下：<br>$$<br>\sum_{l=0}^{N}a(l)y(n-l)= \sum _{k=0}^{M}b(k)x(n-k)<br>$$<br>令$a(0)=1,a(l),l=1,2,…N$取反后得：<br>$$<br>y(n)= \sum _{k=0}^{M}b(k)x(n-k)+ \sum _{l=1}^{N}a(l)y(n-l)<br>$$<br><strong>IIR直接II型滤波器</strong>的流程框图如下所示：</p>
+<h4 id="IIR切比雪夫低通滤波"><a href="#IIR切比雪夫低通滤波" class="headerlink" title="IIR切比雪夫低通滤波"></a>IIR切比雪夫低通滤波</h4><p>IIR(infinite impulse response)滤波器，无限冲激响应滤波器,IIR滤波器定义如下：<br>$$<br>\sum_{l&#x3D;0}^{N}a(l)y(n-l)&#x3D; \sum _{k&#x3D;0}^{M}b(k)x(n-k)<br>$$<br>令$a(0)&#x3D;1,a(l),l&#x3D;1,2,…N$取反后得：<br>$$<br>y(n)&#x3D; \sum _{k&#x3D;0}^{M}b(k)x(n-k)+ \sum _{l&#x3D;1}^{N}a(l)y(n-l)<br>$$<br><strong>IIR直接II型滤波器</strong>的流程框图如下所示：</p>
 <p><img src="https://upload.semidata.info/new.eefocus.com/article/image/2021/07/15/60efdc2160bb0-thumb.png" srcset="/img/loading.gif" lazyload></p>
 <p>根据流程框图可知，需要求得<strong>差分方程系数向量a和b</strong>，这里我采用常见的切比雪夫滤波器设定<strong>通带频率、阻带频率</strong>以及<strong>纹波系数</strong>和<strong>衰减系数</strong>计算出系数a和b，再利用<strong>filter函数</strong>传入系数a、b和待滤波信号即可完成滤波，采用如下代码实现差分方程法实现IIR切比雪夫低通滤波器。</p>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-comment">%% IIR-Chebyshev低通滤波器滤除高频噪声</span><br>Wp=<span class="hljs-number">7.6e3</span>*<span class="hljs-number">2</span>/Fs;<span class="hljs-comment">%通带频率</span><br>Ws=<span class="hljs-number">8e3</span>*<span class="hljs-number">2</span>/Fs;<span class="hljs-comment">%阻带频率</span><br>[n,Wc]=cheb1ord(Wp,Ws,<span class="hljs-number">2</span>,<span class="hljs-number">40</span>);<span class="hljs-comment">%计算阶数和3db通带截止频率</span><br>[b,a]=cheby1(n,<span class="hljs-number">3</span>,Wc);<span class="hljs-comment">%切比雪夫滤波器返回差分方程系数</span><br>freqz(b,a);<span class="hljs-comment">%绘出滤波器频谱图（幅频响应和相频响应）</span><br>y=filter(b,a,x);<span class="hljs-comment">%滤除高频噪声</span><br>Y=FFT(y,N,Fs,t);<br>Y=fftshift(Y);<br>Y=<span class="hljs-built_in">abs</span>(Y);<br><span class="hljs-comment">% 绘出滤波后的时域图和幅频响应</span><br>subplot(<span class="hljs-number">223</span>)<br><span class="hljs-built_in">plot</span>(t,y,<span class="hljs-string">&#x27;b&#x27;</span>);<br>title(<span class="hljs-string">&quot;滤波后信号音频时域图&quot;</span>);<br>xlabel(<span class="hljs-string">&quot;t/s&quot;</span>); <br>subplot(<span class="hljs-number">224</span>)<br><span class="hljs-comment">% plot(f*Fs/1e3,Y,&#x27;k&#x27;);</span><br><span class="hljs-built_in">plot</span>(f(<span class="hljs-number">1</span>,<span class="hljs-built_in">ceil</span>(N/<span class="hljs-number">2</span>):<span class="hljs-keyword">end</span>),Y(<span class="hljs-built_in">ceil</span>(N/<span class="hljs-number">2</span>):<span class="hljs-keyword">end</span>,<span class="hljs-number">1</span>),<span class="hljs-string">&#x27;g&#x27;</span>)<br>title(<span class="hljs-string">&quot;滤波后信号音频幅频响应&quot;</span>);<br>xlabel(<span class="hljs-string">&quot;f/Khz&quot;</span>); <br></code></pre></td></tr></table></figure>
@@ -499,30 +499,30 @@
     <div class="license-meta">
       
         <div class="license-meta-item">
-          <div>Author</div>
+          <div>作者</div>
           <div>alleyf</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
-          <div>Posted on</div>
-          <div>October 13, 2022</div>
+          <div>发布于</div>
+          <div>2022年10月13日</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
-          <div>Updated on</div>
-          <div>November 20, 2022</div>
+          <div>更新于</div>
+          <div>2022年11月20日</div>
         </div>
       
       <div class="license-meta-item">
-        <div>Licensed under</div>
+        <div>许可协议</div>
         <div>
           
             
             
               <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
                 <i class="iconfont icon-by"></i>
               </span>
               </a>
@@ -544,7 +544,7 @@
                       <a href="/2022/10/7fb9350bc4f2.html" title="GoodsManageSystem">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">GoodsManageSystem</span>
-                        <span class="visible-mobile">Previous</span>
+                        <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </article>
@@ -553,7 +553,7 @@
                     
                       <a href="/2022/10/7041d89da7de.html" title="LatexEquationManual">
                         <span class="hidden-mobile">LatexEquationManual</span>
-                        <span class="visible-mobile">Next</span>
+                        <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -596,7 +596,7 @@
       
   <aside class="sidebar" style="margin-left: -1rem">
     <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div class="toc-body" id="toc-body"></div>
 </div>
 
@@ -657,7 +657,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -665,7 +665,7 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -693,16 +693,16 @@
   
     
       <span id="busuanzi_container_site_pv" style="display: none">
-        Views: 
+        总访问量 
         <span id="busuanzi_value_site_pv"></span>
-        
+         次
       </span>
     
     
       <span id="busuanzi_container_site_uv" style="display: none">
-        Visitors: 
+        总访客数 
         <span id="busuanzi_value_site_uv"></span>
-        
+         人
       </span>
     
     
@@ -905,7 +905,7 @@
   
 
   <noscript>
-    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
   </noscript>
-<!-- hexo injector body_end start --><script src="/assets/mmedia/mmedia-loader.js"></script><script src="/js/addMusic.js"></script><!-- hexo injector body_end end --></body>
+<!-- hexo injector body_end start --><script src="/assets/mmedia/mmedia-loader.js"></script><script src="/js/addMusic.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>

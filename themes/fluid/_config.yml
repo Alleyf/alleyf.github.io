@@ -986,6 +986,13 @@ about:
 #---------------------------
 # 自定义页
 # Custom Page
+
+galleries:
+  enable: true
+  banner_img: https://api.likepoems.com/img/nature
+  banner_img_height: 80
+  banner_mask_alpha: 0.3
+
 #
 # 通过 hexo new page 命令创建的页面
 # Custom Page through `hexo new page`
@@ -1136,7 +1143,7 @@ live2d:
   tagMode: false # 标签模式, 是否仅替换 live2d tag标签而非插入到所有页面中
   debug: false # 调试, 是否在控制台输出日志
   model:
-    use: live2d-widget-model-wanko ## 模型文件
+    use: live2d-widget-model-unitychan ## 模型文件
   display:
     position: right # 定位方向 left right top bottom
     width: 250 # 小人宽度
@@ -1147,6 +1154,9 @@ live2d:
     show: true # 手机端是否显示
   react:
     opacity: 0.7 # 模型透明度
+  dialog:
+    enable: true
+    hitokoto: true
 
 # 图像自动压缩插件
 all_minifier: false
@@ -1164,23 +1174,3 @@ feed:
   icon: icon.png
   autodiscovery: true
   template:
-
-mmedia:
-  aplayer:
-    cdn: https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js
-    style_cdn: https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css
-    default:
-  meting:
-    cdn: https://cdn.jsdelivr.net/npm/meting/dist/Meting.min.js
-    api:
-    default:
-      order: random
-  dplayer:
-    cdn: https://cdn.jsdelivr.net/npm/dplayer/dist/DPlayer.min.js
-    style_cdn: https://cdn.jsdelivr.net/npm/dplayer/dist/DPlayer.min.css
-    hls_cdn: https://cdn.jsdelivr.net/npm/hls.j/dist/hls.min.js
-    dash_cdn: https://cdn.jsdelivr.net/npm/dashjs/dist/dash.all.min.js
-    shaka_dash_cdn: https://cdn.jsdelivr.net/npm/shaka-player/dist/shaka-player.compiled.js
-    flv_cdn: https://cdn.jsdelivr.net/npm/flv.js/dist/flv.min.js
-    webtorrent_cdn: https://cdn.jsdelivr.net/npm/webtorrent/webtorrent.min.js
-    default:
