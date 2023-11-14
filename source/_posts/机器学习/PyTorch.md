@@ -1,9 +1,11 @@
 ---
 title: PyTorch快速入门
-tags: [DL]
+tags:
+  - DL
 date: 2023-05-31 14:27:39
 sticky: 80
 excerpt: Machine and Deep learning
+author: fcs
 ---
 1. [[#1.python|1.python]]
 1. [[#1.数据加载|1.数据加载]]
