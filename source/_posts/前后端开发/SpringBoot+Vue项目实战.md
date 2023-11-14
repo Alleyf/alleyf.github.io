@@ -205,7 +205,7 @@ public class SwaggerConfiguration {
     }
 }
 ```
-#### knife4j
+#### knife 4 j
 springboot 3 使用 knife 4.1.0 版本接口文档配置：
 1. `pom.xml` 引入依赖：
 ```xml
@@ -302,7 +302,8 @@ public class Knife4jConfig {
 	const coldTimer = setInterval(() => {  
 	  coldTime.value > 0 ? coldTime.value-- : clearInterval(coldTimer)  	}, 1000)
 	```
-8. springboot 最大并发数：[SpringBoot 最大连接数及最大并发数是多少？？？ - 知乎](https://zhuanlan.zhihu.com/p/654602186)
+8. *fastjson 2* 在使用时，要注意返回 json 格式化的工具类 `Result` 必须加上`@Data、@AllArgsConstructor` 注解才能使用，否则返回的 json 格式化数据一直为**空（null）**
+9. springboot 最大并发数：[SpringBoot 最大连接数及最大并发数是多少？？？ - 知乎](https://zhuanlan.zhihu.com/p/654602186)
 ```cardlink
 url: https://zhuanlan.zhihu.com/p/654602186
 title: "SpringBoot 最大连接数及最大并发数是多少？？？"

@@ -1,14 +1,3 @@
-###
- # @Author: Alleyf 3035581811@qq.com
- # @Github: https://github.com/Alleyf
- # @QQ: 3035581811
- # @Signature: You know more，you know less
- # @Date: 2023-03-17 17:15:18
- # @LastEditors: Alleyf 3035581811@qq.com
- # @LastEditTime: 2023-11-14 10:06:48
- # @FilePath: \undefinedd:\GH_Repos\myblog\.husky\pre-commit
- # Copyright (c) 2023 by ${git_name_email}, All Rights Reserved. 
-### 
 #!/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
