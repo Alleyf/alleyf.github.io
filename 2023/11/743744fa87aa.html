@@ -112,7 +112,7 @@
 <meta property="og:image" content="https://s2.loli.net/2023/03/06/7VaosxbqtRm5X4i.png">
 <meta property="og:image" content="https://s2.loli.net/2023/03/06/9k6oeMZIE28T3t7.png">
 <meta property="article:published_time" content="2023-11-14T01:49:45.000Z">
-<meta property="article:modified_time" content="2023-11-14T10:04:30.793Z">
+<meta property="article:modified_time" content="2023-11-14T10:45:07.365Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="springcloud">
 <meta property="article:tag" content="微服务">
@@ -419,7 +419,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：23 分钟前
+                    本文最后更新于：16 小时前
                   
                 
               </p>
@@ -592,11 +592,11 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@EnableEurekaServer</span><br><span class="hljs-meta">@SpringBootApplication</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">EurekaServerApplication</span> &#123;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        SpringApplication.run(EurekaServerApplication.class, args);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>别着急启动！！！接着我们需要修改一下配置文件：</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">server:</span><br>  <span class="hljs-attr">port:</span> <span class="hljs-number">8888</span><br><span class="hljs-attr">eureka:</span><br>	<span class="hljs-comment"># 开启之前需要修改一下客户端设置（虽然是服务端</span><br>  <span class="hljs-attr">client:</span><br>  	<span class="hljs-comment"># 由于我们是作为服务端角色，所以不需要获取服务端，改为false，默认为true</span><br>		<span class="hljs-attr">fetch-registry:</span> <span class="hljs-literal">false</span><br>		<span class="hljs-comment"># 暂时不需要将自己也注册到Eureka</span><br>    <span class="hljs-attr">register-with-eureka:</span> <span class="hljs-literal">false</span><br>    <span class="hljs-comment"># 将eureka服务端指向自己</span><br>    <span class="hljs-attr">service-url:</span><br>      <span class="hljs-attr">defaultZone:</span> <span class="hljs-string">http://localhost:8888/eureka</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">server:</span><br>  <span class="hljs-attr">port:</span> <span class="hljs-number">8888</span><br><span class="hljs-attr">eureka:</span><br>	<span class="hljs-comment"># 开启之前需要修改一下客户端设置（虽然是服务端</span><br>  <span class="hljs-attr">client:</span><br>  	<span class="hljs-comment"># 由于我们是作为服务端角色，所以不需要获取服务端，改为false，默认为true</span><br>	<span class="hljs-attr">fetch-registry:</span> <span class="hljs-literal">false</span><br>	<span class="hljs-comment"># 暂时不需要将自己也注册到Eureka</span><br>    <span class="hljs-attr">register-with-eureka:</span> <span class="hljs-literal">false</span><br>    <span class="hljs-comment"># 将eureka服务端指向自己</span><br>    <span class="hljs-attr">service-url:</span><br>      <span class="hljs-attr">defaultZone:</span> <span class="hljs-string">http://localhost:8888/eureka</span><br></code></pre></td></tr></table></figure>
 
 <p>好了，现在差不多可以启动了，启动完成后，直接输入地址+端口即可访问Eureka的管理后台：</p>
 <p><img src="https://s2.loli.net/2023/03/06/4S9e3gN6ZFTuPbU.png" srcset="/img/loading.gif" lazyload alt="image-20230306225619725"></p>
-<p>可以看到目前还没有任何的服务注册到Eureka，我们接着来配置一下我们的三个微服务，首先还是需要导入Eureka依赖（注意别导错了，名称里面有个starter的才是）：</p>
+<p>可以看到目前还没有任何的服务注册到Eureka，我们接着来配置一下我们的三个微服务，首先还是需要<strong>导入Eureka依赖</strong>（注意别导错了，名称里面有个starter的才是）：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.cloud<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-cloud-starter-netflix-eureka-client<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <p>然后修改配置文件：</p>
