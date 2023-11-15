@@ -506,8 +506,8 @@ eureka:
 	# 开启之前需要修改一下客户端设置（虽然是服务端
   client:
   	# 由于我们是作为服务端角色，所以不需要获取服务端，改为false，默认为true
-		fetch-registry: false
-		# 暂时不需要将自己也注册到Eureka
+	fetch-registry: false
+	# 暂时不需要将自己也注册到Eureka
     register-with-eureka: false
     # 将eureka服务端指向自己
     service-url:
@@ -518,7 +518,7 @@ eureka:
 
 ![image-20230306225619725](https://s2.loli.net/2023/03/06/4S9e3gN6ZFTuPbU.png)
 
-可以看到目前还没有任何的服务注册到Eureka，我们接着来配置一下我们的三个微服务，首先还是需要导入Eureka依赖（注意别导错了，名称里面有个starter的才是）：
+可以看到目前还没有任何的服务注册到Eureka，我们接着来配置一下我们的三个微服务，首先还是需要**导入Eureka依赖**（注意别导错了，名称里面有个starter的才是）：
 
 ```xml
 <dependency>

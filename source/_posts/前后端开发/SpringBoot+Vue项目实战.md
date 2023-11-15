@@ -16,7 +16,19 @@ author: 范财胜
 ![](https://picsum.photos/800/250)  
 ## 项目简介  
 > 采用 SpringBoot 3 + Vue 3 实现的前后端分离模版项目，集成多种技术栈，并且基于 JWT 校验方案。  
-  
+
+## 项目地址
+
+项目已上传至 <font color="#ff0000">Github仓库</font>，如有需要可自行下载使用。
+```cardlink
+url: https://github.com/Alleyf/SpingBoot-Vue/tree/master
+title: "GitHub - Alleyf/SpingBoot-Vue: A Demo for SpringBoot with Vue."
+description: "A Demo for SpringBoot with Vue. Contribute to Alleyf/SpingBoot-Vue development by creating an account on GitHub."
+host: github.com
+favicon: https://github.githubassets.com/favicons/favicon.svg
+image: https://opengraph.githubassets.com/a9e35993db96532eecc54692cabfb8c305216983dce49278cab1b52a560daef6/Alleyf/SpingBoot-Vue
+```
+[GitHub - Alleyf/SpingBoot-Vue: A Demo for SpringBoot with Vue.](https://github.com/Alleyf/SpingBoot-Vue/tree/master)
 ## 后端功能  
 用户注册、用户登录、重置密码等基础功能以及对应接口  
 ## 技术栈  
@@ -96,106 +108,106 @@ public class FlowLimitFilter extends HttpFilter {
 ### 接口文档
 #### Swagger
 springboot 3 使用 swagger 版本接口文档配置：
-1. `pom.xml` 引入依赖：
+1. `pom. xml` 引入依赖：
 ```xml
 <!--    Swagger文档生成框架    -->
         <dependency>
-            <groupId>org.springdoc</groupId>
+            <groupId>org. springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
             <version>2.1.0</version>
         </dependency>
 ```
-2. `application.yml` 配置静态资源：
+2. `application. yml` 配置静态资源：
 ```yml
 springdoc:
   paths-to-match: /api/**
   swagger-ui:
     operations-sorter: alpha
 ```
-3. `SecurityConfiguration.java` 设置接口文档相关静态资源放行:
+3. `SecurityConfiguration. java` 设置接口文档相关静态资源放行:
 ```java
 return http
-                .authorizeHttpRequests(conf -> conf
-                        .requestMatchers("/api/auth/**", "/error").permitAll()
-                        .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
-                        .anyRequest().hasAnyRole(Const.ROLE_DEFAULT)
+                .authorizeHttpRequests (conf -> conf
+                        .requestMatchers ("/api/auth/**", "/error"). permitAll ()
+                        .requestMatchers ("/swagger-ui/**", "/v 3/api-docs/**"). permitAll ()
+                        .anyRequest (). hasAnyRole (Const. ROLE_DEFAULT)
                 )
 ```
-4. 添加 `SwaggerConfig.java` swagger 相关配置文件：
+4. 添加 `SwaggerConfig. java` swagger 相关配置文件：
 ```java
 /**
- * Swagger开发文档相关配置
+ * Swagger 开发文档相关配置
  */
 @Configuration
-@SecurityScheme(type = SecuritySchemeType.HTTP, scheme = "Bearer",
-        name = "Authorization", in = SecuritySchemeIn.HEADER)
-@OpenAPIDefinition(security = { @SecurityRequirement(name = "Authorization") })
+@SecurityScheme (type = SecuritySchemeType. HTTP, scheme = "Bearer",
+        name = "Authorization", in = SecuritySchemeIn. HEADER)
+@OpenAPIDefinition (security = { @SecurityRequirement (name = "Authorization") })
 public class SwaggerConfiguration {
     /**
      * 配置文档介绍以及详细信息
      * @return OpenAPI
      */
     @Bean
-    public OpenAPI springShopOpenAPI() {
-        return new OpenAPI()
-                .info(new Info().title("示例项目 API 文档")
-                        .description("欢迎来到本示例项目API测试文档，在这里可以快速进行接口调试")
-                        .version("1.0")
-                        .license(new License()
-                                .name("项目开源地址")
-                                .url("https://github.com/Ketuer/SpringBoot-Vue-Template-Jwt")
+    public OpenAPI springShopOpenAPI () {
+        return new OpenAPI ()
+                .info (new Info (). title ("示例项目 API 文档")
+                        .description ("欢迎来到本示例项目 API 测试文档，在这里可以快速进行接口调试")
+                        .version ("1.0")
+                        .license (new License ()
+                                .name ("项目开源地址")
+                                .url (" https://github.com/Ketuer/SpringBoot-Vue-Template-Jwt" )
                         )
                 )
-                .externalDocs(new ExternalDocumentation()
-                        .description("我们的官方网站")
-                        .url("https://itbaima.net")
+                .externalDocs (new ExternalDocumentation ()
+                        .description ("我们的官方网站")
+                        .url (" https://itbaima.net" )
                 );
     }
     /**
-     * 配置自定义的OpenApi相关信息
+     * 配置自定义的 OpenApi 相关信息
      * @return OpenApiCustomizer
      */
     @Bean
-    public OpenApiCustomizer customerGlobalHeaderOpenApiCustomizer() {
-        return api -> this.authorizePathItems().forEach(api.getPaths()::addPathItem);
+    public OpenApiCustomizer customerGlobalHeaderOpenApiCustomizer () {
+        return api -> this.authorizePathItems (). forEach (api.getPaths ()::addPathItem);
     }
     /**
      * 登录接口和退出登录接口手动添加一下
      * @return PathItems
      */
-    private Map<String, PathItem> authorizePathItems(){
+    private Map<String, PathItem> authorizePathItems (){
         Map<String, PathItem> map = new HashMap<>();
-        map.put("/api/auth/login", new PathItem()
-                .post(new Operation()
-                        .tags(List.of("登录校验相关"))
-                        .summary("登录验证接口")
-                        .addParametersItem(new QueryParameter()
-                                .name("username")
-                                .required(true)
+        map.put ("/api/auth/login", new PathItem ()
+                .post (new Operation ()
+                        .tags (List.of ("登录校验相关"))
+                        .summary ("登录验证接口")
+                        .addParametersItem (new QueryParameter ()
+                                .name ("username")
+                                .required (true)
                         )
-                        .addParametersItem(new QueryParameter()
-                                .name("password")
-                                .required(true)
+                        .addParametersItem (new QueryParameter ()
+                                .name ("password")
+                                .required (true)
                         )
-                        .responses(new ApiResponses()
-                                .addApiResponse("200", new ApiResponse()
-                                        .description("OK")
-                                        .content(new Content().addMediaType("*/*", new MediaType()
-                                                .example(RestBean.success(new AuthorizeVO()).asJsonString())
+                        .responses (new ApiResponses ()
+                                .addApiResponse ("200", new ApiResponse ()
+                                        .description ("OK")
+                                        .content (new Content (). addMediaType ("*/*", new MediaType ()
+                                                .example (RestBean.success (new AuthorizeVO ()). asJsonString ())
                                         ))
                                 )
                         )
                 )
         );
-        map.put("/api/auth/logout", new PathItem()
-                .get(new Operation()
-                        .tags(List.of("登录校验相关"))
-                        .summary("退出登录接口")
-                        .responses(new ApiResponses()
-                                .addApiResponse("200", new ApiResponse()
-                                        .description("OK")
-                                        .content(new Content().addMediaType("*/*", new MediaType()
-                                                .example(RestBean.success())
+        map.put ("/api/auth/logout", new PathItem ()
+                .get (new Operation ()
+                        .tags (List.of ("登录校验相关"))
+                        .summary ("退出登录接口")
+                        .responses (new ApiResponses ()
+                                .addApiResponse ("200", new ApiResponse ()
+                                        .description ("OK")
+                                        .content (new Content (). addMediaType ("*/*", new MediaType ()
+                                                .example (RestBean.success ())
                                         ))
                                 )
                         )
@@ -207,68 +219,68 @@ public class SwaggerConfiguration {
 ```
 #### knife 4 j
 springboot 3 使用 knife 4.1.0 版本接口文档配置：
-1. `pom.xml` 引入依赖：
+1. `pom. xml` 引入依赖：
 ```xml
 	      <!--        knife4j接口文档模块-->  
 	<dependency>  
-	    <groupId>com.github.xiaoymin</groupId>  
-	    <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>  
+	    <groupId>com. github. xiaoymin</groupId>  
+	    <artifactId>knife 4 j-openapi 3-jakarta-spring-boot-starter</artifactId>  
 	    <version>4.1.0</version>  
 	</dependency>
 ```
-2. `application.yml` 配置静态资源:
+2. `application. yml` 配置静态资源:
 ```yml
-	   # springdoc-openapi项目配置，访问地址：http://127.0.0.1:8080/doc.html
+	   # springdoc-openapi 项目配置，访问地址： http://127.0.0.1:8080/doc.html
 	springdoc:  
 	  swagger-ui:  
-	    path: /swagger-ui.html  
+	    path: /swagger-ui. html  
 	    tags-sorter: alpha  
 	    operations-sorter: alpha  
 	  api-docs:  
-	    path: /v3/api-docs  
+	    path: /v 3/api-docs  
 	  group-configs:  
 	    - group: 'default'  
 	      paths-to-match: '/**'  
-	      packages-to-scan: com.example  
-	# knife4j的增强配置，不需要增强可以不配  
-	knife4j:  
+	      packages-to-scan: com. example  
+	# knife 4 j 的增强配置，不需要增强可以不配  
+	knife 4 j:  
 	  enable: true  
 	  setting:  
 	    language: zh_cn
 	``` 
- 3. `SecurityConfiguration.java` 设置接口文档相关静态资源放行:
+ 3. `SecurityConfiguration. java` 设置接口文档相关静态资源放行:
 ```java
 	      return http  
-	                .authorizeHttpRequests(conf -> {  
+	                .authorizeHttpRequests (conf -> {  
 	                    //配置请求路径，允许所有请求  
-	                    conf.requestMatchers("/api/auth/**", "/error", "/doc.html", "/webjars/**", "/v3/api-docs/**").permitAll()  
+	                    conf.requestMatchers ("/api/auth/**", "/error", "/doc. html", "/webjars/**", "/v 3/api-docs/**"). permitAll ()  
 	                            //其他请求需要认证  
-	                            .anyRequest().authenticated();  
+	                            .anyRequest (). authenticated ();  
 	                })  
 ```
-4. 添加 `Knife4jConfig.java` knife 4 j 相关配置文件：
+4. 添加 `Knife 4 jConfig. java` knife 4 j 相关配置文件：
 ```java
 /*  
  * Copyright (c) alleyf 2023-11. 适度编码益脑，沉迷编码伤身，合理安排时间，享受快乐生活。 */  
-package com.example.config;  
-import io.swagger.v3.oas.models.ExternalDocumentation;  
-import io.swagger.v3.oas.models.OpenAPI;  
-import io.swagger.v3.oas.models.info.Info;  
-import io.swagger.v3.oas.models.info.License;  
-import org.springframework.context.annotation.Bean;  
-import org.springframework.context.annotation.Configuration;  
+package com. example. config;  
+import io. swagger. v 3. oas. models. ExternalDocumentation;  
+import io. swagger. v 3. oas. models. OpenAPI;  
+import io. swagger. v 3. oas. models. info. Info;  
+import io. swagger. v 3. oas. models. info. License;  
+import org. springframework. context. annotation. Bean;  
+import org. springframework. context. annotation. Configuration;  
 @Configuration  
-public class Knife4jConfig {  
+public class Knife 4 jConfig {  
     @Bean  
-    public OpenAPI springShopOpenAPI() {  
-        return new OpenAPI()  
-                .info(new Info().title("SPDemoGo")  
-                        .description("SPDemoGoAPI文档")  
-                        .version("v1")  
-                        .license(new License().name("Apache 2.0").url("http://springdoc.org")))  
-                .externalDocs(new ExternalDocumentation()  
-                        .description("外部文档")  
-                        .url("https://springshop.wiki.github.org/docs"));  
+    public OpenAPI springShopOpenAPI () {  
+        return new OpenAPI ()  
+                .info (new Info (). title ("SPDemoGo")  
+                        .description ("SPDemoGoAPI 文档")  
+                        .version ("v 1")  
+                        .license (new License (). name ("Apache 2.0"). url (" http://springdoc.org" )))  
+                .externalDocs (new ExternalDocumentation ()  
+                        .description ("外部文档")  
+                        .url (" https://springshop.wiki.github.org/docs" ));  
     }  
 }
 ```
@@ -282,16 +294,16 @@ public class Knife4jConfig {
 	```xml
 	   <!--        jackson-->  
 	<dependency>  
-	    <groupId>com.fasterxml.jackson.core</groupId>  
+	    <groupId>com. fasterxml. jackson. core</groupId>  
 	    <artifactId>jackson-databind</artifactId>  
 	</dependency>
 	```
    - 在 `MailQueueListener` 中注册 `MessageConverter` bean：
 	```java
 	     @Bean  
-	public MessageConverter messageConverterer() {  
-	    // 创建一个Jackson2JsonMessageConverter对象  
-	    return new Jackson2JsonMessageConverter();  
+	public MessageConverter messageConverterer () {  
+	    // 创建一个 Jackson 2 JsonMessageConverter 对象  
+	    return new Jackson 2 JsonMessageConverter ();  
 	}
 	```
 4. **Bean** 不要被循环或重复导入。
@@ -299,16 +311,16 @@ public class Knife4jConfig {
 6. `@RequestParam` 一般用于 **Get** 请求路径传参，`@RequestBody` 一般用于 **Post** 请求 *Json* 传递请求体数据（*也可以用@RequestParam 传参但必须请求头注明 url 编码为表单格式*）。
 7. 内部结束 **setInterval** 定时器：
 	```js
-	const coldTimer = setInterval(() => {  
-	  coldTime.value > 0 ? coldTime.value-- : clearInterval(coldTimer)  	}, 1000)
+	const coldTimer = setInterval (() => {  
+	  coldTime. value > 0 ? coldTime. value-- : clearInterval (coldTimer)  	}, 1000)
 	```
 8. *fastjson 2* 在使用时，要注意返回 json 格式化的工具类 `Result` 必须加上`@Data、@AllArgsConstructor` 注解才能使用，否则返回的 json 格式化数据一直为**空（null）**
 9. springboot 最大并发数：[SpringBoot 最大连接数及最大并发数是多少？？？ - 知乎](https://zhuanlan.zhihu.com/p/654602186)
 ```cardlink
 url: https://zhuanlan.zhihu.com/p/654602186
 title: "SpringBoot 最大连接数及最大并发数是多少？？？"
-description: "每个Spring Boot版本和内置容器不同，结果也不同，这里以Spring Boot 2.7.10版本 + 内置Tomcat容器举例。 概序 在SpringBoot2.7.10版本中内置Tomcat版本是9.0.73，SpringBoot内置Tomcat的默认设置如下： Tomcat的…"
-host: zhuanlan.zhihu.com
+description: "每个 Spring Boot 版本和内置容器不同，结果也不同，这里以 Spring Boot 2.7.10 版本 + 内置 Tomcat 容器举例。概序在 SpringBoot 2.7.10 版本中内置 Tomcat 版本是 9.0.73，SpringBoot 内置 Tomcat 的默认设置如下： Tomcat 的…"
+host: zhuanlan. zhihu. com
 ```
 ## 效果
 ### 首页

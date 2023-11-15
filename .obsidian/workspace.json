@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/机器学习/PyTorch.md",
+                "file": "source/_posts/前后端开发/SpringCloud.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -21,12 +21,12 @@
             }
           },
           {
-            "id": "0611774e0f6728c8",
+            "id": "076ec62971f34b20",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/about/index.md",
+                "file": "source/_posts/科研学习/会议讨论/周会.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -34,12 +34,25 @@
             }
           },
           {
-            "id": "fbdc71d0848f05fb",
+            "id": "479d95ddb5ed4d3c",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/前后端开发/Spring核心学习.md",
+                "file": "source/_posts/科研学习/国基金项目/司法领域大模型调研三.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "5ba431c559286a1c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "source/_posts/科研学习/学习方法/Paper_Reading_Method.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -60,7 +73,7 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -80,7 +93,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/about/index.md"
+                "file": "source/_posts/前后端开发/SpringBoot+Vue项目实战.md"
               }
             }
           }
@@ -137,7 +150,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/about/index.md",
+                "file": "source/_posts/前后端开发/SpringBoot+Vue项目实战.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -193,26 +206,31 @@
   },
   "active": "7debd791db616930",
   "lastOpenFiles": [
-    "public/archives/2022/12/index.html",
-    "public/archives/2022/12",
-    "public/archives/2022/11/index.html",
-    "public/archives/2022/11",
-    "public/archives/2022/10/index.html",
-    "public/archives/2022/10",
-    "public/archives/2022/09/index.html",
-    "public/archives/2022/09",
-    "public/js/utils.js",
-    "public/js/useaplayer.js",
-    "public/js/plugins.js",
-    "public/img/police_beian.png",
+    "public/2022/10/9968af83d482.html",
+    "public/2022/11/da51d1e3196c.html",
+    "public/2022/11/aff38a7758c4.html",
+    "public/2022/11/8134dd087a1a.html",
+    "public/2022/11/2b8c5a163a43.html",
+    "public/2022/12/b3288796b118.html",
+    "public/2022/12/98f47ed35125.html",
+    "public/2022/10/7fb9350bc4f2.html",
+    "public/2022/10/7041d89da7de.html",
+    "public/2022/10/225ffd722b96.html",
+    "public/2022/09/f049d1d71021.html",
     "public/img/loading.gif",
+    "public/img/police_beian.png",
     "public/img/icon.png",
     "public/img/fluid.png",
-    "source/_posts/机器学习/PyTorch.md",
-    "source/_posts/机器学习/pytorch-2b6mpm.md",
+    "source/_posts/科研学习/国基金项目/司法领域大模型调研三.md",
+    "source/_posts/科研学习/学习方法/Paper_Reading_Method.md",
+    "source/_posts/科研学习/国基金项目/司法领域大模型调研四.md",
+    "source/_posts/科研学习/会议讨论/周会.md",
     "source/_posts/前后端开发/SpringCloud.md",
-    "node_modules/hexo-tag-mmedia/README.md",
     "source/_posts/前后端开发/SpringBoot+Vue项目实战.md",
+    "source/_posts/机器学习/PyTorch.md",
+    "source/about/index.md",
+    "source/_posts/机器学习/pytorch-2b6mpm.md",
+    "node_modules/hexo-tag-mmedia/README.md",
     "source/_posts/前后端开发/Spring核心学习.md",
     "source/_posts/前后端开发/SpringBoot.md",
     "node_modules/live2d-widget-model-nico/assets/moc/nico.2048/texture_01.png",
@@ -234,11 +252,6 @@
     "node_modules/whatwg-mimetype/README.md",
     "node_modules/whatwg-encoding/README.md",
     "node_modules/webidl-conversions/README.md",
-    "node_modules/webidl-conversions/LICENSE.md",
-    "node_modules/warehouse/README.md",
-    "node_modules/w3c-xmlserializer/README.md",
-    "node_modules/w3c-xmlserializer/LICENSE.md",
-    "node_modules/vary/README.md",
     "canvas/review plans.canvas",
     "canvas/AI学习思路.canvas",
     "未命名.canvas",
