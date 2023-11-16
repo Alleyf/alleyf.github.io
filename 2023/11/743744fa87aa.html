@@ -112,7 +112,7 @@
 <meta property="og:image" content="https://s2.loli.net/2023/03/06/7VaosxbqtRm5X4i.png">
 <meta property="og:image" content="https://s2.loli.net/2023/03/06/9k6oeMZIE28T3t7.png">
 <meta property="article:published_time" content="2023-11-14T01:49:45.000Z">
-<meta property="article:modified_time" content="2023-11-14T10:45:07.365Z">
+<meta property="article:modified_time" content="2023-11-16T02:30:44.550Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="springcloud">
 <meta property="article:tag" content="微服务">
@@ -419,7 +419,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：16 小时前
+                    本文最后更新于：37 分钟前
                   
                 
               </p>
@@ -608,22 +608,25 @@
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">application:</span><br>    <span class="hljs-attr">name:</span> <span class="hljs-string">userservice</span><br></code></pre></td></tr></table></figure>
 
 <p><img src="https://s2.loli.net/2023/03/06/1o8pmzBXCtixhKu.png" srcset="/img/loading.gif" lazyload alt="image-20230306225638109"></p>
+<blockquote>
+<p>[!NOTE] Tips<br>application的<strong>name不能大写字母，用小写</strong>。</p>
+</blockquote>
 <p>当我们的服务启动之后，会每隔一段时间跟Eureka发送一次心跳包，这样Eureka就能够感知到我们的服务是否处于正常运行状态。</p>
 <p>现在我们用同样的方法，将另外两个微服务也注册进来：</p>
 <p><img src="https://s2.loli.net/2023/03/06/gkenG9bT4aMIUio.png" srcset="/img/loading.gif" lazyload alt="image-20230306225648063"></p>
-<p>那么，现在我们怎么实现服务发现呢？</p>
+<p>那么，现在我们<strong>怎么实现服务发现</strong>呢？</p>
 <p>也就是说，我们之前如果需要对其他微服务进行远程调用，那么就必须要知道其他服务的地址：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">User</span> <span class="hljs-variable">user</span> <span class="hljs-operator">=</span> template.getForObject(<span class="hljs-string">&quot;http://localhost:8082/user/&quot;</span>+uid, User.class);<br></code></pre></td></tr></table></figure>
 
 <p>而现在有了Eureka之后，我们可以直接向其进行查询，得到对应的微服务地址，这里直接将服务名称替换即可：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Service</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">BorrowServiceImpl</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">BorrowService</span> &#123;<br><br>    <span class="hljs-meta">@Resource</span><br>    BorrowMapper mapper;<br><br>    <span class="hljs-meta">@Resource</span><br>    RestTemplate template;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> UserBorrowDetail <span class="hljs-title function_">getUserBorrowDetailByUid</span><span class="hljs-params">(<span class="hljs-type">int</span> uid)</span> &#123;<br>        List&lt;Borrow&gt; borrow = mapper.getBorrowsByUid(uid);<br><br>        <span class="hljs-comment">//这里不用再写IP，直接写服务名称userservice</span><br>        <span class="hljs-type">User</span> <span class="hljs-variable">user</span> <span class="hljs-operator">=</span> template.getForObject(<span class="hljs-string">&quot;http://userservice/user/&quot;</span>+uid, User.class);<br>        <span class="hljs-comment">//这里不用再写IP，直接写服务名称bookservice</span><br>        List&lt;Book&gt; bookList = borrow<br>                .stream()<br>                .map(b -&gt; template.getForObject(<span class="hljs-string">&quot;http://bookservice/book/&quot;</span>+b.getBid(), Book.class))<br>                .collect(Collectors.toList());<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">UserBorrowDetail</span>(user, bookList);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>接着我们手动将RestTemplate声明为一个Bean，然后添加<code>@LoadBalanced</code>注解，这样Eureka就会对服务的调用进行自动发现，并提供负载均衡：</p>
+<p>接着我们手动将RestTemplate声明为一个Bean，然后添加<code>@LoadBalanced</code>注解，这样Eureka就会对服务的调用进行自动发现，<strong>并提供负载均衡</strong>：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Configuration</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">BeanConfig</span> &#123;<br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-meta">@LoadBalanced</span><br>    RestTemplate <span class="hljs-title function_">template</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RestTemplate</span>();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>现在我们就可以正常调用了：</p>
 <p><img src="https://s2.loli.net/2023/03/06/1SHLTwmIK4ChdaD.png" srcset="/img/loading.gif" lazyload alt="image-20230306225713484"></p>
-<p>不对啊，不是说有负载均衡的能力吗，怎么个负载均衡呢？</p>
+<p>不对啊，不是说有负载均衡的能力吗，怎么个<strong>负载均衡</strong>呢？</p>
 <p>我们先来看看，同一个服务器实际上是可以注册很多个的，但是它们的端口不同，比如我们这里创建多个用户查询服务，我们现在将原有的端口配置修改一下，由IDEA中设定启动参数来决定，这样就可以多创建几个不同端口的启动项了：</p>
 <p><img src="https://s2.loli.net/2023/03/06/ZzmGK4CuSwLVhva.png" srcset="/img/loading.gif" lazyload alt="image-20230306225723916"></p>
 <p><img src="https://s2.loli.net/2023/03/06/9lPAbiYntQDGNzy.png" srcset="/img/loading.gif" lazyload alt="image-20230306225741406"></p>
@@ -642,14 +645,14 @@
 <p><img src="https://s2.loli.net/2023/03/06/21izKlaCO9oNuYq.png" srcset="/img/loading.gif" lazyload alt="image-20230306225832945"></p>
 <p>我们来看看如何搭建Eureka集群，这里由于机器配置不高，就搭建两个Eureka服务器组成集群。</p>
 <p>首先我们需要修改一下Eureka服务端的配置文件，这里我们创建两个配置文件，：</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">server:</span><br>  <span class="hljs-attr">port:</span> <span class="hljs-number">8801</span><br><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">application:</span><br>    <span class="hljs-attr">name:</span> <span class="hljs-string">eurekaserver</span><br><span class="hljs-attr">eureka:</span><br>  <span class="hljs-attr">instance:</span><br>  	<span class="hljs-comment"># 由于不支持多个localhost的Eureka服务器，但是又只有本地测试环境，所以就只能自定义主机名称了</span><br>  	<span class="hljs-comment"># 主机名称改为eureka01</span><br>    <span class="hljs-attr">hostname:</span> <span class="hljs-string">eureka01</span><br>  <span class="hljs-attr">client:</span><br>    <span class="hljs-attr">fetch-registry:</span> <span class="hljs-literal">false</span><br>    <span class="hljs-comment"># 去掉register-with-eureka选项，让Eureka服务器自己注册到其他Eureka服务器，这样才能相互启用</span><br>    <span class="hljs-attr">service-url:</span><br>    	<span class="hljs-comment"># 注意这里填写其他Eureka服务器的地址，不用写自己的</span><br>      <span class="hljs-attr">defaultZone:</span> <span class="hljs-string">http://eureka01:8801/eureka</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">server:</span><br>  <span class="hljs-attr">port:</span> <span class="hljs-number">8801</span><br><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">application:</span><br>    <span class="hljs-attr">name:</span> <span class="hljs-string">eurekaserver</span><br><span class="hljs-attr">eureka:</span><br>  <span class="hljs-attr">instance:</span><br>  	<span class="hljs-comment"># 由于不支持多个localhost的Eureka服务器，但是又只有本地测试环境，所以就只能自定义主机名称了</span><br>  	<span class="hljs-comment"># 主机名称改为eureka01</span><br>    <span class="hljs-attr">hostname:</span> <span class="hljs-string">eureka01</span><br>  <span class="hljs-attr">client:</span><br>    <span class="hljs-attr">fetch-registry:</span> <span class="hljs-literal">false</span><br>    <span class="hljs-comment"># 去掉register-with-eureka选项，让Eureka服务器自己注册到其他Eureka服务器，这样才能相互启用</span><br>    <span class="hljs-attr">service-url:</span><br>    	<span class="hljs-comment"># 注意这里填写其他Eureka服务器的地址，不用写自己的</span><br>      <span class="hljs-attr">defaultZone:</span> <span class="hljs-string">http://eureka02:8802/eureka</span><br></code></pre></td></tr></table></figure>
 
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">server:</span><br>  <span class="hljs-attr">port:</span> <span class="hljs-number">8802</span><br><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">application:</span><br>    <span class="hljs-attr">name:</span> <span class="hljs-string">eurekaserver</span><br><span class="hljs-attr">eureka:</span><br>  <span class="hljs-attr">instance:</span><br>    <span class="hljs-attr">hostname:</span> <span class="hljs-string">eureka02</span><br>  <span class="hljs-attr">client:</span><br>    <span class="hljs-attr">fetch-registry:</span> <span class="hljs-literal">false</span><br>    <span class="hljs-attr">service-url:</span><br>      <span class="hljs-attr">defaultZone:</span> <span class="hljs-string">http://eureka01:8801/eureka</span><br></code></pre></td></tr></table></figure>
 
 <p>这里由于我们修改成自定义的地址，需要在hosts文件中将其解析到172.0.0.1才能回到localhost，Mac下文件路径为<code>/etc/hosts</code>，Windows下为<code>C:\Windows\system32\drivers\etc\hosts</code>：</p>
 <p><img src="https://s2.loli.net/2023/03/06/aGdiPjeRIOfHo7p.png" srcset="/img/loading.gif" lazyload alt="image-20230306225844111"></p>
 <p>对创建的两个配置文件分别添加启动配置，直接使用<code>spring.profiles.active</code>指定启用的配置文件即可：</p>
-<p>!<img src="https://s2.loli.net/2023/03/06/WYhxpSvsFU8tVcR.png" srcset="/img/loading.gif" lazyload alt="image-20230306225853705">](&#x2F;Users&#x2F;nagocoler&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20230306225853705.png)</p>
+<p><img src="https://s2.loli.net/2023/03/06/WYhxpSvsFU8tVcR.png" srcset="/img/loading.gif" lazyload alt="image-20230306225853705"></p>
 <p>接着启动这两个注册中心，这两个Eureka管理页面都可以被访问，我们访问其中一个：</p>
 <p><img src="https://s2.loli.net/2023/03/06/fbGgz2dRq43DM8O.png" srcset="/img/loading.gif" lazyload alt="image-20230306225903831"></p>
 <p><img src="https://s2.loli.net/2023/03/06/nmD6H1BZbr7LYWC.png" srcset="/img/loading.gif" lazyload alt="image-20230306225916507"></p>
@@ -659,9 +662,9 @@
 
 <p>可以看到，服务全部成功注册，并且两个Eureka服务端都显示为已注册：</p>
 <p><img src="https://s2.loli.net/2023/03/06/GDd5BVMTY1t4oQj.png" srcset="/img/loading.gif" lazyload alt="image-20230306225928923"></p>
-<p>接着我们模拟一下，将其中一个Eureka服务器关闭掉，可以看到它会直接变成不可用状态：</p>
+<p>接着我们模拟一下，<strong>将其中一个Eureka服务器关闭掉，可以看到它会直接变成不可用状态</strong>：</p>
 <p><img src="https://s2.loli.net/2023/03/06/8fdxB1PlqVYDRLr.png" srcset="/img/loading.gif" lazyload alt="image-20230306225938085"></p>
-<p>当然，如果这个时候我们重启刚刚关闭的Eureka服务器，会自动同步其他Eureka服务器的数据。</p>
+<p>当然，如果这个时候我们<strong>重启刚刚关闭的Eureka服务器，会自动同步其他Eureka服务器的数据</strong>。</p>
 <hr>
 <h2 id="LoadBalancer-负载均衡"><a href="#LoadBalancer-负载均衡" class="headerlink" title="LoadBalancer 负载均衡"></a>LoadBalancer 负载均衡</h2><p>前面我们讲解了如何对服务进行拆分、如何通过Eureka服务器进行服务注册与发现，那么现在我们来看看，它的负载均衡到底是如何实现的，实际上之前演示的负载均衡是依靠LoadBalancer实现的。</p>
 <p>在2020年前的SpringCloud版本是采用Ribbon作为负载均衡实现，但是2020年的版本之后SpringCloud把Ribbon移除了，进而用自己编写的LoadBalancer替代。</p>
@@ -713,6 +716,10 @@
 <p>现在可以直接写成这样：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@FeignClient(&quot;userservice&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">UserClient</span> &#123;<br><br>  	<span class="hljs-comment">//路径保证和其他微服务提供的一致即可</span><br>    <span class="hljs-meta">@RequestMapping(&quot;/user/&#123;uid&#125;&quot;)</span><br>    User <span class="hljs-title function_">getUserById</span><span class="hljs-params">(<span class="hljs-meta">@PathVariable(&quot;uid&quot;)</span> <span class="hljs-type">int</span> uid)</span>;  <span class="hljs-comment">//参数和返回值也保持一致</span><br>&#125;<br></code></pre></td></tr></table></figure>
 
+
+<blockquote>
+<p>[!NOTE] Tips<br>如果被调用的服务的接口添加了统一的 <code>RequestMapping</code> 地址，则要在 <code>xxxClient</code> 接口方法上<strong>提供完整的路径</strong>。</p>
+</blockquote>
 <p>接着我们直接注入使用（有Mybatis那味了）：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Resource</span><br>UserClient userClient;<br><br><span class="hljs-meta">@Override</span><br><span class="hljs-keyword">public</span> UserBorrowDetail <span class="hljs-title function_">getUserBorrowDetailByUid</span><span class="hljs-params">(<span class="hljs-type">int</span> uid)</span> &#123;<br>    List&lt;Borrow&gt; borrow = mapper.getBorrowsByUid(uid);<br>    <br>    <span class="hljs-type">User</span> <span class="hljs-variable">user</span> <span class="hljs-operator">=</span> userClient.getUserById(uid);<br>    <span class="hljs-comment">//这里不用再写IP，直接写服务名称bookservice</span><br>    List&lt;Book&gt; bookList = borrow<br>            .stream()<br>            .map(b -&gt; template.getForObject(<span class="hljs-string">&quot;http://bookservice/book/&quot;</span>+b.getBid(), Book.class))<br>            .collect(Collectors.toList());<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">UserBorrowDetail</span>(user, bookList);<br>&#125;<br></code></pre></td></tr></table></figure>
 
@@ -780,14 +787,14 @@
 <p>现在去掉<code>BorrowController</code>的<code>@HystrixCommand</code>注解和备选方法：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RestController</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">BorrowController</span> &#123;<br><br>    <span class="hljs-meta">@Resource</span><br>    BorrowService service;<br><br>    <span class="hljs-meta">@RequestMapping(&quot;/borrow/&#123;uid&#125;&quot;)</span><br>    UserBorrowDetail <span class="hljs-title function_">findUserBorrows</span><span class="hljs-params">(<span class="hljs-meta">@PathVariable(&quot;uid&quot;)</span> <span class="hljs-type">int</span> uid)</span>&#123;<br>        <span class="hljs-keyword">return</span> service.getUserBorrowDetailByUid(uid);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>最后我们在配置文件中开启熔断支持：</p>
+<p>最后我们在配置文件中<strong>开启熔断支持</strong>：</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">feign:</span><br>  <span class="hljs-attr">circuitbreaker:</span><br>    <span class="hljs-attr">enabled:</span> <span class="hljs-literal">true</span><br></code></pre></td></tr></table></figure>
 
 <p>启动服务，调用接口试试看：</p>
 <p><img src="https://s2.loli.net/2023/03/06/bieclsNmpqOrdHB.png" srcset="/img/loading.gif" lazyload alt="image-20230306230301021"></p>
 <p><img src="https://s2.loli.net/2023/03/06/3dn7AlkYGJCmUxw.png" srcset="/img/loading.gif" lazyload alt="image-20230306230310524"></p>
 <p>可以看到，现在已经采用我们的替代方案作为结果。</p>
-<h3 id="监控页面部署"><a href="#监控页面部署" class="headerlink" title="监控页面部署"></a>监控页面部署</h3><p>除了对服务的降级和熔断处理，我们也可以对其进行实时监控，只需要安装监控页面即可，这里我们创建一个新的项目，导入依赖：</p>
+<h3 id="监控页面部署"><a href="#监控页面部署" class="headerlink" title="监控页面部署"></a>监控页面部署</h3><p>除了对服务的降级和熔断处理，我们也可以对其进行<strong>实时监控</strong>，只需要安装监控页面即可，这里我们创建一个新的项目，导入依赖：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.cloud<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-cloud-starter-netflix-hystrix-dashboard<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.2.10.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <p>接着添加配置文件：</p>
@@ -1006,7 +1013,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2023年11月14日</div>
+          <div>2023年11月16日</div>
         </div>
       
       <div class="license-meta-item">
