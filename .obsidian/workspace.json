@@ -21,6 +21,19 @@
             }
           },
           {
+            "id": "5a05be402e1b566b",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Git-简记.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
+          },
+          {
             "id": "076ec62971f34b20",
             "type": "leaf",
             "state": {
@@ -46,7 +59,8 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -66,7 +80,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/前后端开发/SpringCloud Alibaba-微服务进阶.md"
+                "file": "Git-简记.md"
               }
             }
           }
@@ -123,7 +137,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/前后端开发/SpringCloud Alibaba-微服务进阶.md",
+                "file": "Git-简记.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -177,27 +191,29 @@
       "obsidian-excalidraw-plugin:新建 Excalidraw 绘图": false
     }
   },
-  "active": "7debd791db616930",
+  "active": "5a05be402e1b566b",
   "lastOpenFiles": [
+    "public/archives/2023/page/4/index.html",
+    "public/archives/2023/page/3/index.html",
+    "public/archives/2023/page/2/index.html",
     "public/archives/2022/page/2/index.html",
-    "public/archives/2022/page/2",
-    "public/archives/2022/page",
-    "public/2022/11/da51d1e3196c.html",
-    "public/2022/11/aff38a7758c4.html",
-    "public/2022/11/8134dd087a1a.html",
-    "public/2022/11/2b8c5a163a43.html",
-    "public/2022/11",
-    "public/2023/10/c114fe139aab.html",
-    "public/2023/10/d36831b1156c.html",
-    "public/2023/10/7ca8ec33c92b.html",
-    "source/about/index.md",
-    "public/img/police_beian.png",
+    "public/archives/page/6/index.html",
+    "public/archives/page/5/index.html",
+    "public/archives/page/3/index.html",
+    "public/archives/page/4/index.html",
+    "public/archives/2023/page/4",
+    "public/archives/2023/page/3",
+    "public/archives/2023/page/2",
     "public/img/loading.gif",
     "public/img/icon.png",
+    "public/img/police_beian.png",
     "public/img/fluid.png",
-    "source/_posts/前后端开发/SpringCloud Alibaba-微服务进阶.md",
-    "source/_posts/前后端开发/SpringBoot+Vue项目实战.md",
     "source/_posts/科研学习/会议讨论/周会.md",
+    "Git-简记.md",
+    "source/_obsidian/Post Template.md",
+    "source/_posts/前后端开发/SpringCloud Alibaba-微服务进阶.md",
+    "source/about/index.md",
+    "source/_posts/前后端开发/SpringBoot+Vue项目实战.md",
     "SpringCloud 进阶 - SpringCloud笔记（二）微服务进阶.md",
     "source/_posts/前后端开发/SpringCloud-微服务基础.md",
     "source/_posts/前后端开发/SpringBoot.md",
@@ -223,8 +239,6 @@
     "node_modules/wrappy/README.md",
     "node_modules/which/README.md",
     "node_modules/which/CHANGELOG.md",
-    "node_modules/whatwg-url/README.md",
-    "node_modules/whatwg-mimetype/README.md",
     "canvas/review plans.canvas",
     "canvas/AI学习思路.canvas",
     "未命名.canvas",
