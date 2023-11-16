@@ -13,14 +13,14 @@ author: fcs
 # 原理解析
 
 ## 工作流程
-git分为三个区，工作流程如下：
+git 分为三个区，工作流程如下：
 
 ![image.png](http://qnpicmap.fcsluck.top/pics/202311162202035.png)
 
 ## 文件状态
 
-git文件有四种状态：
-1. 未跟踪：创建但未被git管理的文件
+git 文件有四种状态：
+1. 未跟踪：创建但未被 git 管理的文件
 2. 未修改：被管理但未修改的文件
 3. 已修改：修改后未添加到暂存区的文件
 4. 已暂存：添加到暂存区的文件
@@ -35,7 +35,7 @@ git文件有四种状态：
 
 ## 初始化
 
-查看git版本：
+查看 git 版本：
 
 ```git
 git -v
@@ -43,7 +43,7 @@ git -v
 
 ![image.png|500](http://qnpicmap.fcsluck.top/pics/202311162135814.png)
 
-首次安装git使用以下命令配置全局仓库用户名和邮箱信息：
+首次安装 git 使用以下命令配置全局仓库用户名和邮箱信息：
 
 ```git
 git config --global user.name "Jasper Yang"  #设置用户名
@@ -51,19 +51,20 @@ git config --global user.email geekhall.cn@gmail.com #设置密码
 git config --global credential.helper store #保存上述信息
 ```
 
-查看全局配置信息：
+查看/清除全局配置信息：
 
 ```
-git config --global --list
+git config --global --list #查看
+git config --global --unset <entry-name> #清除全局配置
 ```
 
 ![image.png](http://qnpicmap.fcsluck.top/pics/202311162140448.png)
 
-查看隐藏的.git文件：
+查看隐藏的. git 文件：
 
 ![](http://qnpicmap.fcsluck.top/pics/202311162146376.png)
 
-清除隐藏的.git文件则git仓库将被清除：
+清除隐藏的. git 文件则 git 仓库将被清除：
 ![image.png](http://qnpicmap.fcsluck.top/pics/202311162149713.png)
 
 
@@ -86,27 +87,77 @@ git clone https://github.com/Alleyf/linux-tutorial.git
 
 ## 查看仓库状态
 
+```git
+git status
 ```
 
-```
-
+![image.png|575](http://qnpicmap.fcsluck.top/pics/202311162220832.png)
 ## 连接云端仓库
 
-## 拉取仓库
+![image.png|575](http://qnpicmap.fcsluck.top/pics/202311162229748.png)
+
+添加一个 git URL 作为别名
+
+```shell
+git remote add [alias] [url]
+```
+
+显示您设置的远程存储库的名称
+
+```shell
+git remote
+```
+
+显示远程存储库的名称和 URL
+
+```shell
+git remote -v
+```
+
+删除远程存储库
+
+```shell
+git remote rm [remote repo name]
+```
+
+更改 git repo 的 URL
+
+```shell
+git remote set-url origin [git_url]
+```
+
+## 同步仓库文件
+### 拉取仓库
 
 ```shell
 git pull
 ```
-## 提交文件
+### 提交文件
 
+```shell
+git add fileName/.  #"."代表添加当前文件夹下的全部文件到存储区
+```
+
+![image.png](http://qnpicmap.fcsluck.top/pics/202311162233770.png)
 
 ```shell
 git commit -m "提交时的备注信息"
 ```
 
+git commit 只会提交**存储区中的文件到仓库**，**未跟踪即未添加到存储区的文件不会被提交**到仓库，如下 file 2.md 是新增未跟踪的文件不会被同 file1.md 提交到仓库:
+![image.png](http://qnpicmap.fcsluck.top/pics/202311162235693.png)
+
 ```shell
 git push "远程库名" 
 ```
+
+
+## 查看记录
+
+```shell
+git log
+```
+![|525](http://qnpicmap.fcsluck.top/pics/202311162257259.png)
 # 分支
 
 ## 查询/切换/新建分支
