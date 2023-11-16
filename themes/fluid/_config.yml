@@ -18,11 +18,11 @@
 
 # 用于浏览器标签的图标
 # Icon for browser tab
-favicon: /img/fluid.png
+favicon: http://qnpicmap.fcsluck.top/pics/202311161815288.png
 
 # 用于苹果设备的图标
 # Icon for Apple touch
-apple_touch_icon: /img/fluid.png
+apple_touch_icon: http://qnpicmap.fcsluck.top/pics/202311161815288.png
 
 # 浏览器标签页中的标题分隔符，效果： 文章名 - 站点名
 # Title separator in browser tab, eg: article - site
@@ -452,7 +452,7 @@ footer:
     # 公安备案的编号，用于URL跳转查询
     police_code: 2022010038
     # 公安备案的图片. 为空时不显示备案图片
-    police_icon: /img/police_beian.png
+    police_icon: http://qnpicmap.fcsluck.top/pics/202311161820757.png
 
 #---------------------------
 # 首页

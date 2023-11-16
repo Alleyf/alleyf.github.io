@@ -40,6 +40,7 @@ git branch -r #查询远程分支
 ```
 
 2. 切换或新建分支，使用以下指令：
+
 ```shell
 git chechout "branchName" #切换分支
 git checkout -b "branchName" #新建分支并切换到该分支
@@ -48,14 +49,18 @@ git checkout -b "branchName" #新建分支并切换到该分支
 ## 删除分支
 
 1. 删除**本地分支**，删除前会进行检查是否*本分支内容已经合并到主分支*，使用以下指令：
+
 ```shell
 git branch -d "branchName"
 ```
+
 > 强制删除分支使用 `-D` 参数。
 
 2. 删除**远程分支**，使用以下指令：
+
 ```shell
 git push "远程库名" -d "branch name" 
 ```
+
 > 强制删除分支使用 `-D` 参数。
 
