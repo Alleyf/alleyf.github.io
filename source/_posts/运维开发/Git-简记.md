@@ -8,9 +8,88 @@ excerpt: 一些关于 git 的常用操作。
 author: fcs
 ---
 ![](https://picsum.photos/800/250)
+
+
+# 原理解析
+
+## 工作流程
+git分为三个区，工作流程如下：
+
+![image.png](http://qnpicmap.fcsluck.top/pics/202311162202035.png)
+
+## 文件状态
+
+git文件有四种状态：
+1. 未跟踪：创建但未被git管理的文件
+2. 未修改：被管理但未修改的文件
+3. 已修改：修改后未添加到暂存区的文件
+4. 已暂存：添加到暂存区的文件
+![image.png](http://qnpicmap.fcsluck.top/pics/202311162206125.png)
+
+
+# 安装和初始化配置
+
+## 安装
+
+[git官方地址](https://git-scm.com/)：按需下载对应自己电脑操作系统的版本。
+
+## 初始化
+
+查看git版本：
+
+```git
+git -v
+```
+
+![image.png|500](http://qnpicmap.fcsluck.top/pics/202311162135814.png)
+
+首次安装git使用以下命令配置全局仓库用户名和邮箱信息：
+
+```git
+git config --global user.name "Jasper Yang"  #设置用户名
+git config --global user.email geekhall.cn@gmail.com #设置密码
+git config --global credential.helper store #保存上述信息
+```
+
+查看全局配置信息：
+
+```
+git config --global --list
+```
+
+![image.png](http://qnpicmap.fcsluck.top/pics/202311162140448.png)
+
+查看隐藏的.git文件：
+
+![](http://qnpicmap.fcsluck.top/pics/202311162146376.png)
+
+清除隐藏的.git文件则git仓库将被清除：
+![image.png](http://qnpicmap.fcsluck.top/pics/202311162149713.png)
+
+
 # 基础操作
-## 创建 git 本地仓库
-在本地需要创建 git 仓库的文件夹下打开 **git bash** 执行 `git init`
+## 创建 git 仓库
+
+### 本地初始化
+在本地需要创建 git 仓库的文件夹下打开 **git bash** 执行以下命令：
+
+```git
+git init （init_repo_dir_name）#后面可选在当前目录新建目录作为git仓库
+```
+### 远程克隆
+
+```git
+git clone https://github.com/Alleyf/linux-tutorial.git
+```
+
+![image.png](http://qnpicmap.fcsluck.top/pics/202311162159698.png)
+
+## 查看仓库状态
+
+```
+
+```
+
 ## 连接云端仓库
 
 ## 拉取仓库
@@ -64,3 +143,23 @@ git push "远程库名" -d "branch name"
 
 > 强制删除分支使用 `-D` 参数。
 
+
+
+
+# 参考文献
+
+```cardlink
+url: https://www.bilibili.com/video/BV1HM411377j/
+title: "【GeekHour】一小时Git教程_哔哩哔哩_bilibili"
+description: "【GeekHour】一小时Git教程共计19条视频，包括：01.课程简介、02.安装和初始化配置、03.新建仓库等，UP主更多精彩视频，请关注UP账号。"
+host: www.bilibili.com
+image: //i0.hdslb.com/bfs/archive/be265386c6db1da0e1233e9743e02b252ea07b53.jpg@100w_100h_1c.png
+```
+1. [【GeekHour】一小时Git教程\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1HM411377j/)
+```cardlink
+url: https://wangchujiang.com/reference/docs/git.html
+title: "Git 备忘清单 &  git cheatsheet &  Quick Reference"
+host: wangchujiang.com
+favicon: data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20height%3D%221em%22%20width%3D%221em%22%3E%20%3Cpath%20d%3D%22m21.66%2010.44-.98%204.18c-.84%203.61-2.5%205.07-5.62%204.77-.5-.04-1.04-.13-1.62-.27l-1.68-.4c-4.17-.99-5.46-3.05-4.48-7.23l.98-4.19c.2-.85.44-1.59.74-2.2%201.17-2.42%203.16-3.07%206.5-2.28l1.67.39c4.19.98%205.47%203.05%204.49%207.23Z%22%20fill%3D%22%23c9d1d9%22%2F%3E%20%3Cpath%20d%3D%22M15.06%2019.39c-.62.42-1.4.77-2.35%201.08l-1.58.52c-3.97%201.28-6.06.21-7.35-3.76L2.5%2013.28c-1.28-3.97-.22-6.07%203.75-7.35l1.58-.52c.41-.13.8-.24%201.17-.31-.3.61-.54%201.35-.74%202.2l-.98%204.19c-.98%204.18.31%206.24%204.48%207.23l1.68.4c.58.14%201.12.23%201.62.27Zm2.43-8.88c-.06%200-.12-.01-.19-.02l-4.85-1.23a.75.75%200%200%201%20.37-1.45l4.85%201.23a.748.748%200%200%201-.18%201.47Z%22%20fill%3D%22%23228e6c%22%20%2F%3E%20%3Cpath%20d%3D%22M14.56%2013.89c-.06%200-.12-.01-.19-.02l-2.91-.74a.75.75%200%200%201%20.37-1.45l2.91.74c.4.1.64.51.54.91-.08.34-.38.56-.72.56Z%22%20fill%3D%22%23228e6c%22%20%2F%3E%20%3C%2Fsvg%3E
+```
+2. [Git 备忘清单 & git cheatsheet & Quick Reference](https://wangchujiang.com/reference/docs/git.html)
