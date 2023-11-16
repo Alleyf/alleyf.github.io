@@ -21,6 +21,19 @@
             }
           },
           {
+            "id": "875a493660d7182f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "source/about/index.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
+          },
+          {
             "id": "076ec62971f34b20",
             "type": "leaf",
             "state": {
@@ -46,7 +59,8 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -66,7 +80,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/前后端开发/SpringCloud Alibaba-微服务进阶.md"
+                "file": "source/about/index.md"
               }
             }
           }
@@ -123,7 +137,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/前后端开发/SpringCloud Alibaba-微服务进阶.md",
+                "file": "source/about/index.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -177,25 +191,26 @@
       "obsidian-excalidraw-plugin:新建 Excalidraw 绘图": false
     }
   },
-  "active": "8e85ccb013ecad38",
+  "active": "7debd791db616930",
   "lastOpenFiles": [
-    "public/archives/2023/04/index.html",
-    "public/archives/2023/04",
-    "public/archives/2023/05/index.html",
-    "public/archives/2023/05",
-    "public/archives/2023/03/index.html",
-    "public/archives/2023/03",
-    "public/archives/2022/11/index.html",
-    "public/archives/2022/11",
-    "public/archives/2022/12/index.html",
-    "public/archives/2022/12",
-    "public/archives/2022/09/index.html",
-    "public/img/loading.gif",
+    "public/xml/local-search.xml",
+    "public/xml",
+    "public/page/6/index.html",
+    "public/page/4/index.html",
+    "public/page/5/index.html",
+    "public/page/3/index.html",
+    "public/page/2/index.html",
+    "public/page/6",
+    "public/page/5",
+    "public/page/4",
+    "public/page/3",
     "public/img/police_beian.png",
+    "public/img/loading.gif",
     "public/img/icon.png",
     "public/img/fluid.png",
-    "source/_posts/前后端开发/SpringBoot+Vue项目实战.md",
     "source/_posts/前后端开发/SpringCloud Alibaba-微服务进阶.md",
+    "source/about/index.md",
+    "source/_posts/前后端开发/SpringBoot+Vue项目实战.md",
     "source/_posts/科研学习/会议讨论/周会.md",
     "SpringCloud 进阶 - SpringCloud笔记（二）微服务进阶.md",
     "source/_posts/前后端开发/SpringCloud-微服务基础.md",
@@ -204,7 +219,6 @@
     "source/_posts/科研学习/国基金项目/司法领域大模型调研三.md",
     "source/_posts/科研学习/国基金项目/司法领域大模型调研四.md",
     "source/_posts/机器学习/PyTorch.md",
-    "source/about/index.md",
     "source/_posts/机器学习/pytorch-2b6mpm.md",
     "node_modules/hexo-tag-mmedia/README.md",
     "source/_posts/前后端开发/Spring核心学习.md",
