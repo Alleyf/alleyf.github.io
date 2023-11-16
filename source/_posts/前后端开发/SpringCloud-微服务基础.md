@@ -1,10 +1,10 @@
 ---
-title: SpringCloud
+title: SpringCloud-微服务基础
 date: 2023-11-14 09:49:45
 tags:
   - springcloud
   - 微服务
-sticky: 60
+sticky: 70
 excerpt: some notes related with springcloud learning。
 author: fcs
 ---
@@ -551,13 +551,18 @@ spring:
 
 ![image-20230306225638109](https://s2.loli.net/2023/03/06/1o8pmzBXCtixhKu.png)
 
+
+> [!NOTE] Tips
+> application的**name不能大写字母，用小写**。
+
+
 当我们的服务启动之后，会每隔一段时间跟Eureka发送一次心跳包，这样Eureka就能够感知到我们的服务是否处于正常运行状态。
 
 现在我们用同样的方法，将另外两个微服务也注册进来：
 
 ![image-20230306225648063](https://s2.loli.net/2023/03/06/gkenG9bT4aMIUio.png)
 
-那么，现在我们怎么实现服务发现呢？
+那么，现在我们**怎么实现服务发现**呢？
 
 也就是说，我们之前如果需要对其他微服务进行远程调用，那么就必须要知道其他服务的地址：
 
@@ -593,7 +598,7 @@ public class BorrowServiceImpl implements BorrowService {
 }
 ```
 
-接着我们手动将RestTemplate声明为一个Bean，然后添加`@LoadBalanced`注解，这样Eureka就会对服务的调用进行自动发现，并提供负载均衡：
+接着我们手动将RestTemplate声明为一个Bean，然后添加`@LoadBalanced`注解，这样Eureka就会对服务的调用进行自动发现，**并提供负载均衡**：
 
 ```java
 @Configuration
@@ -610,7 +615,7 @@ public class BeanConfig {
 
 ![image-20230306225713484](https://s2.loli.net/2023/03/06/1SHLTwmIK4ChdaD.png)
 
-不对啊，不是说有负载均衡的能力吗，怎么个负载均衡呢？
+不对啊，不是说有负载均衡的能力吗，怎么个**负载均衡**呢？
 
 我们先来看看，同一个服务器实际上是可以注册很多个的，但是它们的端口不同，比如我们这里创建多个用户查询服务，我们现在将原有的端口配置修改一下，由IDEA中设定启动参数来决定，这样就可以多创建几个不同端口的启动项了：
 
@@ -677,7 +682,7 @@ eureka:
     # 去掉register-with-eureka选项，让Eureka服务器自己注册到其他Eureka服务器，这样才能相互启用
     service-url:
     	# 注意这里填写其他Eureka服务器的地址，不用写自己的
-      defaultZone: http://eureka01:8801/eureka
+      defaultZone: http://eureka02:8802/eureka
 ```
 
 ```yaml
@@ -701,7 +706,7 @@ eureka:
 
 对创建的两个配置文件分别添加启动配置，直接使用`spring.profiles.active`指定启用的配置文件即可：
 
-!![image-20230306225853705](https://s2.loli.net/2023/03/06/WYhxpSvsFU8tVcR.png)](/Users/nagocoler/Library/Application Support/typora-user-images/image-20230306225853705.png)
+![image-20230306225853705](https://s2.loli.net/2023/03/06/WYhxpSvsFU8tVcR.png)
 
 接着启动这两个注册中心，这两个Eureka管理页面都可以被访问，我们访问其中一个：
 
@@ -725,11 +730,11 @@ eureka:
 
 ![image-20230306225928923](https://s2.loli.net/2023/03/06/GDd5BVMTY1t4oQj.png)
 
-接着我们模拟一下，将其中一个Eureka服务器关闭掉，可以看到它会直接变成不可用状态：
+接着我们模拟一下，**将其中一个Eureka服务器关闭掉，可以看到它会直接变成不可用状态**：
 
 ![image-20230306225938085](https://s2.loli.net/2023/03/06/8fdxB1PlqVYDRLr.png)
 
-当然，如果这个时候我们重启刚刚关闭的Eureka服务器，会自动同步其他Eureka服务器的数据。
+当然，如果这个时候我们**重启刚刚关闭的Eureka服务器，会自动同步其他Eureka服务器的数据**。
 
 ***
 
@@ -848,7 +853,7 @@ public class BeanConfig {
 
 ### OpenFeign实现负载均衡
 
-官方文档：https://docs.spring.io/spring-cloud-openfeign/docs/current/reference/html/
+官方文档：[https://docs.spring.io/spring-cloud-openfeign/docs/current/reference/html/](https://docs.spring.io/spring-cloud-openfeign/docs/current/reference/html/)
 
 Feign和RestTemplate一样，也是HTTP客户端请求工具，但是它的使用方式更加便捷。首先是依赖：
 
@@ -897,6 +902,10 @@ public interface UserClient {
     User getUserById(@PathVariable("uid") int uid);  //参数和返回值也保持一致
 }
 ```
+
+
+> [!NOTE] Tips
+> 如果被调用的服务的接口添加了统一的 `RequestMapping` 地址，则要在 `xxxClient` 接口方法上**提供完整的路径**。
 
 接着我们直接注入使用（有Mybatis那味了）：
 
@@ -969,7 +978,7 @@ OK，正常。
 
 ## Hystrix 服务熔断
 
-官方文档：https://cloud.spring.io/spring-cloud-static/spring-cloud-netflix/1.3.5.RELEASE/single/spring-cloud-netflix.html#_circuit_breaker_hystrix_clients
+官方文档：[https://cloud.spring.io/spring-cloud-static/spring-cloud-netflix/1.3.5.RELEASE/single/spring-cloud-netflix.html#_circuit_breaker_hystrix_clients](https://cloud.spring.io/spring-cloud-static/spring-cloud-netflix/1.3.5.RELEASE/single/spring-cloud-netflix.html#_circuit_breaker_hystrix_clients)
 
 我们知道，微服务之间是可以进行相互调用的，那么如果出现了下面的情况会导致什么问题？
 
@@ -1145,7 +1154,7 @@ public class BorrowController {
 }
 ```
 
-最后我们在配置文件中开启熔断支持：
+最后我们在配置文件中**开启熔断支持**：
 
 ```yaml
 feign:
@@ -1163,7 +1172,7 @@ feign:
 
 ### 监控页面部署
 
-除了对服务的降级和熔断处理，我们也可以对其进行实时监控，只需要安装监控页面即可，这里我们创建一个新的项目，导入依赖：
+除了对服务的降级和熔断处理，我们也可以对其进行**实时监控**，只需要安装监控页面即可，这里我们创建一个新的项目，导入依赖：
 
 ```xml
 <dependency>
@@ -1221,7 +1230,7 @@ management:
         include: '*'
 ```
 
-接着我们打开刚刚启动的管理页面，地址为：http://localhost:8900/hystrix/
+接着我们打开刚刚启动的管理页面，地址为：[http://localhost:8900/hystrix/](http://localhost:8900/hystrix/)
 
 ![image-20230306230335020](https://s2.loli.net/2023/03/06/5rbCxLtR1e8DZAu.png)
 
@@ -1245,15 +1254,15 @@ management:
 
 ![image-20230306230501543](https://s2.loli.net/2023/03/06/mrVf1qSsDXioIBc.png)
 
-在出现大量错误的情况下保持持续访问，可以看到此时已经将服务熔断，`Circuit`更改为Open状态，并且图中的圆圈也变得更大，表示压力在持续上升。
+在出现大量错误的情况下保持持续访问，可以看到此时已经将服务熔断，`Circuit`更改为 `Open` 状态，并且图中的圆圈也变得更大，表示压力在持续上升。
 
 ***
 
 ## Gateway 路由网关
 
-官网地址：https://docs.spring.io/spring-cloud-gateway/docs/current/reference/html/
+官网地址：[https://docs.spring.io/spring-cloud-gateway/docs/current/reference/html/](https://docs.spring.io/spring-cloud-gateway/docs/current/reference/html/)
 
-说到路由，想必各位一定最先想到的就是家里的路由器了，那么我们家里的路由器充当的是一个什么角色呢？
+我们家里的路由器充当的是一个什么角色呢？
 
 我们知道，如果我们需要连接互联网，那么就需要将手机或是电脑连接到家里的路由器才可以，而路由器则连接光猫，光猫再通过光纤连接到互联网，也就是说，互联网方向发送过来的数据，需要经过路由器才能到达我们的设备。而路由器充当的就是数据包中转站，所有的局域网设备都无法直接与互联网连接，而是需要经过路由器进行中转，我们一般说路由器下的网络是内网，而互联网那一端是外网。
 
@@ -1318,7 +1327,11 @@ spring:
             - Path=/borrow/**  # 只要是访问的这个路径，一律都被路由到上面指定的服务
 ```
 
-路由规则的详细列表（断言工厂列表）在这里：https://docs.spring.io/spring-cloud-gateway/docs/current/reference/html/#gateway-request-predicates-factories，可以指定多种类型，包括指定时间段、Cookie携带情况、Header携带情况、访问的域名地址、访问的方法、路径、参数、访问者IP等。也可以使用配置类进行配置，但是还是推荐直接配置文件，省事。
+路由规则的详细列表（断言工厂列表）在这里：[https://docs.spring.io/spring-cloud-gateway/docs/current/reference/html/#gateway-request-predicates-factories](https://docs.spring.io/spring-cloud-gateway/docs/current/reference/html/#gateway-request-predicates-factories)，可以指定多种类型，包括指定时间段、Cookie携带情况、Header携带情况、访问的域名地址、访问的方法、路径、参数、访问者IP等。也可以使用配置类进行配置，但是还是推荐直接配置文件，省事。
+
+> [!NOTE] Tips
+> `Path` 要填写**完整的api路径**包括统一的 `RequestMapping` 路径。
+
 
 接着启动网关，搭载Arm架构芯片的Mac电脑可能会遇到这个问题：
 
@@ -1390,7 +1403,7 @@ public class BookController {
 
 可以看到这里成功获取到由网关添加的请求头信息了。
 
-除了针对于某一个路由配置过滤器之外，我们也可以自定义全局过滤器，它能够作用于全局。但是我们需要通过代码的方式进行编写，比如我们要实现拦截没有携带指定请求参数的请求：
+除了针对于某一个路由配置过滤器之外，我们也可以**自定义全局过滤器**，它能够**作用于全局**。但是我们需要通过代码的方式进行编写，比如我们要实现拦截没有携带指定请求参数的请求：
 
 ```java
 @Component   //需要注册为Bean
@@ -1443,13 +1456,13 @@ public class TestFilter implements GlobalFilter, Ordered {   //实现Ordered接�
     }
 ```
 
-注意Order的值越小优先级越高，并且无论是在配置文件中编写的单个路由过滤器还是全局路由过滤器，都会受到Order值影响（单个路由的过滤器Order值按从上往下的顺序从1开始递增），最终是按照Order值决定哪个过滤器优先执行，当Order值一样时 全局路由过滤器执行 `优于` 单独的路由过滤器执行。
+注意 `Order` 的值**越小优先级越高**，并且无论是在配置文件中编写的单个路由过滤器还是全局路由过滤器，都会受到Order值影响（单个路由的过滤器Order值按**从上往下的顺序从1开始递增**），最终是按照Order值决定哪个过滤器优先执行，当**Order值一样**时 *全局路由过滤器*执行 `优于` *单独的路由过滤器*执行。
 
 ***
 
 ## Config 配置中心
 
-**官方文档：**https://docs.spring.io/spring-cloud-config/docs/current/reference/html/
+官方文档：[https://docs.spring.io/spring-cloud-config/docs/current/reference/html/](https://docs.spring.io/spring-cloud-config/docs/current/reference/html/)
 
 经过前面的学习，我们对于一个分布式应用的技术选型和搭建已经了解得比较多了，但是各位有没有发现一个问题，如果我们的微服务项目需要部署很多个实例，那么配置文件我们岂不是得一个一个去改，可能十几个实例还好，要是有几十个上百个呢？那我们一个一个去配置，岂不直接猝死在工位上。
 
@@ -1516,7 +1529,7 @@ eureka:
 
 ![image-20230306230735629](https://s2.loli.net/2023/03/06/3AO4XzashuPwlRI.png)
 
-然后我们在配置文件中，添加本地仓库的一些信息（远程仓库同理），详细使用教程：https://docs.spring.io/spring-cloud-config/docs/current/reference/html/#_git_backend
+然后我们在配置文件中，添加本地仓库的一些信息（远程仓库同理），详细使用教程：[https://docs.spring.io/spring-cloud-config/docs/current/reference/html/#_git_backend](https://docs.spring.io/spring-cloud-config/docs/current/reference/html/#_git_backend)
 
 ```yaml
 spring:
@@ -1537,7 +1550,7 @@ spring:
 
 比如我们要访问图书服务的生产环境代码，可以使用 http://localhost:8700/bookservice/prod/main 链接，它会显示详细信息：
 
-![image-20230306230748280](https://s2.loli.net/2023/03/06/aT23EdegJwqvpLC.png)
+![image.png|650](http://qnpicmap.fcsluck.top/pics/202311161450859.png)
 
 也可以使用 http://localhost:8700/main/bookservice-prod.yml 链接，它仅显示配置文件原文：
 
@@ -1613,11 +1626,21 @@ spring:
 
 既然CP可能会导致一段时间内服务得不到任何响应，那么要保证可用性，就只能放弃节点之间数据的高度统一，也就是说可以在数据不统一的情况下，进行响应，因此就无法保证一致性了。虽然这样会导致拿不到最新的数据，但是只要数据同步操作在后台继续运行，一定能够在某一时刻完成所有节点数据的同步，那么就能实现**最终一致性**，所以AP实际上是最能接受的一种方案。
 
-比如我们实现的Eureka集群，它使用的就是AP方案，Eureka各个节点都是平等的，少数节点挂掉不会影响正常节点的工作，剩余的节点依然可以提供注册和查询服务。而Eureka客户端在向某个Eureka服务端注册时如果发现连接失败，则会自动切换至其他节点。只要有一台Eureka服务器正常运行，那么就能保证服务可用**（A）**，只不过查询到的信息可能不是最新的**（C）**
+比如我们实现的Eureka集群，它使用的就是AP方案，Eureka各个节点都是平等的，少数节点挂掉不会影响正常节点的工作，剩余的节点依然可以提供注册和查询服务。而Eureka客户端在向某个Eureka服务端注册时如果发现连接失败，则会自动切换至其他节点。只要有一台Eureka服务器正常运行，那么就能保证服务可用（A）**，只不过查询到的信息可能不是最新的**（C）
 
 
-# 心得体会
+# 细节要点
 
 1. 分模块开发时，不同模块**存在依赖的实体、工具类**等，将其抽取出来放到一个*公共模块（commons）* 里，哪里需要用就**将该模块作为依赖导入配置文件**中即可。
-2. 添加全参构造后也要添加无参构造，因为默认不添加时是有无参构造的，否则容易后续发生问题。
-3. 
+2. **添加全参构造后也要添加无参构造**，因为**默认不添加时是有无参构造**的，否则容易后续发生问题。
+
+
+# Reference
+
+```cardlink
+url: https://itbaima.net/
+title: "柏码 - 让每一行代码都闪耀智慧的光芒！"
+host: itbaima.net
+favicon: /favicon.ico
+```
+[柏码 - 让每一行代码都闪耀智慧的光芒！](https://itbaima.net/)

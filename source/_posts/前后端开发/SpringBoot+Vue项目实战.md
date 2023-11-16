@@ -19,7 +19,8 @@ author: 范财胜
 
 ## 项目地址
 
-项目已上传至 <font color="#ff0000">Github仓库</font>，如有需要可自行下载使用。
+
+项目已上传至 <font color="#ff0000">Github 仓库</font>，如有需要可自行下载使用。
 ```cardlink
 url: https://github.com/Alleyf/SpingBoot-Vue/tree/master
 title: "GitHub - Alleyf/SpingBoot-Vue: A Demo for SpringBoot with Vue."
@@ -314,8 +315,9 @@ public class Knife 4 jConfig {
 	const coldTimer = setInterval (() => {  
 	  coldTime. value > 0 ? coldTime. value-- : clearInterval (coldTimer)  	}, 1000)
 	```
-8. *fastjson 2* 在使用时，要注意返回 json 格式化的工具类 `Result` 必须加上`@Data、@AllArgsConstructor` 注解才能使用，否则返回的 json 格式化数据一直为**空（null）**
-9. springboot 最大并发数：[SpringBoot 最大连接数及最大并发数是多少？？？ - 知乎](https://zhuanlan.zhihu.com/p/654602186)
+8. *fastjson 2* 在使用时，要注意返回 json 格式化的工具类 `Result` 必须加上 `@Data、@AllArgsConstructor` 注解才能使用，否则返回的 json 格式化数据一直为**空（null）**
+9. SpringBoot 从 `2.5. x` 版本后开始支持`java17`，采用 `java17` 才能使用 `Map/List.of` 快速创建哈希表或列表，才能在*服务处显示端口号*并且开启 Actuator 后可以**查看 Actuator 运行状态**。
+10. springboot 最大并发数：[SpringBoot 最大连接数及最大并发数是多少？？？ - 知乎](https://zhuanlan.zhihu.com/p/654602186)
 ```cardlink
 url: https://zhuanlan.zhihu.com/p/654602186
 title: "SpringBoot 最大连接数及最大并发数是多少？？？"
@@ -337,3 +339,13 @@ host: zhuanlan. zhihu. com
 - [ ] 实现菜单管理
 - [ ] 实现日志管理
 - [ ] 发挥想象，完善为一个有创意的平台
+
+## Reference
+
+```cardlink
+url: https://itbaima.net/
+title: "柏码 - 让每一行代码都闪耀智慧的光芒！"
+host: itbaima.net
+favicon: /favicon.ico
+```
+[柏码 - 让每一行代码都闪耀智慧的光芒！](https://itbaima.net/)
