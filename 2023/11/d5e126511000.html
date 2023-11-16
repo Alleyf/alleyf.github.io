@@ -20,8 +20,8 @@
   
     <meta name="description" content="some notes related with springcloud learning。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SpringCloud">
-<meta property="og:url" content="https://alleyf.github.io/2023/11/743744fa87aa.html">
+<meta property="og:title" content="SpringCloud-微服务基础">
+<meta property="og:url" content="https://alleyf.github.io/2023/11/d5e126511000.html">
 <meta property="og:site_name" content="alleyf">
 <meta property="og:description" content="some notes related with springcloud learning。">
 <meta property="og:locale" content="zh_CN">
@@ -107,12 +107,12 @@
 <meta property="og:image" content="https://s2.loli.net/2023/03/06/9TdormfJkgK258q.png">
 <meta property="og:image" content="https://s2.loli.net/2023/03/06/EIFUo5rVvd4Nc3C.png">
 <meta property="og:image" content="https://s2.loli.net/2023/03/06/3AO4XzashuPwlRI.png">
-<meta property="og:image" content="https://s2.loli.net/2023/03/06/aT23EdegJwqvpLC.png">
+<meta property="og:image" content="http://qnpicmap.fcsluck.top/pics/202311161450859.png">
 <meta property="og:image" content="https://s2.loli.net/2023/03/06/kUAMsjZaTbHiG9X.png">
 <meta property="og:image" content="https://s2.loli.net/2023/03/06/7VaosxbqtRm5X4i.png">
 <meta property="og:image" content="https://s2.loli.net/2023/03/06/9k6oeMZIE28T3t7.png">
 <meta property="article:published_time" content="2023-11-14T01:49:45.000Z">
-<meta property="article:modified_time" content="2023-11-16T02:30:44.550Z">
+<meta property="article:modified_time" content="2023-11-16T07:39:35.771Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="springcloud">
 <meta property="article:tag" content="微服务">
@@ -123,7 +123,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>SpringCloud - alleyf</title>
+  <title>SpringCloud-微服务基础 - alleyf</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -329,7 +329,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="SpringCloud"></span>
+            <span id="subtitle" data-typed-text="SpringCloud-微服务基础"></span>
           
         </div>
 
@@ -368,7 +368,7 @@
         
         
         
-          285 分钟
+          286 分钟
         
       </span>
     
@@ -414,12 +414,12 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">SpringCloud</h1>
+            <h1 style="display: none">SpringCloud-微服务基础</h1>
             
               <p class="note note-info">
                 
                   
-                    本文最后更新于：37 分钟前
+                    本文最后更新于：几秒前
                   
                 
               </p>
@@ -826,10 +826,10 @@
 <p><img src="https://s2.loli.net/2023/03/06/97by1FDirquwtv2.png" srcset="/img/loading.gif" lazyload alt="image-20230306230414273"></p>
 <p>可以看到，错误率直接飙升到100%，并且一段时间内持续出现错误，中心的圆圈也变成了红色，我们继续进行访问：</p>
 <p><img src="https://s2.loli.net/2023/03/06/mrVf1qSsDXioIBc.png" srcset="/img/loading.gif" lazyload alt="image-20230306230501543"></p>
-<p>在出现大量错误的情况下保持持续访问，可以看到此时已经将服务熔断，<code>Circuit</code>更改为Open状态，并且图中的圆圈也变得更大，表示压力在持续上升。</p>
+<p>在出现大量错误的情况下保持持续访问，可以看到此时已经将服务熔断，<code>Circuit</code>更改为 <code>Open</code> 状态，并且图中的圆圈也变得更大，表示压力在持续上升。</p>
 <hr>
 <h2 id="Gateway-路由网关"><a href="#Gateway-路由网关" class="headerlink" title="Gateway 路由网关"></a>Gateway 路由网关</h2><p>官网地址：<a target="_blank" rel="noopener" href="https://docs.spring.io/spring-cloud-gateway/docs/current/reference/html/">https://docs.spring.io/spring-cloud-gateway/docs/current/reference/html/</a></p>
-<p>说到路由，想必各位一定最先想到的就是家里的路由器了，那么我们家里的路由器充当的是一个什么角色呢？</p>
+<p>我们家里的路由器充当的是一个什么角色呢？</p>
 <p>我们知道，如果我们需要连接互联网，那么就需要将手机或是电脑连接到家里的路由器才可以，而路由器则连接光猫，光猫再通过光纤连接到互联网，也就是说，互联网方向发送过来的数据，需要经过路由器才能到达我们的设备。而路由器充当的就是数据包中转站，所有的局域网设备都无法直接与互联网连接，而是需要经过路由器进行中转，我们一般说路由器下的网络是内网，而互联网那一端是外网。</p>
 <p><img src="https://s2.loli.net/2023/03/06/YF5VbcRAz8ZG6nJ.png" srcset="/img/loading.gif" lazyload alt="image-20230306230515898"></p>
 <p>我们的局域网设备，无法被互联网上的其他设备直接访问，肯定是能够保证到安全性的。并互联网发送过来的数据，需要经过路由器进行解析，识别到底是哪一个设备的数据包，然后再发送给对应的设备。</p>
@@ -848,7 +848,10 @@
 <p>但是现在还没有配置任何的路由功能，我们接着将路由功能进行配置：</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">cloud:</span><br>    <span class="hljs-attr">gateway:</span><br>    	<span class="hljs-comment"># 配置路由，注意这里是个列表，每一项都包含了很多信息</span><br>      <span class="hljs-attr">routes:</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-attr">id:</span> <span class="hljs-string">borrow-service</span>   <span class="hljs-comment"># 路由名称</span><br>          <span class="hljs-attr">uri:</span> <span class="hljs-string">lb://borrowservice</span>  <span class="hljs-comment"># 路由的地址，lb表示使用负载均衡到微服务，也可以使用http正常转发</span><br>          <span class="hljs-attr">predicates:</span> <span class="hljs-comment"># 路由规则，断言什么请求会被路由</span><br>            <span class="hljs-bullet">-</span> <span class="hljs-string">Path=/borrow/**</span>  <span class="hljs-comment"># 只要是访问的这个路径，一律都被路由到上面指定的服务</span><br></code></pre></td></tr></table></figure>
 
-<p>路由规则的详细列表（断言工厂列表）在这里：<a target="_blank" rel="noopener" href="https://docs.spring.io/spring-cloud-gateway/docs/current/reference/html/#gateway-request-predicates-factories%EF%BC%8C%E5%8F%AF%E4%BB%A5%E6%8C%87%E5%AE%9A%E5%A4%9A%E7%A7%8D%E7%B1%BB%E5%9E%8B%EF%BC%8C%E5%8C%85%E6%8B%AC%E6%8C%87%E5%AE%9A%E6%97%B6%E9%97%B4%E6%AE%B5%E3%80%81Cookie%E6%90%BA%E5%B8%A6%E6%83%85%E5%86%B5%E3%80%81Header%E6%90%BA%E5%B8%A6%E6%83%85%E5%86%B5%E3%80%81%E8%AE%BF%E9%97%AE%E7%9A%84%E5%9F%9F%E5%90%8D%E5%9C%B0%E5%9D%80%E3%80%81%E8%AE%BF%E9%97%AE%E7%9A%84%E6%96%B9%E6%B3%95%E3%80%81%E8%B7%AF%E5%BE%84%E3%80%81%E5%8F%82%E6%95%B0%E3%80%81%E8%AE%BF%E9%97%AE%E8%80%85IP%E7%AD%89%E3%80%82%E4%B9%9F%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE%E7%B1%BB%E8%BF%9B%E8%A1%8C%E9%85%8D%E7%BD%AE%EF%BC%8C%E4%BD%86%E6%98%AF%E8%BF%98%E6%98%AF%E6%8E%A8%E8%8D%90%E7%9B%B4%E6%8E%A5%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%EF%BC%8C%E7%9C%81%E4%BA%8B%E3%80%82">https://docs.spring.io/spring-cloud-gateway/docs/current/reference/html/#gateway-request-predicates-factories，可以指定多种类型，包括指定时间段、Cookie携带情况、Header携带情况、访问的域名地址、访问的方法、路径、参数、访问者IP等。也可以使用配置类进行配置，但是还是推荐直接配置文件，省事。</a></p>
+<p>路由规则的详细列表（断言工厂列表）在这里：<a target="_blank" rel="noopener" href="https://docs.spring.io/spring-cloud-gateway/docs/current/reference/html/#gateway-request-predicates-factories">https://docs.spring.io/spring-cloud-gateway/docs/current/reference/html/#gateway-request-predicates-factories</a>，可以指定多种类型，包括指定时间段、Cookie携带情况、Header携带情况、访问的域名地址、访问的方法、路径、参数、访问者IP等。也可以使用配置类进行配置，但是还是推荐直接配置文件，省事。</p>
+<blockquote>
+<p>[!NOTE] Tips<br><code>Path</code> 要填写<strong>完整的api路径</strong>包括统一的 <code>RequestMapping</code> 路径。</p>
+</blockquote>
 <p>接着启动网关，搭载Arm架构芯片的Mac电脑可能会遇到这个问题：</p>
 <p><img src="https://s2.loli.net/2023/03/06/IuoAzPmXnYHSDv3.png" srcset="/img/loading.gif" lazyload alt="image-20230306230542772"></p>
 <p>这是因为没有找到适用于此架构的动态链接库，不影响使用，无视即可，希望以后的版本能修复吧。</p>
@@ -868,7 +871,7 @@
 <p><img src="https://s2.loli.net/2023/03/06/oUf2VFXmrQHiz6C.png" srcset="/img/loading.gif" lazyload alt="image-20230306230612435"></p>
 <p><img src="https://s2.loli.net/2023/03/06/x3YjDRZfqBQ1TSC.png" srcset="/img/loading.gif" lazyload alt="image-20230306230621114"></p>
 <p>可以看到这里成功获取到由网关添加的请求头信息了。</p>
-<p>除了针对于某一个路由配置过滤器之外，我们也可以自定义全局过滤器，它能够作用于全局。但是我们需要通过代码的方式进行编写，比如我们要实现拦截没有携带指定请求参数的请求：</p>
+<p>除了针对于某一个路由配置过滤器之外，我们也可以<strong>自定义全局过滤器</strong>，它能够<strong>作用于全局</strong>。但是我们需要通过代码的方式进行编写，比如我们要实现拦截没有携带指定请求参数的请求：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Component</span>   <span class="hljs-comment">//需要注册为Bean</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">TestFilter</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">GlobalFilter</span> &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> Mono&lt;Void&gt; <span class="hljs-title function_">filter</span><span class="hljs-params">(ServerWebExchange exchange, GatewayFilterChain chain)</span> &#123;   <span class="hljs-comment">//只需要实现此方法</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>接着我们编写判断：</p>
@@ -881,9 +884,9 @@
 <p>当然，过滤器肯定是可以存在很多个的，所以我们可以手动指定过滤器之间的顺序：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Component</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">TestFilter</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">GlobalFilter</span>, Ordered &#123;   <span class="hljs-comment">//实现Ordered接口</span><br>  <br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">getOrder</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>    &#125;<br></code></pre></td></tr></table></figure>
 
-<p>注意Order的值越小优先级越高，并且无论是在配置文件中编写的单个路由过滤器还是全局路由过滤器，都会受到Order值影响（单个路由的过滤器Order值按从上往下的顺序从1开始递增），最终是按照Order值决定哪个过滤器优先执行，当Order值一样时 全局路由过滤器执行 <code>优于</code> 单独的路由过滤器执行。</p>
+<p>注意 <code>Order</code> 的值<strong>越小优先级越高</strong>，并且无论是在配置文件中编写的单个路由过滤器还是全局路由过滤器，都会受到Order值影响（单个路由的过滤器Order值按<strong>从上往下的顺序从1开始递增</strong>），最终是按照Order值决定哪个过滤器优先执行，当<strong>Order值一样</strong>时 <em>全局路由过滤器</em>执行 <code>优于</code> <em>单独的路由过滤器</em>执行。</p>
 <hr>
-<h2 id="Config-配置中心"><a href="#Config-配置中心" class="headerlink" title="Config 配置中心"></a>Config 配置中心</h2><p><strong>官方文档：</strong><a target="_blank" rel="noopener" href="https://docs.spring.io/spring-cloud-config/docs/current/reference/html/">https://docs.spring.io/spring-cloud-config/docs/current/reference/html/</a></p>
+<h2 id="Config-配置中心"><a href="#Config-配置中心" class="headerlink" title="Config 配置中心"></a>Config 配置中心</h2><p>官方文档：<a target="_blank" rel="noopener" href="https://docs.spring.io/spring-cloud-config/docs/current/reference/html/">https://docs.spring.io/spring-cloud-config/docs/current/reference/html/</a></p>
 <p>经过前面的学习，我们对于一个分布式应用的技术选型和搭建已经了解得比较多了，但是各位有没有发现一个问题，如果我们的微服务项目需要部署很多个实例，那么配置文件我们岂不是得一个一个去改，可能十几个实例还好，要是有几十个上百个呢？那我们一个一个去配置，岂不直接猝死在工位上。</p>
 <p>所以，我们需要一种更加高级的集中化地配置文件管理工具，集中地对配置文件进行配置。</p>
 <blockquote>
@@ -915,7 +918,7 @@
 <li><a target="_blank" rel="noopener" href="http://localhost:8700/%7BGit%E5%88%86%E6%94%AF%7D/%7B%E6%9C%8D%E5%8A%A1%E5%90%8D%E7%A7%B0%7D-%7B%E7%8E%AF%E5%A2%83%7D.yml">http://localhost:8700/{Git分支}/{服务名称}-{环境}.yml</a></li>
 </ul>
 <p>比如我们要访问图书服务的生产环境代码，可以使用 <a target="_blank" rel="noopener" href="http://localhost:8700/bookservice/prod/main">http://localhost:8700/bookservice/prod/main</a> 链接，它会显示详细信息：</p>
-<p><img src="https://s2.loli.net/2023/03/06/aT23EdegJwqvpLC.png" srcset="/img/loading.gif" lazyload alt="image-20230306230748280"></p>
+<p><img src="http://qnpicmap.fcsluck.top/pics/202311161450859.png" srcset="/img/loading.gif" lazyload alt="image.png|650"></p>
 <p>也可以使用 <a target="_blank" rel="noopener" href="http://localhost:8700/main/bookservice-prod.yml">http://localhost:8700/main/bookservice-prod.yml</a> 链接，它仅显示配置文件原文：</p>
 <p><img src="https://s2.loli.net/2023/03/06/kUAMsjZaTbHiG9X.png" srcset="/img/loading.gif" lazyload alt="image-20230306230755591"></p>
 <p>当然，除了使用Git来保存之外，还支持一些其他的方式，详细情况请查阅官网。</p>
@@ -941,12 +944,13 @@
 <h3 id="AC-可用性-一致性"><a href="#AC-可用性-一致性" class="headerlink" title="AC 可用性+一致性"></a>AC 可用性+一致性</h3><p>要同时保证可用性和一致性，代表着某个节点数据更新之后，需要立即将结果通知给其他节点，并且要尽可能的快，这样才能及时响应保证可用性，这就对网络的稳定性要求非常高，但是实际情况下，网络很容易出现丢包等情况，并不是一个可靠的传输，如果需要避免这种问题，就只能将节点全部放在一起，但是这显然违背了分布式系统的概念，所以对于我们的分布式系统来说，很难接受。</p>
 <h3 id="CP-一致性-分区容错性"><a href="#CP-一致性-分区容错性" class="headerlink" title="CP 一致性+分区容错性"></a>CP 一致性+分区容错性</h3><p>为了保证一致性，那么就得将某个节点的最新数据发送给其他节点，并且需要等到所有节点都得到数据才能进行响应，同时有了分区容错性，那么代表我们可以容忍网络的不可靠问题，所以就算网络出现卡顿，那么也必须等待所有节点完成数据同步，才能进行响应，因此就会导致服务在一段时间内完全失效，所以可用性是无法得到保证的。</p>
 <h3 id="AP-可用性-分区容错性"><a href="#AP-可用性-分区容错性" class="headerlink" title="AP 可用性+分区容错性"></a>AP 可用性+分区容错性</h3><p>既然CP可能会导致一段时间内服务得不到任何响应，那么要保证可用性，就只能放弃节点之间数据的高度统一，也就是说可以在数据不统一的情况下，进行响应，因此就无法保证一致性了。虽然这样会导致拿不到最新的数据，但是只要数据同步操作在后台继续运行，一定能够在某一时刻完成所有节点数据的同步，那么就能实现<strong>最终一致性</strong>，所以AP实际上是最能接受的一种方案。</p>
-<p>比如我们实现的Eureka集群，它使用的就是AP方案，Eureka各个节点都是平等的，少数节点挂掉不会影响正常节点的工作，剩余的节点依然可以提供注册和查询服务。而Eureka客户端在向某个Eureka服务端注册时如果发现连接失败，则会自动切换至其他节点。只要有一台Eureka服务器正常运行，那么就能保证服务可用<strong>（A）</strong>，只不过查询到的信息可能不是最新的<strong>（C）</strong></p>
-<h1 id="心得体会"><a href="#心得体会" class="headerlink" title="心得体会"></a>心得体会</h1><ol>
+<p>比如我们实现的Eureka集群，它使用的就是AP方案，Eureka各个节点都是平等的，少数节点挂掉不会影响正常节点的工作，剩余的节点依然可以提供注册和查询服务。而Eureka客户端在向某个Eureka服务端注册时如果发现连接失败，则会自动切换至其他节点。只要有一台Eureka服务器正常运行，那么就能保证服务可用（A）<strong>，只不过查询到的信息可能不是最新的</strong>（C）</p>
+<h1 id="细节要点"><a href="#细节要点" class="headerlink" title="细节要点"></a>细节要点</h1><ol>
 <li>分模块开发时，不同模块<strong>存在依赖的实体、工具类</strong>等，将其抽取出来放到一个<em>公共模块（commons）</em> 里，哪里需要用就<strong>将该模块作为依赖导入配置文件</strong>中即可。</li>
-<li>添加全参构造后也要添加无参构造，因为默认不添加时是有无参构造的，否则容易后续发生问题。</li>
-<li></li>
+<li><strong>添加全参构造后也要添加无参构造</strong>，因为<strong>默认不添加时是有无参构造</strong>的，否则容易后续发生问题。</li>
 </ol>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cardlink">url: https://itbaima.net/<br>title: &quot;柏码 - 让每一行代码都闪耀智慧的光芒！&quot;<br>host: itbaima.net<br>favicon: /favicon.ico<br></code></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://itbaima.net/">柏码 - 让每一行代码都闪耀智慧的光芒！</a></p>
 
                 
               </div>
@@ -994,8 +998,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>SpringCloud</div>
-      <div>https://alleyf.github.io/2023/11/743744fa87aa.html</div>
+      <div>SpringCloud-微服务基础</div>
+      <div>https://alleyf.github.io/2023/11/d5e126511000.html</div>
     </div>
     <div class="license-meta">
       
@@ -1042,6 +1046,12 @@
                   <article class="post-prev col-6">
                     
                     
+                      <a href="/2023/11/d372e6942ef7.html" title="">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
                   </article>
                   <article class="post-next col-6">
                     
@@ -1068,7 +1078,7 @@
         var options = Object.assign(
           {"clientID":"636f2864e051a199b91c","clientSecret":"5185fd11115bbcd8d2f636bc80de6bed98ed14c1","repo":"Gitalk","owner":"Alleyf","admin":["Alleyf"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":false,"proxy":"https://shielded-brushlands-08810.herokuapp.com/https://github.com/login/oauth/access_token"},
           {
-            id: '13a10dbfd85a2995aa90144d09304b21'
+            id: '9c45455b85b1313e390b5975dbf678d7'
           }
         )
         var gitalk = new Gitalk(options);

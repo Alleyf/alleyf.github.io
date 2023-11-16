@@ -31,7 +31,7 @@
 <meta property="og:image" content="http://qnpicmap.fcsluck.top/pics/202311131744882.png">
 <meta property="og:image" content="http://qnpicmap.fcsluck.top/pics/202311131745890.png">
 <meta property="article:published_time" content="2023-11-08T05:08:25.000Z">
-<meta property="article:modified_time" content="2023-11-16T03:07:18.273Z">
+<meta property="article:modified_time" content="2023-11-16T03:32:41.436Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="SpringBoot">
 <meta property="article:tag" content="Vue">
@@ -280,7 +280,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          8.6k 字
+          8.8k 字
         
       </span>
     
@@ -291,7 +291,7 @@
         
         
         
-          72 分钟
+          74 分钟
         
       </span>
     
@@ -342,7 +342,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：几秒前
+                    本文最后更新于：4 小时前
                   
                 
               </p>
@@ -354,7 +354,7 @@
 <h2 id="项目简介"><a href="#项目简介" class="headerlink" title="项目简介"></a>项目简介</h2><blockquote>
 <p>采用 SpringBoot 3 + Vue 3 实现的前后端分离模版项目，集成多种技术栈，并且基于 JWT 校验方案。  </p>
 </blockquote>
-<h2 id="项目地址"><a href="#项目地址" class="headerlink" title="项目地址"></a>项目地址</h2><p>项目已上传至 <font color="#ff0000">Github仓库</font>，如有需要可自行下载使用。</p>
+<h2 id="项目地址"><a href="#项目地址" class="headerlink" title="项目地址"></a>项目地址</h2><p>项目已上传至 <font color="#ff0000">Github 仓库</font>，如有需要可自行下载使用。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cardlink">url: https://github.com/Alleyf/SpingBoot-Vue/tree/master<br>title: &quot;GitHub - Alleyf/SpingBoot-Vue: A Demo for SpringBoot with Vue.&quot;<br>description: &quot;A Demo for SpringBoot with Vue. Contribute to Alleyf/SpingBoot-Vue development by creating an account on GitHub.&quot;<br>host: github.com<br>favicon: https://github.githubassets.com/favicons/favicon.svg<br>image: https://opengraph.githubassets.com/a9e35993db96532eecc54692cabfb8c305216983dce49278cab1b52a560daef6/Alleyf/SpingBoot-Vue<br></code></pre></td></tr></table></figure>
 <p><a target="_blank" rel="noopener" href="https://github.com/Alleyf/SpingBoot-Vue/tree/master">GitHub - Alleyf&#x2F;SpingBoot-Vue: A Demo for SpringBoot with Vue.</a></p>
 <h2 id="后端功能"><a href="#后端功能" class="headerlink" title="后端功能"></a>后端功能</h2><p>用户注册、用户登录、重置密码等基础功能以及对应接口  </p>
@@ -414,8 +414,8 @@
 <li>使用 <strong>mybatis</strong> 时由于没有给 <code>DTO</code> 实体的<strong>属性添加与数据表对应的字段注释</strong>，因此<strong>属性名必须与字段名</strong>一致。</li>
 <li><code>@RequestParam</code> 一般用于 <strong>Get</strong> 请求路径传参，<code>@RequestBody</code> 一般用于 <strong>Post</strong> 请求 <em>Json</em> 传递请求体数据（<em>也可以用@RequestParam 传参但必须请求头注明 url 编码为表单格式</em>）。</li>
 <li>内部结束 <strong>setInterval</strong> 定时器： <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> coldTimer = <span class="hljs-built_in">setInterval</span> (<span class="hljs-function">() =&gt;</span> &#123;  <br>  coldTime. value &gt; <span class="hljs-number">0</span> ? coldTime. value-- : <span class="hljs-built_in">clearInterval</span> (coldTimer)  	&#125;, <span class="hljs-number">1000</span>)<br></code></pre></td></tr></table></figure></li>
-<li><em>fastjson 2</em> 在使用时，要注意返回 json 格式化的工具类 <code>Result</code> 必须加上<code>@Data、@AllArgsConstructor</code> 注解才能使用，否则返回的 json 格式化数据一直为<strong>空（null）</strong></li>
-<li>采用<code>java17</code>才能使用 <code>Map/List.of</code> 快速创建哈希表或列表，才能在<em>服务处显示端口号</em>并且开启Actuator后可以<strong>查看Actuator运行状态</strong>。</li>
+<li><em>fastjson 2</em> 在使用时，要注意返回 json 格式化的工具类 <code>Result</code> 必须加上 <code>@Data、@AllArgsConstructor</code> 注解才能使用，否则返回的 json 格式化数据一直为<strong>空（null）</strong></li>
+<li>SpringBoot 从 <code>2.5. x</code> 版本后开始支持<code>java17</code>，采用 <code>java17</code> 才能使用 <code>Map/List.of</code> 快速创建哈希表或列表，才能在<em>服务处显示端口号</em>并且开启 Actuator 后可以<strong>查看 Actuator 运行状态</strong>。</li>
 <li>springboot 最大并发数：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/654602186">SpringBoot 最大连接数及最大并发数是多少？？？ - 知乎</a><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cardlink">url: https://zhuanlan.zhihu.com/p/654602186<br>title: &quot;SpringBoot 最大连接数及最大并发数是多少？？？&quot;<br>description: &quot;每个 Spring Boot 版本和内置容器不同，结果也不同，这里以 Spring Boot 2.7.10 版本 + 内置 Tomcat 容器举例。概序在 SpringBoot 2.7.10 版本中内置 Tomcat 版本是 9.0.73，SpringBoot 内置 Tomcat 的默认设置如下： Tomcat 的…&quot;<br>host: zhuanlan. zhihu. com<br></code></pre></td></tr></table></figure></li>
 </ol>
 <h2 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h2><h3 id="首页"><a href="#首页" class="headerlink" title="首页"></a>首页</h3><p><img src="http://qnpicmap.fcsluck.top/pics/202311131742836.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
@@ -429,6 +429,8 @@
 <li><input disabled="" type="checkbox"> 实现日志管理</li>
 <li><input disabled="" type="checkbox"> 发挥想象，完善为一个有创意的平台</li>
 </ul>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cardlink">url: https://itbaima.net/<br>title: &quot;柏码 - 让每一行代码都闪耀智慧的光芒！&quot;<br>host: itbaima.net<br>favicon: /favicon.ico<br></code></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://itbaima.net/">柏码 - 让每一行代码都闪耀智慧的光芒！</a></p>
 
                 
               </div>
