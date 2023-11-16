@@ -146,9 +146,9 @@
     
     <category term="AIGC" scheme="https://alleyf.github.io/tags/AIGC/"/>
     
-    <category term="NLP" scheme="https://alleyf.github.io/tags/NLP/"/>
-    
     <category term="KG" scheme="https://alleyf.github.io/tags/KG/"/>
+    
+    <category term="NLP" scheme="https://alleyf.github.io/tags/NLP/"/>
     
   </entry>
   
@@ -200,9 +200,9 @@
     <category term="科研学习" scheme="https://alleyf.github.io/categories/%E7%A7%91%E7%A0%94%E5%AD%A6%E4%B9%A0/"/>
     
     
-    <category term="NLP" scheme="https://alleyf.github.io/tags/NLP/"/>
-    
     <category term="KG" scheme="https://alleyf.github.io/tags/KG/"/>
+    
+    <category term="NLP" scheme="https://alleyf.github.io/tags/NLP/"/>
     
   </entry>
   
@@ -428,27 +428,6 @@
   </entry>
   
   <entry>
-    <title>Machinelearning DeepLearing</title>
-    <link href="https://alleyf.github.io/2023/05/14870b008a81.html"/>
-    <id>https://alleyf.github.io/2023/05/14870b008a81.html</id>
-    <published>2023-05-31T06:27:39.000Z</published>
-    <updated>2023-07-04T14:04:11.688Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h1><p>机器学习主要分为以下两种：</p><p><span style="background:#affad1">1. 监督学习（supervised learning）</span><br><span style="background:#affad1">2. 无监督学习（unsupervised learning）</span></p><h1 id="2-监督学习"><a href="#2-监督学习" class="headerlink" title="2. 监督学习"></a>2. 监督学习</h1><p>分类：</p><p>回归，分类</p><h1 id="3-无监督学习"><a href="#3-无监督学习" class="headerlink" title="3. 无监督学习"></a>3. 无监督学习</h1><p>分类：<br>聚类（clustering）</p>]]></content>
-    
-    
-    <summary type="html">Machine and Deep learning</summary>
-    
-    
-    
-    <category term="机器学习" scheme="https://alleyf.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-    <category term="AIGC" scheme="https://alleyf.github.io/tags/AIGC/"/>
-    
-  </entry>
-  
-  <entry>
     <title>DeepLearing</title>
     <link href="https://alleyf.github.io/2023/05/0950da3fc570.html"/>
     <id>https://alleyf.github.io/2023/05/0950da3fc570.html</id>
@@ -466,6 +445,27 @@
     
     
     <category term="CV，NLP" scheme="https://alleyf.github.io/tags/CV%EF%BC%8CNLP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Machinelearning DeepLearing</title>
+    <link href="https://alleyf.github.io/2023/05/14870b008a81.html"/>
+    <id>https://alleyf.github.io/2023/05/14870b008a81.html</id>
+    <published>2023-05-31T06:27:39.000Z</published>
+    <updated>2023-07-04T14:04:11.688Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h1><p>机器学习主要分为以下两种：</p><p><span style="background:#affad1">1. 监督学习（supervised learning）</span><br><span style="background:#affad1">2. 无监督学习（unsupervised learning）</span></p><h1 id="2-监督学习"><a href="#2-监督学习" class="headerlink" title="2. 监督学习"></a>2. 监督学习</h1><p>分类：</p><p>回归，分类</p><h1 id="3-无监督学习"><a href="#3-无监督学习" class="headerlink" title="3. 无监督学习"></a>3. 无监督学习</h1><p>分类：<br>聚类（clustering）</p>]]></content>
+    
+    
+    <summary type="html">Machine and Deep learning</summary>
+    
+    
+    
+    <category term="机器学习" scheme="https://alleyf.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="AIGC" scheme="https://alleyf.github.io/tags/AIGC/"/>
     
   </entry>
   
