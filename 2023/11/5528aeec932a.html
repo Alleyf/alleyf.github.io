@@ -15,30 +15,29 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="alleyf">
+  <meta name="author" content="fcs">
   <meta name="keywords" content="">
   
-    <meta name="description" content="An interesting blogger sharing some useful essaysMotto：You know more, you will do not know more.Fellings：        - 不是牛码，就在成为牛码的路上。        - 在每个平庸的日子里，找到属于自己的归属感。        - 无论做什么事，都要找到支撑自己坚持下去的精神支柱。  Co">
-<meta property="og:type" content="website">
-<meta property="og:title" content="关于">
-<meta property="og:url" content="https://alleyf.github.io/about/index.html">
+    <meta name="description" content="一些关于 git 的常用操作。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git-简记">
+<meta property="og:url" content="https://alleyf.github.io/2023/11/5528aeec932a.html">
 <meta property="og:site_name" content="alleyf">
-<meta property="og:description" content="An interesting blogger sharing some useful essaysMotto：You know more, you will do not know more.Fellings：        - 不是牛码，就在成为牛码的路上。        - 在每个平庸的日子里，找到属于自己的归属感。        - 无论做什么事，都要找到支撑自己坚持下去的精神支柱。  Co">
+<meta property="og:description" content="一些关于 git 的常用操作。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://qnpicmap.fcsluck.top/pics/202311131335499.png">
-<meta property="og:image" content="http://qnpicmap.fcsluck.top/pics/202311131335422.png">
-<meta property="og:image" content="http://qnpicmap.fcsluck.top/pics/202311131334305.png">
-<meta property="article:published_time" content="2022-09-08T09:37:50.000Z">
-<meta property="article:modified_time" content="2023-11-16T09:53:56.912Z">
+<meta property="og:image" content="https://picsum.photos/800/250">
+<meta property="article:published_time" content="2023-11-16T09:29:36.000Z">
+<meta property="article:modified_time" content="2023-11-16T09:45:41.451Z">
 <meta property="article:author" content="alleyf">
+<meta property="article:tag" content="Git">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://qnpicmap.fcsluck.top/pics/202311131335499.png">
+<meta name="twitter:image" content="https://picsum.photos/800/250">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>关于 - alleyf</title>
+  <title>Git-简记 - alleyf</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -117,7 +116,7 @@
 
 
   
-<meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/atom.xml" title="alleyf" type="application/atom+xml">
+<!-- hexo injector head_end start --><script> let HEXO_MMEDIA_DATA = { js: [], css: [], aplayerData: [], metingData: [], artPlayerData: [], dplayerData: []}; </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/atom.xml" title="alleyf" type="application/atom+xml">
 </head>
 
 
@@ -127,7 +126,7 @@
   <header>
     
 
-<div class="header-inner" style="height: 60vh;">
+<div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
@@ -244,9 +243,62 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="关于"></span>
+            <span id="subtitle" data-typed-text="Git-简记"></span>
           
         </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        fcs
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-11-16 17:29" pubdate>
+          2023年11月16日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          466 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          4 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
 
         
       </div>
@@ -262,132 +314,216 @@
 
   <main>
     
-      <div class="container nopadding-x-md">
-        <div id="board"
-          >
-          
-            <div class="about-avatar">
-              <img src="https://www.helloimg.com/images/2022/09/08/ZDuXfQ.jpg" srcset="/img/loading.gif" lazyload class="img-fluid" alt="avatar">
-            </div>
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
+      
 
-<div class="text-center">
-  <div class="about-info">
-    <div class="about-name">Alleyf</div>
-    <div class="about-intro">专业：本科-通信工程-->研究生-信息与通信工程</br>研究方向：分布式微服务软件开发设计、知识图谱、自然语言处理</br>日常工作：软件开发、算法学习</div>
-    <div class="about-icons">
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
       
-        
-        
-        
-        <a href=https://github.com/Alleyf class="
-           hint--bottom hint--rounded"
-           aria-label=GitHub
-           target="_blank"
-        >
-          <i class="iconfont icon-github-fill" aria-hidden="true"></i>
-          
-        </a>
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Git-简记</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：14 分钟前
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p><img src="https://picsum.photos/800/250" srcset="/img/loading.gif" lazyload></p>
+<h1 id="基础操作"><a href="#基础操作" class="headerlink" title="基础操作"></a>基础操作</h1><h2 id="创建-git-本地仓库"><a href="#创建-git-本地仓库" class="headerlink" title="创建 git 本地仓库"></a>创建 git 本地仓库</h2><p>在本地需要创建 git 仓库的文件夹下打开 <strong>git bash</strong> 执行 <code>git init</code></p>
+<h2 id="连接云端仓库"><a href="#连接云端仓库" class="headerlink" title="连接云端仓库"></a>连接云端仓库</h2><h2 id="拉取仓库"><a href="#拉取仓库" class="headerlink" title="拉取仓库"></a>拉取仓库</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git pull<br></code></pre></td></tr></table></figure>
+<h2 id="提交文件"><a href="#提交文件" class="headerlink" title="提交文件"></a>提交文件</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git commit -m &quot;提交时的备注信息&quot;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git push &quot;远程库名&quot; <br></code></pre></td></tr></table></figure>
+<h1 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h1><h2 id="查询-切换-新建分支"><a href="#查询-切换-新建分支" class="headerlink" title="查询&#x2F;切换&#x2F;新建分支"></a>查询&#x2F;切换&#x2F;新建分支</h2><ol>
+<li>查询分支，使用以下指令：</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">git branch #查询本地分支<br>git branch -r #查询远程分支<br></code></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>切换或新建分支，使用以下指令：<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">git chechout &quot;branchName&quot; #切换分支<br>git checkout -b &quot;branchName&quot; #新建分支并切换到该分支<br></code></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="分支合并"><a href="#分支合并" class="headerlink" title="分支合并"></a>分支合并</h2><h2 id="删除分支"><a href="#删除分支" class="headerlink" title="删除分支"></a>删除分支</h2><ol>
+<li><p>删除<strong>本地分支</strong>，删除前会进行检查是否<em>本分支内容已经合并到主分支</em>，使用以下指令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git branch -d &quot;branchName&quot;<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>强制删除分支使用 <code>-D</code> 参数。</p>
+</blockquote>
+</li>
+<li><p>删除<strong>远程分支</strong>，使用以下指令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git push &quot;远程库名&quot; -d &quot;branch name&quot; <br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>强制删除分支使用 <code>-D</code> 参数。</p>
+</blockquote>
+</li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
       
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
         
-        
-        
-        <a href=https://fcsy.fit class="
-           hint--bottom hint--rounded"
-           aria-label=Homepage
-           target="_blank"
-        >
-          <i class="iconfont icon-slack-fill" aria-hidden="true"></i>
-          
-        </a>
+  <a href="/categories/%E8%BF%90%E7%BB%B4%E5%BC%80%E5%8F%91/" class="category-chain-item">运维开发</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
       
-        
-        
-        
-        <a  class="qr-trigger
-           "
-           
-           target="_self"
-        >
-          <i class="iconfont icon-wechat-fill" aria-hidden="true"></i>
-          
-            <img class="qr-img" src="https://www.helloimg.com/images/2022/09/08/ZDu3wC.png" srcset="/img/loading.gif" lazyload alt="qrcode" />
-          
-        </a>
+        <a href="/tags/Git/">#Git</a>
       
-        
-        
-        
-        <a href=http://wpa.qq.com/msgrd?v=3&amp;uin=3035581811&amp;site=qq&amp;menu=yes class="
-           hint--bottom hint--rounded"
-           aria-label=QQ
-           target="_blank"
-        >
-          <i class="iconfont icon-qq-fill" aria-hidden="true"></i>
-          
-        </a>
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Git-简记</div>
+      <div>https://alleyf.github.io/2023/11/5528aeec932a.html</div>
+    </div>
+    <div class="license-meta">
       
-        
-        
-        
-        <a href=https://space.bilibili.com/501818195?spm_id_from=333.1007.0.0 class="
-           hint--bottom hint--rounded"
-           aria-label=Bilibili
-           target="_blank"
-        >
-          <i class="iconfont icon-bilibili-fill" aria-hidden="true"></i>
-          
-        </a>
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>fcs</div>
+        </div>
       
-        
-        
-        
-        <a href=mailto:alleyf@qq.com class="
-           hint--bottom hint--rounded"
-           aria-label=Email
-           target="_blank"
-        >
-          <i class="iconfont icon-mail" aria-hidden="true"></i>
-          
-        </a>
       
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年11月16日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2023年11月16日</div>
+        </div>
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/11/c09639791c22.html" title="SpringCloud Alibaba-微服务进阶">
+                        <span class="hidden-mobile">SpringCloud Alibaba-微服务进阶</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.7.2/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"636f2864e051a199b91c","clientSecret":"5185fd11115bbcd8d2f636bc80de6bed98ed14c1","repo":"Gitalk","owner":"Alleyf","admin":["Alleyf"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":false,"proxy":"https://shielded-brushlands-08810.herokuapp.com/https://github.com/login/oauth/access_token"},
+          {
+            id: 'fb544b4b069fcda8f5a3d6d27924996c'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
     </div>
   </div>
 </div>
 
-<article class="about-content page-content mt-5">
-  <div class="markdown-body">
-    <h3 id="An-interesting-blogger-sharing-some-useful-essays"><a href="#An-interesting-blogger-sharing-some-useful-essays" class="headerlink" title="An interesting blogger sharing some useful essays"></a><strong>An interesting blogger sharing some useful essays</strong></h3><p>Motto：<strong>You know more, you will do not know more.</strong><br>Fellings：<br>        - 不是<font color="#6425d0">牛码</font>，就在成为<font color="#6425d0">牛码</font>的路上。<br>        - 在每个<font color="#00b050">平庸</font>的日子里，找到属于自己的<font color="#00b050">归属感</font>。<br>        - 无论做什么事，都要找到支撑自己坚持下去的<font color="#245bdb">精神支柱</font>。</p>
-<hr>
-<h3 id="Communication："><a href="#Communication：" class="headerlink" title="Communication："></a>Communication：</h3><p>您也可以关注我们的微信公众号和小程序（暂时已停止维护），我会定期更新一些对您有帮助的干货，您的支持将是我们最大的动力，我会继续努力的。</p>
-<div align='center'>
-    <img src="http://qnpicmap.fcsluck.top/pics/202311131335499.png" srcset="/img/loading.gif" lazyload style="zoom:100%;"/> </div>
-<div align='center'>
-    <img src="http://qnpicmap.fcsluck.top/pics/202311131335422.png" srcset="/img/loading.gif" lazyload style="zoom: 100%;"/> </div>
-<h3>Support:</h3>
-如果您觉得文章对您有用的话，<font color="#245bdb">Please buy me a coffee, thank you !</font>
-<div align='center'>
-    <img src="http://qnpicmap.fcsluck.top/pics/202311131334305.png" srcset="/img/loading.gif" lazyload alt="image-20220910212636463" style="zoom: 20%; pic_center" /></div>
-<h3>VideoShare</h3>
-
-<hr>
-<style>.bbplayer{width: 100%; max-width: 850px; margin: auto}</style><div class="bbplayer"><iframe class="bbplayer" id="mmedia-RYAzTIXCzhGYGPYP" src="https://player.bilibili.com/player.html?bvid=BV1rG411j7u9&page=1&high_quality=1&danmaku=true&autoplay=0" allowfullscreen="allowfullscreen" scrolling="no" border="0" frameborder="0" framespacing="0" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts allow-popups"></iframe></div><script> document.getElementById("mmedia-RYAzTIXCzhGYGPYP").style.height=document.getElementById("mmedia-RYAzTIXCzhGYGPYP").scrollWidth*0.76+"px";
-    window.onresize = function(){
-      document.getElementById("mmedia-RYAzTIXCzhGYGPYP").style.height=document.getElementById("mmedia-RYAzTIXCzhGYGPYP").scrollWidth*0.76+"px";
-    }; </script>
-
-<hr>
-<div id="mmedia-knFhdUqTMwfDpSwB"></div><script> var knFhdUqTMwfDpSwB_options = JSON.parse('{\"id\":\"mmedia-knFhdUqTMwfDpSwB\",\"data\":{\"metin\":\"meting\",\"001Mf4Ic1aNYY\":\"001Mf4Ic1aNYYK\",\"tencen\":\"tencent\",\"albu\":\"album\",\"order\":\"random\",\"listmaxheight\":\"180px\"}}'); HEXO_MMEDIA_DATA.css.push("https://cdn.jsdelivr.net/npm/aplayer@1/dist/APlayer.min.css");HEXO_MMEDIA_DATA.js.push("https://cdn.jsdelivr.net/npm/aplayer@1/dist/APlayer.min.js");HEXO_MMEDIA_DATA.js.push("https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js");HEXO_MMEDIA_DATA.metingData.push(knFhdUqTMwfDpSwB_options); </script>
-
-  </div>
-
-  
-</article>
-
 
 
 
@@ -420,11 +556,8 @@
 
 
 
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+
+
     
 
     
@@ -571,6 +704,34 @@
 
 
 
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
   <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
 
   <script>Fluid.plugins.codeWidget();</script>
@@ -661,5 +822,5 @@
   <noscript>
     <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
   </noscript>
-<!-- hexo injector body_end start --><script src="/js/addMusic.js"></script><!-- hexo injector body_end end --></body>
+<!-- hexo injector body_end start --><script src="/assets/mmedia/mmedia-loader.js"></script><script src="/js/addMusic.js"></script><!-- hexo injector body_end end --></body>
 </html>
