@@ -26,7 +26,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Git-简记.md",
+                "file": "source/_posts/运维开发/Git-简记.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -73,7 +73,7 @@
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -93,7 +93,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/about/index.md"
+                "file": "source/_posts/运维开发/Git-简记.md"
               }
             }
           }
@@ -150,7 +150,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/about/index.md",
+                "file": "source/_posts/运维开发/Git-简记.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -204,20 +204,21 @@
       "obsidian-excalidraw-plugin:新建 Excalidraw 绘图": false
     }
   },
-  "active": "7d3e48bf5edfe9e0",
+  "active": "7debd791db616930",
   "lastOpenFiles": [
+    "public/archives/page/6/index.html",
+    "public/archives/page/6",
+    "public/archives/page/5/index.html",
+    "public/archives/page/5",
+    "public/archives/page/4/index.html",
+    "public/archives/page/4",
+    "public/archives/page/3/index.html",
+    "public/archives/page/3",
+    "public/archives/2022/09/index.html",
+    "public/archives/2022/09",
     "db.json",
-    "public/tags/FFT/index.html",
-    "public/tags/FFT",
-    "public/tags/Spring/index.html",
-    "public/tags/Spring",
-    "public/tags/CNN/index.html",
-    "public/tags/CNN",
-    "public/tags/Professional-courses/index.html",
-    "public/tags/Professional-courses",
-    "public/tags/CV/index.html",
-    "public/tags/CV",
-    "Git-简记.md",
+    "source/about/index.md",
+    "source/_posts/运维开发/Git-简记.md",
     "public/img/loading.gif",
     "public/img/icon.png",
     "public/img/police_beian.png",
@@ -225,7 +226,6 @@
     "source/_posts/科研学习/会议讨论/周会.md",
     "source/_obsidian/Post Template.md",
     "source/_posts/前后端开发/SpringCloud Alibaba-微服务进阶.md",
-    "source/about/index.md",
     "source/_posts/前后端开发/SpringBoot+Vue项目实战.md",
     "SpringCloud 进阶 - SpringCloud笔记（二）微服务进阶.md",
     "source/_posts/前后端开发/SpringCloud-微服务基础.md",
