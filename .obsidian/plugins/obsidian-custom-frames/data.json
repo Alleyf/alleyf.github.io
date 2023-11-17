@@ -1,16 +1,4 @@
 {
-  "frames": [
-    {
-      "url": "https://app.slack.com/client/T0530QH62CE/D053X3USWM6?redir=%2Fapps%2FA04KGS7N9A8&cdn_fallback=1",
-      "displayName": "Slack",
-      "icon": "slack",
-      "hideOnMobile": true,
-      "addRibbonIcon": true,
-      "openInCenter": false,
-      "zoomLevel": 1,
-      "forceIframe": false,
-      "customCss": ""
-    }
-  ],
+  "frames": [],
   "padding": 5
 }

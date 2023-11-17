@@ -87,11 +87,15 @@ git clone https://github.com/Alleyf/linux-tutorial.git
 
 ## 查看仓库状态
 
-```git
+```shell
 git status
+git ls-files #查看暂存区的文件
 ```
 
+查看状态：
 ![image.png|575](http://qnpicmap.fcsluck.top/pics/202311162220832.png)
+查看暂存区内容：
+![|575](http://qnpicmap.fcsluck.top/pics/202311180014236.png)
 ## 连接云端仓库
 
 ![image.png|575](http://qnpicmap.fcsluck.top/pics/202311162229748.png)
@@ -154,10 +158,34 @@ git push "远程库名"
 
 ## 查看记录
 
+查看提交记录：
 ```shell
 git log
 ```
 ![|525](http://qnpicmap.fcsluck.top/pics/202311162257259.png)
+
+查看历史记录：
+```shell
+git reflog
+```
+
+![image.png|525](http://qnpicmap.fcsluck.top/pics/202311180021976.png)
+
+
+## 回退/溯版本
+
+git reset有三种模式：
+
+```shell
+git reset --soft 版本号 #回退版本后的内容保留工作区和暂存区
+git reset --hard 版本号 #都不保留
+git reset --mixed 版本号 #仅保留工作区内容
+```
+
+![image.png](http://qnpicmap.fcsluck.top/pics/202311180007484.png)
+
+不同模式，工作区和暂存区的内容会不同。
+
 # 分支
 
 ## 查询/切换/新建分支

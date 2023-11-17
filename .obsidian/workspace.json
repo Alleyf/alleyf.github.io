@@ -34,20 +34,7 @@
             }
           },
           {
-            "id": "7d3e48bf5edfe9e0",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "source/about/index.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "076ec62971f34b20",
+            "id": "833299dce20f1b41",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -143,33 +130,6 @@
               "type": "advanced-tables-toolbar",
               "state": {}
             }
-          },
-          {
-            "id": "0b5bb941df15b6fd",
-            "type": "leaf",
-            "state": {
-              "type": "backlink",
-              "state": {
-                "file": "source/_posts/运维开发/Git-简记.md",
-                "collapseAll": false,
-                "extraContext": false,
-                "sortOrder": "alphabetical",
-                "showSearch": false,
-                "searchQuery": "",
-                "backlinkCollapsed": false,
-                "unlinkedCollapsed": true
-              }
-            }
-          },
-          {
-            "id": "1a1c3ac64a64ef92",
-            "type": "leaf",
-            "state": {
-              "type": "all-properties",
-              "state": {
-                "sortOrder": "frequency"
-              }
-            }
           }
         ]
       },
@@ -193,7 +153,6 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "obsidian-custom-frames:Open Slack": false,
       "canvas:新建白板": false,
       "templates:插入模板": false,
       "command-palette:打开命令面板": false,
@@ -201,38 +160,40 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false,
       "cmdr:Calendar: Open view": false,
       "cmdr:Obsidian Git: Open source control view": false,
-      "obsidian-excalidraw-plugin:新建 Excalidraw 绘图": false
+      "obsidian-excalidraw-plugin:新建 Excalidraw 绘图": false,
+      "obsidian-textgenerator-plugin:Generate Text!": false,
+      "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": false
     }
   },
   "active": "7debd791db616930",
   "lastOpenFiles": [
-    "public/xml/local-search.xml",
-    "public/xml",
-    "public/links/index.html",
-    "public/links",
-    "public/js/useaplayer.js",
-    "public/js/utils.js",
-    "public/js/leancloud.js",
-    "public/js/plugins.js",
-    "public/js/local-search.js",
-    "public/js/img-lazyload.js",
-    "public/js/events.js",
-    "source/about/index.md",
+    "public/2023/05/891ff30b7b9b.html",
+    "public/2023/05/8e2ac1a55f44.html",
+    "public/2023/05/14870b008a81.html",
+    "public/2023/05/0950da3fc570.html",
+    "public/2023/05",
+    "public/2023/04/fbae7fa42803.html",
+    "public/2023/04/3dbbbdf5122f.html",
+    "public/2023/04/5d72eb9cc9af.html",
+    "public/2023/04/218510a8c5b9.html",
+    "public/2023/04",
+    "public/2023/03/f41646eecf81.html",
+    "source/_posts/科研学习/会议讨论/周会.md",
+    "source/_posts/科研学习/国基金项目/司法领域大模型调研四.md",
+    "source/_posts/前后端开发/SpringBoot+Vue项目实战.md",
     "source/_posts/运维开发/Git-简记.md",
+    "source/_posts/前后端开发/SpringCloud Alibaba-微服务进阶.md",
+    "source/_posts/前后端开发/SpringCloud-微服务基础.md",
+    "source/about/index.md",
     "public/img/loading.gif",
     "public/img/icon.png",
     "public/img/police_beian.png",
     "public/img/fluid.png",
-    "source/_posts/科研学习/会议讨论/周会.md",
     "source/_obsidian/Post Template.md",
-    "source/_posts/前后端开发/SpringCloud Alibaba-微服务进阶.md",
-    "source/_posts/前后端开发/SpringBoot+Vue项目实战.md",
     "SpringCloud 进阶 - SpringCloud笔记（二）微服务进阶.md",
-    "source/_posts/前后端开发/SpringCloud-微服务基础.md",
     "source/_posts/前后端开发/SpringBoot.md",
     "source/_posts/科研学习/学习方法/Paper_Reading_Method.md",
     "source/_posts/科研学习/国基金项目/司法领域大模型调研三.md",
-    "source/_posts/科研学习/国基金项目/司法领域大模型调研四.md",
     "source/_posts/机器学习/PyTorch.md",
     "source/_posts/机器学习/pytorch-2b6mpm.md",
     "node_modules/hexo-tag-mmedia/README.md",

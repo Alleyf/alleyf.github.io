@@ -92,7 +92,7 @@ OK，启动成功，可以看到它的管理页面地址也是给我们贴出来
     </dependencies>
 </dependencyManagement>
 ```
-接着我们就可以在子项目中添加服务发现依赖了，比如我们以图书服务为例：
+接着我们就可以在子项目中添加**服务发现依赖**了，比如我们以图书服务为例：
 ```xml
 <dependency>
     <groupId>com.alibaba.cloud</groupId>
@@ -123,7 +123,7 @@ spring:
 ![image-20230306231202683](https://s2.loli.net/2023/03/06/9PLBGOXoaERnUwM.png)
 按照同样的方法，我们接着将另外两个服务也注册到 Nacos 中：
 ![image-20230306231211930](https://s2.loli.net/2023/03/06/K6VBtqEWSLnMp21.png)
-接着我们使用 OpenFeign，实现服务发现远程调用以及负载均衡，导入依赖：
+接着我们使用 OpenFeign，实现**服务发现远程调用以及负载均衡**，导入依赖：
 ```xml
 <dependency>
     <groupId>org.springframework.cloud</groupId>
@@ -200,7 +200,7 @@ public User findUserById (@PathVariable ("uid") int uid){
 ![image-20230306231259820](https://s2.loli.net/2023/03/06/jCl8RGhaIiUDBgm.png)
 ![image-20230306231306653](https://s2.loli.net/2023/03/06/2bWdfmnVOyGzlZr.png)
 OK，负载均衡远程调用没有问题，这样我们就实现了基于 Nacos 的服务的注册与发现，实际上大致流程与 Eureka 一致。
-值得注意的是，Nacos 区分了临时实例和非临时实例：
+值得注意的是，Nacos 区分了**临时实例和非临时实例**：
 ![image-20230306231317971](https://s2.loli.net/2023/03/06/cF5MoVX6vNnzx9j.png)
 那么临时和非临时有什么区别呢？
 * 临时实例：和 Eureka 一样，采用心跳机制向 Nacos 发送请求保持在线状态，一旦心跳停止，代表实例下线，不保留实例信息。
@@ -328,7 +328,7 @@ spring:
 现在我们启动服务试试看：
 ![image-20230306231605960](https://s2.loli.net/2023/03/06/5J4FfMgtGwZhP3C.png)
 可以看到成功读取配置文件并启动了，实际上使用上来说跟之前的 Config 是基本一致的。
-Nacos 还支持配置文件的热更新，比如我们在配置文件中添加了一个属性，而这个时候可能需要实时修改，并在后端实时更新，那么这种该怎么实现呢？我们创建一个新的 Controller：
+Nacos 还支持**配置文件的热更新**，比如我们在配置文件中添加了一个属性，而这个时候可能需要实时修改，并在后端实时更新，那么这种该怎么实现呢？我们创建一个新的 Controller：
 ```java
 @RestController
 public class TestController {
