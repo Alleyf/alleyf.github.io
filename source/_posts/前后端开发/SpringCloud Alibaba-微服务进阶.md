@@ -718,10 +718,10 @@ String except (Throwable t){
 ```java
 @RequestMapping ("/test")
 @SentinelResource ("test")   //注意这里需要添加@SentinelResource 才可以，用户资源名称就使用这里定义的资源名称
-String findUserBorrows 2 (@RequestParam (value = "a", required = false) int a,
-                        @RequestParam (value = "b", required = false) int b,
-                        @RequestParam (value = "c", required = false) int c) {
-    return "请求成功！a = "+a+", b = "+b+", c = "+c;
+String findUserBorrows2(@RequestParam(value = "a", required = false) String a,  
+                        @RequestParam(value = "b", required = false) String b,  
+                        @RequestParam(value = "c", required = false) String c) {  
+    return "请求成功！a = " + a + ", b = " + b + ", c = " + c;  
 }
 ```
 启动之后，我们在 Sentinel 里面进行热点配置：
@@ -754,7 +754,7 @@ String findUserBorrows 2 (@RequestParam (value = "a", required = false) int a,
 那么我们来看看 Sentinel 中如何进行熔断和降级操作，打开管理页面，我们可以自由新增熔断规则：
 ![image-20230306232618547](https://s2.loli.net/2023/03/06/7BW6LGXQNl5b1Iv.png)
 其中，熔断策略有三种模式：
-1. **慢调用比例：**如果出现那种半天都处理不完的调用，有可能就是服务出现故障，导致卡顿，这个选项是按照最大响应时间（RT）进行判定，如果一次请求的处理时间超过了指定的 RT，那么就被判定为`慢调用`，在一个统计时长内，如果请求数目大于最小请求数目，并且被判定为`慢调用`的请求比例已经超过阈值，将触发熔断。经过熔断时长之后，将会进入到半开状态进行试探（这里和 Hystrix 一致）
+1. **慢调用比例：** 如果出现那种半天都处理不完的调用，有可能就是服务出现故障，导致卡顿，这个选项是按照最大响应时间（RT）进行判定，如果一次请求的处理时间超过了指定的 RT，那么就被判定为`慢调用`，在一个统计时长内，如果请求数目大于最小请求数目，并且被判定为`慢调用`的请求比例已经超过阈值，将触发熔断。经过熔断时长之后，将会进入到半开状态进行试探（这里和 Hystrix 一致）
    然后修改一下接口的执行，我们模拟一下慢调用：
    ```java
    @RequestMapping ("/borrow 2/{uid}")
@@ -767,7 +767,7 @@ String findUserBorrows 2 (@RequestParam (value = "a", required = false) int a,
    ![image-20230306232632385](https://s2.loli.net/2023/03/06/ExWIKFSNpPoksiT.png)
    可以看到，超时直接触发了熔断，进入到阻止页面：
    ![image-20230306232642387](https://s2.loli.net/2023/03/06/CmdPgcqvX4a2u9p.png)
-2. **异常比例：**这个与慢调用比例类似，不过这里判断的是出现异常的次数，与上面一样，我们也来进行一些小测试：
+2. **异常比例：** 这个与慢调用比例类似，不过这里判断的是出现异常的次数，与上面一样，我们也来进行一些小测试：
    ```java
    @RequestMapping ("/borrow 2/{uid}")
    UserBorrowDetail findUserBorrows 2 (@PathVariable ("uid") int uid) {
@@ -779,14 +779,14 @@ String findUserBorrows 2 (@RequestParam (value = "a", required = false) int a,
    现在我们进行访问，会发现后台疯狂报错，然后就熔断了：
    ![image-20230306232702794](https://s2.loli.net/2023/03/06/jSp92ODTRhlxJsn.png)
    ![image-20230306232711467](https://s2.loli.net/2023/03/06/FfhalnZdS2ujm1t.png)
-3. **异常数：**这个和上面的唯一区别就是，只要达到指定的异常数量，就熔断，这里我们修改一下熔断规则：
+3. **异常数：** 这个和上面的唯一区别就是，只要达到指定的异常数量，就熔断，这里我们修改一下熔断规则：
    ![image-20230306232720801](https://s2.loli.net/2023/03/06/CugOUozGA6inB3R.png)
    现在我们再次不断访问此接口，可以发现，效果跟之前其实是差不多的，只是判断的策略稍微不同罢了：
    ![image-20230306232738961](https://s2.loli.net/2023/03/06/XC1VekDfainIpv6.png)
 那么熔断规则如何设定我们了解了，那么，如何自定义服务降级呢？之前在使用 Hystrix 的时候，如果出现异常，可以执行我们的替代方案，Sentinel 也是可以的。
 同样的，我们只需要在`@SentinelResource`中配置`blockHandler`参数（那这里跟前面那个方法限流的配置不是一毛一样吗？没错，因为如果添加了`@SentinelResource`注解，那么这里会进行方法级别细粒度的限制，和之前方法级别限流一样，会在降级之后直接抛出异常，如果不添加则返回默认的限流页面，`blockHandler`的目的就是处理这种 Sentinel 机制上的异常，所以这里其实和之前的限流配置是一个道理，因此下面熔断配置也应该对`value`自定义名称的资源进行配置，才能作用到此方法上）：
 ```java
-@RequestMapping ("/borrow 2/{uid}")
+@RequestMapping ("/borrow2/{uid}")
 @SentinelResource (value = "findUserBorrows 2", blockHandler = "test")
 UserBorrowDetail findUserBorrows 2 (@PathVariable ("uid") int uid) {
     throw new RuntimeException ();
