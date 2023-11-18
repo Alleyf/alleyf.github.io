@@ -60,7 +60,7 @@
             }
           },
           {
-            "id": "33dd93301bc17cf1",
+            "id": "4f03eb7676042efd",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -73,7 +73,7 @@
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -93,7 +93,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/about/index.md"
+                "file": "source/_posts/运维开发/各种环境配置.md"
               }
             }
           }
@@ -150,7 +150,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/about/index.md",
+                "file": "source/_posts/运维开发/各种环境配置.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -205,28 +205,28 @@
       "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": false
     }
   },
-  "active": "7debd791db616930",
+  "active": "efe709009b627cd1",
   "lastOpenFiles": [
-    "public/archives/2023/11/page/2/index.html",
-    "public/archives/2023/11/page/2",
-    "public/archives/2023/11/page",
+    "public/xml/local-search.xml",
+    "public/xml",
+    "public/js/utils.js",
+    "public/js/useaplayer.js",
+    "public/js/plugins.js",
+    "public/js/local-search.js",
+    "public/js/leancloud.js",
+    "public/js/img-lazyload.js",
+    "public/js/color-schema.js",
+    "public/js/events.js",
+    "public/js/boot.js",
+    "source/about/index.md",
     "source/_posts/运维开发/各种环境配置.md",
     "source/_posts/科研学习/会议讨论/周会.md",
     "source/_posts/前后端开发/SpringCloud Alibaba-微服务进阶.md",
     "source/_posts/运维开发/Git-简记.md",
     "source/_posts/前后端开发/SpringBoot+Vue项目实战.md",
     "source/_posts/运维开发/部署方法.md",
-    "public/2023/05/891ff30b7b9b.html",
-    "public/2023/05/8e2ac1a55f44.html",
-    "public/2023/05/14870b008a81.html",
-    "public/2023/05/0950da3fc570.html",
-    "public/2023/05",
-    "public/2023/04/fbae7fa42803.html",
-    "public/2023/04/3dbbbdf5122f.html",
-    "public/2023/04/5d72eb9cc9af.html",
     "source/_posts/科研学习/国基金项目/司法领域大模型调研四.md",
     "source/_posts/前后端开发/SpringCloud-微服务基础.md",
-    "source/about/index.md",
     "public/img/loading.gif",
     "public/img/icon.png",
     "public/img/police_beian.png",

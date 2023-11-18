@@ -18,9 +18,11 @@ Fellings：
 <div align='center'>
     <img src="http://qnpicmap.fcsluck.top/pics/202311131335422.png" style="zoom: 100%;"/> </div>
 <h3>Support:</h3>
-如果您觉得文章对您有用的话，[Please buy me a coffee, thank you !](https://ko-fi.com/B0B1R9U90)
-<a href='https://ko-fi.com/B0B1R9U90' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://storage.ko-fi.com/cdn/kofi2.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
+如果您觉得文章对您有用的话，<a href='https://ko-fi.com/B0B1R9U90' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://storage.ko-fi.com/cdn/kofi2.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
+
+---
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/B0B1R9U90)
+<br>
 
 <div align='center'>
     <img src="http://qnpicmap.fcsluck.top/pics/202311131334305.png" alt="image-20220910212636463" style="zoom: 20%; pic_center" /></div>
