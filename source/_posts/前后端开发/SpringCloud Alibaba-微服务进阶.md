@@ -449,10 +449,18 @@ server {
 ![image-20230306231925001](https://s2.loli.net/2023/03/06/gdh43ciamLnBRFV.png)
 这样，我们就搭建好了 Nacos 集群。
 
+
+> [!NOTE] Tips
+> 1. nacos集群模式时*cluster.conf*必须配置的**ip是本地ip地址，不能是127.0.0.1**
+> 2. nacos修改*application.properties*配置文件不生效，原因在于bin目录下的startup启动文件中设置的**配置文件的位置不对**(不能带`optional:`)，要改为：
+> windows（startup.cmd）：`set "NACOS_CONFIG_OPTS=--spring.config.additional-location=%CUSTOM_SEARCH_LOCATIONS%"`
+> linux（startup.sh）:`JAVA_OPT="${JAVA_OPT} --spring.config.additional-location=${CUSTOM_SEARCH_LOCATIONS}"`
+
+
 ***
 ![image-20230306231932929](https://s2.loli.net/2023/03/06/xnmustzRkFZJWIP.png)
 ## Sentinel 流量防卫兵
-**注意：**这一章有点小绕，思路理清。
+**注意：** 这一章有点小绕，思路理清。
 经过之前的学习，我们了解了微服务存在的雪崩问题，也就是说一个微服务出现问题，有可能导致整个链路直接不可用，这种时候我们就需要进行及时的熔断和降级，这些策略，我们之前通过使用 Hystrix 来实现。
 SpringCloud Alibaba 也有自己的微服务容错组件，但是它相比 Hystrix 更加的强大。
 > 随着微服务的流行，服务和服务之间的稳定性变得越来越重要。Sentinel 以流量为切入点，从流量控制、熔断降级、系统负载保护等多个维度保护服务的稳定性。
