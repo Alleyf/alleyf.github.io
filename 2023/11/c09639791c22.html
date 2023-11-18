@@ -149,7 +149,7 @@
 <meta property="og:image" content="https://s2.loli.net/2023/03/06/qoNhgzM2PXpZU9B.png">
 <meta property="og:image" content="https://s2.loli.net/2023/03/06/9LnaoUxHzlY1GdV.png">
 <meta property="article:published_time" content="2023-11-16T07:49:01.000Z">
-<meta property="article:modified_time" content="2023-11-17T13:57:23.692Z">
+<meta property="article:modified_time" content="2023-11-18T04:11:38.465Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="springcloud">
 <meta property="article:tag" content="SpringCloud-Alibaba">
@@ -405,7 +405,7 @@
         
         
         
-          340 分钟
+          343 分钟
         
       </span>
     
@@ -456,7 +456,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2 小时前
+                    本文最后更新于：5 小时前
                   
                 
               </p>
@@ -556,9 +556,16 @@
 <p>可以看到直接请求 80 端口之后得到，表示安装成功：<br><img src="https://s2.loli.net/2023/03/06/gVuMlAXcY34Ka2C.png" srcset="/img/loading.gif" lazyload alt="image-20230306231903833"><br>现在我们需要让其代理我们刚刚启动的两个 Nacos 服务器，我们需要对其进行一些配置。配置文件位于<code>/etc/nginx/nginx. conf</code>，添加以下内容：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs conf">#添加我们在上游刚刚创建好的两个nacos服务器<br>upstream nacos-server &#123;<br>        server 10.0.0.12:8801;<br>        server 10.0.0.12:8802;<br>&#125;<br>server &#123;<br>        listen   80;<br>        server_name  1.14.121.107;<br>        location /nacos &#123;<br>                proxy_pass http://nacos-server ;<br>        &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>重启 Nginx 服务器，成功连接：<br><img src="https://s2.loli.net/2023/03/06/2hrxcizHPvSq8be.png" srcset="/img/loading.gif" lazyload alt="image-20230306231912734"><br>然后我们将所有的服务全部修改为云服务器上 Nacos 的地址，启动试试看。<br><img src="https://s2.loli.net/2023/03/06/gdh43ciamLnBRFV.png" srcset="/img/loading.gif" lazyload alt="image-20230306231925001"><br>这样，我们就搭建好了 Nacos 集群。</p>
+<blockquote>
+<p>[!NOTE] Tips</p>
+<ol>
+<li>nacos集群模式时<em>cluster.conf</em>必须配置的<strong>ip是本地ip地址，不能是127.0.0.1</strong></li>
+<li>nacos修改<em>application.properties</em>配置文件不生效，原因在于bin目录下的startup启动文件中设置的<strong>配置文件的位置不对</strong>(不能带<code>optional:</code>)，要改为：<br>windows（startup.cmd）：<code>set &quot;NACOS_CONFIG_OPTS=--spring.config.additional-location=%CUSTOM_SEARCH_LOCATIONS%&quot;</code><br>linux（startup.sh）:<code>JAVA_OPT=&quot;$&#123;JAVA_OPT&#125; --spring.config.additional-location=$&#123;CUSTOM_SEARCH_LOCATIONS&#125;&quot;</code></li>
+</ol>
+</blockquote>
 <hr>
 <p><img src="https://s2.loli.net/2023/03/06/xnmustzRkFZJWIP.png" srcset="/img/loading.gif" lazyload alt="image-20230306231932929"></p>
-<h2 id="Sentinel-流量防卫兵"><a href="#Sentinel-流量防卫兵" class="headerlink" title="Sentinel 流量防卫兵"></a>Sentinel 流量防卫兵</h2><p><strong>注意：</strong>这一章有点小绕，思路理清。<br>经过之前的学习，我们了解了微服务存在的雪崩问题，也就是说一个微服务出现问题，有可能导致整个链路直接不可用，这种时候我们就需要进行及时的熔断和降级，这些策略，我们之前通过使用 Hystrix 来实现。<br>SpringCloud Alibaba 也有自己的微服务容错组件，但是它相比 Hystrix 更加的强大。</p>
+<h2 id="Sentinel-流量防卫兵"><a href="#Sentinel-流量防卫兵" class="headerlink" title="Sentinel 流量防卫兵"></a>Sentinel 流量防卫兵</h2><p><strong>注意：</strong> 这一章有点小绕，思路理清。<br>经过之前的学习，我们了解了微服务存在的雪崩问题，也就是说一个微服务出现问题，有可能导致整个链路直接不可用，这种时候我们就需要进行及时的熔断和降级，这些策略，我们之前通过使用 Hystrix 来实现。<br>SpringCloud Alibaba 也有自己的微服务容错组件，但是它相比 Hystrix 更加的强大。</p>
 <blockquote>
 <p>随着微服务的流行，服务和服务之间的稳定性变得越来越重要。Sentinel 以流量为切入点，从流量控制、熔断降级、系统负载保护等多个维度保护服务的稳定性。</p>
 </blockquote>
@@ -831,7 +838,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2023年11月17日</div>
+          <div>2023年11月18日</div>
         </div>
       
       <div class="license-meta-item">
