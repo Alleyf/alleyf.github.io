@@ -45,22 +45,8 @@
                 "source": false
               }
             }
-          },
-          {
-            "id": "efe709009b627cd1",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "source/_posts/科研学习/会议讨论/周会.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
           }
-        ],
-        "currentTab": 3
+        ]
       }
     ],
     "direction": "vertical"
@@ -80,7 +66,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/科研学习/会议讨论/周会.md"
+                "file": "source/_posts/前后端开发/SpringCloud Alibaba-微服务进阶.md"
               }
             }
           }
@@ -137,7 +123,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/科研学习/会议讨论/周会.md",
+                "file": "source/_posts/前后端开发/SpringCloud Alibaba-微服务进阶.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -189,11 +175,17 @@
       "cmdr:Obsidian Git: Open source control view": false,
       "obsidian-excalidraw-plugin:新建 Excalidraw 绘图": false,
       "obsidian-textgenerator-plugin:Generate Text!": false,
-      "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": false
+      "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": false,
+      "graph:查看关系图谱": false
     }
   },
-  "active": "7debd791db616930",
+  "active": "8e85ccb013ecad38",
   "lastOpenFiles": [
+    "source/_posts/运维开发/Git-简记.md",
+    "source/_posts/科研学习/会议讨论/周会.md",
+    "source/_posts/科研学习/会议讨论/国际会议.md",
+    "source/_posts/科研学习/论文总结/Paper_Reading_Tables.md",
+    "source/_posts/科研学习/国基金项目/司法领域大模型调研三.md",
     "db.json",
     "public/js/utils.js",
     "public/js/useaplayer.js",
@@ -204,13 +196,9 @@
     "public/js/img-lazyload.js",
     "public/js/color-schema.js",
     "public/js/boot.js",
-    "public/js/addMusic.js",
-    "source/_posts/科研学习/会议讨论/国际会议.md",
-    "source/_posts/科研学习/会议讨论/周会.md",
     "source/_posts/运维开发/各种环境配置.md",
     "source/about/index.md",
     "source/_posts/前后端开发/SpringCloud Alibaba-微服务进阶.md",
-    "source/_posts/运维开发/Git-简记.md",
     "source/_posts/前后端开发/SpringBoot+Vue项目实战.md",
     "source/_posts/运维开发/部署方法.md",
     "source/_posts/科研学习/国基金项目/司法领域大模型调研四.md",
@@ -223,7 +211,6 @@
     "SpringCloud 进阶 - SpringCloud笔记（二）微服务进阶.md",
     "source/_posts/前后端开发/SpringBoot.md",
     "source/_posts/科研学习/学习方法/Paper_Reading_Method.md",
-    "source/_posts/科研学习/国基金项目/司法领域大模型调研三.md",
     "source/_posts/机器学习/PyTorch.md",
     "source/_posts/机器学习/pytorch-2b6mpm.md",
     "node_modules/hexo-tag-mmedia/README.md",

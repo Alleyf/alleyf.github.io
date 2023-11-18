@@ -266,14 +266,6 @@
       "key": "O"
     }
   ],
-  "editor:set-heading": [
-    {
-      "modifiers": [
-        "Mod"
-      ],
-      "key": "`"
-    }
-  ],
   "editor:toggle-inline-math": [
     {
       "modifiers": [
@@ -289,6 +281,22 @@
         "Mod"
       ],
       "key": "M"
+    }
+  ],
+  "app:open-settings": [
+    {
+      "modifiers": [
+        "Alt"
+      ],
+      "key": "."
+    }
+  ],
+  "editor:toggle-highlight": [
+    {
+      "modifiers": [
+        "Mod"
+      ],
+      "key": "`"
     }
   ]
 }
