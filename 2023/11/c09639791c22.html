@@ -149,7 +149,7 @@
 <meta property="og:image" content="https://s2.loli.net/2023/03/06/qoNhgzM2PXpZU9B.png">
 <meta property="og:image" content="https://s2.loli.net/2023/03/06/9LnaoUxHzlY1GdV.png">
 <meta property="article:published_time" content="2023-11-16T07:49:01.000Z">
-<meta property="article:modified_time" content="2023-11-18T15:23:30.370Z">
+<meta property="article:modified_time" content="2023-11-19T06:26:55.426Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="springcloud">
 <meta property="article:tag" content="SpringCloud-Alibaba">
@@ -456,7 +456,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：1 分钟前
+                    本文最后更新于：9 小时前
                   
                 
               </p>
@@ -734,10 +734,12 @@
 <ul>
 <li>RM（Resource Manager）：用于直接执行本地事务的提交和回滚。</li>
 <li>TM（Transaction Manager）：TM 是分布式事务的核心管理者。比如现在我们需要在借阅服务中开启全局事务，来让其自身、图书服务、用户服务都参与进来，也就是说一般全局事务发起者就是 TM。</li>
-<li>TC（Transaction Manager）这个就是我们的 Seata 服务器，用于全局控制，比如在 XA 模式下就是一个协调者的角色，而一个分布式事务的启动就是由 TM 向 TC 发起请求，TC 再来与其他的 RM 进行协调操作。<blockquote>
-<p>TM 请求 TC 开启一个全局事务，TC 会生成一个 XID 作为该全局事务的编号，XID 会在微服务的调用链路中传播，保证将多个微服务的子事务关联在一起；RM 请求 TC 将本地事务注册为全局事务的分支事务，通过全局事务的 XID 进行关联；TM 请求 TC 告诉 XID 对应的全局事务是进行提交还是回滚；TC 驱动 RM 将 XID 对应的自己的本地事务进行提交还是回滚；<br>Seata 支持 4 种事务模式，官网文档： <a target="_blank" rel="noopener" href="https://seata.io/zh-cn/docs/overview/what-is-seata.html">https://seata.io/zh-cn/docs/overview/what-is-seata.html</a></p>
+<li>TC（Transaction Controller）这个就是我们的 Seata 服务器，用于全局控制，比如在 XA 模式下就是一个协调者的角色，而一个分布式事务的启动就是由 TM 向 TC 发起请求，TC 再来与其他的 RM 进行协调操作。</li>
+</ul>
+<blockquote>
+<p>TM 请求 TC 开启一个全局事务，TC 会生成一个 XID 作为该全局事务的编号，XID 会在微服务的调用链路中传播，保证将多个微服务的子事务关联在一起；RM 请求 TC 将本地事务注册为全局事务的分支事务，通过全局事务的 XID 进行关联；TM 请求 TC 告诉 XID 对应的全局事务是进行提交还是回滚；TC 驱动 RM 将 XID 对应的自己的本地事务进行提交还是回滚；<br>Seata 支持 4 种事务模式，官网文档：<a target="_blank" rel="noopener" href="https://seata.io/zh-cn/docs/overview/what-is-seata.html">https://seata.io/zh-cn/docs/overview/what-is-seata.html</a></p>
 </blockquote>
-</li>
+<ul>
 <li>AT：本质上就是 2 PC 的升级版，在 AT 模式下，用户只需关心自己的 “业务 SQL”<ol>
 <li>一阶段，Seata 会拦截“业务 SQL”，首先解析 SQL 语义，找到“业务 SQL”要更新的业务数据，在业务数据被更新前，将其保存成“before image”，然后执行“业务 SQL”更新业务数据，在业务数据更新之后，再将其保存成“after image”，最后生成行锁。以上操作全部在一个数据库事务内完成，这样保证了一阶段操作的原子性。</li>
 <li>二阶段如果确认提交的话，因为“业务 SQL”在一阶段已经提交至数据库，所以 Seata 框架只需将一阶段保存的快照数据和行锁删掉，完成数据清理即可，当然如果需要回滚，那么就用“before image”还原业务数据；但在还原前要首先要校验脏写，对比“数据库当前业务数据”和 “after image”，如果两份数据完全一致就说明没有脏写，可以还原业务数据，如果不一致就说明有脏写，出现脏写就需要转人工处理。</li>
@@ -838,7 +840,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2023年11月18日</div>
+          <div>2023年11月19日</div>
         </div>
       
       <div class="license-meta-item">
@@ -963,6 +965,13 @@
 
 
 
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+  });
+</script>
 
 
 

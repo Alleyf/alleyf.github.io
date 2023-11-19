@@ -39,10 +39,14 @@
 <meta property="og:image" content="http://qnpicmap.fcsluck.top/pics/202311162233770.png">
 <meta property="og:image" content="http://qnpicmap.fcsluck.top/pics/202311162235693.png">
 <meta property="og:image" content="http://qnpicmap.fcsluck.top/pics/202311162257259.png">
+<meta property="og:image" content="http://qnpicmap.fcsluck.top/pics/202311192240526.png">
 <meta property="og:image" content="http://qnpicmap.fcsluck.top/pics/202311180021976.png">
+<meta property="og:image" content="http://qnpicmap.fcsluck.top/pics/202311192246423.png">
+<meta property="og:image" content="http://qnpicmap.fcsluck.top/pics/202311192251998.png">
+<meta property="og:image" content="http://qnpicmap.fcsluck.top/pics/202311192255196.png">
 <meta property="og:image" content="http://qnpicmap.fcsluck.top/pics/202311180007484.png">
 <meta property="article:published_time" content="2023-11-16T09:29:36.000Z">
-<meta property="article:modified_time" content="2023-11-18T15:02:11.304Z">
+<meta property="article:modified_time" content="2023-11-19T15:08:10.101Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="Git">
 <meta name="twitter:card" content="summary_large_image">
@@ -286,7 +290,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.2k 字
+          3.3k 字
         
       </span>
     
@@ -297,7 +301,7 @@
         
         
         
-          27 分钟
+          28 分钟
         
       </span>
     
@@ -348,7 +352,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：22 分钟前
+                    本文最后更新于：1 分钟前
                   
                 
               </p>
@@ -357,8 +361,7 @@
               <div class="markdown-body">
                 
                 <p><img src="https://picsum.photos/800/250" srcset="/img/loading.gif" lazyload></p>
-<h1 id="原理解析"><a href="#原理解析" class="headerlink" title="原理解析"></a>原理解析</h1><h2 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h2><p>git 分为三个区，工作流程如下：</p>
-<p><img src="http://qnpicmap.fcsluck.top/pics/202311162202035.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h1 id="原理解析"><a href="#原理解析" class="headerlink" title="原理解析"></a>原理解析</h1><h2 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h2><p>git 分为三个区，工作流程如下：<br><img src="http://qnpicmap.fcsluck.top/pics/202311162202035.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h2 id="文件状态"><a href="#文件状态" class="headerlink" title="文件状态"></a>文件状态</h2><p>git 文件有四种状态：</p>
 <ol>
 <li>未跟踪：创建但未被 git 管理的文件</li>
@@ -371,69 +374,54 @@
 </blockquote>
 <h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><p>查看 git 版本：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs git">git -v<br></code></pre></td></tr></table></figure>
-
-<p><img src="http://qnpicmap.fcsluck.top/pics/202311162135814.png" srcset="/img/loading.gif" lazyload alt="image.png|500"></p>
-<p>首次安装 git 使用以下命令配置全局仓库用户名和邮箱信息：</p>
+<p><img src="http://qnpicmap.fcsluck.top/pics/202311162135814.png" srcset="/img/loading.gif" lazyload alt="image.png|500"><br>首次安装 git 使用以下命令配置全局仓库用户名和邮箱信息：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs git">git config --global user.name &quot;Jasper Yang&quot;  #设置用户名<br>git config --global user.email geekhall.cn@gmail.com #设置密码<br>git config --global credential.helper store #保存上述信息<br></code></pre></td></tr></table></figure>
-
 <p>查看&#x2F;清除全局配置信息：</p>
 <figure class="highlight dsconfig"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs dsconfig"><span class="hljs-string">git</span> <span class="hljs-string">config</span> <span class="hljs-built_in">--global</span> <span class="hljs-built_in">--list</span> <span class="hljs-comment">#查看</span><br><span class="hljs-string">git</span> <span class="hljs-string">config</span> <span class="hljs-built_in">--global</span> <span class="hljs-built_in">--unset</span> &lt;<span class="hljs-string">entry-name</span>&gt; <span class="hljs-comment">#清除全局配置</span><br></code></pre></td></tr></table></figure>
-
-<p><img src="http://qnpicmap.fcsluck.top/pics/202311162140448.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>查看隐藏的. git 文件：</p>
-<p><img src="http://qnpicmap.fcsluck.top/pics/202311162146376.png" srcset="/img/loading.gif" lazyload></p>
-<p>清除隐藏的. git 文件则 git 仓库将被清除：<br><img src="http://qnpicmap.fcsluck.top/pics/202311162149713.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p><img src="http://qnpicmap.fcsluck.top/pics/202311162140448.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>查看隐藏的. git 文件：<br><img src="http://qnpicmap.fcsluck.top/pics/202311162146376.png" srcset="/img/loading.gif" lazyload><br>清除隐藏的. git 文件则 git 仓库将被清除：<br><img src="http://qnpicmap.fcsluck.top/pics/202311162149713.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h1 id="基础操作"><a href="#基础操作" class="headerlink" title="基础操作"></a>基础操作</h1><h2 id="创建-git-仓库"><a href="#创建-git-仓库" class="headerlink" title="创建 git 仓库"></a>创建 git 仓库</h2><h3 id="本地初始化"><a href="#本地初始化" class="headerlink" title="本地初始化"></a>本地初始化</h3><p>在本地需要创建 git 仓库的文件夹下打开 <strong>git bash</strong> 执行以下命令：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs git">git init （init_repo_dir_name）#后面可选在当前目录新建目录作为git仓库<br></code></pre></td></tr></table></figure>
 <h3 id="远程克隆"><a href="#远程克隆" class="headerlink" title="远程克隆"></a>远程克隆</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs git">git clone https://github.com/Alleyf/linux-tutorial.git<br></code></pre></td></tr></table></figure>
-
 <p><img src="http://qnpicmap.fcsluck.top/pics/202311162159698.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h2 id="查看仓库状态"><a href="#查看仓库状态" class="headerlink" title="查看仓库状态"></a>查看仓库状态</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">git status<br>git ls-files #查看暂存区的文件<br></code></pre></td></tr></table></figure>
-
 <p>查看状态：<br><img src="http://qnpicmap.fcsluck.top/pics/202311162220832.png" srcset="/img/loading.gif" lazyload alt="image.png|575"><br>查看暂存区内容：<br><img src="http://qnpicmap.fcsluck.top/pics/202311180014236.png" srcset="/img/loading.gif" lazyload alt="|575"></p>
-<h2 id="连接云端仓库"><a href="#连接云端仓库" class="headerlink" title="连接云端仓库"></a>连接云端仓库</h2><p><img src="http://qnpicmap.fcsluck.top/pics/202311162229748.png" srcset="/img/loading.gif" lazyload alt="image.png|575"></p>
-<p>添加一个 git URL 作为别名</p>
+<h2 id="连接云端仓库"><a href="#连接云端仓库" class="headerlink" title="连接云端仓库"></a>连接云端仓库</h2><p><img src="http://qnpicmap.fcsluck.top/pics/202311162229748.png" srcset="/img/loading.gif" lazyload alt="image.png|575"><br>添加一个 git URL 作为别名</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git remote add [alias] [url]<br></code></pre></td></tr></table></figure>
-
 <p>显示您设置的远程存储库的名称</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git remote<br></code></pre></td></tr></table></figure>
-
 <p>显示远程存储库的名称和 URL</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git remote -v<br></code></pre></td></tr></table></figure>
-
 <p>删除远程存储库</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git remote rm [remote repo name]<br></code></pre></td></tr></table></figure>
-
 <p>更改 git repo 的 URL</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git remote set-url origin [git_url]<br></code></pre></td></tr></table></figure>
-
 <h2 id="同步仓库文件"><a href="#同步仓库文件" class="headerlink" title="同步仓库文件"></a>同步仓库文件</h2><h3 id="拉取仓库"><a href="#拉取仓库" class="headerlink" title="拉取仓库"></a>拉取仓库</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git pull<br></code></pre></td></tr></table></figure>
 <h3 id="提交文件"><a href="#提交文件" class="headerlink" title="提交文件"></a>提交文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git add fileName/.  #&quot;.&quot;代表添加当前文件夹下的全部文件到存储区<br></code></pre></td></tr></table></figure>
-
 <p><img src="http://qnpicmap.fcsluck.top/pics/202311162233770.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git commit -m &quot;提交时的备注信息&quot;<br></code></pre></td></tr></table></figure>
-
 <p>git commit 只会提交<strong>存储区中的文件到仓库</strong>，<strong>未跟踪即未添加到存储区的文件不会被提交</strong>到仓库，如下 file 2.md 是新增未跟踪的文件不会被同 file1.md 提交到仓库:<br><img src="http://qnpicmap.fcsluck.top/pics/202311162235693.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git push &quot;远程库名&quot; <br></code></pre></td></tr></table></figure>
-
-
 <h2 id="查看记录"><a href="#查看记录" class="headerlink" title="查看记录"></a>查看记录</h2><p>查看提交记录：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git log<br></code></pre></td></tr></table></figure>
-<p><img src="http://qnpicmap.fcsluck.top/pics/202311162257259.png" srcset="/img/loading.gif" lazyload alt="|525"></p>
-<p>查看历史记录：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">git log #查看详细记录信息<br>git log --oneline #查看概要信息<br></code></pre></td></tr></table></figure>
+<p><img src="http://qnpicmap.fcsluck.top/pics/202311162257259.png" srcset="/img/loading.gif" lazyload alt="|525"><br><img src="http://qnpicmap.fcsluck.top/pics/202311192240526.png" srcset="/img/loading.gif" lazyload alt="image.png|525"><br>查看历史记录：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git reflog<br></code></pre></td></tr></table></figure>
-
 <p><img src="http://qnpicmap.fcsluck.top/pics/202311180021976.png" srcset="/img/loading.gif" lazyload alt="image.png|525"></p>
-<h2 id="回退-溯版本"><a href="#回退-溯版本" class="headerlink" title="回退&#x2F;溯版本"></a>回退&#x2F;溯版本</h2><p>git reset有三种模式：</p>
+<h2 id="查看差异"><a href="#查看差异" class="headerlink" title="查看差异"></a>查看差异</h2><ol>
+<li>查看<strong>工作区和暂存区</strong>的差别：</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git diff<br></code></pre></td></tr></table></figure>
+<p><img src="http://qnpicmap.fcsluck.top/pics/202311192246423.png" srcset="/img/loading.gif" lazyload><br>2. 查看 <strong>工作区和仓库区</strong>的差别：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git diff head<br></code></pre></td></tr></table></figure>
+<p><img src="http://qnpicmap.fcsluck.top/pics/202311192251998.png" srcset="/img/loading.gif" lazyload alt="image.png|550"><br>3. 查看 <strong>暂存区和仓库区</strong>的差别：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git diff --cached<br></code></pre></td></tr></table></figure>
+<p><img src="http://qnpicmap.fcsluck.top/pics/202311192255196.png" srcset="/img/loading.gif" lazyload alt="image.png|550"></p>
+<h2 id="回退-溯版本"><a href="#回退-溯版本" class="headerlink" title="回退&#x2F;溯版本"></a>回退&#x2F;溯版本</h2><p>git reset 有三种模式：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">git reset --soft 版本号 #回退版本后的内容保留工作区和暂存区<br>git reset --hard 版本号 #都不保留<br>git reset --mixed 版本号 #仅保留工作区内容<br></code></pre></td></tr></table></figure>
-
-<p><img src="http://qnpicmap.fcsluck.top/pics/202311180007484.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>不同模式，工作区和暂存区的内容会不同。</p>
+<p><img src="http://qnpicmap.fcsluck.top/pics/202311180007484.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>不同模式，工作区和暂存区的内容会不同。</p>
 <h1 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h1><h2 id="查询-切换-新建分支"><a href="#查询-切换-新建分支" class="headerlink" title="查询&#x2F;切换&#x2F;新建分支"></a>查询&#x2F;切换&#x2F;新建分支</h2><ol>
 <li>查询分支，使用以下指令：</li>
 </ol>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">git branch #查询本地分支<br>git branch -r #查询远程分支<br></code></pre></td></tr></table></figure>
-
 <ol start="2">
 <li>切换或新建分支，使用以下指令：</li>
 </ol>
@@ -442,18 +430,12 @@
 <li>删除<strong>本地分支</strong>，删除前会进行检查是否<em>本分支内容已经合并到主分支</em>，使用以下指令：</li>
 </ol>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git branch -d &quot;branchName&quot;<br></code></pre></td></tr></table></figure>
-
-<blockquote>
 <p>强制删除分支使用 <code>-D</code> 参数。</p>
-</blockquote>
 <ol start="2">
 <li>删除<strong>远程分支</strong>，使用以下指令：</li>
 </ol>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git push &quot;远程库名&quot; -d &quot;branch name&quot; <br></code></pre></td></tr></table></figure>
-
-<blockquote>
 <p>强制删除分支使用 <code>-D</code> 参数。</p>
-</blockquote>
 <h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cardlink">url: https://www.bilibili.com/video/BV1HM411377j/<br>title: &quot;【GeekHour】一小时Git教程_哔哩哔哩_bilibili&quot;<br>description: &quot;【GeekHour】一小时Git教程共计19条视频，包括：01.课程简介、02.安装和初始化配置、03.新建仓库等，UP主更多精彩视频，请关注UP账号。&quot;<br>host: www.bilibili.com<br>image: //i0.hdslb.com/bfs/archive/be265386c6db1da0e1233e9743e02b252ea07b53.jpg@100w_100h_1c.png<br></code></pre></td></tr></table></figure>
 <ol>
 <li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1HM411377j/">【GeekHour】一小时Git教程_哔哩哔哩_bilibili</a><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cardlink">url: https://wangchujiang.com/reference/docs/git.html<br>title: &quot;Git 备忘清单 &amp;  git cheatsheet &amp;  Quick Reference&quot;<br>host: wangchujiang.com<br>favicon: data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20height%3D%221em%22%20width%3D%221em%22%3E%20%3Cpath%20d%3D%22m21.66%2010.44-.98%204.18c-.84%203.61-2.5%205.07-5.62%204.77-.5-.04-1.04-.13-1.62-.27l-1.68-.4c-4.17-.99-5.46-3.05-4.48-7.23l.98-4.19c.2-.85.44-1.59.74-2.2%201.17-2.42%203.16-3.07%206.5-2.28l1.67.39c4.19.98%205.47%203.05%204.49%207.23Z%22%20fill%3D%22%23c9d1d9%22%2F%3E%20%3Cpath%20d%3D%22M15.06%2019.39c-.62.42-1.4.77-2.35%201.08l-1.58.52c-3.97%201.28-6.06.21-7.35-3.76L2.5%2013.28c-1.28-3.97-.22-6.07%203.75-7.35l1.58-.52c.41-.13.8-.24%201.17-.31-.3.61-.54%201.35-.74%202.2l-.98%204.19c-.98%204.18.31%206.24%204.48%207.23l1.68.4c.58.14%201.12.23%201.62.27Zm2.43-8.88c-.06%200-.12-.01-.19-.02l-4.85-1.23a.75.75%200%200%201%20.37-1.45l4.85%201.23a.748.748%200%200%201-.18%201.47Z%22%20fill%3D%22%23228e6c%22%20%2F%3E%20%3Cpath%20d%3D%22M14.56%2013.89c-.06%200-.12-.01-.19-.02l-2.91-.74a.75.75%200%200%201%20.37-1.45l2.91.74c.4.1.64.51.54.91-.08.34-.38.56-.72.56Z%22%20fill%3D%22%23228e6c%22%20%2F%3E%20%3C%2Fsvg%3E<br></code></pre></td></tr></table></figure></li>
@@ -523,7 +505,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2023年11月18日</div>
+          <div>2023年11月19日</div>
         </div>
       
       <div class="license-meta-item">
@@ -648,6 +630,13 @@
 
 
 
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+  });
+</script>
 
 
 

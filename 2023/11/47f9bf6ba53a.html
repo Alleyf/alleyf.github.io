@@ -56,11 +56,11 @@
 <meta property="og:image" content="http://qnpicmap.fcsluck.top/pics/202311171441567.png">
 <meta property="og:image" content="http://qnpicmap.fcsluck.top/pics/202311171446102.png">
 <meta property="article:published_time" content="2023-11-13T14:02:25.000Z">
-<meta property="article:modified_time" content="2023-11-18T14:44:37.158Z">
+<meta property="article:modified_time" content="2023-11-19T11:44:29.938Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="AIGC">
-<meta property="article:tag" content="KG">
 <meta property="article:tag" content="NLP">
+<meta property="article:tag" content="KG">
 <meta property="article:tag" content="LLM">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://picsum.photos/800/250">
@@ -303,7 +303,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          10k 字
+          11k 字
         
       </span>
     
@@ -314,7 +314,7 @@
         
         
         
-          87 分钟
+          91 分钟
         
       </span>
     
@@ -365,7 +365,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：40 分钟前
+                    本文最后更新于：3 小时前
                   
                 
               </p>
@@ -572,7 +572,7 @@
 <p>[!NOTE] 周会总结</p>
 <ol>
 <li>已学内容：<ul>
-<li>学习 SpringSecurity，并且进行 SpringBoot+Vue 的项目实战（SpringSecurity、Redis、Mybatis、RabbitMQ，项目不含用户管理、权限管理、菜单管理、日志管理等）已完成80%</li>
+<li>学习 SpringSecurity，并且进行 SpringBoot+Vue 的项目实战（SpringSecurity、Redis、Mybatis、RabbitMQ，项目不含用户管理、权限管理、菜单管理、日志管理等）已完成 80%</li>
 </ul>
 </li>
 <li>下周计划：<ul>
@@ -601,10 +601,10 @@
 </code></pre>
 
 <p><img src="http://qnpicmap.fcsluck.top/pics/202311171603430.png" srcset="/img/loading.gif" lazyload alt="image.png"><br><img src="http://qnpicmap.fcsluck.top/pics/202311171605743.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>本文提出了一种基于法律要素的民事案件判决预测方法CPEE（Civil Case Judgment Prediction centering on the Trial Mode of Essential Elements）。该方法主要包括三个步骤：案由预测、法条预测和判决预测。</p>
-<p>在案由预测中，作者使用了一个双向LSTM模型来根据案件事实描述来预测案由。在法条预测中，作者使用了一个基于注意力机制的LSTM模型来根据案件事实描述和相关法律规定来预测适用的法条。在判决预测中，作者使用了一个多任务学习模型来预测判决结果。</p>
-<p>为了评估CPEE方法的性能，作者使用了一个包含真实民事案件数据的数据集进行实验。实验结果表明，CPEE方法在案由预测、法条预测和判决预测方面都取得了较好的性能。同时，作者还进行了对比实验，并展示了CPEE与其他方法相比的优势。</p>
-<p>总之，本文提出的CPEE方法可以有效地进行民事案件判决预测，并具有一定的实际应用价值。但是仍然存在一些改进空间，例如进一步优化模型结构和算法以提高性能，并考虑更多因素对判决结果的影响。</p>
+<p>本文提出了一种基于法律要素的民事案件判决预测方法 CPEE（Civil Case Judgment Prediction centering on the Trial Mode of Essential Elements）。该方法主要包括三个步骤：案由预测、法条预测和判决预测。</p>
+<p>在案由预测中，作者使用了一个双向 LSTM 模型来根据案件事实描述来预测案由。在法条预测中，作者使用了一个基于注意力机制的 LSTM 模型来根据案件事实描述和相关法律规定来预测适用的法条。在判决预测中，作者使用了一个多任务学习模型来预测判决结果。</p>
+<p>为了评估 CPEE 方法的性能，作者使用了一个包含真实民事案件数据的数据集进行实验。实验结果表明，CPEE 方法在案由预测、法条预测和判决预测方面都取得了较好的性能。同时，作者还进行了对比实验，并展示了 CPEE 与其他方法相比的优势。</p>
+<p>总之，本文提出的 CPEE 方法可以有效地进行民事案件判决预测，并具有一定的实际应用价值。但是仍然存在一些改进空间，例如进一步优化模型结构和算法以提高性能，并考虑更多因素对判决结果的影响。</p>
 <h2 id="Boosting-Factual-Correctness-of-Abstractive-mmarization-with-Knowledge-Graph"><a href="#Boosting-Factual-Correctness-of-Abstractive-mmarization-with-Knowledge-Graph" class="headerlink" title="Boosting Factual Correctness of Abstractive mmarization with Knowledge Graph"></a>Boosting Factual Correctness of Abstractive mmarization with Knowledge Graph</h2><p>(Microsoft Cognitive Services Group,NAACL 2021)</p>
 <blockquote>
 <p>主讲人：hwx</p>
@@ -612,37 +612,37 @@
 <p>现状与问题：</p>
 <ol>
 <li>生成式摘要的一个突出问题是事实不一致。它指的是<strong>摘要有时歪曲或捏造</strong>文章中<br>的事实的幻觉现象。（生成幻觉）</li>
-<li>另外大多数现有的生成式模型在训练以及评估的过程中都<strong>采用关注摘要的token级<br>准确性</strong>，而<strong>忽略了摘要与原文之间语义级的一致性</strong>。因此，生成的摘要在ROUG<br>这样的token级别度量中可能评分很高，但缺乏事实一致性。（衡量摘要效果，评估）</li>
+<li>另外大多数现有的生成式模型在训练以及评估的过程中都<strong>采用关注摘要的 token 级<br>准确性</strong>，而<strong>忽略了摘要与原文之间语义级的一致性</strong>。因此，生成的摘要在 ROUG<br>这样的 token 级别度量中可能评分很高，但缺乏事实一致性。（衡量摘要效果，评估）</li>
 </ol>
 <p>解决方案：<br>1.1 事实感知模型</p>
 <p><img src="http://qnpicmap.fcsluck.top/pics/202311171409197.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p>1.2 事实纠正模型</p>
-<p>除开构建事实感知模型，为了更好地利用现有的摘要系统，提出了一个事实校正模型FC,以提<br>高生成式摘要模型生成的任何摘要的事实一致性。FC将修正过程定义为一个seq2seq问题：给定一篇文章和一个候选摘要，模型生成一个修正后的摘要，与文章更加一致。<br>利用现有摘要模型，通过正负样本训练纠正幻觉摘要</p>
+<p>除开构建事实感知模型，为了更好地利用现有的摘要系统，提出了一个事实校正模型 FC,以提<br>高生成式摘要模型生成的任何摘要的事实一致性。FC 将修正过程定义为一个 seq2seq 问题：给定一篇文章和一个候选摘要，模型生成一个修正后的摘要，与文章更加一致。<br>利用现有摘要模型，通过正负样本训练纠正幻觉摘要</p>
 <p><img src="http://qnpicmap.fcsluck.top/pics/202311171414126.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>2.1 衡量事实准确度<br>采用了FactCC(Evaluating the factual consistency of abstractive text summarization,EMNLP2020，该模型是训练出来的),一个基于0t的事实一致性评估器，该模型输出0到1之间的分数（二分类模型)，分数越高表示输入文章和摘要之间的一致性越好。</p>
+<p>2.1 衡量事实准确度<br>采用了 FactCC(Evaluating the factual consistency of abstractive text summarization,EMNLP2020，该模型是训练出来的),一个基于 0t 的事实一致性评估器，该模型输出 0 到 1 之间的分数（二分类模型)，分数越高表示输入文章和摘要之间的一致性越好。</p>
 <p><img src="http://qnpicmap.fcsluck.top/pics/202311171417752.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p>实验结果<br><img src="http://qnpicmap.fcsluck.top/pics/202311171420083.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>检查FASum模型是否仅仅通过复制文章的更多部分来提高事实一致性。FASUM达到了与参考摘要最接近的新颖n-gram比率，并且高于BOTTOMUP和UNILM。表明FASUM可以在确保事实一致性的同时生成高度生成式的摘要。</p>
-<p>2.2 无模型事实一致性衡量（不采用FCC模型进行评估，无需训练评估模型）</p>
+<p>检查 FASum 模型是否仅仅通过复制文章的更多部分来提高事实一致性。FASUM 达到了与参考摘要最接近的新颖 n-gram 比率，并且高于 BOTTOMUP 和 UNILM。表明 FASUM 可以在确保事实一致性的同时生成高度生成式的摘要。</p>
+<p>2.2 无模型事实一致性衡量（不采用 FCC 模型进行评估，无需训练评估模型）</p>
 <p><img src="http://qnpicmap.fcsluck.top/pics/202311171431197.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h2 id="G-Eval-NLG-Evaluation-using-GPT-4-with-Better-Human-Alignment"><a href="#G-Eval-NLG-Evaluation-using-GPT-4-with-Better-Human-Alignment" class="headerlink" title="G-Eval:NLG Evaluation using GPT-4 with Better Human Alignment"></a>G-Eval:NLG Evaluation using GPT-4 with Better Human Alignment</h2><p>(Microsoft Cognitive Services Research,arXiv:2303.16634,2023)</p>
 <blockquote>
 <p>主讲人：hwx</p>
 </blockquote>
 <blockquote>
-<p>该模型用于评估NLG自然语言生成模型生成结果，相较于BLUE,ROUGE评估方法更合理准确。</p>
+<p>该模型用于评估 NLG 自然语言生成模型生成结果，相较于 BLUE,ROUGE 评估方法更合理准确。</p>
 </blockquote>
 <p>现状与问题：</p>
 <ul>
-<li>传统的一些文本评价指标，如BLUE,ROUGE与人类判断的相关性相对较低，特别是对于开放式生成任务。</li>
+<li>传统的一些文本评价指标，如 BLUE,ROUGE 与人类判断的相关性相对较低，特别是对于开放式生成任务。</li>
 <li>此外，这些指标需要相关的参考输出，为新任务收集这些输出的成本很高。</li>
-<li>考虑LLM作为无参考的NLG评估者。其想法是在假设LLM已经学会为高质量和流畅的文本分配更高的慨率的情况下，在没有任何参考目标的情况下使用LLM根据候选输出的生成概率对其进行评分。</li>
+<li>考虑 LLM 作为无参考的 NLG 评估者。其想法是在假设 LLM 已经学会为高质量和流畅的文本分配更高的慨率的情况下，在没有任何参考目标的情况下使用 LLM 根据候选输出的生成概率对其进行评分。</li>
 </ul>
 <p><img src="http://qnpicmap.fcsluck.top/pics/202311171441567.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p>实验结果：</p>
 <p><img src="http://qnpicmap.fcsluck.top/pics/202311171446102.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h2 id="IF"><a href="#IF" class="headerlink" title="IF"></a>IF</h2><p>修改建议：<br>    1. 更加精简，把前后几部分逻辑关系梳理清楚，语言更加贴切。</p>
-<p>mermaid的语法教程</p>
+<p>mermaid 的语法教程</p>
 <p> Mermaid 是一种用于绘制流程图、时序图、甘特图等各种图表的工具，它使用简洁的文本语法来描述图表结构。以下是一些常用的 Mermaid 语法示例和说明：</p>
 <ol>
 <li><p>流程图</p>
@@ -676,12 +676,31 @@
     section 其他任务
         任务4 :2022-01-20 , 8d
 
-</code></pre>
-
+</code></pre></li>
+</ol>
 <p>这个例子中，<code>gantt</code> 表示创建一个甘特图。使用 <code>section</code> 来定义不同的项目或阶段，每个任务可以指定开始时间、持续时间等。</p>
+<p>以上是 Mermaid 的一些基本语法示例，你可以根据需要参考 Mermaid 官方文档了解更多高级用法和配置</p>
+<h1 id="2023-11-19-（项目例会）"><a href="#2023-11-19-（项目例会）" class="headerlink" title="2023-11-19 （项目例会）"></a>2023-11-19 （项目例会）</h1><blockquote>
+<p>[!INFO] 周会总结</p>
+<ol>
+<li>已学内容：<ul>
+<li>完成 SpringBoot 项目实战，学习 SpringCloud（<strong>SpringCloud-Netflix</strong> 的 Eureka、LoadBalancer、Hystrix、Gateway、Config 以及 <strong>SpringCloud-Alibaba</strong> 的 Nacos、Sentinel）</li>
+</ul>
+</li>
+<li>下周计划：<ul>
+<li>继续学习 <strong>SpringCloud</strong>（Seata、OAuth2、Redis 与分布式、Mysql 分布式、消息队列与消息组件），学习 Git 用法。</li>
+</ul>
+</li>
+<li>学习感悟：<ul>
+<li>通过学习了解到 Springcloud 可以将复杂的单体服务进行拆分解耦为多个简单的微服务分布式部署，可以缓解单机服务压力，横向扩展服务提高服务的可用性与可拓展性。然而拆分为多个微服务后服务的注册、发现、配置、负载均衡、降级熔断、路由网关、分布式等需要通过各种对应的中间件来协调配合完成，保证服务完整一致可用。</li>
+</ul>
+</li>
+<li>指导建议：<ul>
+<li>继续按照进度学习，要单独学Dubbo，可以看看SpringCloud-Alibaba实战</li>
+</ul>
 </li>
 </ol>
-<p>以上是 Mermaid 的一些基本语法示例，你可以根据需要参考 Mermaid 官方文档了解更多高级用法和配置</p>
+</blockquote>
 
                 
               </div>
@@ -717,9 +736,9 @@
       
         <a href="/tags/AIGC/">#AIGC</a>
       
-        <a href="/tags/KG/">#KG</a>
-      
         <a href="/tags/NLP/">#NLP</a>
+      
+        <a href="/tags/KG/">#KG</a>
       
         <a href="/tags/LLM/">#LLM</a>
       
@@ -752,7 +771,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2023年11月18日</div>
+          <div>2023年11月19日</div>
         </div>
       
       <div class="license-meta-item">
@@ -877,6 +896,13 @@
 
 
 
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+  });
+</script>
 
 
 
