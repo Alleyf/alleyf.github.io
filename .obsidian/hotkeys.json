@@ -298,5 +298,14 @@
       ],
       "key": "`"
     }
-  ]
+  ],
+  "editor:insert-tag": [
+    {
+      "modifiers": [
+        "Mod"
+      ],
+      "key": "T"
+    }
+  ],
+  "workspace:new-tab": []
 }

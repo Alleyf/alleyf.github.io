@@ -45,8 +45,22 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "42de3c76684558ab",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "source/_posts/运维开发/各种环境配置.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -66,7 +80,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/前后端开发/SpringCloud Alibaba-微服务进阶.md"
+                "file": "source/_posts/运维开发/Git-简记.md"
               }
             }
           }
@@ -123,7 +137,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/前后端开发/SpringCloud Alibaba-微服务进阶.md",
+                "file": "source/_posts/运维开发/Git-简记.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -179,30 +193,32 @@
       "graph:查看关系图谱": false
     }
   },
-  "active": "8e85ccb013ecad38",
+  "active": "4a383e802b683e84",
   "lastOpenFiles": [
+    "public/2023/05/14870b008a81.html",
+    "public/xml/local-search.xml",
+    "public/xml",
+    "public/tags/Paper/index.html",
+    "public/tags/Paper",
+    "public/links/index.html",
+    "public/links",
+    "public/tags/LLM/index.html",
+    "public/tags/LLM",
+    "public/tags/KG/index.html",
+    "public/tags/KG",
+    "source/_posts/前后端开发/SpringCloud Alibaba-微服务进阶.md",
     "source/_posts/运维开发/Git-简记.md",
     "source/_posts/科研学习/会议讨论/周会.md",
+    "source/_posts/运维开发/各种环境配置.md",
+    "source/_posts/前后端开发/SpringCloud-微服务基础.md",
+    "未命名.canvas",
     "source/_posts/科研学习/会议讨论/国际会议.md",
     "source/_posts/科研学习/论文总结/Paper_Reading_Tables.md",
     "source/_posts/科研学习/国基金项目/司法领域大模型调研三.md",
-    "db.json",
-    "public/js/utils.js",
-    "public/js/useaplayer.js",
-    "public/js/plugins.js",
-    "public/js/local-search.js",
-    "public/js/leancloud.js",
-    "public/js/events.js",
-    "public/js/img-lazyload.js",
-    "public/js/color-schema.js",
-    "public/js/boot.js",
-    "source/_posts/运维开发/各种环境配置.md",
     "source/about/index.md",
-    "source/_posts/前后端开发/SpringCloud Alibaba-微服务进阶.md",
     "source/_posts/前后端开发/SpringBoot+Vue项目实战.md",
     "source/_posts/运维开发/部署方法.md",
     "source/_posts/科研学习/国基金项目/司法领域大模型调研四.md",
-    "source/_posts/前后端开发/SpringCloud-微服务基础.md",
     "public/img/loading.gif",
     "public/img/icon.png",
     "public/img/police_beian.png",
@@ -226,10 +242,8 @@
     "node_modules/statuses/HISTORY.md",
     "node_modules/xmlchars/README.md",
     "node_modules/xml-name-validator/README.md",
-    "node_modules/ws/README.md",
     "canvas/review plans.canvas",
     "canvas/AI学习思路.canvas",
-    "未命名.canvas",
     "source/_posts/英语学习/EnglishWords.canvas",
     "source/_posts/英语学习/PaperWords.canvas",
     "source/_posts/课程学习/review plans.canvas",
