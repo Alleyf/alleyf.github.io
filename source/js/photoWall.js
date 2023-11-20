@@ -10,7 +10,7 @@ var windowWidth =
 if (windowWidth < 768) {
   var imageWidth = 145; //图片显示宽度(手机端)
 } else {
-  var imageWidth = 250; //图片显示宽度
+  var imageWidth = 395; //图片显示宽度250
 }
 
 const photo = {
@@ -35,7 +35,7 @@ const photo = {
       imgNameWithPattern,
     } = options;
     const htmlEle = `<div class="card lozad" style="width:${imageWidth}px">
-                  <div class="ImageInCard" style="height:${(imageWidth * imageY) / imageX
+                  <div class="ImageInCard" style="height:${(imageWidth * imageY * 2) / imageX
       }px">
                     <a data-fancybox="gallery" href="${imgPath}${imgNameWithPattern}"
                           data-caption="${imgName}" title="${imgName}">

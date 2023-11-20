@@ -59,7 +59,7 @@ git clone https://github.com/Alleyf/linux-tutorial.git
 ![image.png](http://qnpicmap.fcsluck.top/pics/202311162159698.png)
 ## 查看仓库状态
 ```shell
-git status
+git status #查看工作状态
 git ls-files #查看暂存区的文件
 ```
 查看状态：
@@ -68,7 +68,7 @@ git ls-files #查看暂存区的文件
 ![|575](http://qnpicmap.fcsluck.top/pics/202311180014236.png)
 ## 连接云端仓库
 ![image.png|575](http://qnpicmap.fcsluck.top/pics/202311162229748.png)
-添加一个 git URL 作为别名
+添加一个 `git URL` 作为别名
 ```shell
 git remote add [alias] [url]
 ```
@@ -138,6 +138,61 @@ git diff head
 git diff --cached
 ```
 ![image.png|550](http://qnpicmap.fcsluck.top/pics/202311192255196.png)
+
+
+4. 比较**两个特定版本**之间的差异：
+
+```shell
+git diff ec64d23 1406deb #比较对象为版本id，通过git log查看
+git diff c088350 head #比较head最新版本与指定版本
+git diff head~ head #比较上一版本（head~）与最新版本
+git diff head~ head file1.md #比较指定文件版本之间的差异
+```
+
+![image.png](http://qnpicmap.fcsluck.top/pics/202311202236964.png)
+比较**head最新版本**与特定版本
+![image.png|450](http://qnpicmap.fcsluck.top/pics/202311202239878.png)
+比较**最新版本与上一版本**的区别
+![image.png](http://qnpicmap.fcsluck.top/pics/202311202242529.png)
+
+> 1. `head~/head^`：最新版本的前一个版本
+> 2. `head~2`：前两个版本
+> 3. `head~N`：前N个版本
+
+
+5. 比较**两个分支**之间的差异：
+
+```shell
+git diff main master #比较main和master分支的差异
+```
+
+![image.png](http://qnpicmap.fcsluck.top/pics/202311202255763.png)
+
+
+## 删除文件
+
+```shell
+git rm filename #删除指定文件（包括工作区和暂存区）
+```
+
+![image.png](http://qnpicmap.fcsluck.top/pics/202311202300549.png)
+
+## 忽略文件
+
+***.gitignore***
+需要忽略的文件（*系统或者软件自动生成的文件，编译产生的中间文件和结果文件，运行时生成日志文件、缓存文件、临时文件，涉及身份、密码、口令、秘钥等敏感信息文件*）：
+> - 忽略日志文件和文件夹
+> - 忽略所有.class文件
+> - 忽略所有.0文件
+> - 忽略所有.env文件
+> - 忽略所有.zip和tar文件
+> - 忽略所有.pem文件
+
+1. <u>只需要将要忽略的文件的文件名添加到.gitignore文件中即可。</u>
+2. `.gitignore`文件中可使用**通配符**进行匹配（eg：*.log）
+![image.png](http://qnpicmap.fcsluck.top/pics/202311202320021.png)
+
+
 ## 回退/溯版本
 git reset 有三种模式：
 ```shell
