@@ -194,9 +194,9 @@
     
     <category term="AIGC" scheme="https://alleyf.github.io/tags/AIGC/"/>
     
-    <category term="KG" scheme="https://alleyf.github.io/tags/KG/"/>
-    
     <category term="NLP" scheme="https://alleyf.github.io/tags/NLP/"/>
+    
+    <category term="KG" scheme="https://alleyf.github.io/tags/KG/"/>
     
     <category term="LLM" scheme="https://alleyf.github.io/tags/LLM/"/>
     
@@ -250,9 +250,9 @@
     <category term="科研学习" scheme="https://alleyf.github.io/categories/%E7%A7%91%E7%A0%94%E5%AD%A6%E4%B9%A0/"/>
     
     
-    <category term="KG" scheme="https://alleyf.github.io/tags/KG/"/>
-    
     <category term="NLP" scheme="https://alleyf.github.io/tags/NLP/"/>
+    
+    <category term="KG" scheme="https://alleyf.github.io/tags/KG/"/>
     
   </entry>
   
