@@ -35,7 +35,7 @@ const photo = {
       imgNameWithPattern,
     } = options;
     const htmlEle = `<div class="card lozad" style="width:${imageWidth}px">
-                  <div class="ImageInCard" style="height:${(imageWidth * imageY * 2) / imageX
+                  <div class="ImageInCard" style="height:${(imageWidth * imageY * 9) / (imageX * 16)
       }px">
                     <a data-fancybox="gallery" href="${imgPath}${imgNameWithPattern}"
                           data-caption="${imgName}" title="${imgName}">

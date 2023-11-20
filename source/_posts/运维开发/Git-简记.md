@@ -1,11 +1,14 @@
 ---
-title: Git-简记
-date: 2023-11-16 17:29:36
+title:
+  "{ title }": 
+date:
+  "{ date }": 
 tags:
   - Git
-sticky: 85
+sticky: 60
 excerpt: 一些关于 git 的常用操作。
 author: fcs
+index_img: https://picsum.photos/800/250
 ---
 ![](https://picsum.photos/800/250)
 # 原理解析
@@ -138,8 +141,6 @@ git diff head
 git diff --cached
 ```
 ![image.png|550](http://qnpicmap.fcsluck.top/pics/202311192255196.png)
-
-
 4. 比较**两个特定版本**之间的差异：
 
 ```shell
@@ -148,51 +149,39 @@ git diff c088350 head #比较head最新版本与指定版本
 git diff head~ head #比较上一版本（head~）与最新版本
 git diff head~ head file1.md #比较指定文件版本之间的差异
 ```
-
 ![image.png](http://qnpicmap.fcsluck.top/pics/202311202236964.png)
-比较**head最新版本**与特定版本
+比较**head 最新版本**与特定版本
 ![image.png|450](http://qnpicmap.fcsluck.top/pics/202311202239878.png)
 比较**最新版本与上一版本**的区别
 ![image.png](http://qnpicmap.fcsluck.top/pics/202311202242529.png)
-
 > 1. `head~/head^`：最新版本的前一个版本
 > 2. `head~2`：前两个版本
-> 3. `head~N`：前N个版本
-
+> 3. `head~N`：前 N 个版本
 
 5. 比较**两个分支**之间的差异：
 
 ```shell
 git diff main master #比较main和master分支的差异
 ```
-
 ![image.png](http://qnpicmap.fcsluck.top/pics/202311202255763.png)
-
-
 ## 删除文件
-
 ```shell
 git rm filename #删除指定文件（包括工作区和暂存区）
 ```
-
 ![image.png](http://qnpicmap.fcsluck.top/pics/202311202300549.png)
-
 ## 忽略文件
-
 ***.gitignore***
 需要忽略的文件（*系统或者软件自动生成的文件，编译产生的中间文件和结果文件，运行时生成日志文件、缓存文件、临时文件，涉及身份、密码、口令、秘钥等敏感信息文件*）：
 > - 忽略日志文件和文件夹
-> - 忽略所有.class文件
-> - 忽略所有.0文件
-> - 忽略所有.env文件
-> - 忽略所有.zip和tar文件
-> - 忽略所有.pem文件
+> - 忽略所有.class 文件
+> - 忽略所有.0 文件
+> - 忽略所有.env 文件
+> - 忽略所有.zip 和 tar 文件
+> - 忽略所有.pem 文件
 
-1. <u>只需要将要忽略的文件的文件名添加到.gitignore文件中即可。</u>
-2. `.gitignore`文件中可使用**通配符**进行匹配（eg：*.log）
+1. <u>只需要将要忽略的文件的文件名添加到.gitignore 文件中即可。</u>
+2. `.gitignore` 文件中可使用**通配符**进行匹配（eg：*.log）
 ![image.png](http://qnpicmap.fcsluck.top/pics/202311202320021.png)
-
-
 ## 回退/溯版本
 git reset 有三种模式：
 ```shell
@@ -224,14 +213,12 @@ git checkout -b "branchName" #新建分支并切换到该分支
 git branch -d "branchName"
 ```
 强制删除分支使用 `-D` 参数。
-
 2. 删除**远程分支**，使用以下指令：
 
 ```shell
 git push "远程库名" -d "branch name" 
 ```
 强制删除分支使用 `-D` 参数。
-
 # 参考文献
 ```cardlink
 url: https://www.bilibili.com/video/BV1HM411377j/
@@ -248,4 +235,3 @@ host: wangchujiang.com
 favicon: data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20height%3D%221em%22%20width%3D%221em%22%3E%20%3Cpath%20d%3D%22m21.66%2010.44-.98%204.18c-.84%203.61-2.5%205.07-5.62%204.77-.5-.04-1.04-.13-1.62-.27l-1.68-.4c-4.17-.99-5.46-3.05-4.48-7.23l.98-4.19c.2-.85.44-1.59.74-2.2%201.17-2.42%203.16-3.07%206.5-2.28l1.67.39c4.19.98%205.47%203.05%204.49%207.23Z%22%20fill%3D%22%23c9d1d9%22%2F%3E%20%3Cpath%20d%3D%22M15.06%2019.39c-.62.42-1.4.77-2.35%201.08l-1.58.52c-3.97%201.28-6.06.21-7.35-3.76L2.5%2013.28c-1.28-3.97-.22-6.07%203.75-7.35l1.58-.52c.41-.13.8-.24%201.17-.31-.3.61-.54%201.35-.74%202.2l-.98%204.19c-.98%204.18.31%206.24%204.48%207.23l1.68.4c.58.14%201.12.23%201.62.27Zm2.43-8.88c-.06%200-.12-.01-.19-.02l-4.85-1.23a.75.75%200%200%201%20.37-1.45l4.85%201.23a.748.748%200%200%201-.18%201.47Z%22%20fill%3D%22%23228e6c%22%20%2F%3E%20%3Cpath%20d%3D%22M14.56%2013.89c-.06%200-.12-.01-.19-.02l-2.91-.74a.75.75%200%200%201%20.37-1.45l2.91.74c.4.1.64.51.54.91-.08.34-.38.56-.72.56Z%22%20fill%3D%22%23228e6c%22%20%2F%3E%20%3C%2Fsvg%3E
 ```
 2. [Git 备忘清单 & git cheatsheet & Quick Reference](https://wangchujiang.com/reference/docs/git.html)
-

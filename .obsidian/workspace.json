@@ -73,7 +73,7 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -93,7 +93,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/gallery/index.md"
+                "file": "source/_posts/运维开发/Git-简记.md"
               }
             }
           }
@@ -150,7 +150,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/gallery/index.md",
+                "file": "source/_posts/运维开发/Git-简记.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -208,29 +208,29 @@
   },
   "active": "7debd791db616930",
   "lastOpenFiles": [
-    "public/2023/03/73453d2eb27d.html",
+    "public/archives/2022/11/index.html",
+    "public/archives/2022/11",
+    "public/archives/2022/09/index.html",
+    "public/archives/2022/09",
+    "public/2023/04/fbae7fa42803.html",
+    "public/2023/04/5d72eb9cc9af.html",
+    "public/2023/04/3dbbbdf5122f.html",
+    "public/2023/04/218510a8c5b9.html",
+    "public/2023/04",
     "public/2023/03/f41646eecf81.html",
-    "public/2023/03/cc1560495a8d.html",
-    "public/2023/03/3962ffddc056.html",
-    "public/2023/03/56d5f0383564.html",
-    "public/2023/03/2e76a383274a.html",
-    "public/2023/03/25848e23b2aa.html",
-    "public/2023/03",
-    "db.json",
+    "public/2023/03/73453d2eb27d.html",
     "public/gallery/images/DeskTopWallper/swordswoman.jpg",
     "public/gallery/images/DeskTopWallper/sunset.png",
-    "public/gallery/images/DeskTopWallper/moon.jpg",
-    "public/gallery/images/DeskTopWallper/fire.jpg",
     "public/gallery/images/DeskTopWallper/sun.jpg",
+    "public/gallery/images/DeskTopWallper/moon.jpg",
     "public/gallery/images/DeskTopWallper/flower.jpg",
+    "public/gallery/images/DeskTopWallper/fire.jpg",
     "public/gallery/images/DeskTopWallper/cloud.png",
-    "public/gallery/images/DeskTopWallper",
-    "public/gallery/images",
+    "source/gallery/index.md",
     "source/_posts/前后端开发/Spring核心学习.md",
+    "source/_posts/运维开发/Git-简记.md",
     "source/_posts/运维开发/各种环境配置.md",
     "source/_posts/科研学习/会议讨论/周会.md",
-    "source/_posts/运维开发/Git-简记.md",
-    "source/gallery/index.md",
     "source/gallery/images/DeskTopWallper/fire.jpg",
     "source/gallery/images/DeskTopWallper/swordswoman.jpg",
     "source/gallery/images/DeskTopWallper/sun.jpg",
