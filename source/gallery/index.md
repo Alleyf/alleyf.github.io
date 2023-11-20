@@ -63,15 +63,7 @@ height:100%;
 <div class="ImageGrid"></div>
 <script>
 const images = document.querySelectorAll("img");
-
 images.forEach(image => {
   image.classList.add("animated");
 });
 </script>
-
- 您可以使用以下JavaScript代码为HTML中的所有图片添加类名为"animated"的装饰类：
-
-```javascript
-// 获取所有图片元素
-var images = document.getElementsByTagName('img');
-

@@ -73,7 +73,7 @@
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -93,7 +93,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/运维开发/Git-简记.md"
+                "file": "source/gallery/index.md"
               }
             }
           }
@@ -150,7 +150,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/运维开发/Git-简记.md",
+                "file": "source/gallery/index.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -206,8 +206,9 @@
       "graph:查看关系图谱": false
     }
   },
-  "active": "7debd791db616930",
+  "active": "6a852b9b11eb3918",
   "lastOpenFiles": [
+    "source/_posts/运维开发/Git-简记.md",
     "public/archives/2022/11/index.html",
     "public/archives/2022/11",
     "public/archives/2022/09/index.html",
@@ -218,7 +219,6 @@
     "public/2023/04/218510a8c5b9.html",
     "public/2023/04",
     "public/2023/03/f41646eecf81.html",
-    "public/2023/03/73453d2eb27d.html",
     "public/gallery/images/DeskTopWallper/swordswoman.jpg",
     "public/gallery/images/DeskTopWallper/sunset.png",
     "public/gallery/images/DeskTopWallper/sun.jpg",
@@ -228,7 +228,6 @@
     "public/gallery/images/DeskTopWallper/cloud.png",
     "source/gallery/index.md",
     "source/_posts/前后端开发/Spring核心学习.md",
-    "source/_posts/运维开发/Git-简记.md",
     "source/_posts/运维开发/各种环境配置.md",
     "source/_posts/科研学习/会议讨论/周会.md",
     "source/gallery/images/DeskTopWallper/fire.jpg",
