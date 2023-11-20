@@ -44,9 +44,15 @@
 <meta property="og:image" content="http://qnpicmap.fcsluck.top/pics/202311192246423.png">
 <meta property="og:image" content="http://qnpicmap.fcsluck.top/pics/202311192251998.png">
 <meta property="og:image" content="http://qnpicmap.fcsluck.top/pics/202311192255196.png">
+<meta property="og:image" content="http://qnpicmap.fcsluck.top/pics/202311202236964.png">
+<meta property="og:image" content="http://qnpicmap.fcsluck.top/pics/202311202239878.png">
+<meta property="og:image" content="http://qnpicmap.fcsluck.top/pics/202311202242529.png">
+<meta property="og:image" content="http://qnpicmap.fcsluck.top/pics/202311202255763.png">
+<meta property="og:image" content="http://qnpicmap.fcsluck.top/pics/202311202300549.png">
+<meta property="og:image" content="http://qnpicmap.fcsluck.top/pics/202311202320021.png">
 <meta property="og:image" content="http://qnpicmap.fcsluck.top/pics/202311180007484.png">
 <meta property="article:published_time" content="2023-11-16T09:29:36.000Z">
-<meta property="article:modified_time" content="2023-11-20T02:43:42.831Z">
+<meta property="article:modified_time" content="2023-11-20T15:23:56.935Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="Git">
 <meta name="twitter:card" content="summary_large_image">
@@ -302,7 +308,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.3k 字
+          3.9k 字
         
       </span>
     
@@ -313,7 +319,7 @@
         
         
         
-          28 分钟
+          33 分钟
         
       </span>
     
@@ -364,7 +370,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：12 小时前
+                    本文最后更新于：11 分钟前
                   
                 
               </p>
@@ -395,9 +401,9 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs git">git init （init_repo_dir_name）#后面可选在当前目录新建目录作为git仓库<br></code></pre></td></tr></table></figure>
 <h3 id="远程克隆"><a href="#远程克隆" class="headerlink" title="远程克隆"></a>远程克隆</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs git">git clone https://github.com/Alleyf/linux-tutorial.git<br></code></pre></td></tr></table></figure>
 <p><img src="http://qnpicmap.fcsluck.top/pics/202311162159698.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h2 id="查看仓库状态"><a href="#查看仓库状态" class="headerlink" title="查看仓库状态"></a>查看仓库状态</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">git status<br>git ls-files #查看暂存区的文件<br></code></pre></td></tr></table></figure>
+<h2 id="查看仓库状态"><a href="#查看仓库状态" class="headerlink" title="查看仓库状态"></a>查看仓库状态</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">git status #查看工作状态<br>git ls-files #查看暂存区的文件<br></code></pre></td></tr></table></figure>
 <p>查看状态：<br><img src="http://qnpicmap.fcsluck.top/pics/202311162220832.png" srcset="/img/loading.gif" lazyload alt="image.png|575"><br>查看暂存区内容：<br><img src="http://qnpicmap.fcsluck.top/pics/202311180014236.png" srcset="/img/loading.gif" lazyload alt="|575"></p>
-<h2 id="连接云端仓库"><a href="#连接云端仓库" class="headerlink" title="连接云端仓库"></a>连接云端仓库</h2><p><img src="http://qnpicmap.fcsluck.top/pics/202311162229748.png" srcset="/img/loading.gif" lazyload alt="image.png|575"><br>添加一个 git URL 作为别名</p>
+<h2 id="连接云端仓库"><a href="#连接云端仓库" class="headerlink" title="连接云端仓库"></a>连接云端仓库</h2><p><img src="http://qnpicmap.fcsluck.top/pics/202311162229748.png" srcset="/img/loading.gif" lazyload alt="image.png|575"><br>添加一个 <code>git URL</code> 作为别名</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git remote add [alias] [url]<br></code></pre></td></tr></table></figure>
 <p>显示您设置的远程存储库的名称</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git remote<br></code></pre></td></tr></table></figure>
@@ -427,6 +433,43 @@
 <p><img src="http://qnpicmap.fcsluck.top/pics/202311192251998.png" srcset="/img/loading.gif" lazyload alt="image.png|550"><br>3. 查看 <strong>暂存区和仓库区</strong>的差别：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git diff --cached<br></code></pre></td></tr></table></figure>
 <p><img src="http://qnpicmap.fcsluck.top/pics/202311192255196.png" srcset="/img/loading.gif" lazyload alt="image.png|550"></p>
+<ol start="4">
+<li>比较<strong>两个特定版本</strong>之间的差异：</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">git diff ec64d23 1406deb #比较对象为版本id，通过git log查看<br>git diff c088350 head #比较head最新版本与指定版本<br>git diff head~ head #比较上一版本（head~）与最新版本<br>git diff head~ head file1.md #比较指定文件版本之间的差异<br></code></pre></td></tr></table></figure>
+
+<p><img src="http://qnpicmap.fcsluck.top/pics/202311202236964.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>比较<strong>head最新版本</strong>与特定版本<br><img src="http://qnpicmap.fcsluck.top/pics/202311202239878.png" srcset="/img/loading.gif" lazyload alt="image.png|450"><br>比较<strong>最新版本与上一版本</strong>的区别<br><img src="http://qnpicmap.fcsluck.top/pics/202311202242529.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<blockquote>
+<ol>
+<li><code>head~/head^</code>：最新版本的前一个版本</li>
+<li><code>head~2</code>：前两个版本</li>
+<li><code>head~N</code>：前N个版本</li>
+</ol>
+</blockquote>
+<ol start="5">
+<li>比较<strong>两个分支</strong>之间的差异：</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git diff main master #比较main和master分支的差异<br></code></pre></td></tr></table></figure>
+
+<p><img src="http://qnpicmap.fcsluck.top/pics/202311202255763.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h2 id="删除文件"><a href="#删除文件" class="headerlink" title="删除文件"></a>删除文件</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git rm filename #删除指定文件（包括工作区和暂存区）<br></code></pre></td></tr></table></figure>
+
+<p><img src="http://qnpicmap.fcsluck.top/pics/202311202300549.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h2 id="忽略文件"><a href="#忽略文件" class="headerlink" title="忽略文件"></a>忽略文件</h2><p><em><strong>.gitignore</strong></em><br>需要忽略的文件（<em>系统或者软件自动生成的文件，编译产生的中间文件和结果文件，运行时生成日志文件、缓存文件、临时文件，涉及身份、密码、口令、秘钥等敏感信息文件</em>）：</p>
+<blockquote>
+<ul>
+<li>忽略日志文件和文件夹</li>
+<li>忽略所有.class文件</li>
+<li>忽略所有.0文件</li>
+<li>忽略所有.env文件</li>
+<li>忽略所有.zip和tar文件</li>
+<li>忽略所有.pem文件</li>
+</ul>
+</blockquote>
+<ol>
+<li><u>只需要将要忽略的文件的文件名添加到.gitignore文件中即可。</u></li>
+<li><code>.gitignore</code>文件中可使用<strong>通配符</strong>进行匹配（eg：*.log）<br><img src="http://qnpicmap.fcsluck.top/pics/202311202320021.png" srcset="/img/loading.gif" lazyload alt="image.png"></li>
+</ol>
 <h2 id="回退-溯版本"><a href="#回退-溯版本" class="headerlink" title="回退&#x2F;溯版本"></a>回退&#x2F;溯版本</h2><p>git reset 有三种模式：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">git reset --soft 版本号 #回退版本后的内容保留工作区和暂存区<br>git reset --hard 版本号 #都不保留<br>git reset --mixed 版本号 #仅保留工作区内容<br></code></pre></td></tr></table></figure>
 <p><img src="http://qnpicmap.fcsluck.top/pics/202311180007484.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>不同模式，工作区和暂存区的内容会不同。</p>
