@@ -194,7 +194,7 @@ public User findUserById (@PathVariable ("uid") int uid){
 ```
 现在将全部服务启动：
 ![image-20230306231244149](https://s2.loli.net/2023/03/06/GCrm8wgWXLzYhtK.png)
-可以看到 Nacos 中的实例数量已经显示为`2`：
+可以看到 Nacos 中的实例数量已经显示为 `2`：
 ![image-20230306231251732](https://s2.loli.net/2023/03/06/p6iYrPa8e1btZkl.png)
 接着我们调用借阅服务，看看能否负载均衡远程调用：
 ![image-20230306231259820](https://s2.loli.net/2023/03/06/jCl8RGhaIiUDBgm.png)
@@ -250,7 +250,7 @@ spring:
         # 修改为重庆地区的集群
         cluster-name: Chongqing
 ```
-当然由于我们这里使用的是不同的启动配置，直接在启动配置中添加环境变量`spring. cloud. nacos. discovery. cluster-name`也行，这里我们将用户服务和图书服务两个区域都分配一个，借阅服务就配置为成都地区：
+当然由于我们这里使用的是不同的启动配置，直接在启动配置中添加环境变量 `spring. cloud. nacos. discovery. cluster-name` 也行，这里我们将用户服务和图书服务两个区域都分配一个，借阅服务就配置为成都地区：
 ![image-20230306231435388](https://s2.loli.net/2023/03/06/cwIhdCMmATELvlN.png)
 修改完成之后，我们来尝试重新启动一下（Nacos 也要重启），观察 Nacos 中集群分布情况：
 ![image-20230306231443247](https://s2.loli.net/2023/03/06/jrYo3epaLMyQnu4.png)
@@ -291,7 +291,7 @@ spring:
 通过配置权重，某些性能不太好的机器就能够更少地被使用，而更多的使用那些网络良好性能更高的主机上的实例。
 ### 配置中心
 前面我们学习了 SpringCloud Config，我们可以通过配置服务来加载远程配置，这样我们就可以在远端集中管理配置文件。
-实际上我们可以在`bootstrap. yml`中配置远程配置文件获取，然后再进入到配置文件加载环节，而 Nacos 也支持这样的操作，使用方式也比较类似，比如我们现在想要将借阅服务的配置文件放到 Nacos 进行管理，那么这个时候就需要在 Nacos 中创建配置文件：
+实际上我们可以在 `bootstrap. yml` 中配置远程配置文件获取，然后再进入到配置文件加载环节，而 Nacos 也支持这样的操作，使用方式也比较类似，比如我们现在想要将借阅服务的配置文件放到 Nacos 进行管理，那么这个时候就需要在 Nacos 中创建配置文件：
 ![image-20230306231534251](https://s2.loli.net/2023/03/06/6j2pAmdfyIGz9Cu.png)
 将借阅服务的配置文件全部（当然正常情况下是不会全部 CV 的，只会复制那些需要经常修改的部分，这里为了省事就直接全部 CV 了）复制过来，注意**Data ID**的格式跟我们之前一样，`应用名称-环境. yml`，如果只编写应用名称，那么代表此配置文件无论在什么环境下都会使用，然后每个配置文件都可以进行分组，也算是一种分类方式：
 ![image-20230306231514151](https://s2.loli.net/2023/03/06/7ACoW3txIsjLzu2.png)
@@ -308,7 +308,7 @@ spring:
     <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
 </dependency>
 ```
-接着我们在借阅服务中添加`bootstrap. yml`文件：
+接着我们在借阅服务中添加 `bootstrap. yml` 文件：
 ```yaml
 spring:
   application:
@@ -373,7 +373,7 @@ public class TestController {
 ![image-20230306231723164](https://s2.loli.net/2023/03/06/Ek4APjgGcqbitNm.png)
 我们在不同的命名空间下，实例和配置都是相互之间隔离的，我们也可以在配置文件中指定当前的命名空间。
 ### 实现高可用
-由于 Nacos 暂不支持 Arm 架构芯片的 Mac 集群搭建，本小节用 Linxu 云主机（Nacos 比较吃内存，2 个 Nacos 服务器集群，至少2G 内存）环境演示。
+由于 Nacos 暂不支持 Arm 架构芯片的 Mac 集群搭建，本小节用 Linxu 云主机（Nacos 比较吃内存，2 个 Nacos 服务器集群，至少 2G 内存）环境演示。
 通过前面的学习，我们已经了解了如何使用 Nacos 以及 Nacos 的功能等，最后我们来看看，如果像之前 Eureka 一样，搭建 Nacos 集群，实现高可用。
 官方方案： https://nacos.io/zh-cn/docs/cluster-mode-quick-start.html
 ![deployDnsVipMode.jpg](https://s2.loli.net/2023/03/06/H1AvxOK78yspP5k.jpg)
@@ -385,7 +385,7 @@ public class TestController {
 
 我们来看看它的架构设计，它推荐我们在所有的 Nacos 服务端之前建立一个负载均衡，我们通过访问负载均衡服务器来间接访问到各个 Nacos 服务器。实际上就，是比如有三个 Nacos 服务器做集群，但是每个服务不可能把每个 Nacos 都去访问一次进行注册，实际上只需要在任意一台 Nacos 服务器上注册即可，Nacos 服务器之间会自动同步信息，但是如果我们随便指定一台 Nacos 服务器进行注册，如果这台 Nacos 服务器挂了，但是其他 Nacos 服务器没挂，这样就没办法完成注册了，但是实际上整个集群还是可用的状态。
 所以这里就需要在所有 Nacos 服务器之前搭建一个 SLB（服务器负载均衡），这样就可以避免上面的问题了。但是我们知道，如果要实现外界对服务访问的负载均衡，我们就得用比如之前说到的 Gateway 来实现，而这里实际上我们可以用一个更加方便的工具：Nginx，来实现（之前我们没讲过，但是使用起来很简单，放心后面会带着大家使用）
-关于 SLB 最上方还有一个 DNS（我们在`计算机网络`这门课程中学习过），这个是因为 SLB 是裸 IP，如果 SLB 服务器修改了地址，那么所有微服务注册的地址也得改，所以这里是通过加域名，通过域名来访问，让 DNS 去解析真实 IP，这样就算改变 IP，只需要修改域名解析记录即可，域名地址是不会变化的。
+关于 SLB 最上方还有一个 DNS（我们在 `计算机网络` 这门课程中学习过），这个是因为 SLB 是裸 IP，如果 SLB 服务器修改了地址，那么所有微服务注册的地址也得改，所以这里是通过加域名，通过域名来访问，让 DNS 去解析真实 IP，这样就算改变 IP，只需要修改域名解析记录即可，域名地址是不会变化的。
 最后就是 Nacos 的数据存储模式，在单节点的情况下，Nacos 实际上是将数据存放在自带的一个嵌入式数据库中：
 ![image-20230306231744022](https://s2.loli.net/2023/03/06/Fuxq9Dl3rGfnTZA.png)
 而这种模式只适用于单节点，在多节点集群模式下，肯定是不能各存各的，所以，Nacos 提供了 MySQL 统一存储支持，我们只需要让所有的 Nacos 服务器连接 MySQL 进行数据存储即可，官方也提供好了 SQL 文件。
@@ -393,9 +393,9 @@ public class TestController {
 ![image-20230306231753589](https://s2.loli.net/2023/03/06/97suBpfdeF54rc2.png)
 我们来将其导入到数据库，可以看到生成了很多的表：
 ![image-20230306231802722](https://s2.loli.net/2023/03/06/cf76RJ9VUiQBlje.png)
-然后我们来创建两个 Nacos 服务器，做一个迷你的集群，这里使用`scp`命令将 nacos 服务端上传到 Linux 服务器（注意需要提前安装好 JRE 8 或更高版本的环境）：
+然后我们来创建两个 Nacos 服务器，做一个迷你的集群，这里使用 `scp` 命令将 nacos 服务端上传到 Linux 服务器（注意需要提前安装好 JRE 8 或更高版本的环境）：
 ![image-20230306231811912](https://s2.loli.net/2023/03/06/RW4JIBKVXSbG3lZ.png)
-解压之后，我们对其配置文件进行修改，首先是`application. properties`配置文件，修改以下内容，包括 MySQL 服务器的信息：
+解压之后，我们对其配置文件进行修改，首先是 `application. properties` 配置文件，修改以下内容，包括 MySQL 服务器的信息：
 ```properties
 ### Default web server port:
 server. port=8801
@@ -413,7 +413,7 @@ db. password. 0=nacos
 ![image-20230306231821488](https://s2.loli.net/2023/03/06/2pe51dHQsJkPVY7.png)
 端口记得使用内网 IP 地址：
 ![image-20230306231828707](https://s2.loli.net/2023/03/06/5CbEGQ7rX2StUkR.png)
-最后我们修改一下 Nacos 的内存分配以及前台启动，直接修改`startup. sh`文件（内存有限，玩不起高的）：
+最后我们修改一下 Nacos 的内存分配以及前台启动，直接修改 `startup. sh` 文件（内存有限，玩不起高的）：
 ![image-20230306231836711](https://s2.loli.net/2023/03/06/kQF3lN24vcBqzDi.png)
 保存之后，将 nacos 复制一份，并将端口修改为 8802，接着启动这两个 Nacos 服务器。
 ![image-20230306231845850](https://s2.loli.net/2023/03/06/PQYi69aKZUXrNlJ.png)
@@ -428,7 +428,7 @@ db. password. 0=nacos
 ```
 可以看到直接请求 80 端口之后得到，表示安装成功：
 ![image-20230306231903833](https://s2.loli.net/2023/03/06/gVuMlAXcY34Ka2C.png)
-现在我们需要让其代理我们刚刚启动的两个 Nacos 服务器，我们需要对其进行一些配置。配置文件位于`/etc/nginx/nginx. conf`，添加以下内容：
+现在我们需要让其代理我们刚刚启动的两个 Nacos 服务器，我们需要对其进行一些配置。配置文件位于 `/etc/nginx/nginx. conf`，添加以下内容：
 ```conf
 #添加我们在上游刚刚创建好的两个nacos服务器
 upstream nacos-server {
@@ -451,10 +451,10 @@ server {
 
 
 > [!NOTE] Tips
-> 1. nacos集群模式时*cluster.conf*必须配置的**ip是本地ip地址，不能是127.0.0.1**
-> 2. nacos修改*application.properties*配置文件不生效，原因在于bin目录下的startup启动文件中设置的**配置文件的位置不对**(不能带`optional:`)，要改为：
+> 1. nacos 集群模式时*cluster.conf*必须配置的**ip 是本地 ip 地址，不能是 127.0.0.1**
+> 2. nacos 修改*application.properties*配置文件不生效，原因在于 bin 目录下的 startup 启动文件中设置的**配置文件的位置不对**(不能带 `optional:`)，要改为：
 > windows（startup.cmd）：`set "NACOS_CONFIG_OPTS=--spring.config.additional-location=%CUSTOM_SEARCH_LOCATIONS%"`
-> linux（startup.sh）:`JAVA_OPT="${JAVA_OPT} --spring.config.additional-location=${CUSTOM_SEARCH_LOCATIONS}"`
+> linux（startup.sh）: `JAVA_OPT="${JAVA_OPT} --spring.config.additional-location=${CUSTOM_SEARCH_LOCATIONS}"`
 
 
 ***
@@ -474,11 +474,11 @@ Sentinel 具有以下特征:
 ### 安装与部署
 和 Nacos 一样，它是独立安装和部署的，下载地址： https://github.com/alibaba/Sentinel/releases
 ![image-20230306231950297](https://s2.loli.net/2023/03/06/oZdLMAJaCD3Uw9F.png)
-注意下载下来之后是一个`jar`文件（其实就是个 SpringBoot 项目），我们需要在 IDEA 中添加一些运行配置：
+注意下载下来之后是一个 `jar` 文件（其实就是个 SpringBoot 项目），我们需要在 IDEA 中添加一些运行配置：
 ![image-20230306232001525](https://s2.loli.net/2023/03/06/Hjm4Z38s95YiFvI.png)
 接着就可以直接启动啦，当然默认端口占用 8080，如果需要修改，可以添加环境变量：
 ![image-20230306232012301](https://s2.loli.net/2023/03/06/RfVAdtOqJjWlx6E.png)
-启动之后，就可以访问到 Sentinel 的监控页面了，用户名和密码都是`sentinel`，地址： http://localhost:8858/#/dashboard
+启动之后，就可以访问到 Sentinel 的监控页面了，用户名和密码都是 `sentinel`，地址： http://localhost:8858/#/dashboard
 ![image-20230306232020492](https://s2.loli.net/2023/03/06/QpVRTYtBX6kvj2b.png)
 这样就成功开启监控页面了，接着我们需要让我们的服务连接到 Sentinel 控制台，老规矩，导入依赖：
 ```xml
@@ -535,7 +535,7 @@ spring:
 
 3. **固定时间窗口算法**
 
-   我们可以对某一个时间段内的请求进行统计和计数，比如在`14:15`到`14:16`这一分钟内，请求量不能超过`100`，也就是一分钟之内不能超过`100`次请求，那么就可以像下面这样进行划分：
+   我们可以对某一个时间段内的请求进行统计和计数，比如在 `14:15` 到 `14:16` 这一分钟内，请求量不能超过 `100`，也就是一分钟之内不能超过 `100` 次请求，那么就可以像下面这样进行划分：
 
    ![image-20230306232111506](https://s2.loli.net/2023/03/06/XRnKgCivsqFE2ax.png)
 
@@ -558,12 +558,12 @@ spring:
 
 好了，了解完了我们的限流策略和判定方法之后，我们在 Sentinel 中进行实际测试一下，打开管理页面的簇点链路模块：
 ![image-20230306232127628](https://s2.loli.net/2023/03/06/4fPg72OJiwhDycL.png)
-这里演示对我们的借阅接口进行限流，点击`流控`，会看到让我们添加流控规则：
+这里演示对我们的借阅接口进行限流，点击 `流控`，会看到让我们添加流控规则：
 * 阈值类型：QPS 就是每秒钟的请求数量，并发线程数是按服务当前使用的线程数据进行统计的。
 * 流控模式：当达到阈值时，流控的对象，这里暂时只用直接。
 * 流控效果：就是我们上面所说的三种方案。
 
-这里我们选择`QPS`、阈值设定为`1`，流控模式选择`直接`、流控效果选择`快速失败`，可以看到，当我们快速地进行请求时，会直接返回失败信息：
+这里我们选择 `QPS`、阈值设定为 `1`，流控模式选择 `直接`、流控效果选择 `快速失败`，可以看到，当我们快速地进行请求时，会直接返回失败信息：
 ![image-20230306232135482](https://s2.loli.net/2023/03/06/Lrw7ZJNzyDUoYG8.png)
 这里各位最好自行尝试一下其他的流控效果，熟悉和加深印象。
 最后我们来看看这些流控模式有什么区别：
@@ -571,15 +571,15 @@ spring:
 * 关联：当其他接口超过阈值时，会导致当前接口被限流。
 * 链路：更细粒度的限流，能精确到具体的方法。
 
-我们首先来看看关联，比如现在我们对自带的`/error`接口进行限流：
+我们首先来看看关联，比如现在我们对自带的 `/error` 接口进行限流：
 ![image-20230306232145053](https://s2.loli.net/2023/03/06/E9vnJRTPZmzaW8V.png)
 注意限流是作用于关联资源的，一旦发现关联资源超过阈值，那么就会对当前的资源进行限流，我们现在来测试一下，这里使用 PostMan 的 Runner 连续对关联资源发起请求：
 ![image-20230306232239339](https://s2.loli.net/2023/03/06/QgqsxdvYF59P7ne.png)
 开启 Postman，然后我们会发现借阅服务已经凉凉：
 ![image-20230306232253804](https://s2.loli.net/2023/03/06/tnKXB2JUarehk5T.png)
 当我们关闭掉 Postman 的任务后，恢复正常。
-最后我们来讲解一下链路模式，它能够更加精准的进行流量控制，链路流控模式指的是，当从指定接口过来的资源请求达到限流条件时，开启限流，这里得先讲解一下`@SentinelResource`的使用。
-我们可以对某一个方法进行限流控制，无论是谁在何处调用了它，这里需要使用到`@SentinelResource`，一旦方法被标注，那么就会进行监控，比如我们这里创建两个请求映射，都来调用 Service 的被监控方法：
+最后我们来讲解一下链路模式，它能够更加精准的进行流量控制，链路流控模式指的是，当从指定接口过来的资源请求达到限流条件时，开启限流，这里得先讲解一下 `@SentinelResource` 的使用。
+我们可以对某一个方法进行限流控制，无论是谁在何处调用了它，这里需要使用到 `@SentinelResource`，一旦方法被标注，那么就会进行监控，比如我们这里创建两个请求映射，都来调用 Service 的被监控方法：
 ```java
 @RestController
 public class BorrowController {
@@ -631,8 +631,8 @@ spring:
 ```
 然后我们在 Sentinel 控制台中添加流控规则，注意是针对此方法，可以看到已经自动识别到 borrow 接口下调用了这个方法：
 ![image-20230306232304858](https://s2.loli.net/2023/03/06/FOzJdtoieAxIvPq.png)
-最后我们在浏览器中对这两个接口都进行测试，会发现，无论请求哪个接口，只要调用了 Service 中的`getUserBorrowDetailByUid`这个方法，都会被限流。注意限流的形式是后台直接抛出异常，至于怎么处理我们后面再说。
-那么这个链路选项实际上就是决定只限流从哪个方向来的调用，比如我们只对`borrow 2`这个接口对`getUserBorrowDetailByUid`方法的调用进行限流，那么我们就可以为其指定链路：
+最后我们在浏览器中对这两个接口都进行测试，会发现，无论请求哪个接口，只要调用了 Service 中的 `getUserBorrowDetailByUid` 这个方法，都会被限流。注意限流的形式是后台直接抛出异常，至于怎么处理我们后面再说。
+那么这个链路选项实际上就是决定只限流从哪个方向来的调用，比如我们只对 `borrow 2` 这个接口对 `getUserBorrowDetailByUid` 方法的调用进行限流，那么我们就可以为其指定链路：
 ![image-20230306232315010](https://s2.loli.net/2023/03/06/UHbcgSWV2exNCu1.png)
 然后我们会发现，限流效果只对我们配置的链路接口有效，而其他链路是不会被限流的。
 除了直接对接口进行限流规则控制之外，我们也可以根据当前系统的资源使用情况，决定是否进行限流：
@@ -671,7 +671,7 @@ spring:
 这样，当被限流时，就会被重定向到指定页面：
 ![image-20230306232335949](https://s2.loli.net/2023/03/06/PfVOQWJrTiZGqh7.png)
 那么，对于方法级别的限流呢？经过前面的学习我们知道，当某个方法被限流时，会直接在后台抛出异常，那么这种情况我们该怎么处理呢，比如我们之前在 Hystrix 中可以直接添加一个替代方案，这样当出现异常时会直接执行我们的替代方法并返回，Sentinel 也可以。
-比如我们还是在`getUserBorrowDetailByUid`方法上进行配置：
+比如我们还是在 `getUserBorrowDetailByUid` 方法上进行配置：
 ```java
 @Override
 @SentinelResource (value = "getBorrow", blockHandler = "blocked")   //指定 blockHandler，也就是被限流之后的替代解决方案，这样就不会使用默认的抛出异常的形式了
@@ -691,7 +691,7 @@ public UserBorrowDetail blocked (int uid, BlockException e) {
 ```
 可以看到，一旦被限流将执行替代方案，最后返回的结果就是：
 ![image-20230306232346185](https://s2.loli.net/2023/03/06/p1Y53LPihOGZjBV.png)
-注意`blockHandler`只能处理限流情况下抛出的异常，包括下面即将要介绍的热点参数限流也是同理，如果是方法本身抛出的其他类型异常，不在管控范围内，但是可以通过其他参数进行处理：
+注意 `blockHandler` 只能处理限流情况下抛出的异常，包括下面即将要介绍的热点参数限流也是同理，如果是方法本身抛出的其他类型异常，不在管控范围内，但是可以通过其他参数进行处理：
 ```java
 @RequestMapping ("/test")
 @SentinelResource (value = "test",
@@ -707,13 +707,13 @@ String except (Throwable t){
 ```
 这样，其他的异常也可以有替代方案了：
 ![image-20230306232354931](https://s2.loli.net/2023/03/06/pk1HjSi9VyxwOJQ.png)
-特别注意这种方式会在没有配置`blockHandler`的情况下，将 Sentinel 机制内（也就是限流的异常）的异常也一并处理了，如果配置了`blockHandler`，那么在出现限流时，依然只会执行`blockHandler`指定的替代方案（因为限流是在方法执行之前进行的）
+特别注意这种方式会在没有配置 `blockHandler` 的情况下，将 Sentinel 机制内（也就是限流的异常）的异常也一并处理了，如果配置了 `blockHandler`，那么在出现限流时，依然只会执行 `blockHandler` 指定的替代方案（因为限流是在方法执行之前进行的）
 ### 热点参数限流
 我们还可以对某一热点数据进行精准限流，比如在某一时刻，不同参数被携带访问的频率是不一样的：
 * http://localhost:8301/test?a=10  访问 100 次
 * http://localhost:8301/test?b=10  访问 0 次
 * http://localhost:8301/test?c=10  访问 3 次
-由于携带参数`a`的请求比较多，我们就可以只对携带参数`a`的请求进行限流。
+由于携带参数 `a` 的请求比较多，我们就可以只对携带参数 `a` 的请求进行限流。
 这里我们创建一个新的测试请求映射：
 ```java
 @RequestMapping ("/test")
@@ -729,11 +729,11 @@ String findUserBorrows2(@RequestParam(value = "a", required = false) String a,
 然后开始访问我们的测试接口，可以看到在携带参数 a 时，当访问频率超过设定值，就会直接被限流，这里是直接在后台抛出异常：
 ![image-20230306232452209](https://s2.loli.net/2023/03/06/hskQVKnE2y5PftO.png)
 ![image-20230306232500754](https://s2.loli.net/2023/03/06/nC6W5T4OGcJNypA.png)
-而我们使用其他参数或是不带`a`参数，那么就不会出现这种问题了：
+而我们使用其他参数或是不带 `a` 参数，那么就不会出现这种问题了：
 ![image-20230306232514532](https://s2.loli.net/2023/03/06/WVguflyZ43NxE7j.png)
-除了直接对某个参数精准限流外，我们还可以对参数携带的指定值单独设定阈值，比如我们现在不仅希望对参数`a`限流，而且还希望当参数`a`的值为 10 时，QPS 达到 5 再进行限流，那么就可以设定例外：
+除了直接对某个参数精准限流外，我们还可以对参数携带的指定值单独设定阈值，比如我们现在不仅希望对参数 `a` 限流，而且还希望当参数 `a` 的值为 10 时，QPS 达到 5 再进行限流，那么就可以设定例外：
 ![image-20230306232525342](https://s2.loli.net/2023/03/06/oipjTJBHsMSdDvc.png)
-这样，当请求携带参数`a`，且参数`a`的值为 10 时，阈值将按照我们指定的特例进行计算。
+这样，当请求携带参数 `a`，且参数 `a` 的值为 10 时，阈值将按照我们指定的特例进行计算。
 ### 服务熔断和降级
 还记得我们前所说的服务降级吗，也就是说我们需要在整个微服务调用链路出现问题的时候，及时对服务进行降级，以防止问题进一步恶化。
 ![image-20230306232538279](https://s2.loli.net/2023/03/06/AxrzjvtPWJ2YCZI.png)
@@ -743,7 +743,7 @@ String findUserBorrows2(@RequestParam(value = "a", required = false) String a,
    线程池隔离实际上就是对每个服务的远程调用单独开放线程池，比如服务 A 要调用服务 B，那么只基于固定数量的线程池，这样即使在短时间内出现大量请求，由于没有线程可以分配，所以就不会导致资源耗尽了。
    ![image-20230306232549778](https://s2.loli.net/2023/03/06/CbYxA3d7w46OlMm.png)
 2. **信号量隔离**
-   信号量隔离是使用`Semaphore`类实现的（如果不了解，可以观看本系列并发编程篇视频教程），思想基本上与上面是相同的，也是限定指定的线程数量能够同时进行服务调用，但是它相对于线程池隔离，开销会更小一些，使用效果同样优秀，也支持超时等。
+   信号量隔离是使用 `Semaphore` 类实现的（如果不了解，可以观看本系列并发编程篇视频教程），思想基本上与上面是相同的，也是限定指定的线程数量能够同时进行服务调用，但是它相对于线程池隔离，开销会更小一些，使用效果同样优秀，也支持超时等。
    Sentinel 也正是采用的这种方案实现隔离的。
 好了，说回我们的熔断和降级，当下游服务因为某种原因变得不可用或响应过慢时，上游服务为了保证自己整体服务的可用性，不再继续调用目标服务而是快速返回或是执行自己的替代方案，这便是服务降级。
 ![image-20230306232602853](https://s2.loli.net/2023/03/06/gY62LD3vw157WiU.png)
@@ -754,7 +754,7 @@ String findUserBorrows2(@RequestParam(value = "a", required = false) String a,
 那么我们来看看 Sentinel 中如何进行熔断和降级操作，打开管理页面，我们可以自由新增熔断规则：
 ![image-20230306232618547](https://s2.loli.net/2023/03/06/7BW6LGXQNl5b1Iv.png)
 其中，熔断策略有三种模式：
-1. **慢调用比例：** 如果出现那种半天都处理不完的调用，有可能就是服务出现故障，导致卡顿，这个选项是按照最大响应时间（RT）进行判定，如果一次请求的处理时间超过了指定的 RT，那么就被判定为`慢调用`，在一个统计时长内，如果请求数目大于最小请求数目，并且被判定为`慢调用`的请求比例已经超过阈值，将触发熔断。经过熔断时长之后，将会进入到半开状态进行试探（这里和 Hystrix 一致）
+1. **慢调用比例：** 如果出现那种半天都处理不完的调用，有可能就是服务出现故障，导致卡顿，这个选项是按照最大响应时间（RT）进行判定，如果一次请求的处理时间超过了指定的 RT，那么就被判定为 `慢调用`，在一个统计时长内，如果请求数目大于最小请求数目，并且被判定为 `慢调用` 的请求比例已经超过阈值，将触发熔断。经过熔断时长之后，将会进入到半开状态进行试探（这里和 Hystrix 一致）
    然后修改一下接口的执行，我们模拟一下慢调用：
    ```java
    @RequestMapping ("/borrow 2/{uid}")
@@ -784,7 +784,7 @@ String findUserBorrows2(@RequestParam(value = "a", required = false) String a,
    现在我们再次不断访问此接口，可以发现，效果跟之前其实是差不多的，只是判断的策略稍微不同罢了：
    ![image-20230306232738961](https://s2.loli.net/2023/03/06/XC1VekDfainIpv6.png)
 那么熔断规则如何设定我们了解了，那么，如何自定义服务降级呢？之前在使用 Hystrix 的时候，如果出现异常，可以执行我们的替代方案，Sentinel 也是可以的。
-同样的，我们只需要在`@SentinelResource`中配置`blockHandler`参数（那这里跟前面那个方法限流的配置不是一毛一样吗？没错，因为如果添加了`@SentinelResource`注解，那么这里会进行方法级别细粒度的限制，和之前方法级别限流一样，会在降级之后直接抛出异常，如果不添加则返回默认的限流页面，`blockHandler`的目的就是处理这种 Sentinel 机制上的异常，所以这里其实和之前的限流配置是一个道理，因此下面熔断配置也应该对`value`自定义名称的资源进行配置，才能作用到此方法上）：
+同样的，我们只需要在 `@SentinelResource` 中配置 `blockHandler` 参数（那这里跟前面那个方法限流的配置不是一毛一样吗？没错，因为如果添加了 `@SentinelResource` 注解，那么这里会进行方法级别细粒度的限制，和之前方法级别限流一样，会在降级之后直接抛出异常，如果不添加则返回默认的限流页面，`blockHandler` 的目的就是处理这种 Sentinel 机制上的异常，所以这里其实和之前的限流配置是一个道理，因此下面熔断配置也应该对 `value` 自定义名称的资源进行配置，才能作用到此方法上）：
 ```java
 @RequestMapping ("/borrow2/{uid}")
 @SentinelResource (value = "findUserBorrows 2", blockHandler = "test")
@@ -795,7 +795,7 @@ UserBorrowDetail test (int uid, BlockException e){
     return new UserBorrowDetail (new User (), Collections.emptyList ());
 }
 ```
-接着我们对进行熔断配置，注意是对我们添加的`@SentinelResource`中指定名称的`findUserBorrows 2`进行配置：
+接着我们对进行熔断配置，注意是对我们添加的 `@SentinelResource` 中指定名称的 `findUserBorrows 2` 进行配置：
 ![image-20230306232759448](https://s2.loli.net/2023/03/06/QkofY5gzwSr6WGn.png)
 OK，可以看到熔断之后，服务降级之后的效果：
 ![image-20230306232809712](https://s2.loli.net/2023/03/06/5kLcAaT6wJgYXGx.png)
@@ -819,7 +819,7 @@ public class UserClientFallback implements UserClient{
 ```
 然后直接启动就可以了，中途的时候我们吧用户服务全部下掉，可以看到正常使用替代方案：
 ![image-20230306232821953](https://s2.loli.net/2023/03/06/M2yZpJLfs1i9adC.png)
-这样 Feign 的配置就 OK 了，那么传统的 RestTemplate 呢？我们可以使用`@SentinelRestTemplate`注解实现：
+这样 Feign 的配置就 OK 了，那么传统的 RestTemplate 呢？我们可以使用 `@SentinelRestTemplate` 注解实现：
 ```java
   @Bean
   @LoadBalanced
@@ -1050,7 +1050,7 @@ public class BorrowServiceImpl implements BorrowService{
 ![image-20230306233147990](https://s2.loli.net/2023/03/06/H43Fy9z76LIvJGd.png)
 抛出异常，但是我们发现一个问题，借阅信息添加失败了，但是图书的数量依然被-1，也就是说正常情况下，我们是希望中途出现异常之后，之前的操作全部回滚的：
 ![image-20230306233201664](https://s2.loli.net/2023/03/06/l9D8aXBxkvnZejw.png)
-而这里由于是在另一个服务中进行的数据库操作，所以传统的`@Transactional`注解无效，这时就得借助 Seata 提供分布式事务了。
+而这里由于是在另一个服务中进行的数据库操作，所以传统的 `@Transactional` 注解无效，这时就得借助 Seata 提供分布式事务了。
 ### 分布式事务解决方案
 要开始实现分布式事务，我们得先从理论上开始下手，我们来了解一下常用的分布式事务解决方案。
 1. **XA 分布式事务协议 - 2 PC（两阶段提交实现）**
@@ -1089,7 +1089,7 @@ public class BorrowServiceImpl implements BorrowService{
 3. **TCC（补偿事务）**
    补偿事务 TCC 就是 Try、Confirm、Cancel，它对业务有侵入性，一共分为三个阶段，我们依次来解读一下。
    * **Try 阶段：**
-     比如我们需要在借书时，将书籍的库存`-1`，并且用户的借阅量也`-1`，但是这个操作，除了直接对库存和借阅量进行修改之外，还需要将减去的值，单独存放到冻结表中，但是此时不会创建借阅信息，也就是说只是预先把关键的东西给处理了，预留业务资源出来。
+     比如我们需要在借书时，将书籍的库存 `-1`，并且用户的借阅量也 `-1`，但是这个操作，除了直接对库存和借阅量进行修改之外，还需要将减去的值，单独存放到冻结表中，但是此时不会创建借阅信息，也就是说只是预先把关键的东西给处理了，预留业务资源出来。
    * **Confirm 阶段：**
      如果 Try 执行成功无误，那么就进入到 Confirm 阶段，接着之前，我们就该创建借阅信息了，只能使用 Try 阶段预留的业务资源，如果创建成功，那么就对 Try 阶段冻结的值，进行解冻，整个流程就完成了。当然，如果失败了，那么进入到 Cancel 阶段。
    * **Cancel 阶段：**
@@ -1125,7 +1125,7 @@ Seata 存在着事务分组机制：
 - 事务分组：seata 的资源逻辑，可以按微服务的需要，在应用程序（客户端）对自行定义事务分组，每组取一个名字。
 - 集群：seata-server 服务端一个或多个节点组成的集群 cluster。应用程序（客户端）使用时需要指定事务逻辑分组与 Seata 服务端集群（默认为 default）的映射关系。
 为啥要设计成通过事务分组再直接映射到集群？干嘛不直接指定集群呢？获取事务分组到映射集群的配置。这样设计后，事务分组可以作为资源的逻辑隔离单位，出现某集群故障时可以快速 failover，只切换对应分组，可以把故障缩减到服务级别，但前提也是你有足够 server 集群。
-接着我们需要将我们的各个服务作为 Seate 的客户端，只需要导入依赖即可：
+接着我们需要将我们的**各个服务作为 Seate 的客户端**，只需要导入依赖即可：
 ```xml
 <dependency>
     <groupId>com. alibaba. cloud</groupId>
@@ -1143,8 +1143,8 @@ seata:
     grouplist:
       default: localhost:8868
 ```
-这样就可以直接启动了，但是注意现在只是单纯地连接上，并没有开启任何的分布式事务。
-现在我们接着来配置开启分布式事务，首先在启动类添加注解，此注解会添加一个后置处理器将数据源封装为支持分布式事务的代理数据源（虽然官方表示配置文件中已经默认开启了自动代理，但是 UP 主实测 1.4.2 版本下只能打注解的方式才能生效）：
+> 使用 jdk8才能正常启动，使用 jdk17则报错 `Error creating bean with name 'globalTransactionScanner' defined in class path resource [io/seata/spring/boot/autoconfigure/SeataAutoConfiguration.class]` ，直接启动后只是单纯地连接上，并没有开启任何的分布式事务。
+> 接着要**配置开启分布式事务**，首先在**启动类添加注解**，此注解会添加一个后置处理器将数据源封装为支持分布式事务的*代理数据源*（虽然官方表示配置文件中已经默认开启了自动代理，但是实测 1.4.2 版本下只能打注解的方式才能生效）：
 ```java
 @EnableAutoDataSourceProxy
 @SpringBootApplication
@@ -1154,7 +1154,7 @@ public class BookApplication {
     }
 }
 ```
-接着我们需要在开启分布式事务的方法上添加`@GlobalTransactional`注解：
+接着我们需要在开启分布式事务的方法上添加 `@GlobalTransactional` 注解：
 ```java
 @GlobalTransactional
 @Override
@@ -1176,7 +1176,7 @@ public boolean doBorrow (int uid, int bid) {
     return true;
 }
 ```
-还没结束，我们前面说了，Seata 会分析修改数据的 sql，同时生成对应的反向回滚 SQL，这个回滚记录会存放在 undo_log 表中。所以要求每一个 Client 都有一个对应的 undo_log 表（也就是说每个服务连接的数据库都需要创建这样一个表，这里由于我们三个服务都用的同一个数据库，所以说就只用在这个数据库中创建 undo_log 表即可），表 SQL 定义如下：
+由于 Seata 会分析修改数据的 sql，同时生成对应的反向回滚 SQL，这个回滚记录会存放在 undo_log 表中。所以**要求每一个 Client 都有一个对应的 undo_log 表**（也就是说每个服务连接的数据库都需要创建这样一个表，这里由于我们三个服务都用的同一个数据库，所以说就只用在这个数据库中创建 undo_log 表即可），表 SQL 定义如下：
 ```sql
 CREATE TABLE `undo_log`
 (
@@ -1193,7 +1193,7 @@ CREATE TABLE `undo_log`
   UNIQUE KEY `ux_undo_log` (`xid`, `branch_id`)
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 1
-  DEFAULT CHARSET = utf 8;
+  DEFAULT CHARSET = utf8;
 ```
 创建完成之后，我们现在就可以启动三个服务了，我们来测试一下当出现异常的时候是不是会正常回滚：
 ![image-20230306233351571](https://s2.loli.net/2023/03/06/NIe9QFW3jf1DdnV.png)
@@ -1205,12 +1205,12 @@ CREATE TABLE `undo_log`
 ![image-20230306233428386](https://s2.loli.net/2023/03/06/VtBlx4U1TzcqKra.png)
 并且数据库中确实是回滚了扣除操作：
 ![image-20230306233436382](https://s2.loli.net/2023/03/06/WXn9UPgxBVhdHmb.png)
-这样，我们就通过 Seata 简单地实现了分布式事务。
+这样，我们就通过 Seata 简单地实现了分布式事务，主要通过*使用 **XID** 来识别同一事务*。
 ### 使用 nacos 模式部署
 前面我们实现了本地 Seata 服务的 file 模式部署，现在我们来看看如何让其配合 Nacos 进行部署，利用 Nacos 的配置管理和服务发现机制，Seata 能够更好地工作。
 我们先单独为 Seata 配置一个命名空间：
 ![image-20230306233444767](https://s2.loli.net/2023/03/06/93mXN5dlC2GTLOW.png)
-我们打开`conf`目录中的`registry. conf`配置文件：
+我们打开 `conf` 目录中的 `registry. conf` 配置文件：
 ```properties
 registry {
 	# 注册配置
@@ -1224,7 +1224,7 @@ registry {
   	# 应用名称，这里默认就行
     application = "seata-server"
     # Nacos 服务器地址
-    serverAddr = "localhost: 8848"
+    serverAddr = "localhost:8848"
     # 这里使用的是 SEATA_GROUP 组，一会注册到 Nacos 中就是这个组
     group = "SEATA_GROUP"
     # 这里就使用我们上面单独为 seata 配置的命名空间，注意填的是 ID
@@ -1254,12 +1254,12 @@ config {
     dataId = "seataServer. properties"
   }
 ```
-接着，我们需要将配置导入到 Nacos 中，我们打开一开始下载的源码`script/config-center/nacos`目录，这是官方提供的上传脚本，我们直接运行即可（windows 下没对应的 bat 就很蛋疼，可以使用 git 命令行来运行一下），这里我们使用这个可交互的版本：
+接着，我们需要将配置导入到 Nacos 中，我们打开一开始下载的源码 `script/config-center/nacos` 目录，这是官方提供的上传脚本，我们直接运行即可（windows 下没对应的 bat 就很蛋疼，可以使用 git 命令行来运行一下），这里我们使用这个可交互的版本：
 ![image-20230306233500474](https://s2.loli.net/2023/03/06/1tPwBFn7u3ScCeY.png)
 按照提示输入就可以了，不输入就使用的默认值，不知道为啥最新版本有四个因为参数过长还导入失败了，就离谱，不过不影响。
 导入成功之后，可以在对应的命名空间下看到对应的配置（为啥非要一个一个配置项单独搞，就不能写一起吗）：
 ![image-20230306233510973](https://s2.loli.net/2023/03/06/8yTQGZluYVe1cg2.png)
-注意，还没完，我们还需要将对应的事务组映射配置也添加上，DataId 格式为`service. vgroupMapping. 事务组名称`，比如我们就使用默认的名称，值全部依然使用 default 即可：
+注意，还没完，我们还需要将对应的事务组映射配置也添加上，DataId 格式为 `service.vgroupMapping.事务组名称`，比如我们就使用默认的名称，值全部依然使用 default 即可：
 ![image-20230306233521002](https://s2.loli.net/2023/03/06/UBchb4zPjHAfCSs.png)
 现在我们就完成了服务端的 Nacos 配置，接着我们需要对客户端也进行 Nacos 配置：
 ```yaml
@@ -1287,7 +1287,7 @@ seata:
 接着我们就可以访问一下服务试试看了：
 ![image-20230306233545257](https://s2.loli.net/2023/03/06/Fn3R2Jrq1YyleCh.png)
 可以看到效果和上面是一样的，不过现在我们的注册和配置都继承在 Nacos 中进行了。
-我们还可以配置一下事务会话信息的存储方式，默认是 file 类型，那么就会在运行目录下创建`file_store`目录，我们可以将其搬到数据库中存储，只需要修改一下配置即可：
+我们还可以配置一下事务会话信息的存储方式，默认是 file 类型，那么就会在运行目录下创建 `file_store` 目录，我们可以将其搬到数据库中存储，只需要修改一下配置即可：
 ![image-20230306233553931](https://s2.loli.net/2023/03/06/Cph9zPF2kaSvKdY.png)
 将`store. session. mode`和`store. mode`的值修改为`db`
 接着我们对数据库信息进行一下配置：
@@ -1306,7 +1306,7 @@ CREATE TABLE IF NOT EXISTS `global_table`
     `transaction_id`            BIGINT,
     `status`                    TINYINT      NOT NULL,
     `application_id`            VARCHAR (32),
-    `transaction_service_group` VARCHAR (32),
+    `transaction_service_group` VARCHAR (128),
     `transaction_name`          VARCHAR (128),
     `timeout`                   INT,
     `begin_time`                BIGINT,
@@ -1372,8 +1372,6 @@ INSERT INTO `distributed_lock` (lock_key, lock_value, expire) VALUES ('HandleAll
 ![image-20230306233933641](https://s2.loli.net/2023/03/06/qoNhgzM2PXpZU9B.png)
 将`globle_table`表的字段`transaction_server_group`长度适当增加一下即可：
 ![image-20230306233940850](https://s2.loli.net/2023/03/06/9LnaoUxHzlY1GdV.png)
-到此，关于基于 nacos 模式下的 Seata 部署，就完成了。
-虽然我们这里实现了分布式事务，但是还是给各位同学提出一个问题（可以把自己所认为的结果打在弹幕上），就我们目前这样的程序设计，在高并发下，真的安全吗？比如同一时间 100 个同学抢同一个书，但是我们知道同一个书就只有 3 本，如果这时真的同时来了 100 个请求要借书，会正常地只借出 3 本书吗？如果不正常，该如何处理？
 
 
 ## Reference

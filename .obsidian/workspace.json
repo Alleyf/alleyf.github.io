@@ -8,12 +8,25 @@
         "type": "tabs",
         "children": [
           {
-            "id": "8e85ccb013ecad38",
+            "id": "6def5e8881205778",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/前后端开发/SpringCloud Alibaba-微服务进阶.md",
+                "file": "source/_posts/前后端开发/Spring核心学习.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "6a852b9b11eb3918",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "source/gallery/index.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -80,7 +93,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/运维开发/Git-简记.md"
+                "file": "source/gallery/index.md"
               }
             }
           }
@@ -137,7 +150,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/运维开发/Git-简记.md",
+                "file": "source/gallery/index.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -193,55 +206,55 @@
       "graph:查看关系图谱": false
     }
   },
-  "active": "4a383e802b683e84",
+  "active": "7debd791db616930",
   "lastOpenFiles": [
-    "public/2023/05/14870b008a81.html",
-    "public/xml/local-search.xml",
-    "public/xml",
-    "public/tags/Paper/index.html",
-    "public/tags/Paper",
-    "public/links/index.html",
-    "public/links",
-    "public/tags/LLM/index.html",
-    "public/tags/LLM",
-    "public/tags/KG/index.html",
-    "public/tags/KG",
+    "public/tags/Git/index.html",
+    "public/tags/Git",
+    "public/tags/h5/index.html",
+    "public/tags/h5",
+    "public/tags/FFT/index.html",
+    "public/tags/FFT",
+    "public/tags/Embeded-theory-and-appliment/index.html",
+    "public/tags/Embeded-theory-and-appliment",
+    "public/tags/css/index.html",
+    "public/tags/css",
+    "public/tags/CV/index.html",
+    "node_modules/image-size/Readme.md",
+    "node_modules/queue/readme.md",
+    "source/galleries/index.md",
+    "source/gallery/index.md",
+    "source/about/index.md",
+    "source/_posts/前后端开发/Spring核心学习.md",
+    "source/_obsidian/Post Template.md",
+    "scaffolds/post.md",
+    "scaffolds/draft.md",
+    "scaffolds/page.md",
     "source/_posts/前后端开发/SpringCloud Alibaba-微服务进阶.md",
-    "source/_posts/运维开发/Git-简记.md",
-    "source/_posts/科研学习/会议讨论/周会.md",
     "source/_posts/运维开发/各种环境配置.md",
+    "source/_posts/科研学习/会议讨论/周会.md",
+    "source/_posts/运维开发/Git-简记.md",
+    "source/_posts/前后端开发/SpringBoot+Vue项目实战.md",
     "source/_posts/前后端开发/SpringCloud-微服务基础.md",
     "未命名.canvas",
     "source/_posts/科研学习/会议讨论/国际会议.md",
     "source/_posts/科研学习/论文总结/Paper_Reading_Tables.md",
     "source/_posts/科研学习/国基金项目/司法领域大模型调研三.md",
-    "source/about/index.md",
-    "source/_posts/前后端开发/SpringBoot+Vue项目实战.md",
     "source/_posts/运维开发/部署方法.md",
     "source/_posts/科研学习/国基金项目/司法领域大模型调研四.md",
     "public/img/loading.gif",
     "public/img/icon.png",
     "public/img/police_beian.png",
     "public/img/fluid.png",
-    "source/_obsidian/Post Template.md",
     "SpringCloud 进阶 - SpringCloud笔记（二）微服务进阶.md",
     "source/_posts/前后端开发/SpringBoot.md",
     "source/_posts/科研学习/学习方法/Paper_Reading_Method.md",
     "source/_posts/机器学习/PyTorch.md",
-    "source/_posts/机器学习/pytorch-2b6mpm.md",
-    "node_modules/hexo-tag-mmedia/README.md",
-    "source/_posts/前后端开发/Spring核心学习.md",
     "node_modules/live2d-widget-model-nico/assets/moc/nico.2048/texture_01.png",
     "node_modules/live2d-widget-model-nico/assets/moc/nico.2048/texture_02.png",
     "node_modules/live2d-widget-model-nico/assets/moc/nico.2048/texture_00.png",
     "node_modules/live2d-widget-model-shizuku/assets/moc/shizuku.1024/texture_04.png",
     "node_modules/live2d-widget-model-shizuku/assets/moc/shizuku.1024/texture_03.png",
     "node_modules/live2d-widget-model-shizuku/assets/moc/shizuku.1024/texture_05.png",
-    "node_modules/hexo-deployer-git/README.md",
-    "node_modules/statuses/README.md",
-    "node_modules/statuses/HISTORY.md",
-    "node_modules/xmlchars/README.md",
-    "node_modules/xml-name-validator/README.md",
     "canvas/review plans.canvas",
     "canvas/AI学习思路.canvas",
     "source/_posts/英语学习/EnglishWords.canvas",

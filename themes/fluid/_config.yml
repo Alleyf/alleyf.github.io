@@ -352,6 +352,7 @@ navbar:
         icon: "iconfont icon-category-fill",
       }
     - { key: "tag", link: "/tags/", icon: "iconfont icon-tags-fill" }
+    - { key: "gallery", link: "/gallery/", icon: "iconfont icon-images" }
     - { key: "about", link: "/about/", icon: "iconfont icon-user-fill" }
     - { key: "links", link: "/links/", icon: "iconfont icon-link-fill" }
 
@@ -984,7 +985,7 @@ about:
       }
 
 #---------------------------
-# 自定义页
+# 自定义画廊页
 # Custom Page
 
 galleries:
