@@ -1,14 +1,14 @@
 [
 	{
-		"name": "桌面壁纸",
+		"name": "DeskTopWallper",
 		"children": [
-			"6000.3375 桌面壁纸/10_1.jpg",
-			"1920.1080 桌面壁纸/bg.jpg",
-			"2560.1440 桌面壁纸/sunset.png",
-			"3840.2160 桌面壁纸/wallhaven-1pol63.png",
-			"1920.1080 桌面壁纸/wallhaven-6k3oox.jpg",
-			"4000.1440 桌面壁纸/wallhaven-858k3j.jpg",
-			"5120.2880 桌面壁纸/wallhaven-dgwppl.jpg"
+			"3840.2160 DeskTopWallper/cloud.png",
+			"5120.2880 DeskTopWallper/fire.jpg",
+			"6000.3375 DeskTopWallper/flower.jpg",
+			"1920.1080 DeskTopWallper/moon.jpg",
+			"1920.1080 DeskTopWallper/sun.jpg",
+			"2560.1440 DeskTopWallper/sunset.png",
+			"4000.1440 DeskTopWallper/swordswoman.jpg"
 		]
 	}
 ]
