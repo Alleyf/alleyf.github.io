@@ -1,15 +1,14 @@
 ---
-title:
-  "{ title }": 
-date:
-  "{ date }": 
+title: Git-简记
+date: 2023-11-21 00:23:58
 tags:
   - Git
-sticky: 60
+sticky: 85
 excerpt: 一些关于 git 的常用操作。
 author: fcs
 index_img: https://picsum.photos/800/250
 ---
+
 ![](https://picsum.photos/800/250)
 # 原理解析
 ## 工作流程

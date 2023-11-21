@@ -8,32 +8,6 @@
         "type": "tabs",
         "children": [
           {
-            "id": "6def5e8881205778",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "source/_posts/前后端开发/Spring核心学习.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "6a852b9b11eb3918",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "source/gallery/index.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
             "id": "5a05be402e1b566b",
             "type": "leaf",
             "state": {
@@ -47,7 +21,33 @@
             }
           },
           {
+            "id": "811022383868dc42",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "source/_posts/前后端开发/SpringCloud Alibaba-微服务进阶.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
+          },
+          {
             "id": "833299dce20f1b41",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "source/_posts/运维开发/MarkDown-真经.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "317e997d5b9ec8b7",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -58,22 +58,8 @@
                 "source": false
               }
             }
-          },
-          {
-            "id": "42de3c76684558ab",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "source/_posts/运维开发/各种环境配置.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -93,7 +79,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/gallery/index.md"
+                "file": "source/_posts/运维开发/Git-简记.md"
               }
             }
           }
@@ -145,24 +131,7 @@
             }
           },
           {
-            "id": "628f2aa0956f1a9f",
-            "type": "leaf",
-            "state": {
-              "type": "backlink",
-              "state": {
-                "file": "source/gallery/index.md",
-                "collapseAll": false,
-                "extraContext": false,
-                "sortOrder": "alphabetical",
-                "showSearch": false,
-                "searchQuery": "",
-                "backlinkCollapsed": false,
-                "unlinkedCollapsed": true
-              }
-            }
-          },
-          {
-            "id": "4ca489b3f1ca87ca",
+            "id": "8553ac1afd91e275",
             "type": "leaf",
             "state": {
               "type": "all-properties",
@@ -194,7 +163,6 @@
   "left-ribbon": {
     "hiddenItems": {
       "canvas:新建白板": false,
-      "templates:插入模板": false,
       "command-palette:打开命令面板": false,
       "obsidian-file-cleaner:清理文件": false,
       "table-editor-obsidian:Advanced Tables Toolbar": false,
@@ -203,47 +171,49 @@
       "obsidian-excalidraw-plugin:新建 Excalidraw 绘图": false,
       "obsidian-textgenerator-plugin:Generate Text!": false,
       "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": false,
-      "graph:查看关系图谱": false
+      "markdown-importer:打开 Markdown 格式转换器": false,
+      "templates:插入模板": false
     }
   },
   "active": "7debd791db616930",
   "lastOpenFiles": [
-    "public/archives/2022/12/index.html",
-    "public/archives/2022/12",
-    "public/archives/2022/11/index.html",
-    "public/archives/2022/11",
-    "public/archives/2022/09/index.html",
-    "public/archives/2022/09",
-    "public/archives/2022/10/index.html",
-    "public/archives/2022/10",
-    "public/archives/2023/04/index.html",
-    "public/archives/2023/04",
-    "public/2023/03/73453d2eb27d.html",
+    "public/xml/local-search.xml",
+    "public/xml",
+    "public/links/index.html",
+    "public/links",
+    "public/css/highlight.css",
+    "public/css/main.css",
+    "public/css/highlight-dark.css",
+    "public/css/gitalk.css",
+    "public/css",
+    "public/assets/mmedia/mmedia-loader.js",
+    "public/assets/mmedia",
+    "public/gallery/images/居家美食/独家自制4.jpg",
+    "public/gallery/images/居家美食/独家自制5.jpg",
+    "public/gallery/images/居家美食/独家自制3.jpg",
     "public/gallery/images/徒步旅行/旅途所见9.jpg",
     "public/gallery/images/徒步旅行/旅途所见8.jpg",
-    "public/gallery/images/徒步旅行/旅途所见7.jpg",
-    "public/gallery/images/徒步旅行/旅途所见6.jpg",
-    "public/gallery/images/徒步旅行/旅途所见2.jpg",
-    "public/gallery/images/徒步旅行/旅途所见5.jpg",
+    "public/gallery/images/居家美食/独家自制1.jpg",
+    "public/gallery/images/居家美食/独家自制2.jpg",
     "public/gallery/images/徒步旅行/旅途所见4.jpg",
-    "public/gallery/images/徒步旅行/旅途所见3.jpg",
-    "public/gallery/images/徒步旅行/旅途所见13.jpg",
-    "public/gallery/images/徒步旅行/旅途所见12.jpg",
+    "public/gallery/images/徒步旅行/旅途所见5.jpg",
+    "public/gallery/images/徒步旅行/旅途所见7.jpg",
+    "source/_posts/运维开发/MarkDown-真经.md",
+    "source/_posts/科研学习/会议讨论/周会.md",
+    "source/_obsidian/Post Template.md",
+    "source/_posts/前后端开发/SpringCloud Alibaba-微服务进阶.md",
     "source/_posts/运维开发/Git-简记.md",
+    "source/_posts/前后端开发/SpringBoot+Vue项目实战.md",
+    "source/about/index.md",
     "source/gallery/index.md",
     "source/_posts/前后端开发/Spring核心学习.md",
     "source/_posts/运维开发/各种环境配置.md",
-    "source/_posts/科研学习/会议讨论/周会.md",
     "node_modules/image-size/Readme.md",
     "node_modules/queue/readme.md",
     "source/galleries/index.md",
-    "source/about/index.md",
-    "source/_obsidian/Post Template.md",
     "scaffolds/post.md",
     "scaffolds/draft.md",
     "scaffolds/page.md",
-    "source/_posts/前后端开发/SpringCloud Alibaba-微服务进阶.md",
-    "source/_posts/前后端开发/SpringBoot+Vue项目实战.md",
     "source/_posts/前后端开发/SpringCloud-微服务基础.md",
     "未命名.canvas",
     "source/_posts/科研学习/会议讨论/国际会议.md",
@@ -254,7 +224,6 @@
     "SpringCloud 进阶 - SpringCloud笔记（二）微服务进阶.md",
     "source/_posts/前后端开发/SpringBoot.md",
     "source/_posts/科研学习/学习方法/Paper_Reading_Method.md",
-    "source/_posts/机器学习/PyTorch.md",
     "canvas/review plans.canvas",
     "canvas/AI学习思路.canvas",
     "source/_posts/英语学习/EnglishWords.canvas",

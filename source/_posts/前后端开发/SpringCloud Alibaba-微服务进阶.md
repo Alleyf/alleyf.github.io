@@ -448,8 +448,6 @@ server {
 然后我们将所有的服务全部修改为云服务器上 Nacos 的地址，启动试试看。
 ![image-20230306231925001](https://s2.loli.net/2023/03/06/gdh43ciamLnBRFV.png)
 这样，我们就搭建好了 Nacos 集群。
-
-
 > [!NOTE] Tips
 > 1. nacos 集群模式时*cluster.conf*必须配置的**ip 是本地 ip 地址，不能是 127.0.0.1**
 > 2. nacos 修改*application.properties*配置文件不生效，原因在于 bin 目录下的 startup 启动文件中设置的**配置文件的位置不对**(不能带 `optional:`)，要改为：
@@ -1289,7 +1287,7 @@ seata:
 可以看到效果和上面是一样的，不过现在我们的注册和配置都继承在 Nacos 中进行了。
 我们还可以配置一下事务会话信息的存储方式，默认是 file 类型，那么就会在运行目录下创建 `file_store` 目录，我们可以将其搬到数据库中存储，只需要修改一下配置即可：
 ![image-20230306233553931](https://s2.loli.net/2023/03/06/Cph9zPF2kaSvKdY.png)
-将`store. session. mode`和`store. mode`的值修改为`db`
+将 `store. session. mode` 和 `store. mode` 的值修改为 `db`
 接着我们对数据库信息进行一下配置：
 * 数据库驱动
 * 数据库 URL
@@ -1370,16 +1368,324 @@ INSERT INTO `distributed_lock` (lock_key, lock_value, expire) VALUES ('HandleAll
 看到了数据源初始化成功，现在已经在使用数据库进行会话存储了。
 如果 Seata 服务端出现报错，可能是我们自定义事务组的名称太长了：
 ![image-20230306233933641](https://s2.loli.net/2023/03/06/qoNhgzM2PXpZU9B.png)
-将`globle_table`表的字段`transaction_server_group`长度适当增加一下即可：
+将 `globle_table` 表的字段 `transaction_server_group` 长度适当增加一下即可：
 ![image-20230306233940850](https://s2.loli.net/2023/03/06/9LnaoUxHzlY1GdV.png)
+
+---
+## Dubbo 服务治理与通信
+### 1.简介
+Apache Dubbo 是一款 **RPC 服务开发框架**，用于解决微服务架构下的**服务治理与通信**问题，官方提供了 Java、Golang 等多语言 SDK 实现。使用 Dubbo 开发的微服务原生具备相互之间的远程地址发现与通信能力，利用 Dubbo 提供的丰富服务治理特性，可以实现诸如*服务发现、负载均衡、流量调度等服务治理*诉求。Dubbo 被设计为高度可扩展，用户可以方便的实现流量拦截、选址的各种定制逻辑。
+在云原生时代，Dubbo 相继衍生出了 Dubbo3、Proxyless Mesh 等架构与解决方案，在易用性、超大规模微服务实践、云原生基础设施适配、安全性等几大方向上进行了全面升级。
+Dubbo 功能：
+	1. **微服务编程范式和工具**
+	Dubbo 支持基于 IDL 或语言特定方式的服务定义，提供多种形式的服务调用形式（如同步、异步、流式等）
+	2. **高性能的 RPC 通信**
+	Dubbo 帮助解决微服务组件之间的通信问题，提供了基于 HTTP、HTTP/2、TCP 等的多种高性能通信协议实现，并支持序列化协议扩展，在实现上解决网络连接管理、数据传输等基础问题。
+	3. **微服务监控与治理**
+	Dubbo 官方提供的服务发现、动态配置、负载均衡、流量路由等基础组件可以很好的帮助解决微服务基础实践的问题。除此之外，您还可以用 Admin 控制台监控微服务状态，通过周边生态完成限流降级、数据一致性、链路追踪等能力。
+	4. **部署在多种环境**
+	Dubbo 服务可以直接部署在容器、Kubernetes、Service Mesh 等多种架构下。
+![](https://cn.dubbo.apache.org/imgs/v3/concepts/architecture-2.png)
+以上是 Dubbo 的工作原理图，从抽象架构上分为两层：**服务治理抽象控制面** 和 **Dubbo 数据面** 。
+- **服务治理控制面**：服务治理控制面不是特指如注册中心类的单个具体组件，而是对 Dubbo 治理体系的抽象表达。控制面包含协调服务发现的注册中心、流量管控策略、Dubbo Admin 控制台等，如果采用了 Service Mesh 架构则还包含 Istio 等服务网格控制面。
+- **Dubbo 数据面**：数据面代表集群部署的所有 Dubbo 进程，进程之间通过 RPC 协议实现数据交换，Dubbo 定义了微服务应用开发与调用规范并负责完成数据传输的编解码工作。
+    - 服务消费者 (Dubbo Consumer)，发起业务调用或 RPC 通信的 Dubbo 进程
+    - 服务提供者 (Dubbo Provider)，接收业务调用或 RPC 通信的 Dubbo 进程
+
+### 2.dubbo 使用 nacos
+> [!INFO] Tips
+> **dubbo** 远程调用传递实体类时必须为实体类添加 `implements Serializable` 接口，以实现嵌套实体传递，否则会报错。
+
+#### 公共调用 api 接口
+1. 创建公共模块，将模块作为本地依赖导入需要用到的模块中
+
+![image.png|450](http://qnpicmap.fcsluck.top/pics/202311211438260.png)
+```xml
+<!--        引入本地公共模块依赖-->  
+<dependency>  
+    <groupId>com.example</groupId>  
+    <artifactId>commons</artifactId>  
+    <version>0.0.1-SNAPSHOT</version>  
+</dependency>
+```
+2. 定义远程调用 api 接口
+
+```java
+package com.test.api;  
+import com.test.entity.Book;  
+import com.test.entity.User;  
+import com.test.utils.Result;  
+// Dubbo 服务提供者接口  
+public interface DubboApiService {  
+    /**  
+     * 调用 Dubbo 服务
+     * @param name  
+     * @return  
+     */  
+    Result<String> sayHello(String name);  
+}
+```
+#### 供给者-provider
+1.引入相关的 pom 配置
+```xml
+<!-- Dubbo Spring Cloud Starter -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-dubbo</artifactId>
+        </dependency>
+```
+2.dubbo 相关配置
+```yml
+dubbo: #dubbo配置  
+  application:  
+    name: ${spring.application.name}  #dubbo服务名称供消费者订阅
+    qos-enable: false #dubbo运维服务是否开启  
+  scan:  
+    base-packages: com.test.service  # 指定要扫描远程调用接口实现类的包路径  
+  protocol:  
+    name: dubbo  # 协议名称  
+    port: -1  # 协议端口:（ -1 表示自增端口，从 20880 开始）  
+  registry:  
+    address: spring-cloud://${spring.cloud.nacos.discovery.server-addr}  # 注册中心的地址一定要加“spring-cloud://”才能注册上  
+  consumer:  
+    check: false  # 消费者是否检查版本  
+server:  
+  port: 8401  #应用服务端口
+spring:  
+  main:  
+    allow-circular-references: true #Spring Boot 2.0 需要设定,允许循环引用  
+    allow-bean-definition-overriding: true #Spring Boot 2.1 需要设定,允许覆盖bean  
+  application:  
+    name: dubbo-service-provider  #应用服务名称
+  cloud:  
+    nacos:  
+      discovery:  
+        # 配置Nacos注册中心地址  
+        server-addr: xxx:8848  
+#        namespace: 0737357d-c94a-4fff-9661-4257622a83fb #区分nacos命名空间
+```
+3.启动类加上 `@EnableDubbo` 注解
+```java
+@EnableShardingJdbc
+@EnableDiscoveryClient
+@SpringBootApplication
+@EnableDubbo
+public class DubboServiceApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(DubboServiceApplication.class, args);
+    }
+}
+```
+4.实现 api 接口
+```java
+@DubboService  
+public class DubboServiceImpl implements DubboApiService {  
+    public Result<String> sayHello(String name) {  
+        return Result.success("Hello " + name + ", response from dubbo");  
+    }  
+}
+```
+#### 消费者-consumer
+1.引入相关的 pom 配置
+```xml
+<!-- Dubbo Spring Cloud Starter -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-dubbo</artifactId>
+        </dependency>
+```
+2.dubbo 相关配置
+```yml
+dubbo:
+  consumer:
+    timeout: 5000
+    check: false  #关闭订阅服务是否启动的检查【检查时，没有服务提供者会报错】
+  protocol:    #Dubbo 服务暴露的协议配置，其中子属性 name 为协议名称，port 为协议端口（ -1 表示自增端口，从 20880 开始）
+    name: dubbo
+    port: -1  #dubbo协议缺省端口为20880，rmi协议缺省端口为1099，http和hessian协议缺省端口为80；如果没有配置port，则自动采用默认端口，如果配置为-1，则会分配一个没有被占用的端口。Dubbo 2.4.0+，分配的端口在协议缺省端口的基础上增长，确保端口段可控
+  registry:
+    #其中前缀spring-cloud说明：挂载到 Spring Cloud注册中心
+	address: spring-cloud://${spring.cloud.nacos.discovery.server-addr}
+    # address: spring-cloud://localhost  #dubbo服务注册端口，注册中心服务器地址，如果地址没有端口缺省为9090，同一集群内的多个地址用逗号分隔，如：ip:port,ip:port
+  cloud:
+    subscribed-services: dubbo-service-provider #指定调用的服务名称
+```
+3.调用 api 接口，实现 dubbo
+```java
+@Slf4j  
+@RestController  
+@RequestMapping("/api/borrow")  
+public class BorrowController {  
+    @Resource  
+    BorrowService borrowService;  
+    @DubboReference(check = false)  
+    DubboApiService dubboApiService;  
+    @GetMapping("/testDubbo/{msg}")  
+    Result<String> helloMsg(@PathVariable("msg") String msg) {  
+        return dubboApiService.sayHello(msg);  
+    }
+}
+```
+### 3.服务调用对比
+1. REST和RPC
+在单体应用中，各模块间的调用是通过编程语言级别的方法函数来实现，但分布式系统运行在多台机器上，一般来说，每个服务实例都是一个进程，服务间必须使用进程间通信机制来交互，而常见的通信协议主要有 RPC 和 REST 协议。
+（1）REST：REST 是基于 HTTP 实现，使用 HTTP 协议处理数据通信，更加标准化与通用，因为无论哪种语言都支持 HTTP 协议。常见的 http API 都可以称为 Rest 接口。REST 是一种架构风格，指一组架构约束条件和原则，满足 REST 原则的应用程序或设计就是 RESTful，RESTful 把一切内容都视为资源。REST 强调组件交互的扩展性、接口的通用性、组件的独立部署、以及减少交互延迟的中间件，它强化安全，也能封装遗留系统。
+**REST（Representational State Transfer）**：
+	- **设计哲学：** REST 是一种基于资源的架构风格，强调在分布式系统中的资源的标识和状态。它的设计目标是简化分布式系统的通信和状态管理。
+	- **通信方式：** REST 使用 HTTP 协议作为通信协议，通常使用标准的 HTTP 方法（GET、POST、PUT、DELETE 等）来操作资源。
+	- **数据传输：** REST 使用通常是基于文本的数据格式，如JSON或XML，用于表示资源和状态。这些数据格式易于理解和处理。
+	- **状态：** REST 通信是无状态的，每个请求都包含了足够的信息来理解和处理请求，服务端不需要保留客户端的状态信息。
+	- **缓存：** REST 支持缓存，可以使用HTTP标准的缓存机制来提高性能。
+
+（2）RPC：是一种进程间通信方式，允许像调用本地服务一样调用远程服务，通信协议大多采用二进制方式。
+**RPC（Remote Procedure Call）**：
+	- **设计哲学：** RPC 是一种远程调用的机制，其设计目标是使分布式系统中的方法调用就像本地方法调用一样。
+	- **通信方式：** RPC 使用自定义的协议来进行通信，它通常需要专门的RPC框架来处理请求和响应。常见的RPC框架包括Dubbo、gRPC、Thrift等。
+	- **数据传输：** RPC 框架通常使用二进制协议，这些协议通常比文本协议更高效。
+	- **状态：** RPC 通信可以是有状态的，服务端可以保留客户端的状态信息，这在某些场景中可能有用。
+	- **缓存：** RPC 框架通常不直接支持缓存，但可以在应用层面进行缓存的处理。
+
+**区别：**
+	1. **设计哲学：** REST 是一种基于资源和状态的架构风格，强调简化和通用性，而RPC专注于远程方法调用和接口定义。
+	2. **通信方式：** REST使用标准的HTTP协议，而RPC使用自定义的通信协议。
+	3. **数据传输：** REST通常使用文本格式（如JSON或XML）传输数据，而RPC通常使用更高效的二进制协议。
+	4. **状态：** REST是无状态的，每个请求都包含足够信息，而RPC可以是有状态的，服务端可以保留客户端的状态信息。
+	5. **缓存：** REST直接支持HTTP标准的缓存机制，而RPC通常需要应用层面的缓存处理。
+
+2. dubbo 和 feign 的区别与联系: 
+- 相同点: <u>Dubbo 与 Feign 都依赖注册中心、负载均衡</u>。
+- 不同点:
+1. 协议
+	**Dubbo**：
+	- 支持多传输协议(`Dubbo、Rmi、http、redis` 等等)，可以根据业务场景选择最佳的方式。非常灵活。  
+	- 默认的 Dubbo 协议：利用 Netty，TCP 传输，单一、异步、长连接，适合数据量小、高并发和服务提供者远远少于消费者的场景。  
+	*Feign*：
+	- 基于 Http 传输协议，短连接，不适合高并发的访问。
+2. 负载均衡
+	**Dubbo**：
+	- 支持 4 种算法（`随机、轮询、活跃度、Hash 一致性`），而且算法里面引入权重的概念。  
+	- 配置的形式不仅**支持代码配置，还支持 Dubbo 控制台灵活动态配置**。  
+	- 负载均衡的算法可以精准到某个服务接口的某个方法。  
+	*Feign*：
+	- 只支持 N 种策略：`轮询、随机、ResponseTime 加权`。  
+	- 负载均衡算法是 Client 级别的。  
+3. 容错策略
+	**Dubbo**：
+	- 支持多种容错策略：`failover、failfast、brodecast、forking` 等，也引入了 retry 次数、timeout 等配置参数。
+	*Feign*：
+	- 利用*熔断机制来实现容错*的，处理的方式不一样。
+
+|比较项|Feign（RESTful）|Dubbo|
+|:---:|:---:|:---:|
+|通讯协议|HTTP|默认 Dubbo 协议|
+|性能|略低|较高|
+|灵活度|高|低|
+### 4.Open[Feign](https://so.csdn.net/so/search?q=Feign&spm=1001.2101.3001.7020)迁移 Dubbo
+[Dubbo](https://so.csdn.net/so/search?q=Dubbo&spm=1001.2101.3001.7020) Spring Cloud 提供了方案，即 `@DubboTransported`注解，支持在类，方法，属性上使用。能够帮助服务消费端的 `Spring Cloud Open Feign` 接口以及 `@LoadBalanced` RestTemplate Bean 底层走 Dubbo 调用（可切换 Dubbo 支持的协议），而服务提供方则只需在原有 @RestController 类上追加  `@DubboServce` 注解（需要抽取接口）即可，换言之，在不调整 Feign 接口以及 RestTemplate URL 的前提下，实现无缝迁移。  
+
+> 前提是为每个服务提供者配置好`application.yml中的dubbo`，尤其是 `port` 端口配置要不同（配置为 **-1** 自动选择不冲突的端口）。
+
+1. 修改服务提供者
+```java
+@RestController  
+@DubboService  
+@RefreshScope //添加此注解就能实现自动刷新了  
+@RequestMapping("/api/user")  
+public class UserController {  
+  
+    @Resource  
+    UserService userService;  
+  
+  
+    /**  
+     * 根据用户ID获取用户信息     *     * @param uid 用户ID  
+     * @return 用户信息  
+     */    @GetMapping("/{uid}")  
+    User getUserById(@PathVariable("uid") Integer uid) {  
+        return userService.getUserById(uid);  
+  
+    }
+}
+```
+2. 消费端引入依赖
+
+```xml
+<dependency> 
+	<groupId>com.alibaba.cloud</groupId> 
+	<artifactId>spring-cloud-starter-dubbo</artifactId> 
+</dependency>
+<!--        服务调用-->  
+<dependency>  
+    <groupId>org.springframework.cloud</groupId>  
+    <artifactId>spring-cloud-starter-openfeign</artifactId>  
+</dependency>
+```
+3. feign的实现，启动类上添加`@EnableFeignClients`
+
+```java
+@SpringBootApplication  
+@EnableFeignClients
+public class BorrowApplication {  
+    public static void main(String[] args) {  
+        SpringApplication.run(BorrowApplication.class, args);  
+    }  
+}
+```
+4. feign接口添加 `@DubboTransported` 注解
+
+```java
+@DubboTransported(protocol = "dubbo")  
+@FeignClient(value = "user-service", fallback = UserClientImpl.class, path = "/api/user/")  
+public interface UserClient {  
+    @RequestMapping("/uid}")  
+    User getUserById(@PathVariable("uid") int uid);  
+    @RequestMapping("/remain/{uid}")  
+    int userRemain(@PathVariable("uid") int uid);  
+    @RequestMapping("/borrow/{uid}")  
+    boolean userBorrow(@PathVariable("uid") int uid);  
+}
+```
+5. 调用对象添加`@DubboTransported`注解
+
+```java
+@Service  
+@Slf4j  
+public class BorrowServiceImpl implements BorrowService {  
+  
+    @Resource  
+    BorrowMapper borrowMapper;  
+  
+    @Resource  
+    @DubboTransported    
+    UserClient userClient;
+}
+```
+
+
+
 
 
 ## Reference
-
 ```cardlink
 url: https://itbaima.net/
 title: "柏码 - 让每一行代码都闪耀智慧的光芒！"
 host: itbaima.net
 favicon: /favicon.ico
 ```
-[柏码 - 让每一行代码都闪耀智慧的光芒！](https://itbaima.net/)
+1. [柏码 - 让每一行代码都闪耀智慧的光芒！](https://itbaima.net/)
+
+```cardlink
+url: https://cn.dubbo.apache.org/
+title: "Apache Dubbo 中文"
+description: "Apache Dubbo 官网"
+host: cn.dubbo.apache.org
+image: https://cn.dubbo.apache.org/zh-cn/featured-background.jpg
+```
+2. [Apache Dubbo](https://cn.dubbo.apache.org/)
+```cardlink
+url: https://www.cnblogs.com/1234cjq/p/15740904.html#:~:text=dubbo%3A%20scan%3A%20base%20-%20packages%3A%20com.cloud.rapid.user.service.api.dubbo%20protocol%3A%20%23Dubbo,%E8%A1%A8%E7%A4%BA%E8%87%AA%E5%A2%9E%E7%AB%AF%E5%8F%A3%EF%BC%8C%E4%BB%8E%2020880%20%E5%BC%80%E5%A7%8B%EF%BC%89%20name%3A%20dubbo%20port%3A%20-1%20%23dubbo%E5%8D%8F%E8%AE%AE%E7%BC%BA%E7%9C%81%E7%AB%AF%E5%8F%A3%E4%B8%BA20880%EF%BC%8Crmi%E5%8D%8F%E8%AE%AE%E7%BC%BA%E7%9C%81%E7%AB%AF%E5%8F%A3%E4%B8%BA1099%EF%BC%8Chttp%E5%92%8Chessian%E5%8D%8F%E8%AE%AE%E7%BC%BA%E7%9C%81%E7%AB%AF%E5%8F%A3%E4%B8%BA80%EF%BC%9B%E5%A6%82%E6%9E%9C%E6%B2%A1%E6%9C%89%E9%85%8D%E7%BD%AEport%EF%BC%8C%E5%88%99%E8%87%AA%E5%8A%A8%E9%87%87%E7%94%A8%E9%BB%98%E8%AE%A4%E7%AB%AF%E5%8F%A3%EF%BC%8C%E5%A6%82%E6%9E%9C%E9%85%8D%E7%BD%AE%E4%B8%BA-1%EF%BC%8C%E5%88%99%E4%BC%9A%E5%88%86%E9%85%8D%E4%B8%80%E4%B8%AA%E6%B2%A1%E6%9C%89%E8%A2%AB%E5%8D%A0%E7%94%A8%E7%9A%84%E7%AB%AF%E5%8F%A3%E3%80%82
+title: "springcloud-alibaba 整合 dubbo - 一缕清风丶 - 博客园"
+description: "记一次 springcloud-alibaba 框架下整合 spring-cloud-starter-dubbo 现状: 现在微服务之间的相互调用使用 feign 接口都需要注解@FeignClient，例:@FeignClient(contextId = &quot;sysRoleMenuService&"
+host: www.cnblogs.com
+```
+3. [springcloud-alibaba整合dubbo - 一缕清风丶 - 博客园](https://www.cnblogs.com/1234cjq/p/15740904.html#:~:text=dubbo%3A%20scan%3A%20base%20-%20packages%3A%20com.cloud.rapid.user.service.api.dubbo%20protocol%3A%20%23Dubbo,%E8%A1%A8%E7%A4%BA%E8%87%AA%E5%A2%9E%E7%AB%AF%E5%8F%A3%EF%BC%8C%E4%BB%8E%2020880%20%E5%BC%80%E5%A7%8B%EF%BC%89%20name%3A%20dubbo%20port%3A%20-1%20%23dubbo%E5%8D%8F%E8%AE%AE%E7%BC%BA%E7%9C%81%E7%AB%AF%E5%8F%A3%E4%B8%BA20880%EF%BC%8Crmi%E5%8D%8F%E8%AE%AE%E7%BC%BA%E7%9C%81%E7%AB%AF%E5%8F%A3%E4%B8%BA1099%EF%BC%8Chttp%E5%92%8Chessian%E5%8D%8F%E8%AE%AE%E7%BC%BA%E7%9C%81%E7%AB%AF%E5%8F%A3%E4%B8%BA80%EF%BC%9B%E5%A6%82%E6%9E%9C%E6%B2%A1%E6%9C%89%E9%85%8D%E7%BD%AEport%EF%BC%8C%E5%88%99%E8%87%AA%E5%8A%A8%E9%87%87%E7%94%A8%E9%BB%98%E8%AE%A4%E7%AB%AF%E5%8F%A3%EF%BC%8C%E5%A6%82%E6%9E%9C%E9%85%8D%E7%BD%AE%E4%B8%BA-1%EF%BC%8C%E5%88%99%E4%BC%9A%E5%88%86%E9%85%8D%E4%B8%80%E4%B8%AA%E6%B2%A1%E6%9C%89%E8%A2%AB%E5%8D%A0%E7%94%A8%E7%9A%84%E7%AB%AF%E5%8F%A3%E3%80%82)
