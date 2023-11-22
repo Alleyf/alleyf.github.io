@@ -5,7 +5,7 @@ tags:
   - markdown
   - mermaid
 sticky: 60
-excerpt: 
+excerpt: 一些关于markdown的用法教程
 author: fcs
 index_img: https://picsum.photos/800/250
 ---
