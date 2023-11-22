@@ -317,7 +317,8 @@ public class Knife 4 jConfig {
 	```
 8. *fastjson 2* 在使用时，要注意返回 json 格式化的工具类 `Result` 必须加上 `@Data、@AllArgsConstructor` 注解才能使用，否则返回的 json 格式化数据一直为**空（null）**
 9. SpringBoot 从 `2.5. x` 版本后开始支持`java17`，采用 `java17` 才能使用 `Map/List.of` 快速创建哈希表或列表，才能在*服务处显示端口号*并且开启 Actuator 后可以**查看 Actuator 运行状态**。
-10. springboot 最大并发数：[SpringBoot 最大连接数及最大并发数是多少？？？ - 知乎](https://zhuanlan.zhihu.com/p/654602186)
+10. `test` 测试类一定要和 *src>main>java* 下的软件包同名的**软件包**下，否则会找不到**配置类**报错。
+11. springboot 最大并发数：[SpringBoot 最大连接数及最大并发数是多少？？？ - 知乎](https://zhuanlan.zhihu.com/p/654602186)
 ```cardlink
 url: https://zhuanlan.zhihu.com/p/654602186
 title: "SpringBoot 最大连接数及最大并发数是多少？？？"
