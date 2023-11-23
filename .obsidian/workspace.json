@@ -26,7 +26,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/前后端开发/SpringCloud Alibaba-微服务进阶.md",
+                "file": "source/_posts/前后端开发/SpringCloud-微服务应用.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -34,25 +34,12 @@
             }
           },
           {
-            "id": "13be76c9ecfcf472",
+            "id": "ef5a970a79a4fee9",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "attachment/SpringCloud 进阶 - SpringCloud笔记（四）消息队列.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "db0fc8b33b88b01d",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "source/_posts/运维开发/MarkDown-真经.md",
+                "file": "source/_posts/运维开发/各种环境配置.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -73,7 +60,7 @@
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -93,7 +80,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/运维开发/MarkDown-真经.md"
+                "file": "source/_posts/运维开发/各种环境配置.md"
               }
             }
           }
@@ -189,8 +176,16 @@
       "templates:插入模板": false
     }
   },
-  "active": "7debd791db616930",
+  "active": "ef5a970a79a4fee9",
   "lastOpenFiles": [
+    "source/_posts/前后端开发/SpringCloud-微服务应用.md",
+    "attachment/SpringCloud 进阶 - SpringCloud笔记（三）微服务应用.md",
+    "source/_posts/前后端开发/SpringCloud Alibaba-微服务进阶.md",
+    "source/_posts/前后端开发/SpringBoot+Vue项目实战.md",
+    "source/_posts/运维开发/MarkDown-真经.md",
+    "source/_posts/科研学习/会议讨论/周会.md",
+    "source/_posts/运维开发/Git-简记.md",
+    "attachment/SpringCloud 进阶 - SpringCloud笔记（四）消息队列.md",
     "public/xml/local-search.xml",
     "public/xml",
     "public/css/main.css",
@@ -201,7 +196,6 @@
     "public/assets/mmedia/mmedia-loader.js",
     "public/assets/mmedia",
     "public/assets",
-    "db.json",
     "public/gallery/images/徒步旅行/旅途所见8.jpg",
     "public/gallery/images/徒步旅行/旅途所见9.jpg",
     "public/gallery/images/徒步旅行/旅途所见7.jpg",
@@ -213,15 +207,9 @@
     "public/gallery/images/徒步旅行/旅途所见12.jpg",
     "public/gallery/images/徒步旅行/旅途所见11.jpg",
     "source/_posts/运维开发/各种环境配置.md",
-    "attachment/SpringCloud 进阶 - SpringCloud笔记（四）消息队列.md",
-    "source/_posts/前后端开发/SpringCloud Alibaba-微服务进阶.md",
-    "source/_posts/前后端开发/SpringBoot+Vue项目实战.md",
     "source/_posts/科研学习/国基金项目/司法领域大模型调研二.md",
-    "source/_posts/科研学习/会议讨论/周会.md",
     "source/_posts/科研学习/国基金项目/司法领域大模型调研三.md",
     "source/_posts/科研学习/国基金项目/司法领域大模型调研四.md",
-    "source/_posts/运维开发/Git-简记.md",
-    "source/_posts/运维开发/MarkDown-真经.md",
     "source/_obsidian/Post Template.md",
     "source/about/index.md",
     "source/gallery/index.md",
@@ -237,7 +225,6 @@
     "source/_posts/科研学习/会议讨论/国际会议.md",
     "source/_posts/科研学习/论文总结/Paper_Reading_Tables.md",
     "source/_posts/运维开发/部署方法.md",
-    "SpringCloud 进阶 - SpringCloud笔记（二）微服务进阶.md",
     "canvas/review plans.canvas",
     "canvas/AI学习思路.canvas",
     "source/_posts/英语学习/EnglishWords.canvas",

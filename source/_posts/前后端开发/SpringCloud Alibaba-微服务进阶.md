@@ -2237,7 +2237,7 @@ public class TestListener {
 前面我们已经了解了 RabbitMQ 客户端的一些基本操作，包括普通的消息模式，接着我们来了解一下其他的模式，首先是发布订阅模式，它支持多种方式：
 ![image-20220420172252440](https://s2.loli.net/2023/03/08/fetLjQszH7cTZmO.jpg)
 比如我们在阿里云买了云服务器，但是最近快到期了，那么就会给你的手机、邮箱发送消息，告诉你需要去续费了，但是手机短信和邮件发送并不一定是同一个业务提供的，但是现在我们又希望能够都去执行，所以就可以用到发布订阅模式，简而言之就是，发布一次，消费多个。
-实现这种模式其实也非常简单，但是如果使用我们之前的直连交换机，肯定是不行的，我们这里需要用到另一种类型的交换机，叫做`fanout`（扇出）类型，这时一种广播类型，消息会被广播到所有与此交换机绑定的消息队列中。
+实现这种模式其实也非常简单，但是如果使用我们之前的直连交换机，肯定是不行的，我们这里需要用到另一种类型的交换机，叫做`fanout`（扇出）类型，这时一种广播类型，*消息会被广播到所有与此交换机绑定的消息队列*中。
 这里我们使用默认的交换机：
 ![image-20220420225300171](https://s2.loli.net/2023/03/08/Er7RBCjm3nNJZHT.jpg)
 这个交换机是一个`fanout`类型的交换机，我们就是要它就行了：
@@ -2294,10 +2294,8 @@ public class TestListener {
 }
 ```
 现在我们通过交换机发送消息，看看是不是两个监听器都会接收到消息：
-![image-20220420231113658](https://s2.loli.net/2023/03/08/k7V1xXyGTPKO6eb.jpg)
-可以看到确实是两个消息队列都能够接受到此消息：
-![image-20220420231145578](https://s2.loli.net/2023/03/08/vhwydqXr9Ue61t4.jpg)
-这样我们就实现了发布订阅模式。
+![image.png](http://qnpicmap.fcsluck.top/pics/202311231107309.png)
+可以看到确实是两个消息队列都能够接受到此消息，这样我们就实现了发布订阅模式。
 ### 路由模式
 路由模式实际上我们一开始就已经实现了，我们可以在绑定时指定想要的`routingKey`只有生产者发送时指定了对应的`routingKey`才能到达对应的队列。
 ![image-20220420232826848](https://s2.loli.net/2023/03/08/52vs9bualApXGMR.jpg)
@@ -2340,8 +2338,8 @@ public class RabbitConfiguration {
 实际上这种模式就是一种模糊匹配的模式，我们可以将`routingKey`以模糊匹配的方式去进行转发。
 ![image-20220420233721239](https://s2.loli.net/2023/03/08/z45gI7UaKmCipEL.jpg)
 我们可以使用`*`或`#`来表示：
-- \* - 表示任意的一个单词
-- \# - 表示 0 个或多个单词
+- `*` ：表示任意的一个单词
+- `#` ：表示 0 个或多个单词
 这里我们来测试一下：
 ```java
 @Configuration
@@ -2421,7 +2419,7 @@ public class RabbitConfiguration {
 结果发现，消息可以成功发送到消息队列，这就是使用头部信息进行路由。
 这样，我们就介绍完了所有四种类型的交换机。
 ### 集群搭建
-前面我们对于 RabbitMQ 的相关内容已经基本讲解完毕了，最后我们来尝试搭建一个集群，让 RabbitMQ 之间进行数据复制（镜像模式）稍微有点麻烦，跟着视频走吧。
+前面我们对于 RabbitMQ 的相关内容已经基本讲解完毕了，最后我们来尝试搭建一个集群，让 RabbitMQ 之间进行数据复制（镜像模式）稍微有点麻烦。
 可能会用到的一些命令：
 ```sh
 sudo rabbitmqctl stop_app
@@ -2430,14 +2428,12 @@ sudo rabbitmqctl start_app
 ```
 实现复制即可。
 ***
-
----
 ## SpringCloud 消息组件
 前面我们已经学习了如何使用 RabbitMQ 消息队列，接着我们来简单介绍一下 SpringCloud 为我们提供的一些消息组件。
 ### SpringCloud Stream
 **官方文档：** https://docs.spring.io/spring-cloud-stream/docs/3.2.2/reference/html/
 前面我们介绍了 RabbitMQ，了解了消息队列相关的一些操作，但是可能我们会遇到不同的系统在用不同的消息队列，比如系统 A 用的 Kafka、系统 B 用的 RabbitMQ，但是我们现在又没有学习过 Kafka，那么怎么办呢？有没有一种方式像 JDBC 一样，我们只需要关心 SQL 和业务本身，而不用关心数据库的具体实现呢？
-SpringCloud Stream 能够做到，它能够屏蔽底层实现，我们使用统一的消息队列操作方式就能操作多种不同类型的消息队列。
+*SpringCloud Stream* 能够做到，它能够*屏蔽底层实现，我们使用统一的消息队列操作方式*就能操作多种不同类型的消息队列。
 ![image-20220421225215709](https://s2.loli.net/2023/03/08/VWvry9TSDBinatH.jpg)
 它屏蔽了 RabbitMQ 底层操作，让我们使用统一的 Input 和 Output 形式，以 Binder 为中间件，这样就算我们切换了不同的消息队列，也无需修改代码，而具体某种消息队列的底层实现是交给 Stream 在做的。
 这里我们创建一个新的项目来测试一下：
@@ -2483,7 +2479,7 @@ spring:
                 username: admin
                 password: admin
                 virtual-host: /test
-       bindings:
+	  bindings:
         test-out-0:
           destination: test.exchange
 ```

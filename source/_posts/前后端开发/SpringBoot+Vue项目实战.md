@@ -290,7 +290,8 @@ public class Knife 4 jConfig {
 ### 踩坑
 1. redis 本地安装好需要修改配置文件设置 requirepass `password` 密码，才可以在 idea 里远程连接使用。
 2. vue 中的 form 表单一定要动态绑定 `:model`，如果添加了字段验证 `:rules`，还必须为每个 `el-form-item` 指定 `prop` 为 `model` 的键。
-3. *RabbitMQ 发送 Map*等复杂消息时，需要添加（反）序列化消息转换器，否则刷屏消息转换报错，添加消息转换器步骤如下：
+3. *RabbitMQ* 必须为**监听器添加@Component 注解**才能自动注入的交换机和队列 bean 添加并绑定起来，否则 *RabbitConfiguration 配置类不生效*。
+4. *RabbitMQ 发送 Map*等复杂消息时，需要添加（反）序列化消息转换器，否则刷屏消息转换报错，添加消息转换器步骤如下：
    - 添加 jackson 依赖：
 	```xml
 	   <!--        jackson-->  
@@ -316,7 +317,7 @@ public class Knife 4 jConfig {
 	  coldTime. value > 0 ? coldTime. value-- : clearInterval (coldTimer)  	}, 1000)
 	```
 8. *fastjson 2* 在使用时，要注意返回 json 格式化的工具类 `Result` 必须加上 `@Data、@AllArgsConstructor` 注解才能使用，否则返回的 json 格式化数据一直为**空（null）**
-9. SpringBoot 从 `2.5. x` 版本后开始支持`java17`，采用 `java17` 才能使用 `Map/List.of` 快速创建哈希表或列表，才能在*服务处显示端口号*并且开启 Actuator 后可以**查看 Actuator 运行状态**。
+9. SpringBoot 从 `2.5. x` 版本后开始支持 `java17`，采用 `java17` 才能使用 `Map/List.of` 快速创建哈希表或列表，才能在*服务处显示端口号*并且开启 Actuator 后可以**查看 Actuator 运行状态**。
 10. `test` 测试类一定要和 *src>main>java* 下的软件包同名的**软件包**下，否则会找不到**配置类**报错。
 11. springboot 最大并发数：[SpringBoot 最大连接数及最大并发数是多少？？？ - 知乎](https://zhuanlan.zhihu.com/p/654602186)
 ```cardlink
