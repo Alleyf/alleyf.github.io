@@ -6,7 +6,7 @@
   <link href="https://alleyf.github.io/atom.xml" rel="self"/>
   
   <link href="https://alleyf.github.io/"/>
-  <updated>2023-11-23T14:19:33.709Z</updated>
+  <updated>2023-11-24T15:04:31.909Z</updated>
   <id>https://alleyf.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://alleyf.github.io/2023/11/ce56947e919e.html"/>
     <id>https://alleyf.github.io/2023/11/ce56947e919e.html</id>
     <published>2023-11-23T08:39:49.000Z</published>
-    <updated>2023-11-23T14:19:33.709Z</updated>
+    <updated>2023-11-24T15:04:31.909Z</updated>
     
     
     <summary type="html">关于微服务应用的一些常见知识点（分布式权限校验、数据库分布式等）。</summary>
@@ -222,9 +222,9 @@
     
     <category term="AIGC" scheme="https://alleyf.github.io/tags/AIGC/"/>
     
-    <category term="KG" scheme="https://alleyf.github.io/tags/KG/"/>
-    
     <category term="NLP" scheme="https://alleyf.github.io/tags/NLP/"/>
+    
+    <category term="KG" scheme="https://alleyf.github.io/tags/KG/"/>
     
     <category term="LLM" scheme="https://alleyf.github.io/tags/LLM/"/>
     
@@ -274,9 +274,9 @@
     <category term="科研学习" scheme="https://alleyf.github.io/categories/%E7%A7%91%E7%A0%94%E5%AD%A6%E4%B9%A0/"/>
     
     
-    <category term="KG" scheme="https://alleyf.github.io/tags/KG/"/>
-    
     <category term="NLP" scheme="https://alleyf.github.io/tags/NLP/"/>
+    
+    <category term="KG" scheme="https://alleyf.github.io/tags/KG/"/>
     
   </entry>
   
