@@ -76,7 +76,7 @@ spring:
     store-type: redis
   redis:
   	# Redis服务器的信息，该咋写咋写
-    host: 1.14.121.107
+    host: localhost
 ```
 
 这样，默认情况下，每个服务的接口都会被SpringSecurity所保护，只有登录成功之后，才可以被访问。
@@ -107,13 +107,13 @@ spring:
 
 ![image-20230306235053840](https://s2.loli.net/2023/03/06/wls5vCajnuMBOkU.png)
 
-在RestTemplate进行远程调用的时候，由于我们的请求没有携带对应SESSION的Cookie，所以导致验证失败，访问不成功，返回401，所以虽然这种方案看起来比较合理，但是在我们的实际使用中，还是存在一些不便的。
+>[!error] 在 RestTemplate 进行远程调用的时候，由于我们的请求没有携带对应SESSION的Cookie，所以导致验证失败，访问不成功，返回401，所以虽然这种方案看起来比较合理，但是在我们的实际使用中，还是存在一些不便的。
 
 ***
 
 ## OAuth 2.0 实现单点登录
 
-**注意：**第一次接触可能会比较难，不太好理解，需要多实践和观察。
+**注意：** 第一次接触可能会比较难，不太好理解，需要多实践和观察。
 
 前面我们虽然使用了统一存储来解决Session共享问题，但是我们发现就算实现了Session共享，依然存在一些问题，由于我们每个服务都有自己的验证模块，实际上整个系统是存在冗余功能的、同时还有我们上面出现的问题，那么能否实现只在一个服务进行登录，就可以访问其他的服务呢？
 
@@ -163,7 +163,7 @@ spring:
 
    这样就算有人中途窃取了授权码，也毫无意义，因为，Token的获取必须同时携带授权码和secret，但是`secret`第三方是无法得知的，并且Token不会直接丢给客户端，大大减少了泄露的风险。
 
-但是乍一看，OAuth 2.0不应该是那种第三方应用为了请求我们的服务而使用的吗，而我们这里需要的只是实现同一个应用内部服务之间的认证，其实我也可以利用 OAuth2.0 来实现单点登录，只是少了资源服务器这一角色，客户端就是我们的整个系统，接下来就让我们来实现一下。
+但是 OAuth 2.0不应该是那种第三方应用为了请求我们的服务而使用的吗，而我们这里需要的只是实现同一个应用内部服务之间的认证，其实我也可以利用 OAuth2.0 来实现单点登录，只是少了资源服务器这一角色，客户端就是我们的整个系统，接下来就让我们来实现一下。
 
 ### 搭建验证服务器
 
@@ -216,7 +216,7 @@ server:
     context-path: /sso
 ```
 
-接着我们需要编写一下配置类，这里需要两个配置类，一个是OAuth2的配置类，还有一个是SpringSecurity的配置类：
+接着我们需要编写一下配置类，这里需要两个配置类，一个是**OAuth2的配置类**，还有一个是**SpringSecurity的配置类**：
 
 ```java
 @Configuration
@@ -298,7 +298,7 @@ public class OAuth2Configuration extends AuthorizationServerConfigurerAdapter {
 
 ![image-20230306235226961](https://s2.loli.net/2023/03/06/2FhnOKe1BorP5NE.png)
 
-然后我们使用Postman进行接口测试，首先我们从最简单的客户端模式进行测试，客户端模式只需要提供id和secret即可直接拿到Token，注意需要再添加一个grant_type来表明我们的授权方式，默认请求路径为http://localhost:8500/sso/oauth/token：
+然后我们使用Postman进行接口测试，首先我们从最简单的客户端模式进行测试，客户端模式只需要提供id和secret即可直接拿到Token，注意需要再添加一个grant_type来表明我们的授权方式，默认请求路径为 http://localhost:8500/sso/oauth/token：
 
 ![image-20230306235236376](https://s2.loli.net/2023/03/06/X81T7mz5gQK3iBk.png)
 
@@ -334,7 +334,7 @@ public class OAuth2Configuration extends AuthorizationServerConfigurerAdapter {
 
 查询Token信息之后还可以看到登录的具体用户以及角色权限等。
 
-接着我们来看隐式授权模式，这种模式我们需要在验证服务器上进行登录操作，而不是直接请求Token，验证登录请求地址：http://localhost:8500/sso/oauth/authorize?client_id=web&response_type=token
+接着我们来看隐式授权模式，这种模式我们需要在验证服务器上进行登录操作，而不是直接请求Token，验证登录请求地址： http://localhost:8500/sso/oauth/authorize?client_id=web&response_type=token
 
 注意response_type一定要是token类型，这样才会直接返回Token，浏览器发起请求后，可以看到熟悉而又陌生的界面，没错，实际上这里就是使用我们之前讲解的SpringSecurity进行登陆，当然也可以配置一下记住我之类的功能，这里就不演示了：
 
@@ -374,13 +374,13 @@ public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 
 可以看到，Token也是有效的。
 
-最后我们来看看第四种最安全的授权码模式，这种模式其实流程和上面是一样的，但是请求的是code类型：http://localhost:8500/sso/oauth/authorize?client_id=web&response_type=code
+最后我们来看看第四种最安全的授权码模式，这种模式其实流程和上面是一样的，但是请求的是code类型： http://localhost:8500/sso/oauth/authorize?client_id=web&response_type=code
 
 可以看到访问之后，依然会进入到回调地址，但是这时给的就是授权码了，而不是直接给Token，那么这个Token该怎么获取呢？
 
 ![image-20230306235536317](https://s2.loli.net/2023/03/06/da4WseDt172hbLV.png)
 
-按照我们之前讲解的原理，我们需要携带授权码和secret一起请求，才能拿到Token，正常情况下是由回调的服务器进行处理，这里我们就在Postman中进行，我们复制刚刚得到的授权码，接口依然是`localhost:8500/sso/oauth/token`：
+按照我们之前讲解的原理，我们需要携带授权码和secret一起请求( **只能消费一次code就失效** )，才能拿到Token，正常情况下是由回调的服务器进行处理，这里我们就在Postman中进行，我们复制刚刚得到的授权码，接口依然是`localhost:8500/sso/oauth/token`：
 
 ![image-20230306235545717](https://s2.loli.net/2023/03/06/e1Zdt9IP7vp2zMO.png)
 
@@ -400,7 +400,7 @@ public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 
 ![image-20230306235618838](https://s2.loli.net/2023/03/06/cA9WF1KxyUDZ8Bi.png)
 
-查看日志发现，这里还需要我们单独配置一个UserDetailsService，我们直接把Security中的实例注册为Bean：
+查看日志发现，这里还需要我们单独配置一个 `UserDetailsService`，我们直接把Security中的实例注册为Bean：
 
 ```java
 @Bean
@@ -476,7 +476,7 @@ public @interface EnableOAuth2Sso {
 }
 ```
 
-可以看到它直接注册了OAuth2SsoDefaultConfiguration，而这个类就是帮助我们对Security进行配置的：
+可以看到它直接注册了 OAuth2SsoDefaultConfiguration，而这个类就是帮助我们对Security进行配置的：
 
 ```java
 @Configuration

@@ -1,11 +1,11 @@
 {
   "accentColor": "#5c9ef5",
-  "theme": "obsidian",
+  "theme": "moonstone",
   "cssTheme": "Blue Topaz",
   "nativeMenus": true,
   "translucency": true,
   "interfaceFontFamily": "Arial Black",
-  "baseFontSize": 18,
+  "baseFontSize": 17,
   "enabledCssSnippets": [
     "custom-icons-differing-files-and-folders"
   ]

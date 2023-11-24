@@ -307,5 +307,13 @@
       "key": "T"
     }
   ],
-  "workspace:new-tab": []
+  "workspace:new-tab": [],
+  "obsidian-style-settings:style-settings-class-toggle-blue-topaz-theme-justify-align": [
+    {
+      "modifiers": [
+        "Alt"
+      ],
+      "key": "E"
+    }
+  ]
 }

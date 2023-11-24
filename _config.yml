@@ -139,3 +139,19 @@ mmedia:
     flv_cdn: https://cdn.jsdelivr.net/npm/flv.js/dist/flv.min.js
     webtorrent_cdn: https://cdn.jsdelivr.net/npm/webtorrent/webtorrent.min.js
     default:
+
+# Extensions
+plugins: hexo-generator-feed
+#Feed Atom
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20
+  hub:
+  content:
+  content_limit: 140
+  content_limit_delim: " "
+  order_by: -date
+  icon: http://qnpicmap.fcsluck.top/pics/202311162214229.png
+  autodiscovery: true
+  template:
