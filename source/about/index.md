@@ -33,3 +33,5 @@ Fellings：
 
 ---
 {% mmedia "meting" "001Mf4Ic1aNYYK" "tencent" "album" "order:random" "listmaxheight:180px" %}
+
+{% mmedia "aplayer" "大调" "官大为" "https://music.gaficat.com/%E5%A4%A7%E8%B0%83.mp3" %}

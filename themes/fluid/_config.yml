@@ -1162,7 +1162,7 @@ live2d:
     hitokoto: true
 
 # 图像自动压缩插件
-all_minifier: false
+all_minifier: true
 
 feed:
   enable: true

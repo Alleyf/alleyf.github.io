@@ -165,22 +165,22 @@ List 类型就是一个列表，而列表中存放一系列的字符串，它支
 我们可以直接向一个已存在或是不存在的 List 中添加数据，如果不存在，会自动创建：
 1. 添加：
 ```sh
--向列表头部添加元素
-Ipush <key><element>...
--一向列表尾部添加元素
-rpush <key><element>...
--一在指定元素前面/后面插入元素
-linsert<key>before./after<指定元素><element
+--向列表头部添加元素
+lpush <key> <element>...
+--向列表尾部添加元素
+rpush <key> <element>...
+--在指定元素前面/后面插入元素
+linsert <key> before/after <指定元素> <element
 ```
 2. 获取：
 ```sh
--一根据下标获取元素
-lindex<key><下标>
--~获取并移除头部元素
+--根据下标获取元素
+lindex <key> <下标>
+--获取并移除头部元素
 lpop <key>
-一获取并移除尾部元素
+--获取并移除尾部元素
 rpop <key>
-一获取指定范围内的
+--获取指定范围内的
 lrange <key>start stop
 注意下标可以使用负数来表示从后到前数的数字(Python:搁这儿抄呢是吧)：
 获取列表Q中的全部元素

@@ -93,5 +93,5 @@
   "blue-topaz-theme@@link-underline-internal": false,
   "blue-topaz-theme@@circular-checkbox": false,
   "blue-topaz-theme@@toggle-checked-decoration": true,
-  "blue-topaz-theme@@justify-align": true
+  "blue-topaz-theme@@justify-align": false
 }
