@@ -27,7 +27,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://picsum.photos/800/250">
 <meta property="article:published_time" content="2023-11-25T02:45:31.000Z">
-<meta property="article:modified_time" content="2023-11-25T09:16:39.872Z">
+<meta property="article:modified_time" content="2023-11-25T15:57:06.192Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="Redis">
 <meta name="twitter:card" content="summary_large_image">
@@ -283,7 +283,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.2k 字
+          8.6k 字
         
       </span>
     
@@ -294,7 +294,7 @@
         
         
         
-          35 分钟
+          72 分钟
         
       </span>
     
@@ -345,7 +345,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：6 分钟前
+                    本文最后更新于：3 分钟前
                   
                 
               </p>
@@ -436,9 +436,135 @@
 <li>添加：<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sh">--向列表头部添加元素<br>lpush &lt;key&gt; &lt;element&gt;...<br>--向列表尾部添加元素<br>rpush &lt;key&gt; &lt;element&gt;...<br>--在指定元素前面/后面插入元素<br>linsert &lt;key&gt; before/after &lt;指定元素&gt; &lt;element&gt;<br></code></pre></td></tr></table></figure></li>
 <li>获取：<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs sh">--根据下标获取元素<br>lindex &lt;key&gt; &lt;index&gt;<br>--获取并移除头部元素<br>lpop &lt;key&gt;<br>--获取并移除尾部元素<br>rpop &lt;key&gt;<br>--获取指定范围内的<br>lrange &lt;key&gt; start stop<br>注意下标可以使用负数来表示从后到前数的数字<br>--获取列表Q中的全部元素<br>lrange a 0 -1<br></code></pre></td></tr></table></figure></li>
 <li>取尾置头：<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">-- 从前一个数组的最后取一个数出来放到另一个数组的头部，并返回元素<br>rpoplpush <span class="hljs-built_in">source</span> destination<br></code></pre></td></tr></table></figure></li>
-<li>阻塞操作（类似于生产者和消费者，比如我们想要等待列表中有了数据后再进行poρ操作）:<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">--如果列表中没有元素，那么就等待，如果指定时间（秒）内被添加了数据，那么就执行pop操作，如果超时就作废，支持同时等待多个列表，只要其中一个列表有元素了，那么就能执行<br>blpop &lt;key&gt;...<span class="hljs-built_in">timeout</span><br></code></pre></td></tr></table></figure></li>
+<li>阻塞操作（类似于生产者和消费者，比如我们想要等待列表中有了数据后再进行 poρ操作）:<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">--如果列表中没有元素，那么就等待，如果指定时间（秒）内被添加了数据，那么就执行pop操作，如果超时就作废，支持同时等待多个列表，只要其中一个列表有元素了，那么就能执行<br>blpop &lt;key&gt;...<span class="hljs-built_in">timeout</span><br></code></pre></td></tr></table></figure></li>
 </ol>
-<h2 id="Set和SortedSet"><a href="#Set和SortedSet" class="headerlink" title="Set和SortedSet"></a>Set和SortedSet</h2>
+<h2 id="Set-和-SortedSet"><a href="#Set-和-SortedSet" class="headerlink" title="Set 和 SortedSet"></a>Set 和 SortedSet</h2><p>Set 集合其实就像 Java 中的 HashSet 一样（我们在 JavaSE 中已经讲解过了，HashSet 本质上就是利用了一个 HashMap,但是 Value 都是固定对象，仅偃是 Key 不同)它不允许出现重复元素，不支持随机访问，但是能够利用 Hash 表提供极高的查找效率。</p>
+<ol>
+<li><p>添加元素：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">sadd &lt;key&gt; &lt;value&gt; ...<br></code></pre></td></tr></table></figure></li>
+<li><p>查看数量：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">scard &lt;key&gt;<br></code></pre></td></tr></table></figure></li>
+<li><p>判断是否包含：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sh">--是否包含指定值<br>sismember &lt;key&gt; &lt;value&gt;<br>--列出所有值<br>smembers &lt;key&gt;<br></code></pre></td></tr></table></figure></li>
+<li><p>集合之间的运算：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs sh">--集合之间的差集<br>sdiff &lt;key1&gt; &lt;key2&gt;<br>--集合之间的交集<br>sinter &lt;key1&gt; &lt;key2&gt;<br>--求并集(自动去重)<br>sunion &lt;key1&gt; &lt;key2&gt;<br>--将集合之间的差集存到目标集合中<br>sdiffstore 目标 &lt;key1&gt; &lt;key2&gt;<br>--同上<br>sinterstore 目标 &lt;key1&gt; &lt;key2<br>--同上<br>sunionstore 目标 &lt;key1&gt; &lt;key2<br></code></pre></td></tr></table></figure></li>
+<li><p>移动指定值到另一个集合中：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">smove &lt;key&gt; 目标 value<br></code></pre></td></tr></table></figure></li>
+<li><p>删除：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sh">--随机移除一个幸运儿<br>spop &lt;key&gt;<br>--移除指定<br>srem &lt;key&gt; &lt;value&gt;...<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>那么如果我们要求 Set 集合中的数据按照我们指定的顺序进行排列怎么办呢？这时就可以使用 SortedSet,它支持我们为每个值设定一个分数，分数的大小决定了值的位置，所以它是有序的。 </p>
+</blockquote>
+</li>
+<li><p>添加有序集合（<em>根据分数降序排列</em>）：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">zadd &lt;key&gt; [&lt;value&gt; &lt;score&gt;]...<br></code></pre></td></tr></table></figure>
+<p><img src="http://qnpicmap.fcsluck.top/pics/202311251747202.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+</li>
+<li><p>获取元素：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sh">zcard key<br>zrange key start end （withscores）可带分数返回<br>zrangebyscore key score1 score2 返回指定分数之间的数据<br>ZRANGEBYSCORE key min max [WITHSCORES] [LIMIT offset count] 自定义参数<br></code></pre></td></tr></table></figure></li>
+<li><p>删除元素：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">zrem key value ...<br></code></pre></td></tr></table></figure></li>
+<li><p>统计分数段内的数量</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">zcount &lt;key&gt; start  stop<br></code></pre></td></tr></table></figure></li>
+<li><p>根据分数获取指定值的排名</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">zrank &lt;key&gt; &lt;value&gt;<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>有关 Bitmap、HyperLogLog 和 Geospatial 等数据类型不常用，如需了解请参考 <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/32b9fe8c20e1">redis基本操作命令 - 简书</a></p>
+</blockquote>
+</li>
+</ol>
+<h1 id="持久化"><a href="#持久化" class="headerlink" title="持久化"></a>持久化</h1><p>因为 Redis 是内存数据库，它将自己的数据存储在内存里面，一旦 Redis 服务器进程退出或者运行 Redis 服务器的计算机停机，Redis 服务器中的数据就会丢失。<br>为了避免数据丢失，所以 Redis 提供了持久化机制，将存储在内存中的数据保存到磁盘中，用于在 Redis 服务器进程退出或者运行 Redis 服务器的计算机停机导致数据丢失时，快速的恢复之前 Redis 存储在内存中的数据。<br>Redis 持久化不保证数据的完整性，有可能会丢数据。当 Redis 用作 DB 时，DB 数据要完整，所以一定要有一个完整的数据源（文件、mysql），在系统启动时，从这个完整的数据源中将数据 load 到 Redis 中。<br>Redis 的有两种持久化方式，RDB 和 AOF。</p>
+<h3 id="ROB"><a href="#ROB" class="headerlink" title="ROB"></a>ROB</h3><p>RDB（Redis DataBase），是 redis 默认的存储方式，RDB 方式是通过快照（ snapshotting ）完成的。它保存的是某一时刻的数据并不关注过程。<em>RDB 保存 redis 某一时刻的数据的快照</em><br><strong>优点</strong>：</p>
+<ol>
+<li>写入速度快：由于 ROB 只需要写入键的位图文件和相应的值文件，而不需要写入完整的数据库文件，因此写入速度比传统的 AOF 和 RDB 持久化方式更快。</li>
+<li>读取速度快：由于 ROB 只需要读取键的位图信息，并根据位图信息读取相应的值文件，因此读取速度也比传统方式更快。</li>
+<li>占用空间小：由于 ROB 只需要保存每个键是否存在的位图信息和相应的值文件，因此占用空间比传统方式更小。</li>
+</ol>
+<p><strong>缺点</strong>：</p>
+<ol>
+<li>只适用于适量大小（不超过几千万个键）的数据库。</li>
+<li>不支持复制和集群模式。</li>
+<li>服务器故障时会丢失最后一次备份之后的数据。</li>
+<li>Redis 保存 rdb 时， fork 子进程的这个操作期间, Redis 服务会停止响应(一般是毫秒级)，但如果数据量大且 cpu 时间紧张，则停止响应的时间可能长达1秒。</li>
+</ol>
+<p>总的来说，ROB 持久化是一种在特定场景下可以提供更快速、更省空间的持久化方式，但对于大规模数据集和高可用性要求的场景可能不太适用。<br>RDB 持久化是将某个时间点上 Redis 中的数据保存到一个 RDB 文件中，如下所示：<br>保存：<br><img src="http://qnpicmap.fcsluck.top/pics/202311252009138.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<blockquote>
+<p>基于 RDB 持久化的上述性质，所以 RDB 持久化也叫做<strong>快照持久化</strong>。<br>该文件是一个经过压缩的二进制文件，通过该文件可以还原生成 RDB 文件时 Redis 中的数据，如下所示：</p>
+</blockquote>
+<p>还原：<br><img src="http://qnpicmap.fcsluck.top/pics/202311252012458.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<blockquote>
+<p><strong>触发快照的方式</strong>  </p>
+<ol>
+<li>符合自定义配置的快照规则；  </li>
+<li>执行 save 或者 bgsave 命令；  </li>
+<li>执行 flushall 命令；  </li>
+<li>执行主从复制操作 (第一次)。</li>
+</ol>
+</blockquote>
+<blockquote>
+<p><strong>配置参数定期执行</strong><br>在 <code>redis.conf</code> 中配置：save 多少秒内数据变了多少，可以配置多个条件，满足其中一个条件就会触发生成快照，提高性能</p>
+</blockquote>
+<p><strong>保存过程原理</strong>：<br><img src="http://qnpicmap.fcsluck.top/pics/202311252307029.png" srcset="/img/loading.gif" lazyload alt="image.png"><br><strong>相关配置参数：</strong></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sh">save<br>--注意上面这个命令是直接保存，会占用一定的时间，也可以单独开一个子进程后台执行保存<br>bgsave<br></code></pre></td></tr></table></figure>
+<p>执行后，会在服务端目录下生成一个 dump.rb 文件，而这个文件中就保存了内存中存放的数据，当服务器重后后，云目动加载里面的内容到对应数据库中。保存后我们可以关闭服务器：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">shutdown<br></code></pre></td></tr></table></figure>
+<p>重启后可以看到数据依然存在。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs conf">################################ SNAPSHOTTING  ################################<br># 快照配置<br># 注释掉“save”这一行配置项就可以让保存数据库功能失效<br># 设置sedis进行数据库镜像的频率。<br># 900秒（15分钟）内至少1个key值改变（则进行数据库保存--持久化） <br># 300秒（5分钟）内至少10个key值改变（则进行数据库保存--持久化） <br># 60秒（1分钟）内至少10000个key值改变（则进行数据库保存--持久化）<br>save 900 1<br>save 300 10<br>save 60 10000<br>#当RDB持久化出现错误后，是否依然进行继续进行工作，yes：不能进行工作，no：可以继续进行工作，可以通过info中的rdb_last_bgsave_status了解RDB持久化是否有错误<br>stop-writes-on-bgsave-error yes<br>#使用压缩rdb文件，rdb文件压缩使用LZF压缩算法，yes：压缩，但是需要一些cpu的消耗。no：不压缩，需要更多的磁盘空间<br>rdbcompression yes<br>#是否校验rdb文件。从rdb格式的第五个版本开始，在rdb文件的末尾会带上CRC64的校验和。这跟有利于文件的容错性，但是在保存rdb文件的时候，会有大概10%的性能损耗，所以如果你追求高性能，可以关闭该配置。<br>rdbchecksum yes<br>#rdb文件的名称<br>dbfilename dump.rdb<br>#数据目录，数据库的写入会在这个目录。rdb、aof文件也会写在这个目录<br>dir /var/lib/redis<br></code></pre></td></tr></table></figure>
+<h2 id="AOF-持久化"><a href="#AOF-持久化" class="headerlink" title="AOF 持久化"></a><strong>AOF 持久化</strong></h2><p>AOF 其实就是将客户端每一次操作记录追加到指定的 aof（日志）文件中，在 aof 文件体积多大时可以自动在后台重写 aof 文件（期间不影响正常服务，中途磁盘写满或停机等导致失败也不会丢失数据）<br><strong>优点</strong></p>
+<ul>
+<li>充分保证数据的持久化，正确的配置一般最多丢失 1 秒的数据</li>
+<li>aof 文件内容是以 Redis 协议格式保存，易读</li>
+</ul>
+<p><strong>缺点</strong></p>
+<ul>
+<li>aof 文件通常大于 rdb 文件</li>
+<li>速度会慢于 rdb, 具体得看具体 fsyn 策略</li>
+<li>重新启动 redis 时会极低的概率会导致无法将数据集恢复成保存时的原样(概率极低, 但确实出现过)</li>
+</ul>
+<p><strong>AOF 持久化原理：</strong><br><img src="http://qnpicmap.fcsluck.top/pics/202311252327646.png" srcset="/img/loading.gif" lazyload alt="image.png"><br><strong>aof 持久化的 fsync 策略支持</strong>：</p>
+<ul>
+<li>不执行 fsync：由操作系统保证数据同步到磁盘(linux 默认 30 秒)，速度最快</li>
+<li>每秒 1 次：每秒钟保存一次，最多丢失最近 1s 的数据（推荐，默认配置）</li>
+<li>每条命令：每次执行写操作都会保存一次，绝对保证数据持久化（影响性能）</li>
+</ul>
+<blockquote>
+<p>fsync：同步内存中所有已修改的文件数据到储存设备</p>
+</blockquote>
+<p>aof 文件是一个只追加的文件, 若写入了不完整的命令(磁盘满, 停机…)时, 可用自带的 <code>redis-check-aof</code> 工具轻易修复问题：执行 <code>redis-check-aof --fix</code><br>aof 文件过大时会触发自动重写, 重写后的新 aof 文件包含了恢复当前数据集所需的最少的命令集合.</p>
+<blockquote>
+<p>客户端多次对同一个键 incr 时, 操作 N 次则会写入 N 条, 但实际上只需一条 set 命令就可以保存该值, 重建就是生成足够重建当前数据集的最少命令。<br>Redis 重写 aof 操作同样是通过 fork 子进程来处理的.</p>
+</blockquote>
+<p><strong>命令行临时配置 aof:</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">CONFIG SET appendonly yes<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>仅当前实例生命周期内有效</p>
+</blockquote>
+<p><strong>配置文件持久配置 aof：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c">#注意得改成也是<br>appendonly yes<br><span class="hljs-meta">#appendfsync always</span><br>appendfsync everysec<br><span class="hljs-meta">#appendfsync no</span><br></code></pre></td></tr></table></figure>
+<p>重启服务器后，可以看到服务器目录下多了一个 appendonly.aof 文件，存储的就是我们执行的命令。<br>AOF 的缺点也很明显，每次服务器启动都需要进行过程重演，相比 RDB 更加耗费时间，并且随着我们的操作变多，不断累计，可能到最后我们的 aof 文件会变得无比巨大，我们需要一个改进方案来优化这些问题。<br>Redis 有一个 AOF 重写机制进行优化，比如我们执行了这样的语句：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c">lpush test <span class="hljs-number">666</span><br>lpush test <span class="hljs-number">777</span><br>lpush test <span class="hljs-number">888</span><br><span class="hljs-comment">//实际上用一条语句也可以实现：</span><br>lpush test <span class="hljs-number">666</span> <span class="hljs-number">777</span> <span class="hljs-number">888</span><br></code></pre></td></tr></table></figure>
+<p>正是如此，只要我们能够保证最终的重演结果和原有语句的结果一致，无论语句如何修改都可以，所以我们可以通过这种方式将多条语句进行压缩。<br>我们可以输入命令来手动执行重写操作：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">bgrewriteaof<br></code></pre></td></tr></table></figure>
+<p>或是在配置文件中配置自动重写</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment">#百分比计算，这里不多介绍</span><br>auto-aof-rewrite-percentage 100<br><span class="hljs-comment">#当达到这个大小时，触发自动重写</span><br>auto-aof-rewrite-min-size 64mb<br></code></pre></td></tr></table></figure>
+<p><strong>总结:</strong></p>
+<ul>
+<li>AOF:<ul>
+<li>优点：存储速度快、消耗资源少、支持实时存储</li>
+<li>缺点：加载速度慢、数据体积大</li>
+</ul>
+</li>
+<li>RDB:<ul>
+<li>优点：加载速度快、数据体积小</li>
+<li>缺点：存储速度慢大量消耗资源、会发生数据丢失</li>
+</ul>
+</li>
+</ul>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/182972002">Redis 持久化详解及配置 - 知乎</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1vR4y1o7Z2/?p=6&spm_id_from=pageDriver&vd_source=9c896fa9c3f9023797e8efe7be0c113e">持久化_哔哩哔哩_bilibili</a></li>
+</ol>
+
                 
               </div>
             
