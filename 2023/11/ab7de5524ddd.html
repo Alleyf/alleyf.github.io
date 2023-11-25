@@ -27,7 +27,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://picsum.photos/800/250">
 <meta property="article:published_time" content="2023-11-25T02:45:31.000Z">
-<meta property="article:modified_time" content="2023-11-25T03:26:58.503Z">
+<meta property="article:modified_time" content="2023-11-25T06:51:26.361Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="Redis">
 <meta name="twitter:card" content="summary_large_image">
@@ -283,7 +283,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1k 字
+          4k 字
         
       </span>
     
@@ -294,7 +294,7 @@
         
         
         
-          9 分钟
+          34 分钟
         
       </span>
     
@@ -345,7 +345,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2 分钟前
+                    本文最后更新于：10 分钟前
                   
                 
               </p>
@@ -370,7 +370,74 @@
 <li>&#x3D;&#x3D;图形存储&#x3D;&#x3D;：以图形结构方式存储数据，适用于复杂的关系查询。例如 Neo4j、OrientDB 等。</li>
 </ol>
 <p>NoSQL 数据库在大数据、实时分析、云计算等领域具有广泛的应用。它们可以处理海量的非结构化数据，并提供高性能的读写操作。与传统的关系型数据库相比，NoSQL 数据库具有更好的横向扩展性和高可用性，可以在集群中分布数据并实现数据的自动复制和故障恢复。<br>在大数据领域，NoSQL 数据库可以处理海量的数据，并支持并行计算和分布式存储。它们通常采用分布式架构，可以将数据存储在多个节点上，并通过并行计算来处理查询和分析任务。<br>在实时分析领域，NoSQL 数据库可以提供低延迟的查询和分析能力。它们通常采用内存存储或者基于索引的存储方式，可以快速地查找和处理数据。<br>在云计算领域，NoSQL 数据库可以轻松地扩展和部署。它们通常具有自动化管理和弹性伸缩的功能，可以根据需求来增加或减少资源。<br>总之，NoSQL 数据库在大数据、实时分析、云计算等领域具有广泛应用，并且不断发展创新。它们能够有效地处理海量数据，并提供高性能和可靠性。</p>
-<h1 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h1>
+<h1 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h1><h2 id="切换数据库"><a href="#切换数据库" class="headerlink" title="切换数据库"></a>切换数据库</h2><p>通过 select 语句进行切换数据库，默认有 0 到 15 号数据库。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">select index #index为redis数据库的序号，默认有16个（0~15）<br></code></pre></td></tr></table></figure>
+<h2 id="数据操作"><a href="#数据操作" class="headerlink" title="数据操作"></a>数据操作</h2><p>redis 的基本数据操作</p>
+<ol>
+<li>设置键值对：使用 SET 命令可以设置一个键值对，例如：<code>SET key value</code>。</li>
+<li>获取值：使用 GET 命令可以获取指定键的值，例如：<code>GET key</code>。</li>
+<li>删除键值对：使用 DEL 命令可以删除指定的键值对，例如：<code>DEL key</code>。</li>
+<li>检查键是否存在：使用 EXISTS 命令可以检查指定的键是否存在，例如：<code>EXISTS key</code>。</li>
+<li>设置过期时间：使用 EXPIRE 命令可以为指定的键设置过期时间，例如：<code>EXPIRE key seconds</code>。</li>
+<li>查看剩余过期时间：使用 TTL 命令可以查看指定键的剩余过期时间，例如：<code>TTL key</code>。</li>
+<li>自增和自减操作：使用 INCR 和 DECR 命令可以对指定的数值进行自增和自减操作，例如：<code>INCR key</code>, <code>DECR key</code>。</li>
+<li>列表操作：Redis 提供了一系列列表操作命令，如 LPUSH、RPUSH、LPOP、RPOP 等，用于在列表头部或尾部插入、删除元素等操作。</li>
+<li>哈希表操作：Redis 提供了一系列哈希表操作命令，如 HSET、HGET、HDEL 等，用于在哈希表中设置、获取、删除字段等操作。</li>
+<li>集合操作：Redis 提供了一系列集合操作命令，如 SADD、SREM、SMEMBERS 等，用于添加、删除、获取集合中的元素等操作。</li>
+<li>有序集合操作：Redis 提供了一系列有序集合操作命令，如 ZADD、ZREM、ZRANGE 等，用于添加、删除、获取有序集合中的元素等操作。</li>
+</ol>
+<p><strong>详细介绍：</strong></p>
+<ol>
+<li>添加数据:</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">set</span> &lt;key&gt; &lt;value&gt; -- 一次多个<br>mset &lt;key1&gt; &lt;value1&gt; &lt;key2&gt; &lt;value2&gt; ...<br></code></pre></td></tr></table></figure>
+<p>所有存入的改据默认会以<strong>字符串</strong>的形式保存，键值具有一定的命名规范，以方便我们可以快速定位我们的数据属于哪一个部分，比如用户的数据：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">-- 使用冒号来进行板块分划，比如下面表示用户XXX的信息中的name属性，值为lbw<br><span class="hljs-built_in">set</span> user:info:用户ID:name lbw<br></code></pre></td></tr></table></figure>
+<ol start="2">
+<li>添加数据并设置过期时间：<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">set</span> key value ex/px seconds <span class="hljs-comment">#ex：对应秒；px：对应毫秒</span><br>setex key seconds value<br></code></pre></td></tr></table></figure></li>
+<li>获取数据：<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sh">get &lt;key&gt; --获取指定键数据<br>keys * --获取所有键<br>randomkey --随机获取一个键<br></code></pre></td></tr></table></figure></li>
+<li>设置过期时间：<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">expire key seconds<br></code></pre></td></tr></table></figure></li>
+<li>查看过期时间：<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sh">ttl key -- 以秒为单位显示剩余有效存储时间<br>pttl key -- 以毫秒为单位<br>persist key --转为永久存储<br></code></pre></td></tr></table></figure></li>
+<li>判断键是否存在：<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">exists key --存在则返回1，不存在则返回0<br></code></pre></td></tr></table></figure></li>
+<li>迁移键到其他数据库：<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">move key index<br></code></pre></td></tr></table></figure></li>
+<li>修改键名：<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">rename oldKey newKey --不会检查newKey是否存在<br>renamex oldKey newKey --会检查newKey是否存在<br></code></pre></td></tr></table></figure></li>
+<li>自增&#x2F;减数字：<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sh">incr key --返回自增1后的值<br>incrby key increment --返回自增increment后的值<br>decr key --返回自减1后的值<br>decrby key decrement --返回自减increment后的值<br></code></pre></td></tr></table></figure></li>
+<li>查看数据类型：<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">type</span> key<br></code></pre></td></tr></table></figure></li>
+<li>删除数据：<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">del key [key ...] --删除一个或多个键<br></code></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><p>Redis 支持多种数据类型，包括：</p>
+<ol>
+<li><strong>字符串（String）</strong>：最基本的数据类型，可以存储任何类型的数据，如文本、二进制数据等。</li>
+<li><strong>列表（List）</strong>：有序的字符串列表，可以在列表的两端插入和删除元素，还可以根据索引获取元素。</li>
+<li><strong>集合（Set）</strong>：无序的字符串集合，不允许有重复元素，可以进行交集、并集、差集等操作。</li>
+<li><strong>散列（Hash）</strong>：键值对的无序散列表，适用于存储对象。</li>
+<li><strong>有序集合（Sorted Set）</strong>：类似于集合，但每个元素都关联一个分数（score），可以按照分数排序。</li>
+<li><strong>Bitmaps</strong>：位图数据类型，可以对位图进行位操作。</li>
+<li><strong>HyperLogLogs</strong>：基数估算算法实现的数据结构，用于计算一个集合中不重复元素的个数。</li>
+<li><strong>地理空间索引（Geospatial Indexes）</strong>：存储地理位置信息，并支持地理位置相关的查询操作。</li>
+</ol>
+<p>这些数据类型具有丰富而灵活的功能，在使用 Redis 时能够满足各种不同的需求。</p>
+<h2 id="Hash"><a href="#Hash" class="headerlink" title="Hash"></a>Hash</h2><p>这种类型本质上就是一个 HashMap,也就是嵌套了一个 HashMap 罢了，在 Java 中就像这样：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//Redis默认存String类似于这样：</span><br>Map&lt;string,String&gt;hash <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>;<br><span class="hljs-comment">//Redisi存Hash类型的政据类似于这样：</span><br>Map&lt;String,Map&lt;String,String&gt;&gt;hash <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>();<br></code></pre></td></tr></table></figure>
+<p>它比较适合存储类这样的数据，由于值本身又是一个 Map,因此我们可以在此 Map 中放入类的各种属性和值，以实现一个 Hsh 数据类型存储一个类的数据。</p>
+<ol>
+<li>添加：<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">hset &lt;key&gt; &lt;field&gt; &lt;value&gt; --添加<span class="hljs-built_in">hash</span>数据（只能指定一个字段和值）<br>hmset &lt;key&gt; &lt;field&gt; &lt;value&gt; [field value ...] --添加多对字段和值<br></code></pre></td></tr></table></figure></li>
+<li>获取键值：<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sh">hget key 字段 --获取指定字段<br>hmget key field [field ...] --获取多个指定字段<br>hgetall key --如果想要一次性获取所有的字段和值<br>hvals key --获取键的所有值<br></code></pre></td></tr></table></figure></li>
+<li>判存：<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">hexists key field --存在则返回1，否则返回0<br></code></pre></td></tr></table></figure></li>
+<li>删除：<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">hdel key field [field ...] --删除一个或多个字段<br></code></pre></td></tr></table></figure></li>
+<li>获取长度：<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">hlen key<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>难一需要注意的是，&#x3D;&#x3D;Hash 中只能存放字符串值&#x3D;&#x3D;，不允许出现嵌套的的情况。</p>
+</blockquote>
+</li>
+</ol>
+<h2 id="List"><a href="#List" class="headerlink" title="List"></a>List</h2><p>List 类型就是一个列表，而列表中存放一系列的字符串，它支持随机访问，支持双端操作，就像我们使用 Java 中的 LinkedList 一样。<br>我们可以直接向一个已存在或是不存在的 List 中添加数据，如果不存在，会自动创建：</p>
+<ol>
+<li>添加：<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sh">-向列表头部添加元素<br>Ipush &lt;key&gt;&lt;element&gt;...<br>-一向列表尾部添加元素<br>rpush &lt;key&gt;&lt;element&gt;...<br>-一在指定元素前面/后面插入元素<br>linsert&lt;key&gt;before./after&lt;指定元素&gt;&lt;element<br></code></pre></td></tr></table></figure></li>
+<li>获取：<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs sh">-一根据下标获取元素<br>lindex&lt;key&gt;&lt;下标&gt;<br>-~获取并移除头部元素<br>lpop &lt;key&gt;<br>一获取并移除尾部元素<br>rpop &lt;key&gt;<br>一获取指定范围内的<br>lrange &lt;key&gt;start stop<br>注意下标可以使用负数来表示从后到前数的数字(Python:搁这儿抄呢是吧)：<br>获取列表Q中的全部元素<br>lrange a 0 -1<br></code></pre></td></tr></table></figure>
+没想到吧，push和pop还能连着用呢：</li>
+</ol>
+
                 
               </div>
             
