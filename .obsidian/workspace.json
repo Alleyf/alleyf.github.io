@@ -21,19 +21,6 @@
             }
           },
           {
-            "id": "811022383868dc42",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "source/_posts/前后端开发/SpringCloud-微服务应用.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
             "id": "317e997d5b9ec8b7",
             "type": "leaf",
             "state": {
@@ -46,8 +33,7 @@
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -67,7 +53,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/前后端开发/SpringCloud-微服务应用.md"
+                "file": "source/_posts/运维开发/Git-简记.md"
               }
             }
           }
@@ -163,34 +149,35 @@
       "templates:插入模板": false
     }
   },
-  "active": "4a383e802b683e84",
+  "active": "7debd791db616930",
   "lastOpenFiles": [
-    "source/gallery/images/人间烟火/曾经的我.jpg",
-    "source/gallery/images/人间烟火/愿你所爱皆所得.jpg",
-    "source/gallery/images/人间烟火/华师食堂.jpg",
-    "source/gallery/images/人间烟火/图书馆.jpg",
-    "source/gallery/images/人间烟火/南湖桃园.jpg",
-    "source/gallery/images/徒步旅行/鼓楼.jpg",
-    "source/gallery/images/徒步旅行/钟楼.jpg",
-    "source/gallery/images/徒步旅行/玄奘-大雁塔.jpg",
-    "source/gallery/images/徒步旅行/西安站.jpg",
-    "source/gallery/images/徒步旅行/长春观.jpg",
-    "source/gallery/images/徒步旅行/黄鹤楼.jpg",
-    "public/xml/local-search.xml",
-    "public/xml",
-    "public/links/index.html",
-    "public/links",
-    "public/css/main.css",
-    "public/css/highlight.css",
-    "public/css/highlight-dark.css",
-    "public/css/gitalk.css",
-    "public/css",
-    "public/assets/mmedia/mmedia-loader.js",
+    "db.json",
+    "public/tags/CNN/index.html",
+    "public/archives/2023/11/page/2/index.html",
+    "public/archives/2023/11/page/2",
+    "public/archives/2023/page/2/index.html",
+    "public/archives/2023/page/4/index.html",
+    "public/archives/2023/page/3/index.html",
+    "public/archives/2022/page/2/index.html",
+    "public/archives/page/3/index.html",
+    "public/archives/page/4/index.html",
+    "public/archives/2023/page/2",
+    "未命名.md",
+    "source/_posts/运维开发/Git-简记.md",
+    "source/_posts/科研学习/会议讨论/周会.md",
+    "public/gallery/images/桌面壁纸/swordswoman.jpg",
+    "public/gallery/images/桌面壁纸/sunset.png",
+    "public/gallery/images/桌面壁纸/moon.jpg",
+    "public/gallery/images/桌面壁纸/sun.jpg",
+    "public/gallery/images/徒步旅行/龟山-电视塔.jpg",
+    "public/gallery/images/桌面壁纸/flower.jpg",
+    "public/gallery/images/桌面壁纸/fire.jpg",
+    "public/gallery/images/徒步旅行/鼓楼.jpg",
+    "public/gallery/images/桌面壁纸/cloud.png",
+    "public/gallery/images/徒步旅行/黄鹤楼.jpg",
     "source/_posts/运维开发/部署方法.md",
     "source/_posts/前后端开发/SpringCloud-微服务应用.md",
-    "source/_posts/运维开发/Git-简记.md",
     "source/_posts/科研学习/国基金项目/司法领域大模型调研四.md",
-    "source/_posts/科研学习/会议讨论/周会.md",
     "source/_posts/运维开发/各种环境配置.md",
     "attachment/SpringCloud 进阶 - SpringCloud笔记（三）微服务应用.md",
     "source/_posts/前后端开发/SpringCloud Alibaba-微服务进阶.md",
@@ -211,7 +198,6 @@
     "scaffolds/page.md",
     "source/_posts/前后端开发/SpringCloud-微服务基础.md",
     "未命名.canvas",
-    "source/_posts/科研学习/会议讨论/国际会议.md",
     "canvas/review plans.canvas",
     "canvas/AI学习思路.canvas",
     "source/_posts/英语学习/EnglishWords.canvas",
