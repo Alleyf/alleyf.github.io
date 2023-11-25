@@ -27,7 +27,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://picsum.photos/800/250">
 <meta property="article:published_time" content="2023-11-25T02:45:31.000Z">
-<meta property="article:modified_time" content="2023-11-25T06:51:26.361Z">
+<meta property="article:modified_time" content="2023-11-25T07:16:03.516Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="Redis">
 <meta name="twitter:card" content="summary_large_image">
@@ -345,7 +345,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：10 分钟前
+                    本文最后更新于：1 小时前
                   
                 
               </p>
@@ -433,8 +433,8 @@
 </ol>
 <h2 id="List"><a href="#List" class="headerlink" title="List"></a>List</h2><p>List 类型就是一个列表，而列表中存放一系列的字符串，它支持随机访问，支持双端操作，就像我们使用 Java 中的 LinkedList 一样。<br>我们可以直接向一个已存在或是不存在的 List 中添加数据，如果不存在，会自动创建：</p>
 <ol>
-<li>添加：<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sh">-向列表头部添加元素<br>Ipush &lt;key&gt;&lt;element&gt;...<br>-一向列表尾部添加元素<br>rpush &lt;key&gt;&lt;element&gt;...<br>-一在指定元素前面/后面插入元素<br>linsert&lt;key&gt;before./after&lt;指定元素&gt;&lt;element<br></code></pre></td></tr></table></figure></li>
-<li>获取：<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs sh">-一根据下标获取元素<br>lindex&lt;key&gt;&lt;下标&gt;<br>-~获取并移除头部元素<br>lpop &lt;key&gt;<br>一获取并移除尾部元素<br>rpop &lt;key&gt;<br>一获取指定范围内的<br>lrange &lt;key&gt;start stop<br>注意下标可以使用负数来表示从后到前数的数字(Python:搁这儿抄呢是吧)：<br>获取列表Q中的全部元素<br>lrange a 0 -1<br></code></pre></td></tr></table></figure>
+<li>添加：<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sh">--向列表头部添加元素<br>lpush &lt;key&gt; &lt;element&gt;...<br>--向列表尾部添加元素<br>rpush &lt;key&gt; &lt;element&gt;...<br>--在指定元素前面/后面插入元素<br>linsert &lt;key&gt; before/after &lt;指定元素&gt; &lt;element<br></code></pre></td></tr></table></figure></li>
+<li>获取：<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs sh">--根据下标获取元素<br>lindex &lt;key&gt; &lt;下标&gt;<br>--获取并移除头部元素<br>lpop &lt;key&gt;<br>--获取并移除尾部元素<br>rpop &lt;key&gt;<br>--获取指定范围内的<br>lrange &lt;key&gt;start stop<br>注意下标可以使用负数来表示从后到前数的数字(Python:搁这儿抄呢是吧)：<br>获取列表Q中的全部元素<br>lrange a 0 -1<br></code></pre></td></tr></table></figure>
 没想到吧，push和pop还能连着用呢：</li>
 </ol>
 
@@ -897,5 +897,5 @@
   <noscript>
     <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
   </noscript>
-<!-- hexo injector body_end start --><script src="/assets/mmedia/mmedia-loader.js"></script><script src="/js/addMusic.js"></script><!-- hexo injector body_end end --></body>
+<!-- hexo injector body_end start --><script src="./mmedia-loader.js"></script><!-- hexo injector body_end end --></body>
 </html>
