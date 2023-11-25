@@ -170,20 +170,31 @@ lpush <key> <element>...
 --向列表尾部添加元素
 rpush <key> <element>...
 --在指定元素前面/后面插入元素
-linsert <key> before/after <指定元素> <element
+linsert <key> before/after <指定元素> <element>
 ```
 2. 获取：
 ```sh
 --根据下标获取元素
-lindex <key> <下标>
+lindex <key> <index>
 --获取并移除头部元素
 lpop <key>
 --获取并移除尾部元素
 rpop <key>
 --获取指定范围内的
-lrange <key>start stop
-注意下标可以使用负数来表示从后到前数的数字(Python:搁这儿抄呢是吧)：
-获取列表Q中的全部元素
+lrange <key> start stop
+注意下标可以使用负数来表示从后到前数的数字
+--获取列表Q中的全部元素
 lrange a 0 -1
 ```
-没想到吧，push和pop还能连着用呢：
+3. 取尾置头：
+```sh
+-- 从前一个数组的最后取一个数出来放到另一个数组的头部，并返回元素
+rpoplpush source destination
+```
+4. 阻塞操作（类似于生产者和消费者，比如我们想要等待列表中有了数据后再进行poρ操作）:
+```sh
+--如果列表中没有元素，那么就等待，如果指定时间（秒）内被添加了数据，那么就执行pop操作，如果超时就作废，支持同时等待多个列表，只要其中一个列表有元素了，那么就能执行
+blpop <key>...timeout
+```
+## Set和SortedSet
+
