@@ -13,20 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/运维开发/Git-简记.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "317e997d5b9ec8b7",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "source/_posts/科研学习/会议讨论/周会.md",
+                "file": "source/_posts/运维开发/各种环境配置.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -45,7 +32,7 @@
       {
         "id": "42d03e8e57640b9c",
         "type": "tabs",
-        "dimension": 64.85714285714286,
+        "dimension": 61.142857142857146,
         "children": [
           {
             "id": "56cb9fcd32c02c9a",
@@ -53,16 +40,16 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/运维开发/Git-简记.md"
+                "file": "source/_posts/运维开发/各种环境配置.md"
               }
             }
           }
         ]
       },
       {
-        "id": "52a7943f31adb7dc",
+        "id": "d75315ef327947fe",
         "type": "tabs",
-        "dimension": 35.14285714285714,
+        "dimension": 38.857142857142854,
         "children": [
           {
             "id": "4a383e802b683e84",
@@ -78,7 +65,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 263.5
+    "width": 332.5
   },
   "right": {
     "id": "ef878eb90911b56c",
@@ -87,6 +74,7 @@
       {
         "id": "612f0098096832bc",
         "type": "tabs",
+        "dimension": 32.95238095238095,
         "children": [
           {
             "id": "bdaaa10e2f08b79f",
@@ -103,15 +91,20 @@
               "type": "advanced-tables-toolbar",
               "state": {}
             }
-          },
+          }
+        ]
+      },
+      {
+        "id": "ba25a9bb46f98dbb",
+        "type": "tabs",
+        "dimension": 40.76190476190476,
+        "children": [
           {
-            "id": "8553ac1afd91e275",
+            "id": "b3c471f2f4aa3a66",
             "type": "leaf",
             "state": {
-              "type": "all-properties",
-              "state": {
-                "sortOrder": "frequency"
-              }
+              "type": "chronology-calendar-view",
+              "state": {}
             }
           }
         ]
@@ -119,6 +112,7 @@
       {
         "id": "c712742b5e0ae1de",
         "type": "tabs",
+        "dimension": 26.285714285714285,
         "children": [
           {
             "id": "7debd791db616930",
@@ -132,7 +126,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 301.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -140,63 +134,65 @@
       "command-palette:打开命令面板": false,
       "obsidian-file-cleaner:清理文件": false,
       "table-editor-obsidian:Advanced Tables Toolbar": false,
-      "cmdr:Calendar: Open view": false,
-      "cmdr:Obsidian Git: Open source control view": false,
       "obsidian-excalidraw-plugin:新建 Excalidraw 绘图": false,
       "obsidian-textgenerator-plugin:Generate Text!": false,
       "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": false,
       "markdown-importer:打开 Markdown 格式转换器": false,
-      "templates:插入模板": false
+      "templates:插入模板": false,
+      "cmdr:Calendar: Open view": false,
+      "cmdr:Obsidian Git: Open source control view": false,
+      "hidden-folder-obsidian:显示文件夹": false,
+      "chronology:Open Chronology": false
     }
   },
   "active": "7debd791db616930",
   "lastOpenFiles": [
-    "db.json",
-    "public/tags/CNN/index.html",
-    "public/archives/2023/11/page/2/index.html",
-    "public/archives/2023/11/page/2",
-    "public/archives/2023/page/2/index.html",
-    "public/archives/2023/page/4/index.html",
-    "public/archives/2023/page/3/index.html",
-    "public/archives/2022/page/2/index.html",
-    "public/archives/page/3/index.html",
+    "public/archives/page/6/index.html",
+    "public/archives/page/6",
+    "public/archives/page/5/index.html",
+    "public/archives/page/5",
     "public/archives/page/4/index.html",
-    "public/archives/2023/page/2",
-    "未命名.md",
-    "source/_posts/运维开发/Git-简记.md",
-    "source/_posts/科研学习/会议讨论/周会.md",
-    "public/gallery/images/桌面壁纸/swordswoman.jpg",
+    "public/archives/page/4",
+    "public/archives/page/3/index.html",
+    "public/archives/page/3",
+    "public/archives/2022/12/index.html",
+    "public/archives/2022/12",
+    "public/archives/2022/11/index.html",
     "public/gallery/images/桌面壁纸/sunset.png",
-    "public/gallery/images/桌面壁纸/moon.jpg",
-    "public/gallery/images/桌面壁纸/sun.jpg",
-    "public/gallery/images/徒步旅行/龟山-电视塔.jpg",
-    "public/gallery/images/桌面壁纸/flower.jpg",
     "public/gallery/images/桌面壁纸/fire.jpg",
-    "public/gallery/images/徒步旅行/鼓楼.jpg",
     "public/gallery/images/桌面壁纸/cloud.png",
-    "public/gallery/images/徒步旅行/黄鹤楼.jpg",
-    "source/_posts/运维开发/部署方法.md",
-    "source/_posts/前后端开发/SpringCloud-微服务应用.md",
-    "source/_posts/科研学习/国基金项目/司法领域大模型调研四.md",
+    "public/gallery/images/桌面壁纸/bg.jpg",
+    "source/_posts/运维开发/Redis-缓存之美.md",
     "source/_posts/运维开发/各种环境配置.md",
-    "attachment/SpringCloud 进阶 - SpringCloud笔记（三）微服务应用.md",
-    "source/_posts/前后端开发/SpringCloud Alibaba-微服务进阶.md",
-    "source/_posts/前后端开发/SpringBoot+Vue项目实战.md",
-    "source/_posts/运维开发/MarkDown-真经.md",
-    "attachment/SpringCloud 进阶 - SpringCloud笔记（四）消息队列.md",
-    "source/_posts/科研学习/国基金项目/司法领域大模型调研二.md",
-    "source/_posts/科研学习/国基金项目/司法领域大模型调研三.md",
-    "source/_obsidian/Post Template.md",
-    "source/about/index.md",
-    "source/gallery/index.md",
-    "source/_posts/前后端开发/Spring核心学习.md",
-    "node_modules/image-size/Readme.md",
-    "node_modules/queue/readme.md",
-    "source/galleries/index.md",
-    "scaffolds/post.md",
-    "scaffolds/draft.md",
-    "scaffolds/page.md",
-    "source/_posts/前后端开发/SpringCloud-微服务基础.md",
+    "source/_posts/后端开发/SpringCloud-微服务应用.md",
+    "source/_posts/运维开发/Git-简记.md",
+    "source/_posts/算法学习/Dateframe—Algorithm.md",
+    "source/_posts/算法学习/algorithm.md",
+    "source/_posts/算法训练/algorithm.md",
+    "source/_posts/算法训练/Dateframe—Algorithm.md",
+    "source/_posts/前端开发/Vue.md",
+    "source/_posts/前端开发/uni-app.md",
+    "source/_posts/前端开发/Html5_Css_Js.md",
+    "source/_posts/后端开发/网页开发.md",
+    "source/_posts/后端开发/后端学习.md",
+    "source/_posts/后端开发/Vue.md",
+    "source/_posts/后端开发/uni-app.md",
+    "source/_posts/后端开发/Spring核心学习.md",
+    "source/_posts/后端开发/SpringSecurity.md",
+    "source/_posts/后端开发/SpringCloud-微服务基础.md",
+    "source/_posts/后端开发/SpringBoot启示录.md",
+    "source/_posts/后端开发/SpringCloud Alibaba-微服务进阶.md",
+    "source/_posts/后端开发/SpringBoot.md",
+    "source/_posts/后端开发/SpringBoot+Vue项目实战.md",
+    "source/_posts/后端开发/Html5_Css_Js.md",
+    "source/_posts/后端开发/DRF.md",
+    "source/_posts/后端开发/Dateframe—Algorithm.md",
+    "source/gallery/images/桌面壁纸/fire.jpg",
+    "source/gallery/images/桌面壁纸/cloud.png",
+    "source/gallery/images/桌面壁纸/wallhaven-1pol63.png",
+    "source/gallery/images/桌面壁纸/sunset.png",
+    "source/gallery/images/桌面壁纸/bg.jpg",
+    "source/gallery/images/桌面壁纸/wallhaven-dgwppl.jpg",
     "未命名.canvas",
     "canvas/review plans.canvas",
     "canvas/AI学习思路.canvas",

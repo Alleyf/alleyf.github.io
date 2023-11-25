@@ -1,4 +1,4 @@
 {
   "destination": "system",
-  "excluded": ""
+  "excluded": "source/gallery\nsource/js"
 }
