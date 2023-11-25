@@ -6,7 +6,7 @@
   <link href="https://alleyf.github.io/atom.xml" rel="self"/>
   
   <link href="https://alleyf.github.io/"/>
-  <updated>2023-11-24T15:04:31.909Z</updated>
+  <updated>2023-11-25T03:26:58.503Z</updated>
   <id>https://alleyf.github.io/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Redis-缓存之美</title>
+    <link href="https://alleyf.github.io/2023/11/ab7de5524ddd.html"/>
+    <id>https://alleyf.github.io/2023/11/ab7de5524ddd.html</id>
+    <published>2023-11-25T02:45:31.000Z</published>
+    <updated>2023-11-25T03:26:58.503Z</updated>
+    
+    
+    <summary type="html">一些关于 redis 作为缓存数据库的学习笔记</summary>
+    
+    
+    
+    <category term="运维开发" scheme="https://alleyf.github.io/categories/%E8%BF%90%E7%BB%B4%E5%BC%80%E5%8F%91/"/>
+    
+    
+    <category term="Redis" scheme="https://alleyf.github.io/tags/Redis/"/>
+    
+  </entry>
   
   <entry>
     <title>SpringCloud-微服务应用</title>
@@ -28,7 +47,7 @@
     
     
     
-    <category term="前后端开发" scheme="https://alleyf.github.io/categories/%E5%89%8D%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
+    <category term="后端开发" scheme="https://alleyf.github.io/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
     
     
     <category term="Mysql" scheme="https://alleyf.github.io/tags/Mysql/"/>
@@ -84,7 +103,7 @@
     <link href="https://alleyf.github.io/2023/11/59c10a08fce4.html"/>
     <id>https://alleyf.github.io/2023/11/59c10a08fce4.html</id>
     <published>2023-11-18T06:53:11.000Z</published>
-    <updated>2023-11-23T09:12:38.213Z</updated>
+    <updated>2023-11-25T03:28:12.167Z</updated>
     
     
     <summary type="html">一些关于各种spring中间件和系统环境配置的教程</summary>
@@ -116,7 +135,7 @@
     
     
     
-    <category term="前后端开发" scheme="https://alleyf.github.io/categories/%E5%89%8D%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
+    <category term="后端开发" scheme="https://alleyf.github.io/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
     
     
     <category term="springcloud" scheme="https://alleyf.github.io/tags/springcloud/"/>
@@ -137,7 +156,7 @@
     
     
     
-    <category term="前后端开发" scheme="https://alleyf.github.io/categories/%E5%89%8D%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
+    <category term="后端开发" scheme="https://alleyf.github.io/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
     
     
     <category term="springcloud" scheme="https://alleyf.github.io/tags/springcloud/"/>
@@ -196,7 +215,7 @@
     
     
     
-    <category term="前后端开发" scheme="https://alleyf.github.io/categories/%E5%89%8D%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
+    <category term="后端开发" scheme="https://alleyf.github.io/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
     
     
     <category term="JWT" scheme="https://alleyf.github.io/tags/JWT/"/>
@@ -242,7 +261,7 @@
     
     
     
-    <category term="前后端开发" scheme="https://alleyf.github.io/categories/%E5%89%8D%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
+    <category term="后端开发" scheme="https://alleyf.github.io/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
     
     
     <category term="SpringBoot" scheme="https://alleyf.github.io/tags/SpringBoot/"/>
@@ -426,27 +445,6 @@
     
     
     <category term="Spring" scheme="https://alleyf.github.io/tags/Spring/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>后端开发学习</title>
-    <link href="https://alleyf.github.io/2023/10/6cd2e75537d2.html"/>
-    <id>https://alleyf.github.io/2023/10/6cd2e75537d2.html</id>
-    <published>2023-10-08T05:29:26.000Z</published>
-    <updated>2023-10-15T08:41:29.997Z</updated>
-    
-    
-    <summary type="html">Web—study about Java、Mysql、Redis、Linux</summary>
-    
-    
-    
-    <category term="Backend_development" scheme="https://alleyf.github.io/categories/Backend-development/"/>
-    
-    
-    <category term="Mysql" scheme="https://alleyf.github.io/tags/Mysql/"/>
-    
-    <category term="Java" scheme="https://alleyf.github.io/tags/Java/"/>
     
   </entry>
   
