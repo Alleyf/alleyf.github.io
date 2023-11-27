@@ -1072,11 +1072,11 @@ create table test  (
 在大型的互联网系统中，可能单台 MySQL 的存储容量无法满足业务的需求，这时候就需要进行扩容了。
 和之前的问题一样，单台主机的硬件资源是存在瓶颈的，不可能无限制地纵向扩展，这时我们就得通过多台实例来进行容量的横向扩容，我们可以将数据分散存储，让多台主机共同来保存数据。
 那么问题来了，怎么个分散法？
-* **垂直拆分：**我们的表和数据库都可以进行垂直拆分，所谓垂直拆分，就是将数据库中所有的表，按照业务功能拆分到各个数据库中（是不是感觉跟前面两章的学习的架构对应起来了）而对于一张表，也可以通过外键之类的机制，将其拆分为多个表。
+* **垂直拆分：** 我们的表和数据库都可以进行垂直拆分，所谓垂直拆分，就是*将数据库中所有的表，按照业务功能拆分到各个数据库中*（是不是感觉跟前面两章的学习的架构对应起来了）而对于一张表，也可以通过外键之类的机制，将其拆分为多个表。
   ![image-20220414204703883](https://s2.loli.net/2023/03/07/mnJO4hBwDAkRcMi.jpg)
-* **水平拆分：**水平拆分针对的不是表，而是数据，我们可以让很多个具有相同表的数据库存放一部分数据，相当于是将数据分散存储在各个节点上。
+* **水平拆分：** 水平拆分针对的不是表，而是数据，我们可以*让很多个具有相同表的数据库存放一部分数据，相当于是将数据分散存储在各个节点上*。
   ![image-20220414205222383](https://s2.loli.net/2023/03/07/AdS5hrH2O1l8iqv.jpg)
-那么要实现这样的拆分操作，我们自行去编写代码工作量肯定是比较大的，因此目前实际上已经有一些解决方案了，比如我们可以使用 MyCat（也是一个数据库中间件，相当于挂了一层代理，再通过 MyCat 进行分库分表操作数据库，只需要连接就能使用，类似的还有 ShardingSphere-Proxy）或是 Sharding JDBC（应用程序中直接对 SQL 语句进行分析，然后转换成分库分表操作，需要我们自己编写一些逻辑代码），这里我们就讲解一下 Sharding JDBC。
+那么要实现这样的拆分操作，我们自行去编写代码工作量肯定是比较大的，因此目前实际上已经有一些解决方案了，比如我们可以使用 MyCat（也是一个数据库中间件，相当于挂了一层代理，再通过 MyCat 进行分库分表操作数据库，只需要连接就能使用，类似的还有 ShardingSphere-Proxy）或是 `Sharding JDBC`（应用程序中直接对 SQL 语句进行分析，然后转换成分库分表操作，需要我们自己编写一些逻辑代码），这里我们就讲解一下 Sharding JDBC。
 ### Sharding JDBC
 ![image-20220414214856875](https://s2.loli.net/2023/03/07/HTlcExgCfZvG9MP.jpg)
 **官方文档（中文）：** https://shardingsphere.apache.org/document/5.1.0/cn/overview/#shardingsphere-jdbc
@@ -1125,26 +1125,25 @@ FLUSH PRIVILEGES;
 ![image-20220414212443482](https://s2.loli.net/2023/03/07/GEfPLSIZyobhtTe.jpg)
 那么数据源该怎么配置呢？现在我们是一个分库分表的状态，需要配置两个数据源：
 ```yaml
-spring:
-  shardingsphere:
-    datasource:
-      # 有几个数据就配几个，这里是名称，按照下面的格式，名称+数字的形式
-      names: db0,db1
-      # 为每个数据源单独进行配置
-      db0:
-      	# 数据源实现类，这里使用默认的 HikariDataSource
-        type: com.zaxxer.hikari.HikariDataSource
-        # 数据库驱动
-        driver-class-name: com.mysql.cj.jdbc.Driver
-        # 不用我多说了吧
-        jdbc-url: jdbc:mysql://192.168.0.8:3306/yyds
-        username: root
-        password: 123456
-      db1:
-        type: com.zaxxer.hikari.HikariDataSource
-        driver-class-name: com.mysql.cj.jdbc.Driver
-        jdbc-url: jdbc:mysql://192.168.0.13:3306/yyds
-        username: root
+spring:  
+  shardingsphere:  
+    datasource:  
+      # 有几个数据就配几个，这里是名称，按照下面的格式，名称+数字的形式  
+      names: db0,db1  
+      # 为每个数据源单独进行配置  
+      db0:  
+        # 数据源实现类，这里使用默认的 HikariDataSource        type: com.zaxxer.hikari.HikariDataSource  
+        # 数据库驱动  
+        driver-class-name: com.mysql.cj.jdbc.Driver  
+        # 不用我多说了吧  
+        jdbc-url: jdbc:mysql://192.168.0.8:3306/yyds  
+        username: root  
+        password: 123456  
+      db1:  
+        type: com.zaxxer.hikari.HikariDataSource  
+        driver-class-name: com.mysql.cj.jdbc.Driver  
+        jdbc-url: jdbc:mysql://192.168.0.13:3306/yyds  
+        username: root  
         password: 123456
 ```
 如果启动没有问题，那么就是配置成功了：
@@ -1221,13 +1220,15 @@ class ShardingJdbcTestApplicationTests {
 ![image-20220415104401263](https://s2.loli.net/2023/03/07/7oBrFRwiXQxcumz.jpg)
 测试通过，我们来看看数据库里面是不是按照我们的规则进行数据插入的：
 ![image-20220415104449502](https://s2.loli.net/2023/03/07/kZINi9wmnte3J7g.jpg)
+![](http://qnpicmap.fcsluck.top/pics/202311280044246.png)
+
 可以看到这两张表，都成功按照我们指定的路由规则进行插入了，我们来看看详细的路由情况，通过控制台输出的 SQL 就可以看到：
 ![image-20220415105325917](https://img-blog.csdnimg.cn/img_convert/2e9cd91031d3fc7d2f11a2f59d8841ae.png)
 可以看到所有的 SQL 语句都有一个 Logic SQL（这个就是我们在 Mybatis 里面写的，是什么就是什么）紧接着下面就是 Actual SQL，也就是说每个逻辑 SQL 最终会根据我们的策略转换为实际 SQL，比如第一条数据，它的 id 是 0，那么实际转换出来的 SQL 会在 db0 这个数据源进行插入。
 这样我们就很轻松地实现了分库策略。
 分库完成之后，接着我们来看分表，比如现在我们的数据库中有`test_0`和`test_1`两张表，表结构一样，但是我们也是希望能够根据 id 取模运算的结果分别放到这两个不同的表中，实现思路其实是差不多的，这里首先需要介绍一下两种表概念：
-* **逻辑表：**相同结构的水平拆分数据库（表）的逻辑名称，是 SQL 中表的逻辑标识。例：订单数据根据主键尾数拆分为 10 张表，分别是 `t_order_0` 到 `t_order_9`，他们的逻辑表名为 `t_order`
-* **真实表：**在水平拆分的数据库中真实存在的物理表。即上个示例中的 `t_order_0` 到 `t_order_9`
+* **逻辑表：** 相同结构的水平拆分数据库（表）的逻辑名称，是 SQL 中表的逻辑标识。例：订单数据根据主键尾数拆分为 10 张表，分别是 `t_order_0` 到 `t_order_9`，他们的逻辑表名为 `t_order`
+* **真实表：** 在水平拆分的数据库中真实存在的物理表。即上个示例中的 `t_order_0` 到 `t_order_9`
 现在我们就以一号数据库为例，那么我们在里面创建上面提到的两张表，之前的那个`test`表删不删都可以，就当做不存在就行了：
 ```sql
 create table test_0  (
