@@ -26,6 +26,8 @@
 <meta property="og:description" content="一些关于各种spring中间件和系统环境配置的教程">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://picsum.photos/800/250">
+<meta property="og:image" content="http://qnpicmap.fcsluck.top/pics/202311271638947.png">
+<meta property="og:image" content="http://qnpicmap.fcsluck.top/pics/202311271638364.png">
 <meta property="og:image" content="http://qnpicmap.fcsluck.top/pics/202311181541807.png">
 <meta property="og:image" content="http://qnpicmap.fcsluck.top/pics/202311181541977.png">
 <meta property="og:image" content="http://qnpicmap.fcsluck.top/pics/202311201527195.png">
@@ -35,7 +37,7 @@
 <meta property="og:image" content="http://qnpicmap.fcsluck.top/pics/202311221729835.png">
 <meta property="og:image" content="http://qnpicmap.fcsluck.top/pics/202311182136214.png">
 <meta property="article:published_time" content="2023-11-18T06:53:11.000Z">
-<meta property="article:modified_time" content="2023-11-25T05:11:25.339Z">
+<meta property="article:modified_time" content="2023-11-27T09:12:11.301Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="java">
 <meta property="article:tag" content="mysql">
@@ -294,7 +296,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          8.6k 字
+          13k 字
         
       </span>
     
@@ -305,7 +307,7 @@
         
         
         
-          72 分钟
+          106 分钟
         
       </span>
     
@@ -356,7 +358,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：11 小时前
+                    本文最后更新于：1 分钟前
                   
                 
               </p>
@@ -374,27 +376,54 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs profiles">#set java environment<br>export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.392.b08-2.el7_9.x86_64/jre<br>export JRE_HOME=$JAVA_HOME/jre<br>export CLASSPATH=$JAVA_HOME/lib:$JRE_HOME/lib:$CLASSPATH<br>export PATH=$JAVA_HOME/bin:$JRE_HOME/bin:$PATH<br></code></pre></td></tr></table></figure>
 <p>刷新系统环境变量配置：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">source /etc/profile<br></code></pre></td></tr></table></figure>
-
-
-<h1 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h1><p>要安装和部署Redis，你可以按照以下步骤进行操作：</p>
+<h1 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h1><p>要安装和部署 Redis，你可以按照以下步骤进行操作：</p>
 <ul>
 <li>官网地址： https:&#x2F;redis.io </li>
-<li>GitHub Windows版本维护地址： https:&#x2F;github.com&#x2F;tporadowski&#x2F;redis&#x2F;releases</li>
+<li>GitHub Windows 版本维护地址： https:&#x2F;github.com&#x2F;tporadowski&#x2F;redis&#x2F;releases</li>
 </ul>
-<p>要在Windows上安装和使用Redis，您可以按照以下步骤操作：</p>
+<p>要在 Windows 上安装和使用 Redis，您可以按照以下步骤操作：</p>
 <ol>
-<li>从Redis官方网站（ <a target="_blank" rel="noopener" href="https://redis.io/download">https://redis.io/download</a> ）下载最新版本的Redis压缩包。</li>
-<li>将压缩包解压到您想要安装Redis的目录。</li>
-<li>在Redis目录中找到redis.windows.conf文件，并将其重命名为redis.conf。</li>
-<li>打开redis.conf文件，并找到<code># bind 127.0.0.1</code>这一行，将其前面的注释符号“#”去掉，这样可以允许远程访问Redis。</li>
-<li>打开命令提示符窗口（cmd）并导航到Redis目录。</li>
-<li>运行命令<code>redis-server.exe redis.conf</code>启动Redis服务器。</li>
-<li>另外打开一个命令提示符窗口，并导航到Redis目录。</li>
-<li>运行命令<code>redis-cli.exe</code>连接到正在运行的Redis服务器。</li>
+<li>从 Redis 官方网站（ <a target="_blank" rel="noopener" href="https://redis.io/download">https://redis.io/download</a> ）下载最新版本的 Redis 压缩包。</li>
+<li>将压缩包解压到您想要安装 Redis 的目录。</li>
+<li>在 Redis 目录中找到 redis.windows.conf 文件，并将其重命名为 redis.conf。</li>
+<li>打开 redis.conf 文件，并找到 <code># bind 127.0.0.1</code> 这一行，将其前面的注释符号“#”去掉，这样可以允许远程访问 Redis。</li>
+<li>打开命令提示符窗口（cmd）并导航到 Redis 目录。</li>
+<li>运行命令 <code>redis-server.exe redis.conf</code> 启动 Redis 服务器。</li>
+<li>另外打开一个命令提示符窗口，并导航到 Redis 目录。</li>
+<li>运行命令 <code>redis-cli.exe</code> 连接到正在运行的 Redis 服务器。</li>
 </ol>
 <blockquote>
-<p>现在您已经成功安装和连接到Redis服务器。您可以使用redis-cli命令行工具来执行各种操作，例如设置键值对、获取值、删除键等。</p>
+<p>现在您已经成功安装和连接到 Redis 服务器。您可以使用 redis-cli 命令行工具来执行各种操作，例如设置键值对、获取值、删除键等。</p>
 </blockquote>
+<h1 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h1><h2 id="1-安装指南"><a href="#1-安装指南" class="headerlink" title="1.安装指南"></a>1.安装指南</h2><ol>
+<li><p>查看系统内核</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">uname</span> -r<br></code></pre></td></tr></table></figure>
+<p>在安装 <a target="_blank" rel="noopener" href="https://cloud.tencent.com/product/tke?from_column=20065&from=20065">Docker</a> 之前，首先要检查系统内核是否满足要求，Centos7 Linux 内核：官方建议 3.10 以上，3.8 以上貌似也可。</p>
+<blockquote>
+<p>注意：本文的命令使用的是 root 用户登录执行，不是 root 的话所有命令前面要加 <code>sudo</code></p>
+</blockquote>
+</li>
+<li><p>使用 root 权限更新 yum 包（生产环境中此步操作需慎重，学习环境可随意）</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">yum -y update <span class="hljs-comment">#升级所有包同时也升级软件和系统内核；​ </span><br>yum -y upgrade <span class="hljs-comment">#只升级所有包，不升级软件和系统内核</span><br></code></pre></td></tr></table></figure></li>
+<li><p>卸载旧版本（之前安装过）</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs sh">yum erase docker \<br>                  docker-client \<br>                  docker-client-latest \<br>                  docker-common \<br>                  docker-latest \<br>                  docker-latest-logrotate \<br>                  docker-logrotate \<br>                  docker-selinux \<br>                  docker-engine-selinux \<br>                  docker-engine \<br>                  docker-ce<br><br></code></pre></td></tr></table></figure></li>
+<li><p>安装 docker 依赖</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">yum install -y yum-utils device-mapper-persistent-data lvm2<br></code></pre></td></tr></table></figure></li>
+<li><p>设置 yum 源（以下两个都可用）</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">yum-config-manager --add-repo http://download.docker.com/linux/centos/docker-ce.repo（中央仓库）<br>yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo（阿里仓库）<br></code></pre></td></tr></table></figure></li>
+<li><p>检索 docker 可用版本</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">yum list docker-ce --showduplicates | <span class="hljs-built_in">sort</span> -r<br></code></pre></td></tr></table></figure></li>
+<li><p>安装指定版本</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sh">yum -y install docker-ce-18.03.1.ce<br><span class="hljs-comment">#直接安装最新版</span><br>yum install docker-ce -y<br></code></pre></td></tr></table></figure>
+<p>安装成功样图：<br><img src="http://qnpicmap.fcsluck.top/pics/202311271638947.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>启动 docker 并设置开机自启</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">systemctl start docker<br>systemctl <span class="hljs-built_in">enable</span> docker<br></code></pre></td></tr></table></figure>
+<p><img src="http://qnpicmap.fcsluck.top/pics/202311271638364.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+</ol>
+<h2 id="2-常见指令"><a href="#2-常见指令" class="headerlink" title="2.常见指令"></a>2.常见指令</h2><h3 id="查询远程镜像"><a href="#查询远程镜像" class="headerlink" title="查询远程镜像"></a>查询远程镜像</h3><p>查询远程 Docker 仓库镜像的主要命令和参数包括:<br><code>1. docker search 关键词</code><br>在 Docker Hub 上搜索镜像,支持分页显示等参数。<br><code>2. docker search --limit=n 关键词</code><br>限制搜索结果数量。<br><code>3. docker search -f 字段=值关键词</code><br>按字段过滤搜索结果。<br><code>4. docker search --automated=true 关键词</code><br>仅搜索自动构建镜像。<br><code>5. docker search --no-trunc 关键词</code><br>输出完整的镜像描述。<br><code>6. docker search -s 星级关键词</code><br>按照仓库星级排列结果。<br><code>7. docker search --help</code><br>获取 docker search 支持的参数帮助。<br><code>8. docker inspect 镜像名</code><br>查看远程镜像详细信息。<br><code>9. docker pull 镜像[:标签]</code><br>从 Docker Hub 拉取指定镜像。<br><code>10. docker pull -a</code><br>拉取所有 tagged 镜像及其历史版本。<br><code>11. docker pull --help</code><br>获取 docker pull 支持的参数帮助。</p>
+<h3 id="查询本地镜像"><a href="#查询本地镜像" class="headerlink" title="查询本地镜像"></a>查询本地镜像</h3><p>Docker查询镜像的主要命令和参数包括:<br><code>1. docker images</code><br>查看所有本地镜像,默认列出所有镜像。<br><code>2. docker images -q</code><br>只输出镜像ID,不显示其他信息。<br><code>3. docker images --filter=since=xxx</code><br>过滤出指定时间后创建的镜像。<br><code>4. docker images -f dangling=true</code><br>查询悬空镜像(即未被使用的镜像)。<br><code>5. docker images -a</code><br>显示所有镜像,包括中间层镜像。<br><code>6. docker images --digests</code><br>显示镜像的摘要信息。<br><code>7. docker images name</code><br>查找指定名称的镜像。<br><code>8. docker images --no-trunc</code><br>显示完整的镜像名称。<br><code>9. docker image inspect image</code><br>查看镜像的详细配置信息。</p>
 <h1 id="Nacos"><a href="#Nacos" class="headerlink" title="Nacos"></a>Nacos</h1><ol>
 <li><p>下载 nacos 压缩包</p>
 </li>
@@ -457,22 +486,150 @@
 <hr>
 <h1 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h1><h2 id="关闭进程"><a href="#关闭进程" class="headerlink" title="关闭进程"></a>关闭进程</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">taskkill /f /t /im nginx.exe<br>taskkill /f /pid &lt;查询的PID号&gt;<br></code></pre></td></tr></table></figure>
 <p><img src="http://qnpicmap.fcsluck.top/pics/202311182136214.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h2 id="查看端口"><a href="#查看端口" class="headerlink" title="查看端口"></a>查看端口</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">netstat -ano | findstr &lt;端口号&gt;<br>netstat -ano | find &quot;关键字&quot;<br></code></pre></td></tr></table></figure>
-<h1 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h1><blockquote>
+<h2 id="查看端口"><a href="#查看端口" class="headerlink" title="查看端口"></a>查看端口</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">netstat -ano #查看所有端口<br>netstat -ano | findstr &lt;端口号&gt;<br>netstat -ano | find &quot;关键字&quot;<br></code></pre></td></tr></table></figure>
+<h1 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h1><h2 id="内核信息"><a href="#内核信息" class="headerlink" title="内核信息"></a>内核信息</h2><p>查看 Linux 系统内核的主要命令和方法有:</p>
+<ol>
+<li>uname 命令<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">uname</span> -r<br></code></pre></td></tr></table></figure>
+显示当前正在使用的内核版本号。</li>
+<li>查看&#x2F;proc&#x2F;version 文件<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">cat</span> /proc/version<br></code></pre></td></tr></table></figure>
+文件中包含内核名称、版本、编译日期等详细信息。</li>
+<li>rpm 命令(对于 RPM 包系统)<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">rpm -q kernel-headers kernel-devel<br></code></pre></td></tr></table></figure>
+显示内核头文件和开发包的版本。</li>
+<li>dpkg 命令(对于 Debian&#x2F;Ubuntu 系统) <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">dpkg -l | grep linux-image<br></code></pre></td></tr></table></figure>
+显示所有已安装的内核包。</li>
+<li>查看 grub 启动项<br>对于 grub 启动引导,可以查看 &#x2F;boot&#x2F;grub&#x2F;grub.cfg 文件,找到默认引导的内核版本。</li>
+<li>系统属性<br>如系统设置-&gt;关于本机中也会显示内核版本。</li>
+<li>sysctl 命令 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">sysctl kernel.version<br></code></pre></td></tr></table></figure>
+直接显示内核版本号。</li>
+<li>主机名和操作系统文件<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">cat</span> /etc/hostname<br><span class="hljs-built_in">cat</span> /etc/*release<br></code></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="查看端口-1"><a href="#查看端口-1" class="headerlink" title="查看端口"></a>查看端口</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">netstat -tuln | grep :&lt;端口号&gt;<br>netstat -nplt #查看所有端口<br></code></pre></td></tr></table></figure>
+<blockquote>
 <p><strong>netstat</strong> 参数含义：<br>-a (all)显示所有选项，默认不显示 LISTEN 相关<br>-t (tcp)仅显示 tcp 相关选项<br>-u (udp)仅显示 udp 相关选项<br>-n 拒绝显示别名，能显示数字的全部转化成数字。<br>-l 仅列出有在 Listen (监听) 的服務状态<br>-p 显示建立相关链接的程序名<br>-r 显示路由信息，路由表<br>-e 显示扩展信息，例如 uid 等<br>-s 按各个协议进行统计<br>-c 每隔一个固定时间，执行该 netstat 命令。</p>
 </blockquote>
-<h2 id="查看端口-1"><a href="#查看端口-1" class="headerlink" title="查看端口"></a>查看端口</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">netstat -tuln | grep :&lt;端口号&gt;<br>netstat -nplt #查看所有端口<br></code></pre></td></tr></table></figure>
-<h2 id="查看程序"><a href="#查看程序" class="headerlink" title="查看程序"></a>查看程序</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">ps -ef | grep java #查询java进程的程序<br></code></pre></td></tr></table></figure>
-<h2 id="关闭进程-1"><a href="#关闭进程-1" class="headerlink" title="关闭进程"></a>关闭进程</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">kill -12 pid #安全关闭<br>kill -9 pid #强制关闭<br></code></pre></td></tr></table></figure>
-
+<h2 id="查看程序"><a href="#查看程序" class="headerlink" title="查看程序"></a>查看程序</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">ps -ef | grep java #查询java进程的程序<br>ps -ef #查看正在运行的进程<br></code></pre></td></tr></table></figure>
+<h2 id="安装服务"><a href="#安装服务" class="headerlink" title="安装服务"></a>安装服务</h2><p><code>yum</code> 工具中常见的几个主要参数如下:</p>
+<ul>
+<li>y: 执行命令时根据提示自动进行 Yes 答复。等同于–assumeyes。</li>
+<li>C: 只检查是否需要进行包更新,但不实际安装&#x2F;升级包。</li>
+<li>d: 下载包文件但不安装&#x2F;升级。通常与-y 一起使用。</li>
+<li>e: 安装程序时产生详细输出信息。</li>
+<li>q: 执行”搜索”操作时本身不输出任何搜索结果,只返回退出状态。</li>
+<li>R: 将安装时需要下载的依赖包一并保存下来可以离线安装。</li>
+<li>y: 和–assumeyes 参数一样,自动答复 yes,而不询问或提示。</li>
+<li>update: 更新已安装的软件包到最新版本。</li>
+<li>upgrade: 升级系统,更新所有软件包到最新版本。 </li>
+<li>check-update:检查是否有更新。</li>
+<li>list: 显示已安装和可更新的软件包列表。</li>
+<li>search: 搜索软件包。</li>
+<li>install: 安装软件包。</li>
+<li>remove: 只删除软件包文件,但不删除软件的配置文件和数据文件。 </li>
+<li>erase: 除了删除软件包文件外,还会删除该软件产生的所有配置文件和数据文件。实现了更彻底的卸载和清理。</li>
+</ul>
 <h2 id="防火墙"><a href="#防火墙" class="headerlink" title="防火墙"></a>防火墙</h2><h3 id="centos-7"><a href="#centos-7" class="headerlink" title="centos 7"></a>centos 7</h3><p>一、防火墙的开启、关闭、禁用命令</p>
 <blockquote>
-<p>（1）设置开机启用防火墙：<code>systemctl enable firewalld.service</code><br>（2）设置开机禁用防火墙：<code>systemctl disable firewalld.service</code><br>（3）启动防火墙：<code>systemctl start firewalld</code><br>（4）关闭防火墙：<code>systemctl stop firewalld</code><br>（5）检查防火墙状态：<code>systemctl status firewalld</code> </p>
+<p>（1）设置开机启用防火墙：<code>systemctl enable firewalld.service</code><br>（2）设置开机禁用防火墙：<code>systemctl disable firewalld.service</code><br>（3）启动防火墙：<code>systemctl start firewalld</code><br>（4）关闭防火墙：<code>systemctl stop firewalld</code><br>（5）检查防火墙状态：<code>systemctl status firewalld</code> <br>二、使用 firewall-cmd 配置端口<br>（1）查看防火墙状态：<code>firewall-cmd --state</code><br>（2）重新加载配置：<code>firewall-cmd --reload</code><br>（3）查看开放的端口：<code>firewall-cmd --list-ports</code><br>（4）开启防火墙端口：<code>firewall-cmd --zone=public --add-port=9200/tcp --permanent</code></p>
 </blockquote>
-<p>二、使用 firewall-cmd 配置端口</p>
-<blockquote>
-<p>（1）查看防火墙状态：<code>firewall-cmd --state</code><br>（2）重新加载配置：<code>firewall-cmd --reload</code><br>（3）查看开放的端口：<code>firewall-cmd --list-ports</code><br>（4）开启防火墙端口：<code>firewall-cmd --zone=public --add-port=9200/tcp --permanent</code></p>
-</blockquote>
+<h2 id="文件处理"><a href="#文件处理" class="headerlink" title="文件处理"></a>文件处理</h2><h3 id="查看目录"><a href="#查看目录" class="headerlink" title="查看目录"></a>查看目录</h3><p>显示指定目录的详细信息</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">ls</span> -l [目录或者文件]<br></code></pre></td></tr></table></figure>
+<p>显示指定目录的隐藏文件</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">ls</span> -al [目录或者文件]<br></code></pre></td></tr></table></figure>
+<h3 id="删除文件"><a href="#删除文件" class="headerlink" title="删除文件"></a>删除文件</h3><p>强制删除不提示</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">rm</span> -f 文件名<br></code></pre></td></tr></table></figure>
+<p>删除整个文件夹并不提示</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">rm</span> -rf 目录名<br></code></pre></td></tr></table></figure>
+<h3 id="复制迁移文件"><a href="#复制迁移文件" class="headerlink" title="复制迁移文件"></a>复制迁移文件</h3><p>复制单个文件到文件夹中</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cp</span> 文件 文件夹<br></code></pre></td></tr></table></figure>
+<p>复制整个文件夹到另一个文件夹中</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cp</span> -r 源文件夹 目标文件夹<br></code></pre></td></tr></table></figure>
+<p>重命名文件或文件夹</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">mv</span> 源文件名 新文件名<br></code></pre></td></tr></table></figure>
+<p>移动文件或文件夹</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">mv</span> 源文件 目标文件<br></code></pre></td></tr></table></figure>
+<h3 id="查看文件"><a href="#查看文件" class="headerlink" title="查看文件"></a>查看文件</h3><p>查看文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">more 文件名<br></code></pre></td></tr></table></figure>
+<p>查看文件，要求显示行号并分页</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cat</span> -n 文件名 | more<br></code></pre></td></tr></table></figure>
+<p>默认查看文件后 10 行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">tail</span> 文件名<br></code></pre></td></tr></table></figure>
+<p>查看文件末尾 5 行的内容</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">tail</span> -n 5 文件名<br></code></pre></td></tr></table></figure>
+<p>实时追踪文档的更新</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">tail</span> -f 文件名<br></code></pre></td></tr></table></figure>
+<p>输出你好</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">echo</span> 你好<br></code></pre></td></tr></table></figure>
+<p>在文件末尾添加内容</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">echo</span> 内容 &gt;&gt; 文件名<br></code></pre></td></tr></table></figure>
+<p>覆盖文件的所有内容</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">echo</span> 新内容 &gt; 文件名<br></code></pre></td></tr></table></figure>
+<p>把文件内容写入到另一个文件的末尾</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cat</span> 文件名1 &gt;&gt; 文件名2<br></code></pre></td></tr></table></figure>
+<p>在当前目录建立一个指向&#x2F;tmp 目录的硬链接</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">ln</span> /tmp 自定义链接名<br></code></pre></td></tr></table></figure>
+<p>在当前目录建立一个指向&#x2F;tmp 目录的软链接</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">ln</span> -s /tmp 自定义链接h<br></code></pre></td></tr></table></figure>
+<p>查看&#x2F;tmp 目录是否存在名为 log.txt 文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">find /tmp -name log.txt<br></code></pre></td></tr></table></figure>
+<p>查看&#x2F;tmp 目录是否存在小于超过 2M 的文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">find /tmp -size -2M<br></code></pre></td></tr></table></figure>
+<p>查看整个系统是否存在大于 100M 的文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">find / -size +100M<br></code></pre></td></tr></table></figure>
+<p>查看文件中，在第几行有 yes</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cat</span> 文件名 | grep -n <span class="hljs-built_in">yes</span><br></code></pre></td></tr></table></figure>
+<p>查看文件中，在第几行有 yes 并忽略大小写</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cat</span> 文件名 | grep -ni <span class="hljs-built_in">yes</span><br></code></pre></td></tr></table></figure>
+<h3 id="展示树形结构"><a href="#展示树形结构" class="headerlink" title="展示树形结构"></a>展示树形结构</h3><p>tree 命令可以用来以树形结构显示目录的内容。它的主要用法如下:</p>
+<ol>
+<li>显示当前目录下的文件和目录结构:<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">tree<br></code></pre></td></tr></table></figure></li>
+<li>显示指定目录下的文件和目录结构:<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">tree /path/to/directory<br></code></pre></td></tr></table></figure></li>
+<li>只显示指定深度内的结构:<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">tree -L 2  // 只显示两层深度的目录结构<br></code></pre></td></tr></table></figure></li>
+<li>不递归显示,只显示指定目录的直接内容:<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">tree -I<br></code></pre></td></tr></table></figure></li>
+<li>隐藏空目录:<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">tree -I -D<br></code></pre></td></tr></table></figure></li>
+<li>输出为颜色图示:<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">tree -C<br></code></pre></td></tr></table></figure></li>
+<li>指定后缀只显示匹配文件的结构: <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">tree -P <span class="hljs-string">&#x27;*.txt&#x27;</span><br></code></pre></td></tr></table></figure></li>
+<li>将结构输出到指定文件:<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">tree &gt; directory.txt<br></code></pre></td></tr></table></figure></li>
+<li>对输出进行压缩:<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">tree -C -z<br></code></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="解压文件"><a href="#解压文件" class="headerlink" title="解压文件"></a>解压文件</h3><p>把文件压缩为.gz 尾缀的压缩文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">gzip 文件.gz<br></code></pre></td></tr></table></figure>
+<p>解压 gz 尾缀的文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">gunzip 文件.gz<br></code></pre></td></tr></table></figure>
+<p>把&#x2F;tmp 文件夹的所有文件压缩成.zip 尾缀的压缩文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">zip -r 文件.zip /tmp<br></code></pre></td></tr></table></figure>
+<p>解压 zip 尾缀的文件，解压到&#x2F;root 目录下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">unzip -d  /root 文件.zip<br></code></pre></td></tr></table></figure>
+<p>把&#x2F;tmp 文件夹的所有文件压缩为.tar.gz 尾缀的压缩文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">tar -zcvf 文件.tar.gz /tmp<br></code></pre></td></tr></table></figure>
+<p>解压.tar.gz 尾缀的文件，解压到&#x2F;root 目录下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">tar -zxvf 文件.tar.gz -C  /root<br></code></pre></td></tr></table></figure>
+<h2 id="进程管理"><a href="#进程管理" class="headerlink" title="进程管理"></a>进程管理</h2><p>查看某进程的资源占用情况</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">top -p 进程号<br></code></pre></td></tr></table></figure>
+<p>找出占用 CPU 最多的进程</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">top，然后按大写的P<br></code></pre></td></tr></table></figure>
+<p>找出占用内存最多的进程</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">top，然后按大写的M<br></code></pre></td></tr></table></figure>
+<p>查看正在运行的进程</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">ps -ef<br></code></pre></td></tr></table></figure>
+<p>查看有关 mysql 的进程信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">ps -ef | grep mysql<br></code></pre></td></tr></table></figure>
+<p>正常杀死进程</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">kill</span> -15 PID号<br><span class="hljs-built_in">kill</span> -12 pid <span class="hljs-comment">#安全关闭</span><br></code></pre></td></tr></table></figure>
+<p>强制杀死进程</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">kill</span> -9 pid <span class="hljs-comment">#强制关闭</span><br></code></pre></td></tr></table></figure>
+<p>找出 CPU 占用高的进程 ID</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">top -c<br></code></pre></td></tr></table></figure>
+<p>根据进程 ID，找出 CPU 占用高的线程 ID</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">ps H -eo pid,tid,%cpu | grep 进程ID<br></code></pre></td></tr></table></figure>
+<p>输出‘指定进程 ID 的 16 进制’</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">printf</span> <span class="hljs-string">&quot;%x\n&quot;</span> 进程ID<br></code></pre></td></tr></table></figure>
+<p>根据‘指定进程 ID 的 16 进制’，查看到底是哪里 java 的代码问题</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">jstack 进程ID | grep 指定进程ID的16进制 -A20<br></code></pre></td></tr></table></figure>
+
+
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
+<li><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1701451">centos7安装Docker详细步骤（无坑版教程）-腾讯云开发者社区-腾讯云</a></li>
+<li></li>
+</ol>
 
                 
               </div>
@@ -543,7 +700,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2023年11月25日</div>
+          <div>2023年11月27日</div>
         </div>
       
       <div class="license-meta-item">

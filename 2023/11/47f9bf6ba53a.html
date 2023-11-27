@@ -62,7 +62,7 @@
 <meta property="og:image" content="http://qnpicmap.fcsluck.top/pics/202311241017414.png">
 <meta property="og:image" content="http://qnpicmap.fcsluck.top/pics/202311241027699.png">
 <meta property="article:published_time" content="2023-11-13T14:02:25.000Z">
-<meta property="article:modified_time" content="2023-11-24T04:11:21.600Z">
+<meta property="article:modified_time" content="2023-11-26T08:28:57.737Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="AIGC">
 <meta property="article:tag" content="KG">
@@ -332,7 +332,7 @@
         
         
         
-          134 分钟
+          137 分钟
         
       </span>
     
@@ -694,16 +694,38 @@
 <li>划分子图：不同类型的属性有不同的相似度度量方式，将整个知识图谱划分成 4 个子图，然后利用 GNN 分别学习表示方式，最后将 4 个子图的表示集成在一起。</li>
 </ul>
 <p><em>研究方案</em><br><img src="http://qnpicmap.fcsluck.top/pics/202311241027699.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>1、图划分：负责将输入的图谱按照属性和值分为 4 个子图（仅含 name 属性、字符串属性、数字属性和无属性）。<br>2、子图编码器：利用多通道图神经网络，分别学习 4 个子图，其中每个通道是由 L 层属性值编码器和均值聚合器堆叠而成。属性值编码器聚合属性和值以生成实体嵌入，属性均值均聚合器按照图结构将实体特征传播给相邻节点。<br>3、图对齐，将两个知识图谱对应通道的向量统一表示到同一个向量空间。<br>4、通道集成，将不同通道输出的相似度集成在一起，用于最终预测结果。<br><em>结论</em><br>结论 1：在困难测试集中，文字通道和结构通道的性能接近名称通道。这证明了探索非名称特性（包括其他属性和关系）对于实际实体对齐的重要性。<br>结论 2：子图划分策略取得了很好的改进，原因是子图划分使模型能够以不同的方式度量不同属性的相似性。<br>结论 3：完整模型效果明显优于仅考虑结构、仅考虑关系&#x2F;属性的模型，这证明了在实体对齐中同时考虑关系三元组和属性三元组的必要性。</p>
-<p><strong>实体抽取工具调研</strong><br>主要实现方法和工具：<br>(1)DeepDive-斯坦福大学开源知识抽取工具（三元组抽取）：从更少的结构化数据和统计推断中提取结构化的知识而无需编写任何复杂的机器学习代码。<br>(2)FudanNLP:主要是为中文自然语言处理而开发的工具包，也包含为实现这些任务的机器学习算法和数据集。可以实现中文分词，词性标注，实体名识别，句法分析，时间表达式识别，信息检索，文本分类，新闻聚类等<br>(3)NLPR分词（中科院）：主要功能包括中文分词；英文分词；词性标注；命名实体识别；新词识别；关键词提取；支持用户专业词典与微博分析。NLPR系统支持多种编码、多种操作系统、多种开发语言与平台。<br>(4)LTP(哈工大)：语言技术平台(Language Technology Platform,LTP)提供了一系列中文自然语言处理工具，用户可以使用这些工具对于中文文本进行分词、词性标注、句法分析等等工作。</p>
-<p><strong>关系抽取工具调研</strong><br>1.实体间关系抽取，拿到知识图谱最小单元三元组，比较经典算法的就是Piece.-Wise-CNN和LSTM+Attention。<br>2.DeepKE：基于深度学习的开源中文关系抽取工具GitHub地址&amp;&amp;OpenKG.发布地址<br>3.DeepDive.是斯坦福大学开发的信息抽取系统，能处理文本、表格、图表、图片等多种格式的无结构数据，从中抽取结构化的信息。系统集成了文件分析、信息提取、信息整合、概率预测等功能。Deepdive的主要应用是特定领域的信息抽取，系统构建至今，已在交通、考古、地理、医疗等多个领域的项目实践中取得了良好的效果；在开放领域的应用Deepdive在OpenKG.CN上有一个中文的教程：中文教程斯坦福地址：DeepDive GitHub地址： <a target="_blank" rel="noopener" href="https://github.com/HazyResearch/deepdive">https://github.com/HazyResearch/deepdive</a> 支持中文的提取：支持中文的deepdive:斯坦福大学的开源知识抽取工具（三元组抽取）<br>4.Reverb:开放三元组抽取 <a target="_blank" rel="noopener" href="http://reverb.cs.washington.edu/">http://reverb.cs.washington.edu</a> Reverb是华盛顿大学研发的开放三元组抽取工具，可以从英文句子中抽取形如(augument1,relation,argument2)的三元组。它不需要提前指定关系，支持全网规模的信息抽取。</p>
-<p><strong>COT的生成方法</strong><br><em>基于手动构建</em>：</p>
+<p><strong>实体抽取工具调研</strong><br>主要实现方法和工具：<br>(1)DeepDive-斯坦福大学开源知识抽取工具（三元组抽取）：从更少的结构化数据和统计推断中提取结构化的知识而无需编写任何复杂的机器学习代码。<br>(2)FudanNLP:主要是为中文自然语言处理而开发的工具包，也包含为实现这些任务的机器学习算法和数据集。可以实现中文分词，词性标注，实体名识别，句法分析，时间表达式识别，信息检索，文本分类，新闻聚类等<br>(3)NLPR 分词（中科院）：主要功能包括中文分词；英文分词；词性标注；命名实体识别；新词识别；关键词提取；支持用户专业词典与微博分析。NLPR 系统支持多种编码、多种操作系统、多种开发语言与平台。<br>(4)LTP(哈工大)：语言技术平台(Language Technology Platform,LTP)提供了一系列中文自然语言处理工具，用户可以使用这些工具对于中文文本进行分词、词性标注、句法分析等等工作。</p>
+<p><strong>关系抽取工具调研</strong><br>1.实体间关系抽取，拿到知识图谱最小单元三元组，比较经典算法的就是 Piece.-Wise-CNN 和 LSTM+Attention。<br>2.DeepKE：基于深度学习的开源中文关系抽取工具 GitHub 地址&amp;&amp;OpenKG.发布地址<br>3.DeepDive.是斯坦福大学开发的信息抽取系统，能处理文本、表格、图表、图片等多种格式的无结构数据，从中抽取结构化的信息。系统集成了文件分析、信息提取、信息整合、概率预测等功能。Deepdive 的主要应用是特定领域的信息抽取，系统构建至今，已在交通、考古、地理、医疗等多个领域的项目实践中取得了良好的效果；在开放领域的应用 Deepdive 在 OpenKG.CN 上有一个中文的教程：中文教程斯坦福地址：DeepDive GitHub 地址： <a target="_blank" rel="noopener" href="https://github.com/HazyResearch/deepdive">https://github.com/HazyResearch/deepdive</a> 支持中文的提取：支持中文的 deepdive:斯坦福大学的开源知识抽取工具（三元组抽取）<br>4.Reverb:开放三元组抽取 <a target="_blank" rel="noopener" href="http://reverb.cs.washington.edu/">http://reverb.cs.washington.edu</a> Reverb 是华盛顿大学研发的开放三元组抽取工具，可以从英文句子中抽取形如(augument1,relation,argument2)的三元组。它不需要提前指定关系，支持全网规模的信息抽取。</p>
+<p><strong>COT 的生成方法</strong><br><em>基于手动构建</em>：</p>
 <ul>
-<li>手工COT的集成方法 Active Prompting with Chain-of-Thought for Large Language Models</li>
-<li>零样本COT，LLM自主生成提问的中间步骤，再加入到rompt中形成COT Zero–shot-CoI<br><em>基于自动构建</em>：<br>核心思想都是基于手工构建的COT,让模型自动生成更多的COT模板然后进行选择。</li>
+<li>手工 COT 的集成方法 Active Prompting with Chain-of-Thought for Large Language Models</li>
+<li>零样本 COT，LLM 自主生成提问的中间步骤，再加入到 rompt 中形成 COT Zero–shot-CoI<br><em>基于自动构建</em>：<br>核心思想都是基于手工构建的 COT,让模型自动生成更多的 COT 模板然后进行选择。</li>
 <li>Synthetic Prompting:Generating Chain-of-Thought Demonstrations for Large Language Models</li>
-<li>Automatic Prompt Augmentation and Selection with Chain-of-Thought from Labeled Data<br><em>COT的综述</em>： <a target="_blank" rel="noopener" href="https://browse.arxiv.org/abs/2310.04959">https://browse.arxiv.org/abs/2310.04959</a></li>
+<li>Automatic Prompt Augmentation and Selection with Chain-of-Thought from Labeled Data<br><em>COT 的综述</em>： <a target="_blank" rel="noopener" href="https://browse.arxiv.org/abs/2310.04959">https://browse.arxiv.org/abs/2310.04959</a></li>
 </ul>
-<h2 id="3-IF"><a href="#3-IF" class="headerlink" title="3.IF"></a>3.IF</h2>
+<h2 id="3-IF"><a href="#3-IF" class="headerlink" title="3.IF"></a>3.IF</h2><ul>
+<li>研究内容聚焦 LLM 与 KG 融合</li>
+<li>继续修改压缩研究背景内容到两页左右.</li>
+</ul>
+<h1 id="2023-11-26-项目例会"><a href="#2023-11-26-项目例会" class="headerlink" title="2023-11-26 (项目例会)"></a>2023-11-26 (项目例会)</h1><blockquote>
+<p>[!NOTE] 周会总结</p>
+<ol>
+<li>已学内容：<ul>
+<li>学习 SpringCloud-Alibaba(包括 Seata、Dubbo、RabbitMQ 、Stream、Bus 等中间件)，以及 OAuth2 单点登录、Redis 用法（已完成 70%）和 Git 基本用法（45%）</li>
+</ul>
+</li>
+<li>下周计划：<ul>
+<li>继续完成Redis分布式、MySql分布式、ShardingJDBC和Git学习，并学习<a target="_blank" rel="noopener" href="https://gitee.com/log4j/pig">Pig</a>项目</li>
+</ul>
+</li>
+<li>学习感悟：<ul>
+<li>SpringCloud其实就是使用多种中间件来协调配合多个SpringBoot服务，实现微服务之间连通、可用且完整，从而将一个庞大的项目根据不同功能不同粒度进行拆分解耦充分利用集群的优势横向扩展。OAuth2是微服务应用的一种鉴权方式，实现单点登录效果。</li>
+</ul>
+</li>
+<li><h2 id="指导建议："><a href="#指导建议：" class="headerlink" title="指导建议："></a>指导建议：</h2></li>
+</ol>
+</blockquote>
+
                 
               </div>
             
@@ -773,7 +795,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2023年11月24日</div>
+          <div>2023年11月26日</div>
         </div>
       
       <div class="license-meta-item">

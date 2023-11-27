@@ -27,7 +27,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://picsum.photos/800/250">
 <meta property="article:published_time" content="2023-11-25T02:45:31.000Z">
-<meta property="article:modified_time" content="2023-11-25T15:57:06.192Z">
+<meta property="article:modified_time" content="2023-11-26T09:17:37.950Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="Redis">
 <meta name="twitter:card" content="summary_large_image">
@@ -283,7 +283,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          8.6k 字
+          14k 字
         
       </span>
     
@@ -294,7 +294,7 @@
         
         
         
-          72 分钟
+          117 分钟
         
       </span>
     
@@ -345,7 +345,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：3 分钟前
+                    本文最后更新于：1 天前
                   
                 
               </p>
@@ -370,6 +370,7 @@
 <li>&#x3D;&#x3D;图形存储&#x3D;&#x3D;：以图形结构方式存储数据，适用于复杂的关系查询。例如 Neo4j、OrientDB 等。</li>
 </ol>
 <p>NoSQL 数据库在大数据、实时分析、云计算等领域具有广泛的应用。它们可以处理海量的非结构化数据，并提供高性能的读写操作。与传统的关系型数据库相比，NoSQL 数据库具有更好的横向扩展性和高可用性，可以在集群中分布数据并实现数据的自动复制和故障恢复。<br>在大数据领域，NoSQL 数据库可以处理海量的数据，并支持并行计算和分布式存储。它们通常采用分布式架构，可以将数据存储在多个节点上，并通过并行计算来处理查询和分析任务。<br>在实时分析领域，NoSQL 数据库可以提供低延迟的查询和分析能力。它们通常采用内存存储或者基于索引的存储方式，可以快速地查找和处理数据。<br>在云计算领域，NoSQL 数据库可以轻松地扩展和部署。它们通常具有自动化管理和弹性伸缩的功能，可以根据需求来增加或减少资源。<br>总之，NoSQL 数据库在大数据、实时分析、云计算等领域具有广泛应用，并且不断发展创新。它们能够有效地处理海量数据，并提供高性能和可靠性。</p>
+<hr>
 <h1 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h1><h2 id="切换数据库"><a href="#切换数据库" class="headerlink" title="切换数据库"></a>切换数据库</h2><p>通过 select 语句进行切换数据库，默认有 0 到 15 号数据库。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">select index #index为redis数据库的序号，默认有16个（0~15）<br></code></pre></td></tr></table></figure>
 <h2 id="数据操作"><a href="#数据操作" class="headerlink" title="数据操作"></a>数据操作</h2><p>redis 的基本数据操作</p>
@@ -405,6 +406,7 @@
 <li>查看数据类型：<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">type</span> key<br></code></pre></td></tr></table></figure></li>
 <li>删除数据：<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">del key [key ...] --删除一个或多个键<br></code></pre></td></tr></table></figure></li>
 </ol>
+<hr>
 <h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><p>Redis 支持多种数据类型，包括：</p>
 <ol>
 <li><strong>字符串（String）</strong>：最基本的数据类型，可以存储任何类型的数据，如文本、二进制数据等。</li>
@@ -473,6 +475,7 @@
 </blockquote>
 </li>
 </ol>
+<hr>
 <h1 id="持久化"><a href="#持久化" class="headerlink" title="持久化"></a>持久化</h1><p>因为 Redis 是内存数据库，它将自己的数据存储在内存里面，一旦 Redis 服务器进程退出或者运行 Redis 服务器的计算机停机，Redis 服务器中的数据就会丢失。<br>为了避免数据丢失，所以 Redis 提供了持久化机制，将存储在内存中的数据保存到磁盘中，用于在 Redis 服务器进程退出或者运行 Redis 服务器的计算机停机导致数据丢失时，快速的恢复之前 Redis 存储在内存中的数据。<br>Redis 持久化不保证数据的完整性，有可能会丢数据。当 Redis 用作 DB 时，DB 数据要完整，所以一定要有一个完整的数据源（文件、mysql），在系统启动时，从这个完整的数据源中将数据 load 到 Redis 中。<br>Redis 的有两种持久化方式，RDB 和 AOF。</p>
 <h3 id="ROB"><a href="#ROB" class="headerlink" title="ROB"></a>ROB</h3><p>RDB（Redis DataBase），是 redis 默认的存储方式，RDB 方式是通过快照（ snapshotting ）完成的。它保存的是某一时刻的数据并不关注过程。<em>RDB 保存 redis 某一时刻的数据的快照</em><br><strong>优点</strong>：</p>
 <ol>
@@ -485,7 +488,7 @@
 <li>只适用于适量大小（不超过几千万个键）的数据库。</li>
 <li>不支持复制和集群模式。</li>
 <li>服务器故障时会丢失最后一次备份之后的数据。</li>
-<li>Redis 保存 rdb 时， fork 子进程的这个操作期间, Redis 服务会停止响应(一般是毫秒级)，但如果数据量大且 cpu 时间紧张，则停止响应的时间可能长达1秒。</li>
+<li>Redis 保存 rdb 时， fork 子进程的这个操作期间, Redis 服务会停止响应(一般是毫秒级)，但如果数据量大且 cpu 时间紧张，则停止响应的时间可能长达 1 秒。</li>
 </ol>
 <p>总的来说，ROB 持久化是一种在特定场景下可以提供更快速、更省空间的持久化方式，但对于大规模数据集和高可用性要求的场景可能不太适用。<br>RDB 持久化是将某个时间点上 Redis 中的数据保存到一个 RDB 文件中，如下所示：<br>保存：<br><img src="http://qnpicmap.fcsluck.top/pics/202311252009138.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <blockquote>
@@ -560,6 +563,59 @@
 </ul>
 </li>
 </ul>
+<hr>
+<h1 id="事务和锁机制"><a href="#事务和锁机制" class="headerlink" title="事务和锁机制"></a>事务和锁机制</h1><h2 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h2><p>和 MySQL 一样，在 Rdis 中也有事务机制，当我们需要保证多条命令一次性完整执行而中途不受到其他命令干扰时，就可以使用事务机制。</p>
+<ol>
+<li>开启事务：<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">multi<br></code></pre></td></tr></table></figure></li>
+<li>执行事务：<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">exec<br></code></pre></td></tr></table></figure></li>
+<li>中途取消事务：<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">discard<br></code></pre></td></tr></table></figure>
+实际上整个事务是创建了一个<em>命令队列</em>，它不像 MySQL 那种在事务中也能单独得到结果，而是我们提前将所有的命令<em>装在队列中，但是并不会执行</em>，而是等我们<em>提交事务的时候再统一执行</em>。</li>
+</ol>
+<h2 id="锁"><a href="#锁" class="headerlink" title="锁"></a>锁</h2><p>实际上在 Redis 中也会出现多个命令同时竞争同一个数据的情况，比如现在有两条命令同时执行，他们都要去修改的值，那么这个时候就只能动用锁机制来保证同一时间只能有一个命令操作。<br>虽然 <code>Redis中也有锁机制，但是它是一种乐观锁</code>，不同于 MySQL,我们在 MySQL 中认识的锁是悲观锁，那么什么是乐观锁什么是悲观锁呢？</p>
+<ul>
+<li>悲观锁：时刻认为别人会来抢占资源，&#x3D;&#x3D;禁止一切外来访问，直到释放锁&#x3D;&#x3D;，具有强烈的排他性质。</li>
+<li>乐观锁：并不认为会有人来抢占资源，所以会&#x3D;&#x3D;直接对数据进行操作，在操作时再去验证是否有其他人抢占资源&#x3D;&#x3D;。</li>
+</ul>
+<p>Redis 中可以使用 watch 来监视一个目标，如果<em><strong>执行事务之前被监视目标发生了修改，则取消本次事务</strong></em>：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">watch<br></code></pre></td></tr></table></figure>
+<p>我们可以开两个客户端进行测试。<br>取消监视可以使用：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">unwatch<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>乐观锁采用版本号来区分是否被修改，从而避免 ABA（即将 A 修改为 B 再修改为 A）问题。</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs image-layout-a">![image.png](http://qnpicmap.fcsluck.top/pics/202311261046338.png)<br>![image.png](http://qnpicmap.fcsluck.top/pics/202311261046425.png)<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="Java-与-Redis-交互"><a href="#Java-与-Redis-交互" class="headerlink" title="Java 与 Redis 交互"></a>Java 与 Redis 交互</h1><p>这里我们需要使用到 Jedis 框架，它能够实现 Java 与 Redis 数据库的交互，依赖：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>redis.clients<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>jedis<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>4.0.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>	<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<h2 id="基本操作-1"><a href="#基本操作-1" class="headerlink" title="基本操作"></a>基本操作</h2><p>我们来看看如何连接 Redis 数据库，非常简单，只需要创建一个对象即可：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;  <br>    <span class="hljs-keyword">try</span> (<span class="hljs-type">Jedis</span> <span class="hljs-variable">jedis</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Jedis</span>(<span class="hljs-string">&quot;127.0.0.1&quot;</span>, <span class="hljs-number">6379</span>);  <br>    ) &#123;  <br>		jedis.auth(<span class="hljs-string">&quot;123456&quot;</span>);  <br>		jedis.keys(<span class="hljs-string">&quot;*&quot;</span>).forEach(System.out::println);  <br>		jedis.set(<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;zhangsan&quot;</span>);  <br>		System.out.println(jedis.get(<span class="hljs-string">&quot;a&quot;</span>)); <br>    &#125;  <br>&#125;<br></code></pre></td></tr></table></figure>
+<p>通过 Jedis 对象，我们就可以直接调用命令的同名方法来执行 Redis 命令了，比如：</p>
+<ul>
+<li>Hash 类型：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String]args)</span>&#123;<br><span class="hljs-keyword">try</span>(Jedis jedis <span class="hljs-keyword">new</span> <span class="hljs-title class_">Jedis</span>(<span class="hljs-string">&quot;127.0.0.1&quot;</span>,<span class="hljs-number">6379</span>))&#123;<br>jedis.hset(<span class="hljs-string">&quot;hhh&quot;</span>,<span class="hljs-string">&quot;name&quot;</span>,<span class="hljs-string">&quot;sxc&quot;</span>);<span class="hljs-comment">//等同于hset hhh name sxc</span><br>jedis.hset(<span class="hljs-string">&quot;hhh&quot;</span>,<span class="hljs-string">&quot;sex&quot;</span>,<span class="hljs-string">&quot;19&quot;</span>);<span class="hljs-comment">//等同于hset hhh age19</span><br>jedis.hgetAll(<span class="hljs-string">&quot;hhh&quot;</span>).forEach((k,v)-&gt;System.out.println(k+<span class="hljs-string">&quot;:&quot;</span>+v));<br>&#125;<br></code></pre></td></tr></table></figure></li>
+<li>列表操作：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String]args)</span>&#123;<br><span class="hljs-keyword">try</span>(Jedis jedis <span class="hljs-keyword">new</span> <span class="hljs-title class_">Jedis</span>(<span class="hljs-string">&quot;127.0.0.1&quot;</span>,<span class="hljs-number">6379</span>))&#123;<br>jedis.lpush(<span class="hljs-string">&quot;mylist&quot;</span>,<span class="hljs-string">&quot;111&quot;</span>,<span class="hljs-string">&quot;222&quot;</span>,<span class="hljs-string">&quot;333&quot;</span>);<span class="hljs-comment">//等同于lpush my1ist 111 222 333命令</span><br>jedis.lrange(<span class="hljs-string">&quot;mylist&quot;</span>,<span class="hljs-number">0</span>,-<span class="hljs-number">1</span>).forEach(System.out::println);<span class="hljs-comment">//等同手lrange mylist0-1</span><br>&#125;<br></code></pre></td></tr></table></figure>
+实际上我们只需要按照对应的操作去调用同名方法即可，所有的类型封装 Jedis 已经帮助我们完成了。</li>
+</ul>
+<h2 id="SpringBoot-整合-Redis"><a href="#SpringBoot-整合-Redis" class="headerlink" title="SpringBoot 整合 Redis"></a>SpringBoot 整合 Redis</h2><ol>
+<li>导入依赖</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span>  <br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>        <br>	    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>  <br>        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-data-redis<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>  <br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>  <br><span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<ol start="2">
+<li>填加 spring.data.redis 相关配置<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">server:</span>  <br>  <span class="hljs-attr">port:</span> <span class="hljs-number">8080</span> <span class="hljs-comment"># 主要用于配置Spring Boot应用程序的端口  </span><br><span class="hljs-attr">spring:</span>  <br>  <span class="hljs-attr">application:</span>  <br>    <span class="hljs-attr">name:</span> <span class="hljs-string">springboot-redis</span> <span class="hljs-comment"># 主要用于设置Spring Boot应用程序的名称  </span><br>  <span class="hljs-attr">data:</span>  <br>    <span class="hljs-attr">redis:</span>  <br>      <span class="hljs-attr">host:</span> <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span> <span class="hljs-comment"># 主要用于配置Redis服务器的主机地址  </span><br>      <span class="hljs-attr">port:</span> <span class="hljs-number">6379</span> <span class="hljs-comment"># 主要用于配置Redis服务器的端口号  </span><br>      <span class="hljs-attr">password:</span> <span class="hljs-number">123456</span> <span class="hljs-comment"># 主要用于配置Redis服务器的密码  </span><br>      <span class="hljs-attr">database:</span> <span class="hljs-number">0</span> <span class="hljs-comment"># 主要用于配置Redis服务器的数据库索引（从0开始）  </span><br>      <span class="hljs-attr">timeout:</span> <span class="hljs-number">1000</span> <span class="hljs-comment"># 主要用于配置Redis操作的超时时间（以毫秒为单位）</span><br></code></pre></td></tr></table></figure></li>
+<li>依赖默认为我们提供了两个模板类 RedisTemplate 和 StringRedisTemplate 方便操作 redis<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@SpringBootTest</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">SpringBootRedisApplicationTests</span> &#123;<br>    <span class="hljs-meta">@Resource</span><br>    StringRedisTemplate stringRedisTemplate;  <span class="hljs-comment">// Spring Boot 配置文件注入 Redis 的 String 类型模板</span><br>    <span class="hljs-meta">@Test</span><br>    <span class="hljs-keyword">void</span> <span class="hljs-title function_">redisTest</span><span class="hljs-params">()</span> &#123;<br>        stringRedisTemplate.opsForValue().set(<span class="hljs-string">&quot;user:info:1:name&quot;</span>, <span class="hljs-string">&quot;zhangSan&quot;</span>, <span class="hljs-number">1</span>, TimeUnit.MINUTES);  <span class="hljs-comment">// 将键值对 &quot;user:info:1:name&quot; 的值设置为 &quot;zhangsan&quot; 存入 Redis</span><br>        stringRedisTemplate.opsForValue().set(<span class="hljs-string">&quot;user:info:1:age&quot;</span>, <span class="hljs-string">&quot;21&quot;</span>, <span class="hljs-number">1</span>, TimeUnit.MINUTES);  <span class="hljs-comment">// 将键值对 &quot;user:info:1:age&quot; 的值设置为 &quot;21&quot; 存入 Redis</span><br>        <span class="hljs-type">String</span> <span class="hljs-variable">name</span> <span class="hljs-operator">=</span> stringRedisTemplate.opsForValue().get(<span class="hljs-string">&quot;user:info:1:name&quot;</span>);  <span class="hljs-comment">// 获取键 &quot;user:info:1:name&quot; 对应的值并赋值给变量 name</span><br>        <span class="hljs-type">String</span> <span class="hljs-variable">age</span> <span class="hljs-operator">=</span> stringRedisTemplate.opsForValue().get(<span class="hljs-string">&quot;user:info:1:age&quot;</span>);  <span class="hljs-comment">// 获取键 &quot;user:info:1:age&quot; 对应的值并赋值给变量 age</span><br>        System.out.println(<span class="hljs-string">&quot;name:&quot;</span> + name + <span class="hljs-string">&quot;\nage:&quot;</span> + age);  <span class="hljs-comment">// 打印变量 name 和 age 的值</span><br>        stringRedisTemplate.delete(<span class="hljs-string">&quot;a&quot;</span>);  <span class="hljs-comment">// 删除键为 &quot;a&quot; 的键值对</span><br>        System.out.println(stringRedisTemplate.hasKey(<span class="hljs-string">&quot;a&quot;</span>));  <span class="hljs-comment">// 打印 Redis 中是否存在键 &quot;a&quot;</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>实际上所有的值的操作都被封装到了 ValueOperations 对象中，而普通的键操作直接通过模板对象就可以使用了，大致使用方式其实和 Jedis 一致。</p>
+</blockquote>
+</li>
+</ol>
+<p>事务操作，由于 Spring 没有专门的 Redis 事务管理器，所以只能借用 JDBC 提供的，只不过无所谓，正常情况下反正我们也要用到这玩意：</p>
+<ul>
+<li>依赖注入<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>  <br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>  <br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-jdbc<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>  <br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>  <br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>  <br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>mysql<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>  <br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>mysql-connector-java<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>  <br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>8.0.28<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>  <br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure></li>
+<li>配置数据库<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">server:</span>  <br>  <span class="hljs-attr">port:</span> <span class="hljs-number">8080</span> <span class="hljs-comment"># 主要用于配置Spring Boot应用程序的端口  </span><br><span class="hljs-attr">spring:</span>  <br>  <span class="hljs-attr">application:</span>  <br>    <span class="hljs-attr">name:</span> <span class="hljs-string">springboot-redis</span> <span class="hljs-comment"># 主要用于设置Spring Boot应用程序的名称  </span><br>  <span class="hljs-attr">redis:</span>  <br>    <span class="hljs-attr">host:</span> <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span> <span class="hljs-comment"># 主要用于配置Redis服务器的主机地址  </span><br>    <span class="hljs-attr">port:</span> <span class="hljs-number">6379</span> <span class="hljs-comment"># 主要用于配置Redis服务器的端口号  </span><br>    <span class="hljs-attr">password:</span> <span class="hljs-number">123456</span> <span class="hljs-comment"># 主要用于配置Redis服务器的密码  </span><br>    <span class="hljs-attr">database:</span> <span class="hljs-number">0</span> <span class="hljs-comment"># 主要用于配置Redis服务器的数据库索引（从0开始）  </span><br>    <span class="hljs-attr">timeout:</span> <span class="hljs-number">1000</span> <span class="hljs-comment"># 主要用于配置Redis操作的超时时间（以毫秒为单位）  </span><br>  <span class="hljs-attr">datasource:</span>  <br>    <span class="hljs-attr">driver-class-name:</span> <span class="hljs-string">com.mysql.cj.jdbc.Driver</span>  <br>    <span class="hljs-attr">url:</span> <span class="hljs-string">jdbc:mysql://127.0.0.1:3306/spring?useUnicode=true&amp;characterEncoding=utf-8</span> <span class="hljs-comment"># 主要用于配置数据库的URL  </span><br>    <span class="hljs-attr">username:</span> <span class="hljs-string">root</span> <span class="hljs-comment"># 主要用于配置数据库的用户名  </span><br>    <span class="hljs-attr">password:</span> <span class="hljs-number">123456</span> <span class="hljs-comment"># 主要用于配置数据库的密码</span><br></code></pre></td></tr></table></figure></li>
+<li>事务服务调用<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Service</span>  <br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">RedisService</span> &#123;  <br>    <span class="hljs-meta">@Resource</span>  <br>    StringRedisTemplate stringRedisTemplate;  <br>  <br>    <span class="hljs-meta">@PostConstruct</span>  <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">init</span><span class="hljs-params">()</span> &#123;  <br>        stringRedisTemplate.setEnableTransactionSupport(<span class="hljs-literal">true</span>);  <br>    &#125;  <br>  <br>    <span class="hljs-meta">@Transactional</span>  <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">test</span><span class="hljs-params">()</span> &#123;  <br>        stringRedisTemplate.multi();  <br>        stringRedisTemplate.opsForValue().set(<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;123123&quot;</span>);  <br>        stringRedisTemplate.exec();  <br>    &#125;  <br>&#125;<br></code></pre></td></tr></table></figure>
+redis 也可以存实体类,不过首先要对其序列化处理为 json 格式才可以,entity 类要实现 <code>Serializable</code> 接口<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Data</span>  <br><span class="hljs-meta">@AllArgsConstructor</span>  <br><span class="hljs-meta">@NoArgsConstructor</span>  <br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Student</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Serializable</span> &#123;  <br>    String name;  <br>    <span class="hljs-type">int</span> age;  <br>&#125;<br></code></pre></td></tr></table></figure>
+存储对象类型:<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">test</span><span class="hljs-params">()</span> &#123;  <br>    redisTemplate.multi();  <br>    redisTemplate.opsForValue().set(<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">Student</span>(<span class="hljs-string">&quot;xiaoShuai&quot;</span>, <span class="hljs-number">20</span>));  <br>    redisTemplate.exec();  <br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ul>
 <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
 <li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/182972002">Redis 持久化详解及配置 - 知乎</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1vR4y1o7Z2/?p=6&spm_id_from=pageDriver&vd_source=9c896fa9c3f9023797e8efe7be0c113e">持久化_哔哩哔哩_bilibili</a></li>
@@ -628,7 +684,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2023年11月25日</div>
+          <div>2023年11月26日</div>
         </div>
       
       <div class="license-meta-item">
