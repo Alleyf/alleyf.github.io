@@ -40,7 +40,7 @@
     <link href="https://alleyf.github.io/2023/11/ce56947e919e.html"/>
     <id>https://alleyf.github.io/2023/11/ce56947e919e.html</id>
     <published>2023-11-23T08:39:49.000Z</published>
-    <updated>2023-11-27T07:10:17.846Z</updated>
+    <updated>2023-11-27T16:44:15.288Z</updated>
     
     
     <summary type="html">关于微服务应用的一些常见知识点（分布式权限校验、数据库分布式等）。</summary>
@@ -103,7 +103,7 @@
     <link href="https://alleyf.github.io/2023/11/59c10a08fce4.html"/>
     <id>https://alleyf.github.io/2023/11/59c10a08fce4.html</id>
     <published>2023-11-18T06:53:11.000Z</published>
-    <updated>2023-11-27T09:12:11.301Z</updated>
+    <updated>2023-11-27T16:32:21.419Z</updated>
     
     
     <summary type="html">一些关于各种spring中间件和系统环境配置的教程</summary>
@@ -241,9 +241,9 @@
     
     <category term="AIGC" scheme="https://alleyf.github.io/tags/AIGC/"/>
     
-    <category term="KG" scheme="https://alleyf.github.io/tags/KG/"/>
-    
     <category term="NLP" scheme="https://alleyf.github.io/tags/NLP/"/>
+    
+    <category term="KG" scheme="https://alleyf.github.io/tags/KG/"/>
     
     <category term="LLM" scheme="https://alleyf.github.io/tags/LLM/"/>
     
@@ -293,9 +293,9 @@
     <category term="科研学习" scheme="https://alleyf.github.io/categories/%E7%A7%91%E7%A0%94%E5%AD%A6%E4%B9%A0/"/>
     
     
-    <category term="KG" scheme="https://alleyf.github.io/tags/KG/"/>
-    
     <category term="NLP" scheme="https://alleyf.github.io/tags/NLP/"/>
+    
+    <category term="KG" scheme="https://alleyf.github.io/tags/KG/"/>
     
   </entry>
   
@@ -329,7 +329,7 @@
     <link href="https://alleyf.github.io/2023/10/7ca8ec33c92b.html"/>
     <id>https://alleyf.github.io/2023/10/7ca8ec33c92b.html</id>
     <published>2023-10-31T07:04:18.000Z</published>
-    <updated>2023-11-14T07:40:34.902Z</updated>
+    <updated>2023-11-27T13:36:53.742Z</updated>
     
     
     <summary type="html">it is some basic usage of SpringBoot .</summary>
