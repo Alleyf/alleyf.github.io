@@ -25,7 +25,7 @@
       "id": "workspace:export-pdf",
       "icon": "file-output",
       "name": "导出为 PDF",
-      "mode": "any"
+      "mode": "5fd8a12a3aa73872"
     }
   ],
   "pageHeader": [],
