@@ -6,7 +6,7 @@
   <link href="https://alleyf.github.io/atom.xml" rel="self"/>
   
   <link href="https://alleyf.github.io/"/>
-  <updated>2023-11-26T09:17:37.950Z</updated>
+  <updated>2023-11-28T17:01:20.699Z</updated>
   <id>https://alleyf.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Spring Cloud Alibaba 微服务原理与实战-阅读心得</title>
+    <link href="https://alleyf.github.io/2023/11/d1d8bbbe9e18.html"/>
+    <id>https://alleyf.github.io/2023/11/d1d8bbbe9e18.html</id>
+    <published>2023-11-28T06:41:00.000Z</published>
+    <updated>2023-11-28T17:01:20.699Z</updated>
+    
+    
+    <summary type="html">关于以springcloud-alibaba微服务和中间件的阅读收获。</summary>
+    
+    
+    
+    <category term="后端开发" scheme="https://alleyf.github.io/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
+    
+    
+    <category term="SpringCloud-Alibaba" scheme="https://alleyf.github.io/tags/SpringCloud-Alibaba/"/>
+    
+    <category term="微服务" scheme="https://alleyf.github.io/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
+    
+    <category term="Java" scheme="https://alleyf.github.io/tags/Java/"/>
+    
+  </entry>
   
   <entry>
     <title>Redis-缓存之美</title>
@@ -426,25 +449,6 @@
     
     
     <category term="CV" scheme="https://alleyf.github.io/tags/CV/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spring核心学习</title>
-    <link href="https://alleyf.github.io/2023/10/4977175f9574.html"/>
-    <id>https://alleyf.github.io/2023/10/4977175f9574.html</id>
-    <published>2023-10-16T04:00:17.000Z</published>
-    <updated>2023-11-14T12:57:33.284Z</updated>
-    
-    
-    <summary type="html">Web—study about Spring(IOC,Di,AOP)</summary>
-    
-    
-    
-    <category term="Backend_development" scheme="https://alleyf.github.io/categories/Backend-development/"/>
-    
-    
-    <category term="Spring" scheme="https://alleyf.github.io/tags/Spring/"/>
     
   </entry>
   

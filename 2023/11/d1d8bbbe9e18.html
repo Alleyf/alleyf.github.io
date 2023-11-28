@@ -15,21 +15,23 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="alleyf">
-  <meta name="keywords" content="">
+  <meta name="author" content="fcs">
+  <meta name="keywords" content="SpringCloud-Alibaba,微服务,Java">
   
-    <meta name="description" content="some keypoints about paperReading">
+    <meta name="description" content="关于以springcloud-alibaba微服务和中间件的阅读收获。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="论文阅读模板(最好读英文原文)">
-<meta property="og:url" content="https://alleyf.github.io/2023/11/fa4d17378db3.html">
+<meta property="og:title" content="Spring Cloud Alibaba 微服务原理与实战-阅读心得">
+<meta property="og:url" content="https://alleyf.github.io/2023/11/d1d8bbbe9e18.html">
 <meta property="og:site_name" content="alleyf">
-<meta property="og:description" content="some keypoints about paperReading">
+<meta property="og:description" content="关于以springcloud-alibaba微服务和中间件的阅读收获。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://picsum.photos/800/250">
-<meta property="article:published_time" content="2023-11-13T15:39:46.000Z">
-<meta property="article:modified_time" content="2023-11-14T02:40:56.963Z">
+<meta property="article:published_time" content="2023-11-28T06:41:00.000Z">
+<meta property="article:modified_time" content="2023-11-28T17:01:20.699Z">
 <meta property="article:author" content="alleyf">
-<meta property="article:tag" content="Paper">
+<meta property="article:tag" content="SpringCloud-Alibaba">
+<meta property="article:tag" content="微服务">
+<meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://picsum.photos/800/250">
   
@@ -37,7 +39,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>论文阅读模板(最好读英文原文) - alleyf</title>
+  <title>Spring Cloud Alibaba 微服务原理与实战-阅读心得 - alleyf</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -255,7 +257,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="论文阅读模板(最好读英文原文)"></span>
+            <span id="subtitle" data-typed-text="Spring Cloud Alibaba 微服务原理与实战-阅读心得"></span>
           
         </div>
 
@@ -265,14 +267,14 @@
     
       <span class="post-meta mr-2">
         <i class="iconfont icon-author" aria-hidden="true"></i>
-        alleyf
+        fcs
       </span>
     
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-11-13 23:39" pubdate>
-          2023年11月13日 晚上
+        <time datetime="2023-11-28 14:41" pubdate>
+          2023年11月28日 下午
         </time>
       </span>
     
@@ -283,7 +285,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          331 字
+          4.9k 字
         
       </span>
     
@@ -294,7 +296,7 @@
         
         
         
-          3 分钟
+          41 分钟
         
       </span>
     
@@ -340,12 +342,12 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">论文阅读模板(最好读英文原文)</h1>
+            <h1 style="display: none">Spring Cloud Alibaba 微服务原理与实战-阅读心得</h1>
             
               <p class="note note-info">
                 
                   
-                    本文最后更新于：15 天前
+                    本文最后更新于：几秒前
                   
                 
               </p>
@@ -353,58 +355,113 @@
             
               <div class="markdown-body">
                 
-                <p><img src="https://picsum.photos/800/250" srcset="/img/loading.gif" lazyload></p>
-<h2 id="第一遍阅读，略读（5-10分钟）"><a href="#第一遍阅读，略读（5-10分钟）" class="headerlink" title="第一遍阅读，略读（5-10分钟）"></a>第一遍阅读，略读（5-10分钟）</h2><ol>
-<li><p>读<strong>title, abstract, and introduction</strong>，并做记录</p>
-<p> 此处填写</p>
-</li>
-<li><p>读 <strong>section 和 sub-section ​</strong>开头, 但是忽略其他</p>
-<p> 此处填写</p>
-</li>
-<li><p>读 conclusions</p>
-<p> 此处填写</p>
-</li>
-<li><p>浏览参考文献，圈出已经读过的和没读的</p>
-<p> 此处填写</p>
-</li>
-<li><p>粗略总结阅读的内容</p>
+                <p>\newpage</p>
+<p><img src="https://picsum.photos/0/800" srcset="/img/loading.gif" lazyload></p>
+<h1 id="微服务发展史"><a href="#微服务发展史" class="headerlink" title="微服务发展史"></a>微服务发展史</h1><h2 id="单体架构到分布式架构的演变"><a href="#单体架构到分布式架构的演变" class="headerlink" title="单体架构到分布式架构的演变"></a>单体架构到分布式架构的演变</h2><h3 id="单体架构"><a href="#单体架构" class="headerlink" title="单体架构"></a>单体架构</h3><p>通常来说，如果一个 war 包或者 jar 包里面包含一个应用的所有功能，则我们称这种架构为单体架构。</p>
+<h3 id="集群及垂直化"><a href="#集群及垂直化" class="headerlink" title="集群及垂直化"></a>集群及垂直化</h3><p><strong>单体架构的局限</strong>：</p>
 <ol>
-<li>这个文章是什么类型。</li>
-<li>和什么其他文章相关？理论基础？</li>
-<li>假设是否有效？</li>
-<li>主要贡献？</li>
-<li>是否写的有条理？</li>
+<li>用户量越来越大，网站的访问量不断增大，导致后端服务器的负载越来越高。</li>
+<li>用户量大了，产品需要满足不同用户的需求来留住用户，使得业务场景越来越多并且越来越复杂。</li>
 </ol>
-</li>
+<p><strong>优化方法：</strong></p>
+<ol>
+<li>通过横向增加服务器，把单台机器变成多台机器的集群。</li>
+<li>按照业务的垂直领域进行拆分，减少业务的耦合度，以及降低单个 war 包带来的伸缩性困难问题。</li>
 </ol>
-<p>‍</p>
-<hr>
-<h2 id="第二遍阅读，细读但不读细节（1小时）"><a href="#第二遍阅读，细读但不读细节（1小时）" class="headerlink" title="第二遍阅读，细读但不读细节（1小时）"></a>第二遍阅读，细读但不读细节（1小时）</h2><ol>
-<li><p>关注图表和结论，判断是否有读的价值</p>
-</li>
-<li><p>了解背景，必要的话补充相关知识</p>
-<p> 此处填写</p>
-</li>
-<li><p>阅读文章核心点，理解<strong>观点、假设、方法、实验、结论</strong></p>
-<p> 此处填写</p>
-</li>
+<p><img src="http://qnpicmap.fcsluck.top/pics/202311281458557.png" srcset="/img/loading.gif" lazyload alt="|725"></p>
+<p>总的来说，数据库层面的拆分思想和业务系统的拆分思想是一样的，都是采用&#x3D;&#x3D;分而治之&#x3D;&#x3D;的思想。</p>
+<h3 id="SOA"><a href="#SOA" class="headerlink" title="SOA"></a>SOA</h3><p>共享业务在多个场景中存在冗余维护困难，就引入了 SOA(Service-Oriented Architecture),也就是面向服务的架构，从语义上说，它和面向过程、面向对象、面向组件的思想是一样的，都是一种软件组建及开发的方式。核心目标是把一些通用的、会被多个上层服务调用的共享业务提取成独立的基础服务，这些被提取出来的共享服务相对来说比较独立，并且可以重用。所以在 SOA 中，服务是最核心的抽象手段，业务被划分为一些粗粒度的业务服务和业务流程。</p>
+<p><strong>解决问题：</strong></p>
+<ul>
+<li>信息孤岛</li>
+<li>共享业务的重用</li>
+</ul>
+<p><img src="http://qnpicmap.fcsluck.top/pics/202311281505375.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="微服务架构"><a href="#微服务架构" class="headerlink" title="微服务架构"></a>微服务架构</h3><p>SOA 和微服务的关注点不同，区别如下所示：</p>
+<ul>
+<li><strong>SOA</strong> 关注的是<strong>服务的重用性及解决信息孤岛</strong>问题。</li>
+<li><strong>微服务</strong>关注的是<strong>解耦</strong>，虽然解耦和可重用性从特定的角度来看是一样的，但本质上是有区别的，<em>解耦是降低业务之间的耦合度，而重用性关注的是服务的复用</em>。</li>
+<li>微服务会更多地关注在 DevOps 的持续交付上，因为服务粒度细化之后使得开发运维变得更加重要，因此<em>微服务与容器化技术的结合更加紧密</em>。</li>
+</ul>
+<p>实际上，微服务到底要<em>拆分到多大的粒度没有统一的标准</em>，更多的时候是需要在粒度和团队之间找平衡的，微服务的粒度越小，服务独立性带来的好处就越多，但是管理大量的微服务也会越复杂。<br><img src="http://qnpicmap.fcsluck.top/pics/202311281523574.png#pic_center" srcset="/img/loading.gif" lazyload alt="|425"></p>
+<h2 id="微服务架构带来的挑战"><a href="#微服务架构带来的挑战" class="headerlink" title="微服务架构带来的挑战"></a>微服务架构带来的挑战</h2><h3 id="微服务架构的优点"><a href="#微服务架构的优点" class="headerlink" title="微服务架构的优点"></a>微服务架构的优点</h3><ol>
+<li><strong>复杂度可控</strong>：通过对共享业务服务更细粒度的拆分，一个服务只需要关注一个特定的业务领域，并通过定义良好的接口清晰表述服务边界。由于体积小、复杂度低，开发、维护会更加简单。</li>
+<li><strong>技术选型更灵活</strong>：每个微服务都由不同的团队来维护，所以可以结合业务特性自由选择技术栈。</li>
+<li><strong>可扩展性更强</strong>：可以根据每个微服务的性能要求和业务特点来对服务进行灵活扩展,比如通过增加单个服务的集群规模，提升部署了该服务的节点的硬件配置。</li>
+<li><strong>独立部署</strong>：由于每个微服务都是一个独立运行的进程，所以可以实现独立部署。当某个微服务发生变更时不需要重新编译部署整个应用，并且单个微服务的代码量比较小，使得发布更加高效。</li>
+<li><strong>容错性</strong>：在微服务架构中，如果某一个服务发生故障，我们可以使故障隔离在单个服务中。其他服务可以通过重试、降级等机制来实现应用层面的容错。</li>
 </ol>
-<p>‍</p>
-<hr>
-<h2 id="第三遍细致阅读，并尝试复现论文（长时间）"><a href="#第三遍细致阅读，并尝试复现论文（长时间）" class="headerlink" title="第三遍细致阅读，并尝试复现论文（长时间）"></a>第三遍细致阅读，并尝试复现论文（长时间）</h2><ol>
-<li><p>理论部分推导</p>
-<p> 此处填写</p>
-</li>
-<li><p>实验复现或代码复现</p>
-<p> 此处填写</p>
-</li>
-<li><p>对文章进行最后总结并保存相关内容</p>
-<p> 此处填写</p>
-<p> 链接</p>
-</li>
+<h3 id="面临的挑战"><a href="#面临的挑战" class="headerlink" title="面临的挑战"></a>面临的挑战</h3><ol>
+<li><strong>故障排查</strong>：一次请求可能会经历多个不同的微服务的多次交互，交互的链路可能会比较长，每个微服务会产生自己的日志，在这种情况下如果出现一个故障，开发人员定位问题的根源会比较困难。</li>
+<li><strong>服务监控</strong>：在一个单体架构中很容易实现服务的监控，因为所有的功能都在一个服务中。在微服务架构中，服务监控开销会非常大，可以想象一下，在几百个微服务组成的架构中，我们不仅要对整个链路进行监控，还需要对每一个微服务都实现一套类似单体架构的监控。</li>
+<li><strong>分布式架构的复杂性</strong>：微服务本身构建的是一个分布式系统，分布式系统涉及服务之间的远程通信，而网络通信中网络的延迟和网络故障是无法避免的，从而增加了应用程序的复杂度。</li>
+<li><strong>服务依赖</strong>：微服务数量增加之后，各个服务之间会存在更多的依赖关系，使得系统整体更为复杂。假设你在完成一个案例，需要修改服务 A、B、C,而 A 依赖 B,B 依赖 C。在单体式应用中，你只需要改变相关模块，整合变化，再部署就好了。对比之下，微服务架构模式就需要考虑相关改变对不同服务的影响。比如，你需要更新服务 C,然后是 B,最后才是 A,幸运的是，许多改变一般只影响一个服务，需要协调多服务的改变很少。</li>
+<li><strong>运维成本</strong>：在微服务中，需要保证几百个微服务的正常运行，对于运维的挑战是巨大的比如单个服务流量激增时如何快速扩容、服务拆分之后导致故障点增多如何处理、如何快速部署和统一管理众多的服务等。</li>
 </ol>
-<blockquote>
-</blockquote>
+<h2 id="如何实现微服务架构"><a href="#如何实现微服务架构" class="headerlink" title="如何实现微服务架构"></a>如何实现微服务架构</h2><p>架构的本质是对系统进行<em>有序化重构</em>，使系统不断进化。在这个进化的过程中除了更好地支撑业务发展，也会带来非常多的挑战，譬如在前文中提到的微服务的挑战，为了解决这些问题就必须引入更多的技术，进而使得微服务架构的实现变得非常复杂。</p>
+<h3 id="微服务架构图"><a href="#微服务架构图" class="headerlink" title="微服务架构图"></a>微服务架构图</h3><p> 微服务架构图通常由多个服务组成，每个服务都是一个独立的单元，负责执行特定的业务功能。这些服务之间通过网络进行通信，并使用轻量级的传输协议（如 HTTP 或 RPC）进行交互。</p>
+<p><img src="http://qnpicmap.fcsluck.top/pics/202311281557440.png" srcset="/img/loading.gif" lazyload alt="|500"></p>
+<p>下面是一个简单的微服务架构图示例：<br> <pre><code class=" mermaid">graph LR
+A[网关] --&gt; B[认证服务]
+A --&gt; C[用户服务]
+A --&gt; D[订单服务]
+B --&gt; E[数据库]
+C --&gt; E
+D --&gt; E
+</code></pre></p>
+<p>其中，网关（Gateway）是整个系统的入口，认证服务（Authentication Service）、用户服务（User Service）和订单服务（Order Service）是三个不同的微服务，它们之间通过网关进行通信。数据库（Database）用于存储数据，被认证服务、用户服务和订单服务共享。</p>
+<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs gherkin">               +--+<br>               |<span class="hljs-string">       API 网关        </span>|<br>               +-++<br>                           |<span class="hljs-string"></span><br><span class="hljs-string">                           </span>|<br>    +--v--+<br>    |<span class="hljs-string">               服务发现与注册中心                </span>|<br>    +--^--+<br>                           |<span class="hljs-string"></span><br><span class="hljs-string">           ++----+</span><br><span class="hljs-string">           </span>|<span class="hljs-string">          服务治理工具          </span>|<br>           ++----+<br>                           |<span class="hljs-string"></span><br><span class="hljs-string">+---+---+--+---+</span><br><span class="hljs-string"></span>|<span class="hljs-string">             </span>|<span class="hljs-string">             </span>|<span class="hljs-string">            </span>|<span class="hljs-string">             </span>|<br>|<span class="hljs-string">    服务A    </span>|<span class="hljs-string">    服务B    </span>|<span class="hljs-string">   服务C    </span>|<span class="hljs-string">   服务D     </span>|<br>|<span class="hljs-string">             </span>|<span class="hljs-string">             </span>|<span class="hljs-string">            </span>|<span class="hljs-string">             </span>|<br>+---+---+--+---+<br></code></pre></td></tr></table></figure>
+
+<p>在这个例子中，API 网关是整个系统的入口点，它接收来自客户端的请求并将其路由到相应的微服务。服务发现与注册中心负责管理所有可用的微服务实例，并为 API 网关提供实例列表。服务治理工具用于监控和管理微服务的健康状态、负载均衡和故障恢复等任务。<br>每个微服务都专注于执行特定的业务功能。它们可以独立开发、部署和扩展，同时通过网络进行通信以实现业务流程。微服务之间的通信可以通过同步调用、异步消息传递或事件驱动等方式进行。</p>
+<h3 id="微服务架构下的技术挑战"><a href="#微服务架构下的技术挑战" class="headerlink" title="微服务架构下的技术挑战"></a>微服务架构下的技术挑战</h3><p>微服务架构主要的目的是实现业务服务的解耦。随着公司业务的高速发展，微服务组件会越来越多，导致服务与服务之间的调用关系越来越复杂。同时，服务与服务之间的远程通信也会因为网络通信问题的存在变得更加复杂，比如需要考虑重试、容错、降级等情况。那么这个时候就需要进行<strong>服务治理</strong>，将服务之间的依赖转化为服务对服务中心的依赖。除此之外，还需要考虑：</p>
+<ul>
+<li>&#x3D;&#x3D;分布式配置中心&#x3D;&#x3D;。</li>
+<li>&#x3D;&#x3D;服务路由&#x3D;&#x3D;。</li>
+<li>&#x3D;&#x3D;负载均衡&#x3D;&#x3D;。</li>
+<li>&#x3D;&#x3D;熔断限流&#x3D;&#x3D;。</li>
+<li>&#x3D;&#x3D;链路监控&#x3D;&#x3D;。</li>
+</ul>
+<h1 id="微服务解决方案之-Spring-Cloud"><a href="#微服务解决方案之-Spring-Cloud" class="headerlink" title="微服务解决方案之 Spring Cloud"></a>微服务解决方案之 Spring Cloud</h1><h2 id="什么是-Spring-Cloud"><a href="#什么是-Spring-Cloud" class="headerlink" title="什么是 Spring Cloud"></a>什么是 Spring Cloud</h2><p>简单来说，Spring Cloud 提供了一些可以让开发者快速构建微服务应用的工具，比如配置管理、服务发现、熔断、智能路由等，这些服务可以在任何分布式环境下很好地工作。Spring Cloud 主要致力于解决如下问题：</p>
+<pre><code class="hljs">- Distributed/versioned configuration,分布式及版化配置。
+- Service registration and discovery,服务注册与发现。
+- Routing,服务路由。
+- Service-to-service calls,服务调用。
+- Load balancing,负载均衡。
+- Circuit Breakers,断路器。
+- Global locks,全局锁。
+- Leadership election and cluster state,Leader 选举及集群状态。
+- Distributed messaging,分布式消息。
+</code></pre>
+<p><font color="#a5a5a5">需要注意的是，Spring Cloud 并不是 Spring 团队全新研发的框架，它只是把一些比较优秀的解决微服务架构中常见问题的开源框架基于 Spring Cloud 规范进行了整合，通过 Spring Boot 这个框架进行再次封装后屏蔽掉了复杂的配置，给开发者提供良好的开箱即用的微服务开发体验。不难看出，Spring Cloud 其实就是一套规范，而 Spring Cloud Netflix、Spring Cloud Consul、Spring Cloud Alibaba 才是 Spring Cloud 规范的实现。</font></p>
+<h2 id="Spring-Cloud-Netflix"><a href="#Spring-Cloud-Netflix" class="headerlink" title="Spring Cloud Netflix"></a>Spring Cloud Netflix</h2><p>Spring Cloud Netflix 主要为微服务架构下的服务治理提供解决方案，包括以下组件：</p>
+<ul>
+<li>Eureka,服务注册与发现。</li>
+<li>Zuul,服务网关。（不在进行更新维护-&gt;Spring Cloud GateWay）</li>
+<li>Ribbon,负载均衡。（不在进行更新维护-&gt;Spring Cloud Loadbalancer）</li>
+<li>Feign,远程服务的客户端代理。</li>
+<li>Hystrix,断路器，提供服务熔断和限流功能。（不在进行更新维护-&gt;Resitience4j）</li>
+<li>Hystrix Dashboard,监控面板。（不在进行更新维护-&gt;Micrometer Monitoring System）</li>
+<li>Turbine,将各个服务实例上的 Hystrix 监控信息进行统一聚合。</li>
+</ul>
+<h2 id="Spring-Cloud-Alibaba"><a href="#Spring-Cloud-Alibaba" class="headerlink" title="Spring Cloud Alibaba"></a>Spring Cloud Alibaba</h2><p>Spring Cloud Alibaba 主要为微服务开发提供一站式的解决方案，使开发者通过 Spring Cloud 编程模型轻松地解决微服务架构下的各类技术问题。以下是 Spring Cloud Alibaba 生态下的主要功能组件，这些组件包含开源组件和阿里云产品组件，云产品是需要付费使用的。</p>
+<ul>
+<li>Sentinel,流量控制和服务降级。</li>
+<li>Nacos,服务注册与发现。</li>
+<li>Nacos,分布式配置中心。</li>
+<li>RocketMO,消息驱动。</li>
+<li>Seate,分布式事务。</li>
+<li>Dubbo,RPC 通信。</li>
+<li>OSS,阿里云对象存储（收费的云服务）。</li>
+</ul>
+<h3 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h3><p>相对于 Spring Cloud Netflix 来说，它的优势有很多，简单整理了以下两点：</p>
+<ul>
+<li>Alibaba 的开源组件在没有织入 Spring Cloud 生态之前，已经在各大公司广泛应用，所以集成到 Spring Cloud 生态使得开发者能够很轻松地实现技术整合及迁移。Dubbo 天然支持多协议，因此在迁移和改造过程中并没有投入太多的成本。</li>
+<li>Alibaba 的开源组件在服务治理上和处理高并发的能力上有天然的优势，相比 Spring CloudNetflix 来说，Spring Cloud Alibaba 在服务治理这块的能力更适合于国内的技术场景，同时，Spring Cloud Alibaba 在功能上不仅完全覆盖了 Spring Cloud Netflix 原生特性，而且还提供了更加稳定和成熟的实现，因此笔者很看好 Spring Cloud Alibaba 未来的发展。</li>
+</ul>
+<h1 id="参考书籍"><a href="#参考书籍" class="headerlink" title="参考书籍"></a>参考书籍</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cardlink">url: https://book.douban.com/subject/35041576/?from=mdouban<br>title: &quot;Spring Cloud Alibaba 微服务原理与实战&quot;<br>description: &quot;《Spring Cloud Alibaba微服务原理与实战》针对Spring Cloud Alibaba生态下的技术组件从应用到原理进行全面的分析，涉及的技术组件包括分布式服务治理Dubbo、服务配置...&quot;<br>host: book.douban.com<br>image: https://img9.doubanio.com/view/subject/l/public/s33625905.jpg<br></code></pre></td></tr></table></figure>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/35041576/?from=mdouban">Spring Cloud Alibaba 微服务原理与实战 (豆瓣)</a></li>
+</ol>
 
                 
               </div>
@@ -423,7 +480,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E7%A7%91%E7%A0%94%E5%AD%A6%E4%B9%A0/" class="category-chain-item">科研学习</a>
+  <a href="/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/" class="category-chain-item">后端开发</a>
   
   
 
@@ -438,7 +495,11 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Paper/">#Paper</a>
+        <a href="/tags/SpringCloud-Alibaba/">#SpringCloud-Alibaba</a>
+      
+        <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">#微服务</a>
+      
+        <a href="/tags/Java/">#Java</a>
       
     </div>
   
@@ -450,26 +511,26 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>论文阅读模板(最好读英文原文)</div>
-      <div>https://alleyf.github.io/2023/11/fa4d17378db3.html</div>
+      <div>Spring Cloud Alibaba 微服务原理与实战-阅读心得</div>
+      <div>https://alleyf.github.io/2023/11/d1d8bbbe9e18.html</div>
     </div>
     <div class="license-meta">
       
         <div class="license-meta-item">
           <div>作者</div>
-          <div>alleyf</div>
+          <div>fcs</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年11月13日</div>
+          <div>2023年11月28日</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2023年11月14日</div>
+          <div>2023年11月29日</div>
         </div>
       
       <div class="license-meta-item">
@@ -498,18 +559,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/11/53a88a28555b.html" title="Paper_Reading_Method">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Paper_Reading_Method</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/11/51775ce3788e.html" title="SpringSecurity">
-                        <span class="hidden-mobile">SpringSecurity</span>
+                      <a href="/2023/11/ab7de5524ddd.html" title="Redis-缓存之美">
+                        <span class="hidden-mobile">Redis-缓存之美</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -530,7 +585,7 @@
         var options = Object.assign(
           {"clientID":"636f2864e051a199b91c","clientSecret":"5185fd11115bbcd8d2f636bc80de6bed98ed14c1","repo":"Gitalk","owner":"Alleyf","admin":["Alleyf"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":false,"proxy":"https://shielded-brushlands-08810.herokuapp.com/https://github.com/login/oauth/access_token"},
           {
-            id: '7f1a6c9c76750818b354212b9e094e88'
+            id: 'd950e56e4f85931d2ffeac6396b36f13'
           }
         )
         var gitalk = new Gitalk(options);
