@@ -1,4 +1,4 @@
 #!/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-npx hexo cl && hexo generate && hexo d && git add .
+npx hexo generate && hexo d && git add .

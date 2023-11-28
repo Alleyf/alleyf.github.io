@@ -993,9 +993,10 @@ public static void main(String[] args) {
 ***
 ## MySQL 与分布式
 前面我讲解了 Redis 在分布式场景的下的相关应用，接着我们来看看 MySQL 数据库在分布式场景下的应用。
+
 ### 主从复制
 当我们使用 MySQL 的时候，也可以采取主从复制的策略，它的实现思路基本和 Redis 相似，也是采用增量复制的方式，MySQL 会在运行的过程中，会记录二进制日志，所有的 DML 和 DDL 操作都会被记录进日志中，主库只需要将记录的操作复制给从库，让从库也运行一次，那么就可以实现主从复制。但是注意它不会在一开始进行全量复制，所以最好再开始主从之前将数据库的内容保持一致。
-和之前一样，一旦我们实现了主从复制，那么就算主库出现故障，从库也能正常提供服务，并且还可以实现读写分离等操作。这里我们就使用两台主机来搭建一主一从的环境，首先确保两台服务器都安装了 MySQL 数据库并且都已经正常运行了：
+和之前一样，*一旦我们实现了主从复制，那么就算主库出现故障，从库也能正常提供服务，并且还可以实现读写分离等操作*。这里我们就使用两台主机来搭建一主一从的环境，首先确保两台服务器都安装了 MySQL 数据库并且都已经正常运行了：
 ![image-20220414162319865](https://s2.loli.net/2023/03/07/95wL8vICYNp61T2.jpg)
 接着我们需要创建对应的账号，一会方便从库进行访问的用户：
 ```sql
@@ -1025,19 +1026,34 @@ grant replication slave on *.* to test;
 FLUSH PRIVILEGES;
 ```
 然后我们可以输入命令来查看主库的相关情况：
-![image-20220414164943974](https://s2.loli.net/2023/03/07/kqHZoc8xAbNOd3K.jpg)
-这样主库就搭建完成了，接着我们需要将从库进行配置，首先是配置文件：
+![](http://qnpicmap.fcsluck.top/pics/202311281326548.png)
+
+这样主库就搭建完成了，接着我们需要将*从库进行配置*，首先是配置文件：
 ```properties
 # The following can be used as easy to replay backup logs or for replication.
 # note: if you are setting up a replication slave, see README.Debian about
 #       other settings you may need to change.
 # 这里需要将 server-id 配置为其他的值（默认是 1）所有 Mysql 主从实例的 id 必须唯一，不能打架，不然一会开启会失败
-server-id               = 2
+server-id=2
 ```
 进入数据库，输入：
 ```sql
-change replication source to SOURCE_HOST='192.168.0.8',SOURCE_USER='test',SOURCE_PASSWORD='123456',SOURCE_LOG_FILE='binlog.000004',SOURCE_LOG_POS=591;
+# 该指令用于主服务器配置复制设置。
+change replication source to SOURCE_HOST='117.72.35.148',SOURCE_USER='test',SOURCE_PASSWORD='123456',SOURCE_LOG_FILE='master-bin.000003',SOURCE_LOG_POS=1135;
+# 该指令用于从服务器配置连接主服务器的相关参数信息(推荐)
+change master to master_host='172.17.0.3', master_user='test', master_password='123456', master_port=3306, master_log_file='master-bin.000003', master_log_pos=1324, master_connect_retry=30;
 ```
+
+`master_host` ：Master库的地址，指的是**容器的独立ip**,可以通过
+`docker inspect --format='{{.NetworkSettings.IPAddress}}' 容器名称 | 容器id` 查询容器的IP进行查询：
+如下所示：
+![](http://qnpicmap.fcsluck.top/pics/202311281345132.png)
+`master_port`：Master的端口号，指的是容器的端口号
+`master_user`：用于数据同步的用户
+`master_password`：用于同步的用户的密码
+`master_log_file`：指定 Slave 从哪个日志文件开始复制数据，即上文中提到的 File 字段的值
+`master_log_pos`：从哪个 Position 开始读，即上文中提到的 Position 字段的值
+`master_connect_retry`：如果连接失败，重试的时间间隔，单位是秒，默认是60秒
 注意后面的 logfile 和 pos 就是我们上面从主库中显示的信息。
 ![image-20220414170022303](https://s2.loli.net/2023/03/07/H7BIl9s3kPu2Mnw.jpg)
 执行完成后，显示 OK 表示没有问题，接着输入：
@@ -1049,8 +1065,8 @@ start replica;
 show replica status\G;
 ```
 来查看当前从机状态，可以看到：
-![image-20220414192045320](https://s2.loli.net/2023/03/07/KiCoVP1cGaf94uX.jpg)
-最关键的是下面的 Replica_IO_Running 和 Replica_SQL_Running 必须同时为 Yes 才可以，实际上从库会创建两个线程，一个线程负责与主库进行通信，获取二进制日志，暂时存放到一个中间表（Relay_Log）中，而另一个线程则是将中间表保存的二进制日志的信息进行执行，然后插入到从库中。
+![](http://qnpicmap.fcsluck.top/pics/202311281354131.png)
+最关键的是下面的 **Replica_IO_Running 和 Replica_SQL_Running 必须同时为 Yes** 才可以，实际上从库会创建两个线程，*一个线程负责与主库进行通信，获取二进制日志，暂时存放到一个中间表（Relay_Log）中，而另一个线程则是将中间表保存的二进制日志的信息进行执行，然后插入到从库中*。
 最后配置完成，我们来看看在主库进行操作会不会同步到从库：
 ![image-20220414192508849](https://s2.loli.net/2023/03/07/RxNB3QmUYESX5ad.jpg)
 可以看到在主库中创建的数据库，被同步到从库中了，我们再来试试看创建表和插入数据：
@@ -1068,6 +1084,11 @@ create table test  (
 这样，我们的 MySQL 主从就搭建完成了，那么如果主机此时挂了会怎么样？
 ![image-20220414200140191](https://s2.loli.net/2023/03/07/s1Q5xt32r6dv9UJ.jpg)
 可以看到 IO 线程是处于重连状态，会等待主库重新恢复运行。
+
+> [!NOTE] 主从重写配置 
+> 1. 如何停止从服务复制功能：使用`stop slave;`命令
+> 2. 如何重新配置主从：使用这两个命令 `stop slave;reset slave;reset master;`
+
 ### 分库分表
 在大型的互联网系统中，可能单台 MySQL 的存储容量无法满足业务的需求，这时候就需要进行扩容了。
 和之前的问题一样，单台主机的硬件资源是存在瓶颈的，不可能无限制地纵向扩展，这时我们就得通过多台实例来进行容量的横向扩容，我们可以将数据分散存储，让多台主机共同来保存数据。
@@ -1167,6 +1188,8 @@ public interface UserMapper {
     int addUser(User user);
 }
 ```
+
+#### 分库
 实际上这些操作都是常规操作，在编写代码时关注点依然放在业务本身上，现在我们就来编写配置文件，我们需要告诉 ShardingJDBC 要如何进行分片，首先明确：现在是两个数据库都有 test 表存放用户数据，我们目标是将用户信息分别存放到这两个数据库的表中。
 不废话了，直接上配置：
 ```yaml
@@ -1226,7 +1249,8 @@ class ShardingJdbcTestApplicationTests {
 ![image-20220415105325917](https://img-blog.csdnimg.cn/img_convert/2e9cd91031d3fc7d2f11a2f59d8841ae.png)
 可以看到所有的 SQL 语句都有一个 Logic SQL（这个就是我们在 Mybatis 里面写的，是什么就是什么）紧接着下面就是 Actual SQL，也就是说每个逻辑 SQL 最终会根据我们的策略转换为实际 SQL，比如第一条数据，它的 id 是 0，那么实际转换出来的 SQL 会在 db0 这个数据源进行插入。
 这样我们就很轻松地实现了分库策略。
-分库完成之后，接着我们来看分表，比如现在我们的数据库中有`test_0`和`test_1`两张表，表结构一样，但是我们也是希望能够根据 id 取模运算的结果分别放到这两个不同的表中，实现思路其实是差不多的，这里首先需要介绍一下两种表概念：
+#### 分表
+比如现在我们的数据库中有`test_0`和`test_1`两张表，表结构一样，但是我们也是希望能够根据 id 取模运算的结果分别放到这两个不同的表中，实现思路其实是差不多的，这里首先需要介绍一下两种表概念：
 * **逻辑表：** 相同结构的水平拆分数据库（表）的逻辑名称，是 SQL 中表的逻辑标识。例：订单数据根据主键尾数拆分为 10 张表，分别是 `t_order_0` 到 `t_order_9`，他们的逻辑表名为 `t_order`
 * **真实表：** 在水平拆分的数据库中真实存在的物理表。即上个示例中的 `t_order_0` 到 `t_order_9`
 现在我们就以一号数据库为例，那么我们在里面创建上面提到的两张表，之前的那个`test`表删不删都可以，就当做不存在就行了：
@@ -1316,14 +1340,18 @@ allow-range-query-with-inline-sharding: true
 ![image-20220415113652038](https://s2.loli.net/2023/03/07/WoQqNLCXJslBT3D.jpg)
 可以看到，最终出来的 SQL 语句是直接对两个表都进行查询，然后求出一个并集出来作为最后的结果。
 当然除了分片之外，还有广播表和绑定表机制，用于多种业务场景下，这里就不多做介绍了，详细请查阅官方文档。
+
+> [!WARNING]
+> 无论*分库还是分表都是可以进行增删改查*操作的
+
 ### 分布式序列算法
-前面我们讲解了如何进行分库分表，接着我们来看看分布式序列算法。
+
 在复杂分布式系统中，特别是微服构架中，往往需要对大量的数据和消息进行唯一标识。随着系统的复杂，数据的增多，分库分表成为了常见的方案，对数据分库分表后需要有一个唯一 ID 来标识一条数据或消息（如订单号、交易流水、事件编号等），此时一个能够生成全局唯一 ID 的系统是非常必要的。
 比如我们之前创建过学生信息表、图书借阅表、图书管理表，所有的信息都会有一个 ID 作为主键，并且这个 ID 有以下要求：
 * 为了区别于其他的数据，这个 ID 必须是全局唯一的。
 * 主键应该尽可能的保持有序，这样会大大提升索引的查询效率。
 那么我们在分布式系统下，如何保证 ID 的生成满足上面的需求呢？
-1. **使用 UUID：**UUID 是由一组 32 位数的 16 进制数字随机构成的，我们可以直接使用 JDK 为我们提供的 UUID 类来创建：
+1. **使用 UUID：** UUID 是由一组 32 位数的 16 进制数字随机构成的，我们可以直接使用 JDK 为我们提供的 UUID 类来创建：
    ```java
    public static void main(String[] args) {
        String uuid = UUID.randomUUID().toString();
@@ -1331,18 +1359,18 @@ allow-range-query-with-inline-sharding: true
    }
    ```
    结果为`73d5219b-dc0f-4282-ac6e-8df17bcd5860`，生成速度非常快，可以看到确实是能够保证唯一性，因为每次都不一样，而且这么长一串那重复的概率真的是小的可怜。
-   但是它并不满足我们上面的第二个要求，也就是说我们需要尽可能的保证有序，而这里我们得到的都是一些无序的 ID。
+   但是它并不满足我们上面的第二个要求，也就是说我们需要尽可能的保证有序，而这里我们得到的都是一些*无序的 ID*。
 2. **雪花算法（Snowflake）：**
    我们来看雪花算法，它会生成一个一个 64bit 大小的整型的 ID，int 肯定是装不下了。
    ![image-20220415150713707](https://s2.loli.net/2023/03/07/lU9A4zjSIKvaxwh.jpg)
    可以看到它主要是三个部分组成，时间+工作机器 ID+序列号，时间以毫秒为单位，41 个 bit 位能表示约 70 年的时间，时间纪元从 2016 年 11 月 1 日零点开始，可以使用到 2086 年，工作机器 ID 其实就是节点 ID，每个节点的 ID 都不相同，那么就可以区分出来，10 个 bit 位可以表示最多 1024 个节点，最后 12 位就是每个节点下的序列号，因此每台机器每毫秒就可以有 4096 个系列号。
-   这样，它就兼具了上面所说的唯一性和有序性了，但是依然是有缺点的，第一个是时间问题，如果机器时间出现倒退，那么就会导致生成重复的 ID，并且节点容量只有 1024 个，如果是超大规模集群，也是存在隐患的。
+   这样，它就兼具了上面所说的*唯一性和有序性*了，但是依然是有缺点的，第一个是时间问题，如果机器时间出现倒退，那么就会导致生成重复的 ID，并且节点容量只有 1024 个，如果是超大规模集群，也是存在隐患的。
 ShardingJDBC 支持以上两种算法为我们自动生成 ID，文档： https://shardingsphere.apache.org/document/5.1.0/cn/user-manual/shardingsphere-jdbc/builtin-algorithm/keygen/
 这里，我们就是要 ShardingJDBC 来让我们的主键 ID 以雪花算法进行生成，首先是配置数据库，因为我们默认的 id 是 int 类型，装不下 64 位的，改一下：
 ```sql
 ALTER TABLE `yyds`.`test` MODIFY COLUMN `id` bigint NOT NULL FIRST;
 ```
-接着我们需要修改一下 Mybatis 的插入语句，因为现在 id 是由 ShardingJDBC 自动生成，我们就不需要自己加了：
+接着我们需要修改一下 Mybatis 的插入语句，因为现在 **id 是由 ShardingJDBC 自动生成**，我们就不需要自己加了：
 ```java
 @Insert("insert into test(name, passwd) values(#{name}, #{passwd})")
 int addUser(User user);
@@ -1352,6 +1380,7 @@ int addUser(User user);
 spring:
   shardingsphere:
     datasource:
+    rules:
       sharding:
         tables:
           test:
@@ -1397,7 +1426,7 @@ class ShardingJdbcTestApplicationTests {
 ![image-20220415154524545](https://s2.loli.net/2023/03/07/2JBaqnV8k9OWYfw.jpg)
 在插入的时候，将我们的 SQL 语句自行添加了一个 id 字段，并且使用的是雪花算法生成的值，并且也是根据我们的分库策略在进行插入操作。
 ### 读写分离
-最后我们来看看读写分离，我们之前实现了 MySQL 的主从，那么我们就可以将主库作为读，从库作为写：
+最后我们来看看读写分离，我们之前实现了 MySQL 的主从，那么我们就可以将主库作为写，从库作为读：
 ![image-20220415155842834](https://s2.loli.net/2023/03/07/KRBbGXxhkmUHFIr.jpg)
 这里我们还是将数据库变回主从状态，直接删除当前的表，我们重新来过：
 ```sql
@@ -1431,7 +1460,7 @@ create table test  (
 spring:
   shardingsphere:
     rules:
-    	#配置读写分离
+    	#配置读写分离，此为5.1.0版本的sharding-jdbc
       readwrite-splitting:
         data-sources:
         	#名称随便写
@@ -1449,9 +1478,27 @@ spring:
         	#自定义的负载均衡策略
           my-load:
             type: ROUND_ROBIN
+	rules:  
+	  #配置读写分离，此为5.2.1版本的sharding-jdbc，不同版本配置有所变化
+	  readwrite-splitting:  
+	    data-sources:  
+	      #名称随便写  
+	      user-db:  
+	        #使用静态类型 ，动态 Dynamic 类型可以自动发现 auto-aware-data-source-name，这里不演示  
+	        static-strategy:  
+	          # 写库数据源名称  
+	          write-data-source-name: db0  
+	          # 读库数据源列表，多个从数据源用逗号分隔  
+	          read-data-source-names: db1  
+	          # 负载均衡算法名称  
+	        load-balancer-name: my-load  
+	    load-balancers:  
+	      #自定义的负载均衡策略  
+	      my-load:  
+	        type: ROUND_ROBIN
 ```
 注意把之前改的用户实体类和 Mapper 改回去，这里我们就不用自动生成 ID 的了。所有的负载均衡算法地址： https://shardingsphere.apache.org/document/5.1.0/cn/user-manual/shardingsphere-jdbc/builtin-algorithm/load-balance/
-现在我们就来测试一下吧：
+测试一下：
 ```java
 @SpringBootTest
 class ShardingJdbcTestApplicationTests {
@@ -1459,17 +1506,17 @@ class ShardingJdbcTestApplicationTests {
     UserMapper mapper;
     @Test
     void contextLoads() {
-        mapper.addUser(new User(10, "aaa", "bbb"));
-        System.out.println(mapper.getUserById(10));
+        mapper.addUser(new User(1, "xxx", "sss"));
+        System.out.println(mapper.getUserById(1));
     }
 }
 ```
 运行看看 SQL 日志：
-![image-20220415162741466](https://s2.loli.net/2023/03/07/zJvqKmfyhVMFLtZ.jpg)
+![](http://qnpicmap.fcsluck.top/pics/202311281427409.png)
 可以看到，当我们执行插入操作时，会直接向 db0 进行操作，而读取操作是会根据我们的配置，选择 db1 进行操作。
-至此，微服务应用章节到此结束。
 
 
 # 参考
 
 1. [Redis与分布式：分布式锁\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1AL4y1j7RY/?p=49&spm_id_from=pageDriver&vd_source=9c896fa9c3f9023797e8efe7be0c113e)
+2. [使用Docker搭建MySQL主从复制（一主一从）\_使用docker搭建mysql主从复制(一主一从)-CSDN博客](https://blog.csdn.net/abcde123_123/article/details/106244181)
