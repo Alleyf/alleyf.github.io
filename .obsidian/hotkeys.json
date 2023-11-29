@@ -339,5 +339,14 @@
       ],
       "key": "Q"
     }
+  ],
+  "obsidian-textgenerator-plugin:stop-stream": [
+    {
+      "modifiers": [
+        "Mod",
+        "Shift"
+      ],
+      "key": "J"
+    }
   ]
 }

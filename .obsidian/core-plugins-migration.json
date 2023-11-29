@@ -12,10 +12,10 @@
   "templates": true,
   "note-composer": false,
   "command-palette": true,
-  "slash-command": true,
+  "slash-command": false,
   "editor-status": true,
   "starred": false,
-  "markdown-importer": true,
+  "markdown-importer": false,
   "zk-prefixer": false,
   "random-note": false,
   "outline": true,
@@ -27,5 +27,5 @@
   "publish": false,
   "sync": false,
   "bookmarks": false,
-  "properties": true
+  "properties": false
 }

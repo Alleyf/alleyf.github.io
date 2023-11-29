@@ -2,11 +2,12 @@
   "accentColor": "#5c9ef5",
   "theme": "obsidian",
   "cssTheme": "Blue Topaz",
-  "nativeMenus": true,
+  "nativeMenus": false,
   "translucency": true,
   "interfaceFontFamily": "Arial Black",
   "baseFontSize": 17,
   "enabledCssSnippets": [
-    "custom-icons-differing-files-and-folders"
+    "image-cards",
+    "print"
   ]
 }

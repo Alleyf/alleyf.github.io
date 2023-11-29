@@ -8,8 +8,19 @@ excerpt: 一些关于 git 的常用操作。
 author: fcs
 index_img: https://picsum.photos/800/250
 ---
-
 ![](https://picsum.photos/800/250)
+# Git 简介
+Git 是由 Linus Torvalds 于2005年创立的分布式版本控制系统。与集中式版本控制系统不同，Git 允许每个开发者在本地拥有完整的代码仓库，从而提高了分布式[团队协作](https://cloud.tencent.com/product/prowork?from_column=20065&from=20065)的效率。Git 的设计理念是速度快、灵活性强，使其成为开源社区和企业中的首选版本控制系统。
+## Git 的基本概念
+在学习 Git 的原理和命令之前，我们先来了解一些 Git 的基本概念：
+1. **仓库（Repository）：** Git 仓库是存储项目历史和当前状态的地方。它包含了项目的所有文件和文件夹，以及与之相关的版本信息。
+2. **分支（Branch）：** 分支是项目的一个独立线条，可以在上面进行开发，不影响主线。分支的使用使得团队可以同时进行多个功能的开发，而不会相互干扰。
+3. **提交（Commit）：** 提交是将更改保存到 Git 仓库的操作。每次提交都会生成一个唯一的标识符（SHA-1 哈希值），用于标记这个提交。
+4. **远程仓库（Remote Repository）：** 远程仓库是位于网络上的 Git 仓库，可以与之交换代码。常见的远程仓库服务有 GitHub、GitLab、Bitbucket 等。
+5. **克隆（Clone）：** 克隆是从远程仓库复制整个代码库到本地的操作。这通常是项目的开始阶段。
+6. **拉取（Pull）：** 拉取是从远程仓库获取最新的代码并合并到本地仓库的操作。
+7. **推送（Push）：** 推送是将本地仓库的更改上传到远程仓库的操作。
+
 # 原理解析
 ## 工作流程
 git 分为三个区，工作流程如下：
@@ -123,25 +134,21 @@ git reflog
 ![image.png|525](http://qnpicmap.fcsluck.top/pics/202311180021976.png)
 ## 查看差异
 1. 查看**工作区和暂存区**的差别：
-
 ```shell
 git diff
 ```
 ![](http://qnpicmap.fcsluck.top/pics/202311192246423.png)
 2. 查看 **工作区和仓库区**的差别：
-
 ```shell
 git diff head
 ```
 ![image.png|550](http://qnpicmap.fcsluck.top/pics/202311192251998.png)
 3. 查看 **暂存区和仓库区**的差别：
-
 ```shell
 git diff --cached
 ```
 ![image.png|550](http://qnpicmap.fcsluck.top/pics/202311192255196.png)
 4. 比较**两个特定版本**之间的差异：
-
 ```shell
 git diff ec64d23 1406deb #比较对象为版本id，通过git log查看
 git diff c088350 head #比较head最新版本与指定版本
@@ -156,9 +163,7 @@ git diff head~ head file1.md #比较指定文件版本之间的差异
 > 1. `head~/head^`：最新版本的前一个版本
 > 2. `head~2`：前两个版本
 > 3. `head~N`：前 N 个版本
-
 5. 比较**两个分支**之间的差异：
-
 ```shell
 git diff main master #比较main和master分支的差异
 ```
@@ -177,7 +182,6 @@ git rm filename #删除指定文件（包括工作区和暂存区）
 > - 忽略所有.env 文件
 > - 忽略所有.zip 和 tar 文件
 > - 忽略所有.pem 文件
-
 1. <u>只需要将要忽略的文件的文件名添加到.gitignore 文件中即可。</u>
 2. `.gitignore` 文件中可使用**通配符**进行匹配（eg：*.log）
 ![image.png](http://qnpicmap.fcsluck.top/pics/202311202320021.png)
@@ -193,13 +197,11 @@ git reset --mixed 版本号 #仅保留工作区内容
 # 分支
 ## 查询/切换/新建分支
 1. 查询分支，使用以下指令：
-
 ```shell
 git branch #查询本地分支
 git branch -r #查询远程分支
 ```
 2. 切换或新建分支，使用以下指令：
-
 ```shell
 git chechout "branchName" #切换分支
 git checkout -b "branchName" #新建分支并切换到该分支
@@ -207,13 +209,11 @@ git checkout -b "branchName" #新建分支并切换到该分支
 ## 分支合并
 ## 删除分支
 1. 删除**本地分支**，删除前会进行检查是否*本分支内容已经合并到主分支*，使用以下指令：
-
 ```shell
 git branch -d "branchName"
 ```
 强制删除分支使用 `-D` 参数。
 2. 删除**远程分支**，使用以下指令：
-
 ```shell
 git push "远程库名" -d "branch name" 
 ```
@@ -234,3 +234,12 @@ host: wangchujiang.com
 favicon: data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20height%3D%221em%22%20width%3D%221em%22%3E%20%3Cpath%20d%3D%22m21.66%2010.44-.98%204.18c-.84%203.61-2.5%205.07-5.62%204.77-.5-.04-1.04-.13-1.62-.27l-1.68-.4c-4.17-.99-5.46-3.05-4.48-7.23l.98-4.19c.2-.85.44-1.59.74-2.2%201.17-2.42%203.16-3.07%206.5-2.28l1.67.39c4.19.98%205.47%203.05%204.49%207.23Z%22%20fill%3D%22%23c9d1d9%22%2F%3E%20%3Cpath%20d%3D%22M15.06%2019.39c-.62.42-1.4.77-2.35%201.08l-1.58.52c-3.97%201.28-6.06.21-7.35-3.76L2.5%2013.28c-1.28-3.97-.22-6.07%203.75-7.35l1.58-.52c.41-.13.8-.24%201.17-.31-.3.61-.54%201.35-.74%202.2l-.98%204.19c-.98%204.18.31%206.24%204.48%207.23l1.68.4c.58.14%201.12.23%201.62.27Zm2.43-8.88c-.06%200-.12-.01-.19-.02l-4.85-1.23a.75.75%200%200%201%20.37-1.45l4.85%201.23a.748.748%200%200%201-.18%201.47Z%22%20fill%3D%22%23228e6c%22%20%2F%3E%20%3Cpath%20d%3D%22M14.56%2013.89c-.06%200-.12-.01-.19-.02l-2.91-.74a.75.75%200%200%201%20.37-1.45l2.91.74c.4.1.64.51.54.91-.08.34-.38.56-.72.56Z%22%20fill%3D%22%23228e6c%22%20%2F%3E%20%3C%2Fsvg%3E
 ```
 2. [Git 备忘清单 & git cheatsheet & Quick Reference](https://wangchujiang.com/reference/docs/git.html)
+
+```cardlink
+url: https://cloud.tencent.com/developer/article/2364066
+title: "深入理解Git：版本控制的魔法-腾讯云开发者社区-腾讯云"
+description: "在软件开发领域，版本控制是一个至关重要的概念。它不仅帮助开发者跟踪项目的演变历史，还提供了协同工作和团队管理的强大工具。Git，作为最流行的分布式版本控制系统之一，为开发者提供了一套强大而灵活的工具。本文将深入探讨Git的命令及其背后的原理，带你走进版本控制的魔法世界。"
+host: cloud.tencent.com
+image: https://cloudcache.tencentcs.com/open_proj/proj_qcloud_v2/gateway/shareicons/cloud.png
+```
+3. [深入理解Git：版本控制的魔法-腾讯云开发者社区-腾讯云](https://cloud.tencent.com/developer/article/2364066)

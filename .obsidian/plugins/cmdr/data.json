@@ -22,10 +22,16 @@
   "titleBar": [],
   "statusBar": [
     {
-      "id": "workspace:export-pdf",
+      "id": "obsidian-enhancing-export:obsidian-enhancing-export:export",
       "icon": "file-output",
+      "name": "Obsidian Enhancing Export: 导出为......",
+      "mode": "any"
+    },
+    {
+      "id": "workspace:export-pdf",
+      "icon": "files",
       "name": "导出为 PDF",
-      "mode": "5fd8a12a3aa73872"
+      "mode": "any"
     }
   ],
   "pageHeader": [],
