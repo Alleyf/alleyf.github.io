@@ -27,7 +27,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://picsum.photos/800/250">
 <meta property="article:published_time" content="2023-11-28T06:41:00.000Z">
-<meta property="article:modified_time" content="2023-11-29T16:57:44.781Z">
+<meta property="article:modified_time" content="2023-11-29T17:26:14.887Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="SpringCloud-Alibaba">
 <meta property="article:tag" content="微服务">
@@ -347,7 +347,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：几秒前
+                    本文最后更新于：3 分钟前
                   
                 
               </p>
@@ -372,15 +372,17 @@
 <p><strong>解决问题：</strong></p>
 <ul>
 <li>信息孤岛</li>
-<li>共享业务的重用<br><img src="http://qnpicmap.fcsluck.top/pics/202311281505375.png" srcset="/img/loading.gif" lazyload alt="|450"></li>
+<li>共享业务的重用</li>
 </ul>
+<p><img src="http://qnpicmap.fcsluck.top/pics/202311281505375.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="微服务架构"><a href="#微服务架构" class="headerlink" title="微服务架构"></a>微服务架构</h3><p>SOA 和微服务的关注点不同，区别如下所示：</p>
 <ul>
 <li><strong>SOA</strong> 关注的是<strong>服务的重用性及解决信息孤岛</strong>问题。</li>
 <li><strong>微服务</strong>关注的是<strong>解耦</strong>，虽然解耦和可重用性从特定的角度来看是一样的，但本质上是有区别的，<em>解耦是降低业务之间的耦合度，而重用性关注的是服务的复用</em>。</li>
 <li>微服务会更多地关注在 DevOps 的持续交付上，因为服务粒度细化之后使得开发运维变得更加重要，因此<em>微服务与容器化技术的结合更加紧密</em>。</li>
 </ul>
-<p>实际上，微服务到底要<em>拆分到多大的粒度没有统一的标准</em>，更多的时候是需要在粒度和团队之间找平衡的，微服务的粒度越小，服务独立性带来的好处就越多，但是管理大量的微服务也会越复杂。<br><img src="http://qnpicmap.fcsluck.top/pics/202311281523574.png" srcset="/img/loading.gif" lazyload alt="|450"></p>
+<p>实际上，微服务到底要<em>拆分到多大的粒度没有统一的标准</em>，更多的时候是需要在粒度和团队之间找平衡的，微服务的粒度越小，服务独立性带来的好处就越多，但是管理大量的微服务也会越复杂。</p>
+<p><img src="http://qnpicmap.fcsluck.top/pics/202311281523574.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="微服务架构带来的挑战"><a href="#微服务架构带来的挑战" class="headerlink" title="微服务架构带来的挑战"></a>微服务架构带来的挑战</h2><h3 id="微服务架构的优点"><a href="#微服务架构的优点" class="headerlink" title="微服务架构的优点"></a>微服务架构的优点</h3><ol>
 <li><strong>复杂度可控</strong>：通过对共享业务服务更细粒度的拆分，一个服务只需要关注一个特定的业务领域，并通过定义良好的接口清晰表述服务边界。由于体积小、复杂度低，开发、维护会更加简单。</li>
 <li><strong>技术选型更灵活</strong>：每个微服务都由不同的团队来维护，所以可以结合业务特性自由选择技术栈。</li>
@@ -396,7 +398,7 @@
 <li><strong>运维成本</strong>：在微服务中，需要保证几百个微服务的正常运行，对于运维的挑战是巨大的比如单个服务流量激增时如何快速扩容、服务拆分之后导致故障点增多如何处理、如何快速部署和统一管理众多的服务等。</li>
 </ol>
 <h2 id="如何实现微服务架构"><a href="#如何实现微服务架构" class="headerlink" title="如何实现微服务架构"></a>如何实现微服务架构</h2><p>架构的本质是对系统进行<em>有序化重构</em>，使系统不断进化。在这个进化的过程中除了更好地支撑业务发展，也会带来非常多的挑战，譬如在前文中提到的微服务的挑战，为了解决这些问题就必须引入更多的技术，进而使得微服务架构的实现变得非常复杂。</p>
-<h3 id="微服务架构图"><a href="#微服务架构图" class="headerlink" title="微服务架构图"></a>微服务架构图</h3><p> 微服务架构图通常由多个服务组成，每个服务都是一个独立的单元，负责执行特定的业务功能。这些服务之间通过网络进行通信，并使用轻量级的传输协议（如 HTTP 或 RPC）进行交互。<br> <img src="http://qnpicmap.fcsluck.top/pics/202311281557440.png" srcset="/img/loading.gif" lazyload alt="|500"></p>
+<h3 id="微服务架构图"><a href="#微服务架构图" class="headerlink" title="微服务架构图"></a>微服务架构图</h3><p> 微服务架构图通常由多个服务组成，每个服务都是一个独立的单元，负责执行特定的业务功能。这些服务之间通过网络进行通信，并使用轻量级的传输协议（如 HTTP 或 RPC）进行交互。<br> <img src="http://qnpicmap.fcsluck.top/pics/202311281557440.png" srcset="/img/loading.gif" lazyload></p>
 <p>下面是一个简单的微服务架构图示例：<br> <pre><code class=" mermaid">graph LR
 A[网关] --&gt; B[认证服务]
 A --&gt; C[用户服务]
@@ -454,7 +456,8 @@ D --&gt; E
 <h1 id="第三章、Spring-Cloud-的核心之-Spring-Boot"><a href="#第三章、Spring-Cloud-的核心之-Spring-Boot" class="headerlink" title="第三章、Spring Cloud 的核心之 Spring Boot"></a>第三章、Spring Cloud 的核心之 Spring Boot</h1><p>简单来说，Spring Boot 是帮助开发者快速构建一个基于 Spring Framework 及 Spring 生态体系的应用解决方案，也是 Spring Framework 对于“约定优于配置(Convention over Configuration)”理念的最佳实践。</p>
 <h2 id="重新认识-SpringBoot"><a href="#重新认识-SpringBoot" class="headerlink" title="重新认识 SpringBoot"></a>重新认识 SpringBoot</h2><h3 id="Spring-IoC-DI"><a href="#Spring-IoC-DI" class="headerlink" title="Spring IoC&#x2F;DI"></a>Spring IoC&#x2F;DI</h3><p>IoC(Inversion of Control)和 DI(Dependency Injection)的全称分别是<strong>控制反转和依赖注入</strong>。</p>
 <p><strong>IoC</strong></p>
-<p>IoC(控制反转)实际上就是把对象的生命周期托管到 Spig 容器中，而反转是指对象的获取<br>方式被反转了，直接从 IoC 容器中获取对象而不需要 new 一个对象。<br><img src="http://qnpicmap.fcsluck.top/pics/202311291040243.png" srcset="/img/loading.gif" lazyload></p>
+<p>IoC(控制反转)实际上就是把对象的生命周期托管到 Spig 容器中，而反转是指对象的获取<br>方式被反转了，直接从 IoC 容器中获取对象而不需要 new 一个对象。</p>
+<p><img src="http://qnpicmap.fcsluck.top/pics/202311291040243.png" srcset="/img/loading.gif" lazyload></p>
 <p><strong>DI</strong></p>
 <p>DI(Dependency Inject),也就是依赖注入，简单理解就是 IoC 容器在运行期间，动态地把某<br>种依赖关系注入组件中。</p>
 <p>只需要在 Spring 的配置文件中描述 Bean 之间的依赖关系，IoC 容器在解析该配置文件的时候，会根据 Ban 的依赖关系进行注入，这个过程就是依赖注入。</p>
@@ -728,6 +731,7 @@ D --&gt; E
 <li>编写测试方法测试自己实现的 redisson 是否可用：</li>
 </ol>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@SpringBootTest</span>  <br><span class="hljs-keyword">class</span> <span class="hljs-title class_">RedisSpringBootStarterApplicationTests</span> &#123;  <br>    <span class="hljs-meta">@Resource</span>  <br>    RedissonClient redissonClient;  <br>  <br>    <span class="hljs-meta">@Test</span>  <br>    <span class="hljs-keyword">void</span> <span class="hljs-title function_">myRedissonTest</span><span class="hljs-params">()</span> &#123;  <br>        redissonClient.getBucket(<span class="hljs-string">&quot;test&quot;</span>).set(<span class="hljs-string">&quot;123456&quot;</span>);  <br>        System.out.println(redissonClient.getBucket(<span class="hljs-string">&quot;test&quot;</span>).get());  <br>    &#125;  <br>  <br>&#125;<br></code></pre></td></tr></table></figure>
+
 <p><img src="http://qnpicmap.fcsluck.top/pics/202311300027992.png" srcset="/img/loading.gif" lazyload></p>
 <p>成功设置并获取到 test 键的值为 “123456”</p>
 <h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><blockquote>
