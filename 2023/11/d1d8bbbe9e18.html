@@ -27,7 +27,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://picsum.photos/800/250">
 <meta property="article:published_time" content="2023-11-28T06:41:00.000Z">
-<meta property="article:modified_time" content="2023-11-29T16:35:26.041Z">
+<meta property="article:modified_time" content="2023-11-29T16:57:44.781Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="SpringCloud-Alibaba">
 <meta property="article:tag" content="微服务">
@@ -296,7 +296,7 @@
         
         
         
-          222 分钟
+          223 分钟
         
       </span>
     
@@ -347,7 +347,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：1 分钟前
+                    本文最后更新于：几秒前
                   
                 
               </p>
@@ -355,9 +355,8 @@
             
               <div class="markdown-body">
                 
-                <p>\newpage</p>
-<p><img src="https://picsum.photos/0/800" srcset="/img/loading.gif" lazyload></p>
-<h1 id="微服务发展史"><a href="#微服务发展史" class="headerlink" title="微服务发展史"></a>微服务发展史</h1><h2 id="单体架构到分布式架构的演变"><a href="#单体架构到分布式架构的演变" class="headerlink" title="单体架构到分布式架构的演变"></a>单体架构到分布式架构的演变</h2><h3 id="单体架构"><a href="#单体架构" class="headerlink" title="单体架构"></a>单体架构</h3><p>通常来说，如果一个 war 包或者 jar 包里面包含一个应用的所有功能，则我们称这种架构为单体架构。</p>
+                <p>\newpage<br><img src="https://picsum.photos/0/800" srcset="/img/loading.gif" lazyload></p>
+<h1 id="第一章、微服务发展史"><a href="#第一章、微服务发展史" class="headerlink" title="第一章、微服务发展史"></a>第一章、微服务发展史</h1><h2 id="单体架构到分布式架构的演变"><a href="#单体架构到分布式架构的演变" class="headerlink" title="单体架构到分布式架构的演变"></a>单体架构到分布式架构的演变</h2><h3 id="单体架构"><a href="#单体架构" class="headerlink" title="单体架构"></a>单体架构</h3><p>通常来说，如果一个 war 包或者 jar 包里面包含一个应用的所有功能，则我们称这种架构为单体架构。</p>
 <h3 id="集群及垂直化"><a href="#集群及垂直化" class="headerlink" title="集群及垂直化"></a>集群及垂直化</h3><p><strong>单体架构的局限</strong>：</p>
 <ol>
 <li>用户量越来越大，网站的访问量不断增大，导致后端服务器的负载越来越高。</li>
@@ -366,17 +365,15 @@
 <p><strong>优化方法：</strong></p>
 <ol>
 <li>通过横向增加服务器，把单台机器变成多台机器的集群。</li>
-<li>按照业务的垂直领域进行拆分，减少业务的耦合度，以及降低单个 war 包带来的伸缩性困难问题。</li>
+<li>按照业务的垂直领域进行拆分，减少业务的耦合度，以及降低单个 war 包带来的伸缩性困难问题。<br><img src="http://qnpicmap.fcsluck.top/pics/202311281458557.png" srcset="/img/loading.gif" lazyload alt="|725"></li>
 </ol>
-<p><img src="http://qnpicmap.fcsluck.top/pics/202311281458557.png" srcset="/img/loading.gif" lazyload alt="|725"></p>
 <p>总的来说，数据库层面的拆分思想和业务系统的拆分思想是一样的，都是采用&#x3D;&#x3D;分而治之&#x3D;&#x3D;的思想。</p>
 <h3 id="SOA"><a href="#SOA" class="headerlink" title="SOA"></a>SOA</h3><p>共享业务在多个场景中存在冗余维护困难，就引入了 SOA(Service-Oriented Architecture),也就是面向服务的架构，从语义上说，它和面向过程、面向对象、面向组件的思想是一样的，都是一种软件组建及开发的方式。核心目标是把一些通用的、会被多个上层服务调用的共享业务提取成独立的基础服务，这些被提取出来的共享服务相对来说比较独立，并且可以重用。所以在 SOA 中，服务是最核心的抽象手段，业务被划分为一些粗粒度的业务服务和业务流程。</p>
 <p><strong>解决问题：</strong></p>
 <ul>
 <li>信息孤岛</li>
-<li>共享业务的重用</li>
+<li>共享业务的重用<br><img src="http://qnpicmap.fcsluck.top/pics/202311281505375.png" srcset="/img/loading.gif" lazyload alt="|450"></li>
 </ul>
-<p><img src="http://qnpicmap.fcsluck.top/pics/202311281505375.png" srcset="/img/loading.gif" lazyload alt="|450"></p>
 <h3 id="微服务架构"><a href="#微服务架构" class="headerlink" title="微服务架构"></a>微服务架构</h3><p>SOA 和微服务的关注点不同，区别如下所示：</p>
 <ul>
 <li><strong>SOA</strong> 关注的是<strong>服务的重用性及解决信息孤岛</strong>问题。</li>
@@ -399,8 +396,7 @@
 <li><strong>运维成本</strong>：在微服务中，需要保证几百个微服务的正常运行，对于运维的挑战是巨大的比如单个服务流量激增时如何快速扩容、服务拆分之后导致故障点增多如何处理、如何快速部署和统一管理众多的服务等。</li>
 </ol>
 <h2 id="如何实现微服务架构"><a href="#如何实现微服务架构" class="headerlink" title="如何实现微服务架构"></a>如何实现微服务架构</h2><p>架构的本质是对系统进行<em>有序化重构</em>，使系统不断进化。在这个进化的过程中除了更好地支撑业务发展，也会带来非常多的挑战，譬如在前文中提到的微服务的挑战，为了解决这些问题就必须引入更多的技术，进而使得微服务架构的实现变得非常复杂。</p>
-<h3 id="微服务架构图"><a href="#微服务架构图" class="headerlink" title="微服务架构图"></a>微服务架构图</h3><p> 微服务架构图通常由多个服务组成，每个服务都是一个独立的单元，负责执行特定的业务功能。这些服务之间通过网络进行通信，并使用轻量级的传输协议（如 HTTP 或 RPC）进行交互。</p>
-<p><img src="http://qnpicmap.fcsluck.top/pics/202311281557440.png" srcset="/img/loading.gif" lazyload alt="|500"></p>
+<h3 id="微服务架构图"><a href="#微服务架构图" class="headerlink" title="微服务架构图"></a>微服务架构图</h3><p> 微服务架构图通常由多个服务组成，每个服务都是一个独立的单元，负责执行特定的业务功能。这些服务之间通过网络进行通信，并使用轻量级的传输协议（如 HTTP 或 RPC）进行交互。<br> <img src="http://qnpicmap.fcsluck.top/pics/202311281557440.png" srcset="/img/loading.gif" lazyload alt="|500"></p>
 <p>下面是一个简单的微服务架构图示例：<br> <pre><code class=" mermaid">graph LR
 A[网关] --&gt; B[认证服务]
 A --&gt; C[用户服务]
@@ -418,7 +414,7 @@ D --&gt; E
 <li>&#x3D;&#x3D;熔断限流&#x3D;&#x3D;。</li>
 <li>&#x3D;&#x3D;链路监控&#x3D;&#x3D;。</li>
 </ul>
-<h1 id="微服务解决方案之-Spring-Cloud"><a href="#微服务解决方案之-Spring-Cloud" class="headerlink" title="微服务解决方案之 Spring Cloud"></a>微服务解决方案之 Spring Cloud</h1><h2 id="什么是-Spring-Cloud"><a href="#什么是-Spring-Cloud" class="headerlink" title="什么是 Spring Cloud"></a>什么是 Spring Cloud</h2><p>简单来说，Spring Cloud 提供了一些可以让开发者快速构建微服务应用的工具，比如配置管理、服务发现、熔断、智能路由等，这些服务可以在任何分布式环境下很好地工作。Spring Cloud 主要致力于解决如下问题：</p>
+<h1 id="第二章、微服务解决方案之-Spring-Cloud"><a href="#第二章、微服务解决方案之-Spring-Cloud" class="headerlink" title="第二章、微服务解决方案之 Spring Cloud"></a>第二章、微服务解决方案之 Spring Cloud</h1><h2 id="什么是-Spring-Cloud"><a href="#什么是-Spring-Cloud" class="headerlink" title="什么是 Spring Cloud"></a>什么是 Spring Cloud</h2><p>简单来说，Spring Cloud 提供了一些可以让开发者快速构建微服务应用的工具，比如配置管理、服务发现、熔断、智能路由等，这些服务可以在任何分布式环境下很好地工作。Spring Cloud 主要致力于解决如下问题：</p>
 <pre><code class="hljs">- Distributed/versioned configuration,分布式及版化配置。
 - Service registration and discovery,服务注册与发现。
 - Routing,服务路由。
@@ -455,11 +451,10 @@ D --&gt; E
 <li>Alibaba 的开源组件在没有织入 Spring Cloud 生态之前，已经在各大公司广泛应用，所以集成到 Spring Cloud 生态使得开发者能够很轻松地实现技术整合及迁移。Dubbo 天然支持多协议，因此在迁移和改造过程中并没有投入太多的成本。</li>
 <li>Alibaba 的开源组件在服务治理上和处理高并发的能力上有天然的优势，相比 Spring CloudNetflix 来说，Spring Cloud Alibaba 在服务治理这块的能力更适合于国内的技术场景，同时，Spring Cloud Alibaba 在功能上不仅完全覆盖了 Spring Cloud Netflix 原生特性，而且还提供了更加稳定和成熟的实现，因此笔者很看好 Spring Cloud Alibaba 未来的发展。</li>
 </ul>
-<h1 id="Spring-Cloud-的核心之-Spring-Boot"><a href="#Spring-Cloud-的核心之-Spring-Boot" class="headerlink" title="Spring Cloud 的核心之 Spring Boot"></a>Spring Cloud 的核心之 Spring Boot</h1><p>简单来说，Spring Boot 是帮助开发者快速构建一个基于 Spring Framework 及 Spring 生态体系的应用解决方案，也是 Spring Framework 对于“约定优于配置(Convention over Configuration)”理念的最佳实践。</p>
+<h1 id="第三章、Spring-Cloud-的核心之-Spring-Boot"><a href="#第三章、Spring-Cloud-的核心之-Spring-Boot" class="headerlink" title="第三章、Spring Cloud 的核心之 Spring Boot"></a>第三章、Spring Cloud 的核心之 Spring Boot</h1><p>简单来说，Spring Boot 是帮助开发者快速构建一个基于 Spring Framework 及 Spring 生态体系的应用解决方案，也是 Spring Framework 对于“约定优于配置(Convention over Configuration)”理念的最佳实践。</p>
 <h2 id="重新认识-SpringBoot"><a href="#重新认识-SpringBoot" class="headerlink" title="重新认识 SpringBoot"></a>重新认识 SpringBoot</h2><h3 id="Spring-IoC-DI"><a href="#Spring-IoC-DI" class="headerlink" title="Spring IoC&#x2F;DI"></a>Spring IoC&#x2F;DI</h3><p>IoC(Inversion of Control)和 DI(Dependency Injection)的全称分别是<strong>控制反转和依赖注入</strong>。</p>
 <p><strong>IoC</strong></p>
-<p>IoC(控制反转)实际上就是把对象的生命周期托管到 Spig 容器中，而反转是指对象的获取<br>方式被反转了，直接从 IoC 容器中获取对象而不需要 new 一个对象。</p>
-<p><img src="http://qnpicmap.fcsluck.top/pics/202311291040243.png" srcset="/img/loading.gif" lazyload></p>
+<p>IoC(控制反转)实际上就是把对象的生命周期托管到 Spig 容器中，而反转是指对象的获取<br>方式被反转了，直接从 IoC 容器中获取对象而不需要 new 一个对象。<br><img src="http://qnpicmap.fcsluck.top/pics/202311291040243.png" srcset="/img/loading.gif" lazyload></p>
 <p><strong>DI</strong></p>
 <p>DI(Dependency Inject),也就是依赖注入，简单理解就是 IoC 容器在运行期间，动态地把某<br>种依赖关系注入组件中。</p>
 <p>只需要在 Spring 的配置文件中描述 Bean 之间的依赖关系，IoC 容器在解析该配置文件的时候，会根据 Ban 的依赖关系进行注入，这个过程就是依赖注入。</p>
@@ -646,8 +641,7 @@ D --&gt; E
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@SpringBootApplication</span>  <br><span class="hljs-meta">@EnableAutoImport</span>  <br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MySpringAutoConfigurationApplication</span> &#123;  <br>  <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;  <br>  <br>        <span class="hljs-type">ConfigurableApplicationContext</span> <span class="hljs-variable">cac</span> <span class="hljs-operator">=</span> SpringApplication.run(MySpringAutoConfigurationApplication.class, args);  <br>        System.out.println(cac.getBean(Firstclass.class));   <br>    &#125;  <br>  <br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>在 Windows 环境中运行，将会输出 Firstclass 这个对象实例。在 Linux 环境中，会出现如下错误：</p>
-<p><img src="http://qnpicmap.fcsluck.top/pics/202311291513686.png" srcset="/img/loading.gif" lazyload></p>
+<p>在 Windows 环境中运行，将会输出 Firstclass 这个对象实例。在 Linux 环境中，会出现如下错误：<br><img src="http://qnpicmap.fcsluck.top/pics/202311291513686.png" srcset="/img/loading.gif" lazyload></p>
 <p>以上就是@Conditional 注解的使用方法，为 Bean 的装载提供了上下文的判断。</p>
 <h4 id="Spring-Boot-中的-Conditional"><a href="#Spring-Boot-中的-Conditional" class="headerlink" title="Spring Boot 中的 @Conditional"></a>Spring Boot 中的 @Conditional</h4><p>在 Spring Boot 中，针对@Conditional 做了扩展，提供了更简单的使用形式，扩展注解如下：</p>
 <ul>
@@ -697,7 +691,8 @@ D --&gt; E
 <li>自动声明并且加载 application.properties 文件中的属性配置。</li>
 </ul>
 <h3 id="Starter-的命名规范"><a href="#Starter-的命名规范" class="headerlink" title="Starter 的命名规范"></a>Starter 的命名规范</h3><p>Starter 的命名主要分为两类，一类是官方命名，另一类是自定义组件命名。这种命名格式并<br>不是强制性的，也是一种约定俗成的方式，可以让开发者更容易识别。</p>
-<p>。<strong>官方命名的格式为</strong>：<code>spring-boot-starter-模块名称</code>，比如 spring-boot-starter-web。<br>。<strong>自定义命名格式为</strong>：<code>模块名称-spring-boot-starter</code>,比如 mybatis-spring-boot-starter。</p>
+<p>。<strong>官方命名的格式为</strong>：<code>spring-boot-starter-模块名称</code>，比如 spring-boot-starter-web。</p>
+<p>。<strong>自定义命名格式为</strong>：<code>模块名称-spring-boot-starter</code>,比如 mybatis-spring-boot-starter。</p>
 <p>简单来说，官方命名中模块名放在最后，而自定义组件中模块名放在最前面。</p>
 <h3 id="实现基于-Redis-的-Starter"><a href="#实现基于-Redis-的-Starter" class="headerlink" title="实现基于 Redis 的 Starter"></a>实现基于 Redis 的 Starter</h3><p>我们可以基于前面学到的思想实现一个基于 Redis 简化版本的 Starter 组件。</p>
 <ol>
@@ -707,7 +702,7 @@ D --&gt; E
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java">&lt;dependency&gt;<br>	&lt;groupId&gt;org.redisson&lt;/groupId&gt;<br>	&lt;artifactId&gt;redisson&lt;/artifactId&gt;<br>	&lt;version&gt;<span class="hljs-number">3.11</span><span class="hljs-number">.1</span>&lt;/version&gt;<br>&lt;/dependency&gt;<br></code></pre></td></tr></table></figure>
 
 <ol start="3">
-<li>定义属性类，实现在 application.properties 中配置 Redis 的连接参数，由于只是一个简单版<br>本的 Demo,所以只简单定义了一些必要参数。另外 <code>@ConfigurationProperties</code> 这个注解的<br>作用是<em>把当前类中的属性和配置文件(properties&#x2F;yml)中的配置进行绑定</em>，并且前缀是 gp.redisson。</li>
+<li>定义属性类，实现在 application.properties 中配置 Redis 的连接参数，由于只是一个简单版<br>本的 Demo,所以只简单定义了一些必要参数。另外 <code>@ConfigurationProperties</code> 这个注解的<br>作用是<em>把当前类中的属性和配置文件(properties&#x2F;yml)中的配置进行绑定</em>，并且前缀是 fcs.redisson。</li>
 </ol>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@ConfigurationProperties(prefix = &quot;fcs.redisson&quot;)</span>  <br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">RedissonProperties</span> &#123;  <br>    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> <span class="hljs-variable">database</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;  <br>    <span class="hljs-keyword">private</span> <span class="hljs-type">String</span> <span class="hljs-variable">host</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;localhost&quot;</span>;  <br>    <span class="hljs-keyword">private</span> String password;  <br>    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> <span class="hljs-variable">port</span> <span class="hljs-operator">=</span> <span class="hljs-number">6379</span>;  <br>    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> timeout;  <br>    <span class="hljs-keyword">private</span> <span class="hljs-type">boolean</span> ssl;  <br>  <br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">getHost</span><span class="hljs-params">()</span> &#123;  <br>        <span class="hljs-keyword">return</span> host;  <br>    &#125;  <br>  <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setHost</span><span class="hljs-params">(String host)</span> &#123;  <br>        <span class="hljs-built_in">this</span>.host = host;  <br>    &#125;  <br>  <br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">getPassword</span><span class="hljs-params">()</span> &#123;  <br>        <span class="hljs-keyword">return</span> password;  <br>    &#125;  <br>  <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setPassword</span><span class="hljs-params">(String password)</span> &#123;  <br>        <span class="hljs-built_in">this</span>.password = password;  <br>    &#125;  <br>  <br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">getPort</span><span class="hljs-params">()</span> &#123;  <br>        <span class="hljs-keyword">return</span> port;  <br>    &#125;  <br>  <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setPort</span><span class="hljs-params">(<span class="hljs-type">int</span> port)</span> &#123;  <br>        <span class="hljs-built_in">this</span>.port = port;  <br>    &#125;  <br>  <br>    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">isSsl</span><span class="hljs-params">()</span> &#123;  <br>        <span class="hljs-keyword">return</span> ssl;  <br>    &#125;  <br>  <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setSsl</span><span class="hljs-params">(<span class="hljs-type">boolean</span> ssl)</span> &#123;  <br>        <span class="hljs-built_in">this</span>.ssl = ssl;  <br>    &#125;  <br>  <br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">getTimeout</span><span class="hljs-params">()</span> &#123;  <br>        <span class="hljs-keyword">return</span> timeout;  <br>    &#125;  <br>  <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setTimeout</span><span class="hljs-params">(<span class="hljs-type">int</span> timeout)</span> &#123;  <br>        <span class="hljs-built_in">this</span>.timeout = timeout;  <br>    &#125;  <br>  <br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">getDatabase</span><span class="hljs-params">()</span> &#123;  <br>        <span class="hljs-keyword">return</span> database;  <br>    &#125;  <br>  <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setDatabase</span><span class="hljs-params">(<span class="hljs-type">int</span> database)</span> &#123;  <br>        <span class="hljs-built_in">this</span>.database = database;  <br>    &#125;  <br>&#125;<br></code></pre></td></tr></table></figure>
 
@@ -733,13 +728,12 @@ D --&gt; E
 <li>编写测试方法测试自己实现的 redisson 是否可用：</li>
 </ol>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@SpringBootTest</span>  <br><span class="hljs-keyword">class</span> <span class="hljs-title class_">RedisSpringBootStarterApplicationTests</span> &#123;  <br>    <span class="hljs-meta">@Resource</span>  <br>    RedissonClient redissonClient;  <br>  <br>    <span class="hljs-meta">@Test</span>  <br>    <span class="hljs-keyword">void</span> <span class="hljs-title function_">myRedissonTest</span><span class="hljs-params">()</span> &#123;  <br>        redissonClient.getBucket(<span class="hljs-string">&quot;test&quot;</span>).set(<span class="hljs-string">&quot;123456&quot;</span>);  <br>        System.out.println(redissonClient.getBucket(<span class="hljs-string">&quot;test&quot;</span>).get());  <br>    &#125;  <br>  <br>&#125;<br></code></pre></td></tr></table></figure>
-
 <p><img src="http://qnpicmap.fcsluck.top/pics/202311300027992.png" srcset="/img/loading.gif" lazyload></p>
 <p>成功设置并获取到 test 键的值为 “123456”</p>
 <h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><blockquote>
 <p>本章主要分析了Spring Boot中的自动装配的基本原理，并且通过实现一个自定义Starter的方式加深了我们对于自动装配的理解。由于Spring Cloud生态中的组件，都是基于Spring Boot框架来实现的，了解Spring Boot的基本原理将有助于大家对后续内容的理解，<em>工欲善其事必先利其器</em>，读者我感悟到，<strong>比了解技术的基本使用方法更重要的是了解技术产生的背景及核心原理</strong>。</p>
 </blockquote>
-<h1 id="微服务架构下的服务治理"><a href="#微服务架构下的服务治理" class="headerlink" title="微服务架构下的服务治理"></a>微服务架构下的服务治理</h1><h1 id="参考书籍"><a href="#参考书籍" class="headerlink" title="参考书籍"></a>参考书籍</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cardlink">url: https://book.douban.com/subject/35041576/?from=mdouban<br>title: &quot;Spring Cloud Alibaba 微服务原理与实战&quot;<br>description: &quot;《Spring Cloud Alibaba微服务原理与实战》针对Spring Cloud Alibaba生态下的技术组件从应用到原理进行全面的分析，涉及的技术组件包括分布式服务治理Dubbo、服务配置...&quot;<br>host: book.douban.com<br>image: https://img9.doubanio.com/view/subject/l/public/s33625905.jpg<br></code></pre></td></tr></table></figure>
+<h1 id="第四章、微服务架构下的服务治理"><a href="#第四章、微服务架构下的服务治理" class="headerlink" title="第四章、微服务架构下的服务治理"></a>第四章、微服务架构下的服务治理</h1><h1 id="参考书籍"><a href="#参考书籍" class="headerlink" title="参考书籍"></a>参考书籍</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cardlink">url: https://book.douban.com/subject/35041576/?from=mdouban<br>title: &quot;Spring Cloud Alibaba 微服务原理与实战&quot;<br>description: &quot;《Spring Cloud Alibaba微服务原理与实战》针对Spring Cloud Alibaba生态下的技术组件从应用到原理进行全面的分析，涉及的技术组件包括分布式服务治理Dubbo、服务配置...&quot;<br>host: book.douban.com<br>image: https://img9.doubanio.com/view/subject/l/public/s33625905.jpg<br></code></pre></td></tr></table></figure>
 <ol>
 <li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/35041576/?from=mdouban">Spring Cloud Alibaba 微服务原理与实战 (豆瓣)</a></li>
 </ol>
