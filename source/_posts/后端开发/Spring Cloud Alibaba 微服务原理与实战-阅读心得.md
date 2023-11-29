@@ -14,14 +14,12 @@ keywords:
   - SpringCloud-Alibaba
   - 微服务
   - Java
-header-left: "![](\rhttps://qnpicmap.fcsluck.top/pics/202311162214229.png)"
+header-left: "![](D:/开发图片/ico/blogLogo.ico)"
 ---
 \newpage
-
 ![](https://picsum.photos/0/800)
 
-
-# 微服务发展史
+# 第一章、微服务发展史
 ## 单体架构到分布式架构的演变
 ### 单体架构
 通常来说，如果一个 war 包或者 jar 包里面包含一个应用的所有功能，则我们称这种架构为单体架构。
@@ -36,7 +34,6 @@ header-left: "![](\rhttps://qnpicmap.fcsluck.top/pics/202311162214229.png)"
 
 1. 通过横向增加服务器，把单台机器变成多台机器的集群。
 2. 按照业务的垂直领域进行拆分，减少业务的耦合度，以及降低单个 war 包带来的伸缩性困难问题。
-
 ![|725](http://qnpicmap.fcsluck.top/pics/202311281458557.png)
 
 总的来说，数据库层面的拆分思想和业务系统的拆分思想是一样的，都是采用==分而治之==的思想。
@@ -48,7 +45,6 @@ header-left: "![](\rhttps://qnpicmap.fcsluck.top/pics/202311162214229.png)"
 
 - 信息孤岛
 - 共享业务的重用
-
 ![|450](http://qnpicmap.fcsluck.top/pics/202311281505375.png)
 
 
@@ -71,8 +67,6 @@ SOA 和微服务的关注点不同，区别如下所示：
 4. **独立部署**：由于每个微服务都是一个独立运行的进程，所以可以实现独立部署。当某个微服务发生变更时不需要重新编译部署整个应用，并且单个微服务的代码量比较小，使得发布更加高效。
 5. **容错性**：在微服务架构中，如果某一个服务发生故障，我们可以使故障隔离在单个服务中。其他服务可以通过重试、降级等机制来实现应用层面的容错。
 
-
-
 ### 面临的挑战
 1. **故障排查**：一次请求可能会经历多个不同的微服务的多次交互，交互的链路可能会比较长，每个微服务会产生自己的日志，在这种情况下如果出现一个故障，开发人员定位问题的根源会比较困难。
 2. **服务监控**：在一个单体架构中很容易实现服务的监控，因为所有的功能都在一个服务中。在微服务架构中，服务监控开销会非常大，可以想象一下，在几百个微服务组成的架构中，我们不仅要对整个链路进行监控，还需要对每一个微服务都实现一套类似单体架构的监控。
@@ -85,8 +79,7 @@ SOA 和微服务的关注点不同，区别如下所示：
 架构的本质是对系统进行*有序化重构*，使系统不断进化。在这个进化的过程中除了更好地支撑业务发展，也会带来非常多的挑战，譬如在前文中提到的微服务的挑战，为了解决这些问题就必须引入更多的技术，进而使得微服务架构的实现变得非常复杂。
 ### 微服务架构图
  微服务架构图通常由多个服务组成，每个服务都是一个独立的单元，负责执行特定的业务功能。这些服务之间通过网络进行通信，并使用轻量级的传输协议（如 HTTP 或 RPC）进行交互。
- 
-![|500](http://qnpicmap.fcsluck.top/pics/202311281557440.png)
+ ![|500](http://qnpicmap.fcsluck.top/pics/202311281557440.png)
 
 下面是一个简单的微服务架构图示例：
  ```mermaid
@@ -111,7 +104,7 @@ D --> E
 - ==链路监控==。
 
 
-# 微服务解决方案之 Spring Cloud
+# 第二章、微服务解决方案之 Spring Cloud
 ## 什么是 Spring Cloud
 简单来说，Spring Cloud 提供了一些可以让开发者快速构建微服务应用的工具，比如配置管理、服务发现、熔断、智能路由等，这些服务可以在任何分布式环境下很好地工作。Spring Cloud 主要致力于解决如下问题：
 
@@ -158,7 +151,7 @@ Spring Cloud Alibaba 主要为微服务开发提供一站式的解决方案，�
 - Alibaba 的开源组件在没有织入 Spring Cloud 生态之前，已经在各大公司广泛应用，所以集成到 Spring Cloud 生态使得开发者能够很轻松地实现技术整合及迁移。Dubbo 天然支持多协议，因此在迁移和改造过程中并没有投入太多的成本。
 - Alibaba 的开源组件在服务治理上和处理高并发的能力上有天然的优势，相比 Spring CloudNetflix 来说，Spring Cloud Alibaba 在服务治理这块的能力更适合于国内的技术场景，同时，Spring Cloud Alibaba 在功能上不仅完全覆盖了 Spring Cloud Netflix 原生特性，而且还提供了更加稳定和成熟的实现，因此笔者很看好 Spring Cloud Alibaba 未来的发展。
 
-# Spring Cloud 的核心之 Spring Boot
+# 第三章、Spring Cloud 的核心之 Spring Boot
 
 简单来说，Spring Boot 是帮助开发者快速构建一个基于 Spring Framework 及 Spring 生态体系的应用解决方案，也是 Spring Framework 对于“约定优于配置(Convention over Configuration)”理念的最佳实践。
 
@@ -173,7 +166,6 @@ IoC(Inversion of Control)和 DI(Dependency Injection)的全称分别是**控制�
 
 IoC(控制反转)实际上就是把对象的生命周期托管到 Spig 容器中，而反转是指对象的获取
 方式被反转了，直接从 IoC 容器中获取对象而不需要 new 一个对象。
-
 ![](http://qnpicmap.fcsluck.top/pics/202311291040243.png)
 
 **DI**
@@ -667,7 +659,6 @@ public class MySpringAutoConfigurationApplication {
 ```
 
 在 Windows 环境中运行，将会输出 Firstclass 这个对象实例。在 Linux 环境中，会出现如下错误：
-
 ![](http://qnpicmap.fcsluck.top/pics/202311291513686.png)
 
 以上就是@Conditional 注解的使用方法，为 Bean 的装载提供了上下文的判断。
@@ -751,6 +742,7 @@ Starter 的命名主要分为两类，一类是官方命名，另一类是自定
 不是强制性的，也是一种约定俗成的方式，可以让开发者更容易识别。
 
 。**官方命名的格式为**：`spring-boot-starter-模块名称`，比如 spring-boot-starter-web。
+
 。**自定义命名格式为**：`模块名称-spring-boot-starter`,比如 mybatis-spring-boot-starter。
 
 简单来说，官方命名中模块名放在最后，而自定义组件中模块名放在最前面。
@@ -772,7 +764,7 @@ Starter 的命名主要分为两类，一类是官方命名，另一类是自定
 
 3. 定义属性类，实现在 application.properties 中配置 Redis 的连接参数，由于只是一个简单版
 本的 Demo,所以只简单定义了一些必要参数。另外 `@ConfigurationProperties` 这个注解的
-作用是*把当前类中的属性和配置文件(properties/yml)中的配置进行绑定*，并且前缀是 gp.redisson。
+作用是*把当前类中的属性和配置文件(properties/yml)中的配置进行绑定*，并且前缀是 fcs.redisson。
 
 ```java
 @ConfigurationProperties(prefix = "fcs.redisson")  
@@ -912,7 +904,6 @@ class RedisSpringBootStarterApplicationTests {
   
 }
 ```
-
 ![](http://qnpicmap.fcsluck.top/pics/202311300027992.png)
 
 成功设置并获取到 test 键的值为 "123456"
@@ -922,7 +913,7 @@ class RedisSpringBootStarterApplicationTests {
 > 本章主要分析了Spring Boot中的自动装配的基本原理，并且通过实现一个自定义Starter的方式加深了我们对于自动装配的理解。由于Spring Cloud生态中的组件，都是基于Spring Boot框架来实现的，了解Spring Boot的基本原理将有助于大家对后续内容的理解，*工欲善其事必先利其器*，读者我感悟到，**比了解技术的基本使用方法更重要的是了解技术产生的背景及核心原理**。
 
 
-# 微服务架构下的服务治理
+# 第四章、微服务架构下的服务治理
 
 
 
