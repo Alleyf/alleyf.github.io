@@ -14,7 +14,7 @@ keywords:
   - SpringCloud-Alibaba
   - 微服务
   - Java
-header-left: "![](D:/开发图片/ico/blogLogo.ico)"
+header-left: "![](D:/开发图片/logo32.png)"
 ---
 \newpage
 ![](https://picsum.photos/0/800)
@@ -45,7 +45,8 @@ header-left: "![](D:/开发图片/ico/blogLogo.ico)"
 
 - 信息孤岛
 - 共享业务的重用
-![|450](http://qnpicmap.fcsluck.top/pics/202311281505375.png)
+
+![](http://qnpicmap.fcsluck.top/pics/202311281505375.png)
 
 
 ### 微服务架构
@@ -56,7 +57,8 @@ SOA 和微服务的关注点不同，区别如下所示：
 - 微服务会更多地关注在 DevOps 的持续交付上，因为服务粒度细化之后使得开发运维变得更加重要，因此*微服务与容器化技术的结合更加紧密*。
 
 实际上，微服务到底要*拆分到多大的粒度没有统一的标准*，更多的时候是需要在粒度和团队之间找平衡的，微服务的粒度越小，服务独立性带来的好处就越多，但是管理大量的微服务也会越复杂。
-![|450](http://qnpicmap.fcsluck.top/pics/202311281523574.png)
+
+![](http://qnpicmap.fcsluck.top/pics/202311281523574.png)
 
 
 ## 微服务架构带来的挑战
@@ -79,7 +81,7 @@ SOA 和微服务的关注点不同，区别如下所示：
 架构的本质是对系统进行*有序化重构*，使系统不断进化。在这个进化的过程中除了更好地支撑业务发展，也会带来非常多的挑战，譬如在前文中提到的微服务的挑战，为了解决这些问题就必须引入更多的技术，进而使得微服务架构的实现变得非常复杂。
 ### 微服务架构图
  微服务架构图通常由多个服务组成，每个服务都是一个独立的单元，负责执行特定的业务功能。这些服务之间通过网络进行通信，并使用轻量级的传输协议（如 HTTP 或 RPC）进行交互。
- ![|500](http://qnpicmap.fcsluck.top/pics/202311281557440.png)
+ ![](http://qnpicmap.fcsluck.top/pics/202311281557440.png)
 
 下面是一个简单的微服务架构图示例：
  ```mermaid
@@ -166,6 +168,7 @@ IoC(Inversion of Control)和 DI(Dependency Injection)的全称分别是**控制�
 
 IoC(控制反转)实际上就是把对象的生命周期托管到 Spig 容器中，而反转是指对象的获取
 方式被反转了，直接从 IoC 容器中获取对象而不需要 new 一个对象。
+
 ![](http://qnpicmap.fcsluck.top/pics/202311291040243.png)
 
 **DI**
@@ -904,6 +907,7 @@ class RedisSpringBootStarterApplicationTests {
   
 }
 ```
+
 ![](http://qnpicmap.fcsluck.top/pics/202311300027992.png)
 
 成功设置并获取到 test 键的值为 "123456"

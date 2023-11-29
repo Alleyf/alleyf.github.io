@@ -1,5 +1,6 @@
 {
   "search": false,
   "preview": true,
-  "editor": false
+  "editor": false,
+  "bookmarks": false
 }
