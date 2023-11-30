@@ -6,7 +6,7 @@
   <link href="https://alleyf.github.io/atom.xml" rel="self"/>
   
   <link href="https://alleyf.github.io/"/>
-  <updated>2023-11-30T03:24:21.688Z</updated>
+  <updated>2023-11-30T03:40:03.925Z</updated>
   <id>https://alleyf.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java常用新特性-Lambda-Optional-Stream</title>
+    <link href="https://alleyf.github.io/2023/11/49e020206b8b.html"/>
+    <id>https://alleyf.github.io/2023/11/49e020206b8b.html</id>
+    <published>2023-11-30T03:29:33.000Z</published>
+    <updated>2023-11-30T03:40:03.925Z</updated>
+    
+    
+    <summary type="html">一些关于 java8 以后版本的新特性的常用操作。</summary>
+    
+    
+    
+    <category term="后端开发" scheme="https://alleyf.github.io/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
+    
+    
+    <category term="Java" scheme="https://alleyf.github.io/tags/Java/"/>
+    
+    <category term="Lambda" scheme="https://alleyf.github.io/tags/Lambda/"/>
+    
+  </entry>
   
   <entry>
     <title>Spring Cloud Alibaba 微服务原理与实战-阅读心得</title>
@@ -430,25 +451,6 @@
     
     
     <category term="NLP" scheme="https://alleyf.github.io/tags/NLP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>残差神经网络</title>
-    <link href="https://alleyf.github.io/2023/10/153052cac26f.html"/>
-    <id>https://alleyf.github.io/2023/10/153052cac26f.html</id>
-    <published>2023-10-18T01:54:31.000Z</published>
-    <updated>2023-11-18T14:19:08.386Z</updated>
-    
-    
-    <summary type="html">some overview about NLP papers。</summary>
-    
-    
-    
-    <category term="科研学习" scheme="https://alleyf.github.io/categories/%E7%A7%91%E7%A0%94%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-    <category term="CV" scheme="https://alleyf.github.io/tags/CV/"/>
     
   </entry>
   
