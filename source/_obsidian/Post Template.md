@@ -7,7 +7,7 @@ excerpt:
 author: fcs
 index_img: https://picsum.photos/800/250
 lang: zh-CN
-header-left: https://qnpicmap.fcsluck.top/pics/202311162214229.png
+header-left: "![](D:/开发图片/logo32.png)"
 ---
 
 ![](https://picsum.photos/800/250)
