@@ -3,8 +3,27 @@
 /* source: https://github.com/kmaasrud/awesome-obsidian */
 
 img {
+  display: block !important;
+  margin: 0 auto !important;
+  max-width: 100%;
   border-radius: 4px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   background-color: var(--background-secondary);
   /* Background color so PNGs with transparent backgrounds don't look weird */
 }
+.markdown-source-view.mod-cm6 .cm-content > img {
+  margin: 0 auto !important;
+}
+.mermaid,  h1{
+ text-align: center !important;
+}
+div > [class^="language-"] {
+  display: block !important;
+  margin: 0 auto !important;
+  width: 100%;
+}
+  /* 首行缩进 */
+.view-content  p {
+  text-indent: 2em;
+}
+  

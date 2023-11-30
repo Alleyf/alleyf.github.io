@@ -16,7 +16,7 @@ keywords:
   - Java
 header-left: "![](D:/开发图片/logo32.png)"
 ---
-\newpage
+
 ![](https://picsum.photos/0/800)
 
 # 第一章、微服务发展史
@@ -46,8 +46,7 @@ header-left: "![](D:/开发图片/logo32.png)"
 - 信息孤岛
 - 共享业务的重用
 
-![](http://qnpicmap.fcsluck.top/pics/202311281505375.png)
-
+![|425](http://qnpicmap.fcsluck.top/pics/202311281505375.png)
 
 ### 微服务架构
 SOA 和微服务的关注点不同，区别如下所示：
@@ -58,7 +57,7 @@ SOA 和微服务的关注点不同，区别如下所示：
 
 实际上，微服务到底要*拆分到多大的粒度没有统一的标准*，更多的时候是需要在粒度和团队之间找平衡的，微服务的粒度越小，服务独立性带来的好处就越多，但是管理大量的微服务也会越复杂。
 
-![](http://qnpicmap.fcsluck.top/pics/202311281523574.png)
+![|425](http://qnpicmap.fcsluck.top/pics/202311281523574.png)
 
 
 ## 微服务架构带来的挑战
@@ -81,7 +80,7 @@ SOA 和微服务的关注点不同，区别如下所示：
 架构的本质是对系统进行*有序化重构*，使系统不断进化。在这个进化的过程中除了更好地支撑业务发展，也会带来非常多的挑战，譬如在前文中提到的微服务的挑战，为了解决这些问题就必须引入更多的技术，进而使得微服务架构的实现变得非常复杂。
 ### 微服务架构图
  微服务架构图通常由多个服务组成，每个服务都是一个独立的单元，负责执行特定的业务功能。这些服务之间通过网络进行通信，并使用轻量级的传输协议（如 HTTP 或 RPC）进行交互。
- ![](http://qnpicmap.fcsluck.top/pics/202311281557440.png)
+ ![|500](http://qnpicmap.fcsluck.top/pics/202311281557440.png)
 
 下面是一个简单的微服务架构图示例：
  ```mermaid
@@ -110,15 +109,15 @@ D --> E
 ## 什么是 Spring Cloud
 简单来说，Spring Cloud 提供了一些可以让开发者快速构建微服务应用的工具，比如配置管理、服务发现、熔断、智能路由等，这些服务可以在任何分布式环境下很好地工作。Spring Cloud 主要致力于解决如下问题：
 
-	- Distributed/versioned configuration,分布式及版化配置。
-	- Service registration and discovery,服务注册与发现。
-	- Routing,服务路由。
-	- Service-to-service calls,服务调用。
-	- Load balancing,负载均衡。
-	- Circuit Breakers,断路器。
-	- Global locks,全局锁。
-	- Leadership election and cluster state,Leader 选举及集群状态。
-	- Distributed messaging,分布式消息。
+- Distributed/versioned configuration,分布式及版化配置。
+- Service registration and discovery,服务注册与发现。
+- Routing,服务路由。
+- Service-to-service calls,服务调用。
+- Load balancing,负载均衡。
+- Circuit Breakers,断路器。
+- Global locks,全局锁。
+- Leadership election and cluster state,Leader 选举及集群状态。
+- Distributed messaging,分布式消息。
 
 <font color="#a5a5a5">需要注意的是，Spring Cloud 并不是 Spring 团队全新研发的框架，它只是把一些比较优秀的解决微服务架构中常见问题的开源框架基于 Spring Cloud 规范进行了整合，通过 Spring Boot 这个框架进行再次封装后屏蔽掉了复杂的配置，给开发者提供良好的开箱即用的微服务开发体验。不难看出，Spring Cloud 其实就是一套规范，而 Spring Cloud Netflix、Spring Cloud Consul、Spring Cloud Alibaba 才是 Spring Cloud 规范的实现。</font>
 
@@ -166,10 +165,9 @@ IoC(Inversion of Control)和 DI(Dependency Injection)的全称分别是**控制�
 
 **IoC**
 
-IoC(控制反转)实际上就是把对象的生命周期托管到 Spig 容器中，而反转是指对象的获取
-方式被反转了，直接从 IoC 容器中获取对象而不需要 new 一个对象。
+IoC(控制反转)实际上就是把对象的生命周期托管到 Spig 容器中，而反转是指对象的获取方式被反转了，直接从 IoC 容器中获取对象而不需要 new 一个对象。
 
-![](http://qnpicmap.fcsluck.top/pics/202311291040243.png)
+![|425](http://qnpicmap.fcsluck.top/pics/202311291040243.png)
 
 **DI**
 
@@ -199,8 +197,7 @@ UserDetail userdetail=user.getUserDetail()
 
 随着 JDK1.5 带来的注解支持，Spring 从 2.x 开始，可以使用注解的方式来对 Bean 进行声明和注入，大大减少了 XML 的配置量。
 
-Spring 升级到 3.x 后，提供了 JavaConfig 的能力，它可以完全取代 XML,通过 Java 代码的方
-式来完成 Bean 的注入。所以，现在我们使用的 Spring Framework 或者 Spring Boot,已经看不到 XML 配置的存在了。
+Spring 升级到 3.x 后，提供了 JavaConfig 的能力，它可以完全取代 XML,通过 Java 代码的方式来完成 Bean 的注入。所以，现在我们使用的 Spring Framework 或者 Spring Boot,已经看不到 XML 配置的存在了。
 
 **注解配置**
 

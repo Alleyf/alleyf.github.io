@@ -1,13 +1,14 @@
 {
   "accentColor": "#5c9ef5",
-  "theme": "obsidian",
+  "theme": "moonstone",
   "cssTheme": "Blue Topaz",
   "nativeMenus": false,
   "translucency": true,
   "interfaceFontFamily": "Arial Black",
-  "baseFontSize": 17,
+  "baseFontSize": 18,
   "enabledCssSnippets": [
     "image-cards",
-    "print"
+    "print",
+    "page-magin"
   ]
 }

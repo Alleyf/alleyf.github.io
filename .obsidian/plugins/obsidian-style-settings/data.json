@@ -93,9 +93,14 @@
   "blue-topaz-theme@@link-underline-internal": false,
   "blue-topaz-theme@@circular-checkbox": false,
   "blue-topaz-theme@@toggle-checked-decoration": true,
-  "blue-topaz-theme@@justify-align": false,
+  "blue-topaz-theme@@justify-align": true,
   "blue-topaz-theme@@style-options-for-kanban-plugin-dynamic": "style-options-for-kanban-plugin-dynamic-neon-one",
   "blue-topaz-theme@@hr-for-pagination": true,
   "blue-topaz-theme@@tag-style-option": "rainbow-tag",
-  "blue-topaz-theme@@nowrap-outline": false
+  "blue-topaz-theme@@nowrap-outline": false,
+  "blue-topaz-theme@@h1-text-align-settings": "h1-text-align-center",
+  "blue-topaz-theme@@inline-title-text-align-settings": "inline-title-text-align-center",
+  "blue-topaz-theme@@text-indentation-two-em": true,
+  "blue-topaz-theme@@letter-space-main": 0,
+  "blue-topaz-theme@@bottom-padding-value": "2em"
 }
