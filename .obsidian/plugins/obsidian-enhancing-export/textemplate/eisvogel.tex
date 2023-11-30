@@ -658,8 +658,10 @@ $endif$
   $if(mainfont)$
   $else$
   \usepackage[fallback]{xeCJK}
-  \setCJKmainfont{FangSong}[BoldFont=KaiTi, ItalicFont=SimSun]
-  \setCJKfallbackfamilyfont{rm}{FangSong}
+  \setCJKmainfont{宋体}[BoldFont=SimHei, ItalicFont=KaiTi] %配置中文字体
+  \setCJKfallbackfamilyfont{rm}{宋体}
+  %\setCJKmainfont{FangSong}[BoldFont=KaiTi, ItalicFont=SimSun]
+  %\setCJKfallbackfamilyfont{rm}{FangSong}
   \usepackage[default]{sourcesanspro}
   \usepackage{sourcecodepro}
 

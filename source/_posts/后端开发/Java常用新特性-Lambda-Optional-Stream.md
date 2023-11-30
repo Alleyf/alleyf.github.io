@@ -746,7 +746,7 @@ public static void main(String[] args) {
 }
 ```
 
-Stream 还新增了对数据的截断操作，比如我们希望在读取到某个元素时截断，不再继续操作后面的元素：
+Stream 还新增了*对数据的截断操作*，比如我们希望在读取到某个元素时截断，不再继续操作后面的元素：
 
 ```java
 public static void main(String[] args) {
@@ -837,7 +837,7 @@ public static void main(String[] args) {
 
 当然还支持直接转换为 Stream，这里就不多说了。
 
-在 Java 8 及之前，匿名内部类是没办法使用钻石运算符进行自动类型推断的：
+在 Java 8 及之前，*匿名内部类是没办法使用钻石运算符进行自动类型推断*的：
 
 ```java
 public abstract class Test<T>{   //这里我们写一个泛型类
@@ -901,7 +901,6 @@ public static void main(String[] args) {
 
 ![image-20230306180337900](https://s2.loli.net/2023/03/06/g4aIlhC6GQfu2NF.png)
 
-有关 Java 10 新增的一些其他改进，这里就不提了。
 
 # Java 11 新特性
 
@@ -940,7 +939,7 @@ public static void main(String[] args) {
 }
 ```
 
-我们也可以快速地进行空格去除操作：
+我们也可以快速地进行**空格去除**操作：
 
 ```java
 public static void main(String[] args) {
@@ -949,6 +948,12 @@ public static void main(String[] args) {
     System.out.println(str.stripLeading());  //去除首部空格
     System.out.println(str.stripTrailing());   //去除尾部空格
 }
+```
+根据换行符`\n`进行切割字符串：
+```java
+String str = "A\nB\nCD";   //根据换行符\n进行切割字符串
+str.lines()  
+        .forEach(System.out::println);
 ```
 
 ### 全新的 HttpClient 使用
@@ -967,24 +972,31 @@ public static void main(String[] args) throws URISyntaxException, IOException, I
 }
 ```
 
-利用全新的客户端，我们甚至可以轻松地做一个爬虫（仅供学习使用，别去做违法的事情，爬虫玩得好，牢饭吃到饱），比如现在我们想去批量下载某个网站的壁纸：
+利用全新的客户端，我们甚至可以轻松地做一个爬虫，比如现在我们想去批量下载某个网站的壁纸：
 
-网站地址： https://pic.netbian.com/4kmeinv/
+网站地址： https://pic.netbian.top/
 
 我们随便点击一张壁纸，发现网站的 URL 格式为：
 
 ![image-20230306180458933](https://s2.loli.net/2023/03/06/BxUmcfP2d7F3Luy.png)
 
-并且不同的壁纸似乎都是这样： https://pic.netbian.com/tupian/数字.html ，好了差不多可以开始整活了：
+并且不同的壁纸似乎都是这样： https://pic.netbian.top/tupian/数字.html ，好了差不多可以开始整活了：
 
 ```java
-public static void main(String[] args) throws URISyntaxException, IOException, InterruptedException {
-    HttpClient client = HttpClient.newHttpClient();
-    for (int i = 0; i < 10; i++) {  //先不要一次性获取太多，先来 10 个
-        HttpRequest request = HttpRequest.newBuilder().uri(new URI(" https://pic.netbian.com/tupian/"+ (29327 + i)+".html")).build();  //这里我们按照规律，批量获取
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        System.out.println(response.body());  //这里打印一下看看网页
-    }
+public static void main(String[] args) throws URISyntaxException, IOException, InterruptedException {  
+    HttpClient client = HttpClient.newHttpClient();  
+    int begin = 0;  
+    int end = 10;  
+    Random random = new Random();  
+    for (int i = begin; i < end; i++) {  
+        int id = random.nextInt(10000, 99999);  //随机获得图片序列号
+        var url = "https://pic.netbian.top/tupian/" + id + ".html";  
+        var fileName = "img-" + id + ".jpg";  
+        List<String> imgs = crawler(client, url);  
+        Optional.ofNullable(imgs).ifPresent(s -> downloadImage(s, client, fileName));  
+        // 设置下载进度条  
+        System.out.print("已下载序号为：" + id + " 的图片\r");  
+    }  
 }
 ```
 
@@ -996,55 +1008,83 @@ public static void main(String[] args) throws URISyntaxException, IOException, I
 
 ![image-20230306180647473](https://s2.loli.net/2023/03/06/koQX2LCjhVU1EZt.png)
 
-好了，知道图片在哪里就好办了，直接字符串截取：
+好了，知道图片在哪里就好办了，直接通过正则表达式截取：
 
 ```java
-public static void main(String[] args) throws URISyntaxException, IOException, InterruptedException {
-    HttpClient client = HttpClient.newHttpClient();
-    for (int i = 0; i < 10; i++) {
-        ...
-        String html = response.body();
-        
-        String prefix = "<a href=\"\" id=\"img\"><img src=\"";  //先找好我们要截取的前面一段，作为前缀去匹配位置
-        String suffix = "\" data-pic=";   //再找好我们要截取的屁股后面紧接着的位置，作为后缀去匹配位置
-      	//直接定位，然后前后截取，得到最终的图片地址
-        html = html.substring(html.indexOf(prefix) + prefix.length());
-        html = html.substring(0, html.indexOf(suffix));
-        System.out.println(html);  //最终的图片地址就有了
+    private static List<String> crawler(HttpClient client, String url) throws URISyntaxException, IOException, InterruptedException {  
+        if (url.contains("?")) {  
+            url = url.substring(0, url.indexOf("?"));  
+        }  
+        HttpRequest request = HttpRequest.newBuilder().uri(new URI(url)).header("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36").build();  //这里我们按照规律，批量获取  
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());  
+//        System.out.println(response.body());  
+        if (response.statusCode() == 403) {  
+            String text = response.body();  
+            String pattern = "btwaf=\\d+";  
+  
+            Pattern r = Pattern.compile(pattern);  
+            Matcher m = r.matcher(text);  
+  
+            if (m.find()) {  
+                var newUrl = url + "?".concat(m.group());  
+                System.out.println(newUrl);  
+                crawler(client, newUrl);  
+            }  
+        } else {  
+            String text = response.body();  
+            String pattern = "<img src=\"https([^\"]+)\"";  
+  
+            Pattern r = Pattern.compile(pattern);  
+            Matcher m = r.matcher(text);  
+  
+            if (m.find()) {  
+                var imgurl = m.group();  
+//                System.out.println(imgurl); 
+                if (imgurl.contains("https")) {  
+                    var imgUrl = imgurl.substring(imgurl.indexOf("https"), imgurl.length() - 1) + ".jpg";  
+                    return List.of(imgUrl);  
+                }  
+            }  
+        }  
+        return null;  
     }
-}
 ```
 
 好了，现在图片地址也可以批量拿到了，直接获取这些图片然后保存到本地吧：
 
 ```java
-public static void main(String[] args) throws URISyntaxException, IOException, InterruptedException {
-    HttpClient client = HttpClient.newHttpClient();
-    for (int i = 0; i < 10; i++) {
-        ...
-				//创建请求，把图片取到
-        HttpRequest imageRequest = HttpRequest.newBuilder().uri(new URI(" https://pic.netbian.com"+html )).build();
-      	//这里以输入流的方式获取，不过貌似可以直接下载文件，各位小伙伴可以单独试试看
-        HttpResponse<InputStream> imageResponse = client.send(imageRequest, HttpResponse.BodyHandlers.ofInputStream());
-      	//拿到输入流和文件输出流
-        InputStream imageInput = imageResponse.body();
-        FileOutputStream stream = new FileOutputStream("images/"+i+".jpg"); //一会要保存的格式
-        try (stream;imageInput){  //直接把要 close 的变量放进来就行，简洁一些了
-            int size;   //下面具体保存过程的不用我多说了吧
-            byte[] data = new byte[1024];  
-            while ((size = imageInput.read(data)) > 0) {  
-                stream.write(data, 0, size);
-            }
-        }
+    private static void downloadImage(List<String> imgs, HttpClient client, String fileName) {  
+        imgs.forEach(img -> {  
+            Optional.ofNullable(img).ifPresent(s -> {  
+                try {  
+//                    System.out.println(s);  
+                    //创建请求，把图片取到  
+                    HttpRequest imageRequest = HttpRequest.newBuilder().uri(new URI(s)).build();  
+                    //这里以输入流的方式获取，不过貌似可以直接下载文件，各位小伙伴可以单独试试看  
+                    HttpResponse<InputStream> imageResponse = client.send(imageRequest, HttpResponse.BodyHandlers.ofInputStream());  
+                    //拿到输入流和文件输出流  
+                    InputStream imageInput = imageResponse.body();  
+                    FileOutputStream stream = new FileOutputStream("E:\\IDEAProjects\\javaNewProps\\module-b\\src\\main\\resources\\images\\" + fileName); //一会要保存的格式  
+                    try (stream; imageInput) {  //直接把要 close 的变量放进来就行，简洁一些了  
+                        int size;   //下面具体保存过程的不用我多说了吧  
+                        byte[] data = new byte[1024];  
+                        while ((size = imageInput.read(data)) > 0) {  
+                            stream.write(data, 0, size);  
+                        }  
+                    }  
+                } catch (Exception e) {  
+                    throw new RuntimeException(e);  
+                }  
+            });  
+        });  
     }
-}
 ```
 
 我们现在来看看效果吧，美女的图片已经成功保存到本地了：
 
-![image-20230306180720108](https://s2.loli.net/2023/03/06/AEV6Dpjogy2eInz.png)
+![](http://qnpicmap.fcsluck.top/pics/202311302206160.png)
 
-当然，这仅仅是比较简单的爬虫，不过我们的最终目的还是希望各位能够学会使用新的 HttpClient API。
+当然，比较简单的爬虫到此为止了。
 
 # Java 12-16 新特性
 
@@ -1053,6 +1093,7 @@ public static void main(String[] args) throws URISyntaxException, IOException, I
 ![image-20230306180737638](https://s2.loli.net/2023/03/06/uWatQdpZYiJKhVr.png)
 
 Java12-16 这五个版本并非长期支持版本，所以很多特性都是一种处于实验性功能，12/13 版本引入了一些实验性功能，并根据反馈进行调整，最后在后续版本中正式开放使用，其实就是体验服的那种感觉。
+
 
 ### 新的 switch 语法
 

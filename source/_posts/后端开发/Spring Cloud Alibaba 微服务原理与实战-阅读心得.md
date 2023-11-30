@@ -925,6 +925,23 @@ class RedisSpringBootStarterApplicationTests {
 
 
 # 参考书籍
+
+<div>
+<a 
+  class="book-container"
+  href="https://online.fliphtml5.com/hysru/xbji/"
+  target="_blank"
+  rel="noreferrer noopener"
+>
+  <div class="book">
+    <img
+      alt="fcs"
+      src="https://orly.nanmu.me/api/generate?g_loc=BR&g_text=%E5%88%9D%E8%A7%81%E6%97%B6%E6%83%8A%E9%B8%BF&color=f9bc00&img_id=40&author=fcs&top_text=%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E6%A6%82%E5%BF%B5%E4%BB%8E0%E5%88%B01&title=%E5%BE%AE%E6%9C%8D%E5%8A%A1What%3F"
+      />
+  </div>
+</a>
+</div>
+
 ```cardlink
 url: https://book.douban.com/subject/35041576/?from=mdouban
 title: "Spring Cloud Alibaba 微服务原理与实战"
