@@ -1,11 +1,19 @@
 @media print {
 
+/* 设置背景颜色为护眼色 */
+  .markdown-preview-view, .markdown-rendered {
+    background-color: #dfd6b8 !important;
+    margin: 0 auto !important; 
+    padding: 0;
+    //padding-right: 0 !important;
+    //padding-left: 0 !important; //原本设置默认右侧内边距为2.5rem，导致打印为pdf时边距有问题
+  }
   /* 页边距 */
   @page {
-    margin: 20mm 20mm !important; 
+   //margin: 20mm 20mm !important; 
   }
 
-  body,
+
   p,
   li {
     /* 行间距 */

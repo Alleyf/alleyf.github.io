@@ -2,3 +2,9 @@
 body {
   --file-line-width: 60rem;  # 默认值为 45rem
 }
+body.tab-title-bar-position .workspace-split.mod-root .workspace-leaf-content[data-type='markdown'] .view-content {
+  margin: auto !important; 
+  padding-right: 0;
+  padding-left: 0; //原本设置默认右侧内边距为2.5rem，导致打印为pdf时边距有问题
+},
+
