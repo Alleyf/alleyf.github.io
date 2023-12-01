@@ -15,21 +15,22 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="alleyf">
+  <meta name="author" content="fcs">
   <meta name="keywords" content="">
   
-    <meta name="description" content="some keypoints about paperReading">
+    <meta name="description" content="一些关于正则表达式的知识。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="论文阅读模板(最好读英文原文)">
-<meta property="og:url" content="https://alleyf.github.io/2023/11/fa4d17378db3.html">
+<meta property="og:title" content="正则表达式-Regex">
+<meta property="og:url" content="https://alleyf.github.io/2023/12/3e87c166eb21.html">
 <meta property="og:site_name" content="alleyf">
-<meta property="og:description" content="some keypoints about paperReading">
+<meta property="og:description" content="一些关于正则表达式的知识。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://picsum.photos/800/250">
-<meta property="article:published_time" content="2023-11-13T15:39:46.000Z">
-<meta property="article:modified_time" content="2023-11-14T02:40:56.963Z">
+<meta property="article:published_time" content="2023-12-01T13:05:12.000Z">
+<meta property="article:modified_time" content="2023-12-01T16:15:30.119Z">
 <meta property="article:author" content="alleyf">
-<meta property="article:tag" content="Paper">
+<meta property="article:tag" content="正则表达式">
+<meta property="article:tag" content="Regex">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://picsum.photos/800/250">
   
@@ -37,7 +38,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>论文阅读模板(最好读英文原文) - alleyf</title>
+  <title>正则表达式-Regex - alleyf</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -255,7 +256,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="论文阅读模板(最好读英文原文)"></span>
+            <span id="subtitle" data-typed-text="正则表达式-Regex"></span>
           
         </div>
 
@@ -265,14 +266,14 @@
     
       <span class="post-meta mr-2">
         <i class="iconfont icon-author" aria-hidden="true"></i>
-        alleyf
+        fcs
       </span>
     
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-11-13 23:39" pubdate>
-          2023年11月13日 晚上
+        <time datetime="2023-12-01 21:05" pubdate>
+          2023年12月1日 晚上
         </time>
       </span>
     
@@ -283,7 +284,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          331 字
+          2.2k 字
         
       </span>
     
@@ -294,7 +295,7 @@
         
         
         
-          3 分钟
+          19 分钟
         
       </span>
     
@@ -340,12 +341,12 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">论文阅读模板(最好读英文原文)</h1>
+            <h1 style="display: none">正则表达式-Regex</h1>
             
               <p class="note note-info">
                 
                   
-                    本文最后更新于：18 天前
+                    本文最后更新于：几秒前
                   
                 
               </p>
@@ -354,57 +355,82 @@
               <div class="markdown-body">
                 
                 <p><img src="https://picsum.photos/800/250" srcset="/img/loading.gif" lazyload></p>
-<h2 id="第一遍阅读，略读（5-10分钟）"><a href="#第一遍阅读，略读（5-10分钟）" class="headerlink" title="第一遍阅读，略读（5-10分钟）"></a>第一遍阅读，略读（5-10分钟）</h2><ol>
-<li><p>读<strong>title, abstract, and introduction</strong>，并做记录</p>
-<p> 此处填写</p>
-</li>
-<li><p>读 <strong>section 和 sub-section ​</strong>开头, 但是忽略其他</p>
-<p> 此处填写</p>
-</li>
-<li><p>读 conclusions</p>
-<p> 此处填写</p>
-</li>
-<li><p>浏览参考文献，圈出已经读过的和没读的</p>
-<p> 此处填写</p>
-</li>
-<li><p>粗略总结阅读的内容</p>
-<ol>
-<li>这个文章是什么类型。</li>
-<li>和什么其他文章相关？理论基础？</li>
-<li>假设是否有效？</li>
-<li>主要贡献？</li>
-<li>是否写的有条理？</li>
+<h1 id="第一章、校验工具"><a href="#第一章、校验工具" class="headerlink" title="第一章、校验工具"></a>第一章、校验工具</h1><p><a target="_blank" rel="noopener" href="https://regex101.com/">regex101: build, test, and debug regex</a> 是一个多语言在线校验正则表达式的平台，可以对输入按照用户编写的正则表达式进行匹配并高亮匹配到的对象。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cardlink">url: https://regex101.com/<br>title: &quot;regex101: build, test, and debug regex&quot;<br>description: &quot;Regular expression tester with syntax highlighting, explanation, cheat sheet for PHP/PCRE, Python, GO, JavaScript, Java, C#/.NET, Rust.&quot;<br>host: regex101.com<br>favicon: https://regex101.com/static/assets/icon-16.png<br>image: https://regex101.com/preview/<br></code></pre></td></tr></table></figure>
+
+<h1 id="第二章、特殊字符"><a href="#第二章、特殊字符" class="headerlink" title="第二章、特殊字符"></a>第二章、特殊字符</h1><table>
+<thead>
+<tr>
+<th align="center">特别字符</th>
+<th align="left">描述</th>
+<th align="center">示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>$</code></td>
+<td align="left">匹配<strong>输入字符串的结尾位置</strong>。如果设置了 RegExp 对象的 Multiline 属性，则 $ 也匹配 ‘\n’ 或 ‘\r’。要匹配 $ 字符本身，请使用 $。</td>
+<td align="center"><img src="http://qnpicmap.fcsluck.top/pics/202312020011471.png" srcset="/img/loading.gif" lazyload></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="left"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"><code>( )</code></td>
+<td align="left">优先级运算符，标记一个子表达式的<strong>开始和结束位置</strong>（<em>用于多字符匹配</em>）。子表达式可以获取供以后使用。要匹配这些字符，请使用 ( 和 )。</td>
+<td align="center"><img src="http://qnpicmap.fcsluck.top/pics/202312020013867.png" srcset="/img/loading.gif" lazyload></td>
+</tr>
+</tbody></table>
+<pre><code class="hljs">                                                                                                                                                                                |
+</code></pre>
+<p>|   <code>*</code>    | 匹配前面的子表达式<strong>零次或多次</strong>。要匹配 * 字符，请使用 *。                                                                                                                                                                                                  |                                                                                                                                                                                     |<br>|   <code>+</code>    | 匹配前面的子表达式<strong>一次或多次(包括一次)<strong>。要匹配 + 字符，请使用 +。                                                                                                                                                                                        |                                                                                                                                                                                     |<br>|   <code>.</code>    | 匹配</strong>除换行符 \n 之外的任何单字符</strong>。要匹配 . ，请使用 . 。                                                                                                                                                                                                 |                                                              <img src="http://qnpicmap.fcsluck.top/pics/202312020003528.png" srcset="/img/loading.gif" lazyload>                                                              |<br>|          |                                                                                                                                                                                                                                                               |                                                                                                                                                                                     |<br>|   <code>[</code>    | 给定方括号中的范围进行匹配，标记一个<strong>中括号表达式的开始</strong>。要匹配 [，请使用 [。                                                                                                                                                                            |                             <img src="http://qnpicmap.fcsluck.top/pics/202312012333847.png" srcset="/img/loading.gif" lazyload alt="\|550"><br><img src="http://qnpicmap.fcsluck.top/pics/202312012254132.png" srcset="/img/loading.gif" lazyload>                             |<br>|          |                                                                                                                                                                                                                                                               |                                                                                                                                                                                     |<br>|   <code>?</code>    | 匹配前面的子表达式<strong>零次或一次</strong>，或指明一个非贪婪限定符。要匹配 ? 字符，请使用 ?。                                                                                                                                                                          |                                                                                                                                                                                     |<br>|   <code>\</code>    | 将<strong>下一个字符标记为或特殊字符、或原义字符、或向后引用、或八进制转义符</strong>。例如，*’\d’匹配任意数字,’\w’匹配任意字符数字和下划线,’\s’匹配空白字符（Tab和换行符）,’\n’ 匹配换行符，所有字母转为大写即变成匹配相反含义*。序列 ‘\‘ 匹配 “&quot;，而 ‘(‘ 则匹配 “(“。 | <img src="http://qnpicmap.fcsluck.top/pics/202312012353253.png" srcset="/img/loading.gif" lazyload><br><img src="http://qnpicmap.fcsluck.top/pics/202312012342578.png" srcset="/img/loading.gif" lazyload><br><img src="http://qnpicmap.fcsluck.top/pics/202312012341395.png" srcset="/img/loading.gif" lazyload> |<br>|          |                                                                                                                                                                                                                                                               |                                                                                                                                                                                     |<br>|   <code>^</code>    | 匹配<strong>输入字符串的开始位置</strong>，除非在方括号表达式中使用，<strong>当该符号在方括号表达式中使用时，表示不接受该方括号表达式中的字符集合</strong>。要匹配 ^ 字符本身，请使用 ^。                                                                                              |                               <img src="http://qnpicmap.fcsluck.top/pics/202312020008754.png" srcset="/img/loading.gif" lazyload><br><img src="http://qnpicmap.fcsluck.top/pics/202312012337245.png" srcset="/img/loading.gif" lazyload>                                |<br>|          |                                                                                                                                                                                                                                                               |                                                                                                                                                                                     |<br>|   <code>&#123;</code>    | 标记<strong>限定符表达式的开始</strong>。要匹配 {，请使用 {。                                                                                                                                                                                                             |                                                                                                                                                                                     |<br>|    |    | 或运算符，指明<strong>两项之间的一个选择</strong>。要匹配 |，请使用 \。                                                                                                                                                                                                   |                                                              <img src="http://qnpicmap.fcsluck.top/pics/202312012250643.png" srcset="/img/loading.gif" lazyload>                                                              |</p>
+<h1 id="第三章、限定符"><a href="#第三章、限定符" class="headerlink" title="第三章、限定符"></a>第三章、限定符</h1><table>
+<thead>
+<tr>
+<th align="center">限定符</th>
+<th>描述</th>
+<th align="center">示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>？</code></td>
+<td>匹配前面的子表达式<strong>零次或一次</strong>。</td>
+<td align="center"><img src="http://qnpicmap.fcsluck.top/pics/202312012158366.png" srcset="/img/loading.gif" lazyload></td>
+</tr>
+<tr>
+<td align="center"><code>*</code></td>
+<td>匹配前面的子表达式<strong>任意次</strong>。</td>
+<td align="center"><img src="http://qnpicmap.fcsluck.top/pics/202312012201477.png" srcset="/img/loading.gif" lazyload></td>
+</tr>
+<tr>
+<td align="center"><code>+</code></td>
+<td>匹配前面的子表达式<strong>至少一次</strong>。</td>
+<td align="center"><img src="http://qnpicmap.fcsluck.top/pics/202312012202938.png" srcset="/img/loading.gif" lazyload></td>
+</tr>
+<tr>
+<td align="center"><code>&#123;n&#125;</code></td>
+<td>匹配前面的子表达式<strong>确定次数为 n 次</strong></td>
+<td align="center"><img src="http://qnpicmap.fcsluck.top/pics/202312012204195.png" srcset="/img/loading.gif" lazyload></td>
+</tr>
+<tr>
+<td align="center"><code>&#123;n,m&#125;</code></td>
+<td>范围匹配前面的子表达式<strong>次数为 n~m 次</strong></td>
+<td align="center"><img src="http://qnpicmap.fcsluck.top/pics/202312012205441.png" srcset="/img/loading.gif" lazyload></td>
+</tr>
+<tr>
+<td align="center"><code>&#123;n,&#125;</code></td>
+<td>范围匹配前面的子表达式<strong>次数为 n~$\infty$ 次</strong></td>
+<td align="center"><img src="http://qnpicmap.fcsluck.top/pics/202312012207096.png" srcset="/img/loading.gif" lazyload></td>
+</tr>
+</tbody></table>
+<h1 id="第四章、贪婪与懒惰匹配"><a href="#第四章、贪婪与懒惰匹配" class="headerlink" title="第四章、贪婪与懒惰匹配"></a>第四章、贪婪与懒惰匹配</h1><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1da4y1p7iZ/?spm_id_from=333.337.search-card.all.click&vd_source=9c896fa9c3f9023797e8efe7be0c113e">10分钟快速掌握正则表达式_哔哩哔哩_bilibili</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.runoob.com/regexp/regexp-syntax.html">正则表达式 – 语法 | 菜鸟教程</a></li>
 </ol>
-</li>
-</ol>
-<p>‍</p>
-<hr>
-<h2 id="第二遍阅读，细读但不读细节（1小时）"><a href="#第二遍阅读，细读但不读细节（1小时）" class="headerlink" title="第二遍阅读，细读但不读细节（1小时）"></a>第二遍阅读，细读但不读细节（1小时）</h2><ol>
-<li><p>关注图表和结论，判断是否有读的价值</p>
-</li>
-<li><p>了解背景，必要的话补充相关知识</p>
-<p> 此处填写</p>
-</li>
-<li><p>阅读文章核心点，理解<strong>观点、假设、方法、实验、结论</strong></p>
-<p> 此处填写</p>
-</li>
-</ol>
-<p>‍</p>
-<hr>
-<h2 id="第三遍细致阅读，并尝试复现论文（长时间）"><a href="#第三遍细致阅读，并尝试复现论文（长时间）" class="headerlink" title="第三遍细致阅读，并尝试复现论文（长时间）"></a>第三遍细致阅读，并尝试复现论文（长时间）</h2><ol>
-<li><p>理论部分推导</p>
-<p> 此处填写</p>
-</li>
-<li><p>实验复现或代码复现</p>
-<p> 此处填写</p>
-</li>
-<li><p>对文章进行最后总结并保存相关内容</p>
-<p> 此处填写</p>
-<p> 链接</p>
-</li>
-</ol>
-<blockquote>
-</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cardlink">url: https://www.runoob.com/regexp/regexp-syntax.html<br>title: &quot;正则表达式 – 语法 | 菜鸟教程&quot;<br>description: &quot;正则表达式 - 语法  正则表达式是一种用于匹配和操作文本的强大工具，它是由一系列字符和特殊字符组成的模式，用于描述要匹配的文本模式。 正则表达式可以在文本中查找、替换、提取和验证特定的模式。 例如：  runoo+b，可以匹配 runoob、runooob、runoooooob 等，+ 号代表前面的字符必须至少出现一次（1次或多次）尝试一下 »。   runoo*b，可以匹配 runob、runoob、runoooooob 等，* 号..&quot;<br>host: www.runoob.com<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cardlink">url: https://www.bilibili.com/video/BV1da4y1p7iZ/?spm_id_from=333.337.search-card.all.click&amp;vd_source=9c896fa9c3f9023797e8efe7be0c113e<br>title: &quot;10分钟快速掌握正则表达式_哔哩哔哩_bilibili&quot;<br>description: &quot;正则表达式在线测试工具：https://regex101.com/, 视频播放量 466178、弹幕量 1125、点赞数 20277、投硬币枚数 14222、收藏人数 27313、转发人数 2917, 视频作者 奇乐编程学院, 作者简介 ，相关视频：正则表达式30分钟入门40分钟进阶（绝对能学会），女朋友学了一个月Python，就做出了个这，大家觉得还有必要学下去吗？，编程语言鄙视链现状，Python编程：正则表达式，正则表达式教程【完整版】，在高铁上偶遇一个电脑高手，程序员之间的鄙视链，我妈眼中的我 vs 真实的我，js正则表达式实战，推荐一个正则表达式神器，可视化正则表达式工具。&quot;<br>host: www.bilibili.com<br>image: https://i2.hdslb.com/bfs/archive/ba08c0c474deb63b844219f19630bed91e9f51a0.jpg@100w_100h_1c.png<br></code></pre></td></tr></table></figure>
 
                 
               </div>
@@ -423,7 +449,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E7%A7%91%E7%A0%94%E5%AD%A6%E4%B9%A0/" class="category-chain-item">科研学习</a>
+  <a href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6%E5%92%8C%E5%B7%A5%E5%85%B7/" class="category-chain-item">中间件和工具</a>
   
   
 
@@ -438,7 +464,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Paper/">#Paper</a>
+        <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">#正则表达式</a>
+      
+        <a href="/tags/Regex/">#Regex</a>
       
     </div>
   
@@ -450,26 +478,26 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>论文阅读模板(最好读英文原文)</div>
-      <div>https://alleyf.github.io/2023/11/fa4d17378db3.html</div>
+      <div>正则表达式-Regex</div>
+      <div>https://alleyf.github.io/2023/12/3e87c166eb21.html</div>
     </div>
     <div class="license-meta">
       
         <div class="license-meta-item">
           <div>作者</div>
-          <div>alleyf</div>
+          <div>fcs</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年11月13日</div>
+          <div>2023年12月1日</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2023年11月14日</div>
+          <div>2023年12月2日</div>
         </div>
       
       <div class="license-meta-item">
@@ -498,18 +526,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/11/53a88a28555b.html" title="Paper_Reading_Method">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Paper_Reading_Method</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/11/51775ce3788e.html" title="SpringSecurity">
-                        <span class="hidden-mobile">SpringSecurity</span>
+                      <a href="/2023/11/49e020206b8b.html" title="Java常用新特性-Lambda-Optional-Stream">
+                        <span class="hidden-mobile">Java常用新特性-Lambda-Optional-Stream</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -530,7 +552,7 @@
         var options = Object.assign(
           {"clientID":"636f2864e051a199b91c","clientSecret":"5185fd11115bbcd8d2f636bc80de6bed98ed14c1","repo":"Gitalk","owner":"Alleyf","admin":["Alleyf"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":false,"proxy":"https://shielded-brushlands-08810.herokuapp.com/https://github.com/login/oauth/access_token"},
           {
-            id: '7f1a6c9c76750818b354212b9e094e88'
+            id: '1cb57cc7d8c600a4bb964f4d79647694'
           }
         )
         var gitalk = new Gitalk(options);
