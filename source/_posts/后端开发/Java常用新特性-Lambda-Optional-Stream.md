@@ -824,7 +824,7 @@ public static void main(String[] args) {
 }
 ```
 
-我们也可以使用`or()`方法快速替换为另一个 Optional 类：
+我们也可以使用 `or()` 方法快速替换为另一个 Optional 类：
 
 ```java
 public static void main(String[] args) {
@@ -880,7 +880,7 @@ public static void main(String[] args) {
 }
 ```
 
-但是注意，`var`关键字必须位于有初始值设定的变量上，否则鬼知道你要用什么类型。
+但是注意，`var` 关键字必须位于有初始值设定的变量上，否则鬼知道你要用什么类型。
 
 ![image-20230306180322150](https://s2.loli.net/2023/03/06/xgoX2Cy9lST4Gkc.png)
 
@@ -897,7 +897,7 @@ public static void main(String[] args) {
 
 ![image-20230306180329364](https://s2.loli.net/2023/03/06/og94MUsWPdyulmX.png)
 
-并且`var`关键字仅适用于局部变量，我们是没办法在其他地方使用的，比如类的成员变量：
+并且 `var` 关键字仅适用于局部变量，我们是没办法在其他地方使用的，比如类的成员变量：
 
 ![image-20230306180337900](https://s2.loli.net/2023/03/06/g4aIlhC6GQfu2NF.png)
 
@@ -908,7 +908,7 @@ Java 11 是继 Java 8 之后的又一个 TLS 长期维护版本，在 Java 17 �
 
 ### 用于 Lambda 的形参局部变量语法
 
-在 Java 10 我们认识了`var`关键字，它能够直接让局部变量自动进行类型推断，不过它不支持在 lambda 中使用：
+在 Java 10 我们认识了 `var` 关键字，它能够直接让局部变量自动进行类型推断，不过它不支持在 lambda 中使用：
 
 ![image-20230306180413626](https://s2.loli.net/2023/03/06/uaNSkgeOUQTxoLl.png)
 
@@ -930,7 +930,7 @@ public static void main(String[] args) {
 }
 ```
 
-我们还可以通过`repeat()`方法来让字符串重复拼接：
+我们还可以通过 `repeat()` 方法来让字符串重复拼接：
 
 ```java
 public static void main(String[] args) {
@@ -949,7 +949,7 @@ public static void main(String[] args) {
     System.out.println(str.stripTrailing());   //去除尾部空格
 }
 ```
-根据换行符`\n`进行切割字符串：
+根据换行符 `\n` 进行切割字符串：
 ```java
 String str = "A\nB\nCD";   //根据换行符\n进行切割字符串
 str.lines()  
@@ -1095,7 +1095,7 @@ public static void main(String[] args) throws URISyntaxException, IOException, I
 Java12-16 这五个版本并非长期支持版本，所以很多特性都是一种处于实验性功能，12/13 版本引入了一些实验性功能，并根据反馈进行调整，最后在后续版本中正式开放使用，其实就是体验服的那种感觉。
 
 
-### 新的 switch 语法
+### 增强型 switch 语法
 
 在 Java 12 引入全新的 switch 语法，让我们使用 switch 语句更加的灵活，比如我们想要编写一个根据成绩得到等级的方法：
 
@@ -1114,7 +1114,7 @@ public static String grade(int score){
 }
 ```
 
-现在我们想要使用 switch 来实现这个功能（不会吧不会吧，不会有人要想半天怎么用 switch 实现吧），之前的写法是：
+现在我们使用 switch 来实现这个功能，之前的写法是：
 
 ```java
 public static String grade(int score){
@@ -1140,7 +1140,7 @@ public static String grade(int score){
 }
 ```
 
-但是现在我们可以使用新的特性了：
+但是现在我们可以使用**增强型 Switch 语法**了：
 
 ```java
 public static String grade(int score){
@@ -1158,7 +1158,7 @@ public static String grade(int score){
 
 ![image-20230306180750556](https://s2.loli.net/2023/03/06/ZcAmGyCQrD4uSMR.png)
 
-这种全新的 switch 语法称为`switch 表达式`，它的意义不仅仅体现在语法的精简上，我们来看看它的详细规则：
+这种全新的 switch 语法称为 `switch 表达式`，它的意义不仅仅体现在语法的精简上，我们来看看它的详细规则：
 
 ```java
 var res = switch (obj) {   //这里和之前的 switch 语句是一样的，但是注意这样的 switch 是有返回值的，所以可以被变量接收
@@ -1194,7 +1194,7 @@ var res = switch (args.length) {   //增强版 switch 语法
 
 这种全新的语法，可以说极大地方便了我们的编码，不仅代码简短，而且语义明确。唯一遗憾的是依然不支持区间匹配。
 
-**注意：**switch 表达式在 Java 14 才正式开放使用，所以我们项目的代码级别需要调整到 14 以上。
+> switch 表达式在 `Java 14` 才正式开放使用，所以我们项目的代码级别需要调整到 14 以上。
 
 ### 文本块
 
@@ -1214,19 +1214,17 @@ print multi_line
 
 ![image-20230306180802418](https://s2.loli.net/2023/03/06/CqVmXrshfFExgRO.png)
 
-可以看到，Java 中也可以使用这样的三引号来表示字符串了，并且我们可以随意在里面使用特殊字符，包括双引号等，但是最后编译出来的结果实际上还是会变成一个之前这样使用了转义字符的字符串：
+可以看到，Java 中也可以使用这样的**三引号来表示字符串**了，并且我们可以随意在里面使用特殊字符，包括双引号等，但是最后编译出来的结果实际上还是会变成一个之前这样使用了转义字符的字符串：
 
 ![image-20230306180813359](https://s2.loli.net/2023/03/06/s2ImkOEN5cJZPvU.png)
 
 仔细想想，这样我们写 SQL 或是 HTML 岂不是就舒服多了？
 
-**注意：**文本块表达式在 Java 15 才正式开放使用，所以我们项目的代码级别需要调整到 15 以上。
+> 文本块表达式在 Java 15 才正式开放使用，所以我们项目的代码级别需要调整到 15 以上。
 
 ### 新的 instanceof 语法
 
-在 Java 14，instanceof 迎来了一波小更新（哈哈，这版本 instanceof 又加强了，版本强势语法）
-
-比如我们之前要重写一个类的 equals 方法：
+在 Java 14，instanceof 迎来了一波小更新, 比如我们之前要重写一个类的 equals 方法：
 
 ```java
 public class Student {
@@ -1247,18 +1245,16 @@ public class Student {
 }
 ```
 
-在之前我们一直都是采用这种先判断类型，然后类型转换，最后才能使用的方式，但是这个版本 instanceof 加强之后，我们就不需要了，我们可以直接将 student 替换为模式变量：
+在之前我们一直都是采用这种先判断类型，然后类型转换，最后才能使用的方式，但是这个版本 instanceof 加强之后，我们就不需要了，我们可以直接将 student 替换为**模式变量**：
 
 ![image-20230306180828080](https://s2.loli.net/2023/03/06/YRyg2qEi5kcDuX9.png)
 
 ```java
+@Data  
+@AllArgsConstructor  
+@NoArgsConstructor
 public class Student {
     private final String name;
-
-    public Student(String name) {
-        this.name = name;
-    }
-
     @Override
     public boolean equals(Object obj) {
         if(obj instanceof Student student) {   //在比较完成的屁股后面，直接写变量名字，而这个变量就是类型转换之后的
@@ -1269,9 +1265,9 @@ public class Student {
 }
 ```
 
-在使用`instanceof`判断类型成立后，会自动强制转换类型为指定类型，简化了我们手动转换的步骤。
+在使用 `instanceof` *判断类型成立后，会自动强制转换类型为指定类型，简化了我们手动转换的步骤*。
 
-**注意：**新的 instanceof 语法在 Java 16 才正式开放使用，所以我们项目的代码级别需要调整到 16 以上。
+> 新的 instanceof 语法在 Java 16 才正式开放使用，所以我们项目的代码级别需要调整到 16 以上。
 
 ### 空指针异常的改进
 
@@ -1288,13 +1284,13 @@ public static void test(String a, String b){
 
 ![image-20230306180839217](https://s2.loli.net/2023/03/06/lOSDTM4WcqzR5Ud.png)
 
-但是由于我们这里 a 和 b 都调用了`length()`方法，虽然空指针异常告诉我们问题出现在这一行，但是到底是 a 为 null 还是 b 为 null 呢？我们是没办法直接得到的（遇到过这种问题的扣个 1 吧，只能调试，就很头疼）
+但是由于我们这里 a 和 b 都调用了 `length()` 方法，虽然空指针异常告诉我们问题出现在这一行，但是到底是 a 为 null 还是 b 为 null 呢？我们是没办法直接得到的（遇到过这种问题的扣个 1 吧，只能调试，就很头疼）
 
 但是当我们在 Java 14 或更高版本运行时：
 
 ![image-20230306180847472](https://s2.loli.net/2023/03/06/eunGbL8qOE9MZwi.png)
 
-这里会明确指出是哪一个变量调用出现了空指针，是不是感觉特别人性化。
+这里会明确指出是哪一个变量调用出现了空指针，更人性化。
 
 ### 记录类型
 
@@ -1328,7 +1324,7 @@ public record Account(String username, String password) {  //直接把字段写�
 
 ![image-20230306180905242](https://s2.loli.net/2023/03/06/cvOXQklZybzHPfs.png)
 
-`equals()`方法仅做成员字段之间的值比较，也是帮助我们实现好了的：
+`equals()` 方法仅做成员字段之间的值比较，也是帮助我们实现好了的：
 
 ```java
 Account account0 = new Account("Admin", "123456");
@@ -1348,7 +1344,7 @@ public record Account(String username, String password) implements Runnable {  /
 }
 ```
 
-**注意：** 记录类型在 Java 16 才正式开放使用，所以我们项目的代码级别需要调整到 16 以上。
+> 记录类型在 Java 16 才正式开放使用，所以我们项目的代码级别需要调整到 16 以上。
 
 # Java 17 新特性
 
@@ -1360,7 +1356,7 @@ Java 17 作为新的 LTS 长期维护版本，我们来看看都更新了什么�
 
 在 Java 中，我们可以通过继承（extends 关键字）来实现类的能力复用、扩展与增强。但有的时候，可能并不是所有的类我们都希望能够被继承。所以，我们需要对继承关系有一些限制的控制手段，而密封类的作用就是**限制类的继承**。
 
-实际上在之前我们如果不希望别人继承我们的类，可以直接添加`final`关键字：
+实际上在之前我们如果不希望别人继承我们的类，可以直接添加 `final` 关键字：
 
 ```java
 public final class A{   //添加 final 关键字后，不允许对此类继承
@@ -1368,7 +1364,7 @@ public final class A{   //添加 final 关键字后，不允许对此类继承
 }
 ```
 
-这样有一个缺点，如果添加了`final`关键字，那么无论是谁，包括我们自己也是没办法实现继承的，但是现在我们有一个需求，只允许我们自己写的类继承 A，但是不允许别人写的类继承 A，这时该咋写？在 Java 17 之前想要实现就很麻烦。
+这样有一个缺点，如果添加了 `final` 关键字，那么无论是谁，包括我们自己也是没办法实现继承的，但是现在我们有一个需求，只允许我们自己写的类继承 A，但是不允许别人写的类继承 A，这时该咋写？在 Java 17 之前想要实现就很麻烦。
 
 但是现在我们可以使用密封类型来实现这个功能：
 
@@ -1382,14 +1378,14 @@ public sealed class A permits B{   //在 class 关键字前添加 sealed 关键�
 
 * 可以基于普通类、抽象类、接口，也可以是继承自其他接抽象类的子类或是实现其他接口的类等。
 * 必须有子类继承，且不能是匿名内部类或是 lambda 的形式。
-* `sealed`写在原来`final`的位置，但是不能和`final`、`non-sealed`关键字同时出现，只能选择其一。
-* 继承的子类必须显式标记为`final`、`sealed`或是`non-sealed`类型。
+* `sealed` 写在原来 `final` 的位置，但是不能和 `final`、`non-sealed` 关键字同时出现，只能选择其一。
+* 继承的子类必须显式标记为 `final`、`sealed` 或是 `non-sealed` 类型。
 
 标准的声明格式如下：
 
 ```java
 public sealed [abstract] [class/interface] 类名 [extends 父类] [implements 接口, ...] permits [子类, ...]{
-		//里面的该咋写咋写
+		//里面的该怎么写就怎么写
 }
 ```
 
@@ -1423,7 +1419,7 @@ public final class B extends A {   //在子类 final，彻底封死
 
 ![image-20230306180924756](https://s2.loli.net/2023/03/06/NubaU8iHE4YAL6M.png)
 
-但是如果此时我们主动将 B 设定为`non-sealed`类型：
+但是如果此时我们主动将 B 设定为 `non-sealed` 类型：
 
 ```java
 public non-sealed class B extends A {
@@ -1431,7 +1427,7 @@ public non-sealed class B extends A {
 }
 ```
 
-这样就可以正常继承了，因为 B 指定了`non-sealed`主动放弃了密封特性，这样就显得非常灵活了。
+这样就可以正常继承了，因为 B 指定了 `non-sealed` 主动放弃了密封特性，这样就显得非常灵活了。
 
 当然我们也可以通过反射来获取类是否为密封类型：
 
@@ -1442,8 +1438,21 @@ public static void main(String[] args) {
 }
 ```
 
-至此，Java 9 - 17 的主要新特性就讲解完毕了。
 
+# 专题
+
+1. java 出入牛犊- [[Java Notes]]
+2. java 小试牛刀- [[Java_Exercise]]
+3. java 窥探炼器-[[Java常用新特性-Lambda-Optional-Stream]]
+4. Springboot 速成秘籍-[[SpringBoot启示录]]
+5. Spring出入牛犊-[[Spring核心学习]]
+6. SpringSecurity 行走利器-[[SpringSecurity]]
+7. SpringBoot 结丹-[[SpringBoot]]
+8. SpringBoot 整活-[[SpringBoot+Vue项目实战]]
+9. SpringCloud 元婴-[[SpringCloud-微服务基础]]
+10. SpringCloud 淬炼-[[SpringCloud Alibaba-微服务进阶]]
+11. SpringCloud 盘它-[[SpringCloud-微服务应用]]
+12. SpringCLoud 空明-[[Spring Cloud Alibaba 微服务原理与实战-阅读心得]]
 # 参考
 
 ```cardlink
@@ -1454,3 +1463,4 @@ host: www.bilibili.com
 image: https://i2.hdslb.com/bfs/archive/dc0cc9464c6fc274c1f23f682a01dab5a358217b.jpg@100w_100h_1c.png
 ```
 [JavaSE 9-17 新特性 已完结（IDEA 2022.1最新版）4K蓝光画质 Java9/10/11/12/13/14/15/16/17讲解\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1tU4y1y7Fg/?vd_source=9c896fa9c3f9023797e8efe7be0c113e)
+

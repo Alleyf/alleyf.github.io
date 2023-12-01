@@ -25,5 +25,8 @@
   "attachmentFolderPath": "attachment",
   "rightToLeft": false,
   "readableLineLength": true,
-  "showIndentGuide": true
+  "showIndentGuide": true,
+  "newLinkFormat": "shortest",
+  "alwaysUpdateLinks": true,
+  "useMarkdownLinks": true
 }

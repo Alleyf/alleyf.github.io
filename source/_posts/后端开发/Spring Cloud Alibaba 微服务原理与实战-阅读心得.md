@@ -7,7 +7,7 @@ tags:
   - Java
 sticky: 95
 excerpt: 关于springcloud-alibaba微服务和中间件的阅读收获。
-author: fcs
+author: 范财胜
 index_img: https://picsum.photos/800/250
 lang: zh-CN
 keywords:
@@ -16,8 +16,32 @@ keywords:
   - Java
 header-left: "![](D:/开发图片/logo32.png)"
 ---
+<div style="width=100%;height=100%">
+    <a 
+      class="book-container"
+      href="https://online.fliphtml5.com/hysru/xbji/"
+      target="_blank"
+      rel="noreferrer noopener"
+    >
+      <div class="book">
+        <img
+          alt="fcs"
+          src="https://orly.nanmu.me/api/generate?g_loc=BR&g_text=%E5%88%9D%E8%A7%81%E6%97%B6%E6%83%8A%E9%B8%BF&color=f9bc00&img_id=40&author=fcs&top_text=%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E6%A6%82%E5%BF%B5%E4%BB%8E0%E5%88%B01&title=%E5%BE%AE%E6%9C%8D%E5%8A%A1What%3F" />
+      </div>
+    </a>
+</div>
 
-![](https://picsum.photos/0/800)
+
+
+
+
+<div style="page-break-after:always;"></div>
+
+
+
+
+
+![](https://picsum.photos/0/700)
 
 # 第一章、微服务发展史
 ## 单体架构到分布式架构的演变
@@ -78,6 +102,7 @@ SOA 和微服务的关注点不同，区别如下所示：
 
 ## 如何实现微服务架构
 架构的本质是对系统进行*有序化重构*，使系统不断进化。在这个进化的过程中除了更好地支撑业务发展，也会带来非常多的挑战，譬如在前文中提到的微服务的挑战，为了解决这些问题就必须引入更多的技术，进而使得微服务架构的实现变得非常复杂。
+
 ### 微服务架构图
  微服务架构图通常由多个服务组成，每个服务都是一个独立的单元，负责执行特定的业务功能。这些服务之间通过网络进行通信，并使用轻量级的传输协议（如 HTTP 或 RPC）进行交互。
  ![|500](http://qnpicmap.fcsluck.top/pics/202311281557440.png)
@@ -91,7 +116,7 @@ A --> D[订单服务]
 B --> E[数据库]
 C --> E
 D --> E
-```
+ ```
 
 其中，网关（Gateway）是整个系统的入口，认证服务（Authentication Service）、用户服务（User Service）和订单服务（Order Service）是三个不同的微服务，它们之间通过网关进行通信。数据库（Database）用于存储数据，被认证服务、用户服务和订单服务共享。
 
@@ -317,7 +342,7 @@ public class SpringBootDemoApplication {
         return "Hello World!";
     }
 }
-```
+ ```
 
 当我们运行主类的 main 方法后，Spring Boot 会自动扫描并加载所有带有@Controller 或@RestController 注解的类，并根据其注解配置创建相应的 Bean。此时，我们可以通过访问 http://localhost:8080/hello 来调用刚刚定义的接口，返回结果为"Hello World!"。
 
@@ -386,7 +411,7 @@ public class HelloController{
 public @interface SpringBootApplication { ...
 ```
 
-  
+
 > - @Target({ElementType.TYPE})：指定该注解可以放置在类上。 
 > - @Retention(RetentionPolicy.RUNTIME)：指定该注解的保留策略为运行时，即在编译后仍然存在。 
 > - @Documented：指示被注解的元素应该在 API 文档中被记录。 
@@ -925,22 +950,6 @@ class RedisSpringBootStarterApplicationTests {
 
 
 # 参考书籍
-
-<div>
-<a 
-  class="book-container"
-  href="https://online.fliphtml5.com/hysru/xbji/"
-  target="_blank"
-  rel="noreferrer noopener"
->
-  <div class="book">
-    <img
-      alt="fcs"
-      src="https://orly.nanmu.me/api/generate?g_loc=BR&g_text=%E5%88%9D%E8%A7%81%E6%97%B6%E6%83%8A%E9%B8%BF&color=f9bc00&img_id=40&author=fcs&top_text=%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E6%A6%82%E5%BF%B5%E4%BB%8E0%E5%88%B01&title=%E5%BE%AE%E6%9C%8D%E5%8A%A1What%3F"
-      />
-  </div>
-</a>
-</div>
 
 ```cardlink
 url: https://book.douban.com/subject/35041576/?from=mdouban
