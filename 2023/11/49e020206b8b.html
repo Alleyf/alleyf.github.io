@@ -27,7 +27,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://picsum.photos/800/250">
 <meta property="article:published_time" content="2023-11-30T03:29:33.000Z">
-<meta property="article:modified_time" content="2023-11-30T14:50:52.773Z">
+<meta property="article:modified_time" content="2023-12-01T06:51:52.508Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="Lambda">
@@ -284,7 +284,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          29k 字
+          30k 字
         
       </span>
     
@@ -295,7 +295,7 @@
         
         
         
-          244 分钟
+          247 分钟
         
       </span>
     
@@ -346,7 +346,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：1 分钟前
+                    本文最后更新于：3 分钟前
                   
                 
               </p>
@@ -626,7 +626,7 @@
 <p>在 Java 9 新增了一些更加方便的操作：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>    <span class="hljs-type">String</span> <span class="hljs-variable">str</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;<br>    Optional.ofNullable(str).ifPresentOrElse(s -&gt; &#123;  <span class="hljs-comment">//通过使用 ifPresentOrElse，我们同时处理两种情况</span><br>        System.out.println(<span class="hljs-string">&quot;被包装的元素为：&quot;</span>+s);     <span class="hljs-comment">//第一种情况和 ifPresent 是一样的</span><br>    &#125;, () -&gt; &#123;<br>        System.out.println(<span class="hljs-string">&quot;被包装的元素为 null&quot;</span>);   <span class="hljs-comment">//第二种情况是如果为 null 的情况</span><br>    &#125;);<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>我们也可以使用<code>or()</code>方法快速替换为另一个 Optional 类：</p>
+<p>我们也可以使用 <code>or()</code> 方法快速替换为另一个 Optional 类：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>    <span class="hljs-type">String</span> <span class="hljs-variable">str</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;<br>    Optional.ofNullable(str)<br>      .or(() -&gt; Optional.of(<span class="hljs-string">&quot;AAA&quot;</span>))   <span class="hljs-comment">//如果当前被包装的类不是 null，依然返回自己，但是如果是 null，那就返回 Supplier 提供的另一个 Optional 包装</span><br>      .ifPresent(System.out::println);<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>当然还支持直接转换为 Stream，这里就不多说了。</p>
@@ -640,29 +640,29 @@
 <h3 id="局部变量类型推断"><a href="#局部变量类型推断" class="headerlink" title="局部变量类型推断"></a>局部变量类型推断</h3><p>在 Java 中，我们可以使用自动类型推断：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>    <span class="hljs-comment">// String a = &quot;Hello World!&quot;;   之前我们定义变量必须指定类型</span><br>    <span class="hljs-type">var</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;Hello World!&quot;</span>;   <span class="hljs-comment">//现在我们使用 var 关键字来自动进行类型推断，因为完全可以从后面的值来判断是什么类型</span><br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>但是注意，<code>var</code>关键字必须位于有初始值设定的变量上，否则鬼知道你要用什么类型。</p>
+<p>但是注意，<code>var</code> 关键字必须位于有初始值设定的变量上，否则鬼知道你要用什么类型。</p>
 <p><img src="https://s2.loli.net/2023/03/06/xgoX2Cy9lST4Gkc.png" srcset="/img/loading.gif" lazyload alt="image-20230306180322150"></p>
 <p>我们来看看是不是类型也能正常获取：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>    <span class="hljs-type">var</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;Hello World!&quot;</span>;<br>    System.out.println(a.getClass());<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>这里虽然是有了 var 关键字进行自动类型推断，但是最终还是会变成 String 类型，得到的 Class 也是 String 类型。但是 Java 终究不像 JS 那样进行动态推断，这种类型推断仅仅发生在编译期间，到最后编译完成后还是会变成具体类型的：</p>
 <p><img src="https://s2.loli.net/2023/03/06/og94MUsWPdyulmX.png" srcset="/img/loading.gif" lazyload alt="image-20230306180329364"></p>
-<p>并且<code>var</code>关键字仅适用于局部变量，我们是没办法在其他地方使用的，比如类的成员变量：</p>
+<p>并且 <code>var</code> 关键字仅适用于局部变量，我们是没办法在其他地方使用的，比如类的成员变量：</p>
 <p><img src="https://s2.loli.net/2023/03/06/g4aIlhC6GQfu2NF.png" srcset="/img/loading.gif" lazyload alt="image-20230306180337900"></p>
 <h1 id="Java-11-新特性"><a href="#Java-11-新特性" class="headerlink" title="Java 11 新特性"></a>Java 11 新特性</h1><p>Java 11 是继 Java 8 之后的又一个 TLS 长期维护版本，在 Java 17 出现之前，一直都是此版本作为广泛使用的版本，其中比较关键的是用于 Lambda 的形参局部变量语法。</p>
-<h3 id="用于-Lambda-的形参局部变量语法"><a href="#用于-Lambda-的形参局部变量语法" class="headerlink" title="用于 Lambda 的形参局部变量语法"></a>用于 Lambda 的形参局部变量语法</h3><p>在 Java 10 我们认识了<code>var</code>关键字，它能够直接让局部变量自动进行类型推断，不过它不支持在 lambda 中使用：</p>
+<h3 id="用于-Lambda-的形参局部变量语法"><a href="#用于-Lambda-的形参局部变量语法" class="headerlink" title="用于 Lambda 的形参局部变量语法"></a>用于 Lambda 的形参局部变量语法</h3><p>在 Java 10 我们认识了 <code>var</code> 关键字，它能够直接让局部变量自动进行类型推断，不过它不支持在 lambda 中使用：</p>
 <p><img src="https://s2.loli.net/2023/03/06/uaNSkgeOUQTxoLl.png" srcset="/img/loading.gif" lazyload alt="image-20230306180413626"></p>
 <p>但是实际上这里是完全可以进行类型推断的，所以在 Java 11，终于是支持了，这样编写就不会报错了：</p>
 <p><img src="https://s2.loli.net/2023/03/06/Nft9Csk6ac8AgY2.png" srcset="/img/loading.gif" lazyload alt="image-20230306180421523"></p>
 <h3 id="针对于-String-类的方法增强"><a href="#针对于-String-类的方法增强" class="headerlink" title="针对于 String 类的方法增强"></a>针对于 String 类的方法增强</h3><p>在 Java 11 为 String 新增一些更加方便的操作：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>    <span class="hljs-type">var</span> <span class="hljs-variable">str</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;AB\nC\nD&quot;</span>;<br>    System.out.println(str.isBlank());    <span class="hljs-comment">//isBlank 方法用于判断是否字符串为空或者是仅包含空格</span><br>    str<br>            .lines()   <span class="hljs-comment">//根据字符串中的\n 换行符进行切割，分为多个字符串，并转换为 Stream 进行操作</span><br>            .forEach(System.out::println);<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>我们还可以通过<code>repeat()</code>方法来让字符串重复拼接：</p>
+<p>我们还可以通过 <code>repeat()</code> 方法来让字符串重复拼接：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>    <span class="hljs-type">String</span> <span class="hljs-variable">str</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;ABCD&quot;</span>;   <span class="hljs-comment">//比如现在我们有一个 ABCD，但是现在我们想要一个 ABCDABCD 这样的基于原本字符串的重复字符串</span><br>    System.out.println(str.repeat(<span class="hljs-number">2</span>));  <span class="hljs-comment">//一个 repeat 就搞定了</span><br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>我们也可以快速地进行<strong>空格去除</strong>操作：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>    <span class="hljs-type">String</span> <span class="hljs-variable">str</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot; A B C D &quot;</span>;<br>    System.out.println(str.strip());   <span class="hljs-comment">//去除首尾空格</span><br>    System.out.println(str.stripLeading());  <span class="hljs-comment">//去除首部空格</span><br>    System.out.println(str.stripTrailing());   <span class="hljs-comment">//去除尾部空格</span><br>&#125;<br></code></pre></td></tr></table></figure>
-<p>根据换行符<code>\n</code>进行切割字符串：</p>
+<p>根据换行符 <code>\n</code> 进行切割字符串：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">String</span> <span class="hljs-variable">str</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;A\nB\nCD&quot;</span>;   <span class="hljs-comment">//根据换行符\n进行切割字符串</span><br>str.lines()  <br>        .forEach(System.out::println);<br></code></pre></td></tr></table></figure>
 
 <h3 id="全新的-HttpClient-使用"><a href="#全新的-HttpClient-使用" class="headerlink" title="全新的 HttpClient 使用"></a>全新的 HttpClient 使用</h3><p>在 Java 9 的时候其实就已经引入了全新的 Http Client API，用于取代之前比较老旧的 HttpURLConnection 类，新的 API 支持最新的 HTTP2 和 WebSocket 协议。</p>
@@ -691,18 +691,18 @@
 <h1 id="Java-12-16-新特性"><a href="#Java-12-16-新特性" class="headerlink" title="Java 12-16 新特性"></a>Java 12-16 新特性</h1><p>由于 Java 版本的更新迭代速度自 Java 9 开始为半年更新一次（Java 8 到 Java 9 隔了整整三年），所以各个版本之间的更新内容比较少，剩余的 6 个版本，我们就多个版本放在一起进行讲解了。</p>
 <p><img src="https://s2.loli.net/2023/03/06/uWatQdpZYiJKhVr.png" srcset="/img/loading.gif" lazyload alt="image-20230306180737638"></p>
 <p>Java12-16 这五个版本并非长期支持版本，所以很多特性都是一种处于实验性功能，12&#x2F;13 版本引入了一些实验性功能，并根据反馈进行调整，最后在后续版本中正式开放使用，其实就是体验服的那种感觉。</p>
-<h3 id="新的-switch-语法"><a href="#新的-switch-语法" class="headerlink" title="新的 switch 语法"></a>新的 switch 语法</h3><p>在 Java 12 引入全新的 switch 语法，让我们使用 switch 语句更加的灵活，比如我们想要编写一个根据成绩得到等级的方法：</p>
+<h3 id="增强型-switch-语法"><a href="#增强型-switch-语法" class="headerlink" title="增强型 switch 语法"></a>增强型 switch 语法</h3><p>在 Java 12 引入全新的 switch 语法，让我们使用 switch 语句更加的灵活，比如我们想要编写一个根据成绩得到等级的方法：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 传入分数（范围 0 - 100）返回对应的等级：</span><br><span class="hljs-comment"> *      100-90：优秀</span><br><span class="hljs-comment"> *      70-80：良好</span><br><span class="hljs-comment"> *      60-70：及格</span><br><span class="hljs-comment"> *      0-60：寄</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> score 分数</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@return</span> 等级</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title function_">grade</span><span class="hljs-params">(<span class="hljs-type">int</span> score)</span>&#123;<br>    <br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>现在我们想要使用 switch 来实现这个功能（不会吧不会吧，不会有人要想半天怎么用 switch 实现吧），之前的写法是：</p>
+<p>现在我们使用 switch 来实现这个功能，之前的写法是：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title function_">grade</span><span class="hljs-params">(<span class="hljs-type">int</span> score)</span>&#123;<br>    score /= <span class="hljs-number">10</span>;  <span class="hljs-comment">//既然分数段都是整数，那就直接整除 10</span><br>  	<span class="hljs-type">String</span> <span class="hljs-variable">res</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;<br>    <span class="hljs-keyword">switch</span> (score) &#123;<br>        <span class="hljs-keyword">case</span> <span class="hljs-number">10</span>:<br>        <span class="hljs-keyword">case</span> <span class="hljs-number">9</span>:<br>            res =  <span class="hljs-string">&quot;优秀&quot;</span>;   <span class="hljs-comment">//不同的分数段就可以返回不同的等级了</span><br>        		<span class="hljs-keyword">break</span>;   <span class="hljs-comment">//别忘了 break，不然会贯穿到后面</span><br>        <span class="hljs-keyword">case</span> <span class="hljs-number">8</span>:<br>        <span class="hljs-keyword">case</span> <span class="hljs-number">7</span>:<br>            res = <span class="hljs-string">&quot;良好&quot;</span>;<br>        		<span class="hljs-keyword">break</span>;<br>        <span class="hljs-keyword">case</span> <span class="hljs-number">6</span>:<br>            res = <span class="hljs-string">&quot;及格&quot;</span>;<br>        		<span class="hljs-keyword">break</span>;<br>        <span class="hljs-keyword">default</span>:<br>            res = <span class="hljs-string">&quot;不及格&quot;</span>;<br>        		<span class="hljs-keyword">break</span>;<br>    &#125;<br>  	<span class="hljs-keyword">return</span> res;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>但是现在我们可以使用新的特性了：</p>
+<p>但是现在我们可以使用<strong>增强型 Switch 语法</strong>了：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title function_">grade</span><span class="hljs-params">(<span class="hljs-type">int</span> score)</span>&#123;<br>    score /= <span class="hljs-number">10</span>;  <span class="hljs-comment">//既然分数段都是整数，那就直接整除 10</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">switch</span> (score) &#123;   <span class="hljs-comment">//增强版 switch 语法</span><br>        <span class="hljs-keyword">case</span> <span class="hljs-number">10</span>, <span class="hljs-number">9</span> -&gt; <span class="hljs-string">&quot;优秀&quot;</span>;   <span class="hljs-comment">//语法那是相当的简洁，而且也不需要我们自己考虑 break 或是 return 来结束 switch 了（有时候就容易忘记，这样的话就算忘记也没事了）</span><br>        <span class="hljs-keyword">case</span> <span class="hljs-number">8</span>, <span class="hljs-number">7</span> -&gt; <span class="hljs-string">&quot;良好&quot;</span>; <br>        <span class="hljs-keyword">case</span> <span class="hljs-number">6</span> -&gt; <span class="hljs-string">&quot;及格&quot;</span>;<br>        <span class="hljs-keyword">default</span> -&gt; <span class="hljs-string">&quot;不及格&quot;</span>;<br>    &#125;;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>不过最后编译出来的样子，貌似还是和之前是一样的：</p>
 <p><img src="https://s2.loli.net/2023/03/06/ZcAmGyCQrD4uSMR.png" srcset="/img/loading.gif" lazyload alt="image-20230306180750556"></p>
-<p>这种全新的 switch 语法称为<code>switch 表达式</code>，它的意义不仅仅体现在语法的精简上，我们来看看它的详细规则：</p>
+<p>这种全新的 switch 语法称为 <code>switch 表达式</code>，它的意义不仅仅体现在语法的精简上，我们来看看它的详细规则：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">var</span> <span class="hljs-variable">res</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">switch</span> (obj) &#123;   <span class="hljs-comment">//这里和之前的 switch 语句是一样的，但是注意这样的 switch 是有返回值的，所以可以被变量接收</span><br>    <span class="hljs-keyword">case</span> [匹配值, ...] -&gt; <span class="hljs-string">&quot;优秀&quot;</span>;   <span class="hljs-comment">//case 后直接添加匹配值，匹配值可以存在多个，需要使用逗号隔开，使用 -&gt; 来返回如果匹配此 case 语句的结果</span><br>    <span class="hljs-keyword">case</span> ...   <span class="hljs-comment">//根据不同的分支，可以存在多个 case</span><br>    <span class="hljs-keyword">default</span> -&gt; <span class="hljs-string">&quot;不及格&quot;</span>;   <span class="hljs-comment">//注意，表达式要求必须涵盖所有的可能，所以是需要添加 default 的</span><br>&#125;;<br></code></pre></td></tr></table></figure>
 
 <p>那么如果我们并不是能够马上返回，而是需要做点什么其他的工作才能返回结果呢？</p>
@@ -712,35 +712,40 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">var</span> <span class="hljs-variable">res</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">switch</span> (args.length) &#123;   <span class="hljs-comment">//增强版 switch 语法</span><br>    <span class="hljs-keyword">case</span> [匹配值, ...]:<br>        <span class="hljs-keyword">yield</span> <span class="hljs-string">&quot;AAA&quot;</span>;   <span class="hljs-comment">//传统的:写法，通过 yield 指定返回结果，同样不需要 break</span><br>    <span class="hljs-keyword">default</span>:<br>    		System.out.println(<span class="hljs-string">&quot;默认情况&quot;</span>);<br>        <span class="hljs-keyword">yield</span> <span class="hljs-string">&quot;BBB&quot;</span>;<br>&#125;;<br></code></pre></td></tr></table></figure>
 
 <p>这种全新的语法，可以说极大地方便了我们的编码，不仅代码简短，而且语义明确。唯一遗憾的是依然不支持区间匹配。</p>
-<p><strong>注意：</strong>switch 表达式在 Java 14 才正式开放使用，所以我们项目的代码级别需要调整到 14 以上。</p>
+<blockquote>
+<p>switch 表达式在 <code>Java 14</code> 才正式开放使用，所以我们项目的代码级别需要调整到 14 以上。</p>
+</blockquote>
 <h3 id="文本块"><a href="#文本块" class="headerlink" title="文本块"></a>文本块</h3><p>如果你学习过 Python，一定知道三引号：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#当我们需要使用复杂字符串时 ，可能字符串中包含了很多需要转义的字符，比如双引号等，这时我们就可以使用三引号来囊括字符串</span><br>multi_line =  <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">                nice to meet you!</span><br><span class="hljs-string">                  nice to meet you!</span><br><span class="hljs-string">                      nice to meet you!</span><br><span class="hljs-string">                &quot;&quot;&quot;</span><br><span class="hljs-built_in">print</span> multi_line<br></code></pre></td></tr></table></figure>
 
 <p>没错，Java13 也带了这样的特性，旨在方便我们编写复杂字符串，这样就不用再去用那么多的转义字符了：</p>
 <p><img src="https://s2.loli.net/2023/03/06/CqVmXrshfFExgRO.png" srcset="/img/loading.gif" lazyload alt="image-20230306180802418"></p>
-<p>可以看到，Java 中也可以使用这样的三引号来表示字符串了，并且我们可以随意在里面使用特殊字符，包括双引号等，但是最后编译出来的结果实际上还是会变成一个之前这样使用了转义字符的字符串：</p>
+<p>可以看到，Java 中也可以使用这样的<strong>三引号来表示字符串</strong>了，并且我们可以随意在里面使用特殊字符，包括双引号等，但是最后编译出来的结果实际上还是会变成一个之前这样使用了转义字符的字符串：</p>
 <p><img src="https://s2.loli.net/2023/03/06/s2ImkOEN5cJZPvU.png" srcset="/img/loading.gif" lazyload alt="image-20230306180813359"></p>
 <p>仔细想想，这样我们写 SQL 或是 HTML 岂不是就舒服多了？</p>
-<p><strong>注意：</strong>文本块表达式在 Java 15 才正式开放使用，所以我们项目的代码级别需要调整到 15 以上。</p>
-<h3 id="新的-instanceof-语法"><a href="#新的-instanceof-语法" class="headerlink" title="新的 instanceof 语法"></a>新的 instanceof 语法</h3><p>在 Java 14，instanceof 迎来了一波小更新（哈哈，这版本 instanceof 又加强了，版本强势语法）</p>
-<p>比如我们之前要重写一个类的 equals 方法：</p>
+<blockquote>
+<p>文本块表达式在 Java 15 才正式开放使用，所以我们项目的代码级别需要调整到 15 以上。</p>
+</blockquote>
+<h3 id="新的-instanceof-语法"><a href="#新的-instanceof-语法" class="headerlink" title="新的 instanceof 语法"></a>新的 instanceof 语法</h3><p>在 Java 14，instanceof 迎来了一波小更新, 比如我们之前要重写一个类的 equals 方法：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Student</span> &#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> String name;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">Student</span><span class="hljs-params">(String name)</span> &#123;<br>        <span class="hljs-built_in">this</span>.name = name;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">equals</span><span class="hljs-params">(Object obj)</span> &#123;<br>        <span class="hljs-keyword">if</span>(obj <span class="hljs-keyword">instanceof</span> Student) &#123;   <span class="hljs-comment">//首先判断是否为 Student 类型</span><br>            <span class="hljs-type">Student</span> <span class="hljs-variable">student</span> <span class="hljs-operator">=</span> (Student) obj;  <span class="hljs-comment">//如果是，那么就类型转换</span><br>            <span class="hljs-keyword">return</span> student.name.equals(<span class="hljs-built_in">this</span>.name);  <span class="hljs-comment">//最后比对属性是否一样</span><br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>在之前我们一直都是采用这种先判断类型，然后类型转换，最后才能使用的方式，但是这个版本 instanceof 加强之后，我们就不需要了，我们可以直接将 student 替换为模式变量：</p>
+<p>在之前我们一直都是采用这种先判断类型，然后类型转换，最后才能使用的方式，但是这个版本 instanceof 加强之后，我们就不需要了，我们可以直接将 student 替换为<strong>模式变量</strong>：</p>
 <p><img src="https://s2.loli.net/2023/03/06/YRyg2qEi5kcDuX9.png" srcset="/img/loading.gif" lazyload alt="image-20230306180828080"></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Student</span> &#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> String name;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">Student</span><span class="hljs-params">(String name)</span> &#123;<br>        <span class="hljs-built_in">this</span>.name = name;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">equals</span><span class="hljs-params">(Object obj)</span> &#123;<br>        <span class="hljs-keyword">if</span>(obj <span class="hljs-keyword">instanceof</span> Student student) &#123;   <span class="hljs-comment">//在比较完成的屁股后面，直接写变量名字，而这个变量就是类型转换之后的</span><br>            <span class="hljs-keyword">return</span> student.name.equals(<span class="hljs-built_in">this</span>.name);  <span class="hljs-comment">//下面直接用，是不是贼方便</span><br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Data</span>  <br><span class="hljs-meta">@AllArgsConstructor</span>  <br><span class="hljs-meta">@NoArgsConstructor</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Student</span> &#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> String name;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">equals</span><span class="hljs-params">(Object obj)</span> &#123;<br>        <span class="hljs-keyword">if</span>(obj <span class="hljs-keyword">instanceof</span> Student student) &#123;   <span class="hljs-comment">//在比较完成的屁股后面，直接写变量名字，而这个变量就是类型转换之后的</span><br>            <span class="hljs-keyword">return</span> student.name.equals(<span class="hljs-built_in">this</span>.name);  <span class="hljs-comment">//下面直接用，是不是贼方便</span><br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>在使用<code>instanceof</code>判断类型成立后，会自动强制转换类型为指定类型，简化了我们手动转换的步骤。</p>
-<p><strong>注意：</strong>新的 instanceof 语法在 Java 16 才正式开放使用，所以我们项目的代码级别需要调整到 16 以上。</p>
+<p>在使用 <code>instanceof</code> <em>判断类型成立后，会自动强制转换类型为指定类型，简化了我们手动转换的步骤</em>。</p>
+<blockquote>
+<p>新的 instanceof 语法在 Java 16 才正式开放使用，所以我们项目的代码级别需要调整到 16 以上。</p>
+</blockquote>
 <h3 id="空指针异常的改进"><a href="#空指针异常的改进" class="headerlink" title="空指针异常的改进"></a>空指针异常的改进</h3><p>相信各位小伙伴在调试代码时，经常遇到空指针异常，比如下面的这个例子：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">test</span><span class="hljs-params">(String a, String b)</span>&#123;<br>    <span class="hljs-type">int</span> <span class="hljs-variable">length</span> <span class="hljs-operator">=</span> a.length() + b.length();   <span class="hljs-comment">//可能给进来的 a 或是 b 为 null</span><br>    System.out.println(length);<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>那么为空时，就会直接：</p>
 <p><img src="https://s2.loli.net/2023/03/06/lOSDTM4WcqzR5Ud.png" srcset="/img/loading.gif" lazyload alt="image-20230306180839217"></p>
-<p>但是由于我们这里 a 和 b 都调用了<code>length()</code>方法，虽然空指针异常告诉我们问题出现在这一行，但是到底是 a 为 null 还是 b 为 null 呢？我们是没办法直接得到的（遇到过这种问题的扣个 1 吧，只能调试，就很头疼）</p>
+<p>但是由于我们这里 a 和 b 都调用了 <code>length()</code> 方法，虽然空指针异常告诉我们问题出现在这一行，但是到底是 a 为 null 还是 b 为 null 呢？我们是没办法直接得到的（遇到过这种问题的扣个 1 吧，只能调试，就很头疼）</p>
 <p>但是当我们在 Java 14 或更高版本运行时：</p>
 <p><img src="https://s2.loli.net/2023/03/06/eunGbL8qOE9MZwi.png" srcset="/img/loading.gif" lazyload alt="image-20230306180847472"></p>
-<p>这里会明确指出是哪一个变量调用出现了空指针，是不是感觉特别人性化。</p>
+<p>这里会明确指出是哪一个变量调用出现了空指针，更人性化。</p>
 <h3 id="记录类型"><a href="#记录类型" class="headerlink" title="记录类型"></a>记录类型</h3><p>继类、接口、枚举、注解之后的又一新类型来了，它的名字叫”记录”，在 Java 14 中首次出场，这一出场，Lombok 的噩梦来了。</p>
 <p>在实际开发中，很多的类仅仅只是充当一个实体类罢了，保存的是一些不可变数据，比如我们从数据库中查询的账户信息，最后会被映射为一个实体类：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Data</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Account</span> &#123;   <span class="hljs-comment">//使用 Lombok，一个注解就搞定了</span><br>    String username;<br>    String password;<br>&#125;<br></code></pre></td></tr></table></figure>
@@ -753,20 +758,22 @@
 <p><img src="https://s2.loli.net/2023/03/06/iopGnBQf6v3VS7Y.png" srcset="/img/loading.gif" lazyload alt="image-20230306180856852"></p>
 <p>并且 toString 也是被重写了的：</p>
 <p><img src="https://s2.loli.net/2023/03/06/cvOXQklZybzHPfs.png" srcset="/img/loading.gif" lazyload alt="image-20230306180905242"></p>
-<p><code>equals()</code>方法仅做成员字段之间的值比较，也是帮助我们实现好了的：</p>
+<p><code>equals()</code> 方法仅做成员字段之间的值比较，也是帮助我们实现好了的：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">Account</span> <span class="hljs-variable">account0</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Account</span>(<span class="hljs-string">&quot;Admin&quot;</span>, <span class="hljs-string">&quot;123456&quot;</span>);<br><span class="hljs-type">Account</span> <span class="hljs-variable">account1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Account</span>(<span class="hljs-string">&quot;Admin&quot;</span>, <span class="hljs-string">&quot;123456&quot;</span>);   <span class="hljs-comment">//两个属性都是一模一样的</span><br>System.out.println(account0.equals(account1));  <span class="hljs-comment">//得到 true</span><br></code></pre></td></tr></table></figure>
 
 <p>是不是感觉这种类型就是专门为这种实体类而生的。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">record</span> <span class="hljs-title class_">Account</span><span class="hljs-params">(String username, String password)</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Runnable</span> &#123;  <span class="hljs-comment">//支持实现接口，但是不支持继承，因为继承的坑位已经默认被占了</span><br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;<br>        <br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p><strong>注意：</strong> 记录类型在 Java 16 才正式开放使用，所以我们项目的代码级别需要调整到 16 以上。</p>
+<blockquote>
+<p>记录类型在 Java 16 才正式开放使用，所以我们项目的代码级别需要调整到 16 以上。</p>
+</blockquote>
 <h1 id="Java-17-新特性"><a href="#Java-17-新特性" class="headerlink" title="Java 17 新特性"></a>Java 17 新特性</h1><p>Java 17 作为新的 LTS 长期维护版本，我们来看看都更新了什么（不包含预览特性，包括 switch 第二次增强，哈哈，果然还是强度不够，都连续加强两个版本了）</p>
 <h3 id="密封类型"><a href="#密封类型" class="headerlink" title="密封类型"></a>密封类型</h3><p>密封类型可以说是 Java 17 正式推出的又一重磅类型，它在 Java 15 首次提出并测试了两个版本。</p>
 <p>在 Java 中，我们可以通过继承（extends 关键字）来实现类的能力复用、扩展与增强。但有的时候，可能并不是所有的类我们都希望能够被继承。所以，我们需要对继承关系有一些限制的控制手段，而密封类的作用就是<strong>限制类的继承</strong>。</p>
-<p>实际上在之前我们如果不希望别人继承我们的类，可以直接添加<code>final</code>关键字：</p>
+<p>实际上在之前我们如果不希望别人继承我们的类，可以直接添加 <code>final</code> 关键字：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">A</span>&#123;   <span class="hljs-comment">//添加 final 关键字后，不允许对此类继承</span><br>    <br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>这样有一个缺点，如果添加了<code>final</code>关键字，那么无论是谁，包括我们自己也是没办法实现继承的，但是现在我们有一个需求，只允许我们自己写的类继承 A，但是不允许别人写的类继承 A，这时该咋写？在 Java 17 之前想要实现就很麻烦。</p>
+<p>这样有一个缺点，如果添加了 <code>final</code> 关键字，那么无论是谁，包括我们自己也是没办法实现继承的，但是现在我们有一个需求，只允许我们自己写的类继承 A，但是不允许别人写的类继承 A，这时该咋写？在 Java 17 之前想要实现就很麻烦。</p>
 <p>但是现在我们可以使用密封类型来实现这个功能：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">sealed</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">A</span> <span class="hljs-keyword">permits</span> B&#123;   <span class="hljs-comment">//在 class 关键字前添加 sealed 关键字，表示此类为密封类型，permits 后面跟上允许继承的类型，多个子类使用逗号隔开</span><br><br>&#125;<br></code></pre></td></tr></table></figure>
 
@@ -774,11 +781,11 @@
 <ul>
 <li>可以基于普通类、抽象类、接口，也可以是继承自其他接抽象类的子类或是实现其他接口的类等。</li>
 <li>必须有子类继承，且不能是匿名内部类或是 lambda 的形式。</li>
-<li><code>sealed</code>写在原来<code>final</code>的位置，但是不能和<code>final</code>、<code>non-sealed</code>关键字同时出现，只能选择其一。</li>
-<li>继承的子类必须显式标记为<code>final</code>、<code>sealed</code>或是<code>non-sealed</code>类型。</li>
+<li><code>sealed</code> 写在原来 <code>final</code> 的位置，但是不能和 <code>final</code>、<code>non-sealed</code> 关键字同时出现，只能选择其一。</li>
+<li>继承的子类必须显式标记为 <code>final</code>、<code>sealed</code> 或是 <code>non-sealed</code> 类型。</li>
 </ul>
 <p>标准的声明格式如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">sealed</span> [<span class="hljs-keyword">abstract</span>] [class/interface] 类名 [extends 父类] [implements 接口, ...] <span class="hljs-keyword">permits</span> [子类, ...]&#123;<br>		<span class="hljs-comment">//里面的该咋写咋写</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">sealed</span> [<span class="hljs-keyword">abstract</span>] [class/interface] 类名 [extends 父类] [implements 接口, ...] <span class="hljs-keyword">permits</span> [子类, ...]&#123;<br>		<span class="hljs-comment">//里面的该怎么写就怎么写</span><br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>注意子类格式为：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> [<span class="hljs-keyword">final</span>/<span class="hljs-keyword">sealed</span>/<span class="hljs-keyword">non-sealed</span>] class 子类 extends 父类 &#123;   <span class="hljs-comment">//必须继承自父类</span><br>			<span class="hljs-comment">//final 类型：任何类不能再继承当前类，到此为止，已经封死了。</span><br>  		<span class="hljs-comment">//sealed 类型：同父类，需要指定由哪些类继承。</span><br>  		<span class="hljs-comment">//non-sealed 类型：重新开放为普通类，任何类都可以继承。</span><br>&#125;<br></code></pre></td></tr></table></figure>
@@ -791,14 +798,28 @@
 <p>我们可以看到其他的类无论是继承 A 还是继承 B 都无法通过编译：</p>
 <p><img src="https://s2.loli.net/2023/03/06/Zbv6coLkh5ujP4N.png" srcset="/img/loading.gif" lazyload alt="image-20230306180916878"></p>
 <p><img src="https://s2.loli.net/2023/03/06/NubaU8iHE4YAL6M.png" srcset="/img/loading.gif" lazyload alt="image-20230306180924756"></p>
-<p>但是如果此时我们主动将 B 设定为<code>non-sealed</code>类型：</p>
+<p>但是如果此时我们主动将 B 设定为 <code>non-sealed</code> 类型：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">non-sealed</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">B</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">A</span> &#123;<br><br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>这样就可以正常继承了，因为 B 指定了<code>non-sealed</code>主动放弃了密封特性，这样就显得非常灵活了。</p>
+<p>这样就可以正常继承了，因为 B 指定了 <code>non-sealed</code> 主动放弃了密封特性，这样就显得非常灵活了。</p>
 <p>当然我们也可以通过反射来获取类是否为密封类型：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>    Class&lt;A&gt; a = A.class;<br>    System.out.println(a.isSealed());   <span class="hljs-comment">//是否为密封</span><br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>至此，Java 9 - 17 的主要新特性就讲解完毕了。</p>
+
+<h1 id="专题"><a href="#专题" class="headerlink" title="专题"></a>专题</h1><ol>
+<li>java 出入牛犊- [[Java Notes]]</li>
+<li>java 小试牛刀- [[Java_Exercise]]</li>
+<li>java 窥探炼器-[[Java常用新特性-Lambda-Optional-Stream]]</li>
+<li>Springboot 速成秘籍-[[SpringBoot启示录]]</li>
+<li>Spring出入牛犊-[[Spring核心学习]]</li>
+<li>SpringSecurity 行走利器-[[SpringSecurity]]</li>
+<li>SpringBoot 结丹-[[SpringBoot]]</li>
+<li>SpringBoot 整活-[[SpringBoot+Vue项目实战]]</li>
+<li>SpringCloud 元婴-[[SpringCloud-微服务基础]]</li>
+<li>SpringCloud 淬炼-[[SpringCloud Alibaba-微服务进阶]]</li>
+<li>SpringCloud 盘它-[[SpringCloud-微服务应用]]</li>
+<li>SpringCLoud 空明-[[Spring Cloud Alibaba 微服务原理与实战-阅读心得]]</li>
+</ol>
 <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cardlink">url: https://www.bilibili.com/video/BV1tU4y1y7Fg/?vd_source=9c896fa9c3f9023797e8efe7be0c113e<br>title: &quot;JavaSE 9-17 新特性 已完结（IDEA 2022.1 最新版）4K 蓝光画质 Java9/10/11/12/13/14/15/16/17 讲解_哔哩哔哩_bilibili&quot;<br>description: &quot;JavaSE 9-17 新特性 已完结（IDEA 2022.1 最新版）4K 蓝光画质 Java9/10/11/12/13/14/15/16/17 讲解共计 19 条视频，包括：Java9-17 新特性介绍、Java8 回顾：Lambda 表达式、Java8 回顾：Optional 类等，UP 主更多精彩视频，请关注 UP 账号。&quot;<br>host: www.bilibili.com<br>image: https://i2.hdslb.com/bfs/archive/dc0cc9464c6fc274c1f23f682a01dab5a358217b.jpg@100w_100h_1c.png<br></code></pre></td></tr></table></figure>
 <p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1tU4y1y7Fg/?vd_source=9c896fa9c3f9023797e8efe7be0c113e">JavaSE 9-17 新特性 已完结（IDEA 2022.1最新版）4K蓝光画质 Java9&#x2F;10&#x2F;11&#x2F;12&#x2F;13&#x2F;14&#x2F;15&#x2F;16&#x2F;17讲解_哔哩哔哩_bilibili</a></p>
 
@@ -867,7 +888,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2023年11月30日</div>
+          <div>2023年12月1日</div>
         </div>
       
       <div class="license-meta-item">
