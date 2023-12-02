@@ -13,10 +13,20 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/中间件和工具/正则表达式-Regex.md",
+                "file": "source/_posts/后端开发/Spring Cloud Alibaba 微服务原理与实战-阅读心得.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
+              }
+            }
+          },
+          {
+            "id": "97d50682fd17047e",
+            "type": "leaf",
+            "state": {
+              "type": "excalidraw",
+              "state": {
+                "file": "Excalidraw/草图.md"
               }
             }
           }
@@ -39,7 +49,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/中间件和工具/正则表达式-Regex.md"
+                "file": "source/_posts/后端开发/Spring Cloud Alibaba 微服务原理与实战-阅读心得.md"
               }
             }
           }
@@ -136,6 +146,11 @@
   },
   "active": "ac2c499742393a64",
   "lastOpenFiles": [
+    "source/_posts/中间件和工具/正则表达式-Regex.md",
+    "source/_posts/后端开发/Spring Cloud Alibaba 微服务原理与实战-阅读心得.md",
+    "Excalidraw/草图.md",
+    "attachment/Pasted Image 20231202101022_171.png",
+    "attachment/Pasted Image 20231202100951_001.png",
     "public/categories/中间件和工具/index.html",
     "public/categories/中间件和工具",
     "public/archives/2023/12/index.html",
@@ -143,11 +158,9 @@
     "public/2023/12/3e87c166eb21.html",
     "public/2023/12",
     "source/_posts/运维开发/Git-简记.md",
-    "source/_posts/中间件和工具/正则表达式-Regex.md",
     "source/_posts/运维开发/各种环境配置.md",
     "source/_posts/中间件和工具",
     "source/_posts/后端开发/Java常用新特性-Lambda-Optional-Stream.md",
-    "source/_posts/后端开发/Spring Cloud Alibaba 微服务原理与实战-阅读心得.md",
     "source/_posts/科研学习/会议讨论/周会.md",
     "center.md",
     "source/_obsidian/book-template.md",
@@ -161,9 +174,7 @@
     "source/_posts/科研学习/会议讨论/ETMS.md",
     "attachment/Pasted Image 20231128145734_285.png",
     "Excalidraw/Drawing 2023-11-29 10.24.53.excalidraw.md",
-    "public/2023/11/d1d8bbbe9e18.html",
     "source/_obsidian/image-layout.md",
-    "Excalidraw/草图.md",
     "attachment/Pasted Image 20231128145719_276.png",
     "source/_posts/后端开发/SpringCloud-微服务应用.md",
     "public/img/default.png",
@@ -172,8 +183,6 @@
     "public/img/loading.gif",
     "public/img/avatar.png",
     "public/gallery/images/桌面壁纸/cloud.png",
-    "public/gallery/images/桌面壁纸/fire.jpg",
-    "public/gallery/images/桌面壁纸/sunset.png",
     "source/_posts/后端开发/SpringBoot.md",
     "source/_posts/后端开发/SpringBoot+Vue项目实战.md",
     "source/_posts/后端开发/SpringCloud Alibaba-微服务进阶.md",
