@@ -27,7 +27,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://picsum.photos/800/250">
 <meta property="article:published_time" content="2023-12-01T13:05:12.000Z">
-<meta property="article:modified_time" content="2023-12-01T16:15:30.119Z">
+<meta property="article:modified_time" content="2023-12-02T06:26:22.173Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="正则表达式">
 <meta property="article:tag" content="Regex">
@@ -284,7 +284,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.2k 字
+          8.4k 字
         
       </span>
     
@@ -295,7 +295,7 @@
         
         
         
-          19 分钟
+          71 分钟
         
       </span>
     
@@ -346,7 +346,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：1 小时前
+                    本文最后更新于：3 分钟前
                   
                 
               </p>
@@ -355,10 +355,25 @@
               <div class="markdown-body">
                 
                 <p><img src="https://picsum.photos/800/250" srcset="/img/loading.gif" lazyload></p>
-<h1 id="第一章、校验工具"><a href="#第一章、校验工具" class="headerlink" title="第一章、校验工具"></a>第一章、校验工具</h1><p><a target="_blank" rel="noopener" href="https://regex101.com/">regex101: build, test, and debug regex</a> 是一个多语言在线校验正则表达式的平台，可以对输入按照用户编写的正则表达式进行匹配并高亮匹配到的对象。</p>
+<h1 id="第一章、引言"><a href="#第一章、引言" class="headerlink" title="第一章、引言"></a>第一章、引言</h1><p>正则表达式是一种描述字符串模式的工具，可以用来匹配、查找和替换文本。它由一系列字符和特殊字符组成，用于定义字符串的规则。正则表达式可以用于各种编程语言和应用程序中，常用于数据验证、文本处理和搜索。</p>
+<p>常见的正则表达式元字符包括：</p>
+<blockquote>
+<ul>
+<li><code>.</code>：匹配任意单个字符。</li>
+<li><code>*</code>：匹配前面的元素零次或多次。</li>
+<li><code>+</code>：匹配前面的元素一次或多次。</li>
+<li><code>?</code>：匹配前面的元素零次或一次。</li>
+<li><code>[]</code>：定义一个字符集合，匹配其中任意一个字符。</li>
+<li><code>()</code>：分组表达式，将其中的内容作为一个整体进行处理。</li>
+</ul>
+</blockquote>
+<p>例如，正则表达式 <code>\d&#123;3&#125;-\d&#123;4&#125;</code> 可以用来匹配三位数字-四位数字格式的电话号码。</p>
+<p>需要注意的是，使用正则表达式时需考虑性能问题，复杂或不正确的正则表达式可能会导致性能下降甚至死循环。同时，不同编程语言对正则表达式支持也有所差异，具体语法和使用方式需根据所使用编程语言进行调整。</p>
+<p><img src="http://qnpicmap.fcsluck.top/pics/202312021054340.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="第二章、校验工具"><a href="#第二章、校验工具" class="headerlink" title="第二章、校验工具"></a>第二章、校验工具</h1><p><a target="_blank" rel="noopener" href="https://regex101.com/">regex101: build, test, and debug regex</a> 是一个多语言在线校验正则表达式的平台，可以对输入按照用户编写的正则表达式进行匹配并高亮匹配到的对象。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cardlink">url: https://regex101.com/<br>title: &quot;regex101: build, test, and debug regex&quot;<br>description: &quot;Regular expression tester with syntax highlighting, explanation, cheat sheet for PHP/PCRE, Python, GO, JavaScript, Java, C#/.NET, Rust.&quot;<br>host: regex101.com<br>favicon: https://regex101.com/static/assets/icon-16.png<br>image: https://regex101.com/preview/<br></code></pre></td></tr></table></figure>
 
-<h1 id="第二章、特殊字符"><a href="#第二章、特殊字符" class="headerlink" title="第二章、特殊字符"></a>第二章、特殊字符</h1><table>
+<h1 id="第三章、特殊字符"><a href="#第三章、特殊字符" class="headerlink" title="第三章、特殊字符"></a>第三章、特殊字符</h1><table>
 <thead>
 <tr>
 <th align="center">特别字符</th>
@@ -378,14 +393,14 @@
 </tr>
 <tr>
 <td align="center"><code>( )</code></td>
-<td align="left">优先级运算符，标记一个子表达式的<strong>开始和结束位置</strong>（<em>用于多字符匹配</em>）。子表达式可以获取供以后使用。要匹配这些字符，请使用 ( 和 )。</td>
+<td align="left"><strong>分组运算符</strong>，标记一个子表达式的<strong>开始和结束位置</strong>（<em>用于多字符匹配</em>）。子表达式可以获取供以后使用。要匹配这些字符，请使用 ( 和 )。</td>
 <td align="center"><img src="http://qnpicmap.fcsluck.top/pics/202312020013867.png" srcset="/img/loading.gif" lazyload></td>
 </tr>
 </tbody></table>
 <pre><code class="hljs">                                                                                                                                                                                |
 </code></pre>
-<p>|   <code>*</code>    | 匹配前面的子表达式<strong>零次或多次</strong>。要匹配 * 字符，请使用 *。                                                                                                                                                                                                  |                                                                                                                                                                                     |<br>|   <code>+</code>    | 匹配前面的子表达式<strong>一次或多次(包括一次)<strong>。要匹配 + 字符，请使用 +。                                                                                                                                                                                        |                                                                                                                                                                                     |<br>|   <code>.</code>    | 匹配</strong>除换行符 \n 之外的任何单字符</strong>。要匹配 . ，请使用 . 。                                                                                                                                                                                                 |                                                              <img src="http://qnpicmap.fcsluck.top/pics/202312020003528.png" srcset="/img/loading.gif" lazyload>                                                              |<br>|          |                                                                                                                                                                                                                                                               |                                                                                                                                                                                     |<br>|   <code>[</code>    | 给定方括号中的范围进行匹配，标记一个<strong>中括号表达式的开始</strong>。要匹配 [，请使用 [。                                                                                                                                                                            |                             <img src="http://qnpicmap.fcsluck.top/pics/202312012333847.png" srcset="/img/loading.gif" lazyload alt="\|550"><br><img src="http://qnpicmap.fcsluck.top/pics/202312012254132.png" srcset="/img/loading.gif" lazyload>                             |<br>|          |                                                                                                                                                                                                                                                               |                                                                                                                                                                                     |<br>|   <code>?</code>    | 匹配前面的子表达式<strong>零次或一次</strong>，或指明一个非贪婪限定符。要匹配 ? 字符，请使用 ?。                                                                                                                                                                          |                                                                                                                                                                                     |<br>|   <code>\</code>    | 将<strong>下一个字符标记为或特殊字符、或原义字符、或向后引用、或八进制转义符</strong>。例如，*’\d’匹配任意数字,’\w’匹配任意字符数字和下划线,’\s’匹配空白字符（Tab和换行符）,’\n’ 匹配换行符，所有字母转为大写即变成匹配相反含义*。序列 ‘\‘ 匹配 “&quot;，而 ‘(‘ 则匹配 “(“。 | <img src="http://qnpicmap.fcsluck.top/pics/202312012353253.png" srcset="/img/loading.gif" lazyload><br><img src="http://qnpicmap.fcsluck.top/pics/202312012342578.png" srcset="/img/loading.gif" lazyload><br><img src="http://qnpicmap.fcsluck.top/pics/202312012341395.png" srcset="/img/loading.gif" lazyload> |<br>|          |                                                                                                                                                                                                                                                               |                                                                                                                                                                                     |<br>|   <code>^</code>    | 匹配<strong>输入字符串的开始位置</strong>，除非在方括号表达式中使用，<strong>当该符号在方括号表达式中使用时，表示不接受该方括号表达式中的字符集合</strong>。要匹配 ^ 字符本身，请使用 ^。                                                                                              |                               <img src="http://qnpicmap.fcsluck.top/pics/202312020008754.png" srcset="/img/loading.gif" lazyload><br><img src="http://qnpicmap.fcsluck.top/pics/202312012337245.png" srcset="/img/loading.gif" lazyload>                                |<br>|          |                                                                                                                                                                                                                                                               |                                                                                                                                                                                     |<br>|   <code>&#123;</code>    | 标记<strong>限定符表达式的开始</strong>。要匹配 {，请使用 {。                                                                                                                                                                                                             |                                                                                                                                                                                     |<br>|    |    | 或运算符，指明<strong>两项之间的一个选择</strong>。要匹配 |，请使用 \。                                                                                                                                                                                                   |                                                              <img src="http://qnpicmap.fcsluck.top/pics/202312012250643.png" srcset="/img/loading.gif" lazyload>                                                              |</p>
-<h1 id="第三章、限定符"><a href="#第三章、限定符" class="headerlink" title="第三章、限定符"></a>第三章、限定符</h1><table>
+<p>|   <code>*</code>    | 匹配前面的子表达式<strong>零次或多次</strong>。要匹配 * 字符，请使用 *。                                                                                                                                                                                                  |                                                                                                                                                                                     |<br>|   <code>+</code>    | 匹配前面的子表达式<strong>一次或多次(包括一次)<strong>。要匹配 + 字符，请使用 +。                                                                                                                                                                                        |                                                                                                                                                                                     |<br>|   <code>.</code>    | 匹配</strong>除换行符 \n 之外的任何单字符</strong>。要匹配 . ，请使用 . 。                                                                                                                                                                                                 |                                                              <img src="http://qnpicmap.fcsluck.top/pics/202312020003528.png" srcset="/img/loading.gif" lazyload>                                                              |<br>|          |                                                                                                                                                                                                                                                               |                                                                                                                                                                                     |<br>|   <code>[</code>    | 给定方括号中的范围进行匹配，标记一个<strong>中括号表达式的开始</strong>。要匹配 [，请使用 [。                                                                                                                                                                            |                             <img src="http://qnpicmap.fcsluck.top/pics/202312012333847.png" srcset="/img/loading.gif" lazyload alt="\|550"> <br> <img src="http://qnpicmap.fcsluck.top/pics/202312012254132.png" srcset="/img/loading.gif" lazyload>                             |<br>|          |                                                                                                                                                                                                                                                               |                                                                                                                                                                                     |<br>|   <code>?</code>    | 匹配前面的子表达式<strong>零次或一次</strong>，或指明一个非贪婪限定符。要匹配 ? 字符，请使用 ?。                                                                                                                                                                          |                                                                                                                                                                                     |<br>|   <code>\</code>    | 将<strong>下一个字符标记为或特殊字符、或原义字符、或向后引用、或八进制转义符</strong>。例如，*’\d’匹配任意数字,’\w’匹配任意字符数字和下划线,’\s’匹配空白字符（Tab 和换行符）,’\n’ 匹配换行符，所有字母转为大写即变成匹配相反含义*。序列 ‘\‘ 匹配 “&quot;，而 ‘(‘ 则匹配 “(“。 | <img src="http://qnpicmap.fcsluck.top/pics/202312012353253.png" srcset="/img/loading.gif" lazyload> <br> <img src="http://qnpicmap.fcsluck.top/pics/202312012342578.png" srcset="/img/loading.gif" lazyload> <br> <img src="http://qnpicmap.fcsluck.top/pics/202312012341395.png" srcset="/img/loading.gif" lazyload> |<br>|          |                                                                                                                                                                                                                                                               |                                                                                                                                                                                     |<br>|   <code>^</code>    | 匹配<strong>输入字符串的开始位置</strong>，除非在方括号表达式中使用，<strong>当该符号在方括号表达式中使用时，表示不接受该方括号表达式中的字符集合</strong>。要匹配 ^ 字符本身，请使用 ^。                                                                                              |                               <img src="http://qnpicmap.fcsluck.top/pics/202312020008754.png" srcset="/img/loading.gif" lazyload> <br> <img src="http://qnpicmap.fcsluck.top/pics/202312012337245.png" srcset="/img/loading.gif" lazyload>                                |<br>|          |                                                                                                                                                                                                                                                               |                                                                                                                                                                                     |<br>|   <code>&#123;</code>    | 标记<strong>限定符表达式的开始</strong>。要匹配 {，请使用 {。                                                                                                                                                                                                             |                                                                                                                                                                                     |<br>|    |    | 或运算符，指明<strong>两项之间的一个选择</strong>。要匹配 |，请使用 \。                                                                                                                                                                                                   |                                                              <img src="http://qnpicmap.fcsluck.top/pics/202312012250643.png" srcset="/img/loading.gif" lazyload>                                                              |</p>
+<h1 id="第四章、限定符"><a href="#第四章、限定符" class="headerlink" title="第四章、限定符"></a>第四章、限定符</h1><table>
 <thead>
 <tr>
 <th align="center">限定符</th>
@@ -424,14 +439,355 @@
 <td align="center"><img src="http://qnpicmap.fcsluck.top/pics/202312012207096.png" srcset="/img/loading.gif" lazyload></td>
 </tr>
 </tbody></table>
-<h1 id="第四章、贪婪与懒惰匹配"><a href="#第四章、贪婪与懒惰匹配" class="headerlink" title="第四章、贪婪与懒惰匹配"></a>第四章、贪婪与懒惰匹配</h1><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
+<h1 id="第五章、元字符"><a href="#第五章、元字符" class="headerlink" title="第五章、元字符"></a>第五章、元字符</h1><table>
+<thead>
+<tr>
+<th align="center">字符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>^</code></td>
+<td>匹配输入<strong>字符串开始的位置</strong>。如果设置了 RegExp 对象的 Multiline 属性，^ 还会与 \n 或 \r 之后的位置匹配。</td>
+</tr>
+<tr>
+<td align="center"><code>$</code></td>
+<td>匹配输入<strong>字符串结尾的位置</strong>。如果设置了 RegExp 对象的 Multiline 属性，$ 还会与 \n 或 \r 之前的位置匹配。</td>
+</tr>
+<tr>
+<td align="center"><code>\b</code></td>
+<td>匹配<strong>一个单词边界</strong>，即<strong>字与空格间的位置，进行全字匹配</strong>。</td>
+</tr>
+<tr>
+<td align="center"><code>\B</code></td>
+<td><strong>非单词边界匹配</strong>。</td>
+</tr>
+<tr>
+<td align="center"><code>\d</code></td>
+<td><strong>匹配数字字符</strong></td>
+</tr>
+<tr>
+<td align="center"><code>\D</code></td>
+<td><strong>匹配非数字字符</strong></td>
+</tr>
+<tr>
+<td align="center"><code>\w</code></td>
+<td><strong>匹配单词字符（英文，数字和下划线）</strong></td>
+</tr>
+<tr>
+<td align="center"><code>\W</code></td>
+<td><strong>匹配非单词字符</strong></td>
+</tr>
+<tr>
+<td align="center"><code>\s</code></td>
+<td><strong>匹配空白符（空格 <code> </code> 换行符 <code>\n</code>，Tab <code>\r</code>）</strong></td>
+</tr>
+<tr>
+<td align="center"><code>\S</code></td>
+<td><strong>匹配非空白符</strong></td>
+</tr>
+<tr>
+<td align="center"><code>.</code></td>
+<td><strong>匹配任意字符（包括特殊字符和空格,换行符除外）</strong></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>不能将限定符与定位符一起使用</strong>。由于在紧靠换行或者单词边界的前面或后面不能有一个以上位置，因此不允许诸如 <code>^*</code> 之类的表达式。</p>
+</blockquote>
+<h1 id="第六章、贪婪与懒惰匹配"><a href="#第六章、贪婪与懒惰匹配" class="headerlink" title="第六章、贪婪与懒惰匹配"></a>第六章、贪婪与懒惰匹配</h1><p><code>*</code> 和 <code>+</code> 限定符<em>都是<strong>贪婪的</strong>，因为它们会尽可能多的匹配文字，只有在它们的后面加上一个 <code>?</code> 就可以实现<strong>非贪婪或最小匹配</strong></em>。</p>
+<h2 id="贪婪匹配"><a href="#贪婪匹配" class="headerlink" title="贪婪匹配"></a>贪婪匹配</h2><p>正则表达式<strong>默认执行贪婪匹配，这意味着匹配内容会尽可能长</strong>。请看下面的示例，它匹配任何以 r 结尾的字符串，以及前面带有该字符串的文本，但它不会在第一个 r 处停止匹配。</p>
+<p><img src="http://qnpicmap.fcsluck.top/pics/202312021421415.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="懒惰匹配"><a href="#懒惰匹配" class="headerlink" title="懒惰匹配"></a>懒惰匹配</h2><p>与贪婪匹配不同，<strong>懒惰匹配在第一次匹配时停止</strong>。下面的例子中，在 * 之后添加 ?，将查找以 r 结尾且前面带有任意字符的第一个匹配项。这意味着本次匹配将会在第一个字母 r 处停止。</p>
+<p><img src="http://qnpicmap.fcsluck.top/pics/202312021422137.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="RGB-颜色值匹配"><a href="#RGB-颜色值匹配" class="headerlink" title="RGB 颜色值匹配"></a>RGB 颜色值匹配</h2><p><code>\b#[a-fA-Fo-9][6]\b</code>：前后加上 <code>\b</code> 表示字符边界，避免字串匹配</p>
+<p><img src="http://qnpicmap.fcsluck.top/pics/202312021013591.png" srcset="/img/loading.gif" lazyload alt="|600"></p>
+<h2 id="IPv4-地址匹配"><a href="#IPv4-地址匹配" class="headerlink" title="IPv4 地址匹配"></a>IPv4 地址匹配</h2><p><code>\b((25[0-5]|2[0-4][0-9]|[01]?\d?\d)\.)&#123;3&#125;(25[0-5]|2[0-4][0-9]|[01]?\d?\d)\b</code>：匹配任意 IPv4地址</p>
+<p><img src="http://qnpicmap.fcsluck.top/pics/202312021041690.png" srcset="/img/loading.gif" lazyload alt="|600"></p>
+<h2 id="Html-标签匹配"><a href="#Html-标签匹配" class="headerlink" title="Html 标签匹配"></a>Html 标签匹配</h2><p><code>&lt;.+?&gt;</code>：匹配任意 html 标签</p>
+<p><img src="http://qnpicmap.fcsluck.top/pics/202312021059530.png" srcset="/img/loading.gif" lazyload alt="|600"></p>
+<h1 id="第七章、高级用法"><a href="#第七章、高级用法" class="headerlink" title="第七章、高级用法"></a>第七章、高级用法</h1><h2 id="分组"><a href="#分组" class="headerlink" title="分组"></a>分组</h2><h3 id="括号-分组"><a href="#括号-分组" class="headerlink" title="括号 ( ): 分组"></a>括号 ( ): 分组</h3><p>我们可以对一个表达式进行分组，并用这些分组来引用或执行一些规则。为了给表达式分组，我们需要将文本包裹在 <code>()</code> 中。现在为下方文本中的 haa 构造分组。</p>
+<p><img src="http://qnpicmap.fcsluck.top/pics/202312021218976.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="index-引用组"><a href="#index-引用组" class="headerlink" title="\index 引用组"></a>\index 引用组</h3><p>单词 ha 和 haa 分组如下。第一组用 <code>\1</code> 来避免重复书写。这里的 <strong>1 表示分组的顺序</strong>。在表达式的末尾键入 <code>\2</code> 以引用第二组。</p>
+<p><img src="http://qnpicmap.fcsluck.top/pics/202312021219974.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="括号-非捕获分组"><a href="#括号-非捕获分组" class="headerlink" title="括号 (?: ): 非捕获分组"></a>括号 (?: ): 非捕获分组</h3><p>您可以对表达式进行分组，<strong>并确保它不被引用捕获</strong>。例如，下面有两个分组，但我们用 <code>\1</code> 引用的第一个组实际上是指向<strong>第二个组</strong>，因为第一个是未被捕获的分组。</p>
+<p><img src="http://qnpicmap.fcsluck.top/pics/202312021220746.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="零宽断言"><a href="#零宽断言" class="headerlink" title="零宽断言"></a>零宽断言</h2><p>如果我们希望正在写的词语出现在另一个词语之前或之后，我们需要使用「零宽断言」。</p>
+<blockquote>
+<p><strong>先行后行决定断言位置，正向反向决定等于或者不等于</strong>。</p>
+</blockquote>
+<h3 id="正向先行断言"><a href="#正向先行断言" class="headerlink" title="正向先行断言: (?&#x3D;)"></a>正向先行断言: (?&#x3D;)</h3><p>例如，我们要匹配文本中的小时值。为了只匹配后面有 PM 的数值，我们需要在表达式后面使用正向先行断言 <code>(?=)</code>，并在括号内的 <code>=</code> 后面添加 PM。</p>
+<p><img src="http://qnpicmap.fcsluck.top/pics/202312021402283.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="负向先行断言"><a href="#负向先行断言" class="headerlink" title="负向先行断言: (?!)"></a>负向先行断言: (?!)</h3><p>例如，我们要在文本中匹配除小时值以外的数字。我们需要在表达式后面使用负向先行断言 <code>(?!)</code>，并在括号内的 <code>!</code> 后面添加 PM，从而只匹配没有 PM 的数值。</p>
+<p><img src="http://qnpicmap.fcsluck.top/pics/202312021404051.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="正向后行断言"><a href="#正向后行断言" class="headerlink" title="正向后行断言: (?&lt;&#x3D;)"></a>正向后行断言: (?&lt;&#x3D;)</h3><p>例如，我们要匹配文本中的金额数。为了只匹配前面带有 $ 的数字。我们要在表达式前面使用正向后行断言 <code>(?&lt;=)</code>，并在括号内的 &#x3D; 后面添加 <code>\$</code>。</p>
+<p><img src="http://qnpicmap.fcsluck.top/pics/202312021407024.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="负向后行断言"><a href="#负向后行断言" class="headerlink" title="负向后行断言: (?&lt;!)"></a>负向后行断言: (?&lt;!)</h3><p>例如，我们要在文本中匹配除价格外的数字。为了只匹配前面没有 $ 的数字，我们要在表达式前用负向后行断言 <code>(?&lt;!)</code>，并在括号内的 ! 后面添加 <code>\$</code>。</p>
+<p><img src="http://qnpicmap.fcsluck.top/pics/202312021411714.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="标志"><a href="#标志" class="headerlink" title="标志"></a>标志</h2><p>标志改变表达式的输出。这就是标志也称为修饰符的原因。标志决定<strong>表达式是否将文本视作单独的行处理，是否区分大小写，或者是否查找所有匹配项</strong>。</p>
+<h3 id="全局标志"><a href="#全局标志" class="headerlink" title="全局标志"></a>全局标志</h3><p>全局标志 <code>\g</code> 使表达式选中所有匹配项，如果不启用全局标志，那么表达式只会匹配第一个匹配项。</p>
+<p><img src="http://qnpicmap.fcsluck.top/pics/202312021416171.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="多行标志"><a href="#多行标志" class="headerlink" title="多行标志"></a>多行标志</h3><p>正则表达式将所有文本视作一行。但如果我们使用了全局多行标志 <code>\gm</code> ，它就会单独处理每一行。这次，我们将根据每一行行末的规律来写出表达式。</p>
+<p><img src="http://qnpicmap.fcsluck.top/pics/202312021417666.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="忽略大小写标志"><a href="#忽略大小写标志" class="headerlink" title="忽略大小写标志"></a>忽略大小写标志</h3><p>为了使我们编写的表达式<strong>不再大小写敏感</strong>，我们必须启用<strong>不区分大小写标志</strong> <code>\gmi</code> 。</p>
+<p><img src="http://qnpicmap.fcsluck.top/pics/202312021418028.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="第八章、字符汇总表"><a href="#第八章、字符汇总表" class="headerlink" title="第八章、字符汇总表"></a>第八章、字符汇总表</h1><table>
+<thead>
+<tr>
+<th align="center">字符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>\</code></td>
+<td>将下一个字符标记为一个特殊字符、或一个原义字符、或一个向后引用、或一个八进制转义符。例如，“<code>n</code>”匹配字符“<code>n</code>”。“<code>\n</code>”匹配一个换行符。串行“<code>\\</code>”匹配“<code>\</code>”而“<code>\(</code>”则匹配“<code>(</code>”。</td>
+</tr>
+<tr>
+<td align="center">^</td>
+<td>匹配输入字符串的开始位置。如果设置了 RegExp 对象的 Multiline 属性，^也匹配“<code>\n</code>”或“<code>\r</code>”之后的位置。</td>
+</tr>
+<tr>
+<td align="center">$</td>
+<td>匹配输入字符串的结束位置。如果设置了 RegExp 对象的 Multiline 属性，$也匹配“<code>\n</code>”或“<code>\r</code>”之前的位置。</td>
+</tr>
+<tr>
+<td align="center">*</td>
+<td>匹配前面的子表达式零次或多次。例如，zo<em>能匹配“<code>z</code>”以及“<code>zoo</code>”。</em> 等价于{0,}。|</td>
+</tr>
+<tr>
+<td align="center"><code>+</code></td>
+<td>匹配前面的子表达式一次或多次。例如，“<code>zo+</code>”能匹配“<code>zo</code>”以及“<code>zoo</code>”，但不能匹配“<code>z</code>”。+等价于{1,}。|</td>
+</tr>
+<tr>
+<td align="center">?</td>
+<td>匹配前面的子表达式零次或一次。例如，“<code>do(es)?</code>”可以匹配“<code>does</code>”或“<code>does</code>”中的“<code>do</code>”。?等价于{0,1}。</td>
+</tr>
+<tr>
+<td align="center">{n}</td>
+<td>n 是一个非负整数。匹配确定的 n 次。例如，“<code>o&#123;2&#125;</code>”不能匹配“<code>Bob</code>”中的“<code>o</code>”，但是能匹配“<code>food</code>”中的两个 o。</td>
+</tr>
+<tr>
+<td align="center">{n,}</td>
+<td>n 是一个非负整数。至少匹配 n 次。例如，“<code>o&#123;2,&#125;</code>”不能匹配“<code>Bob</code>”中的“<code>o</code>”，但能匹配“<code>foooood</code>”中的所有 o。“<code>o&#123;1,&#125;</code>”等价于“<code>o+</code>”。“<code>o&#123;0,&#125;</code>”则等价于“<code>o*</code>”。</td>
+</tr>
+<tr>
+<td align="center">{n,m}</td>
+<td>m 和 n 均为非负整数，其中 n&lt;&#x3D;m。最少匹配 n 次且最多匹配 m 次。例如，“<code>o&#123;1,3&#125;</code>”将匹配“<code>fooooood</code>”中的前三个 o。“<code>o&#123;0,1&#125;</code>”等价于“<code>o?</code>”。请注意在逗号和两个数之间不能有空格。</td>
+</tr>
+<tr>
+<td align="center">?</td>
+<td>当该字符紧跟在任何一个其他限制符（*,+,?，{n}，{n,}，{n,m}）后面时，匹配模式是非贪婪的。非贪婪模式尽可能少的匹配所搜索的字符串，而默认的贪婪模式则尽可能多的匹配所搜索的字符串。例如，对于字符串“<code>oooo</code>”，“<code>o+?</code>”将匹配单个“<code>o</code>”，而“<code>o+</code>”将匹配所有“<code>o</code>”。</td>
+</tr>
+<tr>
+<td align="center">.</td>
+<td>匹配除“<code>\``n</code>”之外的任何单个字符。要匹配包括“<code>\``n</code>”在内的任何字符，请使用像“<code>(.|\n)</code>”的模式。</td>
+</tr>
+<tr>
+<td align="center">(pattern)</td>
+<td>匹配 pattern 并获取这一匹配。所获取的匹配可以从产生的 Matches 集合得到，在 VBScript 中使用 SubMatches 集合，在 JScript 中则使用$0…$9属性。要匹配圆括号字符，请使用“<code>\(</code>”或“<code>\)</code>”。</td>
+</tr>
+<tr>
+<td align="center">(?:pattern)</td>
+<td>匹配 pattern 但不获取匹配结果，也就是说这是一个非获取匹配，不进行存储供以后使用。这在使用或字符“<code>(|)</code>”来组合一个模式的各个部分是很有用。例如“<code>industr(?:y|ies)</code>”就是一个比“<code>industry|industries</code>”更简略的表达式。</td>
+</tr>
+<tr>
+<td align="center">(?&#x3D;pattern)</td>
+<td>正向肯定预查，在任何匹配 pattern 的字符串开始处匹配查找字符串。这是一个非获取匹配，也就是说，该匹配不需要获取供以后使用。例如，“<code>Windows(?=95|98|NT|2000)</code>”能匹配“<code>Windows2000</code>”中的“<code>Windows</code>”，但不能匹配“<code>Windows3.1</code>”中的“<code>Windows</code>”。预查不消耗字符，也就是说，在一个匹配发生后，在最后一次匹配之后立即开始下一次匹配的搜索，而不是从包含预查的字符之后开始。</td>
+</tr>
+<tr>
+<td align="center">(?!pattern)</td>
+<td>正向否定预查，在任何不匹配 pattern 的字符串开始处匹配查找字符串。这是一个非获取匹配，也就是说，该匹配不需要获取供以后使用。例如“<code>Windows(?!95|98|NT|2000)</code>”能匹配“<code>Windows3.1</code>”中的“<code>Windows</code>”，但不能匹配“<code>Windows2000</code>”中的“<code>Windows</code>”。预查不消耗字符，也就是说，在一个匹配发生后，在最后一次匹配之后立即开始下一次匹配的搜索，而不是从包含预查的字符之后开始</td>
+</tr>
+<tr>
+<td align="center">(?&lt;&#x3D;pattern)</td>
+<td>反向肯定预查，与正向肯定预查类拟，只是方向相反。例如，“<code>(?&lt;=95|98|NT|2000)Windows</code>”能匹配“<code>2000Windows</code>”中的“<code>Windows</code>”，但不能匹配“<code>3.1Windows</code>”中的“<code>Windows</code>”。</td>
+</tr>
+<tr>
+<td align="center">(?&lt;!pattern)</td>
+<td>反向否定预查，与正向否定预查类拟，只是方向相反。例如“<code>(?&lt;!95|98|NT|2000)Windows</code>”能匹配“<code>3.1Windows</code>”中的“<code>Windows</code>”，但不能匹配“<code>2000Windows</code>”中的“<code>Windows</code>”。</td>
+</tr>
+<tr>
+<td align="center">x|y</td>
+<td>匹配 x 或 y。例如，“<code>z|food</code>”能匹配“<code>z</code>”或“<code>food</code>”。“<code>(z|f)ood</code>”则匹配“<code>zood</code>”或“<code>food</code>”。</td>
+</tr>
+<tr>
+<td align="center">[xyz]</td>
+<td>字符集合。匹配所包含的任意一个字符。例如，“<code>[abc]</code>”可以匹配“<code>plain</code>”中的“<code>a</code>”。</td>
+</tr>
+<tr>
+<td align="center">[^xyz]</td>
+<td>负值字符集合。匹配未包含的任意字符。例如，“<code>[^abc]</code>”可以匹配“<code>plain</code>”中的“<code>p</code>”。</td>
+</tr>
+<tr>
+<td align="center">[a-z]</td>
+<td>字符范围。匹配指定范围内的任意字符。例如，“<code>[a-z]</code>”可以匹配“<code>a</code>”到“<code>z</code>”范围内的任意小写字母字符。</td>
+</tr>
+<tr>
+<td align="center">[^a-z]</td>
+<td>负值字符范围。匹配任何不在指定范围内的任意字符。例如，“<code>[^a-z]</code>”可以匹配任何不在“<code>a</code>”到“<code>z</code>”范围内的任意字符。</td>
+</tr>
+<tr>
+<td align="center">\b</td>
+<td>匹配一个单词边界，也就是指单词和空格间的位置。例如，“<code>er\b</code>”可以匹配“<code>never</code>”中的“<code>er</code>”，但不能匹配“<code>verb</code>”中的“<code>er</code>”。</td>
+</tr>
+<tr>
+<td align="center">\B</td>
+<td>匹配非单词边界。“<code>er\B</code>”能匹配“<code>verb</code>”中的“<code>er</code>”，但不能匹配“<code>never</code>”中的“<code>er</code>”。</td>
+</tr>
+<tr>
+<td align="center">\cx</td>
+<td>匹配由 x 指明的控制字符。例如，<code>\cM</code> 匹配一个 Control-M 或回车符。x 的值必须为 A-Z 或 a-z 之一。否则，将 c 视为一个原义的“<code>c</code>”字符。</td>
+</tr>
+<tr>
+<td align="center">\d</td>
+<td>匹配一个数字字符。等价于[0-9]。</td>
+</tr>
+<tr>
+<td align="center">\D</td>
+<td>匹配一个非数字字符。等价于[^0-9]。</td>
+</tr>
+<tr>
+<td align="center">\f</td>
+<td>匹配一个换页符。等价于\x0c 和\cL。</td>
+</tr>
+<tr>
+<td align="center">\n</td>
+<td>匹配一个换行符。等价于\x0a 和\cJ。</td>
+</tr>
+<tr>
+<td align="center">\r</td>
+<td>匹配一个回车符。等价于\x0d 和\cM。</td>
+</tr>
+<tr>
+<td align="center">\s</td>
+<td>匹配任何空白字符，包括空格、制表符、换页符等等。等价于[ \f\n\r\t\v]。</td>
+</tr>
+<tr>
+<td align="center">\S</td>
+<td>匹配任何非空白字符。等价于[^ \f\n\r\t\v]。</td>
+</tr>
+<tr>
+<td align="center">\t</td>
+<td>匹配一个制表符。等价于\x09 和\cI。</td>
+</tr>
+<tr>
+<td align="center">\v</td>
+<td>匹配一个垂直制表符。等价于\x0b 和\cK。</td>
+</tr>
+<tr>
+<td align="center">\w</td>
+<td>匹配包括下划线的任何单词字符。等价于“<code>[A-Za-z0-9_]</code>”。</td>
+</tr>
+<tr>
+<td align="center">\W</td>
+<td>匹配任何非单词字符。等价于“<code>[^A-Za-z0-9_]</code>”。</td>
+</tr>
+<tr>
+<td align="center">\xn</td>
+<td>匹配 n，其中 n 为十六进制转义值。十六进制转义值必须为确定的两个数字长。例如，“<code>\x41</code>”匹配“<code>A</code>”。“<code>\x041</code>”则等价于“<code>\x04&amp;1</code>”。正则表达式中可以使用 ASCII 编码。.</td>
+</tr>
+<tr>
+<td align="center">\num</td>
+<td>匹配 num，其中 num 是一个正整数。对所获取的匹配的引用。例如，“<code>(.)\1</code>”匹配两个连续的相同字符。</td>
+</tr>
+<tr>
+<td align="center">\n</td>
+<td>标识一个八进制转义值或一个向后引用。如果\n 之前至少 n 个获取的子表达式，则 n 为向后引用。否则，如果 n 为八进制数字（0-7），则 n 为一个八进制转义值。</td>
+</tr>
+<tr>
+<td align="center">\nm</td>
+<td>标识一个八进制转义值或一个向后引用。如果\nm 之前至少有 nm 个获得子表达式，则 nm 为向后引用。如果\nm 之前至少有 n 个获取，则 n 为一个后跟文字 m 的向后引用。如果前面的条件都不满足，若 n 和 m 均为八进制数字（0-7），则\nm 将匹配八进制转义值 nm。</td>
+</tr>
+<tr>
+<td align="center">\nml</td>
+<td>如果 n 为八进制数字（0-3），且 m 和 l 均为八进制数字（0-7），则匹配八进制转义值 nml。</td>
+</tr>
+<tr>
+<td align="center">\un</td>
+<td>匹配 n，其中 n 是一个用四个十六进制数字表示的 Unicode 字符。例如，\u00A9 匹配版权符号（©）。</td>
+</tr>
+</tbody></table>
+<h1 id="第九章、常用正则汇总表"><a href="#第九章、常用正则汇总表" class="headerlink" title="第九章、常用正则汇总表"></a>第九章、常用正则汇总表</h1><table>
+<thead>
+<tr>
+<th align="center">解释</th>
+<th>正则表达式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">手机号码</td>
+<td><code>^1[3456789]\d&#123;9&#125;$</code></td>
+</tr>
+<tr>
+<td align="center">邮箱地址</td>
+<td><code>^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$</code></td>
+</tr>
+<tr>
+<td align="center">身份证号码(18位)</td>
+<td><code>^\d&#123;17&#125;[\dXx]$</code></td>
+</tr>
+<tr>
+<td align="center">URL地址</td>
+<td><code>^(https?://)?[\w-]+(\.[\w-]+)+(/[\w\-./?%&amp;=]*)?$</code></td>
+</tr>
+<tr>
+<td align="center">IP地址</td>
+<td><code>^(25[0-5]|2[0-4]\d|[01]?\d\d?)\.(25[0-5]|2[0-4]\d|[01]?\d\d?)\.(25[0-5]|2[0-4]\d|[01]?\d\d?)\.(25[0-5]|2[0-4]\d|[01]?\d\d?)$</code></td>
+</tr>
+<tr>
+<td align="center">数字</td>
+<td><code>^\d+$</code></td>
+</tr>
+<tr>
+<td align="center">英文字母</td>
+<td><code>^[a-zA-Z]+$</code></td>
+</tr>
+<tr>
+<td align="center">中文字符</td>
+<td><code>^[\u4e00-\u9fa5]+$</code></td>
+</tr>
+<tr>
+<td align="center">邮政编码</td>
+<td><code>^[1-9][0-9]&#123;5&#125;$</code></td>
+</tr>
+<tr>
+<td align="center">账号名(字母开头，允许字母数字下划线，长度为6~18个字符)</td>
+<td><code>^[a-zA-Z][a-zA-Z0-9_]&#123;5,17&#125;$</code></td>
+</tr>
+<tr>
+<td align="center">密码(必须包含大小写字母和数字，长度为8~16个字符)</td>
+<td><code>^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).&#123;8,16&#125;$</code></td>
+</tr>
+<tr>
+<td align="center">整数</td>
+<td><code>^-?\d+$</code></td>
+</tr>
+<tr>
+<td align="center">浮点数</td>
+<td><code>^-?\d+(\.\d+)?$</code></td>
+</tr>
+<tr>
+<td align="center">日期(格式为YYYY-MM-DD)</td>
+<td><code>^\d&#123;4&#125;-\d&#123;2&#125;-\d&#123;2&#125;$</code></td>
+</tr>
+<tr>
+<td align="center">时间(24小时制，格式为HH:MM:SS)</td>
+<td><code>^([01]\d|2[0-3]):[0-5]\d:[0-5</code></td>
+</tr>
+</tbody></table>
+<p>以上仅是一部分常见的正则表达式用法，正则表达式非常强大且灵活，可以根据具体需求进行自定义。</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
 <li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1da4y1p7iZ/?spm_id_from=333.337.search-card.all.click&vd_source=9c896fa9c3f9023797e8efe7be0c113e">10分钟快速掌握正则表达式_哔哩哔哩_bilibili</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.runoob.com/regexp/regexp-syntax.html">正则表达式 – 语法 | 菜鸟教程</a></li>
+<li><a target="_blank" rel="noopener" href="https://any86.github.io/any-rule/">正则大全</a></li>
+<li><a target="_blank" rel="noopener" href="https://regexlearn.com/zh-cn">Regex Learn - 逐步从零基础到高阶。</a></li>
 </ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cardlink">url: https://www.runoob.com/regexp/regexp-syntax.html<br>title: &quot;正则表达式 – 语法 | 菜鸟教程&quot;<br>description: &quot;正则表达式 - 语法  正则表达式是一种用于匹配和操作文本的强大工具，它是由一系列字符和特殊字符组成的模式，用于描述要匹配的文本模式。 正则表达式可以在文本中查找、替换、提取和验证特定的模式。 例如：  runoo+b，可以匹配 runoob、runooob、runoooooob 等，+ 号代表前面的字符必须至少出现一次（1次或多次）尝试一下 »。   runoo*b，可以匹配 runob、runoob、runoooooob 等，* 号..&quot;<br>host: www.runoob.com<br></code></pre></td></tr></table></figure>
 
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cardlink">url: https://www.bilibili.com/video/BV1da4y1p7iZ/?spm_id_from=333.337.search-card.all.click&amp;vd_source=9c896fa9c3f9023797e8efe7be0c113e<br>title: &quot;10分钟快速掌握正则表达式_哔哩哔哩_bilibili&quot;<br>description: &quot;正则表达式在线测试工具：https://regex101.com/, 视频播放量 466178、弹幕量 1125、点赞数 20277、投硬币枚数 14222、收藏人数 27313、转发人数 2917, 视频作者 奇乐编程学院, 作者简介 ，相关视频：正则表达式30分钟入门40分钟进阶（绝对能学会），女朋友学了一个月Python，就做出了个这，大家觉得还有必要学下去吗？，编程语言鄙视链现状，Python编程：正则表达式，正则表达式教程【完整版】，在高铁上偶遇一个电脑高手，程序员之间的鄙视链，我妈眼中的我 vs 真实的我，js正则表达式实战，推荐一个正则表达式神器，可视化正则表达式工具。&quot;<br>host: www.bilibili.com<br>image: https://i2.hdslb.com/bfs/archive/ba08c0c474deb63b844219f19630bed91e9f51a0.jpg@100w_100h_1c.png<br></code></pre></td></tr></table></figure>
 
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cardlink">url: https://any86.github.io/any-rule/<br>title: &quot;正则大全&quot;<br>host: any86.github.io<br>favicon: https://any86.github.io/any-rule/favicon.ico<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cardlink">url: https://regexlearn.com/zh-cn<br>title: &quot;Regex Learn - 逐步从零基础到高阶。&quot;<br>description: &quot;交互式学习正则表达式，在您所处的阶段练习、测试和分享您自己的正则表达式。&quot;<br>host: regexlearn.com<br>image: https://regexlearn.com//images/og-regexlearn-image.jpg<br></code></pre></td></tr></table></figure>
                 
               </div>
             
