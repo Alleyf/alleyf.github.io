@@ -93,7 +93,7 @@
     
     
     
-    <category term="运维开发" scheme="https://alleyf.github.io/categories/%E8%BF%90%E7%BB%B4%E5%BC%80%E5%8F%91/"/>
+    <category term="中间件和工具" scheme="https://alleyf.github.io/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6%E5%92%8C%E5%B7%A5%E5%85%B7/"/>
     
     
     <category term="Redis" scheme="https://alleyf.github.io/tags/Redis/"/>
@@ -149,7 +149,7 @@
     <link href="https://alleyf.github.io/2023/11/1b53210f2a27.html"/>
     <id>https://alleyf.github.io/2023/11/1b53210f2a27.html</id>
     <published>2023-11-20T16:23:58.000Z</published>
-    <updated>2023-11-29T14:40:38.317Z</updated>
+    <updated>2023-12-02T16:50:51.071Z</updated>
     
     
     <summary type="html">一些关于 git 的常用操作。</summary>
