@@ -32,6 +32,10 @@ git 文件有四种状态：
 3. 已修改：修改后未添加到暂存区的文件
 4. 已暂存：添加到暂存区的文件
 ![image.png](http://qnpicmap.fcsluck.top/pics/202311162206125.png)
+
+![](http://qnpicmap.fcsluck.top/pics/202312022334491.png)
+
+
 # 安装和初始化配置
 ## 安装
 > [git官方地址](https://git-scm.com/)：按需下载对应自己**电脑操作系统**的版本。
@@ -66,6 +70,9 @@ git config --global --unset <entry-name> #清除全局配置
 git init （init_repo_dir_name）#后面可选在当前目录新建目录作为git仓库
 ```
 ### 远程克隆
+
+git clone 克隆远程仓库前需要先配置 ssh 密钥，本地生成私钥和公钥，再将公钥添加至 github 上。
+
 ```git
 git clone https://github.com/Alleyf/linux-tutorial.git
 ```
@@ -103,8 +110,11 @@ git remote set-url origin [git_url]
 ```
 ## 同步仓库文件
 ### 拉取仓库
+
+pull 拉取远程仓库时会自动对进行冲突检测，如果不存在冲突则进行文件合并保存到本地，否则需要用户进行冲突处理后才能进行拉取合并，一般先将本地修改的文件 commit 后 stash 保存，等 pull 后再 pop 回来。
+
 ```shell
-git pull
+git pull origin main
 ```
 ### 提交文件
 ```shell
@@ -112,12 +122,14 @@ git add fileName/.  #"."代表添加当前文件夹下的全部文件到存储�
 ```
 ![image.png](http://qnpicmap.fcsluck.top/pics/202311162233770.png)
 ```shell
-git commit -m "提交时的备注信息"
+git commit -m "提交时的备注信息" 
+git commit -am <message> # 将已被跟踪的文件提交的本地库中
 ```
 git commit 只会提交**存储区中的文件到仓库**，**未跟踪即未添加到存储区的文件不会被提交**到仓库，如下 file 2.md 是新增未跟踪的文件不会被同 file1.md 提交到仓库:
 ![image.png](http://qnpicmap.fcsluck.top/pics/202311162235693.png)
 ```shell
 git push "远程库名" 
+git push -u origin main # -u为指定上传目的地分支upstream的缩写
 ```
 ## 查看记录
 查看提交记录：
@@ -182,9 +194,16 @@ git rm filename #删除指定文件（包括工作区和暂存区）
 > - 忽略所有.env 文件
 > - 忽略所有.zip 和 tar 文件
 > - 忽略所有.pem 文件
-1. <u>只需要将要忽略的文件的文件名添加到.gitignore 文件中即可。</u>
+1. 只需要将要忽略的文件的**文件名或文件夹/** 添加到 `.gitignore` 文件中即可。
 2. `.gitignore` 文件中可使用**通配符**进行匹配（eg：*.log）
 ![image.png](http://qnpicmap.fcsluck.top/pics/202311202320021.png)
+
+**.gitignore 模糊匹配规则**
+
+![](http://qnpicmap.fcsluck.top/pics/202312021622490.png)
+
+
+
 ## 回退/溯版本
 git reset 有三种模式：
 ```shell
@@ -195,20 +214,68 @@ git reset --mixed 版本号 #仅保留工作区内容
 ![image.png](http://qnpicmap.fcsluck.top/pics/202311180007484.png)
 不同模式，工作区和暂存区的内容会不同。
 # 分支
+
+
 ## 查询/切换/新建分支
 1. 查询分支，使用以下指令：
 ```shell
 git branch #查询本地分支
 git branch -r #查询远程分支
+git branch -m/M main #修改当前分支名，m为软修改，M为强制修改
 ```
 2. 切换或新建分支，使用以下指令：
 ```shell
-git chechout "branchName" #切换分支
+git chechout "branchName" #切换分支（不推荐，可能会与回滚版本造成歧义）
+git switch "branchName" #切换分支（推荐）
 git checkout -b "branchName" #新建分支并切换到该分支
+git switch -c "branchName" #新建分支并切换到该分支（推荐）
 ```
+
+3. 查看分支图：
+
+```sh
+git log --graph --oneline --decorate --all
+```
+
+![](http://qnpicmap.fcsluck.top/pics/202312030019209.png)
+
 ## 分支合并
+
+新建分支修改分支内容后，新分支与原分支内容不一致，需要经过合并到主分支上。
+
+![](http://qnpicmap.fcsluck.top/pics/202312030003070.png)
+
+将 dev 子分支合并到主分支上：
+
+```sh
+git merge dev #dev为被合并的子分支
+```
+
+![](http://qnpicmap.fcsluck.top/pics/202312030016516.png)
+
+
+
+### 合并冲突
+
+当合并的分支都修改了同一行代码，则 git 就不知道采用谁的了，就会产生冲突，需要手动解决冲突才能继续合并。
+
+![](http://qnpicmap.fcsluck.top/pics/202312030025651.png)
+
+对 feat 分支和 main 分支中分别修改 main1.txt 文件添加第二行内容后，然后将 feat 分支合并到 main，由于两个分支修改的是同一行内容因此出现合并冲突：
+
+![](http://qnpicmap.fcsluck.top/pics/202312030045721.png)
+
+手动修改 `main1.txt` 冲突内容后继续进行提交以解决合并冲突：
+
+![|500](http://qnpicmap.fcsluck.top/pics/202312030047261.png)
+
+解决冲突后的可视化分支图：
+
+![|480](http://qnpicmap.fcsluck.top/pics/202312030050471.png)
+
+
 ## 删除分支
-1. 删除**本地分支**，删除前会进行检查是否*本分支内容已经合并到主分支*，使用以下指令：
+1. 删除**本地分支**，删除前会进行检查是否*本分支内容是否已经合并到主分支*，使用以下指令：
 ```shell
 git branch -d "branchName"
 ```
