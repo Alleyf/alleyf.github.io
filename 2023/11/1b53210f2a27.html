@@ -27,7 +27,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://picsum.photos/800/250">
 <meta property="article:published_time" content="2023-11-20T16:23:58.000Z">
-<meta property="article:modified_time" content="2023-12-02T16:50:51.071Z">
+<meta property="article:modified_time" content="2023-12-03T05:59:05.189Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="Git">
 <meta name="twitter:card" content="summary_large_image">
@@ -283,7 +283,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5.6k 字
+          7.5k 字
         
       </span>
     
@@ -294,7 +294,7 @@
         
         
         
-          47 分钟
+          63 分钟
         
       </span>
     
@@ -345,7 +345,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：1 分钟前
+                    本文最后更新于：几秒前
                   
                 
               </p>
@@ -355,7 +355,7 @@
                 
                 <p><img src="https://picsum.photos/800/250" srcset="/img/loading.gif" lazyload></p>
 <h1 id="Git-简介"><a href="#Git-简介" class="headerlink" title="Git 简介"></a>Git 简介</h1><p>Git 是由 Linus Torvalds 于2005年创立的分布式版本控制系统。与集中式版本控制系统不同，Git 允许每个开发者在本地拥有完整的代码仓库，从而提高了分布式<a target="_blank" rel="noopener" href="https://cloud.tencent.com/product/prowork?from_column=20065&from=20065">团队协作</a>的效率。Git 的设计理念是速度快、灵活性强，使其成为开源社区和企业中的首选版本控制系统。</p>
-<h2 id="Git-的基本概念"><a href="#Git-的基本概念" class="headerlink" title="Git 的基本概念"></a>Git 的基本概念</h2><p>在学习 Git 的原理和命令之前，我们先来了解一些 Git 的基本概念：</p>
+<h2 id="专业词汇解释"><a href="#专业词汇解释" class="headerlink" title="专业词汇解释"></a>专业词汇解释</h2><p>在学习 Git 的原理和命令之前，我们先来了解一些 Git 的基本概念：</p>
 <ol>
 <li><strong>仓库（Repository）：</strong> Git 仓库是存储项目历史和当前状态的地方。它包含了项目的所有文件和文件夹，以及与之相关的版本信息。</li>
 <li><strong>分支（Branch）：</strong> 分支是项目的一个独立线条，可以在上面进行开发，不影响主线。分支的使用使得团队可以同时进行多个功能的开发，而不会相互干扰。</li>
@@ -380,10 +380,14 @@
 <h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><p>查看 git 版本：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs git">git -v<br></code></pre></td></tr></table></figure>
 <p><img src="http://qnpicmap.fcsluck.top/pics/202311162135814.png" srcset="/img/loading.gif" lazyload alt="image.png|500"><br>首次安装 git 使用以下命令配置全局仓库用户名和邮箱信息：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs git">git config --global user.name &quot;Jasper Yang&quot;  #设置用户名<br>git config --global user.email geekhall.cn@gmail.com #设置密码<br>git config --global credential.helper store #保存上述信息<br></code></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sh">git config --global user.name <span class="hljs-string">&quot;Jasper Yang&quot;</span>  <span class="hljs-comment">#设置用户名</span><br>git config --global user.email geekhall.cn@gmail.com <span class="hljs-comment">#设置密码</span><br>git config --global credential.helper store <span class="hljs-comment">#保存上述信息</span><br></code></pre></td></tr></table></figure>
 <p>查看&#x2F;清除全局配置信息：</p>
-<figure class="highlight dsconfig"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs dsconfig"><span class="hljs-string">git</span> <span class="hljs-string">config</span> <span class="hljs-built_in">--global</span> <span class="hljs-built_in">--list</span> <span class="hljs-comment">#查看</span><br><span class="hljs-string">git</span> <span class="hljs-string">config</span> <span class="hljs-built_in">--global</span> <span class="hljs-built_in">--unset</span> &lt;<span class="hljs-string">entry-name</span>&gt; <span class="hljs-comment">#清除全局配置</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">git config --global --list <span class="hljs-comment">#查看</span><br>git config --global --<span class="hljs-built_in">unset</span> &lt;entry-name&gt; <span class="hljs-comment">#清除全局配置</span><br></code></pre></td></tr></table></figure>
 <p><img src="http://qnpicmap.fcsluck.top/pics/202311162140448.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>查看隐藏的. git 文件：<br><img src="http://qnpicmap.fcsluck.top/pics/202311162146376.png" srcset="/img/loading.gif" lazyload><br>清除隐藏的. git 文件则 git 仓库将被清除：<br><img src="http://qnpicmap.fcsluck.top/pics/202311162149713.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h2 id="指令别名"><a href="#指令别名" class="headerlink" title="指令别名"></a>指令别名</h2><p>在用户文件目录下找到.gitconfig文件，在<code>[alias]</code>下为常用指令设置别名简称方便操作：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs .gitconfig">[user]<br>	name = xxx<br>	email = xxx@qq.com<br>[http]<br>	sslverify = false<br>	proxy = http://127.0.0.1:7890 //github代理<br>[credential &quot;http://59.69.101.35:9099&quot;] //gitlab登录地址<br>	provider = generic<br>[core]<br>	autocrlf = true<br>[difftool &quot;sourcetree&quot;]<br>	cmd = &quot;&#x27;&#x27; &quot;<br>[mergetool &quot;sourcetree&quot;]<br>	cmd = &quot;&#x27;&#x27; &quot;<br>	trustExitCode = true<br>[color]<br>	ui = auto<br>[https]<br>	proxy = http://127.0.0.1:7890<br>[alias]<br>	gp = log --graph --oneline --decorate --all<br>	lg = log --pretty=oneline --abbrev-commit<br>	co = checkout		<br>    st = status			<br>    sw = switch<br>    ad = add<br>    cm = commit -m		<br>    br = branch			<br>    dif = diff			<br>    pl = pull			<br>    ps = push			<br><br></code></pre></td></tr></table></figure>
+
+<p><img src="http://qnpicmap.fcsluck.top/pics/202312031150807.png" srcset="/img/loading.gif" lazyload></p>
 <h1 id="基础操作"><a href="#基础操作" class="headerlink" title="基础操作"></a>基础操作</h1><h2 id="创建-git-仓库"><a href="#创建-git-仓库" class="headerlink" title="创建 git 仓库"></a>创建 git 仓库</h2><h3 id="本地初始化"><a href="#本地初始化" class="headerlink" title="本地初始化"></a>本地初始化</h3><p>在本地需要创建 git 仓库的文件夹下打开 <strong>git bash</strong> 执行以下命令：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs git">git init （init_repo_dir_name）#后面可选在当前目录新建目录作为git仓库<br></code></pre></td></tr></table></figure>
 <h3 id="远程克隆"><a href="#远程克隆" class="headerlink" title="远程克隆"></a>远程克隆</h3><p>git clone 克隆远程仓库前需要先配置 ssh 密钥，本地生成私钥和公钥，再将公钥添加至 github 上。</p>
@@ -451,9 +455,6 @@
 </ol>
 <p><strong>.gitignore 模糊匹配规则</strong></p>
 <p><img src="http://qnpicmap.fcsluck.top/pics/202312021622490.png" srcset="/img/loading.gif" lazyload></p>
-<h2 id="回退-溯版本"><a href="#回退-溯版本" class="headerlink" title="回退&#x2F;溯版本"></a>回退&#x2F;溯版本</h2><p>git reset 有三种模式：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">git reset --soft 版本号 #回退版本后的内容保留工作区和暂存区<br>git reset --hard 版本号 #都不保留<br>git reset --mixed 版本号 #仅保留工作区内容<br></code></pre></td></tr></table></figure>
-<p><img src="http://qnpicmap.fcsluck.top/pics/202311180007484.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>不同模式，工作区和暂存区的内容会不同。</p>
 <h1 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h1><h2 id="查询-切换-新建分支"><a href="#查询-切换-新建分支" class="headerlink" title="查询&#x2F;切换&#x2F;新建分支"></a>查询&#x2F;切换&#x2F;新建分支</h2><ol>
 <li><p>查询分支，使用以下指令：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">git branch #查询本地分支<br>git branch -r #查询远程分支<br>git branch -m/M main #修改当前分支名，m为软修改，M为强制修改<br></code></pre></td></tr></table></figure></li>
@@ -463,7 +464,7 @@
 <li><p>查看分支图：</p>
 </li>
 </ol>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">git <span class="hljs-built_in">log</span> --graph --oneline --decorate --all<br></code></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">git <span class="hljs-built_in">log</span> --graph --oneline --decorate --all<br>git config --global alias.gp <span class="hljs-string">&quot;log --pretty=oneline --all --graph --abbrev-commit&quot;</span> <span class="hljs-comment"># 为命令取别名简化为git gp执行</span><br></code></pre></td></tr></table></figure>
 
 <p><img src="http://qnpicmap.fcsluck.top/pics/202312030019209.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="分支合并"><a href="#分支合并" class="headerlink" title="分支合并"></a>分支合并</h2><p>新建分支修改分支内容后，新分支与原分支内容不一致，需要经过合并到主分支上。</p>
@@ -486,16 +487,73 @@
 <li>删除<strong>远程分支</strong>，使用以下指令：<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git push &quot;远程库名&quot; -d &quot;branch name&quot; <br></code></pre></td></tr></table></figure>
 强制删除分支使用 <code>-D</code> 参数。</li>
 </ol>
-<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cardlink">url: https://www.bilibili.com/video/BV1HM411377j/<br>title: &quot;【GeekHour】一小时Git教程_哔哩哔哩_bilibili&quot;<br>description: &quot;【GeekHour】一小时Git教程共计19条视频，包括：01.课程简介、02.安装和初始化配置、03.新建仓库等，UP主更多精彩视频，请关注UP账号。&quot;<br>host: www.bilibili.com<br>image: //i0.hdslb.com/bfs/archive/be265386c6db1da0e1233e9743e02b252ea07b53.jpg@100w_100h_1c.png<br></code></pre></td></tr></table></figure>
+<h1 id="回退和变基"><a href="#回退和变基" class="headerlink" title="回退和变基"></a>回退和变基</h1><h2 id="变基"><a href="#变基" class="headerlink" title="变基"></a>变基</h2><p><img src="http://qnpicmap.fcsluck.top/pics/202312031027245.png" srcset="/img/loading.gif" lazyload></p>
+<p>新建rebase1和rebase2两个仓库，rebase1中将dev分支变基到main上，rebase2将main分支变基到dev上：</p>
+<p><img src="http://qnpicmap.fcsluck.top/pics/202312031329158.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>由此可见，被变基的分支会将与目标分支公共提交节点后面的所有提交迁移到目标分支后面。</p>
+</blockquote>
+<p><img src="http://qnpicmap.fcsluck.top/pics/202312031336740.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="回退-溯版本"><a href="#回退-溯版本" class="headerlink" title="回退&#x2F;溯版本"></a>回退&#x2F;溯版本</h2><p>git reset 有三种模式：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">git reset --soft 版本号 #回退版本后的内容保留工作区和暂存区<br>git reset --hard 版本号 #都不保留<br>git reset --mixed 版本号 #仅保留工作区内容<br></code></pre></td></tr></table></figure>
+<p><img src="http://qnpicmap.fcsluck.top/pics/202311180007484.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>不同模式，工作区和暂存区的内容会不同。</p>
+<h2 id="合并与变基对比"><a href="#合并与变基对比" class="headerlink" title="合并与变基对比"></a>合并与变基对比</h2><ol>
+<li><strong>Merge</strong><ul>
+<li><code>优点</code>：不会破坏原分支的提交历史，方便回溯和查看。</li>
+<li><code>缺点</code>：会产生额外的提交节点，分支图比较复杂。</li>
+</ul>
+</li>
+<li><strong>Rebase</strong><ul>
+<li><code>优点</code>：不会新增额外的提交记录，形成线性历史，比较直观和干净.</li>
+<li><code>缺点</code>：会改变提交历史，改变了当前分支branch out的节点；避免在共享分支使用。</li>
+</ul>
+</li>
+</ol>
+<h1 id="分支管理和工作流模型"><a href="#分支管理和工作流模型" class="headerlink" title="分支管理和工作流模型"></a>分支管理和工作流模型</h1><h2 id="GitHub-Flow"><a href="#GitHub-Flow" class="headerlink" title="GitHub Flow"></a>GitHub Flow</h2><p>GitHub flow 就是 GitHub 所推崇的 Workflow，GitHub flow 具有很高的通用性。</p>
+<p>其官网的描述为：</p>
+<blockquote>
+<p>GitHub flow is a lightweight, branch-based workflow that supports teams and projects where deployments are made regularly.</p>
+</blockquote>
+<p> GitHub flow 的流程图如下图所示：</p>
+<p><img src="http://qnpicmap.fcsluck.top/pics/202312031349018.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://pic3.zhimg.com/80/v2-bafaef976e8842a50403d61912239b52_720w.webp" srcset="/img/loading.gif" lazyload></p>
+<p>Github flow 的工作流程：</p>
+<ul>
+<li>新建分支（Create a branch）；</li>
+<li>提交修改（Add commits）；</li>
+<li>创建PR（Open a Pull Request）；</li>
+<li>代码评审（Discuss and review your code）；</li>
+<li>部署（Deploy）；</li>
+<li>合并（Merge）；</li>
+</ul>
+<p>GitHub flow 最大的亮点在于<strong>部署（Deploy）发生在 合并（Merge）</strong> 之前，这是 GitHub flow 的核心，<strong>非阻塞式集成</strong> —— 在产生任何副作用之前得知当前修改的所有集成效果，达到真正的持续集成。</p>
 <ol>
-<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1HM411377j/">【GeekHour】一小时Git教程_哔哩哔哩_bilibili</a><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cardlink">url: https://wangchujiang.com/reference/docs/git.html<br>title: &quot;Git 备忘清单 &amp;  git cheatsheet &amp;  Quick Reference&quot;<br>host: wangchujiang.com<br>favicon: data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20height%3D%221em%22%20width%3D%221em%22%3E%20%3Cpath%20d%3D%22m21.66%2010.44-.98%204.18c-.84%203.61-2.5%205.07-5.62%204.77-.5-.04-1.04-.13-1.62-.27l-1.68-.4c-4.17-.99-5.46-3.05-4.48-7.23l.98-4.19c.2-.85.44-1.59.74-2.2%201.17-2.42%203.16-3.07%206.5-2.28l1.67.39c4.19.98%205.47%203.05%204.49%207.23Z%22%20fill%3D%22%23c9d1d9%22%2F%3E%20%3Cpath%20d%3D%22M15.06%2019.39c-.62.42-1.4.77-2.35%201.08l-1.58.52c-3.97%201.28-6.06.21-7.35-3.76L2.5%2013.28c-1.28-3.97-.22-6.07%203.75-7.35l1.58-.52c.41-.13.8-.24%201.17-.31-.3.61-.54%201.35-.74%202.2l-.98%204.19c-.98%204.18.31%206.24%204.48%207.23l1.68.4c.58.14%201.12.23%201.62.27Zm2.43-8.88c-.06%200-.12-.01-.19-.02l-4.85-1.23a.75.75%200%200%201%20.37-1.45l4.85%201.23a.748.748%200%200%201-.18%201.47Z%22%20fill%3D%22%23228e6c%22%20%2F%3E%20%3Cpath%20d%3D%22M14.56%2013.89c-.06%200-.12-.01-.19-.02l-2.91-.74a.75.75%200%200%201%20.37-1.45l2.91.74c.4.1.64.51.54.91-.08.34-.38.56-.72.56Z%22%20fill%3D%22%23228e6c%22%20%2F%3E%20%3C%2Fsvg%3E<br></code></pre></td></tr></table></figure></li>
+<li><strong>分支命名</strong>（<em>推荐使用带有意义的描述性名称来命名分支</em>）<ul>
+<li>版本发布分支&#x2F;Tag示例：<code>v1.0.0</code></li>
+<li>功能分支示例：<code>feature-login-page</code></li>
+<li>修复分支示例：<code>hotfix-#issueid-desc</code></li>
+</ul>
+</li>
+<li><strong>分支管理</strong><ul>
+<li>定期合并已经成功验证的分支，及时删除已经合并的分支</li>
+<li>保持合适的分支数量</li>
+<li>为分支设置合适的管理权限</li>
+</ul>
+</li>
+</ol>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><ol>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1HM411377j/">【GeekHour】一小时Git教程_哔哩哔哩_bilibili</a></li>
 <li><a target="_blank" rel="noopener" href="https://wangchujiang.com/reference/docs/git.html">Git 备忘清单 &amp; git cheatsheet &amp; Quick Reference</a></li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cardlink">url: https://cloud.tencent.com/developer/article/2364066<br>title: &quot;深入理解Git：版本控制的魔法-腾讯云开发者社区-腾讯云&quot;<br>description: &quot;在软件开发领域，版本控制是一个至关重要的概念。它不仅帮助开发者跟踪项目的演变历史，还提供了协同工作和团队管理的强大工具。Git，作为最流行的分布式版本控制系统之一，为开发者提供了一套强大而灵活的工具。本文将深入探讨Git的命令及其背后的原理，带你走进版本控制的魔法世界。&quot;<br>host: cloud.tencent.com<br>image: https://cloudcache.tencentcs.com/open_proj/proj_qcloud_v2/gateway/shareicons/cloud.png<br></code></pre></td></tr></table></figure>
-<ol start="3">
 <li><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/2364066">深入理解Git：版本控制的魔法-腾讯云开发者社区-腾讯云</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/81396787">真正的敏捷工作流 —— GitHub flow - 知乎</a></li>
 </ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cardlink">url: https://www.bilibili.com/video/BV1HM411377j/<br>title: &quot;【GeekHour】一小时Git教程_哔哩哔哩_bilibili&quot;<br>description: &quot;【GeekHour】一小时Git教程共计19条视频，包括：01.课程简介、02.安装和初始化配置、03.新建仓库等，UP主更多精彩视频，请关注UP账号。&quot;<br>host: www.bilibili.com<br>image: //i0.hdslb.com/bfs/archive/be265386c6db1da0e1233e9743e02b252ea07b53.jpg@100w_100h_1c.png<br></code></pre></td></tr></table></figure>
 
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cardlink">url: https://wangchujiang.com/reference/docs/git.html<br>title: &quot;Git 备忘清单 &amp;  git cheatsheet &amp;  Quick Reference&quot;<br>host: wangchujiang.com<br>favicon: data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20height%3D%221em%22%20width%3D%221em%22%3E%20%3Cpath%20d%3D%22m21.66%2010.44-.98%204.18c-.84%203.61-2.5%205.07-5.62%204.77-.5-.04-1.04-.13-1.62-.27l-1.68-.4c-4.17-.99-5.46-3.05-4.48-7.23l.98-4.19c.2-.85.44-1.59.74-2.2%201.17-2.42%203.16-3.07%206.5-2.28l1.67.39c4.19.98%205.47%203.05%204.49%207.23Z%22%20fill%3D%22%23c9d1d9%22%2F%3E%20%3Cpath%20d%3D%22M15.06%2019.39c-.62.42-1.4.77-2.35%201.08l-1.58.52c-3.97%201.28-6.06.21-7.35-3.76L2.5%2013.28c-1.28-3.97-.22-6.07%203.75-7.35l1.58-.52c.41-.13.8-.24%201.17-.31-.3.61-.54%201.35-.74%202.2l-.98%204.19c-.98%204.18.31%206.24%204.48%207.23l1.68.4c.58.14%201.12.23%201.62.27Zm2.43-8.88c-.06%200-.12-.01-.19-.02l-4.85-1.23a.75.75%200%200%201%20.37-1.45l4.85%201.23a.748.748%200%200%201-.18%201.47Z%22%20fill%3D%22%23228e6c%22%20%2F%3E%20%3Cpath%20d%3D%22M14.56%2013.89c-.06%200-.12-.01-.19-.02l-2.91-.74a.75.75%200%200%201%20.37-1.45l2.91.74c.4.1.64.51.54.91-.08.34-.38.56-.72.56Z%22%20fill%3D%22%23228e6c%22%20%2F%3E%20%3C%2Fsvg%3E<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cardlink">url: https://cloud.tencent.com/developer/article/2364066<br>title: &quot;深入理解Git：版本控制的魔法-腾讯云开发者社区-腾讯云&quot;<br>description: &quot;在软件开发领域，版本控制是一个至关重要的概念。它不仅帮助开发者跟踪项目的演变历史，还提供了协同工作和团队管理的强大工具。Git，作为最流行的分布式版本控制系统之一，为开发者提供了一套强大而灵活的工具。本文将深入探讨Git的命令及其背后的原理，带你走进版本控制的魔法世界。&quot;<br>host: cloud.tencent.com<br>image: https://cloudcache.tencentcs.com/open_proj/proj_qcloud_v2/gateway/shareicons/cloud.png<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cardlink">url: https://zhuanlan.zhihu.com/p/81396787<br>title: &quot;真正的敏捷工作流 —— GitHub flow&quot;<br>description: &quot;7991 年，随着极限编程（Extreme programming）方法论的提出，持续集成（Continuous integration）也随之成为一项标准化的敏捷实践，被逐步应用于各类软件的开发流程中。 9102 年的今天，持续集成的概念已经在软件…&quot;<br>host: zhuanlan.zhihu.com<br>image: https://picx.zhimg.com/v2-bca21dddbb1b20c206c1c2c512374a76_720w.jpg?source=172ae18b<br></code></pre></td></tr></table></figure>
                 
               </div>
             
