@@ -6,7 +6,7 @@
   <link href="https://alleyf.github.io/atom.xml" rel="self"/>
   
   <link href="https://alleyf.github.io/"/>
-  <updated>2023-12-02T06:26:22.173Z</updated>
+  <updated>2023-12-03T09:07:41.404Z</updated>
   <id>https://alleyf.github.io/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>多源异构司法数据汇聚融合-解决方案调研</title>
+    <link href="https://alleyf.github.io/2023/12/5f1c44e4965a.html"/>
+    <id>https://alleyf.github.io/2023/12/5f1c44e4965a.html</id>
+    <published>2023-12-03T08:39:38.000Z</published>
+    <updated>2023-12-03T09:07:41.404Z</updated>
+    
+    
+    <summary type="html">关于互联网数据汇聚融合的调研结果。</summary>
+    
+    
+    
+    <category term="科研学习" scheme="https://alleyf.github.io/categories/%E7%A7%91%E7%A0%94%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="Spider" scheme="https://alleyf.github.io/tags/Spider/"/>
+    
+  </entry>
   
   <entry>
     <title>正则表达式-Regex</title>
@@ -63,7 +82,7 @@
     <link href="https://alleyf.github.io/2023/11/d1d8bbbe9e18.html"/>
     <id>https://alleyf.github.io/2023/11/d1d8bbbe9e18.html</id>
     <published>2023-11-28T06:41:00.000Z</published>
-    <updated>2023-12-03T02:19:44.605Z</updated>
+    <updated>2023-12-03T13:19:33.923Z</updated>
     
     
     <summary type="html">关于springcloud-alibaba微服务和中间件的阅读收获。</summary>
@@ -294,7 +313,7 @@
     <link href="https://alleyf.github.io/2023/11/47f9bf6ba53a.html"/>
     <id>https://alleyf.github.io/2023/11/47f9bf6ba53a.html</id>
     <published>2023-11-13T14:02:25.000Z</published>
-    <updated>2023-12-01T05:12:46.353Z</updated>
+    <updated>2023-12-03T13:14:36.235Z</updated>
     
     
     <summary type="html">一些关于组会的概要记录。</summary>
@@ -345,8 +364,8 @@
   
   <entry>
     <title>司法领域KG-LLM调研四</title>
-    <link href="https://alleyf.github.io/2023/11/f62aae04555b.html"/>
-    <id>https://alleyf.github.io/2023/11/f62aae04555b.html</id>
+    <link href="https://alleyf.github.io/2023/11/48c7937f4cdd.html"/>
+    <id>https://alleyf.github.io/2023/11/48c7937f4cdd.html</id>
     <published>2023-11-07T05:08:27.000Z</published>
     <updated>2023-11-22T07:28:20.357Z</updated>
     
@@ -366,8 +385,8 @@
   
   <entry>
     <title>司法领域大模型调研三</title>
-    <link href="https://alleyf.github.io/2023/11/50d043e5b3de.html"/>
-    <id>https://alleyf.github.io/2023/11/50d043e5b3de.html</id>
+    <link href="https://alleyf.github.io/2023/11/9924044a419d.html"/>
+    <id>https://alleyf.github.io/2023/11/9924044a419d.html</id>
     <published>2023-11-01T06:14:51.000Z</published>
     <updated>2023-11-22T06:15:33.357Z</updated>
     
@@ -410,8 +429,8 @@
   
   <entry>
     <title>司法领域大模型调研二</title>
-    <link href="https://alleyf.github.io/2023/10/d36831b1156c.html"/>
-    <id>https://alleyf.github.io/2023/10/d36831b1156c.html</id>
+    <link href="https://alleyf.github.io/2023/10/f7fb287915e2.html"/>
+    <id>https://alleyf.github.io/2023/10/f7fb287915e2.html</id>
     <published>2023-10-24T00:48:27.000Z</published>
     <updated>2023-11-22T07:52:15.064Z</updated>
     
@@ -430,29 +449,6 @@
     
     
     <category term="NLP，KG" scheme="https://alleyf.github.io/tags/NLP%EF%BC%8CKG/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>国际会议记录</title>
-    <link href="https://alleyf.github.io/2023/10/46c739775d39.html"/>
-    <id>https://alleyf.github.io/2023/10/46c739775d39.html</id>
-    <published>2023-10-21T00:52:02.555Z</published>
-    <updated>2023-10-22T01:59:46.108Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;2023年数字法治与智慧司法国际研讨会议程&quot;&gt;&lt;a href=&quot;#2023年数字法治与智慧司法国际研讨会议程&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="科研学习" scheme="https://alleyf.github.io/categories/%E7%A7%91%E7%A0%94%E5%AD%A6%E4%B9%A0/"/>
-    
     
   </entry>
   
