@@ -60,7 +60,7 @@
   "blue-topaz-theme@@dark-background-file": true,
   "blue-topaz-theme@@unmuted-collapsed-folder": false,
   "blue-topaz-theme@@remove-file-icons": false,
-  "blue-topaz-theme@@fancy-hr": "fancy-hr-number",
+  "blue-topaz-theme@@fancy-hr": "fancy-hr-icon",
   "blue-topaz-theme@@blockquote-style-change-options": "blockquote-style-default",
   "blue-topaz-theme@@table-style-options": "table-style-default",
   "blue-topaz-theme@@colorful-link-animation": false,
@@ -102,5 +102,6 @@
   "blue-topaz-theme@@inline-title-text-align-settings": "inline-title-text-align-center",
   "blue-topaz-theme@@text-indentation-two-em": true,
   "blue-topaz-theme@@letter-space-main": 0,
-  "blue-topaz-theme@@bottom-padding-value": "2em"
+  "blue-topaz-theme@@bottom-padding-value": "2em",
+  "blue-topaz-theme@@fancy-hr-icon": "'🌓'"
 }
