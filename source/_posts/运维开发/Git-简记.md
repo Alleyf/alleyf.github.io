@@ -7,11 +7,12 @@ sticky: 85
 excerpt: 一些关于 git 的常用操作。
 author: fcs
 index_img: https://picsum.photos/800/250
+lang: zh-CN
 ---
 ![](https://picsum.photos/800/250)
 # Git 简介
 Git 是由 Linus Torvalds 于2005年创立的分布式版本控制系统。与集中式版本控制系统不同，Git 允许每个开发者在本地拥有完整的代码仓库，从而提高了分布式[团队协作](https://cloud.tencent.com/product/prowork?from_column=20065&from=20065)的效率。Git 的设计理念是速度快、灵活性强，使其成为开源社区和企业中的首选版本控制系统。
-## Git 的基本概念
+## 专业词汇解释
 在学习 Git 的原理和命令之前，我们先来了解一些 Git 的基本概念：
 1. **仓库（Repository）：** Git 仓库是存储项目历史和当前状态的地方。它包含了项目的所有文件和文件夹，以及与之相关的版本信息。
 2. **分支（Branch）：** 分支是项目的一个独立线条，可以在上面进行开发，不影响主线。分支的使用使得团队可以同时进行多个功能的开发，而不会相互干扰。
@@ -47,13 +48,13 @@ git -v
 ```
 ![image.png|500](http://qnpicmap.fcsluck.top/pics/202311162135814.png)
 首次安装 git 使用以下命令配置全局仓库用户名和邮箱信息：
-```git
+```sh
 git config --global user.name "Jasper Yang"  #设置用户名
 git config --global user.email geekhall.cn@gmail.com #设置密码
 git config --global credential.helper store #保存上述信息
 ```
 查看/清除全局配置信息：
-```
+```sh
 git config --global --list #查看
 git config --global --unset <entry-name> #清除全局配置
 ```
@@ -62,6 +63,48 @@ git config --global --unset <entry-name> #清除全局配置
 ![](http://qnpicmap.fcsluck.top/pics/202311162146376.png)
 清除隐藏的. git 文件则 git 仓库将被清除：
 ![image.png](http://qnpicmap.fcsluck.top/pics/202311162149713.png)
+
+## 指令别名
+
+在用户文件目录下找到.gitconfig文件，在`[alias]`下为常用指令设置别名简称方便操作：
+
+```.gitconfig
+[user]
+	name = xxx
+	email = xxx@qq.com
+[http]
+	sslverify = false
+	proxy = http://127.0.0.1:7890 //github代理
+[credential "http://59.69.101.35:9099"] //gitlab登录地址
+	provider = generic
+[core]
+	autocrlf = true
+[difftool "sourcetree"]
+	cmd = "'' "
+[mergetool "sourcetree"]
+	cmd = "'' "
+	trustExitCode = true
+[color]
+	ui = auto
+[https]
+	proxy = http://127.0.0.1:7890
+[alias]
+	gp = log --graph --oneline --decorate --all
+	lg = log --pretty=oneline --abbrev-commit
+	co = checkout		
+    st = status			
+    sw = switch
+    ad = add
+    cm = commit -m		
+    br = branch			
+    dif = diff			
+    pl = pull			
+    ps = push			
+
+```
+
+![](http://qnpicmap.fcsluck.top/pics/202312031150807.png)
+
 # 基础操作
 ## 创建 git 仓库
 ### 本地初始化
@@ -203,16 +246,6 @@ git rm filename #删除指定文件（包括工作区和暂存区）
 ![](http://qnpicmap.fcsluck.top/pics/202312021622490.png)
 
 
-
-## 回退/溯版本
-git reset 有三种模式：
-```shell
-git reset --soft 版本号 #回退版本后的内容保留工作区和暂存区
-git reset --hard 版本号 #都不保留
-git reset --mixed 版本号 #仅保留工作区内容
-```
-![image.png](http://qnpicmap.fcsluck.top/pics/202311180007484.png)
-不同模式，工作区和暂存区的内容会不同。
 # 分支
 
 
@@ -235,6 +268,7 @@ git switch -c "branchName" #新建分支并切换到该分支（推荐）
 
 ```sh
 git log --graph --oneline --decorate --all
+git config --global alias.gp "log --pretty=oneline --all --graph --abbrev-commit" # 为命令取别名简化为git gp执行
 ```
 
 ![](http://qnpicmap.fcsluck.top/pics/202312030019209.png)
@@ -275,6 +309,7 @@ git merge dev #dev为被合并的子分支
 
 
 ## 删除分支
+
 1. 删除**本地分支**，删除前会进行检查是否*本分支内容是否已经合并到主分支*，使用以下指令：
 ```shell
 git branch -d "branchName"
@@ -285,7 +320,90 @@ git branch -d "branchName"
 git push "远程库名" -d "branch name" 
 ```
 强制删除分支使用 `-D` 参数。
+
+
+# 回退和变基
+
+
+## 变基
+
+![](http://qnpicmap.fcsluck.top/pics/202312031027245.png)
+
+ 
+新建rebase1和rebase2两个仓库，rebase1中将dev分支变基到main上，rebase2将main分支变基到dev上：
+
+![](http://qnpicmap.fcsluck.top/pics/202312031329158.png)
+
+> 由此可见，被变基的分支会将与目标分支公共提交节点后面的所有提交迁移到目标分支后面。
+
+![](http://qnpicmap.fcsluck.top/pics/202312031336740.png)
+
+## 回退/溯版本
+git reset 有三种模式：
+```shell
+git reset --soft 版本号 #回退版本后的内容保留工作区和暂存区
+git reset --hard 版本号 #都不保留
+git reset --mixed 版本号 #仅保留工作区内容
+```
+![image.png](http://qnpicmap.fcsluck.top/pics/202311180007484.png)
+不同模式，工作区和暂存区的内容会不同。
+
+
+## 合并与变基对比
+
+1. **Merge**
+   - `优点`：不会破坏原分支的提交历史，方便回溯和查看。
+   - `缺点`：会产生额外的提交节点，分支图比较复杂。
+2. **Rebase**
+   - `优点`：不会新增额外的提交记录，形成线性历史，比较直观和干净.
+   - `缺点`：会改变提交历史，改变了当前分支branch out的节点；避免在共享分支使用。
+
+
+
+# 分支管理和工作流模型
+
+
+## GitHub Flow
+
+GitHub flow 就是 GitHub 所推崇的 Workflow，GitHub flow 具有很高的通用性。
+
+其官网的描述为：
+
+> GitHub flow is a lightweight, branch-based workflow that supports teams and projects where deployments are made regularly.
+
+ GitHub flow 的流程图如下图所示：
+
+![](http://qnpicmap.fcsluck.top/pics/202312031349018.png)
+
+![](https://pic3.zhimg.com/80/v2-bafaef976e8842a50403d61912239b52_720w.webp)
+
+Github flow 的工作流程：
+
+- 新建分支（Create a branch）；
+- 提交修改（Add commits）；
+- 创建PR（Open a Pull Request）；
+- 代码评审（Discuss and review your code）；
+- 部署（Deploy）；
+- 合并（Merge）；
+
+GitHub flow 最大的亮点在于**部署（Deploy）发生在 合并（Merge）** 之前，这是 GitHub flow 的核心，**非阻塞式集成** —— 在产生任何副作用之前得知当前修改的所有集成效果，达到真正的持续集成。
+
+1. **分支命名**（*推荐使用带有意义的描述性名称来命名分支*）
+	- 版本发布分支/Tag示例：`v1.0.0`
+	- 功能分支示例：`feature-login-page`
+	- 修复分支示例：`hotfix-#issueid-desc`
+2. **分支管理**
+	- 定期合并已经成功验证的分支，及时删除已经合并的分支
+	- 保持合适的分支数量
+	- 为分支设置合适的管理权限
+
 # 参考文献
+
+1. [【GeekHour】一小时Git教程\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1HM411377j/)
+2. [Git 备忘清单 & git cheatsheet & Quick Reference](https://wangchujiang.com/reference/docs/git.html)
+3. [深入理解Git：版本控制的魔法-腾讯云开发者社区-腾讯云](https://cloud.tencent.com/developer/article/2364066)
+4. [真正的敏捷工作流 —— GitHub flow - 知乎](https://zhuanlan.zhihu.com/p/81396787)
+
 ```cardlink
 url: https://www.bilibili.com/video/BV1HM411377j/
 title: "【GeekHour】一小时Git教程_哔哩哔哩_bilibili"
@@ -293,14 +411,13 @@ description: "【GeekHour】一小时Git教程共计19条视频，包括：01.�
 host: www.bilibili.com
 image: //i0.hdslb.com/bfs/archive/be265386c6db1da0e1233e9743e02b252ea07b53.jpg@100w_100h_1c.png
 ```
-1. [【GeekHour】一小时Git教程\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1HM411377j/)
+
 ```cardlink
 url: https://wangchujiang.com/reference/docs/git.html
 title: "Git 备忘清单 &  git cheatsheet &  Quick Reference"
 host: wangchujiang.com
 favicon: data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20height%3D%221em%22%20width%3D%221em%22%3E%20%3Cpath%20d%3D%22m21.66%2010.44-.98%204.18c-.84%203.61-2.5%205.07-5.62%204.77-.5-.04-1.04-.13-1.62-.27l-1.68-.4c-4.17-.99-5.46-3.05-4.48-7.23l.98-4.19c.2-.85.44-1.59.74-2.2%201.17-2.42%203.16-3.07%206.5-2.28l1.67.39c4.19.98%205.47%203.05%204.49%207.23Z%22%20fill%3D%22%23c9d1d9%22%2F%3E%20%3Cpath%20d%3D%22M15.06%2019.39c-.62.42-1.4.77-2.35%201.08l-1.58.52c-3.97%201.28-6.06.21-7.35-3.76L2.5%2013.28c-1.28-3.97-.22-6.07%203.75-7.35l1.58-.52c.41-.13.8-.24%201.17-.31-.3.61-.54%201.35-.74%202.2l-.98%204.19c-.98%204.18.31%206.24%204.48%207.23l1.68.4c.58.14%201.12.23%201.62.27Zm2.43-8.88c-.06%200-.12-.01-.19-.02l-4.85-1.23a.75.75%200%200%201%20.37-1.45l4.85%201.23a.748.748%200%200%201-.18%201.47Z%22%20fill%3D%22%23228e6c%22%20%2F%3E%20%3Cpath%20d%3D%22M14.56%2013.89c-.06%200-.12-.01-.19-.02l-2.91-.74a.75.75%200%200%201%20.37-1.45l2.91.74c.4.1.64.51.54.91-.08.34-.38.56-.72.56Z%22%20fill%3D%22%23228e6c%22%20%2F%3E%20%3C%2Fsvg%3E
 ```
-2. [Git 备忘清单 & git cheatsheet & Quick Reference](https://wangchujiang.com/reference/docs/git.html)
 
 ```cardlink
 url: https://cloud.tencent.com/developer/article/2364066
@@ -309,4 +426,11 @@ description: "在软件开发领域，版本控制是一个至关重要的概念
 host: cloud.tencent.com
 image: https://cloudcache.tencentcs.com/open_proj/proj_qcloud_v2/gateway/shareicons/cloud.png
 ```
-3. [深入理解Git：版本控制的魔法-腾讯云开发者社区-腾讯云](https://cloud.tencent.com/developer/article/2364066)
+
+```cardlink
+url: https://zhuanlan.zhihu.com/p/81396787
+title: "真正的敏捷工作流 —— GitHub flow"
+description: "7991 年，随着极限编程（Extreme programming）方法论的提出，持续集成（Continuous integration）也随之成为一项标准化的敏捷实践，被逐步应用于各类软件的开发流程中。 9102 年的今天，持续集成的概念已经在软件…"
+host: zhuanlan.zhihu.com
+image: https://picx.zhimg.com/v2-bca21dddbb1b20c206c1c2c512374a76_720w.jpg?source=172ae18b
+```

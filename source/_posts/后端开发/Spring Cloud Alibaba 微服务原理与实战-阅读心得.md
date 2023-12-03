@@ -177,6 +177,21 @@ Spring Cloud Alibaba 主要为微服务开发提供一站式的解决方案，�
 - Alibaba 的开源组件在没有织入 Spring Cloud 生态之前，已经在各大公司广泛应用，所以集成到 Spring Cloud 生态使得开发者能够很轻松地实现技术整合及迁移。Dubbo 天然支持多协议，因此在迁移和改造过程中并没有投入太多的成本。
 - Alibaba 的开源组件在服务治理上和处理高并发的能力上有天然的优势，相比 Spring CloudNetflix 来说，Spring Cloud Alibaba 在服务治理这块的能力更适合于国内的技术场景，同时，Spring Cloud Alibaba 在功能上不仅完全覆盖了 Spring Cloud Netflix 原生特性，而且还提供了更加稳定和成熟的实现，因此笔者很看好 Spring Cloud Alibaba 未来的发展。
 
+### 组件对比
+
+|    组件    | Spring Cloud                                 | Spring Cloud Netflix                   | Spring Cloud Alibaba |
+|:----------:| -------------------------------------------- | -------------------------------------- | -------------------- |
+|  注册中心  | **Service Registry  <br>Service Discovery**  | Eureka 1.x  <br>Eureka 2.x（停止维护） | **Nacos**            |
+|  配置中心  | Spring Cloud Config  <br>Git/ JDBC/ Vault... | Archaius（停止维护）                   | **Nacos**            |
+|  服务容错  | **Spring Cloud Circuit Breaker**             | Hystrix（停止维护）                    | **Sentinel**         |
+|  服务调用  | **Spring Cloud OpenFeign  <br>RestTemplate** | Feign                                  | **Dubbo**            |
+|  负载均衡  | **Spring Cloud LoadBalancer**                | Ribbon（停止维护）                     | **Dubbo**            |
+|  服务网关  | **Spring Cloud Gateway**                     | Zuul（停止维护）                       | **Dubbo**            |
+|  消息队列  | **Spring Cloud Stream**  <br>RabbitMQ/ Kafka |                                        | **RocketMQ**         |
+|  链路追踪  | **Spring Cloud Sleuth**                      |                                        |                      |
+| 分布式事务 |                                              |                                        | **Seata**            |
+
+
 # 第三章、Spring Cloud 的核心之 Spring Boot
 
 简单来说，Spring Boot 是帮助开发者快速构建一个基于 Spring Framework 及 Spring 生态体系的应用解决方案，也是 Spring Framework 对于“约定优于配置(Convention over Configuration)”理念的最佳实践。
@@ -951,6 +966,10 @@ class RedisSpringBootStarterApplicationTests {
 
 # 参考书籍
 
+
+1. [Spring Cloud Alibaba 微服务原理与实战 (豆瓣)](https://book.douban.com/subject/35041576/?from=mdouban)
+2. [微信公众平台](https://mp.weixin.qq.com/s/G1EE5WSA8DzkRmWvRGr_9w)
+
 ```cardlink
 url: https://book.douban.com/subject/35041576/?from=mdouban
 title: "Spring Cloud Alibaba 微服务原理与实战"
@@ -958,4 +977,11 @@ description: "《Spring Cloud Alibaba微服务原理与实战》针对Spring Clo
 host: book.douban.com
 image: https://img9.doubanio.com/view/subject/l/public/s33625905.jpg
 ```
-1. [Spring Cloud Alibaba 微服务原理与实战 (豆瓣)](https://book.douban.com/subject/35041576/?from=mdouban)
+
+```cardlink
+url: https://mp.weixin.qq.com/s/G1EE5WSA8DzkRmWvRGr_9w
+title: "别再乱学微服务了，这才使用 Spring Cloud 微服务的正确姿势！"
+description: "真香！！"
+host: mp.weixin.qq.com
+image: http://mmbiz.qpic.cn/mmbiz_jpg/TNUwKhV0JpQ99S3Vc6iaJftFkZwboGpo0YLicON8QuXecf38gmquvF6dk8sDXHOTh5EsfqicCq5UrTdzHfyBliaKKg/0?wx_fmt=jpeg
+```
