@@ -256,7 +256,7 @@
             "containerId": null,
             "originalText": "C",
             "lineHeight": 1.25,
-            "baseline": 65
+            "baseline": 66
           },
           {
             "type": "rectangle",
@@ -3504,7 +3504,7 @@
             "containerId": null,
             "originalText": "Very long presentation",
             "lineHeight": 1.25,
-            "baseline": 29
+            "baseline": 30
           },
           {
             "type": "text",
@@ -3541,7 +3541,7 @@
             "containerId": null,
             "originalText": "title",
             "lineHeight": 1.25,
-            "baseline": 29
+            "baseline": 30
           },
           {
             "type": "text",
@@ -16297,7 +16297,7 @@
             "containerId": null,
             "originalText": "Presentation Title",
             "lineHeight": 1.2,
-            "baseline": 34
+            "baseline": 35
           },
           {
             "type": "text",
@@ -16740,7 +16740,7 @@
             "containerId": null,
             "originalText": "1. Slide title",
             "lineHeight": 1.2,
-            "baseline": 18
+            "baseline": 19
           },
           {
             "type": "line",
@@ -17289,7 +17289,7 @@
             "containerId": null,
             "originalText": "Date",
             "lineHeight": 1.2,
-            "baseline": 20
+            "baseline": 21
           },
           {
             "type": "ellipse",
@@ -17605,7 +17605,7 @@
             "containerId": null,
             "originalText": "Text",
             "lineHeight": 1.25,
-            "baseline": 11
+            "baseline": 12
           },
           {
             "type": "diamond",
@@ -17669,7 +17669,7 @@
             "containerId": null,
             "originalText": "Text",
             "lineHeight": 1.25,
-            "baseline": 11
+            "baseline": 12
           },
           {
             "type": "diamond",
@@ -18283,7 +18283,7 @@
             "containerId": null,
             "originalText": "Text",
             "lineHeight": 1.25,
-            "baseline": 11
+            "baseline": 12
           },
           {
             "type": "diamond",
@@ -18347,7 +18347,7 @@
             "containerId": null,
             "originalText": "Text",
             "lineHeight": 1.25,
-            "baseline": 11
+            "baseline": 12
           },
           {
             "type": "diamond",
@@ -18737,7 +18737,7 @@
             "containerId": null,
             "originalText": "Text",
             "lineHeight": 1.25,
-            "baseline": 11
+            "baseline": 12
           },
           {
             "type": "diamond",
@@ -18801,7 +18801,7 @@
             "containerId": null,
             "originalText": "Text",
             "lineHeight": 1.25,
-            "baseline": 11
+            "baseline": 12
           },
           {
             "type": "diamond",
@@ -20330,7 +20330,7 @@
             "containerId": null,
             "originalText": "Very long presentation title ",
             "lineHeight": 1.25,
-            "baseline": 25
+            "baseline": 26
           },
           {
             "type": "line",
