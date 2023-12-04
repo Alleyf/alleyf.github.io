@@ -6,7 +6,7 @@
   <link href="https://alleyf.github.io/atom.xml" rel="self"/>
   
   <link href="https://alleyf.github.io/"/>
-  <updated>2023-12-03T09:07:41.404Z</updated>
+  <updated>2023-12-04T15:21:20.621Z</updated>
   <id>https://alleyf.github.io/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>若依脚手架-学习</title>
+    <link href="https://alleyf.github.io/2023/12/3727d5849252.html"/>
+    <id>https://alleyf.github.io/2023/12/3727d5849252.html</id>
+    <published>2023-12-04T08:29:12.000Z</published>
+    <updated>2023-12-04T15:21:20.621Z</updated>
+    
+    
+    <summary type="html">关于springboot脚手架一些常见知识点。</summary>
+    
+    
+    
+    <category term="后端开发" scheme="https://alleyf.github.io/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
+    
+    
+    <category term="ssm" scheme="https://alleyf.github.io/tags/ssm/"/>
+    
+  </entry>
   
   <entry>
     <title>多源异构司法数据汇聚融合-解决方案调研</title>
@@ -187,7 +206,7 @@
     <link href="https://alleyf.github.io/2023/11/59c10a08fce4.html"/>
     <id>https://alleyf.github.io/2023/11/59c10a08fce4.html</id>
     <published>2023-11-18T06:53:11.000Z</published>
-    <updated>2023-11-29T14:41:49.814Z</updated>
+    <updated>2023-12-04T07:01:29.584Z</updated>
     
     
     <summary type="html">一些关于各种spring中间件和系统环境配置的教程</summary>
@@ -424,31 +443,6 @@
     
     
     <category term="SpringBoot" scheme="https://alleyf.github.io/tags/SpringBoot/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>司法领域大模型调研二</title>
-    <link href="https://alleyf.github.io/2023/10/f7fb287915e2.html"/>
-    <id>https://alleyf.github.io/2023/10/f7fb287915e2.html</id>
-    <published>2023-10-24T00:48:27.000Z</published>
-    <updated>2023-11-22T07:52:15.064Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;调研任务&quot;&gt;&lt;a href=&quot;#调研任务&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="科研学习" scheme="https://alleyf.github.io/categories/%E7%A7%91%E7%A0%94%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-    <category term="NLP，KG" scheme="https://alleyf.github.io/tags/NLP%EF%BC%8CKG/"/>
     
   </entry>
   

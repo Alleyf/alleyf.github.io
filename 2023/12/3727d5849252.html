@@ -18,18 +18,18 @@
   <meta name="author" content="fcs">
   <meta name="keywords" content="">
   
-    <meta name="description" content="关于互联网数据汇聚融合的调研结果。">
+    <meta name="description" content="关于springboot脚手架一些常见知识点。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="多源异构司法数据汇聚融合-解决方案调研">
-<meta property="og:url" content="https://alleyf.github.io/2023/12/5f1c44e4965a.html">
+<meta property="og:title" content="若依脚手架-学习">
+<meta property="og:url" content="https://alleyf.github.io/2023/12/3727d5849252.html">
 <meta property="og:site_name" content="alleyf">
-<meta property="og:description" content="关于互联网数据汇聚融合的调研结果。">
+<meta property="og:description" content="关于springboot脚手架一些常见知识点。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://picsum.photos/800/250">
-<meta property="article:published_time" content="2023-12-03T08:39:38.000Z">
-<meta property="article:modified_time" content="2023-12-03T09:07:41.404Z">
+<meta property="article:published_time" content="2023-12-04T08:29:12.000Z">
+<meta property="article:modified_time" content="2023-12-04T15:21:20.621Z">
 <meta property="article:author" content="alleyf">
-<meta property="article:tag" content="Spider">
+<meta property="article:tag" content="ssm">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://picsum.photos/800/250">
   
@@ -37,7 +37,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>多源异构司法数据汇聚融合-解决方案调研 - alleyf</title>
+  <title>若依脚手架-学习 - alleyf</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -255,7 +255,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="多源异构司法数据汇聚融合-解决方案调研"></span>
+            <span id="subtitle" data-typed-text="若依脚手架-学习"></span>
           
         </div>
 
@@ -271,8 +271,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-12-03 16:39" pubdate>
-          2023年12月3日 下午
+        <time datetime="2023-12-04 16:29" pubdate>
+          2023年12月4日 下午
         </time>
       </span>
     
@@ -283,7 +283,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          729 字
+          1.3k 字
         
       </span>
     
@@ -294,7 +294,7 @@
         
         
         
-          7 分钟
+          11 分钟
         
       </span>
     
@@ -340,12 +340,12 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">多源异构司法数据汇聚融合-解决方案调研</h1>
+            <h1 style="display: none">若依脚手架-学习</h1>
             
               <p class="note note-info">
                 
                   
-                    本文最后更新于：1 天前
+                    本文最后更新于：1 分钟前
                   
                 
               </p>
@@ -354,37 +354,46 @@
               <div class="markdown-body">
                 
                 <p><img src="https://picsum.photos/800/250" srcset="/img/loading.gif" lazyload></p>
-<p>构建用于大模型微调训练的司法数据集是一项复杂的任务，需要考虑数据的质量、多样性和规模。以下是一些建议和可能的方案或工具：</p>
-<h1 id="数据采集"><a href="#数据采集" class="headerlink" title="数据采集"></a>数据采集</h1><ul>
-<li><p><strong>开源数据集：</strong> 查看已经存在的开源司法数据集，例如 Caselaw Access Project、Free Law Project 等。这些数据集可能包含大量的法律文本和相关元数据。</p>
-</li>
-<li><p><strong>法院网站和数据库：</strong> 许多法院都提供了在线访问法律文本和案例的平台。你可以使用网络爬虫工具，例如 Scrapy 或 BeautifulSoup，来抓取这些数据。</p>
-</li>
-<li><p><strong>商业数据提供商：</strong> 一些公司专门提供法律数据服务，可以购买其数据，例如 Westlaw、LexisNexis 等。</p>
-</li>
-</ul>
-<h1 id="数据清洗和预处理"><a href="#数据清洗和预处理" class="headerlink" title="数据清洗和预处理"></a>数据清洗和预处理</h1><ul>
-<li><p><strong>文本处理工具：</strong> 使用自然语言处理（NLP）工具，如 spaCy 或 NLTK，进行文本清洗、标记化和词干化。</p>
-</li>
-<li><p><strong>去除重复和噪声：</strong> 通过比较文本内容和案件元数据，去除重复记录和噪声数据。</p>
-</li>
-<li><p><strong>数据标注：</strong> 如果数据没有标注，你可能需要进行人工标注或者考虑使用预训练的 NLP 模型进行自动标注。</p>
-</li>
-</ul>
-<h1 id="构建数据集"><a href="#构建数据集" class="headerlink" title="构建数据集"></a>构建数据集</h1><ul>
-<li><p><strong>划分训练集和测试集：</strong> 将数据集分成用于微调的训练集和测试集，确保模型能够泛化到新的案例。</p>
-</li>
-<li><p><strong>多样性：</strong> 确保数据集涵盖不同类型的案例、不同法院、不同时间段等，以提高模型的鲁棒性。</p>
-</li>
-</ul>
-<h1 id="成熟的构建工具和框架"><a href="#成熟的构建工具和框架" class="headerlink" title="成熟的构建工具和框架"></a>成熟的构建工具和框架</h1><ul>
-<li><p><strong>Hugging Face Datasets：</strong> Hugging Face 提供了一个名为 Datasets 的库，其中包含各种领域的预处理数据集，也包括了一些法律领域的数据。</p>
-</li>
-<li><p><strong>Snorkel：</strong> Snorkel 是一个用于弱监督学习的开源框架，它可以帮助你利用不完美的标签进行数据标注。</p>
-</li>
-<li><p><strong>Amazon SageMaker Ground Truth：</strong> 如果你需要进行数据标注，Amazon SageMaker Ground Truth 是一个用于构建高质量标签数据集的服务。</p>
-</li>
-</ul>
+<h1 id="项目初始化"><a href="#项目初始化" class="headerlink" title="项目初始化"></a>项目初始化</h1><h2 id="后端"><a href="#后端" class="headerlink" title="后端"></a>后端</h2><ol>
+<li>前往 <code>Gitee</code> 下载页面(<a target="_blank" rel="noopener" href="https://gitee.com/y_project/RuoYi-Vue">https://gitee.com/y_project&#x2F;RuoYi-Vue (opens new window)</a>)下载解压到工作目录</li>
+<li>创建数据库（默认使用 ry-vue 数据库，可自己修改），导入 sql 目录下的数据脚本 <code>ry_2021xxxx.sql</code>，<code>quartz.sql</code>  </li>
+<li>修改项目配置文件，如果前面修改了数据库名则需要修改数据库相关配置，位于 ruoyi-admin 模块下的配置文件 <code>application-druid.yml</code> 的数据库配置</li>
+<li>启动 admin 应用程序即可</li>
+</ol>
+<h2 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h2><ol>
+<li>cd 进入 ruiyi-ui，执行 <code>npm install</code> 安装项目依赖，如果下载太慢可指定下载源 <code>npm install --registry=https://registry.npmmirror.com</code></li>
+<li>安装完依赖后可修改 vue.config.js 设置页面端口默认为 80</li>
+<li><code>npm run dev</code> 启动项目</li>
+</ol>
+<p><img src="http://qnpicmap.fcsluck.top/pics/202312041759883.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="结构分析"><a href="#结构分析" class="headerlink" title="结构分析"></a>结构分析</h1><h2 id="模块结构"><a href="#模块结构" class="headerlink" title="模块结构"></a>模块结构</h2><p><img src="http://qnpicmap.fcsluck.top/pics/202312042034292.png" srcset="/img/loading.gif" lazyload alt="|500"></p>
+<p>1，2，3，4 前四个模块是必须的基本模块，5 和 6 分别是定时任务和代码生成器模块为可选模块，使用 maven 的 package 打包后会在 ruoyi-admin 模块的 target 文件夹下生成 jar 包，可直接部署运行</p>
+<h2 id="表结构"><a href="#表结构" class="headerlink" title="表结构"></a>表结构</h2><ol>
+<li>代码生成器表和系统管理表：</li>
+</ol>
+<p><img src="http://qnpicmap.fcsluck.top/pics/202312042041597.png" srcset="/img/loading.gif" lazyload alt="|500"></p>
+<ol start="2">
+<li>定时任务表：</li>
+</ol>
+<p><img src="http://qnpicmap.fcsluck.top/pics/202312042045126.png" srcset="/img/loading.gif" lazyload alt="|287"></p>
+<h2 id="配置结构"><a href="#配置结构" class="headerlink" title="配置结构"></a>配置结构</h2><p>ruoyi-admin 的 resources 目录树形结构如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs java">│  application-druid.yml<br>│  application.yml<br>│  banner.txt<br>│  logback-spring.xml<br>│<br>├─i18n<br>│      messages.properties<br>│      messages_en.properties<br>│<br>├─META-INF<br>│      spring-devtools.properties<br>│<br>├─mybatis<br>│      mybatis-config.xml<br>│<br>└─upload<br>    └─avatar<br>        └─<span class="hljs-number">2023</span><br>            └─<span class="hljs-number">12</span><br>                └─<span class="hljs-number">04</span><br>                    wallhaven-1pol63_20231204211235A001.png<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<ol>
+<li>application-druid.yml：数据库配置文件</li>
+<li>application.yml：管理后台应用程序配置文件</li>
+<li>banner.txt：程序启动横幅配置</li>
+<li>logback-spring.xml(原本为 logback.xml，修改后可从 yml 文件中读取配置参数用于自定义日志)：日志自定义配置文件（<em>将原先的 logback.xml 改成 logback-spring.xml。原因是 springboot 先读取 logback.xml，然后加载 yml&#x2F;properties，再加载 logback-spring.xml</em>）</li>
+<li>i18n：国际化文件夹，messages.properties 和 messages_en.properties 分别为中英文配置</li>
+<li>spring-devtools.properties：热启动配置文件</li>
+<li>mybatis-config.xml：mybatis 配置文件</li>
+<li>upload&#x2F;**：自己配置的文件上传目录</li>
+</ol>
+</blockquote>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1684y1X7tK/?p=9&spm_id_from=pageDriver&vd_source=9c896fa9c3f9023797e8efe7be0c113e">若依项目分析二次开发_哔哩哔哩_bilibili</a></li>
+</ol>
 
                 
               </div>
@@ -403,7 +412,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E7%A7%91%E7%A0%94%E5%AD%A6%E4%B9%A0/" class="category-chain-item">科研学习</a>
+  <a href="/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/" class="category-chain-item">后端开发</a>
   
   
 
@@ -418,7 +427,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Spider/">#Spider</a>
+        <a href="/tags/ssm/">#ssm</a>
       
     </div>
   
@@ -430,8 +439,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>多源异构司法数据汇聚融合-解决方案调研</div>
-      <div>https://alleyf.github.io/2023/12/5f1c44e4965a.html</div>
+      <div>若依脚手架-学习</div>
+      <div>https://alleyf.github.io/2023/12/3727d5849252.html</div>
     </div>
     <div class="license-meta">
       
@@ -443,13 +452,13 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年12月3日</div>
+          <div>2023年12月4日</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2023年12月3日</div>
+          <div>2023年12月4日</div>
         </div>
       
       <div class="license-meta-item">
@@ -478,18 +487,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/12/3727d5849252.html" title="若依脚手架-学习">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">若依脚手架-学习</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/12/3e87c166eb21.html" title="正则表达式-Regex">
-                        <span class="hidden-mobile">正则表达式-Regex</span>
+                      <a href="/2023/12/5f1c44e4965a.html" title="多源异构司法数据汇聚融合-解决方案调研">
+                        <span class="hidden-mobile">多源异构司法数据汇聚融合-解决方案调研</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -510,7 +513,7 @@
         var options = Object.assign(
           {"clientID":"636f2864e051a199b91c","clientSecret":"5185fd11115bbcd8d2f636bc80de6bed98ed14c1","repo":"Gitalk","owner":"Alleyf","admin":["Alleyf"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":false,"proxy":"https://shielded-brushlands-08810.herokuapp.com/https://github.com/login/oauth/access_token"},
           {
-            id: 'a47b8c03857a1d5c95b7cf80e84d7cb8'
+            id: '37984a01b35cada09f37d2ab660395a9'
           }
         )
         var gitalk = new Gitalk(options);
