@@ -13,20 +13,10 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/后端开发/若依脚手架-学习.md",
+                "file": "source/_posts/后端开发/Spring Cloud Alibaba 微服务原理与实战-阅读心得.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
-              }
-            }
-          },
-          {
-            "id": "97d50682fd17047e",
-            "type": "leaf",
-            "state": {
-              "type": "excalidraw",
-              "state": {
-                "file": "Excalidraw/草图.md"
               }
             }
           }
@@ -49,7 +39,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/后端开发/若依脚手架-学习.md"
+                "file": "source/_posts/后端开发/Spring Cloud Alibaba 微服务原理与实战-阅读心得.md"
               }
             }
           }
@@ -126,7 +116,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 334.5
+    "width": 303.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -140,12 +130,16 @@
       "cmdr:Obsidian Git: Open source control view": false,
       "omnisearch:Omnisearch": false,
       "table-editor-obsidian:Advanced Tables Toolbar": false,
-      "obsidian-excalidraw-plugin:新建绘图文件": false,
-      "hidden-folder-obsidian:显示文件夹": false
+      "obsidian-excalidraw-plugin:新建绘图文件": false
     }
   },
   "active": "f6d7e4f6e245a765",
   "lastOpenFiles": [
+    "source/_posts/后端开发/若依脚手架-学习.md",
+    "source/_posts/后端开发/Spring Cloud Alibaba 微服务原理与实战-阅读心得.md",
+    "source/_posts/运维开发/各种环境配置.md",
+    "source/_posts/后端开发/Spring核心学习.md",
+    "Excalidraw/草图.md",
     "public/2023/12/3727d5849252.html",
     "public/tags/ssm/index.html",
     "public/tags/ssm",
@@ -154,16 +148,11 @@
     "public/archives/page/7/index.html",
     "public/archives/page/7",
     "source/_posts/后端开发/SpringBoot.md",
-    "source/_posts/后端开发/若依脚手架-学习.md",
-    "Excalidraw/草图.md",
-    "source/_posts/后端开发/Spring Cloud Alibaba 微服务原理与实战-阅读心得.md",
-    "source/_posts/运维开发/各种环境配置.md",
     "source/_posts/中间件和工具/Redis-缓存之美.md",
     "source/_posts/科研学习/会议讨论/周会.md",
     "public/tags/Spider/index.html",
     "public/tags/Spider",
     "public/archives/2023/page/5/index.html",
-    "public/archives/2023/page/5",
     "source/_posts/后端开发/Java常用新特性-Lambda-Optional-Stream.md",
     "source/_posts/科研学习/调研报告/多源异构司法数据汇聚融合-解决方案调研.md",
     "source/_posts/运维开发/Git-简记.md",

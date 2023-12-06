@@ -19,14 +19,14 @@ header-left: "![](D:/开发图片/logo32.png)"
 <div style="width=100%;height=100%">
     <a 
       class="book-container"
-      href="https://online.fliphtml5.com/hysru/xbji/"
+      href=" https://online.fliphtml5.com/hysru/xbji/"
       target="_blank"
       rel="noreferrer noopener"
     >
       <div class="book">
         <img
           alt="fcs"
-          src="https://orly.nanmu.me/api/generate?g_loc=BR&g_text=%E5%88%9D%E8%A7%81%E6%97%B6%E6%83%8A%E9%B8%BF&color=f9bc00&img_id=40&author=fcs&top_text=%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E6%A6%82%E5%BF%B5%E4%BB%8E0%E5%88%B01&title=%E5%BE%AE%E6%9C%8D%E5%8A%A1What%3F" />
+          src=" https://orly.nanmu.me/api/generate?g_loc=BR&g_text=%E5%88%9D%E8%A7%81%E6%97%B6%E6%83%8A%E9%B8%BF&color=f9bc00&img_id=40&author=fcs&top_text=%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E6%A6%82%E5%BF%B5%E4%BB%8E0%E5%88%B01&title=%E5%BE%AE%E6%9C%8D%E5%8A%A1What%3F" />
       </div>
     </a>
 </div>
@@ -951,14 +951,34 @@ class RedisSpringBootStarterApplicationTests {
 
 ### 小结
 
-> 本章主要分析了Spring Boot中的自动装配的基本原理，并且通过实现一个自定义Starter的方式加深了我们对于自动装配的理解。由于Spring Cloud生态中的组件，都是基于Spring Boot框架来实现的，了解Spring Boot的基本原理将有助于大家对后续内容的理解，*工欲善其事必先利其器*，读者我感悟到，**比了解技术的基本使用方法更重要的是了解技术产生的背景及核心原理**。
+> 本章主要分析了 Spring Boot 中的自动装配的基本原理，并且通过实现一个自定义 Starter 的方式加深了我们对于自动装配的理解。由于 Spring Cloud 生态中的组件，都是基于 Spring Boot 框架来实现的，了解 Spring Boot 的基本原理将有助于大家对后续内容的理解，*工欲善其事必先利其器*，读者我感悟到，**比了解技术的基本使用方法更重要的是了解技术产生的背景及核心原理**。
 
 
 # 第四章、微服务架构下的服务治理
 
+Dubbo 的产生就是为了解决以下问题：
 
+- 如何协调线上运行的服务，以及保障服务的高可用性。
+- 如何根据不同服务的访问情况来合理地调控服务器资源，提高机器的利用率。
+- 线上出现故障时，如何动态地对故障业务做降级、流量控制等。
+- 如何动态地更新服务中的配置信息，比如限流阈值、降级开关等。
+- 如何实现大规模服务集群所带来的服务地址的管理和服务上下线的动态感知。
 
+## 如何理解 Apache Dubbo
 
+Apache Dubbo 是一个分布式服务框架，主要**实现多个系统之间的高性能、透明化调用，简单
+来说它就是一个 RPC 框架**，但是和普通的 RPC 框架不同的是，它**提供了服务治理功能，比如服
+务注册、监控、路由、容错**等。
+
+Apache Dubbo 架构图如下图所示：
+
+![](http://qnpicmap.fcsluck.top/pics/202312052213839.png)
+
+## Spring Boot 集成 Apache Dubbo
+
+dubbo可以基于 XML 形式进行服务发布和服务消费，但是配置xml文件比较烦琐，而且在发布的服务接口比较多的情况下，配置会非常复杂，所以 Apache Dubbo 也提供了对注解的支持，基于 Spring Boot 集成 Apache Dubbo 实现零配置的服务注册与发布。
+
+## 服务提供者开发流程
 
 
 

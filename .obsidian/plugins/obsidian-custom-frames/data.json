@@ -1,4 +1,16 @@
 {
-  "frames": [],
+  "frames": [
+    {
+      "url": "https://app.diagrams.net/?src=about",
+      "displayName": "drawio",
+      "icon": "pencil-ruler",
+      "hideOnMobile": true,
+      "addRibbonIcon": false,
+      "openInCenter": false,
+      "zoomLevel": 1,
+      "forceIframe": true,
+      "customCss": ""
+    }
+  ],
   "padding": 5
 }

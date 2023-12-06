@@ -32,6 +32,12 @@
       "icon": "files",
       "name": "导出为 PDF",
       "mode": "any"
+    },
+    {
+      "id": "obsidian-custom-frames:open-custom-frames-drawio",
+      "icon": "lucide-pencil",
+      "name": "drawio",
+      "mode": "any"
     }
   ],
   "pageHeader": [],
