@@ -27,7 +27,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://picsum.photos/800/250">
 <meta property="article:published_time" content="2023-12-04T08:29:12.000Z">
-<meta property="article:modified_time" content="2023-12-04T15:21:20.621Z">
+<meta property="article:modified_time" content="2023-12-06T15:00:47.713Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="ssm">
 <meta name="twitter:card" content="summary_large_image">
@@ -283,7 +283,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.3k 字
+          8.2k 字
         
       </span>
     
@@ -294,7 +294,7 @@
         
         
         
-          11 分钟
+          69 分钟
         
       </span>
     
@@ -345,7 +345,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：1 分钟前
+                    本文最后更新于：11 分钟前
                   
                 
               </p>
@@ -381,17 +381,97 @@
 
 <blockquote>
 <ol>
-<li>application-druid.yml：数据库配置文件</li>
-<li>application.yml：管理后台应用程序配置文件</li>
-<li>banner.txt：程序启动横幅配置</li>
-<li>logback-spring.xml(原本为 logback.xml，修改后可从 yml 文件中读取配置参数用于自定义日志)：日志自定义配置文件（<em>将原先的 logback.xml 改成 logback-spring.xml。原因是 springboot 先读取 logback.xml，然后加载 yml&#x2F;properties，再加载 logback-spring.xml</em>）</li>
-<li>i18n：国际化文件夹，messages.properties 和 messages_en.properties 分别为中英文配置</li>
-<li>spring-devtools.properties：热启动配置文件</li>
-<li>mybatis-config.xml：mybatis 配置文件</li>
-<li>upload&#x2F;**：自己配置的文件上传目录</li>
+<li><code>application-druid.yml</code>：数据库配置文件，使用 druid 数据库连接池，并开启数据库监控</li>
+<li><code>application.yml</code>：管理后台应用程序配置文件</li>
+<li><code>banner.txt</code>：程序启动横幅配置</li>
+<li><code>logback-spring.xml</code> (原本为 logback.xml，修改后可从 yml 文件中读取配置参数用于自定义日志)：日志自定义配置文件（<em>将原先的 logback.xml 改成 logback-spring.xml。原因是 springboot 先读取 logback.xml，然后加载 yml&#x2F;properties，再加载 logback-spring.xml</em>）</li>
+<li><code>i18n</code>：国际化文件夹，messages.properties 和 messages_en.properties 分别为中英文配置</li>
+<li><code>spring-devtools.properties</code>：热启动配置文件</li>
+<li><code>mybatis-config.xml</code>：mybatis 配置文件</li>
+<li><code>upload/**</code>：自己配置的文件上传目录</li>
 </ol>
 </blockquote>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
+<h2 id="返回值结构"><a href="#返回值结构" class="headerlink" title="返回值结构"></a>返回值结构</h2><p>RuoYi 脚手架使用的是前后端分离的版本，后端接口依旧是返回 json 格式数据，一共有 3 中返回值分别为：<code>TableDatalnfo</code>（<strong>用于分页列表</strong>）、<code>void</code>（<strong>用于导出&#x2F;下载</strong>）、<code>AjaxResult</code>（<strong>用于基本的增删改查</strong>）。</p>
+<p><strong>TableDatalnfo</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">TableDataInfo</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Serializable</span>  <br>&#123;  <br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">long</span> <span class="hljs-variable">serialVersionUID</span> <span class="hljs-operator">=</span> <span class="hljs-number">1L</span>;  <br>  <br>    <span class="hljs-comment">/** 总记录数 */</span>  <br>    <span class="hljs-keyword">private</span> <span class="hljs-type">long</span> total;  <br>  <br>    <span class="hljs-comment">/** 列表数据 */</span>  <br>    <span class="hljs-keyword">private</span> List&lt;?&gt; rows;  <br>  <br>    <span class="hljs-comment">/** 消息状态码 */</span>  <br>    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> code;  <br>  <br>    <span class="hljs-comment">/** 消息内容 */</span>  <br>    <span class="hljs-keyword">private</span> String msg;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+<p><strong>AjaxResult</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">AjaxResult</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">HashMap</span>&lt;String, Object&gt;  <br>&#123;  <br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">long</span> <span class="hljs-variable">serialVersionUID</span> <span class="hljs-operator">=</span> <span class="hljs-number">1L</span>;  <br>  <br>    <span class="hljs-comment">/** 状态码 */</span>  <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">CODE_TAG</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;code&quot;</span>;  <br>  <br>    <span class="hljs-comment">/** 返回内容 */</span>  <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">MSG_TAG</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;msg&quot;</span>;  <br>  <br>    <span class="hljs-comment">/** 数据对象 */</span>  <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">DATA_TAG</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;data&quot;</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="核心模块刨析"><a href="#核心模块刨析" class="headerlink" title="核心模块刨析"></a>核心模块刨析</h1><h2 id="1-解读模块"><a href="#1-解读模块" class="headerlink" title="1. 解读模块"></a>1. 解读模块</h2><p>首先对一个开源项目，需要对各个项目业务模块进行分析理解，充分理解各个业务模块功能和关系之后，才能以此作为基座进行二次开发，一般分析从以下四个方面考虑：</p>
+<ul>
+<li><strong>业务前提</strong>：了解模块功能，它在做什么，比如岗位 crud</li>
+<li><strong>技术前提</strong>：了解前后端技术栈，掌握相对应的技术，如 springboot+vue 项目，那么前端 vue 基本操作必须会，以及后端 ssm 必须会</li>
+<li><strong>开发技巧</strong>：前端会 F12 进入开发者模式进行调试，后端掌握 debug 调试</li>
+<li><strong>常规项目特点</strong>：了解各种类型项目的特点，例如：管理后台类项目特点先页面、后接口，经典厂字形布局</li>
+<li><strong>web 项目组件技巧</strong>：<ul>
+<li>&#x3D;&#x3D;业务 UI&#x3D;&#x3D;：<ul>
+<li>一般以树形结构层级关系布局，无论多复杂的前端页面，都先将整个页面标签收起来，再层层展开剥离分析各个子标签对应的 UI 和功能，由浅入深了解整个 UI 设计</li>
+</ul>
+</li>
+<li>&#x3D;&#x3D;业务逻辑&#x3D;&#x3D;：<ol>
+<li><em>主线</em>：发起请求—&gt;接收请求—&gt;处理请求—&gt;响应请求</li>
+<li><em>详细</em>：<ul>
+<li>客户端发请求（关注：请求 url&#x2F;请求方式&#x2F;请求头&#x2F;请求参数）</li>
+<li>接口接收请求（关注：接口定义&#x2F;参数接收&#x2F;参数封装&#x2F;参数校验）</li>
+<li>接口处理请求（关注：业务逻辑实现）</li>
+<li>接口响应请求（关注：响应数据类型&#x2F;数据格式&#x2F;响应头）</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="2-岗位模块"><a href="#2-岗位模块" class="headerlink" title="2. 岗位模块"></a>2. 岗位模块</h2><h2 id="2-1-岗位列表"><a href="#2-1-岗位列表" class="headerlink" title="2.1 岗位列表"></a>2.1 岗位列表</h2><p><img src="http://qnpicmap.fcsluck.top/pics/202312051340012.png" srcset="/img/loading.gif" lazyload></p>
+<p>岗位模块的业务逻辑如下图所示：</p>
+<p><img src="http://qnpicmap.fcsluck.top/pics/202312051308728.png" srcset="/img/loading.gif" lazyload></p>
+<p>用户请求浏览器进入前端页面，进入过程中前端页面发起请求向后端请求数据，得到返回的 json 数据后将数据渲染在前端页面上呈现给用户。</p>
+<p>其后端业务调用链路如下图所示：</p>
+<p><img src="http://qnpicmap.fcsluck.top/pics/202312051521425.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="2-2-岗位添加-修改"><a href="#2-2-岗位添加-修改" class="headerlink" title="2.2 岗位添加&#x2F;修改"></a>2.2 岗位添加&#x2F;修改</h2><p>页面设计：依据表中<em>必须填&#x2F;选填字段</em>，根据内容决定选择框架-输入框</p>
+<p>前端代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs vue">  &lt;!-- 添加或修改岗位对话框 --&gt;  <br>  &lt;el-dialog :title=&quot;title&quot; :visible.sync=&quot;open&quot; append-to-body width=&quot;500px&quot;&gt;  <br>    &lt;el-form ref=&quot;form&quot; :model=&quot;form&quot; :rules=&quot;rules&quot; label-width=&quot;80px&quot;&gt;  <br>      &lt;el-form-item label=&quot;岗位名称&quot; prop=&quot;postName&quot;&gt;  <br>        &lt;el-input v-model=&quot;form.postName&quot; placeholder=&quot;请输入岗位名称&quot; /&gt;  <br>      &lt;/el-form-item&gt;      &lt;el-form-item label=&quot;岗位编码&quot; prop=&quot;postCode&quot;&gt;  <br>        &lt;el-input v-model=&quot;form.postCode&quot; placeholder=&quot;请输入编码名称&quot; /&gt;  <br>      &lt;/el-form-item&gt;      &lt;el-form-item label=&quot;岗位顺序&quot; prop=&quot;postSort&quot;&gt;  <br>        &lt;el-input-number v-model=&quot;form.postSort&quot; :min=&quot;0&quot; controls-position=&quot;right&quot; /&gt;  <br>      &lt;/el-form-item&gt;      &lt;el-form-item label=&quot;岗位状态&quot; prop=&quot;status&quot;&gt;  <br>        &lt;el-radio-group v-model=&quot;form.status&quot;&gt;  <br>          &lt;el-radio v-for=&quot;dict in dict.type.sys_normal_disable&quot; :key=&quot;dict.value&quot; :label=&quot;dict.value&quot;&gt;&#123;&#123; dict.label &#125;&#125;  <br>          &lt;/el-radio&gt;  <br>        &lt;/el-radio-group&gt;      &lt;/el-form-item&gt;      &lt;el-form-item label=&quot;备注&quot; prop=&quot;remark&quot;&gt;  <br>        &lt;el-input v-model=&quot;form.remark&quot; placeholder=&quot;请输入内容&quot; type=&quot;textarea&quot; /&gt;  <br>      &lt;/el-form-item&gt;    &lt;/el-form&gt;    &lt;div slot=&quot;footer&quot; class=&quot;dialog-footer&quot;&gt;  <br>      &lt;el-button type=&quot;primary&quot; @click=&quot;submitForm&quot;&gt;确 定&lt;/el-button&gt;  <br>      &lt;el-button @click=&quot;cancel&quot;&gt;取 消&lt;/el-button&gt;  <br>    &lt;/div&gt;  &lt;/el-dialog&gt;&lt;/div&gt;<br><br>&lt;script&gt;<br>/** 提交按钮 */  <br>submitForm: function () &#123;  <br>  this.$refs[&quot;form&quot;].validate(valid =&gt; &#123;  <br>    if (valid) &#123;  <br>      if (this.form.postId != undefined) &#123;  <br>        updatePost(this.form).then(response =&gt; &#123;  <br>          this.$modal.msgSuccess(&quot;修改成功&quot;);  <br>          this.open = false;  <br>        &#125;);  <br>      &#125; else &#123;  <br>        addPost(this.form).then(response =&gt; &#123;  <br>          this.$modal.msgSuccess(&quot;新增成功&quot;);  <br>          this.open = false;  <br>        &#125;);  <br>      &#125;  <br>      this.getList();  <br>    &#125;  <br>  &#125;);  <br>&#125;,<br>&lt;/script&gt;<br><br></code></pre></td></tr></table></figure>
+
+
+<p>后端代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**  </span><br><span class="hljs-comment"> * 新增岗位  </span><br><span class="hljs-comment"> */</span>  <br><span class="hljs-meta">@PreAuthorize(&quot;@ss.hasPermi(&#x27;system:post:add&#x27;)&quot;)</span>  <br><span class="hljs-meta">@Log(title = &quot;岗位管理&quot;, businessType = BusinessType.INSERT)</span>  <br><span class="hljs-meta">@PostMapping</span>  <br><span class="hljs-comment">//Spring-validate 校验框架  </span><br><span class="hljs-keyword">public</span> AjaxResult <span class="hljs-title function_">add</span><span class="hljs-params">(<span class="hljs-meta">@Validated</span> <span class="hljs-meta">@RequestBody</span> SysPost post)</span> &#123;  <br>    <span class="hljs-keyword">if</span> (!postService.checkPostNameUnique(post)) &#123;  <br>        <span class="hljs-keyword">return</span> error(<span class="hljs-string">&quot;新增岗位&#x27;&quot;</span> + post.getPostName() + <span class="hljs-string">&quot;&#x27;失败，岗位名称已存在&quot;</span>);  <br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (!postService.checkPostCodeUnique(post)) &#123;  <br>        <span class="hljs-keyword">return</span> error(<span class="hljs-string">&quot;新增岗位&#x27;&quot;</span> + post.getPostName() + <span class="hljs-string">&quot;&#x27;失败，岗位编码已存在&quot;</span>);  <br>    &#125;  <br>    post.setCreateBy(getUsername());  <br>    <span class="hljs-keyword">return</span> toAjax(postService.insertPost(post));  <br>&#125;  <br>  <br><span class="hljs-comment">/**  </span><br><span class="hljs-comment"> * 修改岗位  </span><br><span class="hljs-comment"> */</span>  <br><span class="hljs-meta">@PreAuthorize(&quot;@ss.hasPermi(&#x27;system:post:edit&#x27;)&quot;)</span>  <br><span class="hljs-meta">@Log(title = &quot;岗位管理&quot;, businessType = BusinessType.UPDATE)</span>  <br><span class="hljs-meta">@PutMapping</span>  <br><span class="hljs-keyword">public</span> AjaxResult <span class="hljs-title function_">edit</span><span class="hljs-params">(<span class="hljs-meta">@Validated</span> <span class="hljs-meta">@RequestBody</span> SysPost post)</span> &#123;  <br>    <span class="hljs-keyword">if</span> (!postService.checkPostNameUnique(post)) &#123;  <br>        <span class="hljs-keyword">return</span> error(<span class="hljs-string">&quot;修改岗位&#x27;&quot;</span> + post.getPostName() + <span class="hljs-string">&quot;&#x27;失败，岗位名称已存在&quot;</span>);  <br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (!postService.checkPostCodeUnique(post)) &#123;  <br>        <span class="hljs-keyword">return</span> error(<span class="hljs-string">&quot;修改岗位&#x27;&quot;</span> + post.getPostName() + <span class="hljs-string">&quot;&#x27;失败，岗位编码已存在&quot;</span>);  <br>    &#125;  <br>    post.setUpdateBy(getUsername());  <br>    <span class="hljs-keyword">return</span> toAjax(postService.updatePost(post));  <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<ol>
+<li>前端通过 <code>data</code> 发送 <code>json</code> 数据后端就要用 <code>@RequestBody</code> 接收</li>
+<li>前端通过 <code>Params</code> 发送 <code>xxx-form-url</code> 编码的参数后端就要用 <code>@RequestParam</code> 接收</li>
+</ol>
+</blockquote>
+<p>服务调用链路如下图所示：</p>
+<p><img src="http://qnpicmap.fcsluck.top/pics/202312062220254.png" srcset="/img/loading.gif" lazyload alt="|650"></p>
+<h2 id="2-3-岗位删除"><a href="#2-3-岗位删除" class="headerlink" title="2.3 岗位删除"></a>2.3 岗位删除</h2><p><img src="http://qnpicmap.fcsluck.top/pics/202312062236888.png" srcset="/img/loading.gif" lazyload></p>
+<p>前端代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;script&gt;<br>/** 删除按钮操作 */  <br>handleDelete (row) &#123;  <br>  const postIds = row.postId || this.ids;  <br>  this.$modal.confirm(&#x27;是否确认删除岗位编号为&quot;&#x27; + postIds + &#x27;&quot;的数据项？&#x27;).then(function () &#123;  <br>    // 点击确认删除后的操作  <br>    return delPost(postIds);  <br>  &#125;).then(() =&gt; &#123;  <br>    // 执行完删除后的操作  <br>    this.getList();  <br>    this.$modal.msgSuccess(&quot;删除成功&quot;);  <br>  &#125;).catch(() =&gt; &#123;  <br>  &#125;);  <br>&#125;,<br>&lt;/script&gt;<br></code></pre></td></tr></table></figure>
+
+<p>后端代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**  </span><br><span class="hljs-comment"> * 删除岗位  </span><br><span class="hljs-comment"> */</span>  <br><span class="hljs-meta">@PreAuthorize(&quot;@ss.hasPermi(&#x27;system:post:remove&#x27;)&quot;)</span>  <br><span class="hljs-meta">@Log(title = &quot;岗位管理&quot;, businessType = BusinessType.DELETE)</span>  <br><span class="hljs-meta">@DeleteMapping(&quot;/&#123;postIds&#125;&quot;)</span>  <br><span class="hljs-keyword">public</span> AjaxResult <span class="hljs-title function_">remove</span><span class="hljs-params">(<span class="hljs-meta">@PathVariable</span> Long[] postIds)</span> &#123;  <br>    <span class="hljs-keyword">return</span> toAjax(postService.deletePostByIds(postIds));  <br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+<h2 id="2-4-Excel-导出功能"><a href="#2-4-Excel-导出功能" class="headerlink" title="2.4 Excel 导出功能"></a>2.4 Excel 导出功能</h2><p>若依脚手架使用的是POI，但是占用内存大，不适合高并发，但是定制灵活。</p>
+<ul>
+<li>如果操作 Excel 复杂度高，建议使用 POI，编程灵活。</li>
+<li>如果操作 Excel 数据量大，对性能有一定要求的情况，建议使用 EasyExcel。</li>
+<li>如果操作 Excel 数据量小，而且追求编程效率，建议使用 Hutool 的 ExcelUtil。</li>
+</ul>
+<p><img src="http://qnpicmap.fcsluck.top/pics/202312062241060.png" srcset="/img/loading.gif" lazyload></p>
+<p>前端代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;script&gt;<br>/** 导出按钮操作 */  <br>handleExport () &#123;  <br>  this.download(&#x27;system/post/export&#x27;, &#123;  <br>    ...this.queryParams  <br>  &#125;, `post_$&#123;new Date().getTime()&#125;.xlsx`)  <br>&#125;<br>&lt;/script&gt;<br></code></pre></td></tr></table></figure>
+
+<p>后端代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**  </span><br><span class="hljs-comment"> * 导出岗位列表  </span><br><span class="hljs-comment"> */</span>  <br><span class="hljs-meta">@Log(title = &quot;岗位管理&quot;, businessType = BusinessType.EXPORT)</span>  <br><span class="hljs-meta">@PreAuthorize(&quot;@ss.hasPermi(&#x27;system:post:export&#x27;)&quot;)</span>  <br><span class="hljs-meta">@PostMapping(&quot;/export&quot;)</span>  <br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">export</span><span class="hljs-params">(HttpServletResponse response, SysPost post)</span> &#123;  <br>    List&lt;SysPost&gt; list = postService.selectPostList(post); <span class="hljs-comment">//获取导出数据  </span><br>    ExcelUtil&lt;SysPost&gt; util = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ExcelUtil</span>&lt;SysPost&gt;(SysPost.class);<span class="hljs-comment">//获取导出excel模板  </span><br>    util.exportExcel(response, list, <span class="hljs-string">&quot;岗位数据&quot;</span>);<span class="hljs-comment">//传入数据和模板导出数据  </span><br>&#125;<br><span class="hljs-comment">//实体类需要添加excel字段注解</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">SysPost</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">BaseEntity</span>  <br>&#123;  <br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">long</span> <span class="hljs-variable">serialVersionUID</span> <span class="hljs-operator">=</span> <span class="hljs-number">1L</span>;  <br>      <span class="hljs-comment">/** 岗位序号 */</span>  <br>    <span class="hljs-meta">@Excel(name = &quot;岗位序号&quot;, cellType = ColumnType.NUMERIC)</span>  <br>    <span class="hljs-keyword">private</span> Long postId;  <br>      <span class="hljs-comment">/** 岗位编码 */</span>  <br>    <span class="hljs-meta">@Excel(name = &quot;岗位编码&quot;)</span>  <br>    <span class="hljs-keyword">private</span> String postCode;  <br>      <span class="hljs-comment">/** 岗位名称 */</span>  <br>    <span class="hljs-meta">@Excel(name = &quot;岗位名称&quot;)</span>  <br>    <span class="hljs-keyword">private</span> String postName;  <br>      <span class="hljs-comment">/** 岗位排序 */</span>  <br>    <span class="hljs-meta">@Excel(name = &quot;岗位排序&quot;)</span>  <br>    <span class="hljs-keyword">private</span> Integer postSort;  <br>      <span class="hljs-comment">/** 状态（0正常 1停用） */</span>  <br>    <span class="hljs-meta">@Excel(name = &quot;状态&quot;, readConverterExp = &quot;0=正常,1=停用&quot;)</span>  <br>    <span class="hljs-keyword">private</span> String status;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h1 id="扩展自定义模块-客户CURD"><a href="#扩展自定义模块-客户CURD" class="headerlink" title="扩展自定义模块-客户CURD"></a>扩展自定义模块-客户CURD</h1><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
 <li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1684y1X7tK/?p=9&spm_id_from=pageDriver&vd_source=9c896fa9c3f9023797e8efe7be0c113e">若依项目分析二次开发_哔哩哔哩_bilibili</a></li>
 </ol>
 
@@ -458,7 +538,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2023年12月4日</div>
+          <div>2023年12月6日</div>
         </div>
       
       <div class="license-meta-item">
