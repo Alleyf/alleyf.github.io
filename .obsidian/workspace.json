@@ -41,7 +41,8 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -60,7 +61,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/后端开发/Spring Cloud Alibaba 微服务原理与实战-阅读心得.md"
+                "file": "source/_posts/运维开发/各种环境配置.md"
               }
             }
           }
@@ -154,10 +155,10 @@
       "obsidian-excalidraw-plugin:新建绘图文件": false
     }
   },
-  "active": "f6d7e4f6e245a765",
+  "active": "c7373060a150f4e6",
   "lastOpenFiles": [
-    "source/_posts/运维开发/各种环境配置.md",
     "source/_posts/后端开发/Spring Cloud Alibaba 微服务原理与实战-阅读心得.md",
+    "source/_posts/运维开发/各种环境配置.md",
     "source/_posts/科研学习/会议讨论/周会.md",
     "source/_posts/后端开发/若依脚手架-学习.md",
     "center.md",
