@@ -39,7 +39,7 @@
 <meta property="og:image" content="http://qnpicmap.fcsluck.top/pics/202311221729835.png">
 <meta property="og:image" content="http://qnpicmap.fcsluck.top/pics/202311182136214.png">
 <meta property="article:published_time" content="2023-11-18T06:53:11.000Z">
-<meta property="article:modified_time" content="2023-12-05T08:26:35.848Z">
+<meta property="article:modified_time" content="2023-12-09T13:42:16.770Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="java">
 <meta property="article:tag" content="mysql">
@@ -298,7 +298,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          16k 字
+          18k 字
         
       </span>
     
@@ -309,7 +309,7 @@
         
         
         
-          135 分钟
+          154 分钟
         
       </span>
     
@@ -360,7 +360,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：1 天前
+                    本文最后更新于：几秒前
                   
                 
               </p>
@@ -374,47 +374,49 @@
 </blockquote>
 <h1 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h1><p>安装 jdk：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">yum install java-1.8.0-openjdk<br></code></pre></td></tr></table></figure>
-<p>环境变量设置：</p>
+<p>查询 jdk 路径和名字：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">which</span> jdk<br></code></pre></td></tr></table></figure>
+<p>环境变量设置(&#x2F;etc&#x2F;profile)：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs profiles">#set java environment<br>export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.392.b08-2.el7_9.x86_64/jre<br>export JRE_HOME=$JAVA_HOME/jre<br>export CLASSPATH=$JAVA_HOME/lib:$JRE_HOME/lib:$CLASSPATH<br>export PATH=$JAVA_HOME/bin:$JRE_HOME/bin:$PATH<br></code></pre></td></tr></table></figure>
 <p>刷新系统环境变量配置：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">source /etc/profile<br></code></pre></td></tr></table></figure>
 
-<h1 id="Mysql"><a href="#Mysql" class="headerlink" title="Mysql"></a>Mysql</h1><h2 id="Docker部署"><a href="#Docker部署" class="headerlink" title="Docker部署"></a>Docker部署</h2><ol>
-<li><p>拉取mysql镜像</p>
+<h1 id="Mysql"><a href="#Mysql" class="headerlink" title="Mysql"></a>Mysql</h1><h2 id="Docker-部署"><a href="#Docker-部署" class="headerlink" title="Docker 部署"></a>Docker 部署</h2><ol>
+<li><p>拉取 mysql 镜像</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">docker pull mysql:5.7<br></code></pre></td></tr></table></figure></li>
 <li><p>配置外部文件用于卷挂载</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">mkdir</span> -p /data/mysql-1/conf <span class="hljs-comment">#-p:表示若无主目录则自动创建</span><br><span class="hljs-built_in">mkdir</span> -p /data/mysql-1/data<br><span class="hljs-built_in">mkdir</span> -p /data/mysql-1/log<br></code></pre></td></tr></table></figure></li>
-<li><p>添加自定义配置文件 <code>my.cnf</code>（<em>主从模式，也可只部署一个mysql，去掉主从相关的配置文件内容即可</em>）<br><strong>主机配置</strong></p>
+<li><p>添加自定义配置文件 <code>my.cnf</code>（<em>主从模式，也可只部署一个 mysql，去掉主从相关的配置文件内容即可</em>）<br><strong>主机配置</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs cnf">[mysqld]  <br>## 同一局域网内注意要唯一 ,默认server-id=1，主从配置时主和从库必须不同 <br>server-id=1    <br>## 开启二进制日志功能，可以随便取（主从配置关键）  <br>log-bin=master-bin  <br>## 二级制日志格式，有三种 row，statement，mixed <br>binlog-format=ROW  <br>## 同步的数据库名称,如果不配置，表示同步所有的库<br>binlog-do-db=数据库名 <br>port=3306  <br>user=mysql  <br>character-set-server=utf8  <br>default_authentication_plugin=mysql_native_password  <br>secure_file_priv=/var/lib/mysql  <br>expire_logs_days=7  <br>sql_mode=STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION  <br>max_connections=1000  <br>lower_case_table_names = 0  <br>[client]  <br>default-character-set=utf8  <br>[mysql]  <br>default-character-set=utf8<br></code></pre></td></tr></table></figure>
 <p><strong>从机配置</strong></p>
 <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-section">[mysqld]</span><br><span class="hljs-comment">## 设置server_id,注意要唯一</span><br><span class="hljs-attr">server-id</span>=<span class="hljs-number">2</span>  <br><span class="hljs-comment">## 开启二进制日志功能，以备Slave作为其它Slave的Master时使用</span><br><span class="hljs-attr">log-bin</span>=mysql-slave-bin   <br><span class="hljs-comment">## relay_log配置中继日志</span><br><span class="hljs-attr">relay_log</span>=mysql-relay-bin  <br><span class="hljs-attr">read_only</span>=<span class="hljs-number">1</span>  <span class="hljs-comment">## 设置为只读,该项如果不设置，表示slave可读可写</span><br><span class="hljs-attr">port</span>=<span class="hljs-number">3307</span>  <br><span class="hljs-attr">user</span>=mysql  <br><span class="hljs-attr">character-set-server</span>=utf8  <br><span class="hljs-attr">default_authentication_plugin</span>=mysql_native_password  <br><span class="hljs-attr">secure_file_priv</span>=/var/lib/mysql  <br><span class="hljs-attr">expire_logs_days</span>=<span class="hljs-number">7</span>  <br><span class="hljs-attr">sql_mode</span>=STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION  <br><span class="hljs-attr">max_connections</span>=<span class="hljs-number">1000</span>  <br><span class="hljs-attr">lower_case_table_names</span> = <span class="hljs-number">0</span>  <br><span class="hljs-section">[client]</span>  <br><span class="hljs-attr">default-character-set</span>=utf8  <br><span class="hljs-section">[mysql]</span>  <br><span class="hljs-attr">default-character-set</span>=utf8<br></code></pre></td></tr></table></figure>
 
 </li>
-<li><p>根据镜像和外部待挂载文件启动mysql容器实例</p>
+<li><p>根据镜像和外部待挂载文件启动 mysql 容器实例</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">docker run -<span class="hljs-built_in">id</span> --name mysql-2 -p 3307:3307  -v /usr/local/docker/data/mysql2/conf/my.cnf:/etc/mysql/my.cnf -v /usr/local/docker/data/mysql2/data:/var/lib/mysql -v /usr/local/docker/data/mysql2/log:/var/log/mysql -e MYSQL_ROOT_PASSWORD=123456 -e MYSQL_TCP_PORT=3307 --restart=always --privileged=<span class="hljs-literal">true</span> mysql:5.7<br></code></pre></td></tr></table></figure>
-<p>此docker run命令的功能是:</p>
+<p>此 docker run 命令的功能是:</p>
 </li>
-<li><p>–name指定容器名称为mysql-2</p>
+<li><p>–name 指定容器名称为 mysql-2</p>
 </li>
-<li><p>-p映射主机3307端口到容器3307端口,外部访问时用主机3307端口 </p>
+<li><p>-p 映射主机 3307 端口到容器 3307 端口,外部访问时用主机 3307 端口 </p>
 </li>
-<li><p>-v挂载配置文件,-v &#x2F;data&#x2F;mysql2&#x2F;conf&#x2F;my.cnf:&#x2F;etc&#x2F;mysql&#x2F;my.cnf </p>
+<li><p>-v 挂载配置文件,-v &#x2F;data&#x2F;mysql2&#x2F;conf&#x2F;my.cnf:&#x2F;etc&#x2F;mysql&#x2F;my.cnf </p>
 </li>
-<li><p>-v挂载数据文件,-v &#x2F;data&#x2F;mysql2&#x2F;data:&#x2F;var&#x2F;lib&#x2F;mysql</p>
+<li><p>-v 挂载数据文件,-v &#x2F;data&#x2F;mysql2&#x2F;data:&#x2F;var&#x2F;lib&#x2F;mysql</p>
 </li>
-<li><p>-v挂载日志文件,-v &#x2F;data&#x2F;mysql2&#x2F;log:&#x2F;var&#x2F;log&#x2F;mysql</p>
+<li><p>-v 挂载日志文件,-v &#x2F;data&#x2F;mysql2&#x2F;log:&#x2F;var&#x2F;log&#x2F;mysql</p>
 </li>
-<li><p>-e设置环境变量MYSQL_ROOT_PASSWORD指定root用户密码为123456</p>
+<li><p>-e 设置环境变量 MYSQL_ROOT_PASSWORD 指定 root 用户密码为 123456</p>
 </li>
-<li><p>–restart&#x3D;always设置容器重启策略为总是重启</p>
+<li><p>–restart&#x3D;always 设置容器重启策略为总是重启</p>
 </li>
-<li><p>–privileged&#x3D;true使用特权模式运行容器</p>
+<li><p>–privileged&#x3D;true 使用特权模式运行容器</p>
 </li>
-<li><p>-d后台方式运行容器</p>
+<li><p>-d 后台方式运行容器</p>
 </li>
-<li><p>mysql:5.7使用MYSQL:5.7镜像<br>整体功能是:<br>运行一个MYSQL:5.7容器,名称为mysql-2,映射端口3307,并将配置文件、数据文件和日志文件分别挂载为主机目录,设置root密码并开启特权模式和自动重启，可以实现数据持久化,并通过3307端口来管理该mysql服务。</p>
+<li><p>mysql:5.7 使用 MYSQL:5.7 镜像<br>整体功能是:<br>运行一个 MYSQL:5.7 容器,名称为 mysql-2,映射端口 3307,并将配置文件、数据文件和日志文件分别挂载为主机目录,设置 root 密码并开启特权模式和自动重启，可以实现数据持久化,并通过 3307 端口来管理该 mysql 服务。</p>
 </li>
-<li><p>修改root用户远程访问权限</p>
+<li><p>修改 root 用户远程访问权限</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">alter</span> <span class="hljs-keyword">user</span> <span class="hljs-string">&#x27;root&#x27;</span>@<span class="hljs-string">&#x27;%&#x27;</span> identified <span class="hljs-keyword">with</span> mysql_native_password <span class="hljs-keyword">by</span> <span class="hljs-string">&#x27;123456&#x27;</span>; #修改为任何ip可远程访问<br>flush privileges; #刷新权限<br></code></pre></td></tr></table></figure></li>
 <li><p>查看是否启动成功容器，并且支持远程访问<br><img src="http://qnpicmap.fcsluck.top/pics/202311280029568.png" srcset="/img/loading.gif" lazyload><br><img src="http://qnpicmap.fcsluck.top/pics/202311280030655.png" srcset="/img/loading.gif" lazyload></p>
 </li>
@@ -436,7 +438,7 @@
 <li>运行命令 <code>redis-cli.exe</code> 连接到正在运行的 Redis 服务器。</li>
 </ol>
 <ul>
-<li>windows对redis服务指令：<ol>
+<li>windows 对 redis 服务指令：<ol>
 <li>卸载服务：<code>redis-server --service-uninstall</code></li>
 <li>开启服务：<code>redis-server --service-start</code></li>
 <li>停止服务：<code>redis-server --service-stop</code></li>
@@ -476,20 +478,20 @@
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs sh">第一步：新建或编辑daemon.json<br>vi /etc/docker/daemon.json<br>第二步：daemon.json中编辑如下<br>&#123;<br>    <span class="hljs-string">&quot;registry-mirrors&quot;</span>: [<span class="hljs-string">&quot;http://hub-mirror.c.163.com&quot;</span>]<br>&#125;<br>第三步：重启docker<br>systemctl restart docker.service<br>第四步：执行docker info查看是否修改成功<br>docker info<br></code></pre></td></tr></table></figure></li>
 </ol>
 <h2 id="2-常见指令"><a href="#2-常见指令" class="headerlink" title="2.常见指令"></a>2.常见指令</h2><h3 id="查询远程镜像"><a href="#查询远程镜像" class="headerlink" title="查询远程镜像"></a>查询远程镜像</h3><p>查询远程 Docker 仓库镜像的主要命令和参数包括:<br><code>1. docker search 关键词</code><br>在 Docker Hub 上搜索镜像,支持分页显示等参数。<br><code>2. docker search --limit=n 关键词</code><br>限制搜索结果数量。<br><code>3. docker search -f 字段=值关键词</code><br>按字段过滤搜索结果。<br><code>4. docker search --automated=true 关键词</code><br>仅搜索自动构建镜像。<br><code>5. docker search --no-trunc 关键词</code><br>输出完整的镜像描述。<br><code>6. docker search -s 星级关键词</code><br>按照仓库星级排列结果。<br><code>7. docker search --help</code><br>获取 docker search 支持的参数帮助。<br><code>8. docker inspect 镜像名</code><br>查看远程镜像详细信息。<br><code>9. docker pull 镜像[:标签]</code><br>从 Docker Hub 拉取指定镜像。<br><code>10. docker pull -a</code><br>拉取所有 tagged 镜像及其历史版本。<br><code>11. docker pull --help</code><br>获取 docker pull 支持的参数帮助。</p>
-<h3 id="查询本地镜像"><a href="#查询本地镜像" class="headerlink" title="查询本地镜像"></a>查询本地镜像</h3><p>Docker查询镜像的主要命令和参数包括:<br><code>1. docker images</code><br>查看所有本地镜像,默认列出所有镜像。<br><code>2. docker images -q</code><br>只输出镜像ID,不显示其他信息。<br><code>3. docker images --filter=since=xxx</code><br>过滤出指定时间后创建的镜像。<br><code>4. docker images -f dangling=true</code><br>查询悬空镜像(即未被使用的镜像)。<br><code>5. docker images -a</code><br>显示所有镜像,包括中间层镜像。<br><code>6. docker images --digests</code><br>显示镜像的摘要信息。<br><code>7. docker images name</code><br>查找指定名称的镜像。<br><code>8. docker images --no-trunc</code><br>显示完整的镜像名称。<br><code>9. docker image inspect image</code><br>查看镜像的详细配置信息。</p>
-<h3 id="操作容器实例"><a href="#操作容器实例" class="headerlink" title="操作容器实例"></a>操作容器实例</h3><h4 id="停止-删除容器"><a href="#停止-删除容器" class="headerlink" title="停止&#x2F;删除容器"></a>停止&#x2F;删除容器</h4><p>要停止并删除所有Docker容器,可以使用以下命令:</p>
+<h3 id="查询本地镜像"><a href="#查询本地镜像" class="headerlink" title="查询本地镜像"></a>查询本地镜像</h3><p>Docker 查询镜像的主要命令和参数包括:<br><code>1. docker images</code><br>查看所有本地镜像,默认列出所有镜像。<br><code>2. docker images -q</code><br>只输出镜像 ID,不显示其他信息。<br><code>3. docker images --filter=since=xxx</code><br>过滤出指定时间后创建的镜像。<br><code>4. docker images -f dangling=true</code><br>查询悬空镜像(即未被使用的镜像)。<br><code>5. docker images -a</code><br>显示所有镜像,包括中间层镜像。<br><code>6. docker images --digests</code><br>显示镜像的摘要信息。<br><code>7. docker images name</code><br>查找指定名称的镜像。<br><code>8. docker images --no-trunc</code><br>显示完整的镜像名称。<br><code>9. docker image inspect image</code><br>查看镜像的详细配置信息。</p>
+<h3 id="操作容器实例"><a href="#操作容器实例" class="headerlink" title="操作容器实例"></a>操作容器实例</h3><h4 id="停止-删除容器"><a href="#停止-删除容器" class="headerlink" title="停止&#x2F;删除容器"></a>停止&#x2F;删除容器</h4><p>要停止并删除所有 Docker 容器,可以使用以下命令:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">docker stop $(docker ps -aq)<br></code></pre></td></tr></table></figure>
 <p>这个命令会:</p>
 <ul>
-<li>docker ps -aq:查询所有正在运行的容器的ID并以空白隔开</li>
+<li>docker ps -aq:查询所有正在运行的容器的 ID 并以空白隔开</li>
 <li>$(docker ps -aq):执行上述查询并将结果作为子命令的参数</li>
 <li>docker stop:停止参数列出的所有容器<br>停止完容器后,可以使用以下命令删除所有容器:<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">docker <span class="hljs-built_in">rm</span> $(docker ps -aq)<br></code></pre></td></tr></table></figure>
 或者使用以下单行命令直接停止并删除:<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">docker stop $(docker ps -aq) &amp;&amp; docker <span class="hljs-built_in">rm</span> $(docker ps -aq)<br></code></pre></td></tr></table></figure>
 还有其他方法:<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">docker ps -a -q | xargs docker <span class="hljs-built_in">rm</span><br></code></pre></td></tr></table></figure>
 或者:<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">docker container stop $(docker container <span class="hljs-built_in">ls</span> -aq) &amp;&amp; \<br>  docker container <span class="hljs-built_in">rm</span> $(docker container <span class="hljs-built_in">ls</span> -aq)<br></code></pre></td></tr></table></figure>
-以上命令都可以很方便地停止并删除本地所有的Docker容器。选择其中一个按需使用即可。<br>另外,也可以使用docker system prune命令进行整理,一次性清理未使用的镜像、网络、数据卷等资源。</li>
+以上命令都可以很方便地停止并删除本地所有的 Docker 容器。选择其中一个按需使用即可。<br>另外,也可以使用 docker system prune 命令进行整理,一次性清理未使用的镜像、网络、数据卷等资源。</li>
 </ul>
-<h1 id="Nacos"><a href="#Nacos" class="headerlink" title="Nacos"></a>Nacos</h1><ol>
+<h1 id="Nacos"><a href="#Nacos" class="headerlink" title="Nacos"></a>Nacos</h1><h3 id="本地直接部署"><a href="#本地直接部署" class="headerlink" title="本地直接部署"></a>本地直接部署</h3><ol>
 <li><p>下载 nacos 压缩包</p>
 </li>
 <li><p>解压并修改配置文件（单点 or 集群）<br><code>application.properties：</code></p>
@@ -502,6 +504,47 @@
 </li>
 </ol>
 <p><img src="http://qnpicmap.fcsluck.top/pics/202311181541807.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h2 id="Docker-部署-Nacos"><a href="#Docker-部署-Nacos" class="headerlink" title="Docker 部署 Nacos"></a>Docker 部署 Nacos</h2><h3 id="Docker-拉取镜像"><a href="#Docker-拉取镜像" class="headerlink" title="## Docker 拉取镜像"></a>## Docker 拉取镜像</h3><p>拉取nacos镜像</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">docker pull nacos/nacos-server <span class="hljs-comment">#默认拉取最新的nacos版本，如果需要拉取别的版本可以加：版本号（如：docker pull nacos/nacos-server:v2.2.0）</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="配置宿主机挂载目录"><a href="#配置宿主机挂载目录" class="headerlink" title="配置宿主机挂载目录"></a>配置宿主机挂载目录</h3><p>这一步是添加映射文件夹，将宿主机的文件映射到nacos容器中</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">mkdir</span> -p /home/ecs-user/mdware/nacos/logs/                      <span class="hljs-comment">#新建logs目录</span><br><span class="hljs-built_in">mkdir</span> -p /home/ecs-user/mdware/nacos/conf/						<span class="hljs-comment">#新建conf目录</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="假启动"><a href="#假启动" class="headerlink" title="## 假启动"></a>## 假启动</h3><p>启动一个nacos容器并复制需要挂载的文件到宿主机，再关闭删除该容器（<em>为了获取默认的配置文件</em>）</p>
+<p><strong>启动一个nacos容器</strong></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">docker run -p 8848:8848 --name nacos -d nacos/nacos-server<br></code></pre></td></tr></table></figure>
+<p><strong>复制挂载文件：</strong></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">docker <span class="hljs-built_in">cp</span> nacos:/home/nacos/logs/ /home/ecs-user/mdware/nacos/<br>docker <span class="hljs-built_in">cp</span> nacos:/home/nacos/conf/ /home/ecs-user/mdware/nacos/<br></code></pre></td></tr></table></figure>
+
+<p><strong>关闭删除容器：</strong></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">docker <span class="hljs-built_in">rm</span> -f nacos<br></code></pre></td></tr></table></figure>
+
+<h3 id="实启动"><a href="#实启动" class="headerlink" title="实启动"></a>实启动</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sh">docker run -d --name nacos -p 8848:8848 --privileged=<span class="hljs-literal">true</span> -e JVM_XMS=256m -e JVM_XMX=256m -e MODE=standalone -v /home/ecs-user/mdware/nacos/logs/:/home/nacos/logs/ -v /home/ecs-user/mdware/nacos/conf/:/home/nacos/conf/ --restart=always nacos/nacos-server <span class="hljs-comment">#未鉴权</span><br><br>docker run -d --name nacos -p 8848:8848 --privileged=<span class="hljs-literal">true</span> -e JVM_XMS=256m -e JVM_XMX=256m -e MODE=standalone -e NACOS_AUTH_ENABLE=<span class="hljs-literal">true</span> -v /home/ecs-user/mdware/nacos/logs/:/home/nacos/logs/ -v /home/ecs-user/mdware/nacos/conf/:/home/nacos/conf/ --restart=always nacos/nacos-server <span class="hljs-comment">#开启鉴权</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>参数解释</strong>：</p>
+<blockquote>
+<ol>
+<li>docker run -d ： 启动容器 -d是后台启动并返回容器id的意思</li>
+<li>–name nacos ：为容器指定一个名称</li>
+<li>-p 8848:8848 ： 指定端口映射，注意这里的p不能大写，大写是随机端口映射</li>
+<li>–privileged&#x3D;true ： 扩大容器内的权限，将容器内的权限变为root权限，不加的话就是普通用户权限，可能会出现cannot open directory</li>
+<li>-e JVM_XMS&#x3D;256m ： 为jvm启动时分配的内存</li>
+<li>-e JVM_XMX&#x3D;256m ： 为jvm运行过程中分配的最大内存</li>
+<li>-e MODE&#x3D;standalone ： 使用 standalone模式（单机模式）,MODE值有cluster（集群）模式&#x2F;standalone模式两种，MODE必须大写</li>
+<li>-e NACOS_AUTH_ENABLE&#x3D;true ：开启token鉴权</li>
+<li>-v &#x2F;home&#x2F;ecs-user&#x2F;mdware&#x2F;nacos&#x2F;logs&#x2F;:&#x2F;home&#x2F;nacos&#x2F;logs&#x2F; : 将容器的&#x2F;home&#x2F;nacos&#x2F;logs目录挂载到 &#x2F;home&#x2F;ecs-user&#x2F;mdware&#x2F;nacos&#x2F;logs</li>
+<li>-v &#x2F;home&#x2F;ecs-user&#x2F;mdware&#x2F;nacos&#x2F;conf&#x2F;:&#x2F;home&#x2F;nacos&#x2F;conf&#x2F; ： 将容器的&#x2F;home&#x2F;nacos&#x2F;conf目录挂载到 &#x2F;home&#x2F;ecs-user&#x2F;mdware&#x2F;nacos&#x2F;conf –restart&#x3D;always ：重启docker时，自动启动相关容器</li>
+</ol>
+</blockquote>
+<h3 id="开启防火墙端口"><a href="#开启防火墙端口" class="headerlink" title="开启防火墙端口"></a>开启防火墙端口</h3><p>需要在防火墙开放相关端口，云服务器还需要开放安全组对应端口：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment">## 开放端口8848 9848 9849</span><br>firewall-cmd --zone=public --add-port=8848/tcp --permanent<br><br><span class="hljs-comment">## 重启防火墙</span><br>firewall-cmd --reload<br><br><span class="hljs-comment">## 查看所有开启的端口</span><br>firewall-cmd --zone=public --list-ports<br></code></pre></td></tr></table></figure>
+
+<p>重启完防火墙之后，需要重启docker</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment">## 重启docker</span><br>systemctl restart docker<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>如需开启集群模式，可修改宿主机挂载的配置文件修改相应内容，再重启nacos容器即可更新配置。</p>
+</blockquote>
 <h1 id="Sentinel"><a href="#Sentinel" class="headerlink" title="Sentinel"></a>Sentinel</h1><ol>
 <li>下载 <a target="_blank" rel="noopener" href="https://github.com/alibaba/Sentinel/releases">Sentinel</a> 的 jar 包上传至 linux 系统上</li>
 <li>使用 <em>nohup</em> 指令持久化后台运行 <strong>jar 包</strong></li>
@@ -549,7 +592,7 @@
 <li>linux <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#列出所有队列 ：</span><br>rabbitmqctl list_queues<br><span class="hljs-comment">#列出所有交换器 ：</span><br>rabbitmqctl list_exchanges<br><span class="hljs-comment">#列出所有绑定 ：</span><br>rabbitmqctl list_bindings<br><span class="hljs-comment">#列出所有连接 ：</span><br>rabbitmqctl list_connections<br><span class="hljs-comment">#列出所有通道 ：</span><br>rabbitmqctl list_channels<br><span class="hljs-comment">#列出所有消费者 ：</span><br>rabbitmqctl list_consumers<br><span class="hljs-comment">#查看队列的状态信息 ：</span><br>rabbitmqctl list_queues name messages_ready messages_unacknowledged<br><span class="hljs-comment">#查看交换器的状态信息 ：</span><br>rabbitmqctl list_exchanges name <span class="hljs-built_in">type</span><br><span class="hljs-comment">#查看连接的状态信息 ：</span><br>rabbitmqctl list_connections name user state<br><span class="hljs-comment">#查看通道的状态信息 ：</span><br>rabbitmqctl list_channels connection_name user number_of_consumers<br><span class="hljs-comment">#查看 RabbitMQ 节点的状态信息：</span><br>rabbitmqctl status<br><span class="hljs-comment">#查看 RabbitMQ 节点的详细状态信息：</span><br>rabbitmqctl status --verbose<br><span class="hljs-comment">#查看 RabbitMQ 节点的配置信息：</span><br>rabbitmqctl environment<br><span class="hljs-comment">#查看 RabbitMQ 节点的运行日志：</span><br>rabbitmqctl report<br><span class="hljs-comment">#查看 RabbitMQ 节点的内存使用情况：</span><br>rabbitmqctl <span class="hljs-built_in">eval</span> <span class="hljs-string">&#x27;memory&#x27;</span><br></code></pre></td></tr></table></figure></li>
 </ol>
 <hr>
-<h1 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h1><h2 id="查看进程"><a href="#查看进程" class="headerlink" title="查看进程"></a>查看进程</h2><p>查询pid对应的进程所运行的程序。</p>
+<h1 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h1><h2 id="查看进程"><a href="#查看进程" class="headerlink" title="查看进程"></a>查看进程</h2><p>查询 pid 对应的进程所运行的程序。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">tasklist|findstr pid<br></code></pre></td></tr></table></figure>
 
 <h2 id="关闭进程"><a href="#关闭进程" class="headerlink" title="关闭进程"></a>关闭进程</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">taskkill /f /t /im nginx.exe<br>taskkill /f /pid &lt;查询的PID号&gt;<br></code></pre></td></tr></table></figure>
@@ -634,11 +677,11 @@
 <p>覆盖文件的所有内容</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">echo</span> 新内容 &gt; 文件名<br></code></pre></td></tr></table></figure>
 <p>把文件内容写入到另一个文件的末尾</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cat</span> 文件名1 &gt;&gt; 文件名2<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cat</span> 文件名 1 &gt;&gt; 文件名 2<br></code></pre></td></tr></table></figure>
 <p>在当前目录建立一个指向&#x2F;tmp 目录的硬链接</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">ln</span> /tmp 自定义链接名<br></code></pre></td></tr></table></figure>
 <p>在当前目录建立一个指向&#x2F;tmp 目录的软链接</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">ln</span> -s /tmp 自定义链接h<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">ln</span> -s /tmp 自定义链接 h<br></code></pre></td></tr></table></figure>
 <p>查看&#x2F;tmp 目录是否存在名为 log.txt 文件</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">find /tmp -name log.txt<br></code></pre></td></tr></table></figure>
 <p>查看&#x2F;tmp 目录是否存在小于超过 2M 的文件</p>
@@ -676,31 +719,32 @@
 <h2 id="进程管理"><a href="#进程管理" class="headerlink" title="进程管理"></a>进程管理</h2><p>查看某进程的资源占用情况</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">top -p 进程号<br></code></pre></td></tr></table></figure>
 <p>找出占用 CPU 最多的进程</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">top，然后按大写的P<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">top，然后按大写的 P<br></code></pre></td></tr></table></figure>
 <p>找出占用内存最多的进程</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">top，然后按大写的M<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">top，然后按大写的 M<br></code></pre></td></tr></table></figure>
 <p>查看正在运行的进程</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">ps -ef<br></code></pre></td></tr></table></figure>
 <p>查看有关 mysql 的进程信息</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">ps -ef | grep mysql<br></code></pre></td></tr></table></figure>
 <p>正常杀死进程</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">kill</span> -15 PID号<br><span class="hljs-built_in">kill</span> -12 pid <span class="hljs-comment">#安全关闭</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">kill</span> -15 PID 号<br><span class="hljs-built_in">kill</span> -12 pid <span class="hljs-comment">#安全关闭</span><br></code></pre></td></tr></table></figure>
 <p>强制杀死进程</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">kill</span> -9 pid <span class="hljs-comment">#强制关闭</span><br></code></pre></td></tr></table></figure>
 <p>找出 CPU 占用高的进程 ID</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">top -c<br></code></pre></td></tr></table></figure>
 <p>根据进程 ID，找出 CPU 占用高的线程 ID</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">ps H -eo pid,tid,%cpu | grep 进程ID<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">ps H -eo pid,tid,%cpu | grep 进程 ID<br></code></pre></td></tr></table></figure>
 <p>输出‘指定进程 ID 的 16 进制’</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">printf</span> <span class="hljs-string">&quot;%x\n&quot;</span> 进程ID<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">printf</span> <span class="hljs-string">&quot;%x\n&quot;</span> 进程 ID<br></code></pre></td></tr></table></figure>
 <p>根据‘指定进程 ID 的 16 进制’，查看到底是哪里 java 的代码问题</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">jstack 进程ID | grep 指定进程ID的16进制 -A20<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">jstack 进程 ID | grep 指定进程 ID 的 16 进制 -A20<br></code></pre></td></tr></table></figure>
 
 
 <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
 <li><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1701451">centos7安装Docker详细步骤（无坑版教程）-腾讯云开发者社区-腾讯云</a></li>
 <li><a target="_blank" rel="noopener" href="https://blog.csdn.net/abcde123_123/article/details/106244181">使用Docker搭建MySQL主从复制（一主一从）_使用docker搭建mysql主从复制(一主一从)-CSDN博客</a></li>
 <li><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/2364484">前端研发需要知道的Docker-腾讯云开发者社区-腾讯云</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/ilvjiale/article/details/129417768">Docker启动安装nacos（详情讲解，全网最细）_docker启动nacos-CSDN博客</a></li>
 </ol>
 
                 
@@ -772,7 +816,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2023年12月5日</div>
+          <div>2023年12月9日</div>
         </div>
       
       <div class="license-meta-item">
