@@ -39,7 +39,7 @@
 <meta property="og:image" content="http://qnpicmap.fcsluck.top/pics/202311221729835.png">
 <meta property="og:image" content="http://qnpicmap.fcsluck.top/pics/202311182136214.png">
 <meta property="article:published_time" content="2023-11-18T06:53:11.000Z">
-<meta property="article:modified_time" content="2023-12-09T13:42:16.770Z">
+<meta property="article:modified_time" content="2023-12-09T15:40:10.818Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="java">
 <meta property="article:tag" content="mysql">
@@ -298,7 +298,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          18k 字
+          19k 字
         
       </span>
     
@@ -309,7 +309,7 @@
         
         
         
-          154 分钟
+          157 分钟
         
       </span>
     
@@ -360,7 +360,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：几秒前
+                    本文最后更新于：12 分钟前
                   
                 
               </p>
@@ -381,6 +381,7 @@
 <p>刷新系统环境变量配置：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">source /etc/profile<br></code></pre></td></tr></table></figure>
 
+<hr>
 <h1 id="Mysql"><a href="#Mysql" class="headerlink" title="Mysql"></a>Mysql</h1><h2 id="Docker-部署"><a href="#Docker-部署" class="headerlink" title="Docker 部署"></a>Docker 部署</h2><ol>
 <li><p>拉取 mysql 镜像</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">docker pull mysql:5.7<br></code></pre></td></tr></table></figure></li>
@@ -448,6 +449,7 @@
 <blockquote>
 <p>现在您已经成功安装和连接到 Redis 服务器。您可以使用 redis-cli 命令行工具来执行各种操作，例如设置键值对、获取值、删除键等。</p>
 </blockquote>
+<hr>
 <h1 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h1><h2 id="1-安装指南"><a href="#1-安装指南" class="headerlink" title="1.安装指南"></a>1.安装指南</h2><ol>
 <li><p>查看系统内核</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">uname</span> -r<br></code></pre></td></tr></table></figure>
@@ -491,6 +493,7 @@
 或者:<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">docker container stop $(docker container <span class="hljs-built_in">ls</span> -aq) &amp;&amp; \<br>  docker container <span class="hljs-built_in">rm</span> $(docker container <span class="hljs-built_in">ls</span> -aq)<br></code></pre></td></tr></table></figure>
 以上命令都可以很方便地停止并删除本地所有的 Docker 容器。选择其中一个按需使用即可。<br>另外,也可以使用 docker system prune 命令进行整理,一次性清理未使用的镜像、网络、数据卷等资源。</li>
 </ul>
+<hr>
 <h1 id="Nacos"><a href="#Nacos" class="headerlink" title="Nacos"></a>Nacos</h1><h3 id="本地直接部署"><a href="#本地直接部署" class="headerlink" title="本地直接部署"></a>本地直接部署</h3><ol>
 <li><p>下载 nacos 压缩包</p>
 </li>
@@ -504,6 +507,7 @@
 </li>
 </ol>
 <p><img src="http://qnpicmap.fcsluck.top/pics/202311181541807.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<hr>
 <h2 id="Docker-部署-Nacos"><a href="#Docker-部署-Nacos" class="headerlink" title="Docker 部署 Nacos"></a>Docker 部署 Nacos</h2><h3 id="Docker-拉取镜像"><a href="#Docker-拉取镜像" class="headerlink" title="## Docker 拉取镜像"></a>## Docker 拉取镜像</h3><p>拉取nacos镜像</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">docker pull nacos/nacos-server <span class="hljs-comment">#默认拉取最新的nacos版本，如果需要拉取别的版本可以加：版本号（如：docker pull nacos/nacos-server:v2.2.0）</span><br></code></pre></td></tr></table></figure>
 
@@ -545,12 +549,14 @@
 <blockquote>
 <p>如需开启集群模式，可修改宿主机挂载的配置文件修改相应内容，再重启nacos容器即可更新配置。</p>
 </blockquote>
+<hr>
 <h1 id="Sentinel"><a href="#Sentinel" class="headerlink" title="Sentinel"></a>Sentinel</h1><ol>
 <li>下载 <a target="_blank" rel="noopener" href="https://github.com/alibaba/Sentinel/releases">Sentinel</a> 的 jar 包上传至 linux 系统上</li>
 <li>使用 <em>nohup</em> 指令持久化后台运行 <strong>jar 包</strong></li>
 <li>后端持久运行 jar 包：<br><code>nohup java -Xms100m -Xmx100m -jar score-api-0.0.1-SNAPSHOT.jar&amp;</code></li>
 </ol>
 <p><img src="http://qnpicmap.fcsluck.top/pics/202311181541977.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<hr>
 <h1 id="Seata"><a href="#Seata" class="headerlink" title="Seata"></a>Seata</h1><h2 id="服务端配置"><a href="#服务端配置" class="headerlink" title="服务端配置"></a>服务端配置</h2><ol>
 <li>下载 <a target="_blank" rel="noopener" href="https://github.com/seata/seata/releases/">Seata</a> 服务端</li>
 <li>新建一个 <strong>namespace</strong> 用于 seata 使用：<em>seata</em><br><img src="http://qnpicmap.fcsluck.top/pics/202311201527195.png" srcset="/img/loading.gif" lazyload alt="image.png"></li>
@@ -573,11 +579,13 @@
 <ol start="6">
 <li>启动 seata<br>根据系统环境启动 seata 服务端：<br><img src="http://qnpicmap.fcsluck.top/pics/202311201535684.png" srcset="/img/loading.gif" lazyload alt="image.png|500"></li>
 </ol>
+<hr>
 <h2 id="客户端配置"><a href="#客户端配置" class="headerlink" title="客户端配置"></a>客户端配置</h2><ol>
 <li>引入 Maven 依赖<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--        seata--&gt;</span>  <br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>  <br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.alibaba.cloud<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>  <br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-cloud-starter-alibaba-seata<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>  <br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure></li>
 <li>修改微服务的 <code>application.yml</code><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">spring:</span>  <br>  <span class="hljs-attr">application:</span>  <br>    <span class="hljs-attr">name:</span> <span class="hljs-string">book-service</span>  <br>  <span class="hljs-attr">datasource:</span>  <br>    <span class="hljs-attr">url:</span> <span class="hljs-string">jdbc:mysql://localhost:3306/springcloud?useUnicode=true&amp;characterEncoding=utf8</span>  <br>    <span class="hljs-attr">username:</span> <span class="hljs-string">root</span>  <br>    <span class="hljs-attr">password:</span> <span class="hljs-number">123456</span>  <br>    <span class="hljs-attr">driver-class-name:</span> <span class="hljs-string">com.mysql.cj.jdbc.Driver</span>  <br>  <span class="hljs-attr">cloud:</span>  <br>    <span class="hljs-attr">nacos:</span>  <br>      <span class="hljs-attr">discovery:</span>  <br>        <span class="hljs-comment"># 配置 Nacos 注册中心地址  </span><br>        <span class="hljs-attr">server-addr:</span> <span class="hljs-string">xxx:8848</span>  <br>      <span class="hljs-comment">#        namespace: 44a80565-86f1-450f-88ea-6f93801cd08c #设置命名空间为开发环境  </span><br>    <span class="hljs-attr">sentinel:</span>  <br>      <span class="hljs-attr">transport:</span>  <br>        <span class="hljs-comment"># 添加监控页面地址即可  </span><br>        <span class="hljs-attr">dashboard:</span> <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span><span class="hljs-string">:8080</span><br><span class="hljs-attr">seata:</span>  <br>  <span class="hljs-attr">tx-service-group:</span> <span class="hljs-string">user-service-seata-service-group</span> <span class="hljs-comment">#必须配置和服务端的service .vgroupMapping.xxx 一致  </span><br>  <span class="hljs-comment"># 注册  registry:  </span><br>    <span class="hljs-comment"># 使用 Nacos  </span><br>    <span class="hljs-attr">type:</span> <span class="hljs-string">nacos</span>  <br>    <span class="hljs-attr">nacos:</span>  <br>      <span class="hljs-comment"># 使用 Seata 的命名空间，这样才能正确找到 Seata 服务，由于组使用的是 SEATA_GROUP，配置默认值就是，就不用配了  </span><br>      <span class="hljs-attr">namespace:</span> <span class="hljs-string">401254cb-2aa6-4be3-bd44-4a139ebdc687</span>  <br>      <span class="hljs-attr">username:</span> <span class="hljs-string">nacos</span>  <br>      <span class="hljs-attr">password:</span> <span class="hljs-string">nacos</span>  <br>      <span class="hljs-attr">server-addr:</span> <span class="hljs-string">$&#123;spring.cloud.nacos.discovery.server-addr&#125;</span>  <br>  <span class="hljs-comment"># 配置  </span><br>  <span class="hljs-attr">config:</span>  <br>    <span class="hljs-attr">type:</span> <span class="hljs-string">nacos</span>  <br>    <span class="hljs-attr">nacos:</span>  <br>      <span class="hljs-attr">namespace:</span> <span class="hljs-string">401254cb-2aa6-4be3-bd44-4a139ebdc687</span>  <br>      <span class="hljs-attr">username:</span> <span class="hljs-string">nacos</span>  <br>      <span class="hljs-attr">password:</span> <span class="hljs-string">nacos</span>  <br>      <span class="hljs-attr">server-addr:</span> <span class="hljs-string">$&#123;spring.cloud.nacos.discovery.server-addr&#125;</span>  <br>  <span class="hljs-attr">service:</span>  <br>    <span class="hljs-attr">vgroup-mapping:</span>  <br>      <span class="hljs-attr">tx-group-mapping:</span> <span class="hljs-string">user-service-seata-service-group</span>  <span class="hljs-comment">#必须配置和服务端的service .vgroupMapping.xxx 一致</span><br></code></pre></td></tr></table></figure></li>
 <li>配置完成启动微服务即可</li>
 </ol>
+<hr>
 <h1 id="RabbitMQ"><a href="#RabbitMQ" class="headerlink" title="RabbitMQ"></a>RabbitMQ</h1><ol>
 <li>下载安装 <a target="_blank" rel="noopener" href="https://www.rabbitmq.com/">RabbitMQ</a> 和 <a target="_blank" rel="noopener" href="https://www.erlang.org/">Erlang</a> 并配置环境变量</li>
 <li>安装完成后找到安装文件路径，找到 sbin 目录下，打开命令行 cmd，在命令行里切换到 sbin 目录下，输入如下命令：<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">rabbitmq-plugins enable rabbitmq_management<br></code></pre></td></tr></table></figure>
@@ -592,13 +600,38 @@
 <li>linux <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#列出所有队列 ：</span><br>rabbitmqctl list_queues<br><span class="hljs-comment">#列出所有交换器 ：</span><br>rabbitmqctl list_exchanges<br><span class="hljs-comment">#列出所有绑定 ：</span><br>rabbitmqctl list_bindings<br><span class="hljs-comment">#列出所有连接 ：</span><br>rabbitmqctl list_connections<br><span class="hljs-comment">#列出所有通道 ：</span><br>rabbitmqctl list_channels<br><span class="hljs-comment">#列出所有消费者 ：</span><br>rabbitmqctl list_consumers<br><span class="hljs-comment">#查看队列的状态信息 ：</span><br>rabbitmqctl list_queues name messages_ready messages_unacknowledged<br><span class="hljs-comment">#查看交换器的状态信息 ：</span><br>rabbitmqctl list_exchanges name <span class="hljs-built_in">type</span><br><span class="hljs-comment">#查看连接的状态信息 ：</span><br>rabbitmqctl list_connections name user state<br><span class="hljs-comment">#查看通道的状态信息 ：</span><br>rabbitmqctl list_channels connection_name user number_of_consumers<br><span class="hljs-comment">#查看 RabbitMQ 节点的状态信息：</span><br>rabbitmqctl status<br><span class="hljs-comment">#查看 RabbitMQ 节点的详细状态信息：</span><br>rabbitmqctl status --verbose<br><span class="hljs-comment">#查看 RabbitMQ 节点的配置信息：</span><br>rabbitmqctl environment<br><span class="hljs-comment">#查看 RabbitMQ 节点的运行日志：</span><br>rabbitmqctl report<br><span class="hljs-comment">#查看 RabbitMQ 节点的内存使用情况：</span><br>rabbitmqctl <span class="hljs-built_in">eval</span> <span class="hljs-string">&#x27;memory&#x27;</span><br></code></pre></td></tr></table></figure></li>
 </ol>
 <hr>
+<h1 id="RocketMQ"><a href="#RocketMQ" class="headerlink" title="RocketMQ"></a>RocketMQ</h1><p>RocketMQ依赖Java环境，要求有JDK1.8以上版本。RocketMQ支持三种集群部署模式，单机部署模式如下教程所示。</p>
+<h2 id="拉取rocketmq镜像"><a href="#拉取rocketmq镜像" class="headerlink" title="拉取rocketmq镜像"></a>拉取rocketmq镜像</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">docker run -d -p 9876:9876 --name rmqserver  apacherocketmq/rocketmq-server<br></code></pre></td></tr></table></figure>
+
+
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">docker run -d -p 10911:10911 --name rmqbroker --<span class="hljs-built_in">link</span> rmqserver:namesrv -e <span class="hljs-string">&quot;NAMESRV_ADDR=namesrv:9876&quot;</span> -e <span class="hljs-string">&quot;JAVA_OPT_EXT=-server -Xms128m -Xmx128m&quot;</span> -v /home/ecs-user/mdware/rocketmq/rmqbroker/:/etc/rocketmq/ foxiswho/rocketmq:broker-4.5.1<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<hr>
 <h1 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h1><h2 id="查看进程"><a href="#查看进程" class="headerlink" title="查看进程"></a>查看进程</h2><p>查询 pid 对应的进程所运行的程序。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">tasklist|findstr pid<br></code></pre></td></tr></table></figure>
 
 <h2 id="关闭进程"><a href="#关闭进程" class="headerlink" title="关闭进程"></a>关闭进程</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">taskkill /f /t /im nginx.exe<br>taskkill /f /pid &lt;查询的PID号&gt;<br></code></pre></td></tr></table></figure>
 <p><img src="http://qnpicmap.fcsluck.top/pics/202311182136214.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h2 id="查看端口"><a href="#查看端口" class="headerlink" title="查看端口"></a>查看端口</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">netstat -ano #查看所有端口<br>netstat -ano | findstr &lt;端口号&gt;<br>netstat -ano | find &quot;关键字&quot;<br></code></pre></td></tr></table></figure>
-<h1 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h1><h2 id="内核信息"><a href="#内核信息" class="headerlink" title="内核信息"></a>内核信息</h2><p>查看 Linux 系统内核的主要命令和方法有:</p>
+<h1 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h1><h2 id="切换用户"><a href="#切换用户" class="headerlink" title="切换用户"></a>切换用户</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">sudo su username(root) <span class="hljs-comment">#切换身份到目标用户</span><br></code></pre></td></tr></table></figure>
+<h2 id="内核信息"><a href="#内核信息" class="headerlink" title="内核信息"></a>内核信息</h2><p>查看 Linux 系统内核的主要命令和方法有:</p>
 <ol>
 <li>uname 命令<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">uname</span> -r<br></code></pre></td></tr></table></figure>
 显示当前正在使用的内核版本号。</li>

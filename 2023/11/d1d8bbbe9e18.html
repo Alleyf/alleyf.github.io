@@ -27,7 +27,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://picsum.photos/800/250">
 <meta property="article:published_time" content="2023-11-28T06:41:00.000Z">
-<meta property="article:modified_time" content="2023-12-09T12:27:02.578Z">
+<meta property="article:modified_time" content="2023-12-09T14:58:55.763Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="SpringCloud-Alibaba">
 <meta property="article:tag" content="微服务">
@@ -285,7 +285,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          54k 字
+          56k 字
         
       </span>
     
@@ -296,7 +296,7 @@
         
         
         
-          454 分钟
+          464 分钟
         
       </span>
     
@@ -1093,7 +1093,25 @@ D --&gt; E
 <li><p><strong>服务及其元数据管理</strong><br>Nacos 可以使开发者从微服务平台建设的视角管理数据中心的所有服务及元数据，包括管理服务的描述、生命周期、服务的静态依赖分析、服务的健康状态、服务的流量管理、路由及安全策略、服务的 SLA 及最重要的 metrics 统计数据。</p>
 </li>
 </ol>
-<h1 id="参考书籍"><a href="#参考书籍" class="headerlink" title="参考书籍"></a>参考书籍</h1><ol>
+<h2 id="Nacos-基本用法"><a href="#Nacos-基本用法" class="headerlink" title="Nacos 基本用法"></a>Nacos 基本用法</h2><p>本地直接部署和 docker 部署 nacos 方式详见<a href="%E5%90%84%E7%A7%8D%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE.md">各种环境配置</a>.</p>
+<h3 id="Nacos-集成-Spring-Boot-实现服务注册与发现"><a href="#Nacos-集成-Spring-Boot-实现服务注册与发现" class="headerlink" title="Nacos 集成 Spring Boot 实现服务注册与发现"></a>Nacos 集成 Spring Boot 实现服务注册与发现</h3><h1 id="第-9-章、RocketMQ-分布式消息通信"><a href="#第-9-章、RocketMQ-分布式消息通信" class="headerlink" title="第 9 章、RocketMQ 分布式消息通信"></a>第 9 章、RocketMQ 分布式消息通信</h1><p>在微服务架构下，一个业务服务会被拆分成多个微服务，各个服务之间相互通信完成整体的功能。系统间的通信协作通常有两种。</p>
+<ul>
+<li>Http&#x2F;RPC 通信：优点是通信实时，缺点是服务之间的耦合性高。</li>
+<li>消息通信：优点是降低了服务之间的耦合性，提高了系统的处理能力，缺点是通信非实时。</li>
+</ul>
+<p>例如，用户交易完成后发送短信通知，假设交易耗时 5ms,发短信耗时 3ms。如果是实时通信，那么用户收到返回结果耗时 8s,但发短信是非核心步骤，可以从主流程中剥离出来异步处理，那么用户收到返回结果耗时就可以从 8ms 下降到 5ms。</p>
+<h2 id="初识-RocketMQ"><a href="#初识-RocketMQ" class="headerlink" title="初识 RocketMQ"></a>初识 RocketMQ</h2><p>RocketMO 是一个低延迟、高可靠、可伸缩、易于使用的分布式消息中间件（也称消息队列），经过阿里巴巴多年双 I1 的验证，是由阿里巴巴开源捐献给 Apache 的顶级项目。RocketMQ 具有<strong>高吞吐、低延迟、海量消息</strong>堆积等优点，同时提供<strong>顺序消息、事务消息、定时消息、消息重试与追踪</strong>等功能，非常适合在电商、金融等领域广泛使用。</p>
+<h3 id="RocketMQ-的应用场景"><a href="#RocketMQ-的应用场景" class="headerlink" title="RocketMQ 的应用场景"></a>RocketMQ 的应用场景</h3><p>RocketMO 的应用场景如下。</p>
+<ul>
+<li>削峰填谷：诸如秒杀、抢红包、企业开门红等大型活动皆会带来较高的流量脉冲，很可能因没做相应的保护而导致系统超负荷甚至崩溃，或因限制太过导致请求大量失败而影响用户体验，RocketMO 可提供削峰填谷的服务来解决这些问题。</li>
+<li>异步解耦：交易系统作为淘宝&#x2F;天猫主站最核心的系统，每笔交易订单数据的产生会引起几百个下游业务系统的关注，包括物流、购物车、积分、流计算分析等，整体业务系统庞大而且复杂，RocketMQ 可实现异步通信和应用解耦，确保主站业务的连续性。</li>
+<li>顺序收发：细数一下，日常需要保证顺序的应用场景非常多，例如证券交易过程中的时间优先原则，交易系统中的订单创建、支付、退款等流程，航班中的旅客登机消息处理等。与先进先出(First In First Out,缩写 FIFO)原理类似，RocketMQ 提供的顺序消息即保证消息的 FIFO。</li>
+<li>分布式事务一致性：交易系统、红包等场景需要确保数据的最终一致性，大量引入 RocketMQ 的分布式事务，既可以实现系统之间的解耦，又可以保证最终的数据一致性。</li>
+<li>大数据分析：数据在“流动”中产生价值，传统数据分析大都基于批量计算模型，无法做到实时的数据分析，利用 RocketMQ 与流式计算引擎相结合，可以很方便地实现对业务数据进行实时分析。</li>
+<li>分布式缓存同步：天猫双 11 大促，各个分会场琳琅满目的商品需要实时感知价格的变化，大量并发访问会导致会场页面响应时间长，集中式缓存因为带宽瓶颈限制商品变更的访问流量，通过 RocketMQ 构建分布式缓存，可实时通知商品数据的变化。</li>
+</ul>
+<h3 id="RocketMQ-的安装"><a href="#RocketMQ-的安装" class="headerlink" title="RocketMQ 的安装"></a>RocketMQ 的安装</h3><p>rocketmq的安装教程由<a href="%E5%90%84%E7%A7%8D%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE.md">各种环境配置</a>可见。</p>
+<h3 id="RocketMQ-基本用法"><a href="#RocketMQ-基本用法" class="headerlink" title="RocketMQ 基本用法"></a>RocketMQ 基本用法</h3><h1 id="参考书籍"><a href="#参考书籍" class="headerlink" title="参考书籍"></a>参考书籍</h1><ol>
 <li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/35041576/?from=mdouban">Spring Cloud Alibaba 微服务原理与实战 (豆瓣)</a></li>
 <li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/G1EE5WSA8DzkRmWvRGr_9w">微信公众平台</a></li>
 </ol>
