@@ -16,21 +16,6 @@ keywords:
   - Java
 header-left: "![](D:/开发图片/logo32.png)"
 ---
-<div style="width=100%;height=100%">
-    <a 
-      class="book-container"
-      href=" https://online.fliphtml5.com/hysru/xbji/"
-      target="_blank"
-      rel="noreferrer noopener"
-    >
-      <div class="book">
-        <img
-          alt="fcs"
-          src=" https://orly.nanmu.me/api/generate?g_loc=BR&g_text=%E5%88%9D%E8%A7%81%E6%97%B6%E6%83%8A%E9%B8%BF&color=f9bc00&img_id=40&author=fcs&top_text=%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E6%A6%82%E5%BF%B5%E4%BB%8E0%E5%88%B01&title=%E5%BE%AE%E6%9C%8D%E5%8A%A1What%3F" />
-      </div>
-    </a>
-</div>
-
 
 
 
@@ -58,7 +43,7 @@ header-left: "![](D:/开发图片/logo32.png)"
 
 1. 通过横向增加服务器，把单台机器变成多台机器的集群。
 2. 按照业务的垂直领域进行拆分，减少业务的耦合度，以及降低单个 war 包带来的伸缩性困难问题。
-![|725](http://qnpicmap.fcsluck.top/pics/202311281458557.png)
+![|700](http://qnpicmap.fcsluck.top/pics/202311281458557.png)
 
 总的来说，数据库层面的拆分思想和业务系统的拆分思想是一样的，都是采用==分而治之==的思想。
 
@@ -976,9 +961,792 @@ Apache Dubbo 架构图如下图所示：
 
 ## Spring Boot 集成 Apache Dubbo
 
-dubbo可以基于 XML 形式进行服务发布和服务消费，但是配置xml文件比较烦琐，而且在发布的服务接口比较多的情况下，配置会非常复杂，所以 Apache Dubbo 也提供了对注解的支持，基于 Spring Boot 集成 Apache Dubbo 实现零配置的服务注册与发布。
+dubbo 可以基于 XML 形式进行服务发布和服务消费，但是配置 xml 文件比较烦琐，而且在发布的服务接口比较多的情况下，配置会非常复杂，所以 Apache Dubbo 也提供了对注解的支持，基于 Spring Boot 集成 Apache Dubbo 实现零配置的服务注册与发布。
 
-## 服务提供者开发流程
+### 服务提供者开发流程
+
+
+1. 创建一个普通的 Maven 工程 springboot-provider,并创建两个模块：sample-api 和 sample-provider ,其中 sample-provider 模块是一个 Spring Boot 工程。
+
+2. 在 sample-api 模块中定义一个接口，并且通过 mvn install 安装到本地私服。
+```java
+public interface IHelloService {
+String sayHello(String name);
+}
+```
+
+3. 在 sample-provider 中引入以下依赖，其中 dubbo-spring-boot-starter 是 Apache Dubbo 官方提供的开箱即用的组件。
+```xml
+<dependency>
+<groupId>org.springframework.boot</groupId>
+<artifactId>spring-boot-starter</artifactId>
+</dependency>
+<dependency>
+<groupId>org.apache.dubbo</groupId>
+<artifactId>dubbo-spring-boot-starter</artifactId>
+<version>2.7.6</version>
+</dependency>
+<dependency>
+<groupId>com.gupaoedu.book.dubbo</groupId>
+<version>1.0-SNAPSHOT</version>
+<artifactId>sample-api</artifactId>
+</dependency>
+```
+
+4. 在 sample-provider 中实现 IHelloService,并且使用 `Dubbo 中提供的@Service` 注解发布服务。
+```java
+@Service
+public class HelloServiceImpl implements IHelloService {
+	@Value("${dubbo.application.name}")
+	private String serviceName;
+	@Override
+	public String sayHello(String name){
+	return String.format("[%s]:Hello,%s",serviceName,name);
+	}
+}
+```
+
+5. 在 application.properties 文件中添加 Dubbo 服务的配置信息。
+```properties
+spring.application.name=springboot-dubbo-demo
+dubbo.application.name=springboot-provider
+dubbo.protocol.name=dubbo
+dubbo.protocol.port=20880
+dubbo.registry.address=N/A
+```
+
+6. 启动 Spring Boot,需要注意的是，需要在启动方法上添加 `@DubboComponentScan` 注解，它的作用和 Spring Framework 提供的@ComponetScan 一样，只不过这里扫描的是 `Dubbo 中提供的@Service` 注解。
+```java
+@DubboComponentScan
+@SpringBootApplication
+public class ProviderApplication
+public static void main(String[]args){
+SpringApplication.run(ProviderApplication.class,args);
+}
+```
+
+### 服务调用者的开发流程
+
+服务调用者引入 api 模块作为依赖，调用该接口方法，该接口被调用时会被自动代理执行服务供给者所实现的方法。
+
+1. 创建一个 Spring Boot 项目 springboot-consumer,添加 Jar 包依赖。
+```xml
+<dependency>
+	<groupId>org.apache.dubbo</groupId>
+	<artifactId>dubbo-spring-boot-starter</artifactId>
+	<version>2.7.6</version>
+</dependency>
+<dependency>
+	<groupId>com.gupaoedu.book.dubbo</groupId>
+	<version>1.0-SNAPSHOT</version>
+	<artifactId>sample-api</artifactId>
+</dependency>
+```
+
+2. 在 application.properties 中配置项目名称。
+`dubbo.application.name=springboot-consumer`
+3. 在 Spring Boot 启动类中，使用 Dubbo 提供的 **@Reference 注解来获得一个远程代理对象**。
+
+```java
+@SpringBootApplication
+public class SpringbootConsumerApplication {
+	
+	@Reference(url="dubbo://192.168.13.1:20880/com.gupaoedu.book.dubbo.IHelloService")
+	private IHelloService helloService;
+	
+	public static void main(String[]args){
+	SpringApplication.run(SpringbootConsumerApplication.class,args);
+	
+	@Bean
+	public ApplicationRunner runner(){
+	return args->System.out.println(helloService.sayHello("Mic"));
+	}
+}
+```
+
+调用链路结果如下图所示：
+
+**服务供给者:**
+![](http://qnpicmap.fcsluck.top/pics/202312072253491.png)
+
+**服务消费者:**
+![](http://qnpicmap.fcsluck.top/pics/202312072254525.png)
+
+相比基于 XML 的形式来说，基于 `Dubbo-Spring-Boot-Starter` 组件来使用 Dubbo 完成**服务发布和服务消费**会使得开发更加简单。另外，官方还提供了 Dubbo-Spring-Boot-Actuator 模块，可以实现**针对 Dubbo 服务的健康检查**；还可以通过 Endpoints 实现**Dubbo 服务信息的查询和控制**等，为生产环境中对 Dubbo 服务的监控提供了很好的支持。
+
+前面的两个案例中，主要还是使用 Dubbo 以点对点的形式来实现服务之间的通信，Dubbo 可以很好地集成注册中心来实现服务地址的统一管理。早期大部分公司采用的是 ZooKeeper 来实现注册，接下来将学习一下 ZooKeeper,然后基于前面演示的案例整合 ZooKeeper 实现服务的注册和发现。
+
+
+## 快速上手 ZooKeeper
+
+
+ZooKeeper 是一个高性能的分布式协调中间件，所谓的分布式协调中间件的作用类似于多线程环境中通过并发工具包来协调线程的访问控制，只是分布式协调中间件主要解决分布式环境中各个服务进程的访问控制问题，比如访问顺序控制。所以，在这里需要强调的是，ZooKeeper 并不是注册中心，只是基于 ZooKeeper 本身的特性可以实现注册中心这个场景而已。
+
+### 分布式锁
+
+用过多线程的应该都知道锁，比如 Synchronized 或者 Lock,它们主要**用于解决多线程环境下共享资源访问的数据安全性问题**，但是它们所处理的范围是线程级别的。在**分布式架构中，多个进程对同一个共享资源的访问，也存在数据安全性问题**，因此也需要使用锁的形式来解决这类问题，而==解决分布式环境下多进程对于共享资源访问带来的安全性问题的方案就是使用分布式锁==。锁的本质是排他性的，也就是避免在同一时刻多个进程同时访问某一个共享资源。
+
+
+### Master 选举
+
+Master 选举是分布式系统中非常常见的场景，在分布式架构中，为了保证服务的可用性，通常会采用**集群模式**，也就是当其中一个机器宕机后，集群中的其他节点会接替故障节点继续工作。这种工作模式有点类似于公司中某些重要岗位的 AB 角，当 A 请假之后，B 可以接替 A 继续工作。在这种场景中，就需要==从集群中选举一个节点作为 Master 节点，剩余的节点都作为备份节点随时待命。当原有的 Master 节点出现故障之后，还需要从集群中的其他备份节点中选举一个节点作为 Master 节点继续提供服务==。
+
+
+![](http://qnpicmap.fcsluck.top/pics/202312080934999.png)
+
+
+## Apache Dubbo 集成 ZooKeeper 实现服务注册
+
+大规模服务化之后，在远程 RPC 通信过程中，会遇到两个比较尖锐的问题：
+- 服务动态上下线感知。
+- 负载均衡。
+**服务动态上下线感知**，就是服务调用者要感知到服务提供者上下线的变化。按照以往传统的形式，服务调用者如果要调用服务提供者，必须要知道服务提供者的**地址信息及映射参数**。以 Webservice 为例，服务调用者需要在配置文件中维护一个 `http:ip:port/service?wsdl` 地址，但是如果服务提供者是一个集群节点，那么服务调用者需要维护多个这样的地址。问题来了，一旦服务提供者的 P 故障或者集群中某个节点下线了，服务调用者需要同步更新这些地址，但是这个操作如果人工来做是不现实的，所以需要一个第三方软件来统一管理服务提供者的 URL 地址，服务调用者可以从这个软件中获得目标服务的相关地址，并且第三方软件需要动态感知服务提供者状态的变化来维护所管理的 URL,进而使得服务调用者能够及时感知到变化而做出相应的处理。
+**负载均衡**，就是当服务提供者是由多个节点组成的集群环境时，服务调用者需要通过负载均衡算法来动态选择一台目标服务器进行远程通信。负载均衡的主要目的是通过多个节点的集群来均衡服务器的访问压力，提升整体性能。实现负载均衡的前提是，要得到目标服务集群的所有地址，在服务调用者端进行计算，而地址的获取也同样依赖于第三方软件。
+
+![|600](http://qnpicmap.fcsluck.top/pics/202312080945071.png)
+
+当 Dubbo 服务启动时，会去 Zookeeper 服务器上的/dubbo/com.gupaoedu.book.dubbo.IHelloService/providers 目录下创建当前服务的 URL,其中 com.gupaoedu.book.dubbo.IHelloService 是**发布服务的接口全路径名称**，**providers 表示服务提供者的类型**，*dubbo:/ip:port 表示该服务发布的协议类型及访问地址*。其中，URL 是临时节点，其他皆为持久化节点。在这里使用临时节点的好处在于，如果注册该节点的服务器下线了，那么这个服务器的 URL 地址就会从 ZooKeeper 服务器上被移除。
+![|600](http://qnpicmap.fcsluck.top/pics/202312080953192.png)
+
+当 Dubbo 服务消费者启动时，会对/dubbo/com.gupaoedu.book.dubbo.HelloService/providers 节点下的子节点注册**Watcher 监听**，这样便可以感知到服务提供方节点的上下线变化，从而防止请求发送到已经下线的服务器造成访问失败。同时，服务消费者会在 dubbo/com.gupaoedu.book,dubbo.HelloService/consumers 下**写入自己的 URL**,这样做的目的是可以在监控平台上看到某个 Dubbo 服务正在被哪些服务调用（*链路追踪*）。最重要的是，Dubbo 服务的消费者如果需要调用 IHelloService 服务，那么它会先去/dubbo/.com.gupaoedu.book.dubbo.IHelloService/providers 路径下==获得所有该服务的提供方 URL 列表，然后通过负载均衡算法计算出一个地址进行远程访问==。
+
+- 基于临时节点的特性，当服务提供者宕机或者下线时，注册中心会自动删除该服务提供者的信息。
+- 注册中心重启时，Dubbo 能够自动恢复注册数据及订阅请求。
+- 为了保证节点操作的安全性，ZooKeeper 提供了 ACL 权限控制，在 Dubbo 中可以通过 dubbo.registry.username/dubbo.registry.password 设置节点的验证信息。
+- 注册中心默认的根节点是/dubbo,如果需要针对不同环境设置不同的根节点，可以使用 dubbo.registry.group 修收根节占名称。
+
+
+## 实战 Dubbo Spring Cloud
+
+在服务治理方面，Apache Dubbo 有着非常大的优势，并且在 Spring Cloud 出现之前，它就已经被很多公司作为服务治理及微服务基础设施的首选框架。Dubbo Spring Cloud 的出现，使得 Dubbo 既能够完全整合到 Spring Cloud 的技术栈中，享受 SpringCloud 生态中的技术支持和标准化输出，又能够弥补 Spring Cloud 中服务治理这方面的短板。
+
+### 实现 Dubbo 服务提供方
+
+创建一个普通的 Maven 工程，并在该工程中创建两个模块：spring-cloud-dubbo-sample-api、spring-cloud-dubbo-sample-provider。其中 spring-cloud-dubbo-sample-api 是一个普通的 Maven 工程，spring-cloud-dubbo-sample-provider 是一个 Spring Boot 工程。对于服务提供者而言，都会存在一个 API 声明，因为服务的调用者需要访问服务提供者声明的接口，为了确保契约的一致性，Dubbo 官方推荐的做法是把服务接口打成 Jar 包发布到仓库上。服务调用者可以依赖该 Jar 包，通过接口调用方式完成远程通信。对于服务提供者来说，也需要依赖该 Jar 包完成接口的实现。
+
+> 注意：当前案例中使用的 Spring Cloud 版本为 Greenwich.SR2,Spring Cloud Alibaba 的版本为 2.2.2.RELEASE,Spring Boot 的版本为 2.1.11.RELEASE。
+
+1. 在 spring-cloud-dubbo-sample-api 中声明接口，并执行 mvn install 将 Jar 包安装到本地仓库。
+```java
+public interface IHelloService {
+	String sayHello(String name);
+}
+```
+
+2. 在 spring-cloud-dubbo-sample-provider 中添加依赖:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.fcs</groupId>
+        <artifactId>springcloud-dubbo-sample</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>sample-provider</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>sample-provider</name>
+    <description>sample-provider</description>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
+    <dependencies>
+        <!--        spring-cloud-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter</artifactId>
+        </dependency>
+        <!--        dubbo-->
+        <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo-spring-boot-starter</artifactId>
+        </dependency>
+        <!--        zookeeper-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-zookeeper-discovery</artifactId>
+        </dependency>
+        <!--lombok-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <!--        sample-api-->
+        <dependency>
+            <groupId>org.fcs</groupId>
+            <artifactId>sample-api</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
+</project>
+
+```
+
+需要注意的是，上述依赖的 artifact 没有指定版本，所以需要在父 pom 中显式声明 dependencyManagement.
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <!--项目基本信息-->
+    <groupId>org.fcs</groupId>
+    <artifactId>springcloud-dubbo-sample</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <!--    项目子模块-->
+    <modules>
+        <module>sample-api</module>
+        <module>sample-provider</module>
+        <module>sample-consumer</module>
+    </modules>
+    <!--    项目说明-->
+    <name>alleyf</name>
+    <url>https://alleyf.github.io</url>
+    <description>拂安dubbo微服务供给者</description>
+    <!--    声明依赖的版本-->
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <spring-boot.version>2.7.6</spring-boot.version>
+        <spring-cloud.version>2021.0.6</spring-cloud.version>
+        <spring-cloud-alibaba.version>2021.0.5.0</spring-cloud-alibaba.version>
+        <dubbo.version>2.7.6</dubbo.version>
+        <lombok.version>1.18.20</lombok.version>
+    </properties>
+
+    <!--    版本管理-->
+    <dependencyManagement>
+        <dependencies>
+            <!--            spring-boot-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!--            spring-cloud-->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!--            spring-cloud-alibaba-->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring-cloud-alibaba.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!--            lombok-->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <!--            dubbo-->
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo-spring-boot-starter</artifactId>
+                <version>${dubbo.version}</version>
+            </dependency>
+        </dependencies>
+
+    </dependencyManagement>
+</project>
+```
+
+3. 在 spring-cloud-dubbo-sample-provider 中创建接口的实现类 HelloServiceImpl,其中@Service 是 Dubbo 服务的注解，表示当前服务会发布为一个远程服务。
+
+```java
+package com.fcs.service;  
+  
+import org.apache.dubbo.config.annotation.Service;  
+import org.springframework.beans.factory.annotation.Value;  
+  
+@Service  
+public class HelloServiceImpl implements IHelloService {  
+    @Value("${dubbo.application.name}")  
+    private String serviceName;  
+  
+    @Override  
+    public String sayHello(String name) {  
+        return String.format("[%s]:Hello,%s", serviceName, name);  
+    }  
+}
+```
+
+4. 在 application.properties 中配置 Dubbo 相关的信息。
+```properties
+server.port=8080  
+dubbo.protocol.port=20880  
+dubbo.protocol.name=dubbo  
+dubbo.registry.address=zookeeper://localhost:2181 #dubbo.registry.address=zookeeper://xxx:2181 #tip 远程地址报错  
+dubbo.registry.timeout=60000  
+dubbo.application.name=spring-cloud-dubbo-provider  
+spring.application.name=spring-cloud-dubbo-provider  
+spring.cloud.zookeeper.discovery.register=true  
+#spring.cloud.zookeeper.connect-string=xxx:2181  
+spring.cloud.zookeeper.connect-string=localhost:2181
+```
+
+其中 spring.cloud.zookeeper.discovery.register=true 表示服务是否需要注册到注册中心。
+spring.cloud.zookeeper.connect-string 表示 ZooKeeper 的连接字符串。
+
+5. 在启动类中声明@DubboComponentScan 注解，并启动服务。
+
+```java
+@SpringBootApplication  
+@DubboComponentScan  
+public class SampleProviderApplication {  
+  
+    public static void main(String[] args) {  
+        SpringApplication.run(SampleProviderApplication.class, args);  
+    }  
+ }
+```
+
+@DubboComponentScan 扫描当前注解所在的包路径下的 @org.apache.dubbo.config.annotationService 注解，实现服务的发布。发布完成之后，就可以在 ZooKeeper 服务器上看一个/services/${project-name}节点，这个节点中保存了服务提供方相关的地址信息。
+
+### 实现 Dubbo 服务调用方
+
+Dubbo 服务提供方 spring-cloud-dubbo-.sample 已经准备完毕，只需要创建一个名为 spring-cloud-dubbo-consumer 的 Spring Boot 项目，就可以实现 Dubbo 服务调用了。
+
+1. 创建一个名为 spring-cloud-dubbo-consumer 的 Spring Boot 工程，添加如下依赖，与服务提供方所依赖的配置没什么区别。为了演示需要，增加了 spring-boot-starter-web 组件，表示这是一个 Web 项目。
+
+```xml
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!--        spring-cloud-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter</artifactId>
+        </dependency>
+        <!--lombok-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <!--        dubbo-->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-dubbo</artifactId>
+        </dependency>
+        <!--        zookeeper-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-zookeeper-discovery</artifactId>
+        </dependency>
+        <!--        sample-api-->
+        <dependency>
+            <groupId>org.fcs</groupId>
+            <artifactId>sample-api</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
+```
+
+2. 在 application.properties 文件中添加 Dubbo 相关配置信息。
+```properties
+server.port=8081  
+dubbo.protocol.name=dubbo  
+dubbo.application.name=springboot-consumer  
+dubbo.cloud.subscribed-services=spring-cloud-dubbo-provider  
+spring.application.name=spring-cloud-dubbo-consumer  
+spring.cloud.zookeeper.discovery.register=false  
+spring.cloud.zookeeper.connect-string=localhost:2181
+```
+
+配置信息和 spring-cloud-dubbo-sample 项目的配置信息差不多，有两个配置需要单独说明一下：
+- `spring.cloud.zookeeper.discovery.register=false` 表示当前服务不需要注册到 ZooKeeper 上，默认为 true。
+- `dubbo.cloud.subscribed.services` 表示服务调用者订阅的服务提供方的应用名称列表，如果有多个应用名称，可以通过“`,`”分割开，默认值为“`*`”，不推荐使用默认值。当 dubbo.cloud.subscribed.services 为默认值时，控制台的日志中会输入一段警告信息。
+
+3. 创建 HelloController 类，暴露一个/say 服务，来消费 Dubbo 服务提供者的 HelloService 服务。
+```java
+@RestController
+public class HelloController{
+	@Reference
+	private IHelloService iHelloService;
+	@GetMapping("/say")
+	public String sayHello(){
+	return iHelloService.sayHello("Mic");
+	}
+}
+```
+4. 启动 Spring Boot 服务。
+
+```java
+@SpringBootApplication
+public class SpringCloudDubboConsumerApplication {
+	public static void main(String[]args){
+		SpringApplication.run(SpringCloudDubboConsumerApplication.class,args);
+	}
+}
+```
+
+通过 curl 命令执行 HTTP GET 方法：
+`curl http:/127.0.0.1:8080/say` 响应结果为：`[spring-cloud-dubbo-sample]:Hello,Mic`
+
+![](http://qnpicmap.fcsluck.top/pics/202312091105915.png)
+
+## Apache Dubbo 的高级应用
+
+- 支持多种协议的服务发布，默认是 dubbo://，还可以支持 rest://、webservice://、thrift://等。
+- 支持多种不同的注册中心，如 Nacos、ZooKeeper、Redis,未来还将会支持 Consul、Eureka、Etcd 等。
+- 支持多种序列化技术，如 avro、fst、fastjson、hessian2、kryo 等。
+
+除此之外，Apache Dubbo 在服务治理方面的功能非常完善，比如集群容错、服务路由、负载均衡、服务降级、服务限流、服务监控、安全验证等。接下来带着大家分析一些常用的功能配置，更多的功能可以关注 Apache Dubbo 官网，相比国外的官方资料来说，它最大的优势是支持中文，所以对读者来说也能够很好地理解。
+
+### 集群容错
+
+在分布式架构的网络通信中，容错能力是必须要具备的。什么叫容错呢？从字面来看，就是服务容忍错误的能力。我们都知道网络通信中会存在很多不确定的因素导致请求失败，比如网络延迟、网络中断、服务异常等。当服务调用者（消费者）调用服务提供者的接口时，如果因为上述原因出现请求失败，那对于服务调用者来说，需要一种机制来应对。Dubbo 中提供了集群容错的机制来优雅地处理这种错误。
+**容错模式**
+Dubbo 默认提供了 6 种容错模式，默认为 Failover Cluster。如果这 6 种容错模式不能满足你的实际需求，还可以自行扩展。这也是 Dubbo 的强大之处，几乎所有的功能都提供了插拔式的扩展。
+- `Failover Cluster`,失败自动切换。当服务调用失败后，会切换到集群中的其他机器进行重试，默认重试次数为 2，通过属性 retries=2 可以修改次数，但是重试次数增加会带来更长的响应延迟。这种容错模式通常用于读操作，因为事务型操作会带来数据重复问题。
+- `Failfast Cluster`,快速失败。当服务调用失败后，立即报错，也就是只发起一次调用。通常用于一些幂等的写操作，比如新增数据，因为当服务调用失败时，很可能这个请求已经在服务器端处理成功，只是因为网络延迟导致响应失败，为了避免在结果不确定的情况下导致数据重复插入的问题，可以使用这种容错机制。
+- `Failsafe Cluster`,失败安全。也就是出现异常时，直接忽略异常。
+- `Failback Cluster`,失败后自动回复。服务调用出现异常时，在后台记录这条失败的请求定时重发。这种模式适合用于消息通知操作，保证这个请求一定发送成功。
+- `Forking Cluster`,并行调用集群中的多个服务，只要其中一个成功就返回。可以通过 forks=2 来设置最大并行数。
+- `Broadcast Cluster`,广播调用所有的服务提供者，任意一个服务报错则表示服务调用失败。这种机制通常用于通知所有的服务提供者更新缓存或者本地资源信息。
+
+**配置方式**
+配置方式非常简单，只需要在指定服务的@Service 注解上增加一个参数即可。注意，在没有特殊说明的情况下，后续代码都是基于前面的 Dubbo Spring Cloud 的代码进行改造的。在@Service 注解中增加 cluster-="failfast'"参数，表示当前服务的容错方式为快速失败。
+
+```java
+@Service(cluster "failfast")
+public class HelloServiceImpl implements IHelloService {
+	@Value("${dubbo.application.name}")
+	private String serviceName;
+	@Override
+	public String sayHello(String name){
+	return String.format("[%s]:Hello,%s",serviceName,name);
+	}
+}
+```
+在实际应用中，查询语句容错策略建议使用默认的 Failover Cluster,而增删改操作建议使用 Failfast Cluster 或者使用 Failover Cluster(retries="0")策略，防止出现数据重复添加等其他问题！建议在设计接口的时候把查询接口方法单独做成一个接口提供查询。
+
+### 负载均衡
+负载均衡应该不是一个陌生的概念，在访问量较大的情况下，我们会通过水平扩容的方式增加多个节点来平衡请求的流量，从而提升服务的整体性能。简单来说，如果一个服务节点的 TPS 是 100，那么如果增加到 5 个节点的集群，意味着整个集群的 TPS 可以达到 500。
+当服务调用者面对 5 个节点组成的服务提供方集群时，请求应该分发到集群中的哪个节点，取决于负载均衡算法，通过该算法可以让每个服务器节点获得适合自己处理能力的负载。负载均衡可以分为硬件负载均衡和软件负载均衡，硬件负载均衡比较常见的就是 F5,软件负载均衡目前比较主流的是 Nginx。
+
+
+在 Dubbo 中提供了 4 种负载均衡策略，默认负载均衡策略是 random。同样，如果这 4 种策略不能满足实际需求，我们可以基于 Dubbo 中的 SPI 机制来扩展。
+- `Random LoadBalance`,随机算法。可以针对性能较好的服务器设置较大的权重值，权重值越大，随机的概率也会越大。
+- `RoundRobin LoadBalance`,轮询。按照公约后的权重设置轮询比例。
+- `LeastActive LoadBalance`,最少活跃调用书。处理较慢的节点将会收到更少的请求。
+- `ConsistentHash LoadBalance`,一致性 Hash。相同参数的请求总是发送到同一个服务提供者。
+**配置方式**
+在@Service 注解上增加 loadbalance 参数：
+```java
+@Service(cluster "failfast",loadbalance "roundrobin")
+```
+
+### 服务降级
+
+服务降级是一种系统保护策略，当服务器访问压力较大时，可以根据当前业务情况对不重要的服务进行降级，以保证核心服务的正常运行。所谓的降级，就是把一些非必要的功能在流量较大的时间段暂时关闭，比如在双 11 大促时，淘宝会把查看历史订单、商品评论等功能关闭，从而释放更多的资源来保障大部分用户能够正常完成交易。
+降级有多个层面的分类：
+- 按照是否自动化可分为**自动降级和人工降级**。
+- 按照功能可分为**读服务降级和写服务降级**。
+
+人工降级一般具有一定的前置性，比如在电商大促之前，暂时关闭某些非核心服务，如评价推荐等。而自动降级更多的来自于系统出现某些异常的时候自动触发“兜底的流畅”，比如：
+
+- **故障降级**，调用的远程服务“挂了”，网络故障或者 RPC 服务返回异常。这类情况在业务允许的情况下可以通过设置兜底数据响应给客户端。
+- **限流降级**，不管是什么类型的系统，它所支撑的流量是有限的，为了保护系统不被压垮，在系统中会针对核心业务进行限流。当请求流量达到阈值时，后续的请求会被拦截，这类请求可以进入排队系统，比如 12306。也可以直接返回降级页面，比如返回“活动太火爆，请稍候再来”页面。
+
+Dubbo 提供了一种 Mock 配置来实现服务降级，也就是说当服务提供方出现网络异常无法访问时，客户端不抛出异常，而是通过降级配置返回兜底数据，操作步骤如下：
+- 在 spring-cloud-dubbo-consumer 项目中创建 MockHelloService 类，这个类只需要实现自动降级的接口即可，然后重写接口中的抽象方法实现本地数据的返回。
+
+```java
+public class MockHelloService implements IHelloService {
+	@Override
+	public String sayHello(String s){
+	return"Sorry,服务无法访问，返回降级数据";}
+}
+```
+
+- 在 HelloController 类中修改@Reference 注解增加 Mock 参数。其中设置了属性 cluster="failfast'",因为默认的容错策略会发起两次重试，等待的时间较长。
+```java
+@RestController
+public class HelloController {
+	@Reference(mock="com.gupaoedu.book.springcloud.springclouddubboconsumer.MockHelloService",
+	cluster "failfast")
+	private IHelloService iHelloService;
+	
+	@GetMapping("/say")
+	public String sayHello(){
+	return iHelloService.sayHello("Mic");
+	}
+}
+```
+- 在不启动 Dubbo 服务端或者服务端的返回值超过默认的超时时间时，访问/say 接口得到的结构就是 MockHelloService 中返回的数据。
+
+### 主机绑定规则
+
+主机绑定表示的是 Dubbo 服务对外发布的 IP 地址，默认情况下 Dubbo 会按照以下顺序来查找并绑定主机 P 地址：
+- 查找环境变量中 DUBBO IP TO BIND 属性配置的 IP 地址。
+- 查找 dubbo.protocol.host 属性配置的 IP 地址，默认是空，如果没有配置或者 P 地址不合法，则继续往下查找。
+- 通过 LocalHost.getHostAddress 获取本机 IP 地址，如果获取失败，则继续往下查找。
+- 如果配置了注册中心的地址，则使用 Socket 通信连接到注册中心的地址后，使用 for 循环通过 socket.getLocalAddress().getHostAddress(扫描各个网卡获取网卡 IP 地址。
+
+上述过程中，任意一个步骤检测到合法的 P 地址，便会将其返回作为对外暴露的服务 P 地址。需要注意的是，获取的 P 地址并不是写入注册中心的地址，默认情况下，写入注册中心的 IP 地址优先选择环境变量中 DUBBO IP TO REGISTRY 属性配置的 P 地址。在这个属性没有配置的情况下，才会选取前面获得的 P 地址并写入注册中心。
+使用默认的主机绑定规则，可能会存在获取的 P 地址不正确的情况，导致服务消费者与注册中心上拿到的 URL 地址进行通信。因为 Dubbo 检测本地 P 地址的策略是先调用 LocalHost..getHostAddress,这个方法的原理是通过获取本机的 hostname 映射 IP 地址，如果它指向的是一个错误的 IP 地址，那么这个错误的地址将会作为服务发布的地址注册到 ZooKeeper 节点上，虽然 Dubbo 服务能够正常启动，但是服务消费者却无法正常调用。按照 Dubbo 中 IP 地址的查找规则，如果遇到这种情况，可以使用很多种方式来解决：
+
+- 在/etc/hosts 中配置机器名对应正确的 IP 地址映射。
+- 在环境变量中添加 DUBBO IP TO BIND 或者 DUBBO IP TO REGISTRY 属性，Value 值为绑定的主机地址。
+- 通过 dubbo.protocol.host 设置主机地址。
+除获取绑定主机 P 地址外，对外发布的端口也是需要注意的，Dubbo 框架中针对不同的协议都提供了默认的端口号：
+- Dubbo 协议的默认端口号是 20880。
+- Webservice 协议的默认端口号是 80。
+在实际使用过程中，建议指定一个端口号，避免和其他 Dubbo 服务的端口产生冲突。
+
+
+## Apache Dubbo 核心源码分析
+
+Apache Dubbo 的源码需要理解以下几个核心点：
+
+- SPI 机制
+- 自适应扩展点
+- IoC 和 AOP
+- Dubbo 如何与 Spring 集成
+
+### Dubbo 的核心之 SPI
+
+
+在 Dubbo 的源码中，很多地方会存下面这样三种代码，分别是自适应扩展点、指定名称的扩展点、激活扩展点：
+```java
+ExtensionLoader.getExtensionLoader(XXX.class).getAdaptiveExtension();
+ExtensionLoader.getExtensionLoader(XXX.class).getExtension(name);
+ExtensionLoader.getExtensionLoader(XXX.class).getActivateExtension(url,key);
+```
+
+这种扩展点实际上就是 Dubbo 中的 SPI 机制。在分析 Spring Boot 自动装配的时候提到过 SpringFactoriesLoader,它也是一种 SPI 机制。
+
+#### Java SPI 扩展点实现
+
+SPI 全称是 Service Provider Interface,原本是 JDK 内置的一种服务提供发现机制，它主要用来做服务的扩展实现.SPI 机制在很多场景中都有运用，比如数据库连接，JDK 提供了 java.sql.Driver 接口，这个驱动类在 DK 中并没有实现，而是由不同的数据库厂商来实现，比如 Oracle、MySQL 这些数据库驱动包都会实现这个接口，然后 JDK 利用 SPI 机制从 classpath 下找到相应的驱动来获得指定数据库的连接。这种插拔式的扩展加载方式，也同样遵循一定的协议约定。比如所有的扩展点必须要放在 resources//META-NF/services 目录下，SPI 机制会默认扫描这个路径下的属性文件以完成加载。
+1. 创建一个普通的 Maven 工程 Driver,定义一个接口。这个接口只是一个规范，并没有实现，由第三方厂商来提供实现。
+```java
+public interface Driver{
+String connect();
+}
+```
+2. 创建另一个普通的 Maven 工程 Mysql-Driver,添加 Driver 的 Maven 依赖。
+```xml
+<dependency>
+	<groupId>org.fcs.spi</groupId>
+	<artifactId>Driver</artifactId>
+	<version>1.0-SNAPSHOT</version>
+</dependency>
+```
+3. 创建 MysqlDriver,实现 Driver 接口，这个接口表示一个第三方的扩展实现。
+```java
+public class MysqlDriver implements Driver{
+	@Override
+	public String connect(){
+	return"连接ysql数据库";
+	}
+}
+```
+
+4. 在 spi 实现类的 `resources/META-INF/services` 目录下创建一个以 Driver 接口全路径名命名的文件 org.fcs.spi.Driver,在里面填写这个 Driver 的实现类扩展。
+```
+org.fcs.spi.MysqlDriver
+```
+5. 创建一个测试类，使用 ServiceLoader 加载对应的扩展点。从结果来看，MysqlDriver 这个扩展点被加载并且输出了相应的内容。
+```java
+public class SpiMain {
+	public static void main(String[]args){
+		ServiceLoader<Driver>serviceLoader=ServiceLoader.load(Driver.class);
+		serviceLoader.forEach(driver->System.out.println(driver.connect()));
+	}
+}
+```
+
+![](http://qnpicmap.fcsluck.top/pics/202312091312969.png)
+
+#### Dubbo 自定义协议扩展点
+
+Dubbo 或者 SpringFactoriesLoader 并没有使用 JDK 内置的 SPI 机制，只是利用了 SPI 的思想根据实际情况做了一些优化和调整。Dubbo SPI 的相关逻辑被封装在了 ExtensionLoader 类中，通过 ExtensionLoader 我们可以加载指定的实现类。
+Dubbo 的 SPI 扩展有**两个规则**：
+
+- 和 JDK 内置的 SPI 一样，需要在 resources 目录下创建任一目录结构：META-INF/dubbo、META-INF/dubbo/internal、META-INF/services,在对应的目录下创建以接口全路径名命名的文件，Dubbo 会去这三个目录下加载相应扩展点。
+- 文件内容和 JDK 内置的 SPI 不一样，内容是一种**Key 和 Value**形式的数据。Key 是一个字符串，Value 是一个对应扩展点的实现，这样的方式可以按照需要加载指定的实现类。
+
+实现步骤如下：
+1. 在一个依赖了 Dubbo 框架的工程中，创建一个扩展点及一个实现。其中，扩展点需要声明@SPI 注解。
+```java
+//org.fcs.spi.dubbo
+@SPI //依赖于dubbo依赖
+public interface Driver{
+	String connect();
+}
+//org.fcs.spi.dubbo.impl
+public class MysqlDriver implements Driver {  
+    @Override  
+    public String connect() {  
+        return "连接Mysql数据库";  
+    }  
+}
+```
+
+2. 在 resources/META-INF/dubbo 目录下创建以 SPI 接口命名的文件 com.gupaoedu.book.dubbo.spi.Driver.
+```java
+mysqlDriver=org.fcs.spi.dubbo.impl.MysqlDriver
+```
+3. 创建测试类，使用 ExtensionLoader.getExtensionLoader.getExtension("mysqlDriver")获得指定名称的扩展点实现。
+```java
+@Test
+public void connectTest(){
+	ExtensionLoader<Driver>
+	extensionLoader=ExtensionLoader.getExtensionLoader(Driver.class);
+	Driver driver=extensionLoader.getExtension("mysqlDriver");
+	System.out.println(driver.connect());
+}
+```
+
+![](http://qnpicmap.fcsluck.top/pics/202312091351862.png)
+
+
+#### Dubbo SPI 扩展点源码分析
+
+ExtensionLoader.getExtensionLoader
+这个方法用于返回一个 ExtensionLoader 实例，主要逻辑如下：
+- 先从缓存中获取与扩展类对应的 ExtensionLoader.
+- 如果缓存未命中，则创建一个新的实例，保存到 EXTENSION LOADERS 集合中缓存起来
+- 在 ExtensionLoader 构造方法中，初始化一个 objectFactory,后续会用到，暂时先不管。
+
+### 无处不在的自适应扩展点
+
+自适应(Adaptive)扩展点也可以理解为**适配器扩展点**。简单来说就是能够根据上下文动态匹配一个扩展类。它的使用方式如下：
+```java
+ExtensionLoader.getExtensionLoader(class).getAdaptiveExtension();
+```
+自适应扩展点通过@Adaptive 注解来声明，它有两种使用方式：
+- @Adaptive 注解定义在类上面，表示当前类为自适应扩展类。
+```java
+@Adaptive
+public class AdaptiveCompiler implements Compiler{
+//省略
+}
+```
+AdaptiveCompiler 类就是自适应扩展类，通过 ExtensionLoader.getExtensionLoader
+(Compiler.class).getAdaptiveExtension();可以返回 AdaptiveCompiler 类的实例。
+
+- @Adaptive 注解*定义在方法层面，会通过动态代理的方式生成一个动态字节码*，进行自适应匹配。
+```java
+@SPI("dubbo")
+public interface Protocol{
+	int getDefaultPort();
+	@Adaptive
+	<T> Exporter<T> export(Invoker<T> invoker) throws RpcException;
+	@Adaptive
+	<T> Invoker<T> refer(Class<T> type,URL url) throws RpcException;
+	//省略部分代码
+}
+```
+
+Protocol 扩展类中的两个方法声明了@Adaptive 注解，意味着这是一个自适应方法。在 Dubbo 源码中很多地方通过下面这行代码来获得一个自适应扩展点：
+```java
+Protocol protocol= ExtensionLoader.getExtensionLoader(Protocol.class).getAdaptiveExtension();
+```
+但是，在 Protocol 接口的源码中，自适应扩展点的声明在方法层面上，所以它和类级别的声明不一样。这里的 protocol 实例，是一个动态代理类，基于 javassist 动态生成的字节码来实现方法级别的自适应调用。简单来说，调用 export 方法时，会根据上下文自动匹配到某个具体的实现类的 export 方法中。
+
+基于 Protocol 的自适应扩展点方法 ExtensionLoader.getExtensionLoader(Protocol.class).getAdaptiveExtension()来分析它的源码实现。从源码来看，getAdaptiveExtension 方法非常简单，只做了两件事：
+
+1. 从缓存中获取自适应扩展点实例。
+2. 如果缓存未命中，则通过 createAdaptiveExtension 创建自适应扩展点。
+
+### Dubbo 中的 IoC 和 AOP
+
+IoC 中一个非常重要的思想是，在系统运行时，动态地向某个对象提供它所需要的其他对象，这种机制是通过 Dependency Injection(依赖注入)来实现的。
+
+injectExtension 就是依赖注入的实现，整体逻辑比较简单：
+- 遍历被加载的扩展类中所有的 set 方法。
+- 得到 st 方法中的参数类型，如果参数类型是对象类型，则获得这个 set 方法中的属性名称。
+- 使用自适应扩展点加载该属性名称对应的扩展类。
+- 调用 set 方法完成赋值。
+
+AOP 全称为 Aspect Oriented Programming,意思是面向切面编程，它是一种思想或者编程范式。它的主要意图是把业务逻辑和功能逻辑分离，然后在运行期间或者类加载期间进行织入。这样做的好处是，可以降低代码的复杂性，以及提高重用性。
+
+```java
+instance injectExtension((T)wrapperclass.getConstructor(type).newInstance(instance));
+```
+其中分别用到了依赖注入和 AOP 思想，AOP 思想的体现是基于 Wrapper 装饰器类实现对原有的扩展类 instance 进行包装。
+
+### Dubbo 和 Spring 完美集成的原理
+
+在 Spring Boot 集成 Dubbo 这个案例中，服务发布主要有以下几个步骤：
+1. 添加 dubbo-spring-boot-starter 依赖。
+2. 定义 @org.apache.dubbo.config.annotation.Service 注解。
+3. 声明@DubboComponentScan,用于扫描@Service 注解。
+基于前面的分析，其实不难猜出它的实现原理。@Service 与 Spring 中的@org.springframework,stereotype.Service,用于实现*Dubbo 服务的暴露*。与它相对应的是 *@Reference* ,它的作用类似于 Spring 中的@Autowired。
+而@DubboComponentScan 和 Spring 中的@ComponentScan 作用类似，用于扫描@Service、@Reference 等注解。
+
+
+## 本章小结
+
+前面部分的内容比较好理解，源码部分需要稍微花点时间。笔者建议我们结合本书上的几个关键点，去官网下载源码逐步解读。在笔者看来，**看源码不是目的，它是一种思想上的交流**，好的设计和好的思想在合适的时机我们是可以直接借鉴过来的。
+
+
+
+# 第五章、服务注册与发现
+
+在微服务架构下，一个业务服务会被拆分成多个微服务，各个服务之间相互通信完成整体的功能。另外，为了避免单点故障，微服务都会采取集群方式的高可用部署，集群规模越大，性能也会越高，如图 5-1 所示。
+
+![](http://qnpicmap.fcsluck.top/pics/202312091529002.png)
+
+
+服务消费者要去调用多个服务提供者组成的集群。首先，服务消费者需要在本地配置文件中**维护服务提供者集群的每个节点的请求地址**。其次，服务提供者集群中如果**某个节点下线或者宕机，服务消费者的本地配置中需要同步删除这个节点的请求地址**，防止请求发送到已宕机的节点上造成请求失败。为了解决这类的问题，就需要引入服务注册中心，它主要有以下功能：
+
+- 服务地址的管理
+- 服务注册
+- 服务动态感知
+能够实现这类功能的组件很多，比如 ZooKeeper、Eureka、Consul、Etcd、Nacos 等。
+
+## Alibaba Nacos 概念
+
+Ncos 致力于解决微服务中的统一配置、服务注册与发现等问题。它提供了一组简单易用的特性集，帮助开发者快速实现动态服务发现、服务配置、服务元数据及流量管理，Nacos 的关键特性如下。
+
+1. **服务发现和服务健康监测**
+Nacos 支持*基于 DNS 和基于 RPC 的服务发现*。服务提供者使用原生 SDK、OpenAPI 或一个独立的 Agent TODO 注册 Service 后，服务消费者可以使用 DNS 或 HTTP&API 查找和发现服务。
+Nacos 提供对服务的实时的健康检查，阻止向不健康的主机或服务实例发送请求。Nacos 支持传输层(PING 或 TCP)和应用层（如 HTTP、MySQL、用户自定义）的健康检查。对于复杂的云环境和网络拓扑环境中（如 VPC、边缘网络等）服务的健康检查，Nacos 提供了**agent 上报和服务端主动检测**两种健康检查模式。Nacos 还提供了统一的健康检查仪表盘，帮助用户根据健康状态管理服务的可用性及流量。
+
+2. **动态配置服务**
+业务服务一般都会维护一个本地配置文件，然后把一些常量配置到这个文件中。这种方式在某些场景中会存在问题，比如配置需要变更时要重新部署应用。而动态配置服务可以以中心化、外部化和动态化的方式管理所有环境的应用配置和服务配置，可以使配置管理变得更加高效和敏捷。配置中心化管理让实现无状态服务变得更简单，让服务按需弹性扩展变得更容易。
+另外，Nacos 提供了一个简洁易用的 UI(控制台样例 Demo)帮助用户管理所有服务和应用的配置。Nacos 还提供了包括配置版本跟踪、金丝雀发布、一键回滚配置及客户端配置更新状态跟踪在内的一系列开箱即用的配置管理特性，帮助用户更安全地在生产环境中管理配置变更，降低配置变更带来的风险。
+3. **动态 DNS 服务**
+动态 DNS 服务支持权重路由，让开发者更容易地实现中间层负载均衡、更灵活的路由策略、流量控制，以及数据中心内网的简单 DNS 解析服务。
+4. **服务及其元数据管理**
+Nacos 可以使开发者从微服务平台建设的视角管理数据中心的所有服务及元数据，包括管理服务的描述、生命周期、服务的静态依赖分析、服务的健康状态、服务的流量管理、路由及安全策略、服务的 SLA 及最重要的 metrics 统计数据。
+
+
+
+
+
+
+
+
+
+
+
 
 
 
