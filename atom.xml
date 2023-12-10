@@ -206,7 +206,7 @@
     <link href="https://alleyf.github.io/2023/11/59c10a08fce4.html"/>
     <id>https://alleyf.github.io/2023/11/59c10a08fce4.html</id>
     <published>2023-11-18T06:53:11.000Z</published>
-    <updated>2023-12-09T15:40:10.818Z</updated>
+    <updated>2023-12-10T05:19:33.625Z</updated>
     
     
     <summary type="html">一些关于各种spring中间件和系统环境配置的教程</summary>
@@ -223,6 +223,8 @@
     <category term="nacos" scheme="https://alleyf.github.io/tags/nacos/"/>
     
     <category term="sentinel" scheme="https://alleyf.github.io/tags/sentinel/"/>
+    
+    <category term="middleware" scheme="https://alleyf.github.io/tags/middleware/"/>
     
   </entry>
   
