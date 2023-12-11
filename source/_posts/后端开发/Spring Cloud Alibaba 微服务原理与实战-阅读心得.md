@@ -1086,6 +1086,13 @@ ZooKeeper 是一个高性能的分布式协调中间件，所谓的分布式协�
 
 用过多线程的应该都知道锁，比如 Synchronized 或者 Lock,它们主要**用于解决多线程环境下共享资源访问的数据安全性问题**，但是它们所处理的范围是线程级别的。在**分布式架构中，多个进程对同一个共享资源的访问，也存在数据安全性问题**，因此也需要使用锁的形式来解决这类问题，而==解决分布式环境下多进程对于共享资源访问带来的安全性问题的方案就是使用分布式锁==。锁的本质是排他性的，也就是避免在同一时刻多个进程同时访问某一个共享资源。
 
+**实现分布式锁**
+
+分布式锁常见的有三种实现方式 :
+
+> 1. 基于 Redis 实现分布式锁.
+> 2. 基于 Zookeeper 实现.
+> 3. 基于数据库 实现.
 
 ### Master 选举
 
@@ -1194,9 +1201,9 @@ public interface IHelloService {
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xmlns="http://maven.apache.org/POM/4.0.0"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns:xsi=" http://www.w3.org/2001/XMLSchema-instance"
+         xmlns=" http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation=" http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <!--项目基本信息-->
     <groupId>org.fcs</groupId>
@@ -1212,7 +1219,7 @@ public interface IHelloService {
     <!--    项目说明-->
     <name>alleyf</name>
     <url>https://alleyf.github.io</url>
-    <description>拂安dubbo微服务供给者</description>
+    <description>拂安 dubbo 微服务供给者</description>
     <!--    声明依赖的版本-->
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -1294,12 +1301,12 @@ public class HelloServiceImpl implements IHelloService {
 server.port=8080  
 dubbo.protocol.port=20880  
 dubbo.protocol.name=dubbo  
-dubbo.registry.address=zookeeper://localhost:2181 #dubbo.registry.address=zookeeper://xxx:2181 #tip 远程地址报错  
+dubbo.registry.address=zookeeper://localhost:2181 #dubbo .registry.address=zookeeper://xxx:2181 #tip 远程地址报错  
 dubbo.registry.timeout=60000  
 dubbo.application.name=spring-cloud-dubbo-provider  
 spring.application.name=spring-cloud-dubbo-provider  
 spring.cloud.zookeeper.discovery.register=true  
-#spring.cloud.zookeeper.connect-string=xxx:2181  
+#spring .cloud.zookeeper.connect-string=xxx:2181  
 spring.cloud.zookeeper.connect-string=localhost:2181
 ```
 
@@ -1561,7 +1568,7 @@ String connect();
 public class MysqlDriver implements Driver{
 	@Override
 	public String connect(){
-	return"连接ysql数据库";
+	return"连接 ysql 数据库";
 	}
 }
 ```
@@ -1594,7 +1601,7 @@ Dubbo 的 SPI 扩展有**两个规则**：
 1. 在一个依赖了 Dubbo 框架的工程中，创建一个扩展点及一个实现。其中，扩展点需要声明@SPI 注解。
 ```java
 //org.fcs.spi.dubbo
-@SPI //依赖于dubbo依赖
+@SPI //依赖于 dubbo 依赖
 public interface Driver{
 	String connect();
 }
@@ -1602,7 +1609,7 @@ public interface Driver{
 public class MysqlDriver implements Driver {  
     @Override  
     public String connect() {  
-        return "连接Mysql数据库";  
+        return "连接 Mysql 数据库";  
     }  
 }
 ```
@@ -1748,7 +1755,7 @@ Nacos 可以使开发者从微服务平台建设的视角管理数据中心的�
 
 
 
-# 第 9 章、RocketMQ 分布式消息通信
+# 第九章、RocketMQ 分布式消息通信
 
 
 在微服务架构下，一个业务服务会被拆分成多个微服务，各个服务之间相互通信完成整体的功能。系统间的通信协作通常有两种。
@@ -1774,9 +1781,74 @@ RocketMO 的应用场景如下。
 
 ### RocketMQ 的安装
 
-rocketmq的安装教程由[各种环境配置](各种环境配置.md)可见。
+rocketmq 的安装教程由[各种环境配置](各种环境配置.md)可见。
 
 ### RocketMQ 基本用法
+
+#### RocketMQ 发送消息
+
+Spring Cloud Alibaba 已集成 RocketMQ,使用 Spring Cloud Stream 对 RocketMQ 发送和接收消息。
+1. 在 pom.xml 中引入 Jar 包。
+
+```xml
+<dependency>
+<groupId>com.alibaba.cloud</groupId>
+<artifactId>spring-cloud-stream-binder-rocketmq</artifactId>
+</dependency>
+<dependency>
+<groupId>org.springframework.boot</groupId>
+<artifactId>spring-boot-starter-web</artifactId>
+</dependency>
+```
+2. 配置 application.yml。
+```yml
+server:  
+  port: 8081  
+spring:  
+  cloud:  
+    stream:  
+      rocketmq:  
+        binder:  
+          name-server: 8.130.88.159:9876  
+        bindings:
+	        producer:  
+	            group: demo-group
+      bindings:  
+        output:  
+          destination: TopicTest  
+          
+```
+
+name-server 指定 RocketMQ 的 NameServer 地址，将指定名称为 output 的 Binding 消息发送到 TopicTest。
+3. 使用 Binder 发送消息。
+
+```java
+@EnableBinding({Source.class})
+@SpringBootApplication
+public class ProducerApplication {
+	public static void main(String[]args){
+	SpringApplication.run(ProducerApplication.class,args);
+	}
+}	
+
+@RestController
+public class SendController {
+	@Autowired
+	private Source source;
+	@GetMapping(value "/send")
+	public String send(String msg){
+		MessageBuilder builder MessageBuilder.withPayload(msg);
+		Messagemessage builder.build();
+		source.output().send(message);
+		return "Hello RocketMQ Binder,send "msg;
+	}
+}
+```
+
+`@EnableBinding({Source.class})` 表示绑定配置文件中名称为 output 的消息通道 Binding,Source 类中定义的消息通道名称为 output。发送 HTTP 请求 http:/localhost:8081/send?msg=tcever 将消息发送到 RocketMQ 中。
+在实际开发场景中会存在多个发送消息通道，可以自定义消息通道的名称，参考 Source 类自定义一个接口，修改通道名称和相关配置即可。
+
+
 
 
 
@@ -1792,7 +1864,7 @@ rocketmq的安装教程由[各种环境配置](各种环境配置.md)可见。
 ```cardlink
 url: https://book.douban.com/subject/35041576/?from=mdouban
 title: "Spring Cloud Alibaba 微服务原理与实战"
-description: "《Spring Cloud Alibaba微服务原理与实战》针对Spring Cloud Alibaba生态下的技术组件从应用到原理进行全面的分析，涉及的技术组件包括分布式服务治理Dubbo、服务配置..."
+description: "《Spring Cloud Alibaba 微服务原理与实战》针对 Spring Cloud Alibaba 生态下的技术组件从应用到原理进行全面的分析，涉及的技术组件包括分布式服务治理 Dubbo、服务配置..."
 host: book.douban.com
 image: https://img9.doubanio.com/view/subject/l/public/s33625905.jpg
 ```

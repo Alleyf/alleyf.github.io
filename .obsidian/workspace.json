@@ -21,6 +21,19 @@
             }
           },
           {
+            "id": "cc27cc47d22f5c42",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "source/_posts/科研学习/会议讨论/周会.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
+          },
+          {
             "id": "c7373060a150f4e6",
             "type": "leaf",
             "state": {
@@ -42,7 +55,7 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -158,12 +171,13 @@
   },
   "active": "c7373060a150f4e6",
   "lastOpenFiles": [
+    "source/_posts/科研学习/会议讨论/周会.md",
+    "source/_posts/运维开发/各种环境配置.md",
+    "source/_posts/后端开发/若依脚手架-学习.md",
+    "source/_posts/后端开发/Spring Cloud Alibaba 微服务原理与实战-阅读心得.md",
+    "source/_posts/科研学习/调研报告/多源异构司法数据汇聚融合-解决方案调研.md",
     "public/tags/middleware/index.html",
     "public/tags/middleware",
-    "source/_posts/后端开发/Spring Cloud Alibaba 微服务原理与实战-阅读心得.md",
-    "source/_posts/运维开发/各种环境配置.md",
-    "source/_posts/科研学习/会议讨论/周会.md",
-    "source/_posts/后端开发/若依脚手架-学习.md",
     "center.md",
     "canvas/未命名.canvas",
     "source/_posts/后端开发/Spring核心学习.md",
@@ -178,9 +192,7 @@
     "source/_posts/后端开发/SpringBoot.md",
     "source/_posts/中间件和工具/Redis-缓存之美.md",
     "public/tags/Spider/index.html",
-    "public/tags/Spider",
     "source/_posts/后端开发/Java常用新特性-Lambda-Optional-Stream.md",
-    "source/_posts/科研学习/调研报告/多源异构司法数据汇聚融合-解决方案调研.md",
     "source/_posts/运维开发/Git-简记.md",
     "attachment/Pasted Image 20231203133358_381.png",
     "attachment/Pasted Image 20231203133343_369.png",
