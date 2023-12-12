@@ -27,7 +27,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://picsum.photos/800/250">
 <meta property="article:published_time" content="2023-12-11T06:24:44.000Z">
-<meta property="article:modified_time" content="2023-12-11T15:10:15.985Z">
+<meta property="article:modified_time" content="2023-12-12T13:29:25.665Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="python">
 <meta property="article:tag" content="Scrapy">
@@ -285,7 +285,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.1k 字
+          11k 字
         
       </span>
     
@@ -296,7 +296,7 @@
         
         
         
-          18 分钟
+          91 分钟
         
       </span>
     
@@ -347,7 +347,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：1 分钟前
+                    本文最后更新于：几秒前
                   
                 
               </p>
@@ -361,10 +361,9 @@
 <p><img src="https://qnpicmap.fcsluck.top/pics/202312112109733.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="生成器（generator）"><a href="#生成器（generator）" class="headerlink" title="生成器（generator）"></a>生成器（generator）</h2><p>在 Python 中，把使用了 <code>yield</code> 的函数称为生成器(generator)。生成器是一种特殊的迭代器，它形式上和函数很像，只是把 return 换成了 yield。函数在遇到 return 关键字时，会返回值并结束函数。而<strong>生成器在遇到 yield 关键字时，会返回迭代器对象，但不会立即结束，而是保存当前的位置，下次执行时会从当前位置继续执行</strong>。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 列表存储所有斐波那契数列，并返回列表</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">get_fibonacci</span>(<span class="hljs-params">max_num</span>):<br>    fibonacci = [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>]<br>    <span class="hljs-keyword">while</span> <span class="hljs-built_in">len</span>(fibonacci) &lt; max_num:<br>        fibonacci.append(fibonacci[-<span class="hljs-number">1</span>] + fibonacci[-<span class="hljs-number">2</span>])<br>    <span class="hljs-keyword">return</span> fibonacci<br><span class="hljs-comment"># 斐波那契数列生成器</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">get_fibonacci_generator</span>(<span class="hljs-params">max_num</span>):<br>    v1,v2,num = <span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">0</span><br>    <span class="hljs-keyword">while</span> num &lt; max_num:<br>        <span class="hljs-keyword">yield</span> v1<br>        v1,v2 = v2,v1+v2<br>        num += <span class="hljs-number">1</span><br><span class="hljs-keyword">for</span> m <span class="hljs-keyword">in</span> get_fibonacci_generator(<span class="hljs-number">10</span>):<br>    <span class="hljs-built_in">print</span>(m,end=<span class="hljs-string">&quot; &quot;</span>)<br></code></pre></td></tr></table></figure>
-
 <p><img src="https://qnpicmap.fcsluck.top/pics/202312112145953.png" srcset="/img/loading.gif" lazyload alt="|600"></p>
-<h1 id="Scrapy-简介"><a href="#Scrapy-简介" class="headerlink" title="Scrapy 简介"></a>Scrapy 简介</h1><h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>Scrapy 是一个基于 Python 的开源网络爬虫框架，用于快速、高效地从网页中提取数据。它提供了一套强大的工具和库，帮助用户轻松地创建和管理网络爬虫。Scrapy 支持并发请求、异步处理、数据存储和导出等功能，同时还提供了丰富的文档和教程，方便用户学习和使用。<br>Scrapy 的核心是一个引擎、调度器和下载器组成的架构，用户可以通过编写自定义的 Spider 来指定要抓取的网站和提取规则。同时，Scrapy 还提供了命令行工具和 Web 界面，方便用户监控爬取过程并进行调试。Scrapy 框架架构图如下图所示：</p>
- <pre><code class=" mermaid">graph TD
+<hr>
+<h1 id="Scrapy-简介"><a href="#Scrapy-简介" class="headerlink" title="Scrapy 简介"></a>Scrapy 简介</h1><h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>Scrapy 是一个基于 Python 的开源网络爬虫框架，用于快速、高效地从网页中提取数据。它提供了一套强大的工具和库，帮助用户轻松地创建和管理网络爬虫。Scrapy 支持并发请求、异步处理、数据存储和导出等功能，同时还提供了丰富的文档和教程，方便用户学习和使用。<br>Scrapy 的核心是一个引擎、调度器和下载器组成的架构，用户可以通过编写自定义的 Spider 来指定要抓取的网站和提取规则。同时，Scrapy 还提供了命令行工具和 Web 界面，方便用户监控爬取过程并进行调试。Scrapy 框架架构图如下图所示：<br><img src="https://qnpicmap.fcsluck.top/pics/202312121028242.png" srcset="/img/loading.gif" lazyload alt="|600"><br> <pre><code class=" mermaid">graph TD
 A[Scrapy] --&gt;|Spider| B(Crawler)
 A --&gt;|Engine| C(Scheduler)
 A --&gt; D(Downloader)
@@ -372,22 +371,255 @@ B --&gt; E(Pipeline)
 C --&gt; F(DupeFilter)
 C --&gt; G(Requests Queue)
 D --&gt; G
-</code></pre>
-<p>其中 Spider 负责从网站上爬取数据，Crawler 负责协调整个爬虫的流程，Scheduler 负责管理请求队列，Downloader 负责下载网页内容，Pipeline 负责处理爬取到的数据，DupeFilter 负责过滤重复的请求。Requests Queue 用于存储待处理的请求。<br>总而言之，Scrapy 是一个功能强大、灵活性高、易于使用的网络爬虫框架，适用于各种规模和类型的网络数据抓取任务。</p>
+</code></pre><br>其中 Spider 负责从网站上爬取数据，Crawler 负责协调整个爬虫的流程，Scheduler 负责管理请求队列，Downloader 负责下载网页内容，Pipeline 负责处理爬取到的数据，DupeFilter 负责过滤重复的请求。Requests Queue 用于存储待处理的请求。<br>总而言之，Scrapy 是一个功能强大、灵活性高、易于使用的网络爬虫框架，适用于各种规模和类型的网络数据抓取任务。</p>
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>为了方便管理 python 包，使用 anaconda 创建一个新环境进行 Scrapy 的学习，首先确保已经安装了 anaconda，接着打开 conda cmd 新建一个 python 环境并激活该环境，代码如下所示：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">conda create -n master python=3.9<br>conda activate master<br></code></pre></td></tr></table></figure>
-
 <p>在 master 环境中安装 Scrapy 包：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">pip install scrapy <span class="hljs-comment">#通过pip安装</span><br>conda install -c scrapinghub scrapy <span class="hljs-comment">#通过conda安装</span><br></code></pre></td></tr></table></figure>
 
-<h1 id="Scrapy-基本用法"><a href="#Scrapy-基本用法" class="headerlink" title="Scrapy 基本用法"></a>Scrapy 基本用法</h1><h2 id="起点中文网小说热销榜数据的爬取"><a href="#起点中文网小说热销榜数据的爬取" class="headerlink" title="起点中文网小说热销榜数据的爬取"></a>起点中文网小说热销榜数据的爬取</h2><h3 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h3><p>使用 scrapy 命令创建一个 scrapy 项目，代码如下所示：</p>
+<hr>
+<h1 id="Scrapy-快速上手"><a href="#Scrapy-快速上手" class="headerlink" title="Scrapy 快速上手"></a>Scrapy 快速上手</h1><h2 id="起点中文网小说月票榜数据的爬取"><a href="#起点中文网小说月票榜数据的爬取" class="headerlink" title="起点中文网小说月票榜数据的爬取"></a>起点中文网小说月票榜数据的爬取</h2><h3 id="爬取流程"><a href="#爬取流程" class="headerlink" title="爬取流程"></a>爬取流程</h3><p>在 spider 文件夹下创建的爬虫类按照一下流程进行爬取：<br><img src="https://qnpicmap.fcsluck.top/pics/202312121421234.png" srcset="/img/loading.gif" lazyload alt="|205"><br>启动爬虫后首先执行 <code>start_requests</code> 方法对目标地址发起请求，响应成功后自动调用默认回调函数 <code>parse</code> 进行数据解析处理，使用 <strong>css 或者 xpath</strong> 语法进行解析获取目标数据，再进行 <code>yield</code> 返回，如需进一步爬取需要发起新的请求并 yield 返回。</p>
+<h3 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h3><p>使用 scrapy 命令创建一个 scrapy 项目，代码如下所示：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">scrapy startproject &lt;project_name&gt; [project_dir]<br>scrapy startproject QiDianNovel<br></code></pre></td></tr></table></figure>
-
-<p>创建结果和文件结构如下图所示：</p>
-<p><img src="https://qnpicmap.fcsluck.top/pics/202312112254375.png" srcset="/img/loading.gif" lazyload></p>
-<p>项目结构解析：</p>
+<p>创建结果和文件结构如下图所示：<br><img src="https://qnpicmap.fcsluck.top/pics/202312112254375.png" srcset="/img/loading.gif" lazyload><br>项目结构解析：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs sh">E:.<br>|   scrapy.cfg<br>\---QiDianNovel<br>    |   items.py <span class="hljs-comment">#定义爬取保存的一条数据的格式结构（eg：小说标题，标签，作者，类型···）</span><br>    |   middlewares.py <span class="hljs-comment">#中间件配置（爬虫中间件和下载中间件）</span><br>    |   pipelines.py <span class="hljs-comment">#管道配置进行数据处理（过滤去重、持久化等操作）</span><br>    |   settings.py <span class="hljs-comment">#项目全局配置文件（爬取频率、IP代理池、延时等）</span><br>    |   __init__.py <span class="hljs-comment">#初始化文件</span><br>    \---spiders<br>            __init__.py <span class="hljs-comment">#爬虫初始化文件</span><br></code></pre></td></tr></table></figure>
+<h3 id="创建爬虫"><a href="#创建爬虫" class="headerlink" title="创建爬虫"></a>创建爬虫</h3><p>通过 <code>scrapy genspider [options] &lt;name&gt; &lt;domain&gt;</code> 生成爬虫文件，示例代码如下所示：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">scrapy genspider qidian_novel https://www.qidian.com/rank/yuepiao/<br></code></pre></td></tr></table></figure>
+<h3 id="编写爬取逻辑"><a href="#编写爬取逻辑" class="headerlink" title="编写爬取逻辑"></a>编写爬取逻辑</h3><p>根据需求分析中分析的待爬取网页的源代码结构，编写爬取逻辑如下所示：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># -*- coding: utf-8 -*-  </span><br><span class="hljs-keyword">import</span> scrapy  <br><span class="hljs-keyword">from</span> scrapy.spiders <span class="hljs-keyword">import</span> Spider  <br><span class="hljs-keyword">class</span> <span class="hljs-title class_">QidianNovelSpider</span>(<span class="hljs-title class_ inherited__">Spider</span>):  <br>    name = <span class="hljs-string">&quot;qidian_novel&quot;</span>  <span class="hljs-comment"># 爬虫名称  </span><br>    allowed_domains = [<span class="hljs-string">&quot;www.qidian.com&quot;</span>]  <span class="hljs-comment"># 允许爬取的域名  </span><br>    start_urls = [<span class="hljs-string">&quot;https://www.qidian.com/rank/yuepiao/&quot;</span>]  <span class="hljs-comment"># 爬虫起始页面  </span><br>    <span class="hljs-comment"># 爬虫解析  </span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">parse</span>(<span class="hljs-params">self, response</span>):  <span class="hljs-comment"># 解析函数  </span><br>        <span class="hljs-comment"># 获取小说信息列表  </span><br>        list_selector = response.xpath(<span class="hljs-string">&#x27;//div[@class=&quot;book-mid-info&quot;]&#x27;</span>)  <br>        <span class="hljs-keyword">for</span> one_selector <span class="hljs-keyword">in</span> list_selector:  <br>            <span class="hljs-comment"># 获取小说标题、作者、分类、状态、摘要  </span><br>            title = one_selector.xpath(<span class="hljs-string">&#x27;h2/a/text()&#x27;</span>).extract()[<span class="hljs-number">0</span>]  <br>            author = one_selector.xpath(<span class="hljs-string">&#x27;p[1]/a[1]/text()&#x27;</span>).extract()[<span class="hljs-number">0</span>]  <br>            category = one_selector.xpath(<span class="hljs-string">&#x27;p[1]/a[2]/text()&#x27;</span>).extract()[<span class="hljs-number">0</span>]  <br>            status = one_selector.xpath(<span class="hljs-string">&#x27;p[1]/span/text()&#x27;</span>).extract()[<span class="hljs-number">0</span>]  <br>            abstract = one_selector.xpath(<span class="hljs-string">&#x27;p[2]/text()&#x27;</span>).extract()[<span class="hljs-number">0</span>]  <br>            <span class="hljs-comment"># 返回小说信息  </span><br>            <span class="hljs-keyword">yield</span> &#123;  <br>                <span class="hljs-string">&#x27;title&#x27;</span>: title,  <br>                <span class="hljs-string">&#x27;author&#x27;</span>: author,  <br>                <span class="hljs-string">&#x27;category&#x27;</span>: category,  <br>                <span class="hljs-string">&#x27;status&#x27;</span>: status,  <br>                <span class="hljs-string">&#x27;abstract&#x27;</span>: abstract  <br>            &#125;  <br>        next_page_selector = response.css(<span class="hljs-string">&quot;li.lbf-pagination-item &gt; a.lbf-pagination-next::attr(href)&quot;</span>).extract_first()  <br>        next_page_url = <span class="hljs-string">&quot;https:&quot;</span> + (response.url.replace(response.url, next_page_selector))  <br>        <span class="hljs-keyword">if</span> next_page_url <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-literal">None</span> <span class="hljs-keyword">and</span> next_page_url != <span class="hljs-string">&quot;javascript:;&quot;</span>:  <br>            <span class="hljs-keyword">yield</span> scrapy.Request(next_page_url)<br></code></pre></td></tr></table></figure>
+<h3 id="执行爬取"><a href="#执行爬取" class="headerlink" title="执行爬取"></a>执行爬取</h3><p>在根目录下使用 <code>scrapy crawl [options] &lt;spider&gt;</code> 命令启动爬虫：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">scrapy crawl qidian_novel -o novel.csv <span class="hljs-comment">#结果保存至根目录的novel.csv文件中</span><br></code></pre></td></tr></table></figure>
+<p>爬取结果如下图所示：<br><img src="https://qnpicmap.fcsluck.top/pics/202312121355317.png" srcset="/img/loading.gif" lazyload><br>也可以将爬虫文件上传至 ScrapyLab 中执行任务，得到如下结果：<br><img src="https://qnpicmap.fcsluck.top/pics/202312121354684.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="Scrapy-基本用法"><a href="#Scrapy-基本用法" class="headerlink" title="Scrapy 基本用法"></a>Scrapy 基本用法</h1><h2 id="爬虫伪装"><a href="#爬虫伪装" class="headerlink" title="爬虫伪装"></a>爬虫伪装</h2><p><code>scrapy.Request</code> 对象的参数和说明如下表所示：</p>
+<table>
+<thead>
+<tr>
+<th align="center">参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">url</td>
+<td>请求的 URL 地址</td>
+</tr>
+<tr>
+<td align="center">callback</td>
+<td>回调函数，用于处理返回的响应数据</td>
+</tr>
+<tr>
+<td align="center">method</td>
+<td>请求方法，可以是 GET、POST 等</td>
+</tr>
+<tr>
+<td align="center">headers</td>
+<td>请求头信息，字典型</td>
+</tr>
+<tr>
+<td align="center">body</td>
+<td>请求体数据，用于 POST 请求</td>
+</tr>
+<tr>
+<td align="center">cookies</td>
+<td>请求中携带的 cookies</td>
+</tr>
+<tr>
+<td align="center">meta</td>
+<td>元数据，可以传递一些额外的信息</td>
+</tr>
+<tr>
+<td align="center">encoding</td>
+<td>响应数据的编码方式</td>
+</tr>
+<tr>
+<td align="center">priority</td>
+<td>请求的优先级</td>
+</tr>
+<tr>
+<td align="center">dont_filter</td>
+<td>是否对该请求进行去重处理</td>
+</tr>
+<tr>
+<td align="center">errback</td>
+<td>错误处理回调函数，处理请求发生错误时的情况</td>
+</tr>
+<tr>
+<td align="center">可以重写 <code>start_requests</code> 函数设置请求头参数对爬虫进行伪装避免被封禁。</td>
+<td></td>
+</tr>
+</tbody></table>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 自定义start_requests</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">start_requests</span>(<span class="hljs-params">self</span>):<br>    headers = &#123;<br>        <span class="hljs-string">&#x27;User-Agent&#x27;</span>: <span class="hljs-string">&quot;&quot;&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko)</span><br><span class="hljs-string">                        Chrome/96.0.4664.110 Safari/537.36 Edg/96.0.1054.62&quot;&quot;&quot;</span><br>    &#125;<br>    <span class="hljs-keyword">for</span> url <span class="hljs-keyword">in</span> self.start_urls:<br>	    <span class="hljs-keyword">yield</span> scrapy.Request(url=url, headers=self.headers, callback=self.parse, dont_filter=<span class="hljs-literal">True</span>)<br></code></pre></td></tr></table></figure>
+<h2 id="响应解析"><a href="#响应解析" class="headerlink" title="响应解析"></a>响应解析</h2><p>在执行完请求获取到响应 Response 对象后，需要对其进行解析获取目标数据，scrapy 框架中的 Response 对象的常见参数与说明如下表所示：</p>
+<table>
+<thead>
+<tr>
+<th align="center">参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">url</td>
+<td>响应的 URL 地址</td>
+</tr>
+<tr>
+<td align="center">status</td>
+<td>响应的状态码</td>
+</tr>
+<tr>
+<td align="center">headers</td>
+<td>响应的头部信息</td>
+</tr>
+<tr>
+<td align="center">body</td>
+<td>响应的内容</td>
+</tr>
+<tr>
+<td align="center">flags</td>
+<td>标志位，用于标识响应的一些特殊情况</td>
+</tr>
+<tr>
+<td align="center">request</td>
+<td>生成响应的请求对象</td>
+</tr>
+<tr>
+<td align="center">meta</td>
+<td>存储请求和响应之间传递的元数据</td>
+</tr>
+<tr>
+<td align="center">text</td>
+<td>将响应内容解码为 Unicode 字符串</td>
+</tr>
+<tr>
+<td align="center">xpath()</td>
+<td>对响应内容进行 XPath 查询</td>
+</tr>
+<tr>
+<td align="center">css()</td>
+<td>对响应内容进行 CSS 选择器查询</td>
+</tr>
+</tbody></table>
+<h3 id="xpath-解析"><a href="#xpath-解析" class="headerlink" title="xpath 解析"></a>xpath 解析</h3><p>Scrapy 框架中的 Response 对象提供了方便的方法来进行 XPath 解析。以下是一个简单的示例，演示如何在 Scrapy 中使用 Response 对象进行 XPath 解析：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> scrapy<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">MySpider</span>(scrapy.Spider):<br>    name = <span class="hljs-string">&#x27;myspider&#x27;</span><br>    start_urls = [<span class="hljs-string">&#x27;http://example.com&#x27;</span>]<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">parse</span>(<span class="hljs-params">self, response</span>):<br>        <span class="hljs-comment"># 使用.xpath()方法进行XPath解析</span><br>        titles = response.xpath(<span class="hljs-string">&#x27;//h1/text()&#x27;</span>).extract()<br>        <span class="hljs-keyword">for</span> title <span class="hljs-keyword">in</span> titles:<br>            <span class="hljs-built_in">print</span>(title)<br></code></pre></td></tr></table></figure>
+<p>在上面的示例中，首先定义了一个名为 MySpider 的 Spider 类，并指定了要爬取的起始 URL。然后在 parse 方法中，使用 response 对象的 xpath 方法对页面进行解析，提取出所有 h1 标签中的文本内容，并将其打印出来。<br>需要注意的是，在 Scrapy 中使用 response 对象的 xpath 方法时，返回的是一个 SelectorList 对象，可以通过 extract()方法将其转换为 Python 列表，从而获取所需的数据。<br>除了 xpath 之外，Scrapy 还支持 CSS 选择器和正则表达式等方式进行页面解析。不同的选择器适用于不同情况下的页面结构和数据提取需求。<br>小说爬取示例中的数据解析方式就采取的是 xpath：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">parse</span>(<span class="hljs-params">self, response</span>):  <span class="hljs-comment"># 解析函数  </span><br>    <span class="hljs-comment"># 获取小说信息列表  </span><br>    list_selector = response.xpath(<span class="hljs-string">&#x27;//div[@class=&quot;book-mid-info&quot;]&#x27;</span>)  <br>    <span class="hljs-keyword">for</span> one_selector <span class="hljs-keyword">in</span> list_selector:  <br>        <span class="hljs-comment"># 获取小说标题、作者、分类、状态、摘要  </span><br>        title = one_selector.xpath(<span class="hljs-string">&#x27;h2/a/text()&#x27;</span>).extract()[<span class="hljs-number">0</span>]  <br>        author = one_selector.xpath(<span class="hljs-string">&#x27;p[1]/a[1]/text()&#x27;</span>).extract()[<span class="hljs-number">0</span>]  <br>        category = one_selector.xpath(<span class="hljs-string">&#x27;p[1]/a[2]/text()&#x27;</span>).extract()[<span class="hljs-number">0</span>]  <br>        status = one_selector.xpath(<span class="hljs-string">&#x27;p[1]/span/text()&#x27;</span>).extract()[<span class="hljs-number">0</span>]  <br>        abstract = one_selector.xpath(<span class="hljs-string">&#x27;p[2]/text()&#x27;</span>).extract()[<span class="hljs-number">0</span>]  <br>        <span class="hljs-comment"># 返回小说信息  </span><br>        <span class="hljs-keyword">yield</span> &#123;  <br>            <span class="hljs-string">&#x27;title&#x27;</span>: title,  <br>            <span class="hljs-string">&#x27;author&#x27;</span>: author,  <br>            <span class="hljs-string">&#x27;category&#x27;</span>: category,  <br>            <span class="hljs-string">&#x27;status&#x27;</span>: status,  <br>            <span class="hljs-string">&#x27;abstract&#x27;</span>: abstract  <br>        &#125;  <br></code></pre></td></tr></table></figure>
+<h3 id="css-解析"><a href="#css-解析" class="headerlink" title="css 解析"></a>css 解析</h3><p>CSS 全称 Cascading Style Sheets，即层叠样式表，用于表现 HTML 或 XML 的样式。CSS 表达式的语法比 XPath 简洁，但是功能不如 XPath 强大，大多作为 XPath 的辅助。<br>scrapy 中的 css 表达式用法和示例如下表可见：</p>
+<table>
+<thead>
+<tr>
+<th>表达式</th>
+<th>说明</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>*</td>
+<td>选取所有元素</td>
+<td>*</td>
+</tr>
+<tr>
+<td><code>tag &gt; subtag</code> &lt;&#x3D;&gt; <code>tag subtag</code></td>
+<td>选取 tag 的子标签</td>
+<td><code>div &gt; h1</code></td>
+</tr>
+<tr>
+<td><code>tag</code></td>
+<td>选择所有具有该标签的元素</td>
+<td><code>div</code></td>
+</tr>
+<tr>
+<td><code>.class</code></td>
+<td>选择所有具有该类的元素</td>
+<td><code>.main-content</code></td>
+</tr>
+<tr>
+<td><code>#id</code></td>
+<td>选择具有该 id 的元素</td>
+<td><code>#header</code></td>
+</tr>
+<tr>
+<td><code>[attribute]</code></td>
+<td>选择具有指定属性的元素</td>
+<td><code>[href]</code></td>
+</tr>
+<tr>
+<td><code>[attribute=value]</code></td>
+<td>选择具有指定属性值的元素</td>
+<td><code>[href=&quot;https://www.example.com&quot;]</code></td>
+</tr>
+<tr>
+<td>:nth-child(n)</td>
+<td>选择父元素下第 n 个子元素</td>
+<td><code>ul li:nth-child(2)</code></td>
+</tr>
+<tr>
+<td>:nth-last-child(n)</td>
+<td>选取元素是其父元素的倒数第 n 个子元素</td>
+<td><code>p:nth-last-child(1)</code></td>
+</tr>
+<tr>
+<td>:not(selector)</td>
+<td>排除符合选择器条件的元素</td>
+<td><code>div:not(.main-content)</code></td>
+</tr>
+<tr>
+<td>:first-child</td>
+<td>选择第一个子元素</td>
+<td><code>li:first-child</code></td>
+</tr>
+<tr>
+<td><code>E::text</code></td>
+<td>获取 E 元素的文本</td>
+<td><code>h1::text</code></td>
+</tr>
+<tr>
+<td>例如，假设我们想要从一个网页中提取所有标题的文本信息，可以这样做：</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">titles = response.css(<span class="hljs-string">&#x27;h1::text&#x27;</span>).extract()<br></code></pre></td></tr></table></figure>
+<p>这个代码将使用 css 选择器找到所有 h1 标签，并提取其文本内容存储在 titles 变量中。如果我们想要找到所有 class 为”article”的 div 标签下的段落文本内容，可以这样做：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">paragraphs = response.css(<span class="hljs-string">&#x27;div.article &gt; p::text&#x27;</span>).extract()<br></code></pre></td></tr></table></figure>
+<p>这个代码将使用 css 选择器找到所有 class 为”article”的 div 标签下的所有段落标签，并提取其文本内容存储在 paragraphs 变量中。<br>改写小说信息爬取示例中的解析方式：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">parse</span>(<span class="hljs-params">self, response</span>):  <span class="hljs-comment"># 解析函数  </span><br>    <span class="hljs-comment"># 获取小说信息列表  </span><br>    <span class="hljs-comment"># list_selector = response.xpath(&#x27;//div[@class=&quot;book-mid-info&quot;]&#x27;)  </span><br>    list_selector = response.css(<span class="hljs-string">&#x27;div[class=&quot;book-mid-info&quot;]&#x27;</span>)  <br>    <span class="hljs-keyword">for</span> one_selector <span class="hljs-keyword">in</span> list_selector:  <br>        <span class="hljs-comment"># 获取小说标题、作者、分类、状态、摘要  </span><br>        <span class="hljs-comment"># title = one_selector.xpath(&#x27;h2/a/text()&#x27;).extract()[0]  </span><br>        title = one_selector.css(<span class="hljs-string">&#x27;h2 a::text&#x27;</span>).extract_first()  <br>        <span class="hljs-comment"># author = one_selector.xpath(&#x27;p[1]/a[1]/text()&#x27;).extract()[0]  </span><br>        author = one_selector.css(<span class="hljs-string">&#x27;p.author &gt; a::text&#x27;</span>).extract_first()  <br>        <span class="hljs-comment"># category = one_selector.xpath(&#x27;p[1]/a[2]/text()&#x27;).extract()[0]  </span><br>        category = one_selector.css(<span class="hljs-string">&#x27;p.author &gt; a::text&#x27;</span>).extract()[<span class="hljs-number">1</span>]  <br>        <span class="hljs-comment"># status = one_selector.xpath(&#x27;p[1]/span/text()&#x27;).extract()[0]  </span><br>        status = one_selector.css(<span class="hljs-string">&#x27;p.author &gt; span::text&#x27;</span>).extract_first()  <br>        <span class="hljs-comment"># abstract = one_selector.xpath(&#x27;p[2]/text()&#x27;).extract()[0]  </span><br>        abstract = one_selector.css(<span class="hljs-string">&#x27;p.intro::text&#x27;</span>).extract_first()  <br>        <span class="hljs-comment"># 返回小说信息  </span><br>        <span class="hljs-keyword">yield</span> &#123;  <br>            <span class="hljs-string">&#x27;title&#x27;</span>: title,  <br>            <span class="hljs-string">&#x27;author&#x27;</span>: author,  <br>            <span class="hljs-string">&#x27;category&#x27;</span>: category,  <br>            <span class="hljs-string">&#x27;status&#x27;</span>: status,  <br>            <span class="hljs-string">&#x27;abstract&#x27;</span>: abstract  <br>        &#125;  <br></code></pre></td></tr></table></figure>
+<h2 id="Item-封装数据"><a href="#Item-封装数据" class="headerlink" title="Item 封装数据"></a>Item 封装数据</h2><p>前面，我们使用 Spider 从页面中提取数据的方法，并且将提取出来的字段保存于字典中。字典使用虽然方便，但也有它的缺陷：</p>
+<ul>
+<li>字段名<strong>拼写容易出错且无法检测</strong>到这些错误。</li>
+<li>返回的数据类型无法<strong>确保一致性</strong>。</li>
+<li>不便于将<strong>数据传递</strong>给其他组件（如传递给用于数据处理的 pipeline 组件）。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># items.py</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">QidiannovelItem</span>(scrapy.Item):  <br>    <span class="hljs-comment"># define the fields for your item here like:  </span><br>    title = scrapy.Field()  <span class="hljs-comment"># 标题  </span><br>    author = scrapy.Field()  <span class="hljs-comment"># 作者  </span><br>    category = scrapy.Field()  <span class="hljs-comment"># 分类  </span><br>    status = scrapy.Field()  <span class="hljs-comment"># 状态  </span><br>    abstract = scrapy.Field()  <span class="hljs-comment"># 摘要</span><br><span class="hljs-comment"># qidian_novel.py</span><br><span class="hljs-keyword">from</span> QiDianNovel.items <span class="hljs-keyword">import</span> QidiannovelItem<br><span class="hljs-comment"># 返回小说信息  </span><br>item = QidiannovelItem()  <span class="hljs-comment"># title, author, category, status, abstract  </span><br>item[<span class="hljs-string">&#x27;title&#x27;</span>] = title  <br>item[<span class="hljs-string">&#x27;author&#x27;</span>] = author  <br>item[<span class="hljs-string">&#x27;category&#x27;</span>] = category  <br>item[<span class="hljs-string">&#x27;status&#x27;</span>] = status  <br>item[<span class="hljs-string">&#x27;abstract&#x27;</span>] = abstract  <br><span class="hljs-keyword">yield</span> item<br></code></pre></td></tr></table></figure>
+<h2 id="ItemLoader-填充数据"><a href="#ItemLoader-填充数据" class="headerlink" title="ItemLoader 填充数据"></a>ItemLoader 填充数据</h2><blockquote>
+<p><em>统一解析与封装操作，简化数据封装过程</em>。</p>
+</blockquote>
+<p>目前为止我们爬取的数据的字段较少，但是当项目很大，提取的字段数以百计时，数据的提取规则也会越来越多，再加上还要对提取到的数据做转换处理，代码就会变得庞大，维护起来十分困难。<br>为了解决这个问题，Scrapy 提供了项目加载器(ItemLoader)这样一个填充容器。通过填充容器，可以配置 Item 中各个字段的提取规则，并通过函数分析原始数据，最后对 Item 字段赋值，使用起来非常便捷。<br>Item 和 ItemLoader 的区别：</p>
+<ol>
+<li><code>Item</code> 提供保存抓取到数据的容器，需要<strong>手动将数据保存于容器</strong>中。</li>
+<li><code>Itemloader</code> 提供的是<strong>填充容器的机制</strong>。</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">parse</span>(<span class="hljs-params">self, response</span>):  <span class="hljs-comment"># 解析函数  </span><br>    <span class="hljs-comment"># 获取小说信息列表</span><br>    list_selector = response.css(<span class="hljs-string">&#x27;div[class=&quot;book-mid-info&quot;]&#x27;</span>)  <br>    <span class="hljs-keyword">for</span> one_selector <span class="hljs-keyword">in</span> list_selector:  <br>        novel = ItemLoader(item=QidiannovelItem(), selector=one_selector)  <br>        novel.add_css(<span class="hljs-string">&quot;title&quot;</span>, <span class="hljs-string">&#x27;h2 a::text&#x27;</span>)  <br>        novel.add_css(<span class="hljs-string">&quot;author&quot;</span>, <span class="hljs-string">&#x27;p.author &gt; a::text&#x27;</span>)  <br>        novel.add_css(<span class="hljs-string">&quot;category&quot;</span>, <span class="hljs-string">&#x27;p.author &gt; a::text&#x27;</span>)  <br>        novel.add_css(<span class="hljs-string">&quot;status&quot;</span>, <span class="hljs-string">&#x27;p.author &gt; span::text&#x27;</span>)  <br>        novel.add_css(<span class="hljs-string">&quot;abstract&quot;</span>, <span class="hljs-string">&#x27;p.intro::text&#x27;</span>)  <br>        <span class="hljs-keyword">yield</span> novel.load_item()<br></code></pre></td></tr></table></figure>
+<p>上面返回值 novel.load_item()是一个字典，字典中包含每个字段的列表，需要进一步处理得到需要的值.</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br> &#x27;abstract&#x27;<span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>&#x27;一名后世的化妆师，穿越过去，吸收了两个人的记忆。追查日谍，捣毁无数日谍组织，抓捕一名又一名日谍的楚凌云，同时伪装成日本人，深入敌群，套取情报，周旋在日本高层之中。在那个动荡的年代，楚凌云用自己的机智和智慧，为祖国的烽火事业贡献着自己的力量，立下了不可磨灭的功勋。&#x27;<span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br> &#x27;author&#x27;<span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>&#x27;罗飞羽&#x27;<span class="hljs-punctuation">,</span> &#x27;军事&#x27;<span class="hljs-punctuation">,</span> &#x27;谍战特工&#x27;<span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br> &#x27;category&#x27;<span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>&#x27;罗飞羽&#x27;<span class="hljs-punctuation">,</span> &#x27;军事&#x27;<span class="hljs-punctuation">,</span> &#x27;谍战特工&#x27;<span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br> &#x27;status&#x27;<span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>&#x27;连载&#x27;<span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br> &#x27;title&#x27;<span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>&#x27;谍影凌云&#x27;<span class="hljs-punctuation">]</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+<h2 id="pipeline-处理数据"><a href="#pipeline-处理数据" class="headerlink" title="pipeline 处理数据"></a>pipeline 处理数据</h2><p>当 Spider 将收集到的数据封装为 Item 后，它将会被传递到 Item Pipeline(项目管道)组件中等待进一步处理。</p>
+<ul>
+<li>清理数据</li>
+<li>验证数据的有效性</li>
+<li>查重并丢弃</li>
+<li>将数据按照自定义的格式存储到文件中</li>
+<li>将数据保存到数据库中</li>
+</ul>
+<p>pipeline 默认是关闭的，需要在 <code>setting.py</code> 中开启 ITEM_PIPELINES :</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">ITEM_PIPELINES = &#123;  <br>   <span class="hljs-string">&quot;QiDianNovel.pipelines.QidiannovelPipeline&quot;</span>: <span class="hljs-number">300</span>,  <br>&#125;<br></code></pre></td></tr></table></figure>
+<p>接着编写 <code>pipelines.py</code> 处理逻辑对爬取返回的每个 item 进行处理：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">QidiannovelPipeline</span>:  <br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self</span>):  <br>        self.author_set = <span class="hljs-built_in">set</span>()  <br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">process_item</span>(<span class="hljs-params">self, item, spider</span>):  <br>        <span class="hljs-string">&quot;&quot;&quot;  </span><br><span class="hljs-string">        对item去重  </span><br><span class="hljs-string">        :param item:每个item是解析后的一整条数据  </span><br><span class="hljs-string">        :param spider:        :return:  </span><br><span class="hljs-string">        &quot;&quot;&quot;</span>        <span class="hljs-keyword">if</span> item[<span class="hljs-string">&#x27;title&#x27;</span>] <span class="hljs-keyword">in</span> self.author_set:  <br>            <span class="hljs-keyword">raise</span> DropItem(<span class="hljs-string">&quot;查找到重复标题的项: %s&quot;</span> % item)  <span class="hljs-comment"># 此处抛出重复项异常,后面必定有对应的异常处理  </span><br>        <span class="hljs-keyword">return</span> item<br></code></pre></td></tr></table></figure>
 
+<hr>
+<h1 id="实战案例"><a href="#实战案例" class="headerlink" title="实战案例"></a>实战案例</h1><h2 id="爬取链家网二手房信息"><a href="#爬取链家网二手房信息" class="headerlink" title="爬取链家网二手房信息"></a>爬取链家网二手房信息</h2><hr>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/W_chuanqi/article/details/127718762">Scrapy框架介绍-CSDN博客</a></li>
+<li><a target="_blank" rel="noopener" href="https://scrapy-16.readthedocs.io/zh-cn/latest/intro/overview.html">预览Scrapy — Scrapy 文档</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Wj411B7b2">Python爬虫⚡Python基础→项目实战案例：Scrapy框架、分布式爬虫、数据爬取与项目案例使用教程_哔哩哔哩_bilibili</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.qidian.com/rank/yuepiao/year2023-month12-/">小说月票排行榜单_2023年12月起点小说月票排行-起点中文网</a></li>
+</ol>
 
                 
               </div>
@@ -456,7 +688,7 @@ D --&gt; G
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2023年12月11日</div>
+          <div>2023年12月12日</div>
         </div>
       
       <div class="license-meta-item">
