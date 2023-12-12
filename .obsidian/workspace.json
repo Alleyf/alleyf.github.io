@@ -152,12 +152,12 @@
       "cmdr:Obsidian Git: Open source control view": false,
       "omnisearch:Omnisearch": false,
       "table-editor-obsidian:Advanced Tables Toolbar": false,
-      "obsidian-excalidraw-plugin:新建绘图文件": false,
-      "hidden-folder-obsidian:显示文件夹": false
+      "obsidian-excalidraw-plugin:新建绘图文件": false
     }
   },
-  "active": "7debd791db616930",
+  "active": "c7373060a150f4e6",
   "lastOpenFiles": [
+    "source/_posts/后端开发/Spring Cloud Alibaba 微服务原理与实战-阅读心得.md",
     "public/2023/12/9bbccae9adc3.html",
     "public/tags/爬虫/index.html",
     "public/tags/爬虫",
@@ -165,7 +165,6 @@
     "public/tags/Scrapy",
     "source/_posts/运维开发/各种环境配置.md",
     "source/_posts/运维开发/Scrapy-修炼.md",
-    "source/_posts/后端开发/Spring Cloud Alibaba 微服务原理与实战-阅读心得.md",
     "source/_posts/科研学习/会议讨论/周会.md",
     "source/_posts/后端开发/若依脚手架-学习.md",
     "source/_posts/科研学习/调研报告/多源异构司法数据汇聚融合-解决方案调研.md",
@@ -178,7 +177,6 @@
     "public/2023/12/3727d5849252.html",
     "public/tags/ssm/index.html",
     "public/tags/ssm",
-    "public/page/7/index.html",
     "source/_posts/后端开发/SpringBoot.md",
     "source/_posts/中间件和工具/Redis-缓存之美.md",
     "source/_posts/后端开发/Java常用新特性-Lambda-Optional-Stream.md",
