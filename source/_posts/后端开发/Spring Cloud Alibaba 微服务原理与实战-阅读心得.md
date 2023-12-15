@@ -1750,6 +1750,444 @@ Nacos 可以使开发者从微服务平台建设的视角管理数据中心的�
 本地直接部署和 docker 部署 nacos 方式详见[各种环境配置](各种环境配置.md).
 ### Nacos 集成 Spring Boot 实现服务注册与发现
 
+> 单模块打包方式为 jar，多模块打包方式为 pom
+
+```xml
+<packaging>pom</packaging> 多模块
+<packaging>jar</packaging> 单模块
+```
+
+spring-boot 版本为 2.6.13，spring-cloud-alibaba 版本为 2021.0.5.0，本节将使用该版本实现简单的 nacos 服务注册
+
+1. 新建 nacos 的 springboot 项目，设置 pom 配置文件。
+*父项目对依赖进行版本管理，其配置文件如下*：
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.fcs</groupId>
+    <artifactId>SpringCloud_Alibaba</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>SpringCloud_Alibaba</name>
+    <description>SpringCloud_Alibaba</description>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>nacos</module>
+    </modules>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <spring-boot.version>2.6.13</spring-boot.version>
+        <spring-cloud-alibaba.version>2021.0.5.0</spring-cloud-alibaba.version>
+    </properties>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring-cloud-alibaba.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>
+
+```
+*子项目实现 nacos 服务注册，其配置文件如下*：
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.fcs</groupId>
+        <artifactId>SpringCloud_Alibaba</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>nacos</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>nacos</name>
+    <description>nacos</description>
+    <packaging>jar</packaging>
+
+
+    <properties>
+        <java.version>1.8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-boot.version}</version>
+                <configuration>
+                    <mainClass>com.fcs.NacosApplication</mainClass>
+                    <skip>true</skip>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>repackage</id>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
+
+```
+
+### Nacos 的高可用部署
+
+在分布式架构中，任何中间件或者应用都不允许单点存在，所以开源组件一般都会自己支持高可用集群解决方案。如图 5-2 所示，Nacos 提供了类似于 ZooKeeper 的集群架构，包含一个 Leader 节点和多个 Follower 节点。和 ZooKeeper 不同的是，它的数据一致性算法采用的是 **Raft**,同样采用了该算法的中间件有 Redis Sentinel 的 Leader 选举、Etcd 等。
+
+![](https://qnpicmap.fcsluck.top/pics/202312131639911.png)
+
+#### 安装环境要求
+
+请确保在环境中安装使用：
+- 64 bit OS Linux/UNIX/Mac,推荐使用 Linux 系统。
+- 64 bit JDK1.8 及以上，下载并配置。
+- Maven3.2.x 及以上，下载并配置。
+- 3 个或 3 个以上 Nacos 节点才能构成集群。
+- MySQL 数据库。
+
+
+#### 安装包及环境准备
+
+准备 3 台服务器，笔者采用的是 Centos 7.x 系统。
+- 下载安装包，分别进行解压：tar-zxvf nacos-server-1.1.4.tar.gz 或者 unzip nacos-server-1.1.4.zip。
+- 解压后会得到 5 个文件夹：bin(服务启动/停止脚本)、conf(配置文件)、logs(日志)、data(derby 数据库存储)、target(编译打包后的文件)。
+
+#### 集群配置
+
+在 conf 目录下包含以下文件。
+- application.properties: Spring Boot 项目默认的配置文件。
+- cluster.conf.example:集群配置样例文件。
+- nacos-mysql.sql:MySQL 数据库脚本。Nacos 支持 Derby 和 MySQL 两种持久化机制，默认采用 Derby 数据库。如果采用 MySQL,需要运行该脚本创建数据库和表。
+- nacos-logback.xml:Nacos 日志配置文件。
+配置 Nacos 集群需要用到 cluster.conf 文件，我们可以直接重命名提供的 example 文件，修改该配置信息如下：
+
+```conf
+192.168.13.104:8848 //ip地址必须是内网ip，不能是localhost/127.0.0.1
+192.168.13.106:8848
+192.168.13.183:8848
+```
+
+这 3 台机器中的 cluster.conf 配置保持一致。由于这 3 台机器之间需要彼此通信，所以在部署的时候需要防火墙对外开放 8848 端口。
+具体配置由[各种环境配置](各种环境配置.md)中的 nacos 部分可见，连接外部数据库时新建的 nacos 用户的密码要用 mysql_native_password，否则会报错连不上外部数据库。
+集群部署结果如下图所示：
+
+![](https://qnpicmap.fcsluck.top/pics/202312131732523.png)
+
+### Dubbo使用Nacos实现注册中心
+
+Nacos作为Spring Cloud Alibaba中服务注册与发现的核心组件，可以很好地帮助开发者将服务自动注册到Nacos服务端，并且能够动态感知和刷新某个服务实例的服务列表。使用SpringCloud Alibaba Nacos Discovery可以基于Spring Cloud规范快速接入Nacos,实现服务注册与发现功能。
+在本节中，我们通过将Spring Cloud Alibaba Nacos Discovery集成到Spring Cloud AlibabaDubbo,完成服务注册与发现的功能。
+Dubbo可以支持多种注册中心，比如在前面章节中讲的ZooKeeper,以及Consul、Nacos等。本节主要讲解如何使用Nacos作为Dubbo服务的注册中心，为Dubbo提供服务注册与发现的功能，实现步骤如下。
+#### 服务端
+
+1. 创建一个普通Maven项目spring-boot-dubbo-nacos-sample,添加两个模块：nacos-sample-api 和 nacos-sample-provider。其中，nacos-sample-provider是一个Spring Boot工程。
+2. 在nacos-sample-api中声明接口。
+
+```java
+public interface IHelloService{
+String sayHello(String name);
+)
+```
+
+3. 在nacos-sample-provider中添加依赖。
+```xml
+    <dependencies>
+        <!--        spring-cloud-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter</artifactId>
+        </dependency>
+        <!--        dubbo-alibaba-->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-dubbo</artifactId>
+        </dependency>               
+        <!--        nacos-discovery-->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+        <!--lombok-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <!--        sample-api-->
+        <dependency>
+            <groupId>org.fcs</groupId>
+            <artifactId>sample-api</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+```
+
+上述依赖包的简单说明如下：
+- spring-cloud-starter: Spring Cloud核心包。
+- spring-cloud-starter-dubbo,Dubbo的Starter组件，添加Dubbo依赖。
+- spring-cloud-starter-alibaba-nacos-discovery,基于Nacos的服务注册与发现。
+- nacos-sample-api,接口定义类的依赖。
+4. 创建HelloServicelmpl类，实现IHelloService接口。
+
+```java
+@Service  
+public class HelloServiceImpl implements IHelloService {  
+    @Value("${dubbo.application.name}")  
+    private String serviceName;  
+  
+    @Override  
+    public String sayHello(String name) {  
+        return String.format("[%s]:Hello,%s", serviceName, name);  
+    }  
+}
+```
+
+5. 修改application.yml 配置。仅将dubbo.registry.address中配置的协议改成了 `spring-cloud://${spring.cloud.nacos.discovery.server-addr}`,基于Nacos协议
+```yml
+server:
+  port: 8081
+spring:
+  main:
+    allow-bean-definition-overriding: true #Spring Boot 2.1 需要设定,允许覆盖bean
+  application:
+    name: spring-boot-dubbo-nacos-provider
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 8.130.88.159:8848
+dubbo:
+  scan:
+    base-packages: com.fcs.service  # 指定要扫描远程调用接口实现类的包路径
+  registry:
+    address: spring-cloud://${spring.cloud.nacos.discovery.server-addr}
+    timeout: 60000
+  protocol:
+    name: dubbo
+    port: -1
+  application:
+    #    name: ${spring.application.name}  #dubbo服务名称供消费者订阅
+    name: spring-boot-dubbo-nacos-provider  #dubbo服务名称供消费者订阅
+    qos-enable: false #dubbo运维服务是否开启
+  consumer:
+    check: false # 消费者是否检查版本
+```
+
+以上配置的简单说明如下。
+- dubbo.scan.base-packages:功能等同于@DubboComponentScan,指定Dubbo*服务实现类的扫描包路径*。
+- dubbo.registry.address:Dubbo服务注册中心的配置地址，它的值spring-cloud://localhost表示挂载到Spring Cloud注册中心，不配置的话会提示没有配置注册中心的错误。
+- spring.cloud.nacos.discovery.server-addr:Nacos服务注册中心的地址。
+
+6. 运行Spring Boot启动类，注意需要声明DubboComponentScan。
+```java
+@SpringBootApplication  
+@DubboComponentScan  
+@EnableDubbo
+@EnableDiscoveryClient  
+public class SampleProviderApplication {  
+    public static void main(String[] args) {  
+        SpringApplication.run(SampleProviderApplication.class, args);  
+    }  
+}
+```
+
+服务启动成功之后，访问Ncos控制台，进入“服务管理”→“服务列表”，如图下图所示，可以看到所有注册在Nacos上的服务。
+
+![](https://qnpicmap.fcsluck.top/pics/202312132000943.png)
+
+![](https://qnpicmap.fcsluck.top/pics/202312132036009.png)
+
+细心的读者会发现，基于Spring Cloud Alibaba Nacos Discovery实现服务注册时，元数据中发布的服务接口是com.alibaba.cloud.dubbo.service.DubboMetadataService。那么消费者要怎么去找到IHelloService呢？别急，进入Nacos控制台的“配置列表”，可以看到如图5-8所示的配置信息。
+实际上这里把发布的接口信息存储到了配置中心，并且建立了映射关系，从而使得消费者在访问服务的时候能够找到目标接口进行调用。至此，服务端便全部开发完了，接下来我们开始消费端的开发。
+
+#### 消费端开发
+
+1. 创建一个Spring Boot项目spring-cloud-nacos-consumer。
+2. 添加相关Maven依赖。
+```xml
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!--        spring-cloud-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter</artifactId>
+        </dependency>
+        <!--lombok-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-dubbo</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+        <!--        sample-api-->
+        <dependency>
+            <groupId>org.fcs</groupId>
+            <artifactId>sample-api</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+```
+
+3. 在application.yml 中添加配置信息。
+```yml
+server:  
+  port: 8082  
+spring:  
+  main:  
+    allow-bean-definition-overriding: true #Spring Boot 2.1 需要设定,允许覆盖bean  
+  application:  
+    name: spring-boot-dubbo-nacos-consumer  
+  cloud:  
+    nacos:  
+      discovery:  
+        server-addr: 8.130.88.159:8848  
+dubbo:  
+  registry:  
+    address: spring-cloud://${spring.cloud.nacos.discovery.server-addr}  
+    timeout: 60000  
+  protocol:  
+    name: dubbo  
+    port: -1  
+  application:  
+    name: spring-boot-dubbo-nacos-consumer  #dubbo服务名称供消费者订阅  
+    qos-enable: false #dubbo运维服务是否开启  
+  consumer:  
+    check: false # 消费者是否检查版本  
+  cloud:  
+    subscribed-services: spring-boot-dubbo-nacos-provider
+```
+
+4. 定义HelloController,用于测试Dubbo服务的访问。
+
+```java
+@RestController  
+public class HelloController {  
+    @Reference  
+    private IHelloService iHelloService;  
+  
+    @GetMapping("/say")  
+    public String sayHello() {  
+        return iHelloService.sayHello("Mic");  
+    }  
+}
+```
+
+5. 启动服务
+
+```java
+@SpringBootApplication  
+public class SampleConsumerApplication {  
+    public static void main(String[] args) {  
+        SpringApplication.run(SampleConsumerApplication.class, args);  
+    }  
+}
+```
+
+调用结果如下图所示：
+
+![](https://qnpicmap.fcsluck.top/pics/202312132059402.png)
+
+![](https://qnpicmap.fcsluck.top/pics/202312132059201.png)
+
+
+与第4章中Dubbo Spring Cloud的代码相比，除了注册中心从ZooKeeper变成Nacos,其他基本没什么变化，因为这两者都是基于Spring Cloud标准实现的，而这些标准化的定义都抽象到了Spring-Cloud-Common包中。在后续的组件集成过程中，会以本节中创建的项目进行集成。
+
+### Nacos实现原理分析
+
+#### Nacos架构图
+
+Nacos官方提供的架构图如下所示，我们简单来分析一下它的模块组成。
+
+![|700](https://qnpicmap.fcsluck.top/pics/202312132104508.png)
+
+- Provider APP:服务提供者。
+- Consumer APP:服务消费者。
+- Name Server:通过VIP(Vritual IP)或者DNS的方式实现Nacos高可用集群的服务路由。
+- Nacos Server:Nacos服务提供者，里面包含的Open API是功能访问入口，Config Service、Naming Service是Nacos提供的配置服务、名字服务模块。Consistency Protocol是一致性协议，用来实现Nacos集群节点的数据同步，这里使用的是Raft算法（使用类似算法的中间件还有Etcd、Redis哨兵选举)。
+- Nacos Console:Nacos控制台。
+
+整体来说，服务提供者通过VIP(Virtual IP)访问Nacos Server高可用集群，基于Open API完成服务的注册和服务的查询。Nacos Server本身可以支持主备模式，所以底层会采用数据一致性算法来完成从节点的数据同步。服务消费者也是如此，基于Open API从Nacos Server中查询服务列表。
+
+#### 注册中心的原理
+
+服务注册的功能主要体现在：
+
+- 服务实例在**启动时注册到服务注册表，并在关闭时注销**。
+- 服务消费者**查询服务注册表，获得可用实例**。
+- 服务注册中心需要调用服务实例的健康检查API来验证它是否能够处理请求。
+
+Nacos服务注册与发现的实现原理如下图所示：
+
+![](https://qnpicmap.fcsluck.top/pics/202312132137209.png)
+
+
+
+
+
+
 
 
 

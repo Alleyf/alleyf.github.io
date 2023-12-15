@@ -134,7 +134,7 @@ Map<string,String>hash new HashMap;
 //Redisi存Hash类型的政据类似于这样：
 Map<String,Map<String,String>>hash new HashMap();
 ```
-它比较适合存储类这样的数据，由于值本身又是一个 Map,因此我们可以在此 Map 中放入类的各种属性和值，以实现一个 Hsh 数据类型存储一个类的数据。
+它比较适合存储类这样的数据，由于值本身又是一个 Map,因此我们可以在此 Map 中放入类的各种属性和值，以实现一个 Hash 数据类型存储一个类的数据。
 1. 添加：
 ```sh
 hset <key> <field> <value> --添加hash数据（只能指定一个字段和值）

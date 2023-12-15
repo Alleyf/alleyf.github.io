@@ -9,6 +9,9 @@ excerpt: 一些关于springcloud alibaba微服务框架中间件的学习记录�
 author: fcs
 ---
 ![](https://picsum.photos/800/250)
+
+
+SpringCloudAlibaba、SpringCloud和SpringBoot版本之间有着一定的依赖关系，必须使用正确的版本才能有效，具体版本依赖关系可见[版本说明 · alibaba/spring-cloud-alibaba Wiki · GitHub](https://github.com/alibaba/spring-cloud-alibaba/wiki/%E7%89%88%E6%9C%AC%E8%AF%B4%E6%98%8E)
 # 微服务进阶
 ![image-20230306230950443](https://s2.loli.net/2023/03/06/V1dFqQMR7T2GzSJ.png)
 前面我们了解了微服务的一套解决方案，但是它是基于 Netflix 的解决方案，实际上我们发现，很多框架都已经停止维护了，来看看目前我们所认识到的 SpringCloud 各大组件的维护情况：
@@ -1434,7 +1437,7 @@ public interface DubboApiService {
             <artifactId>spring-cloud-starter-dubbo</artifactId>
         </dependency>
 ```
-2.dubbo 相关配置
+2.dubbo 相关配置（低版本的springboot、springcloud无法将yml配置文件中的`${xxx.xxx}`自动转换为对应的值）
 ```yml
 dubbo: #dubbo配置  
   application:  
