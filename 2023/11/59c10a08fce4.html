@@ -28,6 +28,9 @@
 <meta property="og:image" content="https://picsum.photos/800/250">
 <meta property="og:image" content="https://qnpicmap.fcsluck.top/pics/202311280029568.png">
 <meta property="og:image" content="https://qnpicmap.fcsluck.top/pics/202311280030655.png">
+<meta property="og:image" content="https://qnpicmap.fcsluck.top/pics/202312141347269.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/77ab18b281104c669546292d8ed4ac64.png">
+<meta property="og:image" content="https://qnpicmap.fcsluck.top/pics/202312141356241.png">
 <meta property="og:image" content="https://qnpicmap.fcsluck.top/pics/202312101238746.png">
 <meta property="og:image" content="https://qnpicmap.fcsluck.top/pics/202311271638947.png">
 <meta property="og:image" content="https://qnpicmap.fcsluck.top/pics/202311271638364.png">
@@ -46,7 +49,7 @@
 <meta property="og:image" content="https://qnpicmap.fcsluck.top/pics/202312102340085.png">
 <meta property="og:image" content="https://qnpicmap.fcsluck.top/pics/202311182136214.png">
 <meta property="article:published_time" content="2023-11-18T06:53:11.000Z">
-<meta property="article:modified_time" content="2023-12-11T06:18:11.196Z">
+<meta property="article:modified_time" content="2023-12-14T08:19:14.281Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="java">
 <meta property="article:tag" content="mysql">
@@ -306,7 +309,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          27k 字
+          28k 字
         
       </span>
     
@@ -317,7 +320,7 @@
         
         
         
-          225 分钟
+          237 分钟
         
       </span>
     
@@ -411,6 +414,23 @@
 <li>查看是否启动成功容器，并且支持远程访问<br><img src="https://qnpicmap.fcsluck.top/pics/202311280029568.png" srcset="/img/loading.gif" lazyload><br><img src="https://qnpicmap.fcsluck.top/pics/202311280030655.png" srcset="/img/loading.gif" lazyload></li>
 </ol>
 <hr>
+<h1 id="Mongodb"><a href="#Mongodb" class="headerlink" title="Mongodb"></a>Mongodb</h1><ol>
+<li><p>windows 下载安装 MongoDB<br>在 <a target="_blank" rel="noopener" href="https://www.mongodb.com/try/download/community">Download MongoDB Community Server | MongoDB</a> 下载需要的版本的 mongodb 并安装</p>
+<p><img src="https://qnpicmap.fcsluck.top/pics/202312141347269.png" srcset="/img/loading.gif" lazyload alt="|500"><br><img src="https://img-blog.csdnimg.cn/77ab18b281104c669546292d8ed4ac64.png" srcset="/img/loading.gif" lazyload alt="|500"></p>
+</li>
+<li><p>创建 MongoDB 所需文件<br>在安装时指定的数据和日志目录下分别新建 <code>db</code> 文件夹和 <code>mongodb.log</code> 文件</p>
+</li>
+<li><p>配置环境变量<br>在Powershell中执行以下命令添加 mongodb 用户环境变量：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">[System.Environment]::SetEnvironmentVariable(<span class="hljs-string">&quot;PATH&quot;</span>,<span class="hljs-variable">$env</span>:path+<span class="hljs-string">&quot;;C:\Program Files\MongoDB\Server\7.0\bin&quot;</span>,[System.EnvironmentVariableTarget]::User) <span class="hljs-comment">#设置用户环境变量</span><br><span class="hljs-built_in">echo</span> %Path%  <span class="hljs-comment">#刷新环境变量</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>修改mongod.cfg配置<br>修改 <code>mongod.cfg</code> 关于数据和日志存储的相关配置：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-comment"># Where and how to store data.</span><br><span class="hljs-attr">storage:</span><br>  <span class="hljs-attr">dbPath:</span> <span class="hljs-string">E:\MongoDB\Server\7.0\data\db</span><br><span class="hljs-comment"># where to write logging data.</span><br><span class="hljs-attr">systemLog:</span><br>  <span class="hljs-attr">destination:</span> <span class="hljs-string">file</span><br>  <span class="hljs-attr">logAppend:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-attr">path:</span>  <span class="hljs-string">E:\MongoDB\Server\7.0\log\mongod.log</span><br><span class="hljs-comment"># network interfaces</span><br><span class="hljs-attr">net:</span><br>  <span class="hljs-attr">port:</span> <span class="hljs-number">27017</span><br>  <span class="hljs-attr">bindIp:</span> <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>安装 windows 服务，开机自启动 mongodb</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sh">mongod --dbpath <span class="hljs-string">&quot;E:\MongoDB\Server\5.0\data\db&quot;</span> --logpath <span class="hljs-string">&quot;E:\MongoDB\Server\5.0\log\mongod.log&quot;</span> --install --serviceName <span class="hljs-string">&quot;MongoDB5.3&quot;</span> --serviceDisplayName <span class="hljs-string">&quot;MongoDB5.3&quot;</span> <span class="hljs-comment">#安装低版本mongodb服务自启动，需要管理员身份打开命令行</span><br>mongod --config <span class="hljs-string">&quot;C:\Program Files\MongoDB\Server\7.0\bin\mongod.cfg&quot;</span> <span class="hljs-comment">#手动启动不安装服务自启动</span><br>mongod --config <span class="hljs-string">&quot;C:\Program Files\MongoDB\Server\7.0\bin\mongod.cfg&quot;</span> --install --serviceName <span class="hljs-string">&quot;MongoDB&quot;</span> --serviceDisplayName <span class="hljs-string">&quot;MongoDB&quot;</span> <span class="hljs-comment">#安装windows服务开机自启动，可以设置手动模式，通过 net start MongoDB 命令手动启动</span><br></code></pre></td></tr></table></figure></li>
+</ol>
+<p><img src="https://qnpicmap.fcsluck.top/pics/202312141356241.png" srcset="/img/loading.gif" lazyload alt="|600"></p>
+<hr>
 <h1 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h1><h2 id="docker-部署-Nginx"><a href="#docker-部署-Nginx" class="headerlink" title="docker 部署 Nginx"></a>docker 部署 Nginx</h2><h3 id="拉取镜像"><a href="#拉取镜像" class="headerlink" title="拉取镜像"></a>拉取镜像</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">docker pull nginx<br>docker pull nginx:1.23 <span class="hljs-comment">#指定版本为1.23</span><br></code></pre></td></tr></table></figure>
 <h3 id="伪启动"><a href="#伪启动" class="headerlink" title="伪启动"></a>伪启动</h3><p>临时启动 nginx 容器，复制配置文件到主机<br>切换到 <code>/home/ecs-user/mdware</code> 目录下，创建 <code>nginx</code> 目录，在 nginx 目录中保存配置文件相关信息。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">mkdir</span> nginx<br>docker run --name nginx -p 80:80 -d nginx<br>docker <span class="hljs-built_in">cp</span> nginx:/etc/nginx/nginx.conf /home/ecs-user/mdware/nginx/<br>docker <span class="hljs-built_in">cp</span> nginx:/etc/nginx/conf.d/ /home/ecs-user/mdware/nginx/conf/<br>docker <span class="hljs-built_in">cp</span> nginx:/usr/share/nginx/html/ /home/ecs-user/mdware/nginx/html/<br>docker <span class="hljs-built_in">cp</span> nginx:/var/log/nginx/ /home/ecs-user/mdware/nginx/logs/<br></code></pre></td></tr></table></figure>
@@ -498,7 +518,7 @@
 <h1 id="Docker-Compose"><a href="#Docker-Compose" class="headerlink" title="Docker-Compose"></a>Docker-Compose</h1><h2 id="下载-docker-compose"><a href="#下载-docker-compose" class="headerlink" title="下载 docker-compose"></a>下载 docker-compose</h2><p>下载 docker-compose 到 &#x2F;usr&#x2F;local&#x2F;bin 中</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">curl/wget https://github.com/docker/compose/releases/download/v2.23.0/docker-compose-linux-x86_64 <span class="hljs-comment">#后续版本更新可自由切换为需要的docker-compose版本的url</span><br></code></pre></td></tr></table></figure>
 
-<h2 id="授权"><a href="#授权" class="headerlink" title="授权"></a>授权</h2><p>授予docker-compose文件权限</p>
+<h2 id="授权"><a href="#授权" class="headerlink" title="授权"></a>授权</h2><p>授予 docker-compose 文件权限</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">chmod</span> +x /usr/local/bin/docker-compose<br></code></pre></td></tr></table></figure>
 
 <h2 id="查看版本"><a href="#查看版本" class="headerlink" title="查看版本"></a>查看版本</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">docker-compose -v <br></code></pre></td></tr></table></figure>
@@ -512,7 +532,7 @@
 <li><p>解压并修改配置文件（单点 or 集群）<br><code>application.properties：</code></p>
 <figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-comment">#*************** Spring Boot Related Configurations ***************#</span><br><span class="hljs-comment">### Default web context path:</span><br><span class="hljs-attr">server.servlet.contextPath</span>=<span class="hljs-string">/nacos</span><br><span class="hljs-comment">### Include message field</span><br><span class="hljs-attr">server.error.include-message</span>=<span class="hljs-string">ALWAYS</span><br><span class="hljs-comment">### Default web server port:</span><br><span class="hljs-attr">server.port</span>=<span class="hljs-string">8848</span><br><span class="hljs-comment">#*************** Network Related Configurations ***************#</span><br><span class="hljs-comment">### If prefer hostname over ip for Nacos server addresses in cluster.conf:</span><br><span class="hljs-comment"># nacos.inetutils.prefer-hostname-over-ip=false</span><br><span class="hljs-comment">### Specify local server&#x27;s IP:</span><br><span class="hljs-comment"># nacos.inetutils.ip-address=</span><br><span class="hljs-comment">#*************** Config Module Related Configurations ***************#</span><br><span class="hljs-comment">### If use MySQL as datasource:</span><br><span class="hljs-attr">spring.datasource.platform</span>=<span class="hljs-string">mysql</span><br><span class="hljs-comment">### Count of DB:</span><br><span class="hljs-attr">db.num</span>=<span class="hljs-string">1</span><br><span class="hljs-comment">### Connect URL of DB:</span><br><span class="hljs-attr">db.url.0</span>=<span class="hljs-string">jdbc:mysql://127.0.0.1:3306/nacos?characterEncoding=utf8&amp;connectTimeout=1000&amp;socketTimeout=3000&amp;autoReconnect=true&amp;useUnicode=true&amp;useSSL=false&amp;serverTimezone=UTC</span><br><span class="hljs-attr">db.user.0</span>=<span class="hljs-string">nacos</span><br><span class="hljs-attr">db.password.0</span>=<span class="hljs-string">nacos</span><br><span class="hljs-comment">### Connection pool configuration: hikariCP</span><br><span class="hljs-attr">db.pool.config.connectionTimeout</span>=<span class="hljs-string">30000</span><br><span class="hljs-attr">db.pool.config.validationTimeout</span>=<span class="hljs-string">10000</span><br><span class="hljs-attr">db.pool.config.maximumPoolSize</span>=<span class="hljs-string">20</span><br><span class="hljs-attr">db.pool.config.minimumIdle</span>=<span class="hljs-string">2</span><br></code></pre></td></tr></table></figure>
 <p><code>cluster.conf:</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs conf">2.0.0.1:8846 //ip为本地内网ip，不是localhost/127.0.0.1<br>2.0.0.1:8847<br></code></pre></td></tr></table></figure></li>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs conf">2.0.0.1:8846 //ip 为本地内网 ip，不是 localhost/127.0.0.1<br>2.0.0.1:8847<br></code></pre></td></tr></table></figure></li>
 <li><p>创建数据库 nacos，为该数据库配置用户名和密码以及权限，再导入 <code>nacos-mysql.sql</code> 文件自动新建相应数据表。</p>
 </li>
 <li><p><code>sh startup.sh -m standalone</code> 单点启动</p>
@@ -521,7 +541,7 @@
 <p><img src="https://qnpicmap.fcsluck.top/pics/202311181541807.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <hr>
 <h2 id="Docker-部署-Nacos"><a href="#Docker-部署-Nacos" class="headerlink" title="Docker 部署 Nacos"></a>Docker 部署 Nacos</h2><h3 id="Docker-拉取镜像"><a href="#Docker-拉取镜像" class="headerlink" title="## Docker 拉取镜像"></a>## Docker 拉取镜像</h3><p>拉取 nacos 镜像</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">docker pull nacos/nacos-server <span class="hljs-comment">#默认拉取最新的nacos版本，如果需要拉取别的版本可以加：版本号（如：docker pull nacos/nacos-server:v2.2.0）</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">docker pull nacos/nacos-server <span class="hljs-comment">#默认拉取最新的nacos版本 ，如果需要拉取别的版本可以加：版本号（如：docker pull nacos/nacos-server:v2.2.0）</span><br></code></pre></td></tr></table></figure>
 <h3 id="配置宿主机挂载目录"><a href="#配置宿主机挂载目录" class="headerlink" title="配置宿主机挂载目录"></a>配置宿主机挂载目录</h3><p>这一步是添加映射文件夹，将宿主机的文件映射到 nacos 容器中</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">mkdir</span> -p /home/ecs-user/mdware/nacos/logs/                      <span class="hljs-comment">#新建logs目录</span><br><span class="hljs-built_in">mkdir</span> -p /home/ecs-user/mdware/nacos/conf/						<span class="hljs-comment">#新建conf目录</span><br></code></pre></td></tr></table></figure>
 <h3 id="假启动"><a href="#假启动" class="headerlink" title="## 假启动"></a>## 假启动</h3><p>启动一个 nacos 容器并复制需要挂载的文件到宿主机，再关闭删除该容器（<em>为了获取默认的配置文件</em>）<br><strong>启动一个 nacos 容器</strong></p>
@@ -734,17 +754,21 @@
 <h1 id="Crawlab"><a href="#Crawlab" class="headerlink" title="Crawlab"></a>Crawlab</h1><h2 id="拉取镜像-3"><a href="#拉取镜像-3" class="headerlink" title="拉取镜像"></a>拉取镜像</h2><p>保证已经安装好 Docker，并能够拉取 Crawlab 和 MongoDB 的镜像。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">docker pull crawlabteam/crawlab<br>docker pull mongo<br></code></pre></td></tr></table></figure>
 
-<h2 id="配置docker-compose文件"><a href="#配置docker-compose文件" class="headerlink" title="配置docker-compose文件"></a>配置docker-compose文件</h2><p>创建配置文件并命名为 <code>docker-compose.yml</code>，内容如下：</p>
+<h2 id="配置-docker-compose-文件"><a href="#配置-docker-compose-文件" class="headerlink" title="配置 docker-compose 文件"></a>配置 docker-compose 文件</h2><p>创建配置文件并命名为 <code>docker-compose.yml</code>，内容如下：</p>
 <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">version:</span> <span class="hljs-string">&#x27;3.3&#x27;</span><br><span class="hljs-attr">services:</span><br>  <span class="hljs-attr">master:</span><br>    <span class="hljs-attr">image:</span> <span class="hljs-string">crawlabteam/crawlab</span><br>    <span class="hljs-attr">container_name:</span> <span class="hljs-string">crawlab_master</span><br>    <span class="hljs-attr">environment:</span><br>      <span class="hljs-attr">CRAWLAB_NODE_MASTER:</span> <span class="hljs-string">&quot;Y&quot;</span><br>      <span class="hljs-attr">CRAWLAB_MONGO_HOST:</span> <span class="hljs-string">&quot;mongo&quot;</span><br>    <span class="hljs-attr">ports:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;8080:8080&quot;</span><br>    <span class="hljs-attr">depends_on:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">mongo</span><br>  <span class="hljs-attr">mongo:</span><br>    <span class="hljs-attr">image:</span> <span class="hljs-string">mongo:latest</span><br></code></pre></td></tr></table></figure>
 
 <h2 id="启动-Crawlab"><a href="#启动-Crawlab" class="headerlink" title="启动 Crawlab"></a>启动 Crawlab</h2><p>执行以下命令启动 Crawlab 以及 MongoDB。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">docker-compose up -d<br></code></pre></td></tr></table></figure>
 
-<p>现在您可以打开浏览器并导航到 <code>http://localhost:8080</code> 并开始使用 Crawlab。</p>
+<p>现在您可以打开浏览器并导航到 <code> http://localhost:8080</code> 并开始使用 Crawlab。</p>
 <hr>
-<h1 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h1><h2 id="查看进程"><a href="#查看进程" class="headerlink" title="查看进程"></a>查看进程</h2><p>查询 pid 对应的进程所运行的程序。</p>
+<h1 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h1><h2 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h2><ol>
+<li>cmd：<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">echo</span> %Path%  <span class="hljs-comment">#输出所有环境变量文件路径</span><br><span class="hljs-built_in">echo</span> %Path%  <span class="hljs-comment">#刷新环境变量</span><br></code></pre></td></tr></table></figure></li>
+<li>powershell：<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-variable">$env</span>:path/<span class="hljs-variable">$Env</span>:PATH  <span class="hljs-comment">#输出所有环境变量文件路径</span><br>[System.Environment]::SetEnvironmentVariable(<span class="hljs-string">&quot;PATH&quot;</span>,<span class="hljs-variable">$env</span>:path+<span class="hljs-string">&quot;;C:\veryhappy&quot;</span>,[System.EnvironmentVariableTarget]::User/Machine) <span class="hljs-comment">#设置用户/系统新环境变量</span><br></code></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="查看进程"><a href="#查看进程" class="headerlink" title="查看进程"></a>查看进程</h2><p>查询 pid 对应的进程所运行的程序。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">tasklist|findstr pid<br></code></pre></td></tr></table></figure>
-<h2 id="关闭进程"><a href="#关闭进程" class="headerlink" title="关闭进程"></a>关闭进程</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">taskkill /f /t /im nginx.exe<br>taskkill /f /pid &lt;查询的PID号&gt;<br></code></pre></td></tr></table></figure>
+<h2 id="关闭进程"><a href="#关闭进程" class="headerlink" title="关闭进程"></a>关闭进程</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">taskkill /f /t /im nginx/java.exe<br>taskkill /f /pid &lt;查询的PID号&gt;<br></code></pre></td></tr></table></figure>
 <p><img src="https://qnpicmap.fcsluck.top/pics/202311182136214.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h2 id="查看端口"><a href="#查看端口" class="headerlink" title="查看端口"></a>查看端口</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">netstat -ano #查看所有端口<br>netstat -ano | findstr &lt;端口号&gt;<br>netstat -ano | find &quot;关键字&quot;<br></code></pre></td></tr></table></figure>
 <h1 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h1><h2 id="切换用户"><a href="#切换用户" class="headerlink" title="切换用户"></a>切换用户</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">sudo su username(root) <span class="hljs-comment">#切换身份到目标用户</span><br></code></pre></td></tr></table></figure>
@@ -977,7 +1001,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2023年12月11日</div>
+          <div>2023年12月14日</div>
         </div>
       
       <div class="license-meta-item">
