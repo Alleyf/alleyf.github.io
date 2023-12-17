@@ -376,6 +376,72 @@ class QidiannovelPipeline:
 
 ---
 
+## 文件和图片下载
+
+基于文件下载在爬虫中的普遍性和实用性，Scrapy 提供了文件管道 `FilesPipeline` 用于实现文件的下载。你也可以扩展 FilesPipeline,实现自定义的文件管道功能。
+1. 在 Spider 中，将想要下载的文件 URL 地址保存到一个列表中，并赋给 key 为 file_urls 的 Item 字段中(`item["file_urls"]`)。
+2. 引擎将 Item 传入到 FilesPipeline 管道中。
+3. FilesPipeline 获取 Item 后，会读取 Item 中 key 为 file urls 的字段(item["file_urls"]),再根据获得的 URL 地址下载文件。Item 在 FilesPipeline 管道中处于“锁定”状态，直到所有文件全部下载完(或者某种原因下载失败)。
+4. 所有文件下载完后，会将各个文件下载的结果信息收集到一个列表中，并赋给 key 为 files 的 Item 字段中(`item[“files]`)。
+下载的信息主要包含以下内容：
+- 文件下载的路径
+- 文件的 URL 地址
+- 文件的校验和(Checksum)
+
+![|500](https://qnpicmap.fcsluck.top/pics/202312172000836.png)
+
+
+### 爬取seaborn案例源文件
+
+人工智能、大数据领域的学习者和开发者，对seaborn一定不会感到陌生。它是一个免费的、基于Python的数据统计可视化库，它提供的高级界面，能够绘制极富吸引力且信息丰富的统计图形。图中就是通过seaborn,展示的统计图形。
+爬取地址为：[Example gallery — seaborn 0.9.0 documentation](http://seaborn.pydata.org/archive/0.9/examples/)本项目要求实现将seaborn中所有应用案例的源文件下载到本地。
+
+1. 定义数据结构：
+```python
+   class SeabornItem(scrapy.Item):
+    # define the fields for your item here like:
+    file_urls = scrapy.Field() # 下载的文件地址
+    files = scrapy.Field() # 下载的文件信息（文件名，下载路径）
+
+```
+2. 爬取解析逻辑实现：
+```python
+from scrapy import Request
+from scrapy.http import Request
+from scrapy.spiders import Spider
+from Seaborn.items import SeabornItem
+
+class SeabornSpider(Spider):
+    name ='seaborn'
+    allowed_domains = ['seaborn.com']
+    start_urls = ['http://seaborn.pydata.org/archive/0.9/examples/index.html']
+    # proxy = 'http://127.0.0.1:7890'
+    def start_requests(self):
+        yield Request(url=self.start_urls[0], callback=self.parse)
+    
+    def parse(self, response):
+        rel_urls = response.css('div.figure.align-center a::attr(href)').extract()
+        for href in rel_urls:
+            abs_url = response.urljoin(href)
+            yield Request(url=abs_url, callback=self.parse_file)
+
+    def parse_file(self, response):
+        item = SeabornItem()
+        rel_down_url = response.css('a.reference.download.internal::attr(href)').extract_first()
+        abs_down_url = response.urljoin(rel_down_url)
+        print(abs_down_url)
+        item['file_urls'] = [abs_down_url]
+        yield item
+
+```
+
+3. 执行上述爬虫，由于网络问题，目标网站是外网，因此无法访问成功。
+
+
+
+
+
+---
 # 实战案例
 
 ## 链家网二手房信息（列表--->详情多页面数据传递爬取）
@@ -484,7 +550,7 @@ class LianjiaSpider(Spider):
                 pass
         # 获取下一页
         self.current_page += 1
-        #print(response.css('div.contentBottom.clear > a[data-page="100"]::text').extract_first()) #页码和总页数为js动态数据无法直接获取到
+        #print (response.css('div.contentBottom.clear > a[data-page="100"]::text').extract_first()) #页码和总页数为js动态数据无法直接获取到
         total_page = 100
         if self.current_page <= total_page:
             next_page = self.start_url+ 'pg{}'.format(self.current_page)
@@ -531,7 +597,7 @@ class LianjiaHomePipeline:
 
 class CSVPipeline(object):
     """
-    将数据写入csv文件中
+    将数据写入 csv 文件中
     """
     file = None
     index = 0
@@ -540,8 +606,8 @@ class CSVPipeline(object):
     def open_spider(self, spider): # 爬虫开始时调用
         self.file = open('lianjia_home.csv', 'a', encoding='utf-8')
 
-    def process_item(self, item, spider): # 处理每一个item
-        if self.index == 0: # 写入csv文件时先写入列名
+    def process_item(self, item, spider): # 处理每一个 item
+        if self.index == 0: # 写入 csv 文件时先写入列名
           column_name = ','.join(self.column_name_list)
           self.file.write(column_name + '\n')
           self.index = 1
@@ -593,7 +659,7 @@ pip install mysqlclient
 3. 编写 pipeline 将数据持久化存储到 mysql 数据库：
 ```python
 import MySQLdb
-class MysqlPipeline(object): #处理item的管道，将item插入数据库中
+class MysqlPipeline(object): #处理item的管道 ，将 item 插入数据库中
       
     def open_spider(self, spider): #在爬虫开始时调用
         db_name = spider.settings.get('MYSQL_DBNAME', 'qidian')
@@ -640,19 +706,19 @@ MYSQL_DB = 'qidian'
 ```python
 import pymongo #导入pymongo库
 1. #连接MongoDB数据库
-- #方式一：使用默认host和port
+- #方式一 ：使用默认 host 和 port
 db_client=pymongo.MongoClient()
-- #方式二：自定义host和port
+- #方式二 ：自定义 host 和 port
 db_client =pymongo.MongoClient(host="localhost",port=27017)
-- #方式三：使用标准的URI连接语法
+- #方式三 ：使用标准的 URI 连接语法
 db_client =pymongo.MongoClient('mongodb://localhost:27017/)
 2. #指定集合
 db_collection db["hot"]
 3. #插入数据
-novel-={'name':'太初',#名称
-'author':'高楼大厦',#作者
-'form':'连载',#形式
-'type':'玄幻' #类型}
+novel-={'name':'太初', #名称
+'author':'高楼大厦', #作者
+'form':'连载', #形式
+'type':'玄幻' #类型 }
 4. #调用db_collection的insert_one/many方法将新文档插入到集合
 result = db_collection.insert_one(novel)
 result = db_collection.insert_many([novel1,novel2])
@@ -663,7 +729,7 @@ result = db_collection.find_one({"name":"帝国的崛起"})
 print(result)
 cursor = db_collection.find()
 cursor = db_collection.find({"type":"历史"})
-6. #可以使用集合的update oneO和update many()方法实现文档的更新。前者仅更新一个文档；后者可以批量更新多个文档。
+6. #可以使用集合的update oneO 和 update many()方法实现文档的更新。前者仅更新一个文档；后者可以批量更新多个文档。
 7. #删除数据
 result = db_collection.delete_one({"name":"太初"})
 result = db_collection.delete_many({"type":"历史"})
@@ -686,7 +752,7 @@ mongodb 操作流程：
 ```python
 import pymongo
 class MongoDBPipeline(object):
-    def open_spider(self, spider): #在爬虫开始时调用,初始化数据库
+    def open_spider(self, spider): #在爬虫开始时调用 ,初始化数据库
         host = spider.settings.get('MONGODB_HOST', 'localhost')
         port = spider.settings.get('MONGODB_PORT', 27017)
         db_name = spider.settings.get('MONGODB_DATABASE', 'qidian')
@@ -738,7 +804,7 @@ pip install redis
 ```python
 import redis
 class RedisPipeline(object):
-    def open_spider(self, spider): #在爬虫开始时调用,初始化数据库
+    def open_spider(self, spider): #在爬虫开始时调用 ,初始化数据库
         host = spider.settings.get('REDIS_HOST', 'localhost')
         port = spider.settings.get('REDIS_PORT', 6379)
         db_index = spider.settings.get('REDIS_DB', 1)
@@ -746,7 +812,7 @@ class RedisPipeline(object):
         self.redis_client = redis.StrictRedis(host=host,port=port,db=db_index,password=password) #连接数据库
 
     def process_item(self, item, spider): #在爬虫解析到item时调用
-        item_json = json.dumps(dict(item)) #redis大于3.0版本后不支持直接插入字典数据，必须是字符串、字节或者数字，因此转为json字符串保存
+        item_json = json.dumps(dict(item)) #redis大于3 .0 版本后不支持直接插入字典数据，必须是字符串、字节或者数字，因此转为 json 字符串保存
         self.redis_client.rpush('novel',item_json) #将json字符串插入到redis列表中
         return item
     def close_spider(self, spider): #在爬虫结束时调用
@@ -810,7 +876,7 @@ class MusicSpider(Spider):
     allowed_domains = ['c.y.qq.com']
     def __init__(self, *args, **kwargs):
         super(MusicSpider, self).__init__(*args, **kwargs)
-        self.start_urls = ['https://c.y.qq.com/v8/fcg-bin/fcg_v8_toplist_cp.fcg?&topid=4']
+        self.start_urls = [' https://c.y.qq.com/v8/fcg-bin/fcg_v8_toplist_cp.fcg?&topid=4 ']
 
     def start_requests(self) -> Iterable[Request]:
         yield Request(url=self.start_urls[0], callback=self.parse)
@@ -916,18 +982,18 @@ class DoubanmovieDownloaderMiddleware:
           try:
             WebDriverWait(spider.driver, 5).until(EC.presence_of_element_located((By.CSS_SELECTOR, 'div.playable-filter-title')))
             player_btn = spider.driver.find_element(By.CSS_SELECTOR,'div.playable-filter-title') #获取可播放控件
-            player_btn.click() #点击可播放控件，页面会渲染出20条电影数据，并在底部出现加载更多按钮
-            # 等待5s页面直到类名为'article'的元素加载完成
+            player_btn.click() #点击可播放控件 ，页面会渲染出 20 条电影数据，并在底部出现加载更多按钮
+            # 等待 5s 页面直到类名为'article'的元素加载完成
             WebDriverWait(spider.driver, 5).until(EC.presence_of_element_located((By.CSS_SELECTOR, 'div.article')))
             # WebDriverWait(spider.driver, 5).until(EC.presence_of_element_located((By.CLASS_NAME, 'rating_num')))
-            # 此处为点击展开按钮逻辑，还有使用js的scrol1To方法实现将页面向下滚动逻辑等
+            # 此处为点击展开按钮逻辑，还有使用 js 的 scrol1To 方法实现将页面向下滚动逻辑等
             explore_more_btn = spider.driver.find_element(By.CSS_SELECTOR,'div.explore-more > button') #获取加载更多按钮
-            for i in range(5): #点击5次加载更多按钮，共爬取100条电影数据
+            for i in range(5): #点击5次加载更多按钮 ，共爬取 100 条电影数据
               explore_more_btn.click()
               time.sleep(5)
             #获取加载完成的页面代码
             origin_code = spider.driver.page_source
-            #将源代码构造成为一个Response对象，并返回
+            #将源代码构造成为一个Response对象 ，并返回
             res = HtmlResponse(url=request.url,encoding='utf-8',body=origin_code,request=request)
             return res
           except TimeoutException:
@@ -942,7 +1008,7 @@ class DoubanmovieDownloaderMiddleware:
 ```python
 class DoubanmoviePipeline:
     def process_item(self, item, spider):
-        #对数据进行清洗，取出多余空格
+        #对数据进行清洗 ，取出多余空格
         for key in item.keys():
             if isinstance(item[key], str):
                 item[key] = item[key].strip()
@@ -967,7 +1033,7 @@ class DoubanSpider(Spider):
     def __init__(self, **kwargs: Any):
         options = webdriver.FirefoxOptions()
         options.add_argument('-headless')
-        self.start_urls = ['https://movie.douban.com/explore']
+        self.start_urls = [' https://movie.douban.com/explore ']
         self.driver = webdriver.Firefox(options=options)
         
 
@@ -1077,7 +1143,7 @@ Splash 成功安装后，最后就要安装 Splash 对应的 Python 库了，命
 
 1. setting.py 配置 splash 的 spider 中间件和下载中间件：
 ```python
-# 支持cache args
+# 支持 cache args
 SPIDER_MIDDLEWARES = {
   #  "Suningyigo.middlewares.SuningyigoSpiderMiddleware": 543,
    "scrapy_splash.SplashDeduplicateArgsMiddleware": 100,
@@ -1085,16 +1151,16 @@ SPIDER_MIDDLEWARES = {
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
-# 开启splash下载中间件
+# 开启 splash 下载中间件
 DOWNLOADER_MIDDLEWARES = {
   #  "Suningyigo.middlewares.SuningyigoDownloaderMiddleware": 543,
    "scrapy_splash.SplashCookiesMiddleware": 723,
    "scrapy_splash.SplashMiddleware": 725,
    "scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware": 810
 }
-"""Splash设置"""
-# 设置Splash服务器的地址
-SPLASH_URL = "http://192.168.99.100:8050"
+"""Splash 设置"""
+# 设置 Splash 服务器的地址
+SPLASH_URL = " http://192.168.99.100:8050"
 # 设置缓存
 HTTPCACHE_STORAGE = "scrapy_splash.SplashAwareFSCacheStorage"
 # 设置去重过滤器
@@ -1111,14 +1177,14 @@ class SuningyigoItem(scrapy.Item):
 ```
 3. 实现爬取解析逻辑：
 ```python
-#iphone_spider.py
+#iphone_spider .py
 from scrapy import Request
 from scrapy.spiders import Spider
 from Suningyigo.items import SuningyigoItem
 from scrapy_splash import SplashRequest
 
 
-# splash的语法都为：号,lua_script脚本中runjs函数的作用是执行js脚本将页面滚动到底部直到分页栏出现
+# splash 的语法都为：号,lua_script 脚本中 runjs 函数的作用是执行 js 脚本将页面滚动到底部直到分页栏出现
 lua_script = """
         function main(splash, args)
             splash:go(args.url)
@@ -1131,14 +1197,14 @@ lua_script = """
 
 class IphoneSpider(Spider):
     name = 'iphone'
-    allowed_domains = ['www.suning.com']
-    start_urls = ['https://search.suning.com/iphone/']
+    allowed_domains = [' www.suning.com ']
+    start_urls = [' https://search.suning.com/iphone/ ']
     current_page = 1
 
     def start_requests(self):
         yield SplashRequest(url=self.start_urls[0], callback=self.parse, endpoint='execute',args={
             'wait': 3,
-            'lua_source': lua_script, # 加载lua脚本: 执行模拟鼠标向下滑动
+            'lua_source': lua_script, # 加载 lua 脚本: 执行模拟鼠标向下滑动
             'timeout': 10, # 超时时间
             'images': 0 # 0 表示不返回图片
             },
@@ -1146,7 +1212,7 @@ class IphoneSpider(Spider):
 
     def parse(self, response):
         item = SuningyigoItem()
-        list_selector = response.css('div#product-list > ul > li')
+        list_selector = response.css('div #product -list > ul > li')
         for li in list_selector:
           try:
             item['price'] = li.css('div.res-info > div.price-box span::text').extract_first()
@@ -1158,15 +1224,15 @@ class IphoneSpider(Spider):
             print(e)
             continue
         # 获取下一页请求
-        total_page = int(response.css('div#bottom_pager > div > a:nth-last-child(3)::attr(pagenum)').extract_first())
-        next_page = response.css('div#bottom_pager > div > a#nextPage::attr(href)').extract_first().replace('/iphone/','')
+        total_page = int(response.css('div #bottom_pager > div > a:nth-last-child(3)::attr(pagenum)').extract_first())
+        next_page = response.css('div #bottom_pager > div > a #nextPage ::attr(href)').extract_first().replace('/iphone/','')
         next_page = response.urljoin(next_page)
         if next_page:
             self.current_page += 1
             if self.current_page <= total_page:
                 yield SplashRequest(url=next_page, callback=self.parse, endpoint='execute',args={
                           'wait': 3,
-                          'lua_source': lua_script, # 加载lua脚本: 执行模拟鼠标向下滑动
+                          'lua_source': lua_script, # 加载 lua 脚本: 执行模拟鼠标向下滑动
                           'timeout': 10, # 超时时间
                           'images': 0 # 0 表示不返回图片
                           },
@@ -1189,12 +1255,12 @@ class IphoneSpider(Spider):
 1. cookie 获取库
 ```sh
 pip install browsercookie #旧版
-pip install browser_cookie3 -U #新版（推荐）
+pip install browser_cookie3 -U #新版 （推荐）
 ```
 2. 密码加密库
 ```sh
 pip install pycryptodome #旧版
-pip install pycryptodomex #新版（推荐）
+pip install pycryptodomex #新版 （推荐）
 ```
 
 ### 逻辑实现
@@ -1222,7 +1288,7 @@ import browser_cookie3 as browsercookie
 class QidianLoginSpider(Spider):
     name = 'bookcase'
     allowed_domains = ['.qidian.com']
-    start_urls = ['https://my.qidian.com/bookcase']
+    start_urls = [' https://my.qidian.com/bookcase ']
 
     def __init__(self):
         cookie_jar = browsercookie.firefox() #共获取chrome浏刘览器中的cookie
@@ -1241,7 +1307,7 @@ class QidianLoginSpider(Spider):
     
     def parse(self, response):
         item = QidianloginItem()
-        tr_selector = response.css('table#shelfTable tbody tr')
+        tr_selector = response.css('table #shelfTable tbody tr')
         print(len(tr_selector))
         for tr in tr_selector:
             item['category'] = tr.css('td.col2 a.fen-category::text').extract_first()
@@ -1259,61 +1325,61 @@ class QidianLoginSpider(Spider):
     "category": "「仙侠」",
     "title": "仙父",
     "author": "言归正传",
-    "update_time": "7分钟前"
+    "update_time": "7 分钟前"
   },
   {
     "category": "「科幻」",
     "title": "说好军转民，这煤气罐什么鬼？",
     "author": "那年回响",
-    "update_time": "33分钟前"
+    "update_time": "33 分钟前"
   },
   {
     "category": "「玄幻」",
     "title": "宿命之环",
     "author": "爱潜水的乌贼",
-    "update_time": "55分钟前"
+    "update_time": "55 分钟前"
   },
   {
     "category": "「科幻」",
     "title": "黄昏分界",
     "author": "黑山老鬼",
-    "update_time": "1小时前"
+    "update_time": "1 小时前"
   },
   {
     "category": "「都市」",
     "title": "都重生了谁谈恋爱啊",
     "author": "错哪儿了",
-    "update_time": "3小时前"
+    "update_time": "3 小时前"
   },
   {
     "category": "「玄幻」",
     "title": "道爷要飞升",
     "author": "裴屠狗",
-    "update_time": "4小时前"
+    "update_time": "4 小时前"
   },
   {
     "category": "「历史」",
     "title": "晋末长剑",
     "author": "孤独麦客",
-    "update_time": "5小时前"
+    "update_time": "5 小时前"
   },
   {
     "category": "「都市」",
     "title": "逼我重生是吧",
     "author": "幼儿园一把手",
-    "update_time": "12小时前"
+    "update_time": "12 小时前"
   },
   {
     "category": "「轻小说」",
     "title": "我的超能力每周刷新",
     "author": "一片雪饼",
-    "update_time": "13小时前"
+    "update_time": "13 小时前"
   },
   {
     "category": "「轻小说」",
     "title": "不许没收我的人籍",
     "author": "可怜的夕夕",
-    "update_time": "16小时前"
+    "update_time": "16 小时前"
   }
 ]
 ```
@@ -1326,7 +1392,7 @@ class QidianLoginSpider(Spider):
 
 降低请求频率的做法，不仅仅是为了避开网站的侦测，更重要的是体现出了一个爬虫专家基本的素质。我们应该对能够获取免费数据心怀感恩，而不是恶意攻击网站，致其带来很大的带宽压力，甚至瘫痪。毕竟还是有许多网站，对爬虫还是比较宽容的。
 对于 Scrapy 框架来说，设置请求的频率（即下载延迟时间）非常简单。在配置文件 settings.py 中设置 DOWNLOAD DELAY 即可，以下代码设置下载延迟时间为 3 秒，即两次请求间隔 3 秒。
-`DOWNLOAD DELAY=3#设置下载延迟时间为3秒`
+`DOWNLOAD DELAY=3 #设置下载延迟时间为3秒 `
 
 ## 修改请求头
 
@@ -1355,7 +1421,7 @@ COOKIES ENABLED False
 
 1. **手动指定 user-agent 池**：
 ```python
-#setting.py
+#setting .py
 My_USER_AGENT = [
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36",
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36 OPR/52.0.2871.407",
@@ -1367,7 +1433,7 @@ DOWNLOADER_MIDDLEWARES = {
   #  "QiDianNovel.middlewares.QidiannovelDownloaderMiddleware": 543,
    "QiDianNovel.middlewares.QidiannovelUserAgentMiddleware": 543,
 }
-#middlewares.py
+#middlewares .py
 from scrapy.downloadermiddlewares.useragent import UserAgentMiddleware
 import random 
 from QiDianNovel.settings import My_USER_AGENT
@@ -1426,10 +1492,10 @@ pip install scrapy-user-agents scrapy-rotating-proxies
 ```
    - 添加 `ROTATING_PROXY_LIST`，并将其值设置为你的 HTTP 代理地址和端口号的列表
 ```python
-"""代理IP池"""
+"""代理 IP 池"""
 ROTATING_PROXY_LIST = [
-  "http://123.456.789.123:8888",
-  "http://456.789.123.456:8888",
+  " http://123.456.789.123:8888" ,
+  " http://456.789.123.456:8888" ,
 ]
 ```
 
@@ -1455,25 +1521,25 @@ from QiDianNovel.items import PDYProxyItem
 
 class QidianNovelSpider(Spider):
     name = "pdyproxy"  # 爬虫名称
-    allowed_domains = ["www.zdaye.com"]  # 允许爬取的域名
+    allowed_domains = [" www.zdaye.com" ]  # 允许爬取的域名
     
     # 爬虫起始页面
-    start_urls = ["https://www.zdaye.com/free/"]  # 爬虫起始页面
+    start_urls = [" https://www.zdaye.com/free/" ]  # 爬虫起始页面
     current_page = 1
 
-    def __init__(self, url="https://www.qidian.com/"):
-        self.test_url = url # 测试代理ip能否访问的站点
+    def __init__(self, url=" https://www.qidian.com/" ):
+        self.test_url = url # 测试代理 ip 能否访问的站点
 
-    # 自定义start_requests
+    # 自定义 start_requests
     def start_requests(self):
         for url in self.start_urls:
             yield Request(url=url, callback=self.parse, dont_filter=True)
 
     # 爬虫解析
     def parse(self, response):  # 解析函数
-        """获取免费代理ip列表"""
+        """获取免费代理 ip 列表"""
         # list_selector = response.xpath('//div[@class="book-mid-info"]')
-        list_selector = response.css('table#ipc tbody tr')
+        list_selector = response.css('table #ipc tbody tr')
         for one_selector in list_selector:
             try:
               # 返回小说信息
@@ -1482,7 +1548,7 @@ class QidianNovelSpider(Spider):
               item['port'] = one_selector.css('td:nth-child(2)::text').extract_first().strip()
               item['response_time'] = one_selector.css('td:nth-last-child(2) span::text').extract_first().strip()
               item['last_checked'] = one_selector.css('td:nth-child(5)::text').extract_first().strip()
-              # 共拼接形成一个完整的代理url
+              # 共拼接形成一个完整的代理 url
               url = "({}://{}:{}".format("http",item['ip'],item['port'])
               item["url"]=url
               yield Request(url=self.test_url,callback=self.test_proxy,
@@ -1495,7 +1561,7 @@ class QidianNovelSpider(Spider):
             except Exception as e:
                 print(e)
                 continue
-        # 获取下一页的url
+        # 获取下一页的 url
         """爬取前十页数据"""
         if self.current_page < 10:
           self.current_page += 1
@@ -1506,7 +1572,7 @@ class QidianNovelSpider(Spider):
 
 
 def test_proxy(self,response): #使用代理访问目标网站
-    """测试代理ip"""
+    """测试代理 ip"""
     print(response.meta["item"]["url"])
     yield response.meta["item"]
 
@@ -1522,7 +1588,7 @@ scrapy 使用静态代理 ip
  在 Scrapy 中使用静态代理 IP，可以通过在 middlewares 中添加一个 IP 代理中间件来实现。以下是一个简单的示例：
 
 ```python
-# 创建一个IP代理中间件
+# 创建一个 IP 代理中间件
 class ProxyMiddleware(object):
     def __init__(self, proxy_list):
         self.proxy_list = proxy_list
@@ -1535,7 +1601,7 @@ class ProxyMiddleware(object):
         )
 
     def process_request(self, request, spider):
-        # 从代理列表中随机选择一个代理IP
+        # 从代理列表中随机选择一个代理 IP
         proxy = random.choice(self.proxy_list)
         request.meta['proxy'] = f'http://{proxy}'
 ```
@@ -1543,12 +1609,12 @@ class ProxyMiddleware(object):
 在 settings.py 文件中添加以下配置：
 
 ```python
-# 启用自定义的IP代理中间件
+# 启用自定义的 IP 代理中间件
 DOWNLOADER_MIDDLEWARES = {
     'myproject.middlewares.ProxyMiddleware': 543,
 }
 
-# 静态代理IP列表
+# 静态代理 IP 列表
 PROXY_LIST = [
     'ip1:port1',
     'ip2:port2',
@@ -1561,7 +1627,7 @@ PROXY_LIST = [
 
 ### 动态代理（从代理池数据库中获取代理）
 
-代理地址存储于redis数据库中，数据类型为set集合，每一条数据类似：`http://xxx.xxx.xxx.xxx:port`
+代理地址存储于 redis 数据库中，数据类型为 set 集合，每一条数据类似：` http://xxx.xxx.xxx.xxx:port`
 下面举例说明如何动态随机获取代理池中的代理地址去请求目标访问地址：
 
 ```python
@@ -1578,28 +1644,28 @@ from QiDianNovel import settings
 
 class QidianNovelSpider(Spider):
     name = "qidian_novel_getProxy_byRedis"  # 爬虫名称
-    allowed_domains = ["www.qidian.com"]  # 允许爬取的域名
-    start_urls = ["https://www.qidian.com/rank/yuepiao/year2023-month12-page1/"]  # 爬虫起始页面
+    allowed_domains = [" www.qidian.com" ]  # 允许爬取的域名
+    start_urls = [" https://www.qidian.com/rank/yuepiao/year2023-month12-page1/" ]  # 爬虫起始页面
     current_page = 1 # 当前页码
 
     def get_proxy(self):
         """
-        获取代理ip
+        获取代理 ip
         :return:
         """
-        proxy = self.redis_client.srandmember("proxy_pool") # 从redis数据库代理池中随机获取一个代理ip
+        proxy = self.redis_client.srandmember("proxy_pool") # 从 redis 数据库代理池中随机获取一个代理 ip
         print("proxy:",proxy)
         return proxy
     
     def close_redis(self):
         """
-        爬虫结束时关闭redis连接
+        爬虫结束时关闭 redis 连接
         :param spider:
         :return:
         """
         self.redis_client.close()
    
-    # 初始化redis连接
+    # 初始化 redis 连接
     def __init__(self, *args, **kwargs):
         myredis = settings.Redis
         if myredis:
@@ -1619,9 +1685,9 @@ class QidianNovelSpider(Spider):
         self.logger.error(repr(failure))
         request = failure.request
         print("当前正在访问的请求："+request.url,repr(failure))
-        # 从redisi中删除无效的代理
+        # 从 redisi 中删除无效的代理
         self.redis_client.srem("proxy_pool",request.meta["proxy"])
-        # 再次随机获取一个代理ip重新发起原请求
+        # 再次随机获取一个代理 ip 重新发起原请求
         yield scrapy.Request(url=request.url, callback=self.parse, errback=self.errback, meta={"proxy":self.get_proxy(),
                           "dont_retry":True,
                           "download_timeout":10},
@@ -1629,7 +1695,7 @@ class QidianNovelSpider(Spider):
 
 
 
-    # 自定义start_requests
+    # 自定义 start_requests
     def start_requests(self):
         print("""--------------------开始爬取小说信息--------------------
  ██      ██          ██  ██           ████████         ██      ██               
@@ -1685,7 +1751,7 @@ class QidianNovelSpider(Spider):
             item['status'] = status
             item['abstract'] = abstract
             yield item
-            # 获取下一页的url
+            # 获取下一页的 url
             """爬取月票榜前十页数据"""
             if self.current_page < 10:
                 self.current_page += 1
