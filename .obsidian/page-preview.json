@@ -1,6 +1,6 @@
 {
   "search": false,
-  "preview": true,
   "editor": false,
-  "bookmarks": false
+  "bookmarks": false,
+  "preview": true
 }

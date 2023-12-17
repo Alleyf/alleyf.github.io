@@ -77,7 +77,7 @@ conda install -c scrapinghub scrapy #通过conda安装
 
 ---
 # Scrapy 快速上手
-## 起点中文网小说月票榜数据的爬取
+## 起点中文网小说月票榜数据的爬取（静态网页入门）
 ### 爬取流程
 在 spider 文件夹下创建的爬虫类按照一下流程进行爬取：
 ![|205](https://qnpicmap.fcsluck.top/pics/202312121421234.png)
@@ -378,7 +378,7 @@ class QidiannovelPipeline:
 
 # 实战案例
 
-## 链家网二手房信息
+## 链家网二手房信息（列表--->详情多页面数据传递爬取）
 
 ### 需求分析
 
@@ -775,7 +775,7 @@ Redis = {
 ![|975](https://qnpicmap.fcsluck.top/pics/202312151113905.png)
 
 ---
-## QQ 音乐榜单歌曲
+## QQ 音乐榜单歌曲（访问 json 数据接口解析）
 
 [流行指数榜 - QQ音乐-千万正版音乐海量无损曲库新歌热歌天天畅听的高品质音乐平台！](https://y.qq.com/n/ryqq/toplist/4)的数据以 js 动态渲染，可以直接采用开发者提供的 https://c.y.qq.com/v8/fcg-bin/fcg_v8_toplist_cp.fcg?&topid=4 访问该接口可以直接返回排行榜 `json` 数据。
 
@@ -869,7 +869,7 @@ http://npm.taobao.org/mirrors/chromedriver/
 3. 下载 [Download PhantomJS](https://phantomjs.org/download.html) 无头浏览器，提高爬虫效率
 
 ---
-## 爬取豆瓣中国大陆电影
+## 爬取豆瓣中国大陆电影（js 动态渲染或者需要手动下滑等操作网页）
 
 #### 需求分析
 豆瓣电影网址为 [选电影](https://movie.douban.com/explore) 。页面默认显示 20 条电影信息，将页面拉到最底端，会再加载 20 条信息。因此，如果想要查看更多电影，就必须不断下拉页面。本项目希望使用网络爬虫技术，将尽量多的热点新闻爬取下来保存于 CSV 文件中。
@@ -1055,9 +1055,9 @@ Splash 支持以下功能：
 输入如下命令，就可以拉取 Splash 镜像：
 `docker pull scrapinghub/splash`
 `docker run -d --name splash -p 8050:8050 scrapinghub/splash`
-打开浏览器输入 http:/192.168.199.100:8050 (Docker for Windows,是 http:/localhost:8050)
-安装
-
+或者 `docker run -d --name splash -p 8050:8050 --memory=2G  scrapinghub/splash --maxrss 500`
+打开浏览器输入 http:/192.168.99.100:8050 (Docker for Windows,是 http:/localhost:8050)
+docker toolbox 通过 `docker-machine ip default` 查看 ip
 4. Scrapy-Splash 的安装
 Splash 成功安装后，最后就要安装 Splash 对应的 Python 库了，命令如下：
 `pip install scrapy-splash`
@@ -1065,7 +1065,7 @@ Splash 成功安装后，最后就要安装 Splash 对应的 Python 库了，命
 ![|600](https://qnpicmap.fcsluck.top/pics/202312152155132.png)
 
 
-## 爬取苏宁易购中的 iphone 手机信息
+## 爬取苏宁易购中的 iphone 手机信息（利用 Splash 爬取 js 动态内容）
 
 ### 需求分析
 
@@ -1075,9 +1075,626 @@ Splash 成功安装后，最后就要安装 Splash 对应的 Python 库了，命
 
 ### 逻辑实现
 
+1. setting.py 配置 splash 的 spider 中间件和下载中间件：
+```python
+# 支持cache args
+SPIDER_MIDDLEWARES = {
+  #  "Suningyigo.middlewares.SuningyigoSpiderMiddleware": 543,
+   "scrapy_splash.SplashDeduplicateArgsMiddleware": 100,
+}
+
+# Enable or disable downloader middlewares
+# See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
+# 开启splash下载中间件
+DOWNLOADER_MIDDLEWARES = {
+  #  "Suningyigo.middlewares.SuningyigoDownloaderMiddleware": 543,
+   "scrapy_splash.SplashCookiesMiddleware": 723,
+   "scrapy_splash.SplashMiddleware": 725,
+   "scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware": 810
+}
+"""Splash设置"""
+# 设置Splash服务器的地址
+SPLASH_URL = "http://192.168.99.100:8050"
+# 设置缓存
+HTTPCACHE_STORAGE = "scrapy_splash.SplashAwareFSCacheStorage"
+# 设置去重过滤器
+DUPEFILTER_CLASS = "scrapy_splash.SplashAwareDupeFilter"
+```
+2. 定义数据结构：
+```python
+class SuningyigoItem(scrapy.Item):
+    # define the fields for your item here like:
+    title = scrapy.Field() # 标题
+    price = scrapy.Field() # 价格
+    comment_count = scrapy.Field() # 评论数
+    store_name = scrapy.Field() # 店铺名称
+```
+3. 实现爬取解析逻辑：
+```python
+#iphone_spider.py
+from scrapy import Request
+from scrapy.spiders import Spider
+from Suningyigo.items import SuningyigoItem
+from scrapy_splash import SplashRequest
+
+
+# splash的语法都为：号,lua_script脚本中runjs函数的作用是执行js脚本将页面滚动到底部直到分页栏出现
+lua_script = """
+        function main(splash, args)
+            splash:go(args.url)
+            splash:wait(args.wait)
+            splash:runjs('document.getElementById("bottom_pager").scrollIntoView(true)')
+            splash:wait(args.wait)
+            return splash:html()
+        end
+            """
+
+class IphoneSpider(Spider):
+    name = 'iphone'
+    allowed_domains = ['www.suning.com']
+    start_urls = ['https://search.suning.com/iphone/']
+    current_page = 1
+
+    def start_requests(self):
+        yield SplashRequest(url=self.start_urls[0], callback=self.parse, endpoint='execute',args={
+            'wait': 3,
+            'lua_source': lua_script, # 加载lua脚本: 执行模拟鼠标向下滑动
+            'timeout': 10, # 超时时间
+            'images': 0 # 0 表示不返回图片
+            },
+            cache_args=['lua_source'])
+
+    def parse(self, response):
+        item = SuningyigoItem()
+        list_selector = response.css('div#product-list > ul > li')
+        for li in list_selector:
+          try:
+            item['price'] = li.css('div.res-info > div.price-box span::text').extract_first()
+            item['title'] = li.css('div.res-info > div.title-selling-point > a::text').extract_first().strip()
+            item['comment_count'] = li.css('div.res-info > div.info-evaluate > i::text').extract_first()
+            item['store_name'] = li.css('div.res-info > div.store-stock > a::text').extract_first()
+            yield item
+          except Exception as e:
+            print(e)
+            continue
+        # 获取下一页请求
+        total_page = int(response.css('div#bottom_pager > div > a:nth-last-child(3)::attr(pagenum)').extract_first())
+        next_page = response.css('div#bottom_pager > div > a#nextPage::attr(href)').extract_first().replace('/iphone/','')
+        next_page = response.urljoin(next_page)
+        if next_page:
+            self.current_page += 1
+            if self.current_page <= total_page:
+                yield SplashRequest(url=next_page, callback=self.parse, endpoint='execute',args={
+                          'wait': 3,
+                          'lua_source': lua_script, # 加载lua脚本: 执行模拟鼠标向下滑动
+                          'timeout': 10, # 超时时间
+                          'images': 0 # 0 表示不返回图片
+                          },
+                          cache_args=['lua_source'])
+```
+
+由于 splash 在 scrapy 新版中被弃用，因此出现以下错误，连接 splash 超时，无法进行爬取：
+
+![|700](https://qnpicmap.fcsluck.top/pics/202312161129156.png)
+
+
+## 起点个人书架书籍爬取（携带 cookie 自动登录）
+
+### 需求分析
+
+图为登录起点中文网后，“我的书架”页面，地址为： https:/my.qidian.com/bookcase 。书架中罗列了用户加入书架的小说信息，有：类别、书名、更新时间、作者等。本项目的目标就是要将“我的书架”中的所有小说信息爬取下来。字段有：类别、书名、更新时间和作者。
+
+### 依赖安装
+
+1. cookie 获取库
+```sh
+pip install browsercookie #旧版
+pip install browser_cookie3 -U #新版（推荐）
+```
+2. 密码加密库
+```sh
+pip install pycryptodome #旧版
+pip install pycryptodomex #新版（推荐）
+```
+
+### 逻辑实现
+
+1. 数据结构定义：
+```python
+class QidianloginItem(scrapy.Item):
+    # define the fields for your item here like:
+    category = scrapy.Field() # 分类
+    title = scrapy.Field() # 标题
+    author = scrapy.Field() # 作者
+    update_time = scrapy.Field() # 更新时间
+```
+2. spider 爬取解析逻辑实现（**核心在于携带 cookie 免除登录，适合可以自动登录的网站**）：
+
+```python
+# -*- coding: utf-8 -*-
+from typing import Any, Iterable, Optional
+from scrapy import Request
+from scrapy.http import Request
+from scrapy.spiders import Spider
+from QidianLogin.items import QidianloginItem
+import browser_cookie3 as browsercookie
+
+class QidianLoginSpider(Spider):
+    name = 'bookcase'
+    allowed_domains = ['.qidian.com']
+    start_urls = ['https://my.qidian.com/bookcase']
+
+    def __init__(self):
+        cookie_jar = browsercookie.firefox() #共获取chrome浏刘览器中的cookie
+        self.cookies_dict = {}
+        #遍历chrome中所有的cookie
+        for cookie in cookie_jar:
+            # print(cookie)
+            if cookie.domain == '.qidian.com':
+                if cookie.name in ['_csrfToken','_ga','_ga_FZMMH98S83','_ga_PFYW0QLV3P','_gid','e1','e2','fu','Hm_lpvt_f00f67093ce2f38f215010b699629083'
+                                   ,'Hm_lvt_f00f67093ce2f38f215010b699629083','listStyle','newstatisticUUID','supportwebp','traffic_utm_referer','ywguid','ywkey','ywopenid']:
+                  self.cookies_dict[cookie.name] = cookie.value
+
+
+    def start_requests(self) -> Iterable[Request]:
+        yield Request(url=self.start_urls[0], cookies=self.cookies_dict, callback=self.parse)
+    
+    def parse(self, response):
+        item = QidianloginItem()
+        tr_selector = response.css('table#shelfTable tbody tr')
+        print(len(tr_selector))
+        for tr in tr_selector:
+            item['category'] = tr.css('td.col2 a.fen-category::text').extract_first()
+            item['title'] = tr.css('td.col2 span.shelf-table-name b a:nth-child(2)::text').extract_first()
+            item['author'] = tr.css('td.col4 a.shelf-table-author::text').extract_first()
+            item['update_time'] = tr.css('td:nth-child(3)::text').extract_first()
+            yield item  
+```
+
+爬取结果如下 json 文件所示：
+
+```json
+[
+  {
+    "category": "「仙侠」",
+    "title": "仙父",
+    "author": "言归正传",
+    "update_time": "7分钟前"
+  },
+  {
+    "category": "「科幻」",
+    "title": "说好军转民，这煤气罐什么鬼？",
+    "author": "那年回响",
+    "update_time": "33分钟前"
+  },
+  {
+    "category": "「玄幻」",
+    "title": "宿命之环",
+    "author": "爱潜水的乌贼",
+    "update_time": "55分钟前"
+  },
+  {
+    "category": "「科幻」",
+    "title": "黄昏分界",
+    "author": "黑山老鬼",
+    "update_time": "1小时前"
+  },
+  {
+    "category": "「都市」",
+    "title": "都重生了谁谈恋爱啊",
+    "author": "错哪儿了",
+    "update_time": "3小时前"
+  },
+  {
+    "category": "「玄幻」",
+    "title": "道爷要飞升",
+    "author": "裴屠狗",
+    "update_time": "4小时前"
+  },
+  {
+    "category": "「历史」",
+    "title": "晋末长剑",
+    "author": "孤独麦客",
+    "update_time": "5小时前"
+  },
+  {
+    "category": "「都市」",
+    "title": "逼我重生是吧",
+    "author": "幼儿园一把手",
+    "update_time": "12小时前"
+  },
+  {
+    "category": "「轻小说」",
+    "title": "我的超能力每周刷新",
+    "author": "一片雪饼",
+    "update_time": "13小时前"
+  },
+  {
+    "category": "「轻小说」",
+    "title": "不许没收我的人籍",
+    "author": "可怜的夕夕",
+    "update_time": "16小时前"
+  }
+]
+```
+
+---
+
+# 反爬虫反制措施
+
+## 降低请求频率
+
+降低请求频率的做法，不仅仅是为了避开网站的侦测，更重要的是体现出了一个爬虫专家基本的素质。我们应该对能够获取免费数据心怀感恩，而不是恶意攻击网站，致其带来很大的带宽压力，甚至瘫痪。毕竟还是有许多网站，对爬虫还是比较宽容的。
+对于 Scrapy 框架来说，设置请求的频率（即下载延迟时间）非常简单。在配置文件 settings.py 中设置 DOWNLOAD DELAY 即可，以下代码设置下载延迟时间为 3 秒，即两次请求间隔 3 秒。
+`DOWNLOAD DELAY=3#设置下载延迟时间为3秒`
+
+## 修改请求头
+
+网站可能会对 HTTP 请求头的每个属性做“是否具有人性”的检查。
+
+| 属性            | 内容                                                                                  |
+| --------------- | ------------------------------------------------------------------------------------- |
+| `Host`            | www.baidu.com                                                                         |
+| `Connection`      | Keep-Alive                                                                            |
+| `Accept`          | text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8 |
+| `User-Agent`      | Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:120.0) Gecko/20100101 Firefox/120.0      |
+| `Accept-Encoding` | gzip, deflate, br                                                                     |
+| `Accept-Language` | zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2                           | 
+
+## 禁用 Cookie
+
+有些网站会通过 Cookie 来发现爬虫的轨迹。网站会通过 Cookie 跟踪你的访问过程，如果发现了爬虫异常行为就会中断你的访问，比如极为快速地填写表单，或者浏览大量页面。虽然这些行为可以通过关闭并重新连接或者改变 IP 地址来伪装，但是如果 Cookie 暴露了你的身份，再多努力也是白费。因此，如果不是特殊需要（如需要保持持续登录的状态，Cookie 还是需要的)，可以禁用 Cookie,这样网站就无法通过 Cookie 来侦测到爬虫了。Scrapy 中禁止 Cookie 功能也非常简单，在配置文件 `settings.py` 中将 COOKIES_ENABLED 设置为 False 即可（默认是 True),如下代码所示：
+```python
+Disable cookies (enabled by default)
+COOKIES ENABLED False
+```
+
+## 伪装成随机浏览器
+
+前面我们都是通过 User-Agent 将爬虫伪装成固定浏览器，但是对于警觉性高的网站，会侦测到这一反常现象，即持续访问网站的是同一种浏览器。因此，每次请求时，可以随机伪装成不同类型的浏览器。Scrapy 中的中间件 UserAgentMiddleware 就是专门用于设置 User-Agent 的。
+
+1. **手动指定 user-agent 池**：
+```python
+#setting.py
+My_USER_AGENT = [
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36 OPR/52.0.2871.407",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36 Edg/58.0.2987.100",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36 Vivaldi/1.11.1117.40",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36 YaBrowser/18.10.2.1100 Yowser/2.5 Safari/537.36",
+]
+DOWNLOADER_MIDDLEWARES = {
+  #  "QiDianNovel.middlewares.QidiannovelDownloaderMiddleware": 543,
+   "QiDianNovel.middlewares.QidiannovelUserAgentMiddleware": 543,
+}
+#middlewares.py
+from scrapy.downloadermiddlewares.useragent import UserAgentMiddleware
+import random 
+from QiDianNovel.settings import My_USER_AGENT
+class QidiannovelUserAgentMiddleware(UserAgentMiddleware):
+    def process_request(self, request, spider):
+        agent = random.choice(list(My_USER_AGENT))
+        print("user-agent:",agent)
+        request.headers.setdefault("User_Agent",agent)
+```
+
+2. **使用随机生成 user-agent 的库**：
+
+* **fake-useragent**：该库提供了一个 `UserAgent` 类，可以生成随机的 user-agent。
+
+**fake-useragent** 库的使用方法如下：
+
+```python
+from scrapy.downloadermiddlewares.useragent import UserAgentMiddleware
+from fake_useragent import UserAgent
+class QidiannovelUserAgentMiddleware(UserAgentMiddleware):
+    def process_request(self, request, spider):
+        agent = UserAgent().random
+        print("user-agent:",agent)
+        request.headers.setdefault("User_Agent",agent)
+```
+
+fake-useragent 会随机给出一个 user-agent：
+`Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 Safari/537.36`
+
+## 更换 IP 地址
+
+建立网络爬虫的第一原则是：所有信息都可以伪造。你可以使用非本人的邮箱发送邮件，通过命令自动化控制鼠标的行为，或者通过某个浏览器耗费网站流量来吓唬网管。但是有一件事是不能作假的，那就是你的 IP 地址。封杀 IP 地址这种行为，也许是网站的最后一步棋，不过有效。为了避免 IP 地址被封杀的方法：HTTP 代理。
+
+ip 代理服务器分类：
+
+![](https://qnpicmap.fcsluck.top/pics/202312161726358.png)
+
+
+### 代理中间件（只需要设置代理地址即可）
+
+1. 安装依赖库：
+```sh
+pip install scrapy-user-agents scrapy-rotating-proxies
+```
+2. 获取 HTTP 代理地址和端口号：
+通过购买代理服务商的服务获取
+3. 配置 Scrapy 设置
+   - 添加 `DOWNLOADER_MIDDLEWARES` 代理中间件：
+```python
+     DOWNLOADER_MIDDLEWARES = {
+   "scrapy.contrib.downloaderniddleware.useragent.UserAgentMiddleware": None,
+   "scrapy_user_agents.middlewares.RandomUserAgentHiddleware": 400,
+   "scrapy_rotating_proxies.middlewares.RotatingProxyMiddleware": 610,
+   "scrapy_rotating_proxies.mdddlewares.BanDetectionMiddleware": 628.
+}
+```
+   - 添加 `ROTATING_PROXY_LIST`，并将其值设置为你的 HTTP 代理地址和端口号的列表
+```python
+"""代理IP池"""
+ROTATING_PROXY_LIST = [
+  "http://123.456.789.123:8888",
+  "http://456.789.123.456:8888",
+]
+```
+
+4. spider 爬取解析类应用代理,继承 `RotatingProxyMixin` 类
+```python
+from scrapy.spiders import CrawlerSpider
+from scrapy_rotating_proxies import RotatingProxyMixin
+
+class QidianNovelSpider(RotatingProxyMixin,CrawlerSpider):
+```
+
+
+### 免费代理获取
+
+爬取站大爷站点的免费 ip 代理：
+
+```python
+# -*- coding: utf-8 -*-
+from typing import Any, Optional
+from scrapy import Request
+from scrapy.spiders import Spider
+from QiDianNovel.items import PDYProxyItem
+
+class QidianNovelSpider(Spider):
+    name = "pdyproxy"  # 爬虫名称
+    allowed_domains = ["www.zdaye.com"]  # 允许爬取的域名
+    
+    # 爬虫起始页面
+    start_urls = ["https://www.zdaye.com/free/"]  # 爬虫起始页面
+    current_page = 1
+
+    def __init__(self, url="https://www.qidian.com/"):
+        self.test_url = url # 测试代理ip能否访问的站点
+
+    # 自定义start_requests
+    def start_requests(self):
+        for url in self.start_urls:
+            yield Request(url=url, callback=self.parse, dont_filter=True)
+
+    # 爬虫解析
+    def parse(self, response):  # 解析函数
+        """获取免费代理ip列表"""
+        # list_selector = response.xpath('//div[@class="book-mid-info"]')
+        list_selector = response.css('table#ipc tbody tr')
+        for one_selector in list_selector:
+            try:
+              # 返回小说信息
+              item = PDYProxyItem()  
+              item['ip'] = one_selector.css('td:nth-child(1)::text').extract_first().strip()
+              item['port'] = one_selector.css('td:nth-child(2)::text').extract_first().strip()
+              item['response_time'] = one_selector.css('td:nth-last-child(2) span::text').extract_first().strip()
+              item['last_checked'] = one_selector.css('td:nth-child(5)::text').extract_first().strip()
+              # 共拼接形成一个完整的代理url
+              url = "({}://{}:{}".format("http",item['ip'],item['port'])
+              item["url"]=url
+              yield Request(url=self.test_url,callback=self.test_proxy,
+                          errback=self.error_back,
+                          meta={"proxy":url,
+                          "dont_retry":True,
+                          "download_timeout":10,
+                          "item":item},
+                          dont_filter=True)
+            except Exception as e:
+                print(e)
+                continue
+        # 获取下一页的url
+        """爬取前十页数据"""
+        if self.current_page < 10:
+          self.current_page += 1
+          next_page_url = response.css('a[title="下一页"]::attr(href)').extract_first()
+          next_page_url = response.urljoin(next_page_url)
+          # next_page_url = self.start_urls[0] + next_page_url
+          yield Request(url=next_page_url, callback=self.parse)
+
+
+def test_proxy(self,response): #使用代理访问目标网站
+    """测试代理ip"""
+    print(response.meta["item"]["url"])
+    yield response.meta["item"]
+
+def error_back(self,failure):
+    """错误处理"""
+    self.logger.error((repr(failure)))
+```
+
+### 静态代理（指定 ip pool 写死）
+
+scrapy 使用静态代理 ip
+
+ 在 Scrapy 中使用静态代理 IP，可以通过在 middlewares 中添加一个 IP 代理中间件来实现。以下是一个简单的示例：
+
+```python
+# 创建一个IP代理中间件
+class ProxyMiddleware(object):
+    def __init__(self, proxy_list):
+        self.proxy_list = proxy_list
+
+    @classmethod
+    def from_crawler(cls, crawler):
+        settings = crawler.settings
+        return cls(
+            proxy_list=settings.get('PROXY_LIST')
+        )
+
+    def process_request(self, request, spider):
+        # 从代理列表中随机选择一个代理IP
+        proxy = random.choice(self.proxy_list)
+        request.meta['proxy'] = f'http://{proxy}'
+```
+
+在 settings.py 文件中添加以下配置：
+
+```python
+# 启用自定义的IP代理中间件
+DOWNLOADER_MIDDLEWARES = {
+    'myproject.middlewares.ProxyMiddleware': 543,
+}
+
+# 静态代理IP列表
+PROXY_LIST = [
+    'ip1:port1',
+    'ip2:port2',
+    ...
+]
+```
+
+这样当 Scrapy 发送请求时，会随机选择一个静态代理 IP 来发起请求。注意需要确保你拥有合法的静态代理 IP，并且能够成功连接到目标网站。
+
+
+### 动态代理（从代理池数据库中获取代理）
+
+代理地址存储于redis数据库中，数据类型为set集合，每一条数据类似：`http://xxx.xxx.xxx.xxx:port`
+下面举例说明如何动态随机获取代理池中的代理地址去请求目标访问地址：
+
+```python
+# -*- coding: utf-8 -*-
+import scrapy
+from scrapy.spiders import Spider
+# from scrapy.loader import ItemLoader
+from QiDianNovel.items import QidiannovelItem
+import json
+import redis
+# from scrapy_rotating_proxies import RotatingProxyMixin
+
+from QiDianNovel import settings
+
+class QidianNovelSpider(Spider):
+    name = "qidian_novel_getProxy_byRedis"  # 爬虫名称
+    allowed_domains = ["www.qidian.com"]  # 允许爬取的域名
+    start_urls = ["https://www.qidian.com/rank/yuepiao/year2023-month12-page1/"]  # 爬虫起始页面
+    current_page = 1 # 当前页码
+
+    def get_proxy(self):
+        """
+        获取代理ip
+        :return:
+        """
+        proxy = self.redis_client.srandmember("proxy_pool") # 从redis数据库代理池中随机获取一个代理ip
+        print("proxy:",proxy)
+        return proxy
+    
+    def close_redis(self):
+        """
+        爬虫结束时关闭redis连接
+        :param spider:
+        :return:
+        """
+        self.redis_client.close()
+   
+    # 初始化redis连接
+    def __init__(self, *args, **kwargs):
+        myredis = settings.Redis
+        if myredis:
+            host = myredis.get("REDIS_HOST","localhost")
+            port = myredis.get("REDIS_PORT",6379)
+            password = myredis.get("REDIS_PASSWORD","123456")
+            db = myredis.get("REDIS_DB",1)
+            self.redis_client = redis.StrictRedis(host=host,port=port,password=password,db=db,decode_responses=True)
+
+
+    def errback(self, failure):
+        """
+        错误回调函数
+        :param failure:
+        :return:
+        """
+        self.logger.error(repr(failure))
+        request = failure.request
+        print("当前正在访问的请求："+request.url,repr(failure))
+        # 从redisi中删除无效的代理
+        self.redis_client.srem("proxy_pool",request.meta["proxy"])
+        # 再次随机获取一个代理ip重新发起原请求
+        yield scrapy.Request(url=request.url, callback=self.parse, errback=self.errback, meta={"proxy":self.get_proxy(),
+                          "dont_retry":True,
+                          "download_timeout":10},
+                          dont_filter=True)
 
 
 
+    # 自定义start_requests
+    def start_requests(self):
+        print("""--------------------开始爬取小说信息--------------------
+ ██      ██          ██  ██           ████████         ██      ██               
+░██     ░██         ░██ ░██          ██░░░░░░  ██████ ░░      ░██               
+░██     ░██  █████  ░██ ░██  ██████ ░██       ░██░░░██ ██     ░██  █████  ██████
+░██████████ ██░░░██ ░██ ░██ ██░░░░██░█████████░██  ░██░██  ██████ ██░░░██░░██░░█
+░██░░░░░░██░███████ ░██ ░██░██   ░██░░░░░░░░██░██████ ░██ ██░░░██░███████ ░██ ░ 
+░██     ░██░██░░░░  ░██ ░██░██   ░██       ░██░██░░░  ░██░██  ░██░██░░░░  ░██   
+░██     ░██░░██████ ███ ███░░██████  ████████ ░██     ░██░░██████░░██████░███   
+░░      ░░  ░░░░░░ ░░░ ░░░  ░░░░░░  ░░░░░░░░  ░░      ░░  ░░░░░░  ░░░░░░ ░░░    
+              """)
+        yield scrapy.Request(url=self.start_urls[0], callback=self.parse, errback=self.errback , meta={"proxy":self.get_proxy(),
+                          "dont_retry":True,
+                          "download_timeout":10},
+                          dont_filter=True)
+
+    # 爬虫解析
+    def parse(self, response):  # 解析函数
+        """获取小说信息列表"""
+        print("""--------------------开始解析小说信息--------------------
+                                    //\\ .. //\\
+                                    //\((  ))/\\
+                                    /  < `' >  \\
+                                    \  /   \  /
+                                     \/     \/
+              """)
+        print("response:",response.text)
+        list_selector = response.css('div[class="book-mid-info"]')
+        print("list_selector:",list_selector)
+        for one_selector in list_selector:
+            # novel = ItemLoader(item=QidiannovelItem(), selector=one_selector)
+            # novel.add_css("title", 'h2 a::text')
+            # novel.add_css("author", 'p.author > a::text')
+            # novel.add_css("category", 'p.author > a::text')
+            # novel.add_css("status", 'p.author > span::text')
+            # novel.add_css("abstract", 'p.intro::text')
+            """获取小说标题、作者、分类、状态、摘要"""
+            # title = one_selector.xpath('h2/a/text()').extract()[0]
+            title = one_selector.css('h2 a::text').extract_first()
+            # author = one_selector.xpath('p[1]/a[1]/text()').extract()[0]
+            author = one_selector.css('p.author > a::text').extract_first()
+            # category = one_selector.xpath('p[1]/a[2]/text()').extract()[0]
+            category = one_selector.css('p.author > a::text').extract()[1]
+            # status = one_selector.xpath('p[1]/span/text()').extract()[0]
+            status = one_selector.css('p.author > span::text').extract_first()
+            # abstract = one_selector.xpath('p[2]/text()').extract()[0]
+            abstract = one_selector.css('p.intro::text').extract_first()
+            # 返回小说信息
+            item = QidiannovelItem()  # title, author, category, status, abstract
+            item['title'] = title
+            item['author'] = author
+            item['category'] = category
+            item['status'] = status
+            item['abstract'] = abstract
+            yield item
+            # 获取下一页的url
+            """爬取月票榜前十页数据"""
+            if self.current_page < 10:
+                self.current_page += 1
+                next_page_url = self.start_urls[0].replace('page1', 'page%d' % self.current_page)
+                yield scrapy.Request(url=next_page_url, callback=self.parse,errback=self.errback , meta={"proxy":self.get_proxy(),
+                          "dont_retry":True,
+                          "download_timeout":10},
+                          dont_filter=True)
+```
 
 
 
@@ -1091,3 +1708,4 @@ Splash 成功安装后，最后就要安装 Splash 对应的 Python 库了，命
 2. [预览Scrapy — Scrapy 文档](https://scrapy-16.readthedocs.io/zh-cn/latest/intro/overview.html)
 3. [Python爬虫⚡Python基础→项目实战案例：Scrapy框架、分布式爬虫、数据爬取与项目案例使用教程\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1Wj411B7b2)
 4. [小说月票排行榜单\_2023年12月起点小说月票排行-起点中文网](https://www.qidian.com/rank/yuepiao/year2023-month12-/)
+5. [傻瓜式教程超详细Scrapy设置代理方法-腾讯云开发者社区-腾讯云](https://cloud.tencent.com/developer/article/2315098)
