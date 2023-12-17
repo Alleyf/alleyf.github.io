@@ -2215,30 +2215,205 @@ Nacos 源码部分，我们主要阅读三部分：
 > 3. 服务消费者收到请求之后，使用 HostReactor 中提供的 `processServiceJSON` 解析消息，并*更新本地服务地址列表*。
 
 ---
-# 第六章、Nacos实现统一配置管理
+# 第六章、Nacos 实现统一配置管理
+
+在 Spring Boot 项目中，默认会提供一个 application.properties 或者 application.yml 文件，我们可以把一些全局性的配置或者需要动态维护的配置写入该文件，比如数据库连接、功能开关、限流阈值、服务器地址等。为了解决不同环境下服务连接配置等信息的差异，Spring Boot 还提供了基于 spring.profiles.active={profile}的机制来实现不同环境的切换。随着单体架构向服务化架构及微服务架构的演进，各个应用自己独立维护本地配置的方式开始显露出它的不足之处：
+
+> - 配置的动态更新：在实际应用中会有动态更新配置的需求，比如修改服务连接地址、限流的配置等。在传统模式下，需要手动修改配置文件并且重启应用才能生效，这种方式效率太低，重启也会导致服务暂时不可用。
+> - 配置集中式管理：在微服务架构中，某些核心服务为了保证高性能会部署上百个节点，如果在每个节点中都维护一个配置文件，一旦配置文件中的某个属性需要修改，可想而知，工作量是巨大的。
+> - 配置内容的安全性和权限：配置文件随着源代码统一提交到代码库中，容易造成生产环境配置信息的数据泄露。
+> - 不同部署环境下配置的管理：前面提到过通过 profile 机制来管理不同环境下的配置，这种方式对于日常维护来说比较烦琐。
+
+统一配置管理就是弥补上述不足的方法，简单来说，最基本的方法是把各个应用系统中的某些配置放在一个第三方中间件上进行统一维护。然后，对于统一配置中心上的数据的变更需要推送到相应的服务节点实现动态更新。所以在微服务架构中，配置中心也是一个核心组件。
 
 
+## Nacos 配置中心简介
+
+配置中心的开源解决方案很多，比如 ZooKeeper、Disconf、Apollo、Spring Cloud Config、QConf、Nacos 等。同样，不管是哪一种解决方案，它的核心功能是不会变的。
+Nacos 是 Alibaba 开源的中间件，前面针对 Nacos 实现服务注册与发现功能进行了详细的分析。在 Nacos 的架构图中有两个模块，分别是 **Config Service** 和 **Naming Service**。其中 Config Service 就是 Nacos 用于实现配置中心的核心模块，它实现了对配置的 CRUD、版本管理、灰度管理、监听管理、推送轨迹、聚合数据等功能。我们主要围绕 Nacos 中的 Config Service 模块实现配置中心的功能进行深度的分析。
+
+## Nacos 集成 Spring Boot 实现统一配置管理
+
+### 项目准备
+
+首先，创建一个基于 Spring Boot 的项目，并集成 Nacos 配置中心，操作步骤如下。
+- 创建一个 Spring Boot 工程 spring-boot-nacos-config。
+- 添加 Nacos Config 的 Jar 包依赖。
+```xml
+<dependency>
+	<groupId>com.alibaba.boot</groupId>
+	<artifactId>nacos-config-spring-boot-starter</artifactId>
+	<version>0.2.4</version>
+</dependency>
+```
+
+- 在 application.properties 中添加 Nacos Server 的地址。
+```properties
+nacos.config.server-addr=127.0.0.1:8848
+```
+
+- 创建 NacosConfigController 类，用于从 Nacos Server 动态读取配置。
+```java
+@NacosPropertySource(dataId = "example", autoRefreshed = true)  
+@RestController  
+public class NacosConfigController {  
+    @NacosValue(value = "${info:Local Hello World}", autoRefreshed = true)  
+    private String info;  
+  
+    @GetMapping("/config")  
+    public String get() {  
+        return info;  
+    }  
+}
+```
 
 
+> - `@NacosPropertySource`:用于加载 dataId 为 example 的配置源，autoRefreshed 表示开启自动更新。
+> - `@NacosValue`:设置属性的值，其中 info 表示 key,而 Local Hello World 代表默认值。也就是说，如果 key 不存在，则使用默认值。这是一种高可用的策略，在实际应用中，我们需要尽可能考虑到在配置中心不可用的情况下如何保证服务的可用性。
+
+### 启动 Nacos Server
+
+直接进入${NACOS_HOME}\\bin 目录，执行 sh startup.sh 启动 Nacos Server 即可。
+
+### 创建配置
+
+创建配置有两种方式：
+- 在 Nacos 控制台上创建
+- 使用 Open API 方式创建
+
+打开 nacos 控制台新建一个配置进行测试：
+
+![](https://qnpicmap.fcsluck.top/pics/202312171443783.png)
+
+> - Data ID: 表示 Nacos 中某个配置集的 ID,通常用于组织划分系统的配置集。
+> - Group: 表示配置所属的分组。
+> - 配置格式: 当前配置内容所遵循的格式。
 
 
+### 启动服务并测试
+
+执行 Spring Boot 项目的启动类：
+```java
+@SpringBootApplication  
+public class SpringBootNacosConfigApplication {  
+  
+    public static void main(String[] args) {  
+        SpringApplication.run(SpringBootNacosConfigApplication.class, args);  
+    }  
+  
+}
+```
+
+访问接口地址可以获得如下返回结果：
+`Nacos Server Data: Hello World` 
+
+## Spring Cloud Alibaba Nacos Config
+
+用过 Spring Cloud 的同学应该都知道，Spring Cloud Config 是 Spring Cloud 生态中的统一配置管理的组件，它为外部化配置提供了服务端和客户端支持，包含 Config Server 和 Config Client 两部分。而 Spring Cloud Alibaba Nacos Config 是 Config Server 和 Client 的替代方法。下面将演示如何基于 Spring Cloud 生态来集成 Nacos 实现配置中心。
+
+### Nacos Config 的基本应用
+
+- 创建 Spring Boot 项目，添加 spring-.cloud-starter 依赖。
+- 添加 Jar 包依赖。
+```xml
+<dependency>
+	<groupId>com.alibaba.cloud</groupId>
+	<artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+	<version>2.1.1.RELEASE</version>
+</dependency>
+```
+- 创建 `bootstrap.properties/yml` 文件，并在 bootstrap.properties 中添加*Nacos Server 的连接地址*。
+```properties
+spring.application.name=spring-cloud-nacos-config-sample
+spring.cloud.nacos.config.server-addr=127.0.0.1:8848
+spring.cloud.nacos.config.prefix=example
+```
+
+> [!NOTE] 配置说明
+> - spring.cloud.nacos.config.prefix 表示 *Nacos 配置中心上的 Data ID 的前缀*。
+> - spring.cloud.nacos.config.server-addr 设置 Nacos 配置中心的地址。如果地址是域名，配置的方式应该是域名:port,即便监听的端口是 80，也需要将 80 端口带上。
+
+> 需要注意，这些配置项是需要放在 bootstrap.properties 文件中的。在 Spring Boot 中有两种上下文配置，一种是 bootstrap,另外一种是 application。b**ootstrap 是应用程序的父上下文，也就是说 bootstrap 加载优先于 application**。由于在加载远程配置之前，需要读取 Nacos 配置中心的服务地址信息，所以 Nacos 服务地址等属性配置需要放在 bootstrap.properties 文件中。
+
+ - 在 Nacos Console 中创建如下配置。
+DataId:example
+Group:DEFAULT GROUP
+配置内容：info = Nacos Server Data : Hello World
+- 在启动类中，读取配置中心的数据。
+```java
+@SpringBootApplication
+public class SpringBootNacosConfigApplication {
+
+    public static void main(String[] args) {
+        ConfigurableApplicationContext context = SpringApplication.run(SpringBootNacosConfigApplication.class, args);
+    }
+}
+```
+
+- 启动应用程序进行测试，结果如下：
+`Nacos Server Data ':' Hello World`
+
+### 动态更新配置
+
+配置中心必然需要支持配置的动态更新，也就是在配置中心上修改配置的值之后，应用程序需要感知值的变化。下面我们通过一段代码来演示动态更新的实现：
+
+```java
+//从Environment中读取配置  
+while (true) {  
+    String info = context.getEnvironment().getProperty("info");  
+    System.out.println(info);  
+    Thread.sleep(2000);  
+}
+```
+
+![|950](https://qnpicmap.fcsluck.top/pics/202312171527770.png)
+
+### 基于 Data ID 配置 YAML 的文件扩展名
+
+Spring Cloud Alibaba Nacos Config 从 Nacos Config Server 中加载配置时，会匹配 Data ID。在 Spring Cloud Nacos 的实现中，Data ID 默认规则是 `${prefix}-${spring.profile.active}.${file-extension}`。
+- 在默认情况下，会去 Nacos 服务器上加载 Data ID 以 `${spring.application.name}.${file-extension:properties}` 为前缀的基础配置。比如在前面演示的代码中，我们在 bootstrap.properties 文件中配置了属性 `spring.application.name=spring-cloud-nacos-config-sample`,在不通过 spring.cloud.nacos.config.prefix 指定 Data ID 前缀时，**默认会读取 Nacos Config Server 中 Data ID 为 spring-cloud-nacos-config-sample.properties** 的配置信息。
+- 如果明确指定了 spring.cloud.nacos.config.prefix=example 属性，则会加载 Data ID-example 的配置。
+- spring.profile.active 表示**多环境支持**，在后续的章节中会详细说明。
+在实际应用中，如果大家用的是 YAML 格式的配置，Nacos Config 也提供了 YAML 配置格式的支持，执行步骤如下。
+- 在 bootstrap.properties 中声明 spring.cloud.nacos.config.file-extension=yaml。
+- 在 Nacos 控制台上增加如下配置。
+> Data ID:spring-cloud-nacos-config-sample.yaml
+> Group: DEFAULT_GROUP
+> 配置格式：YAML
+> 配置内容：info: yaml config type
+
+- 运行启动方法，获得如下结果
+
+### 不同环境的配置切换
+
+配置加载顺序：
+
+`${spring.appliation.name}.${file-extension:properties}` ---> `${spring.application.name}-${profile}.${file-extension:properties}`
+
+基于 SpringBoot 项目的多环境支持配置步骤如下：
+
+1. 在 resources 目录下根据不同环境创建不同的配置
+   - application-dev.yml
+   - application-test.yml
+   - application-prod.yml
+
+2. 定义一个 appliaction.yml 默认配置，在该配置中通过 `spring.profiles.active=${env}` 来指定当前使用哪个环境的配置，*如果${env}的值为 prod，表示使用 application-prod.yml*，也可以通过设置 VM options = -Dspring.profiles.active=prod 来指定使用的环境配置。
+
+在 Spring Cloud Alibaba Nacos Config 中加载 Nacos Config Server 中的配置时，不仅加载了 Data ID 以 `${spring.appliation.name}.${file-extension:properties}` 为前缀的**基础配置**，还会加载 Data ID 为 `${spring.application.name}-${profile}.${file-extension:properties}` 的**环境配置**，这样的方式为不同环境的切换提供了非常好的支持。配置方式和 SpringBoot 相同，具体实现步骤如下：
+
+3. 在 bootstrap.yml 中声明 spring.profiles.active=prod，该项必须声明
+4. 在 Nacos 控制台上新增两个 Data ID 的配置项
+	- spring-cloud-nacos-config-sample-dev.yaml,配置内容为info: dev env
+	- spring-cloud-nacos-config-sample-prod.yaml,配置内容为info: prod env
+
+5. 启动应用程序进行测试，结果如下所示：
+
+![](https://qnpicmap.fcsluck.top/pics/202312171716294.png)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+我们可以发现，基于Nacos Config实现不同环境的切换和本地配置的不同环境切换没有任何区别。
+如果我们需要切换到测试环境，只需要修改spring.profiles.active=test即可。不过这个属性的配置是写死在
+bootstrap.properties文件中的，修改起来显得很麻烦。通常的做法是通过-Dspring.profiles.active=${profile}参数来指定环境，以达到灵活切换的目的。
 
 
 
