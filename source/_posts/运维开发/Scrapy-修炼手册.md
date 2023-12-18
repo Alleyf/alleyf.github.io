@@ -51,6 +51,7 @@ for m in get_fibonacci_generator(10):
 Scrapy 是一个基于 Python 的开源网络爬虫框架，用于快速、高效地从网页中提取数据。它提供了一套强大的工具和库，帮助用户轻松地创建和管理网络爬虫。Scrapy 支持并发请求、异步处理、数据存储和导出等功能，同时还提供了丰富的文档和教程，方便用户学习和使用。
 Scrapy 的核心是一个引擎、调度器和下载器组成的架构，用户可以通过编写自定义的 Spider 来指定要抓取的网站和提取规则。同时，Scrapy 还提供了命令行工具和 Web 界面，方便用户监控爬取过程并进行调试。Scrapy 框架架构图如下图所示：
 ![|600](https://qnpicmap.fcsluck.top/pics/202312121028242.png)
+
  ```mermaid
 graph TD
 A[Scrapy] -->|Spider| B(Crawler)
@@ -61,6 +62,7 @@ C --> F(DupeFilter)
 C --> G(Requests Queue)
 D --> G
 ```
+
 其中 Spider 负责从网站上爬取数据，Crawler 负责协调整个爬虫的流程，Scheduler 负责管理请求队列，Downloader 负责下载网页内容，Pipeline 负责处理爬取到的数据，DupeFilter 负责过滤重复的请求。Requests Queue 用于存储待处理的请求。
 总而言之，Scrapy 是一个功能强大、灵活性高、易于使用的网络爬虫框架，适用于各种规模和类型的网络数据抓取任务。
 ## 安装
@@ -390,11 +392,11 @@ class QidiannovelPipeline:
 
 ![|500](https://qnpicmap.fcsluck.top/pics/202312172000836.png)
 
+### 文件下载
+#### 爬取 seaborn 案例源文件
 
-### 爬取seaborn案例源文件
-
-人工智能、大数据领域的学习者和开发者，对seaborn一定不会感到陌生。它是一个免费的、基于Python的数据统计可视化库，它提供的高级界面，能够绘制极富吸引力且信息丰富的统计图形。图中就是通过seaborn,展示的统计图形。
-爬取地址为：[Example gallery — seaborn 0.9.0 documentation](http://seaborn.pydata.org/archive/0.9/examples/)本项目要求实现将seaborn中所有应用案例的源文件下载到本地。
+人工智能、大数据领域的学习者和开发者，对 seaborn 一定不会感到陌生。它是一个免费的、基于 Python 的数据统计可视化库，它提供的高级界面，能够绘制极富吸引力且信息丰富的统计图形。图中就是通过 seaborn,展示的统计图形。
+爬取地址为：[Example gallery — seaborn 0.9.0 documentation](http://seaborn.pydata.org/archive/0.9/examples/) 本项目要求实现将 seaborn 中所有应用案例的源文件下载到本地。
 
 1. 定义数据结构：
 ```python
@@ -437,7 +439,243 @@ class SeabornSpider(Spider):
 
 3. 执行上述爬虫，由于网络问题，目标网站是外网，因此无法访问成功。
 
+#### 爬取国家法律法规数据库
 
+为了方便学习查阅国家法律法规，合理获取法条信息，用于学习研究，以[国家法律法规数据库](https://flk.npc.gov.cn/fl.html)为目标获取法律法规文件。
+
+1. 定义数据结构
+```python
+  class LawItem(scrapy.Item):
+    # define the fields for your item here like:
+    file_urls = scrapy.Field() # 下载的文件地址
+    files = scrapy.Field() # 下载的文件信息（文件名，下载路径，下载状态）
+    file_name = scrapy.Field() # 文件名
+    file_type = scrapy.Field() # 文件类型 
+```
+2. 定义文件下载保存 pipeline
+```python
+from scrapy.pipelines.files import FilesPipeline
+from scrapy import Request
+class SaveFilePipeline(FilesPipeline):
+    #重写设定文件名的方法，file_path返回的值就是文件名
+    def file_path(self, request, response=None, info=None, *, item=None):
+        file_name = item['file_name'] + '.' + item['file_type'] # 保存的文件名
+        folder_name = item['file_type'] # 保存的文件夹：根据文件类型分类保存
+        return folder_name + '/' + file_name
+```
+3. 修改全局配置文件
+```python
+   USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:120.0) Gecko/20100101 Firefox/120.0"
+ROBOTSTXT_OBEY = True
+"""文件下载存储路径"""
+FILES_STORE ='./laws'
+ITEM_PIPELINES = {
+   "Seaborn.pipelines.SaveFilePipeline": 300,
+}
+```
+4. 编写爬取解析逻辑
+```python
+from scrapy.http import Request,FormRequest
+from scrapy.spiders import Spider
+from Seaborn.items import LawItem
+import requests,re,json
+
+class LawSpider(Spider):
+    name ='law'
+    allowed_domains = ['flk.npc.gov.cn']
+    start_urls = ['https://flk.npc.gov.cn/api/?type=flfg&searchType=title%3Bvague&sortTr=f_bbrq_s%3Bdesc&gbrqStart=&gbrqEnd=&sxrqStart=&sxrqEnd=&sort=true&size=10&_=1702872631228']
+    proxy = 'http://127.0.0.1:7890'
+    concurrent_page = 1
+
+
+    def test_proxy(self,proxy):
+        try:
+            r = requests.get(url='http://httpbin.org/get',proxies={'http':proxy},timeout=10)
+            print(r.text)
+        except Exception as e:
+            print(e)
+
+    def start_requests(self):
+        first_url = self.start_urls[0]+"&page=%d"%self.concurrent_page
+        yield Request(url=self.start_urls[0], callback=self.parse,errback=self.errback,meta={'proxy':self.proxy,'timeout':10})
+    
+    def errback(self, failure):
+        print(failure)
+
+    def parse(self, response):
+        result = json.loads(response.text)['result']
+        data = result['data']
+        self.total_page = result['totalSizes']/10
+        for info in data:
+            file_name = info['title']
+            print(file_name)
+            id = info['id']
+            api_url = 'https://flk.npc.gov.cn/api/detail'
+            yield FormRequest(url=api_url,method="POST",formdata={'id': id},callback=self.parse_file,meta={'file_name':file_name,'proxy':self.proxy,'timeout':10},dont_filter=True)
+        # 继续下一页
+        self.concurrent_page += 1
+        if self.concurrent_page <= 2:
+            next_url = self.start_urls[0]+"&page=%d"%self.concurrent_page
+            yield Request(url=next_url, callback=self.parse,errback=self.errback,meta={'proxy':self.proxy,'timeout':10})
+
+
+    def parse_file(self, response):
+        item = LawItem()
+        item['file_name'] = response.meta['file_name']
+        json_text = response.text
+        law_file_dict = json.loads(json_text)
+        rel_url = law_file_dict['result']['body'][0]['path']
+        abs_url = 'https://wb.flk.npc.gov.cn'+rel_url
+        item['file_urls'] = [abs_url]
+        item['file_type'] = rel_url.split('.')[-1]
+        yield item
+```
+
+5. 爬取结果如下所示：
+
+![|500](https://qnpicmap.fcsluck.top/pics/202312181414603.png)
+
+
+### 图片下载
+
+Scrapy 还提供了图片管道 ImagesPipeline 用于实现图片的下载，也可以扩展 ImagesPipeline,实现自定义的图片管道功能。
+图片也是文件，下载图片的本质也是下载文件，ImagesPipeline 继承于 FilesPipeline,使用上和 FilesPipeline 基本一致，只是在使用的 item 字段和配置选项上有所差别，如下表所示。
+
+![](https://qnpicmap.fcsluck.top/pics/202312181422225.png)
+
+下载图片必须安装 Pillow 依赖才可以使用：
+```sh
+pip install Pillow
+```
+
+
+#### 爬取彼岸图网图片
+
+##### 需求分析
+
+1. 下载彼岸图网中不同主题的第一页图片
+2. 下载后的图片名称不变
+3. 相同主题的图片放于同一文件夹中，且文件夹按照主题命名
+4. 每张图片同时生成两张大小不同的缩略图
+5. 忽略尺寸过小的图片（高或宽低于 10 像素）
+
+
+##### 逻辑实现
+
+1. 数据结构定义：
+```python
+class BianimageItem(scrapy.Item):
+    # define the fields for your item here like:
+    image_urls = scrapy.Field() # 图片链接
+    images = scrapy.Field() # 图片信息
+    subject = scrapy.Field() # 图片主题   
+```
+
+2. 图片下载 pipeline 自定义设置：
+```python
+from scrapy.pipelines.images import ImagesPipeline
+class SaveImagePipeline(ImagesPipeline):
+        
+    def get_media_requests(self, item, info):
+        """传递图片主题"""
+        urls = ItemAdapter(item).get(self.images_urls_field, [])
+        return [Request(u, meta={'subject': item['subject']}) for u in urls]
+
+    def file_path(self, request, response=None, info=None, *, item=None):
+        """图片重命名"""
+        image_subject = request.meta['subject']
+        image_name = request.url.split('/')[-1]
+        return "%s/%s" % (image_subject, image_name)
+    
+    def thumb_path(self, request, thumb_id, response=None, info=None, *, item=None):
+        """设置缩略图路径及名称"""
+        image_subject = request.meta['subject']
+        image_name = request.url.split('/')[-1]
+        return "%s/%s/%s" % (image_subject,thumb_id,image_name)
+```
+
+3. 全局配置文件设置：
+```python
+USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:120.0) Gecko/20100101 Firefox/120.0"
+
+# Obey robots.txt rules
+ROBOTSTXT_OBEY = False
+
+# 图片下载路径
+IMAGES_STORE = "./images"
+# 设置缩略图大小
+IMAGES_THUMBS = {
+    "small": (50, 50),
+    "big": (270, 270),
+}
+# 设置图片最小尺寸
+IMAGES_MIN_HEIGHT = 20
+IMAGES_MIN_WIDTH = 20  
+ITEM_PIPELINES = {
+   "BianImage.pipelines.SaveImagePipeline": 300,
+}
+```
+
+4. 爬取解析逻辑：
+```python
+# -*- coding: utf-8 -*-
+from scrapy import Spider,Request
+from BianImage.items import BianimageItem
+
+class ImageSpider(Spider):
+    name = 'bianimage'
+    def start_requests(self):
+        url =  'https://pic.netbian.com'
+        yield Request(url, callback=self.parse_subject)
+    
+    def parse_subject(self, response): # 请求每个主题详情页
+        subjects = response.css('div.classify.clearfix a')
+        for subject in subjects:
+            subject_rel_url = subject.css('::attr(href)').extract_first()
+            subject_name = subject.css('::text').extract_first()
+            subject_url = response.urljoin(subject_rel_url)
+            yield Request(subject_url, callback=self.parse_image,meta={'subject_name':subject_name})
+    def parse_image(self, response): # 一个主题下的一整页图片,一个item中包含一个主题一页的所有图片
+        item = BianimageItem()
+        item['image_urls'] = []
+        item['subject'] = response.meta['subject_name']
+        image_li = response.css('div.slist ul li:not(.nextpage)')
+        for image in image_li:
+            image_rel_url = image.css('a img::attr(src)').extract_first()
+            image_url = response.urljoin(image_rel_url)
+            item['image_urls'].append(image_url)
+        yield item
+```
+
+5. 爬取结果如下所示：
+
+```json
+{
+    "image_urls": [
+      "https://pic.netbian.com/uploads/allimg/231216/234451-170274149161e1.jpg",
+      "https://pic.netbian.com/uploads/allimg/231216/234033-1702741233387f.jpg"
+      ···
+    ],
+    "subject": "4K美女",
+    "images": [
+      {
+        "url": "https://pic.netbian.com/uploads/allimg/231216/234451-170274149161e1.jpg",
+        "path": "4K美女/234451-170274149161e1.jpg",
+        "checksum": "14ce6e92e874a8ad7c80e639e9e6f367",
+        "status": "uptodate"
+      },
+      {
+        "url": "https://pic.netbian.com/uploads/allimg/231216/234033-1702741233387f.jpg",
+        "path": "4K美女/234033-1702741233387f.jpg",
+        "checksum": "4243357f475f2e820f4c1c2e5d330e51",
+        "status": "uptodate"
+      }
+      ···
+    ]
+  },
+```
+
+![](https://qnpicmap.fcsluck.top/pics/202312181656520.png)
 
 
 
@@ -1762,6 +2000,106 @@ class QidianNovelSpider(Spider):
                           dont_filter=True)
 ```
 
+---
+
+# Scrapy-Redis 实现分布式爬虫
+
+## 分布式爬虫爬取彼岸图网图片
+
+### 需求分析
+
+上一章我们实现了彼岸图网图片的下载，但是由于下载的图片量较大，单机独立执行的效率就会比较低。因此需要将其改造为分布式爬虫，实现多机联合，共同完成图片下载任务。
+
+
+### 方案设计
+
+![](https://qnpicmap.fcsluck.top/pics/202312181742418.png)
+
+![](https://qnpicmap.fcsluck.top/pics/202312182040531.png)
+
+
+### 逻辑实现
+
+修改原项目部分代码即可实现分布式多机对协作执行同一爬虫任务。
+
+1. 全局配置文件
+```python
+# 设置调度器
+SCHEDULER = "scrapy_redis.scheduler.Scheduler"
+# 设置去重过滤器
+DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
+# 设置连接的redis的URL
+REDIS_URL = "redis://8.130.88.159:6379/"   
+ITEM_PIPELINES = {
+  "scrapy_redis.pipelines.RedisPipeline": 200,
+  "BianImage.pipelines.SaveImagePipeline": 300,
+}
+```
+2. 爬取解析逻辑取消start_requests方法（**从redis中获取起始请求**）
+```python
+# -*- coding: utf-8 -*-
+from scrapy import Spider,Request
+from BianImage.items import BianimageItem
+from scrapy_redis.spiders import RedisSpider
+import re
+
+class ImageSpider(RedisSpider):
+    name = 'bianimage'
+    current_page = 1
+    # def start_requests(self): # 初始请求
+    #     url =  'https://pic.netbian.com'
+    #     yield Request(url, callback=self.parse_subject)
+    
+    def parse(self, response): # 请求每个主题详情页
+        subjects = response.css('div.classify.clearfix a')
+        for subject in subjects:
+            subject_rel_url = subject.css('::attr(href)').extract_first()
+            subject_name = subject.css('::text').extract_first()
+            subject_url = response.urljoin(subject_rel_url)
+            yield Request(subject_url, callback=self.parse_image,meta={'subject_name':subject_name})
+    def parse_image(self, response): # 一个主题下的一整页图片,一个item中包含一个主题一页的所有图片
+        item = BianimageItem()
+        item['image_urls'] = []
+        item['subject'] = response.meta['subject_name']
+        image_li = response.css('div.slist ul li:not(.nextpage)')
+        for image in image_li:
+            image_rel_url = image.css('a img::attr(src)').extract_first()
+            image_url = response.urljoin(image_rel_url)
+            item['image_urls'].append(image_url)
+        yield item
+        
+        # 继续获取下一页
+        next_rel_url = response.css('div.page a:nth-last-child(1)::attr(href)').extract_first()
+        total_page = response.css('div.page a:nth-last-child(2)::text').extract_first()
+        next_url = response.urljoin(next_rel_url)
+        self.current_page += 1
+        # if next_url and total_page and self.current_page <= int(total_page):
+        if next_url and total_page and self.current_page <= 5:
+            # print("下一页:"+next_url,"总页数："+total_page)
+            yield Request(next_url, callback=self.parse_image,meta={'subject_name':item['subject']})
+```
+
+3. 在redis中添加起始请求信息（键名为 `bianimage:start_urls` 的列表，先`lpush bianimage:start_urls 123`后在修改123为以下json字符串信息---> `LPUSH "bianimage:start_urls" "{\"url\":\"https://pic.netbian.com\",\"meta\":{\"job-id\":\"123img\",\"start-date\":\"dd/mm/yy\"}}"`）
+```json
+  {
+    "url": "https://pic.netbian.com",
+    "meta": {
+        "job-id": "123img",
+        "start-date": "dd/mm/yy"
+    }
+} 
+```
+
+
+![](https://qnpicmap.fcsluck.top/pics/202312182125893.png)
+
+每次启动爬虫后，`bianimage:start_urls` 键将会被消费掉不复存在，新增 `bianimage:items`和 `bianimage:duplicate`键记录条目和重复信息。
+
+*本地爬取结果，缺少部分分类，且已有分类不全*：
+![](https://qnpicmap.fcsluck.top/pics/202312182218379.png)
+
+*云端爬取结果*：
+![](https://qnpicmap.fcsluck.top/pics/202312182219620.png)
 
 
 
