@@ -165,14 +165,15 @@
       "cmdr:Obsidian Git: Open source control view": false,
       "omnisearch:Omnisearch": false,
       "table-editor-obsidian:Advanced Tables Toolbar": false,
-      "obsidian-excalidraw-plugin:新建绘图文件": false
+      "obsidian-excalidraw-plugin:新建绘图文件": false,
+      "hidden-folder-obsidian:显示文件夹": false
     }
   },
   "active": "c7373060a150f4e6",
   "lastOpenFiles": [
     "source/_posts/运维开发/各种环境配置.md",
-    "source/_posts/中间件和工具/Redis-缓存之美.md",
     "source/_posts/运维开发/Scrapy-修炼手册.md",
+    "source/_posts/中间件和工具/Redis-缓存之美.md",
     "source/_posts/中间件和工具/正则表达式-Regex.md",
     "source/_posts/后端开发/Spring Cloud Alibaba 微服务原理与实战-阅读心得.md",
     "source/_posts/后端开发/SpringBoot.md",

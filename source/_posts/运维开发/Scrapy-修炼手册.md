@@ -2002,23 +2002,24 @@ class QidianNovelSpider(Spider):
 
 ---
 
-# Scrapy-Redis 实现分布式爬虫
+# 分布式爬虫
+## Scrapy-Redis 实现分布式爬虫
 
-## 分布式爬虫爬取彼岸图网图片
+### 分布式爬虫爬取彼岸图网图片
 
-### 需求分析
+#### 需求分析
 
 上一章我们实现了彼岸图网图片的下载，但是由于下载的图片量较大，单机独立执行的效率就会比较低。因此需要将其改造为分布式爬虫，实现多机联合，共同完成图片下载任务。
 
 
-### 方案设计
+#### 方案设计
 
 ![](https://qnpicmap.fcsluck.top/pics/202312181742418.png)
 
 ![](https://qnpicmap.fcsluck.top/pics/202312182040531.png)
 
 
-### 逻辑实现
+#### 逻辑实现
 
 修改原项目部分代码即可实现分布式多机对协作执行同一爬虫任务。
 
@@ -2101,6 +2102,7 @@ class ImageSpider(RedisSpider):
 *云端爬取结果*：
 ![](https://qnpicmap.fcsluck.top/pics/202312182219620.png)
 
+---
 ## 使用 Scrapyd 部署分布式爬虫
 
 Scrapyd 是一个部署和管理 Scrapy 爬虫的工具，它可以通过一系列 HTTP 接口实现远程部署、启动、停止和删除爬虫程序。Scrapyd 还可以管理多个爬虫项目，每个项目可以上传多个版本，但只执行最新版。
@@ -2161,7 +2163,7 @@ daemonstatus.json = scrapyd.webservice.DaemonStatus
 ```
 
 4. 启动 Scrapyd 服务
-在 anaconda 命令行对应环境中输入 scrapyd,如果访问 http://localhost:6800 出现如下所示信息，说明 Scrapyd 服务启动成功。
+在 anaconda 命令行对应环境中输入 `scrapyd`,如果访问 http://localhost:6800 出现如下所示信息，说明 Scrapyd 服务启动成功。
 
 ![|500](https://qnpicmap.fcsluck.top/pics/202312191042297.png)
 
@@ -2190,10 +2192,12 @@ Scrapyd-Client 的功能主要有两个：
 使用 pip 命令安装 Scrapyd-Client。
 ```sh
 pip install scrapyd-client
+pip install pywin32
+#pip install scrapyd-deploy
 ```
 
 2. 推送项目到 scrapyd 中
-修改`scrapy.cfg` 文件配置推送目标地址：
+修改 `scrapy.cfg` 文件配置推送目标地址：
 ```python
 [settings]
 default = BianImage.settings
@@ -2201,17 +2205,257 @@ default = BianImage.settings
 [deploy]
 url = http://localhost:6800/
 project = BianImage
+
+#可以推送到多个安装了scrapyd的爬虫服务器
+[deploy:myslave1]
+url=http://192.168.0.108:6800/
+project = BianImage
+[deploy:myslave2]
+url=http://192.168.0.107:6800/
+project = BianImage
 ```
 在 anaconda 的 `master` 环境下在启动 scrapyd 后**切换到爬虫项目根目录**下执行以下命令：
 ```sh
-pip install scrapyd-deploy
+scrapyd-deploy #默认推送deploy项
+scrapyd-deploy myslave1/myslave2 #推送到其他爬虫服务器
 ```
 
+3. 启动爬虫项目
+   下面就可以使用 Scrapyd 提供的 HTTP 接口 schedule.json,启动爬虫了。命令如下：
+```sh
+curl http://127.0.0.1:6800/schedule.json -d project=BianImage -d spider=bianimage
+```
+执行命令后返回如下结果则表明启动成功：
+`{"node_name": "Alleyf", "status": "ok", "jobid": "2b7fa8179e4111ee8991004238aafa7c"}`
+![](https://qnpicmap.fcsluck.top/pics/202312191543963.png)
+
+![](https://qnpicmap.fcsluck.top/pics/202312191543569.png)
+
+---
+## 使用 Docker 部署分布式爬虫
+
+### 问题
+1. 环境搭建问题：每台服务器的系统环境各不相同，在配置 Python 和 Scrpayd 环境时，难免会遇到各种兼容性和版本冲突的问题。
+2. 服务启动问题：Scrapyd 服务需要手动启动，一旦目标服务器将其关闭，需要登录服务器，重新启动。
+
+### docker
+Docker 提供了一个公共的容器镜像存储库 Docker Hub,它包含了上百万个容器镜像，用户可以免费访问和共享这些公共镜像，也可以发布自己的镜像。我们可以通过 docker pull 命令，从 Docker Hub 中下载了公共的镜像 splash,然后就可以直接启动 Splash 服务了。Docker Hub 的网址为 https:/hub.docker.com/ ,如图所示。
 
 
+### 制作自己的 Docker 容器镜像
+制作容器镜像，需要用到三个文件，并且这三个文件都要处于同一个文件夹中。
+- `scrapyd.conf`
+该文件是 Scrapyd 的配置文件，Scrapyd 运行时会读取此文件，配置文件内容如下：
+```conf
+[scrapyd]
+eggs_dir    = eggs
+logs_dir    = logs
+items_dir   =
+jobs_to_keep = 5
+dbs_dir     = dbs
+max_proc    = 0
+max_proc_per_cpu = 4
+finished_to_keep = 100
+poll_interval = 5.0
+bind_address = 0.0.0.0
+http_port   = 6800
+username    =
+password    =
+prefix_header = x-forwarded-prefix
+debug       = off
+runner      = scrapyd.runner
+jobstorage  = scrapyd.jobstorage.MemoryJobStorage
+application = scrapyd.app.application
+launcher    = scrapyd.launcher.Launcher
+spiderqueue = scrapyd.spiderqueue.SqliteSpiderQueue
+webroot     = scrapyd.website.Root
+eggstorage  = scrapyd.eggstorage.FilesystemEggStorage
+
+[services]
+schedule.json     = scrapyd.webservice.Schedule
+cancel.json       = scrapyd.webservice.Cancel
+addversion.json   = scrapyd.webservice.AddVersion
+listprojects.json = scrapyd.webservice.ListProjects
+listversions.json = scrapyd.webservice.ListVersions
+listspiders.json  = scrapyd.webservice.ListSpiders
+delproject.json   = scrapyd.webservice.DeleteProject
+delversion.json   = scrapyd.webservice.DeleteVersion
+listjobs.json     = scrapyd.webservice.ListJobs
+daemonstatus.json = scrapyd.webservice.DaemonStatus
+```
+- `requirements.txt` 文件（文件名可以自定义）
+新建文件 requirements.txt,罗列 Scrapy 项目中要用到的库。
+可以安装 `pip install pipreqs` 使用 `pipreqs . --encoding=utf8 --force` 命令一键生成项目依赖文件，但是不一定全还需要自己补充修改。
+```txt
+scrapyd
+Pillow
+scrapyd-client
+itemadapter==0.8.0
+Scrapy==2.11.0
+scrapy_redis==0.7.3
+setuptools==63.2.0
+```
+- `Dockerfile`:新建文件 Dockerfile(注意，文件名没有后缀)。
+```Dockerfile
+FROM python:3.9.8
+ADD . /code
+WORKDIR /code
+COPY ./scrapyd.conf /etc/scrapyd/
+EXPOSE 6800
+RUN pip3 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
+RUN pip3 install -r requirements.txt
+CMD scrapyd
+```
+
+> 也可以用其他 pip 安装源（eg 豆瓣源： http://pypi.douban.com/simple ）
+
+> **参数说明**
+> Dockerfile 是一种由 Docker 用户创建的文本文件，其中包含了一系列用来生成镜像的命令。以下是一些常用参数的说明： 
+> 1. `FROM`： 定义了将会被使用的基础镜像，在开始编写 Dockerfile 前必须先指定。 
+> 2. `MAINTAINER`：定义了镜像创建者的信息。 
+> 3. `RUN`：在新创建的镜像层上执行命令，用于安装应用程序及其相关依赖。你可以使用多个 RUN 命令，Docker 会创建相应的镜像层。 
+> 4. `CMD`：为启动的容器指定默认要运行的程序，包括相关参数。 
+> 5. `EXPOSE`： 通知 Docker 服务端应该监听与运行该应用程序相关的网络端口。 
+> 6. `ENV`： 定义了将在镜像构建过程中被使用的环境变量。 
+> 7. `ADD` 和 `COPY`： 将文件从 Docker 宿主机复制/添加到镜像中。 `ADD` 具有处理在线 URL 和解压 tar 文件的功能。 
+> 8. `ENTRYPOINT`： 用于指定容器启动的程序及参数。 
+> 9. `VOLUME`： 是用来为镜像提供持久化数据功能，可以在容器间共享数据。 
+> 10. `WORKDIR`： 在镜像内设定一个工作目录，所有后续的操作（CMD、RUN、ENTRYPOINT、COPY、ADD）都会在该目录下进行。 以上是 Dockerfile 的主要使用参数，每一个参数对应的都是 Docker 镜像构建时的一个动作，多个参数能组合起来用于创建自定义 Docker 镜像。
 
 
+- 执行以下命令构建**docker 镜像文件**
+```sh
+docker build -t alleyf/scrapyd:0.0.1 .
+#说明：docker build -t username/respository:tag .
+```
+- 首先在命令行执行以下命令**登录 dockerhub**验证身份
+```sh
+docker login -u "username" -p "password" docker.io
+```
+- 上传镜像文件到 dockerhub 仓库
+```sh
+docker push alleyf/scrapyd:0.0.1
+```
 
+![|600](https://qnpicmap.fcsluck.top/pics/202312191735852.png)
+
+### 拉取运行镜像
+
+我们将自己制作的 Scrapyd 镜像上传到了 Docker Hub 中后，任何人都可以将该镜像拉取到本地，启用 Scrapyd 服务了。
+在爬虫服务器中，输入如下命令，将镜像拉取到本地：
+```sh
+docker pull alleyf/scrapyd:0.0.1
+```
+
+拉取镜像后执行以下命令启动容器：
+```sh
+docker run -d --name scrapyd -p 6800:6800 alleyf/scrapyd:0.0.1
+```
+
+启动容器后打开服务器安全组端口，访问 6800 端口即可看到以下页面：
+![|500](https://qnpicmap.fcsluck.top/pics/202312191914587.png)
+
+### 推送运行 scrapy 爬虫
+修改配置文件 scrapy.cfg 设置推送目标地址等信息：
+```python
+[settings]
+default = BianImage.settings
+
+# 本地环境
+[deploy]
+url = http://localhost:6800/
+project = BianImage
+
+# 阿里云环境
+[deploy:aliyun]
+url = http://xxxx:6800/
+project = BianImage
+```
+然后在本地执行以下命令将爬虫项目推送到 docker 容器所在的云端环境中：
+```sh
+scrapyd-deploy aliyun
+```
+接着执行以下命令启动云端刚刚推送的爬虫项目：
+```sh
+curl http://xxxx:6800/schedule.json -d project=BianImage -d spider=bianimage
+```
+运行成功后在 6800 端口 Jobs 中可以看到正在运行的爬虫项目：
+![](https://qnpicmap.fcsluck.top/pics/202312191918177.png)
+
+**docker 启动容器实例后，容器实例就相当于一个基础的 linux 环境，并且包含了 docker 镜像打包时添加的文件**，具体如下图所示：
+
+![](https://qnpicmap.fcsluck.top/pics/202312191950167.png)
+
+
+> `scrapy v2.10.0` 不再支持将蜘蛛参数传递给 scrapy.core.engine.ExecutionEngine 的 crawl()方法。也就是说**新版本将不在支持启动 scrapy-redis 爬虫后再向 redis 中添加初始请求信息，必须项目启动前添加，或者 scrapy 降级到 2.9.0 版本**
+
+
+---
+## 使用 Gerapy 管理分布式爬虫
+
+### 问题
+
+1. 制作 Python 和 Scrapyd 环境的 Docker 镜像，上传到 Docker Hub 中。
+2. 所有爬虫服务器中安装 Docker,并从 Docker Hub 中拉取镜像，启动 Scrapyd 服务。
+3. 使用 Scrapyd-Client 命令将 Scrpay:项目部署到爬虫服务器中。
+4. 使用 Scrapyd 命令管理爬虫，如启动、停止、删除爬虫，管理版本，查看日志等。
+
+### Gerapy 介绍
+Gerapy 是一款分布式爬虫管理框架，支持 Python3，基于 Scrapy、Scrapyd、Scrapyd-Client、Scrapy-Redis、Scrapyd-APl、Scrapy-Splash、Jinjia2、Django、Vue.js 开发。
+![|600](https://qnpicmap.fcsluck.top/pics/202312191956807.png)
+
+### Gerapy 使用方法
+1. 安装 Gerapy
+使用 pip 命令安装 Gerapy。
+```sh
+pip3 install -U gerapy
+```
+2. 初始化 Gerapy
+Gerapy 需要执行初始化工作，用于生成 Gerapy 的框架目录。首先，通过命令行定位到想要生成 Gerapy 框架的路径，如：`E:\gerapy`；然后，执行初始化命令，如下所示：
+```sh
+gerapy init
+```
+生成的目录结构如下：
+```c
+E:\gerapy
+├─logs
+└─projects
+```
+
+3. 初始化数据库
+Gerapy 需要在本地生成一个 SQLite 数据库，用于保存各个主机的配置信息、部署版本等。在 `E:\gerapy` 目录下，执行初始化数据库的命令，如下所示：
+
+```sh
+cd gerapy
+gerapy migrate
+```
+4. 创建管理员用户
+   使用以下命令新建一个管理原用户默认用户名和密码均为 `admin`
+```sh
+gerapy initadmin #用户名和密码：admin
+gerapy createsuperuser #新建自定义用户名和密码的用户
+```
+5. 启动 Gerapy 服务
+通过如下命令启动 Gerapy 服务
+```sh
+gerapy runserver
+```
+在浏览器中访问 http:/127.0.0.1:8000(或 http:/localhost:8000)，就可以访问 Gerapy 管理界面了。
+### 项目部署
+1. 主机管理 
+   首先在主机管理中添加分布式爬虫主机，配置和结果如下图所示：
+   ![|375](https://qnpicmap.fcsluck.top/pics/202312192045822.png)
+   ![](https://qnpicmap.fcsluck.top/pics/202312192046305.png)
+2. 项目管理
+   可以直接将本地项目拷贝到 `gerpy/projects/` 目录下刷新即可看到项目，也可以通过上传文件的方式添加爬虫项目。
+![](https://qnpicmap.fcsluck.top/pics/202312192048774.png)
+上传项目后，首先点击部署进去将项目打包为 egg 文件，便于后面部署到主机上运行，打包结果如下图所示：
+![](https://qnpicmap.fcsluck.top/pics/202312192050085.png)
+
+3. 启动项目
+   回到主机管理点击主机节点的调度，进去后可以看到运行和任务运行状态日志等信息，可以点击运行即可启动爬虫项目，结果如下图所示：
+   
+![](https://qnpicmap.fcsluck.top/pics/202312192043239.png)
 
 
 ---
