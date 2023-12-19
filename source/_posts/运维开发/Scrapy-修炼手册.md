@@ -2035,7 +2035,7 @@ ITEM_PIPELINES = {
   "BianImage.pipelines.SaveImagePipeline": 300,
 }
 ```
-2. 爬取解析逻辑取消start_requests方法（**从redis中获取起始请求**）
+2. 爬取解析逻辑取消 start_requests 方法（**从 redis 中获取起始请求**）
 ```python
 # -*- coding: utf-8 -*-
 from scrapy import Spider,Request
@@ -2079,7 +2079,7 @@ class ImageSpider(RedisSpider):
             yield Request(next_url, callback=self.parse_image,meta={'subject_name':item['subject']})
 ```
 
-3. 在redis中添加起始请求信息（键名为 `bianimage:start_urls` 的列表，先`lpush bianimage:start_urls 123`后在修改123为以下json字符串信息---> `LPUSH "bianimage:start_urls" "{\"url\":\"https://pic.netbian.com\",\"meta\":{\"job-id\":\"123img\",\"start-date\":\"dd/mm/yy\"}}"`）
+3. 在 redis 中添加起始请求信息（键名为 `bianimage:start_urls` 的列表，先 `lpush bianimage:start_urls 123` 后在修改 123 为以下 json 字符串信息---> `LPUSH "bianimage:start_urls" "{\"url\":\"https://pic.netbian.com\",\"meta\":{\"job-id\":\"123img\",\"start-date\":\"dd/mm/yy\"}}"`）
 ```json
   {
     "url": "https://pic.netbian.com",
@@ -2093,13 +2093,121 @@ class ImageSpider(RedisSpider):
 
 ![](https://qnpicmap.fcsluck.top/pics/202312182125893.png)
 
-每次启动爬虫后，`bianimage:start_urls` 键将会被消费掉不复存在，新增 `bianimage:items`和 `bianimage:duplicate`键记录条目和重复信息。
+每次启动爬虫后，`bianimage:start_urls` 键将会被消费掉不复存在，新增 `bianimage:items` 和 `bianimage:duplicate` 键记录条目和重复信息。
 
 *本地爬取结果，缺少部分分类，且已有分类不全*：
 ![](https://qnpicmap.fcsluck.top/pics/202312182218379.png)
 
 *云端爬取结果*：
 ![](https://qnpicmap.fcsluck.top/pics/202312182219620.png)
+
+## 使用 Scrapyd 部署分布式爬虫
+
+Scrapyd 是一个部署和管理 Scrapy 爬虫的工具，它可以通过一系列 HTTP 接口实现远程部署、启动、停止和删除爬虫程序。Scrapyd 还可以管理多个爬虫项目，每个项目可以上传多个版本，但只执行最新版。
+此外，Scrapyd 还提供了一个简洁的 Web 页面，用于监视正在运行的爬虫进程和查看访问日志，访问地址为 http://localhost:6800 
+
+### Scrapyd 的安装及运行
+
+1. 准备工作
+在安装 Scrapyd 之前，要确保爬虫服务器已经搭建好运行分布式爬虫需要的环境，这里安装的是：
+- Anaconda
+- Scrapy
+- Scrapy-Redis
+2. 安装 Scrapyd
+使用 pip 命令安装 Scrapyd
+```sh
+pip install scrapyd
+```
+
+3. 配置文件
+安装完 Scrapyd 后，需要在目录 `C:\scrapyd\` 中新建一个配置文件 scrapyd.conf。Scrapyd 在运行时会读取此路径下的配置文件，但 Scrapyd 不会自动生成 scrapyd.conf 文件，需要手动生成并添加内容。配置件的内容可以从官方文档（地址为 https://scrapyd.readthedocs..io/en/stable/config.html#config-example )中拷贝下来，再做简单的修改即可。
+
+```conf
+[scrapyd]
+eggs_dir    = eggs
+logs_dir    = logs
+items_dir   =
+jobs_to_keep = 5
+dbs_dir     = dbs
+max_proc    = 0
+max_proc_per_cpu = 4
+finished_to_keep = 100
+poll_interval = 5.0
+bind_address = 127.0.0.1
+http_port   = 6800
+username    =
+password    =
+prefix_header = x-forwarded-prefix
+debug       = off
+runner      = scrapyd.runner
+jobstorage  = scrapyd.jobstorage.MemoryJobStorage
+application = scrapyd.app.application
+launcher    = scrapyd.launcher.Launcher
+spiderqueue = scrapyd.spiderqueue.SqliteSpiderQueue
+webroot     = scrapyd.website.Root
+eggstorage  = scrapyd.eggstorage.FilesystemEggStorage
+
+[services]
+schedule.json     = scrapyd.webservice.Schedule
+cancel.json       = scrapyd.webservice.Cancel
+addversion.json   = scrapyd.webservice.AddVersion
+listprojects.json = scrapyd.webservice.ListProjects
+listversions.json = scrapyd.webservice.ListVersions
+listspiders.json  = scrapyd.webservice.ListSpiders
+delproject.json   = scrapyd.webservice.DeleteProject
+delversion.json   = scrapyd.webservice.DeleteVersion
+listjobs.json     = scrapyd.webservice.ListJobs
+daemonstatus.json = scrapyd.webservice.DaemonStatus
+```
+
+4. 启动 Scrapyd 服务
+在 anaconda 命令行对应环境中输入 scrapyd,如果访问 http://localhost:6800 出现如下所示信息，说明 Scrapyd 服务启动成功。
+
+![|500](https://qnpicmap.fcsluck.top/pics/202312191042297.png)
+
+![|500](https://qnpicmap.fcsluck.top/pics/202312191040373.png)
+
+
+### Scrapyd 功能介绍
+
+1. addversion.json:上传 Scrapy 项目或者更新项目版本到爬虫服务器
+2. daemonstatus.json:查看 Scrapyd 当前的服务和任务状态
+3. schedule.json:调度一个爬虫项目的运行
+4. cancel.json:取消爬虫任务
+5. listprojects..json:获取部署到 Scrapyd,服务上的项目列表
+6. listversions.json:获取某个项目的版本号列表
+7. listspiders.json:获取某项目最新版中所有 Spider 名称列表
+8. listjobs.json:获取某个正在等待、运行或运行完的任务列表
+9. delversion.json:删除某个项目的某个版本
+10. delproject.json:删除指定项目
+
+### 使用 Scrapyd-Clinet 批量部署
+
+Scrapyd-Client 的功能主要有两个：
+- 将项目打包成 egg 文件。
+- 将 egg 文件通过 Scrapyd 的 addversion.json 接口上传到目标服务器。
+1. 安装 Scrapyd-Client
+使用 pip 命令安装 Scrapyd-Client。
+```sh
+pip install scrapyd-client
+```
+
+2. 推送项目到 scrapyd 中
+修改`scrapy.cfg` 文件配置推送目标地址：
+```python
+[settings]
+default = BianImage.settings
+
+[deploy]
+url = http://localhost:6800/
+project = BianImage
+```
+在 anaconda 的 `master` 环境下在启动 scrapyd 后**切换到爬虫项目根目录**下执行以下命令：
+```sh
+pip install scrapyd-deploy
+```
+
+
 
 
 
