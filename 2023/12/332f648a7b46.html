@@ -27,7 +27,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://picsum.photos/800/250">
 <meta property="article:published_time" content="2023-12-11T06:24:44.000Z">
-<meta property="article:modified_time" content="2023-12-18T14:20:56.691Z">
+<meta property="article:modified_time" content="2023-12-19T04:17:14.214Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="python">
 <meta property="article:tag" content="Scrapy">
@@ -285,7 +285,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          61k 字
+          63k 字
         
       </span>
     
@@ -296,7 +296,7 @@
         
         
         
-          507 分钟
+          527 分钟
         
       </span>
     
@@ -1000,16 +1000,65 @@ D --&gt; G
 <ol>
 <li><p>全局配置文件</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 设置调度器</span><br>SCHEDULER = <span class="hljs-string">&quot;scrapy_redis.scheduler.Scheduler&quot;</span><br><span class="hljs-comment"># 设置去重过滤器</span><br>DUPEFILTER_CLASS = <span class="hljs-string">&quot;scrapy_redis.dupefilter.RFPDupeFilter&quot;</span><br><span class="hljs-comment"># 设置连接的redis的URL</span><br>REDIS_URL = <span class="hljs-string">&quot;redis://8.130.88.159:6379/&quot;</span>   <br>ITEM_PIPELINES = &#123;<br>  <span class="hljs-string">&quot;scrapy_redis.pipelines.RedisPipeline&quot;</span>: <span class="hljs-number">200</span>,<br>  <span class="hljs-string">&quot;BianImage.pipelines.SaveImagePipeline&quot;</span>: <span class="hljs-number">300</span>,<br>&#125;<br></code></pre></td></tr></table></figure></li>
-<li><p>爬取解析逻辑取消start_requests方法（<strong>从redis中获取起始请求</strong>）</p>
+<li><p>爬取解析逻辑取消 start_requests 方法（<strong>从 redis 中获取起始请求</strong>）</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># -*- coding: utf-8 -*-</span><br><span class="hljs-keyword">from</span> scrapy <span class="hljs-keyword">import</span> Spider,Request<br><span class="hljs-keyword">from</span> BianImage.items <span class="hljs-keyword">import</span> BianimageItem<br><span class="hljs-keyword">from</span> scrapy_redis.spiders <span class="hljs-keyword">import</span> RedisSpider<br><span class="hljs-keyword">import</span> re<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">ImageSpider</span>(<span class="hljs-title class_ inherited__">RedisSpider</span>):<br>    name = <span class="hljs-string">&#x27;bianimage&#x27;</span><br>    current_page = <span class="hljs-number">1</span><br>    <span class="hljs-comment"># def start_requests(self): # 初始请求</span><br>    <span class="hljs-comment">#     url =  &#x27;https://pic.netbian.com&#x27;</span><br>    <span class="hljs-comment">#     yield Request(url, callback=self.parse_subject)</span><br>    <br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">parse</span>(<span class="hljs-params">self, response</span>): <span class="hljs-comment"># 请求每个主题详情页</span><br>        subjects = response.css(<span class="hljs-string">&#x27;div.classify.clearfix a&#x27;</span>)<br>        <span class="hljs-keyword">for</span> subject <span class="hljs-keyword">in</span> subjects:<br>            subject_rel_url = subject.css(<span class="hljs-string">&#x27;::attr(href)&#x27;</span>).extract_first()<br>            subject_name = subject.css(<span class="hljs-string">&#x27;::text&#x27;</span>).extract_first()<br>            subject_url = response.urljoin(subject_rel_url)<br>            <span class="hljs-keyword">yield</span> Request(subject_url, callback=self.parse_image,meta=&#123;<span class="hljs-string">&#x27;subject_name&#x27;</span>:subject_name&#125;)<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">parse_image</span>(<span class="hljs-params">self, response</span>): <span class="hljs-comment"># 一个主题下的一整页图片,一个item中包含一个主题一页的所有图片</span><br>        item = BianimageItem()<br>        item[<span class="hljs-string">&#x27;image_urls&#x27;</span>] = []<br>        item[<span class="hljs-string">&#x27;subject&#x27;</span>] = response.meta[<span class="hljs-string">&#x27;subject_name&#x27;</span>]<br>        image_li = response.css(<span class="hljs-string">&#x27;div.slist ul li:not(.nextpage)&#x27;</span>)<br>        <span class="hljs-keyword">for</span> image <span class="hljs-keyword">in</span> image_li:<br>            image_rel_url = image.css(<span class="hljs-string">&#x27;a img::attr(src)&#x27;</span>).extract_first()<br>            image_url = response.urljoin(image_rel_url)<br>            item[<span class="hljs-string">&#x27;image_urls&#x27;</span>].append(image_url)<br>        <span class="hljs-keyword">yield</span> item<br>        <br>        <span class="hljs-comment"># 继续获取下一页</span><br>        next_rel_url = response.css(<span class="hljs-string">&#x27;div.page a:nth-last-child(1)::attr(href)&#x27;</span>).extract_first()<br>        total_page = response.css(<span class="hljs-string">&#x27;div.page a:nth-last-child(2)::text&#x27;</span>).extract_first()<br>        next_url = response.urljoin(next_rel_url)<br>        self.current_page += <span class="hljs-number">1</span><br>        <span class="hljs-comment"># if next_url and total_page and self.current_page &lt;= int(total_page):</span><br>        <span class="hljs-keyword">if</span> next_url <span class="hljs-keyword">and</span> total_page <span class="hljs-keyword">and</span> self.current_page &lt;= <span class="hljs-number">5</span>:<br>            <span class="hljs-comment"># print(&quot;下一页:&quot;+next_url,&quot;总页数：&quot;+total_page)</span><br>            <span class="hljs-keyword">yield</span> Request(next_url, callback=self.parse_image,meta=&#123;<span class="hljs-string">&#x27;subject_name&#x27;</span>:item[<span class="hljs-string">&#x27;subject&#x27;</span>]&#125;)<br></code></pre></td></tr></table></figure>
 </li>
-<li><p>在redis中添加起始请求信息（键名为 <code>bianimage:start_urls</code> 的列表，先<code>lpush bianimage:start_urls 123</code>后在修改123为以下json字符串信息—&gt; <code>LPUSH &quot;bianimage:start_urls&quot; &quot;&#123;\&quot;url\&quot;:\&quot;https://pic.netbian.com\&quot;,\&quot;meta\&quot;:&#123;\&quot;job-id\&quot;:\&quot;123img\&quot;,\&quot;start-date\&quot;:\&quot;dd/mm/yy\&quot;&#125;&#125;&quot;</code>）</p>
+<li><p>在 redis 中添加起始请求信息（键名为 <code>bianimage:start_urls</code> 的列表，先 <code>lpush bianimage:start_urls 123</code> 后在修改 123 为以下 json 字符串信息—&gt; <code>LPUSH &quot;bianimage:start_urls&quot; &quot;&#123;\&quot;url\&quot;:\&quot;https://pic.netbian.com\&quot;,\&quot;meta\&quot;:&#123;\&quot;job-id\&quot;:\&quot;123img\&quot;,\&quot;start-date\&quot;:\&quot;dd/mm/yy\&quot;&#125;&#125;&quot;</code>）</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs json">  <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;url&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;https://pic.netbian.com&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;meta&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;job-id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;123img&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;start-date&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;dd/mm/yy&quot;</span><br>    <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#125;</span> <br></code></pre></td></tr></table></figure></li>
 </ol>
 <p><img src="https://qnpicmap.fcsluck.top/pics/202312182125893.png" srcset="/img/loading.gif" lazyload></p>
-<p>每次启动爬虫后，<code>bianimage:start_urls</code> 键将会被消费掉不复存在，新增 <code>bianimage:items</code>和 <code>bianimage:duplicate</code>键记录条目和重复信息。</p>
+<p>每次启动爬虫后，<code>bianimage:start_urls</code> 键将会被消费掉不复存在，新增 <code>bianimage:items</code> 和 <code>bianimage:duplicate</code> 键记录条目和重复信息。</p>
 <p><em>本地爬取结果，缺少部分分类，且已有分类不全</em>：<br><img src="https://qnpicmap.fcsluck.top/pics/202312182218379.png" srcset="/img/loading.gif" lazyload></p>
 <p><em>云端爬取结果</em>：<br><img src="https://qnpicmap.fcsluck.top/pics/202312182219620.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="使用-Scrapyd-部署分布式爬虫"><a href="#使用-Scrapyd-部署分布式爬虫" class="headerlink" title="使用 Scrapyd 部署分布式爬虫"></a>使用 Scrapyd 部署分布式爬虫</h2><p>Scrapyd 是一个部署和管理 Scrapy 爬虫的工具，它可以通过一系列 HTTP 接口实现远程部署、启动、停止和删除爬虫程序。Scrapyd 还可以管理多个爬虫项目，每个项目可以上传多个版本，但只执行最新版。<br>此外，Scrapyd 还提供了一个简洁的 Web 页面，用于监视正在运行的爬虫进程和查看访问日志，访问地址为 <a target="_blank" rel="noopener" href="http://localhost:6800/">http://localhost:6800</a> </p>
+<h3 id="Scrapyd-的安装及运行"><a href="#Scrapyd-的安装及运行" class="headerlink" title="Scrapyd 的安装及运行"></a>Scrapyd 的安装及运行</h3><ol>
+<li>准备工作<br>在安装 Scrapyd 之前，要确保爬虫服务器已经搭建好运行分布式爬虫需要的环境，这里安装的是：</li>
+</ol>
+<ul>
+<li>Anaconda</li>
+<li>Scrapy</li>
+<li>Scrapy-Redis</li>
+</ul>
+<ol start="2">
+<li><p>安装 Scrapyd<br>使用 pip 命令安装 Scrapyd</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">pip install scrapyd<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>配置文件<br>安装完 Scrapyd 后，需要在目录 <code>C:\scrapyd\</code> 中新建一个配置文件 scrapyd.conf。Scrapyd 在运行时会读取此路径下的配置文件，但 Scrapyd 不会自动生成 scrapyd.conf 文件，需要手动生成并添加内容。配置件的内容可以从官方文档（地址为 <a target="_blank" rel="noopener" href="https://scrapyd.readthedocs..io/en/stable/config.html#config-example">https://scrapyd.readthedocs..io/en/stable/config.html#config-example</a> )中拷贝下来，再做简单的修改即可。</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs conf">[scrapyd]<br>eggs_dir    = eggs<br>logs_dir    = logs<br>items_dir   =<br>jobs_to_keep = 5<br>dbs_dir     = dbs<br>max_proc    = 0<br>max_proc_per_cpu = 4<br>finished_to_keep = 100<br>poll_interval = 5.0<br>bind_address = 127.0.0.1<br>http_port   = 6800<br>username    =<br>password    =<br>prefix_header = x-forwarded-prefix<br>debug       = off<br>runner      = scrapyd.runner<br>jobstorage  = scrapyd.jobstorage.MemoryJobStorage<br>application = scrapyd.app.application<br>launcher    = scrapyd.launcher.Launcher<br>spiderqueue = scrapyd.spiderqueue.SqliteSpiderQueue<br>webroot     = scrapyd.website.Root<br>eggstorage  = scrapyd.eggstorage.FilesystemEggStorage<br><br>[services]<br>schedule.json     = scrapyd.webservice.Schedule<br>cancel.json       = scrapyd.webservice.Cancel<br>addversion.json   = scrapyd.webservice.AddVersion<br>listprojects.json = scrapyd.webservice.ListProjects<br>listversions.json = scrapyd.webservice.ListVersions<br>listspiders.json  = scrapyd.webservice.ListSpiders<br>delproject.json   = scrapyd.webservice.DeleteProject<br>delversion.json   = scrapyd.webservice.DeleteVersion<br>listjobs.json     = scrapyd.webservice.ListJobs<br>daemonstatus.json = scrapyd.webservice.DaemonStatus<br></code></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>启动 Scrapyd 服务<br>在 anaconda 命令行对应环境中输入 scrapyd,如果访问 <a target="_blank" rel="noopener" href="http://localhost:6800/">http://localhost:6800</a> 出现如下所示信息，说明 Scrapyd 服务启动成功。</li>
+</ol>
+<p><img src="https://qnpicmap.fcsluck.top/pics/202312191042297.png" srcset="/img/loading.gif" lazyload alt="|500"></p>
+<p><img src="https://qnpicmap.fcsluck.top/pics/202312191040373.png" srcset="/img/loading.gif" lazyload alt="|500"></p>
+<h3 id="Scrapyd-功能介绍"><a href="#Scrapyd-功能介绍" class="headerlink" title="Scrapyd 功能介绍"></a>Scrapyd 功能介绍</h3><ol>
+<li>addversion.json:上传 Scrapy 项目或者更新项目版本到爬虫服务器</li>
+<li>daemonstatus.json:查看 Scrapyd 当前的服务和任务状态</li>
+<li>schedule.json:调度一个爬虫项目的运行</li>
+<li>cancel.json:取消爬虫任务</li>
+<li>listprojects..json:获取部署到 Scrapyd,服务上的项目列表</li>
+<li>listversions.json:获取某个项目的版本号列表</li>
+<li>listspiders.json:获取某项目最新版中所有 Spider 名称列表</li>
+<li>listjobs.json:获取某个正在等待、运行或运行完的任务列表</li>
+<li>delversion.json:删除某个项目的某个版本</li>
+<li>delproject.json:删除指定项目</li>
+</ol>
+<h3 id="使用-Scrapyd-Clinet-批量部署"><a href="#使用-Scrapyd-Clinet-批量部署" class="headerlink" title="使用 Scrapyd-Clinet 批量部署"></a>使用 Scrapyd-Clinet 批量部署</h3><p>Scrapyd-Client 的功能主要有两个：</p>
+<ul>
+<li>将项目打包成 egg 文件。</li>
+<li>将 egg 文件通过 Scrapyd 的 addversion.json 接口上传到目标服务器。</li>
+</ul>
+<ol>
+<li><p>安装 Scrapyd-Client<br>使用 pip 命令安装 Scrapyd-Client。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">pip install scrapyd-client<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>推送项目到 scrapyd 中<br>修改<code>scrapy.cfg</code> 文件配置推送目标地址：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python">[settings]<br>default = BianImage.settings<br><br>[deploy]<br>url = http://localhost:<span class="hljs-number">6800</span>/<br>project = BianImage<br></code></pre></td></tr></table></figure>
+<p>在 anaconda 的 <code>master</code> 环境下在启动 scrapyd 后<strong>切换到爬虫项目根目录</strong>下执行以下命令：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">pip install scrapyd-deploy<br></code></pre></td></tr></table></figure></li>
+</ol>
 <hr>
 <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
 <li><a target="_blank" rel="noopener" href="https://blog.csdn.net/W_chuanqi/article/details/127718762">Scrapy框架介绍-CSDN博客</a></li>
@@ -1086,7 +1135,7 @@ D --&gt; G
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2023年12月18日</div>
+          <div>2023年12月19日</div>
         </div>
       
       <div class="license-meta-item">
