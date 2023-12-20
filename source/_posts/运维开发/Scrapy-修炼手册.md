@@ -2457,6 +2457,465 @@ gerapy runserver
    
 ![](https://qnpicmap.fcsluck.top/pics/202312192043239.png)
 
+---
+
+# 抢票
+
+## 需求分析
+
+每到春节，相信大家最关注的莫过于如何抢到一张回家的火车票。以前，大家只能从黄牛手中高价购买，随着技术的发展，加上巨大的需求和利益驱动，近几年各种抢票软件便应运而生。由于抢票软件具有速度快、持续不间断、无人值守等优势，迅速成为大家抢票的神器。但是使用第三方提供的抢票软件也有诸多问题，如：个人账号有泄露风险（需要提供 12306 账号），所谓的加速包要收费等。既然这样，我们何不开发出款属于自己的抢票软件呢？
+为了简化开发流程、降低开发难度，我们不打算开发一款抢票 app 或桌面应用程序，而是使用自动化测试工具 Selenium,模拟用户使用浏览器登录 12306，执行购票的过程
+
+## 技术分析
+
+1. **自动登录**
+说到 12306 的用户登录，不得不说到它的验证码。如果你没有较广的知识面和极好的视力，估计 12306 的验证码会让你崩溃。12306 这样做的目的无非是想防止机器人程序的“骚扰”。因为这种连人都难以识别的验证码，机器人程序识别起来自然就更加困难了。
+从技术的角度来看，要实现自动识别验证码，主要有两个途径。
+- 借助于打码平台。但打码平台不仅收费，而且很多都是人工识别的。
+- 借助于深度学习算法。但实现难度大，识别准确率低，且超出了本书的知识范畴。
+鉴于以上问题，本项目决定让用户自主登录，即用户手动输入用户名、密码并选择验证码，点击“登录”按钮登录 12306。
+
+2. **自动发邮件**
+在购票成功后，系统需要自动发送一封邮件，提醒用户已购票成功，需尽快支付。如何实现自动发送邮件的功能呢？答案是 Python 的 yagmail 库。
+首先，使用 pip 命令安装 yagmail。
+```sh
+pip install yagmail
+```
+yagmaill 库安装成功后，就可以实现邮件发送功能了，主要有以下两个步骤。
+(1)连接邮件服务器。
+在发送邮件之前，需要确定一个发件人的邮箱服务器。使用 yagmail 的 SMTP 方法可以实现邮件服务器的连接，如以下代码所示：
+```python
+import yagmail
+yag yagmail.SMTP(user="user@163.com",password="1234",host='smtp.163.com')
+```
+
+## 项目实现
+
+![](https://qnpicmap.fcsluck.top/pics/202312201052056.png)
+
+
+1. 环境准备
+首先，要确保项目实现的开发和运行环境已经搭建完成，主要有：
+- Anaconda:Python 开发环境。
+- Scrapy:Scrapy 爬虫框架。
+- Selenium:自动化测试工具。
+- yagmail:邮件发送模块。
+2. 新建 Scrapy 项目
+使用命令新建一个名为 tickets 的 Scrapy.项目。
+```sh
+scrapy startproject tickets
+```
+3. 配置 settings.py 选项。
+	- 设置 robots 协议：ROBOTSTXT_OBEY 为 False
+	- 设置用户代理：USER AGENT
+	- 启用下载器中间件：TicketsDownloaderMiddleware
+
+4. 获取站点信息
+   使用爬虫访问全国站点信息并解析出站点名和站点编码保存为 txt 文件便于后续查询站点：
+```python
+from scrapy import Request
+from scrapy.spiders import Spider
+import re,os
+
+class SitesSpider(Spider):
+    name ='sites'
+
+    def start_requests(self):
+        url = 'https://kyfw.12306.cn/otn/resources/js/framework/station_name.js?station_version=1.9286'
+        yield Request(url=url, callback=self.parse)
+    
+    def parse(self, response):
+        """使用正则表达式获取站点名和站点代码"""
+        sites = re.findall(r'[\u4e00-\u9fa5]+\|[A-Z]+', response.text)
+        # 保存到文件
+        if(os.path.exists('sites.txt')):
+            os.remove('sites.txt')
+        with open('sites.txt', 'a', encoding='utf-8') as f:
+            for site in sites:
+                site_name, site_code = site.split('|')
+                f.write(site_name + ":" + site_code + '\n')
+```
+
+5. 实现站点处理类
+在抢票过程中，会多次用到与站点相关的功能，为此，可以专门为此设计一个站点处理的类该类的主要功能有：
+	- 从文件中获取站点信息。
+	- 判断站点是否存在。
+	- 根据站点名获取站点编号。
+
+```python
+import os
+
+class SiteCode:
+
+  def __init__(self):
+    self.sites = {} #存储站点名和站点编码
+    self.get_sites_from_file()
+
+  def get_sites_from_file(self):
+    """获取站点名和站点编码加载到站点字典中"""
+    # 判断文件是否存在
+    if not os.path.exists('sites.txt'):
+      print('sites.txt文件不存在')
+      return
+    with open('sites.txt','r',encoding='utf-8') as f:
+      for line in f.readlines():
+        line = line.strip()
+        if line:
+          site_name,site_code = line.split(':')
+          self.sites[site_name] = site_code 
+  
+  def is_exist(self,site_name):
+    """判断站点名是否存在"""
+    return site_name in self.sites
+  
+  def name2code(self,site_name):
+    """根据站点名获取站点编码"""
+    return self.sites[site_name]
+  ```
+
+
+6. 实现购票类
+购票功能是本项目的核心部分。纵观整个购票过程，需要实现以下几个功能。
+	- 读取用户购票信息。
+	- 通过 Chrome:浏览器访问 12306 的登录页面。
+	- 查询车票信息。
+	- 获取购买车票的详细信息。
+	- 选择乘客和席别。
+	- 核对预定的车票。
+	- 发送邮件。
+	- 保持登录状态。
+
+利用 selenium 自动填充用户名和密码进行登录，但是由于设置了反爬虫措施需要获取手机验证码登录，因此手动登录。
+```python
+      try:
+          WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.ID, "J-userName")))
+          username = self.driver.find_element_by_id("J-userName")
+          password = self.driver.find_element_by_id("J-password")
+          username.send_keys(self.tickets_info[0])
+          password.send_keys(self.tickets_info[1])
+          login_button = self.driver.find_element_by_id("login_button")
+          login_button.click()
+      except TimeoutException:
+          print("登录超时")
+```
+
+```python
+from selenium import webdriver#导入浏览器引擎模块
+from selenium.webdriver.common.by import By#导入定位方式
+from selenium.webdriver.support.ui import WebDriverWait#导入等待模块
+from selenium.webdriver.support import expected_conditions as EC#预期条件模块
+from selenium.common.exceptions import TimeoutException#异常模块
+from selenium.webdriver.support.select import Select#select
+from SiteCode import SiteCode #站点处理类
+import yagmail
+import time
+
+class Tickets(object):
+    def __init__(self):
+        # 1.声明火狐浏览器对象
+        self.driver = webdriver.Firefox()#创建浏览器对象
+        # 2.获取购票信息
+        self.tickets_info = []
+        self.read_tickets_from_file()#读取购票信息
+        # 3.生成站点处理类实例对象
+        self.sites = SiteCode()#站点处理类
+
+    def read_tickets_from_file(self):
+      with open('buy_tickets.txt','r',encoding='utf-8') as f:
+          for line in f.readlines():
+              self.tickets_info.append(line.strip("\n"))
+
+
+    def login(self):
+      self.driver.get("https://kyfw.12306.cn/otn/resources/login.html")
+      try:
+          WebDriverWait(self.driver, 100).until(EC.url_to_be("https://kyfw.12306.cn/otn/view/index.html"))
+      except TimeoutException:
+          print("登录超时")
+          return False
+      return True
+
+    def query_tickets(self,flag=0):
+      if flag == 0: #从其他页面跳转到本页面
+            # 1.跳转到查询页面
+            self.driver.get("https://kyfw.12306.cn/otn/leftTicket/init")
+            try:
+                # 2.设置出发地
+                from_station_input = WebDriverWait(self.driver,10).until(EC.presence_of_element_located((By.ID,"fromStationText")))
+                from_station_input.clear()
+                from_station_input.send_keys(self.tickets_info[0])
+                site_code = self.sites.name2code(self.tickets_info[0])
+                js = "document.getElementById(\"fromStation\").value=\""+site_code+"\";"
+                self.driver.execute_script(js)
+                # 3.设置目的地
+                time.sleep(1)
+                to_station_input = WebDriverWait(self.driver,10).until(EC.presence_of_element_located((By.ID,"toStationText")))
+                to_station_input.clear()
+                to_station_input.send_keys(self.tickets_info[1])
+                site_code = self.sites.name2code(self.tickets_info[1])
+                js = "document.getElementById(\"toStation\").value=\""+site_code+"\";"
+                self.driver.execute_script(js)
+                # 4.设置出发日期
+                WebDriverWait(self.driver,10).until(EC.presence_of_element_located((By.ID,"train_date")))
+                js = "document.getElementById(\"train_date\").value=\""+self.tickets_info[2]+"\";"
+                self.driver.execute_script(js)
+            except TimeoutException:
+                print("设置超时")
+                return False
+      try:
+            # 5. 点击查询按钮
+            WebDriverWait(self.driver,10).until(EC.element_to_be_clickable((By.ID,"query_ticket")))
+            self.driver.find_element(By.ID,"query_ticket").click()
+            # 等待查询结果
+            WebDriverWait(self.driver,10).until(EC.presence_of_element_located((By.XPATH,"//tbody[@id='queryLeftTable']/tr")))
+      except TimeoutException:
+          print("查询超时")
+          return False
+      return True
+
+
+    def get_ticket(self):
+      #1.获取所有车票信息的列表
+      tr_list = self.driver.find_elements(By.XPATH,".//tbody[@id='queryLeftTable']/tr[not(@datatran)]")
+      #2.定位到购买的车次，获取余票
+      for tr in tr_list:
+          train_number = tr.find_element(By.CLASS_NAME,"number").text
+          if train_number == self.tickets_info[3]:
+            # 获取预期座位余票
+            if self.tickets_info[4] in ["一等座"]:
+                left_seat = tr.find_element(By.XPATH,".//td[3]").text
+            elif self.tickets_info[4] in ["二等座","二等包座"]:
+                left_seat = tr.find_element(By.XPATH,".//td[4]").text
+            elif self.tickets_info[4] in ["硬卧","二等卧"]:
+                left_seat = tr.find_element(By.XPATH,".//td[8]").text
+            elif self.tickets_info[4] in ["硬座"]:
+                left_seat = tr.find_element(By.XPATH,".//td[10]").text
+            else:
+                return -1 #目标座位类型不存在
+            if left_seat == "--":#坐席不存在
+              return -1
+            #有票的情况
+            if left_seat == "有" or left_seat.isdigit():
+                orderButton = tr.find_element(By.CLASS_NAME,"btn72")
+                if orderButton.is_enabled():
+                  orderButton.click()
+                  return 1#点击了预定按钮
+                else:
+                  time.sleep(3)
+                  return -2#无票
+            #无票的情况
+            else:
+              time.sleep(3)
+              return -2#无票
+      return -3#车次不存在
+
+    def order_ticket(self):
+      try:
+          WebDriverWait(self.driver,100).until(EC.url_to_be("https://kyfw.12306.cn/otn/confirmPassenger/initDc"))
+          WebDriverWait(self.driver,100).until(EC.presence_of_element_located((By.XPATH,".//ul[@id='normal_passenger_id']/li")))
+      except TimeoutException:
+          print("预定超时")
+          return False
+      # 获取所有乘客信息
+      passenger_list = self.driver.find_elements(By.XPATH,".//ul[@id='normal_passenger_id']/li/label")
+      order_passenger_list = self.tickets_info[5].split(",")
+      # 勾选所有购票的乘客
+      amount = 0
+      for passenger in passenger_list:
+        name = passenger.text
+        if name in order_passenger_list:
+            amount += 1
+            passenger.click()
+            self.student_dialog()
+        else:
+            self.show_message("乘客信息不存在")
+            return False
+      #设置席别
+      SEAT_TYPE = {
+      "商务座":'9',#商务座
+      "特等座":'P',#特等座
+      "一等座":'M',#一等座
+      "二等座":'O',#二等座
+      "高级软卧":'6',#高级软卧
+      "软卧":'4',#软卧
+      "硬卧":'3',#硬卧
+      "软座":'2',#软座
+      "硬座":'1',#硬座
+      "无座":'1',#无座
+      }
+      #选择席别
+      for i in range(1,amount+1):
+        id ="seatType_%d"%i
+        value = SEAT_TYPE[self.tickets_info[4]]
+        Select(self.driver.find_element(By.ID,id)).select_by_value(value)
+      # 获取并提交订单的按钮
+      submitButton = self.driver.find_element(By.ID,"submitOrder_id")
+      submitButton.click()
+      return True
+    
+
+    #核对信息确认框
+    def confirm_dialog(self):
+      try:
+        #显式等待，直到核对订单确认框被加载
+        # WebDriverWait(self.driver,5).until(EC.presence_of_element_located((By.CLASS_NAME,'dhtmlx_wins_body_outer')))
+        #显式等待，直到确认按钮被加载
+        WebDriverWait(self.driver,10).until(EC.presence_of_element_located((By.ID,'qr_submit_id')))
+        time.sleep(5)#等待“确认”按钮可用
+        #点击“确认”按钮
+        ConButton = self.driver.find_element(By.ID,'qr_submit_id')
+        if ConButton.is_displayed():
+          ConButton.click()
+          return True
+        else:
+          return False
+      except TimeoutException:#抛出异常
+        return False
+
+    def send_mail(self):
+      try:
+        #显式等待，直到购票页面被加载（说明购票成功）
+        WebDriverWait(self.driver,100).until(EC.presence_of_element_located((By.CLASS_NAME,"i-lock")))
+        #连接邮件服务器
+        yag=yagmail.SMTP(user='alleyf@qq.com',#用户名
+        password="",#密码工
+        host='qq.mail.com',#主机
+        port="465")#端口
+        message = "亲，抢票成功，请在半个小时之内前往支付！"#发送邮件
+        yag.send(to=self.tickets_info[6],#目标邮箱地址（从buy tickets.txt中获取）
+        subject="12306购票成功通知",#邮件标题
+        contents=message)#邮件内容
+      except TimeoutException:
+        print("邮件发送失败")
+        return False
+      return True
+    
+    def keep_loading(self):
+      try:
+        #获取链接
+        link
+        self.driver.find_element(By.ID,'login_user')
+        #点击链接
+        link.click()
+      except:#抛出异常
+        pass
+
+    #显示提示框
+    def show_message(self,msg):
+      #调用js
+      self.driver.execute_script("alert(\""+msg+"\");")
+
+    def site_is_exist(self):
+      if False==self.sites.is_exist(self.tickets_info[0]):#判断出发地的站点是否存在
+        return -1
+      if False==self.sites.is_exist(self.tickets_info[1]):#判断目的地的站点是否存在
+        return -2
+      return 0
+
+    #关闭温馨提示框
+    def student_dialog(self):
+      try:
+        #显式等待，直到提示框的确认按钮被加载
+        WebDriverWait(self.driver,3).until(EC.presence_of_element_located((By.ID,'dialog_xsertcj_ok')))
+        #获取“确认”按钮
+        okButton = self.driver.find_element(By.ID,'dialog_xsertcj_ok')
+        #点击“确认”按钮
+        okButton.click()
+      except:#抛出异常
+        pass
+```
+
+7. 实现购票功能
+- 定义爬虫类：TicketsSpider
+```python
+from typing import Iterable
+from scrapy import Spider,Request
+from scrapy.http import Request
+
+class TicketsSpider(Spider):
+  name = 'tickets'
+
+  def start_requests(self) -> Iterable[Request]:
+    url = 'https://kyfw.12306.cn/otn/resources/login.html'
+    yield Request(url=url, callback=self.parse)
+  
+
+  def parse(self, response):
+    pass
+
+
+```
+- 实现抢票功能：下载器中间件源文件 middlewares.py
+
+```python
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+import time
+from tickets.Tickets import Tickets
+class TicketsDownloaderMiddleware:
+
+    def process_request(self, request, spider):
+        if spider.name == "tickets":
+            self.tickets = Tickets()
+            count = 0 # 计数器
+            flag = 0
+            # 1.判断出发地和目的地
+            if self.tickets.site_is_exist()==-1:
+                self.tickets.show_message("出发地的站点不存在")
+            elif self.tickets.site_is_exist()==-2:
+                self.tickets.show_message("目的地的站点不存在")
+            # 2.用户登录
+            if self.tickets.login():#登录成功
+                while True:
+                    count += 1
+                    # 3.查询票务信息
+                    if self.tickets.query_tickets(flag):
+                        # 4.获取预定车次信息
+                        ticket_info = self.tickets.get_ticket()
+                        if ticket_info == -1:
+                            self.tickets.show_message("坐席不存在")
+                            break
+                        elif ticket_info == -2:
+                            self.tickets.show_message("暂时无票，重新刷新获取票务信息")
+                            flag = 1
+                            if count%100==0:#点击用户名，保持登陆状态
+                                flag = 0
+                                self.tickets.keep_loading()
+                                self.tickets.show_message("已刷新"+str(count)+"次")
+                        elif ticket_info == -3:
+                            self.tickets.show_message("预定的车次不存在")
+                        else:#正常
+                            # 5.预定车票
+                            if self.tickets.order_ticket():
+                                self.tickets.show_message("预定成功")
+                                # 6.核对订单
+                                if self.tickets.confirm_dialog():
+                                    # 7.购票成功，发送邮件提醒付款
+                                    if self.tickets.send_email():
+                                        self.tickets.show_message("邮件发送成功")
+                                        break
+                                    else:
+                                        self.tickets.show_message("邮件发送失败")
+                            flag = 0
+                    else:
+                        flag = 0
+            else:
+                self.tickets.show_message("登录超时")
+            time.sleep(5)#购票成功后，暂停一段时间
+        return None
+```
+
+8. 优化项目
+- 选座功能
+部分车次提供选座功能，可在核对信息确认框中选取心仪的座位。
+- 特殊情况
+在购票过程中，还需要考虑各种特殊情况，针对这些特殊情况，做出相应的处理。
+	- 暂不办理业务：离开车时间不足半小时，会暂停办理购票业务。
+	- 有未处理的订单：只要有未处理的订单，就无法再办理购票业务。
+	- 取消次数过多：车票取消操作一天最多三次，否则当天无法在办理购票业务
+
+
 
 ---
 # 参考
