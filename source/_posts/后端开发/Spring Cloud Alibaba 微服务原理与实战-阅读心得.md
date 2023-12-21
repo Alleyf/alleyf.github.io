@@ -2403,17 +2403,94 @@ Spring Cloud Alibaba Nacos Config 从 Nacos Config Server 中加载配置时，�
 
 3. 在 bootstrap.yml 中声明 spring.profiles.active=prod，该项必须声明
 4. 在 Nacos 控制台上新增两个 Data ID 的配置项
-	- spring-cloud-nacos-config-sample-dev.yaml,配置内容为info: dev env
-	- spring-cloud-nacos-config-sample-prod.yaml,配置内容为info: prod env
+	- spring-cloud-nacos-config-sample-dev.yaml,配置内容为 info: dev env
+	- spring-cloud-nacos-config-sample-prod.yaml,配置内容为 info: prod env
 
 5. 启动应用程序进行测试，结果如下所示：
 
 ![](https://qnpicmap.fcsluck.top/pics/202312171716294.png)
 
 
-我们可以发现，基于Nacos Config实现不同环境的切换和本地配置的不同环境切换没有任何区别。
-如果我们需要切换到测试环境，只需要修改spring.profiles.active=test即可。不过这个属性的配置是写死在
-bootstrap.properties文件中的，修改起来显得很麻烦。通常的做法是通过-Dspring.profiles.active=${profile}参数来指定环境，以达到灵活切换的目的。
+我们可以发现，基于 Nacos Config 实现不同环境的切换和本地配置的不同环境切换没有任何区别。
+如果我们需要切换到测试环境，只需要修改 spring.profiles.active=test 即可。不过这个属性的配置是写死在
+bootstrap.properties 文件中的，修改起来显得很麻烦。通常的做法是通过-Dspring.profiles.active=${profile}参数来指定环境，以达到灵活切换的目的。
+
+### Nacos Config 自定义 Namespace 和 Group
+
+在前面的章节中使用 Nacos Config 时都采用默认的 Namespace:public 和 Group:DEFAULTGROUP,从名字我们基本能够猜测到它们的作用。我们看一下如图 6-2 所示的 Nacos 提供的数据模型，它的数据模型 Key 是由三元组来进行唯一确定的。
+其中 Namespace 用于解决多环境及多租户数据的隔离问题，比如在多套不同的环境下，可以根据指定的环境创建不同的 Namespace,实现多环境的隔离，或者在多用户的场景中，每个用户可以维护自己的 Namespace,.实现每个用户的配置数据和注册数据的隔离。需要注意的是，在不同的 Namespace 下，可以存在相同的 Group 或 Datald。
+
+![](https://qnpicmap.fcsluck.top/pics/202312211106546.png)
+
+
+Group 是 Nacos 中用来实现 Data ID 分组管理的机制，从图 6-2 可以看出，它可以实现不同 Service/Datald 的隔离。对于 Group 的用法，其实没有固定的规定，比如它可以实现不同环境下的 Datald 的分组，也可以实现不同应用或者组件下使用相同配置类型的分组，比如 database url。
+官方的建议是，通过 Namespace 来区分不同的环境，而 Group 可以专注在业务层面的数据分组。最重要的还是提前做好规划，对 Namespace 和 Group 进行基本的定调，避免使用上的混乱。
+了解了 Namespace 和 Group 的概念之后，下面讲一下 Spring Cloud Alibaba Nacos Config 如何实现自定义 Namespace 和 Group。
+**Namespace**
+- 在 Nacos 控制台的“命名空间”下，创建一个命名空间，如图 6-3 所示。
+- 在 bootstrap.yml 中添加如下配置：
+```yml
+spring:
+	cloud:
+		nacos:
+			config:
+				namespace: 567674b9-baf8-4a41-8e90-80c47925d527 #test命名空间
+```
+567674b9-baf8-4a41-8e90-80c47925d527 对应的是 Namespace 中命名空间的 ID,这个值可以在如下图所示的界面获取。
+![](https://qnpicmap.fcsluck.top/pics/202312211115425.png)
+
+**Group**
+Group 不需要提前创建，只需要在创建的时候指定，配置方法如下。
+- 在 Nacos 控制台的“新建配置”界面中指定配置所属的 Group,如图所示。
+  ![](https://qnpicmap.fcsluck.top/pics/202312211118801.png)
+- 在 bootstrap.yml 中添加如下配置即可：
+```yml
+spring:
+	cloud:
+		nacos:
+			config:
+				group: TEST_GROUP
+```
+**Data ID**
+Data ID 是 Nacos 中某个配置集的 ID,它通常用于组织划分系统的配置集。在前面的示例中我们都是通过配置文件的名字来进行配置的划分的，也可以通过 Java 包的全路径来划分，主要取决于 Data ID 的使用维度。
+Spring Cloud Alibaba Nacos Config 同样支持自动以 Data ID 配置。
+```
+spring.cloud.nacos.config.ext-config[0].data-id=example.yml
+spring.cloud.nacos.config.ext-config[0].group=DEFAULT_GROUP
+spring.cloud.nacos.config.ext-config[0].refresh=true
+```
+在上述配置中，可以看到：
+spring.cloud.nacos.config.ext-config[n]支持多个 Data ID 的扩展配置，包含三个属性：data-id、group、refresh。
+spring.cloud.nacos.config.ext-config[n].data-id 指定 Nacos Config 的 Data ID。
+spring.cloud.nacos.config.ext-config[n].group 指定 Data ID 所在的组。
+spring.cloud.nacos.config.ext-config[n].refresh 控制 Data ID 在配置发生变更时是否动态刷新，以感知最新的配置值。默认是 false,也就是不会实现动态刷新。
+在使用过程中，有两个注意点：
+> spring.cloud.nacos.config.ext-config[n].data-id 的值必须要带文件的扩展名，可以支持 properties、yaml、json 等。
+> spring.cloud.nacos.config.ext-config[n].data-id 配置多个 Data ID 时，n 的值越大，优先级越高。
+> 通过自定义扩展的 Data Id 配置，既可以解决多个应用的配置共享问题，在支持一个应用有多个配置文件的情况。需要注意的是，在 `ext-config` 和 `${spring.application.name}.${file-extension:properties}` 都存在的情况下，**优先级高的是后者**。
+
+### Nacos Config 实现原理解析
+
+在 Nacos Config 控制方面针对配置管理提供了4种操作。针对这4种操作，Nacos 提供了 `SDK` 及 `Open API` 的方式进行访问。
+需要注意的是，Nacos 服务端的数据存储默认采用的是 Derby 数据库，除此之外，支持 MySQL 数据库。如果需要修改，可以参考第 5 章中关于 Nacos 集群部署部分，其中涉及 MySQL 数据库的配置。
+
+![](https://qnpicmap.fcsluck.top/pics/202312211139579.png)
+
+**配置自动刷新原理**
+一般来说，客户端和服务端之间的数据交互无非两种方式：Pull 和 Push。
+- Pull 表示客户端从服务端主动拉取数据。
+- Push 表示服务端主动把数据推送到客户端。
+
+Nacos 采用的是 Pull 模式，但并不是简单的 Pull,而是一种长轮询机制，它结合 Push 和 Pull 两者的优势。客户端采用长轮询的方式定时发起 Pul 请求，去检查服务端配置信息是否发生了变更，如果发生了变更，则客户端会根据变更的数据获得最新的配置。所谓长轮询，是客户端发起轮询请求之后，服务端如果有配置发生变更，就直接返回，如下图所示。
+
+![](https://qnpicmap.fcsluck.top/pics/202312211140280.png)
+
+如果客户端发起 Pull 请求后，发现服务端的配置和客户端的配置是保持一致的，那么服务端会先“Hol”住这个请求，也就是服务端拿到这个连接之后在指定的时间段内一直不返回结果，直到这段时间内配置发生变化，服务端会把原来“Hold”住的请求进行返回，如上图所示，Ncos 服务端收到请求之后，先检查配置是否发生了变更，如果没有，则设置一个定时任务，延期 29.5s 执行，并且把当前的客户端长轮询连接加入 allSubs 队列。这时候有两种方式触发该连接结果的返回：
+- 第一种是在**等待 29.5s 后触发自动检查机制**，这时候不管配置有没有发生变化，都会把结果返回客户端。而 29.5s 就是这个长连接保持的时间。
+- 第二种是在 29.5s 内任意一个时刻，通过 Nacos Dashboard 或者 API 的方式对**配置进行了修改，这会触发一个事件机制**，监听到该事件的任务会遍历 allSubs 队列，找到发生变更的配置项对应的 ClientLongPolling 任务，将变更的数据通过该任务中的连接进行返回，就完成了一次“推送”操作。
+
+---
+# 第七章、基于 Sentinel 的微服务限流及熔断
 
 
 
@@ -2426,29 +2503,76 @@ bootstrap.properties文件中的，修改起来显得很麻烦。通常的做法
 
 
 ---
+# 第八章、分布式事务
+
+
+
+
+
+---
 # 第九章、RocketMQ 分布式消息通信
 
 
 在微服务架构下，一个业务服务会被拆分成多个微服务，各个服务之间相互通信完成整体的功能。系统间的通信协作通常有两种。
-
-- Http/RPC 通信：优点是通信实时，缺点是服务之间的耦合性高。
-- 消息通信：优点是降低了服务之间的耦合性，提高了系统的处理能力，缺点是通信非实时。
-
+- **Http/RPC 通信**：*优点是通信实时，缺点是服务之间的耦合性高。*
+- **消息通信**：*优点是降低了服务之间的耦合性，提高了系统的处理能力，缺点是通信非实时。*(**消息不要求实时处理、一份数据多处使用（不同消费方消费速度不同）的场景**)
 例如，用户交易完成后发送短信通知，假设交易耗时 5ms,发短信耗时 3ms。如果是实时通信，那么用户收到返回结果耗时 8s,但发短信是非核心步骤，可以从主流程中剥离出来异步处理，那么用户收到返回结果耗时就可以从 8ms 下降到 5ms。
-
 ## 初识 RocketMQ
 
-RocketMO 是一个低延迟、高可靠、可伸缩、易于使用的分布式消息中间件（也称消息队列），经过阿里巴巴多年双 I1 的验证，是由阿里巴巴开源捐献给 Apache 的顶级项目。RocketMQ 具有**高吞吐、低延迟、海量消息**堆积等优点，同时提供**顺序消息、事务消息、定时消息、消息重试与追踪**等功能，非常适合在电商、金融等领域广泛使用。
+[RocketMQ](https://rocketmq.apache.org/zh/version) 是一个低延迟、高可靠、可伸缩、易于使用的分布式消息中间件（也称消息队列），经过阿里巴巴多年双 I1 的验证，是由阿里巴巴开源捐献给 Apache 的顶级项目。RocketMQ 具有**高吞吐、低延迟、海量消息**堆积等优点，同时提供**顺序消息、事务消息、定时消息、消息重试与追踪**等功能，非常适合在电商、金融等领域广泛使用。
+![|700](https://rocketmq.apache.org/zh/assets/images/5.0%E9%80%9F%E8%A7%88-2-b3f035c1b5b2088396c2df5817ce487d.jpeg)
+
+
+### RocketMQ 基本概念
+
+- **生产者**(Producer)：也称为消息发布者，是 RocketMQ 中用来构建并传输消息到服务端的运行实体。
+- **主题**(Topic)：Topic 是 RocketMQ 中消息传输和存储的顶层容器，用于标识同一类业务逻辑的消息；Topic 是一个逻辑概念，并不是实际的消息容器；
+- **消息队列**(MessageQueue)：队列是 RocketMQ 中消息存储和传输的实际容器，也是消息的最小存储单元。
+- **消费者**(Consumer)：也称为消息订阅者，是 RocketMQ 中用来接收并处理消息的运行实体。
+- **消费者组**(ConsumerGroup)：消费者组是 RocketMQ 中承载多个消费行为一致的消费者负载均衡分组。和消费者不同，消费者组是一个逻辑概念。
+- **NameServer**：可以理解成注册中心，负责更新和发现 Broker 服务。在 NameServer 的集群中，NameServer 与 NameServer 之间是没有任何通信的，它是无状态的。
+- **Broker**：可以理解为消息中转角色，负责消息的存储和转发，接收生产者产生的消息并持久化消息；当用户发送的消息被发送到 Broker 时，Broker 会将消息转发到与之关联的 Topic 中，以便让更多的接收者进行处理。
+
+### 主流消息队列
+
+![](https://qnpicmap.fcsluck.top/pics/202312211724864.png)
+
+#### 数据磁盘组织的几种模型
+
+![](https://qnpicmap.fcsluck.top/pics/202312211740855.png)
+
+#### 消息队列核心模型
+
+![](https://qnpicmap.fcsluck.top/pics/202312211733980.png)
+
+
+
+#### 推/拉模型区别
+
+![](https://qnpicmap.fcsluck.top/pics/202312211742017.png)
+
+
+#### 消费者消费模型(1:N:M)
+
+![](https://qnpicmap.fcsluck.top/pics/202312211745205.png)
+
+**消费者组**：为提高消费效率、引入消费者组，发布订阅时，以消费者组/订阅作为单位。offset 是以(*group+topic+partition*)为单位维护。*组间广播、组内单播*
+
+#### kafka 和 RocketMQ 数据组织对比
+
+![](https://qnpicmap.fcsluck.top/pics/202312211750844.png)
+
+
 
 ### RocketMQ 的应用场景
 
 RocketMO 的应用场景如下。
-- 削峰填谷：诸如秒杀、抢红包、企业开门红等大型活动皆会带来较高的流量脉冲，很可能因没做相应的保护而导致系统超负荷甚至崩溃，或因限制太过导致请求大量失败而影响用户体验，RocketMO 可提供削峰填谷的服务来解决这些问题。
-- 异步解耦：交易系统作为淘宝/天猫主站最核心的系统，每笔交易订单数据的产生会引起几百个下游业务系统的关注，包括物流、购物车、积分、流计算分析等，整体业务系统庞大而且复杂，RocketMQ 可实现异步通信和应用解耦，确保主站业务的连续性。
-- 顺序收发：细数一下，日常需要保证顺序的应用场景非常多，例如证券交易过程中的时间优先原则，交易系统中的订单创建、支付、退款等流程，航班中的旅客登机消息处理等。与先进先出(First In First Out,缩写 FIFO)原理类似，RocketMQ 提供的顺序消息即保证消息的 FIFO。
-- 分布式事务一致性：交易系统、红包等场景需要确保数据的最终一致性，大量引入 RocketMQ 的分布式事务，既可以实现系统之间的解耦，又可以保证最终的数据一致性。
-- 大数据分析：数据在“流动”中产生价值，传统数据分析大都基于批量计算模型，无法做到实时的数据分析，利用 RocketMQ 与流式计算引擎相结合，可以很方便地实现对业务数据进行实时分析。
-- 分布式缓存同步：天猫双 11 大促，各个分会场琳琅满目的商品需要实时感知价格的变化，大量并发访问会导致会场页面响应时间长，集中式缓存因为带宽瓶颈限制商品变更的访问流量，通过 RocketMQ 构建分布式缓存，可实时通知商品数据的变化。
+- **削峰填谷**：诸如秒杀、抢红包、企业开门红等大型活动皆会带来较高的流量脉冲，很可能因没做相应的保护而导致系统超负荷甚至崩溃，或因限制太过导致请求大量失败而影响用户体验，RocketMO 可提供削峰填谷的服务来解决这些问题。
+- **异步解耦**：交易系统作为淘宝/天猫主站最核心的系统，每笔交易订单数据的产生会引起几百个下游业务系统的关注，包括物流、购物车、积分、流计算分析等，整体业务系统庞大而且复杂，RocketMQ 可实现异步通信和应用解耦，确保主站业务的连续性。
+- **顺序收发**：细数一下，日常需要保证顺序的应用场景非常多，例如证券交易过程中的时间优先原则，交易系统中的订单创建、支付、退款等流程，航班中的旅客登机消息处理等。与先进先出(First In First Out,缩写 FIFO)原理类似，RocketMQ 提供的顺序消息即保证消息的 FIFO。
+- **分布式事务一致性**：交易系统、红包等场景需要确保数据的最终一致性，大量引入 RocketMQ 的分布式事务，既可以实现系统之间的解耦，又可以保证最终的数据一致性。
+- **大数据分析**：数据在“流动”中产生价值，传统数据分析大都基于批量计算模型，无法做到实时的数据分析，利用 RocketMQ 与流式计算引擎相结合，可以很方便地实现对业务数据进行实时分析。
+- **分布式缓存同步**：天猫双 11 大促，各个分会场琳琅满目的商品需要实时感知价格的变化，大量并发访问会导致会场页面响应时间长，集中式缓存因为带宽瓶颈限制商品变更的访问流量，通过 RocketMQ 构建分布式缓存，可实时通知商品数据的变化。
 
 ### RocketMQ 的安装
 
@@ -2463,38 +2587,41 @@ Spring Cloud Alibaba 已集成 RocketMQ,使用 Spring Cloud Stream 对 RocketMQ 
 
 ```xml
 <dependency>
-<groupId>com.alibaba.cloud</groupId>
-<artifactId>spring-cloud-stream-binder-rocketmq</artifactId>
+	<groupId>com.alibaba.cloud</groupId>
+	<artifactId>spring-cloud-stream-binder-rocketmq</artifactId>
 </dependency>
 <dependency>
-<groupId>org.springframework.boot</groupId>
-<artifactId>spring-boot-starter-web</artifactId>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-web</artifactId>
 </dependency>
 ```
 2. 配置 application.yml。
 ```yml
-server:  
-  port: 8081  
-spring:  
-  cloud:  
-    stream:  
-      rocketmq:  
-        binder:  
-          name-server: 8.130.88.159:9876  
-        bindings:
-	        producer:  
-	            group: demo-group
-      bindings:  
-        output:  
-          destination: TopicTest  
-          
+server:
+  port: 8081
+spring:
+  cloud:
+    stream:
+      rocketmq:
+        binder:
+          name-server: 8.130.88.159:9876
+      bindings:
+        input:
+          destination: TopicTest
+          group: TestGroup
+        output:
+          content-type: application/json
+          destination: TopicTest
+          group: TestGroup
+  application:
+    name: rocketmq-producer
 ```
 
 name-server 指定 RocketMQ 的 NameServer 地址，将指定名称为 output 的 Binding 消息发送到 TopicTest。
 3. 使用 Binder 发送消息。
 
 ```java
-@EnableBinding({Source.class})
+@EnableBinding({Source.class,Sink.class})
 @SpringBootApplication
 public class ProducerApplication {
 	public static void main(String[]args){
@@ -2519,6 +2646,253 @@ public class SendController {
 `@EnableBinding({Source.class})` 表示绑定配置文件中名称为 output 的消息通道 Binding,Source 类中定义的消息通道名称为 output。发送 HTTP 请求 http:/localhost:8081/send?msg=tcever 将消息发送到 RocketMQ 中。
 在实际开发场景中会存在多个发送消息通道，可以自定义消息通道的名称，参考 Source 类自定义一个接口，修改通道名称和相关配置即可。
 
+```java
+public interface OrderSource {
+    String OUTPUT = "orderOutput";
+
+    @Output(OrderSource.OUTPUT)
+    MessageChannel output();
+
+}
+
+@EnableBinding({Source.class, OrderSource.class, Sink.class})
+@SpringBootApplication
+public class ProducerApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(ProducerApplication.class, args);
+    }
+}
+```
+修改配置文件添加 orderOutput 消息通道：
+```yml
+server:
+  port: 8081
+spring:
+  cloud:
+    stream:
+      rocketmq:
+        binder:
+          name-server: 8.130.88.159:9876
+        bindings:
+          output:
+            producer:
+              group: demo-group
+          orderOutput:
+            producer:
+              group: order-group
+      bindings:
+        input:
+          destination: TopicTest
+          group: demo-group
+        output:
+          content-type: application/json
+          destination: TopicTest
+          group: demo-group
+        orderOutput:
+          content-type: application/json
+          destination: TopicOrder
+          group: order-group
+  application:
+    name: rocketmq-producer
+```
+
+到此，就可以添加一个自定义发送消息通道，使用 orderOutput 消息发送到 TopicOrder 中了。
+
+#### RocketMQ 消费消息
+
+RocketMQ 消费消息的步骤如下。
+1. pom.xml 中引入 Jar 包。
+```xml
+<dependency>
+	<groupId>com.alibaba.cloud</groupId>
+	<artifactId>spring-cloud-stream-binder-rocketmq</artifactId>
+</dependency>
+<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-web</artifactId>
+</dependency>
+```
+2. 配置 application.yml：
+```yml
+server:
+  port: 8082
+spring:
+  cloud:
+    stream:
+      rocketmq:
+        binder:
+          name-server: 8.130.88.159:9876
+      bindings:
+        input:
+          destination: TopicOrder
+          group: order-group
+  application:
+    name: rocketmq-consumer
+```
+
+name-server 指定 RocketMQ 的 NameServer 地址，destination 指定 Topic 名称，指定名称为 input 的 Binding 接收 TopicOrder 的消息。
+3. 定义消息监听：
+```java
+@SpringBootApplication
+@EnableBinding({Sink.class})
+public class ConsumerApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(ConsumerApplication.class, args);
+    }
+
+    @StreamListener(value = Sink.INPUT)
+    public void receive(String receiveMsg) {
+        System.out.println("TopicOrder receive:" + receiveMsg + "receiveTime = " + System.currentTimeMillis());
+    }
+}
+```
+
+`@EnableBinding({Sink.class})` 表示绑定配置文件中名称为 input 的消息通道 Binding,Sink 类中定义的消息通道的名称为 input, `@StreamListener` 表示定义一个消息监听器，接收 RocketMQ 中的消息。
+在实际开发场景中同样会存在多个接收消息通道，可以自定义消息通道的名称，参考 Sink 类自定义一个接口，修改通道名称和相关配置即可。
+
+```java
+public interface InputChannel {
+    String USER_INPUT = "userInput";
+    String ORDER_INPUT = "orderInput";
+
+    @Input(InputChannel.USER_INPUT)
+    SubscribableChannel userInput();
+
+    @Input(InputChannel.ORDER_INPUT)
+    SubscribableChannel orderInput();
+}
+@SpringBootApplication
+@EnableBinding({Sink.class, InputChannel.class})
+public class ConsumerApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(ConsumerApplication.class, args);
+    }
+
+    @StreamListener(value = InputChannel.ORDER_INPUT)
+    public void receive(String receiveMsg) {
+        System.out.println("TopicOrder receive:" + receiveMsg + "receiveTime = " + System.currentTimeMillis());
+    }
+
+    @StreamListener(value = InputChannel.USER_INPUT)
+    public void receiveUser(String receiveMsg) {
+        System.out.println("TopicOrder receive:" + receiveMsg + "receiveTime = " + System.currentTimeMillis());
+    }
+
+    @StreamListener(value = Sink.INPUT)
+    public void receiveSink(String receiveMsg) {
+        System.out.println("TopicTest receive:" + receiveMsg + "receiveTime = " + System.currentTimeMillis());
+    }
+}
+```
+接下来修改配置文件添加自定义的接收消息通道绑定主题和分组：
+```yml
+server:
+  port: 8082
+spring:
+  cloud:
+    stream:
+      rocketmq:
+        binder:
+          name-server: 8.130.88.159:9876
+      bindings:
+        input:
+          destination: TopicTest
+          group: demo-group
+        orderInput:
+          destination: TopicOrder
+          group: order-group
+        userInput:
+          destination: TopicUser
+          group: user-group
+  application:
+    name: rocketmq-consumer
+```
+在自定义的 InputChannel 类中定义了两个接收消息通道，使用 orderInput 会收到 TopicOrder 中的消息。
+访问消息生产者的接口发送消息，消费者对指定主题的消息进行订阅监听结果如下图所示：
+![](https://qnpicmap.fcsluck.top/pics/202312211543376.png)
+
+---
+## Spring Cloud Alibaba RocketMQ
+
+Spring Cloud Stream 是 Spring Cloud 体系内的一个框架，用于构建与共享消息传递系统连接的高度可伸缩的事件驱动微服务，其目的是简化消息业务在 Spring Cloud 应用程序中的开发。
+Spring Cloud Stream 的架构图如图下图所示，应用程序通过 Spring Cloud Stream 注入的输入通道 inputs 和输出通道 outputs 与消息中间件 Middleware 通信，消息通道通过特定的中间件绑定器 Binder 实现连接到外部代理。
+
+![](https://qnpicmap.fcsluck.top/pics/202312211555771.png)
+
+Spring Cloud Stream 的实现基于**发布/订阅机制**，核心由四部分构成：Spring Framework 中的 `Spring Messaging` 和 `Spring Integration`,以及 Spring Cloud Stream 中的 `Binders` 和 `Bindings`。
+*Spring Messaging*:Spring Framework 中的统一消息编程模型，其核心对象如下。
+- Message:消息对象，包含消息头 Header 和消息体 Payload。
+- MessageChannel:消息通道接口，用于接收消息，提供 send 方法将消息发送至消息通道。
+- MessageHandler:消息处理器接口，用于处理消息逻辑。
+*Spring Integration*:Spring Framework 中用于支持企业集成的一种扩展机制，作用是提供一个简单的模型来构建企业集成解决方案，对 Spring Messaging 进行了扩展。
+- MessageDispatcher:消息分发接口，用于分发消息和添加删除消息处理器。
+- MessageRouter:消息路由接口，定义默认的输出消息通道。
+- Filter:消息的过滤注解，用于配置消息过滤表达式。
+- Aggregator:消息的聚合注解，用于将多条消息聚合成一条。
+- Splitter:消息的分割，用于将一条消息拆分成多条。
+*Binders*:目标绑定器，负责与外部消息中间件系统集成的组件。
+- doBindProducer:绑定消息中间件客户端发送消息模块
+- doBindConsumer:绑定消息中间件客户端接收消息模块。
+*Bindings*:外部消息中间件系统与应用程序提供的消息生产者和消费者（由 Binders 创建）之间的桥梁。
+- Spring Cloud Stream 官方提供了 Kafka Binder 和 RabbitMQ Binder,用于集成 Kafka 和 RabbitMQ。
+- Spring Cloud Alibaba 中加入了 RocketMQ Binder,用于将 RocketMQ 集成到 Spring Cloud Stream。
+
+### Spring Cloud Alibaba RocketMQ 架构图
+
+![](https://rocketmq.apache.org/zh/assets/images/5.0%E9%80%9F%E8%A7%88-2-b3f035c1b5b2088396c2df5817ce487d.jpeg)
+
+### RocketMQ 部署模型
+
+![](https://qnpicmap.fcsluck.top/pics/202312211823522.png)
+
+
+### Spring Cloud Stream 消息发送和订阅流程
+
+![](https://qnpicmap.fcsluck.top/pics/202312211702051.png)
+
+![](https://qnpicmap.fcsluck.top/pics/202312211828219.png)
+
+## 快速入门
+
+RocketMQ 提供了发送多种发送消息的模式，例如*同步消息，异步消息，顺序消息，延迟消息，事务消息*等。
+
+### 消息发送和监听的流程
+
+#### 消息生产者
+
+1. 创建消息生产者 producer，并制定生产者组名
+2. 指定 Nameserver 地址
+3. 启动 producer
+4. 创建消息对象，指定主题 Topic、Tag 和消息体等
+5. 发送消息
+6. 关闭生产者 producer
+
+
+#### 消息消费者
+
+1. 创建消费者 consumer,制定消费者组名
+2. 指定 Nameserver 地址
+3. 创建监听订阅主题 Topic 和 Tag 等
+4. 处理消息
+5. 启动消费者 consumer
+
+### 消费模式
+
+MQ 的消费模式可以大致分为两种，一种是**推 Push,一种是拉 Pull**。
+Push 是服务端主动推送消息给客户端，优点是及时性较好，但如果客户端没有做好流控，一旦服务端推送大量消息到客户端时，就会导致客户端消息堆积甚至崩溃。
+Pull 是客户端需要主动到服务端取数据，优点是客户端可以依据自己的消费能力进行消费，但拉取的频率也需要用户自己控制，拉取频繁容易造成服务端和客户端的压力，拉取间隔长又容易造成消费不及时。
+**Push 模式也是基于 pull 模式的**，只是客户端内部封装了 api,一般场景下，上游消息生产量小或者均速的时候，选择 push 模式。在特殊场景下，例如电商大促，抢优惠券等场景可以选择 pull 模式
+
+### RocketMQ 发送同步消息
+同步消息发送过后会有一个返回值，也就是mq服务器接收到消息后返回的一个确认，这种方式非常安全，但是性能上并没有这么高，而且在mq集群中，也是要等到所有的从机都复制了消息以后才会返回，所以针对重要的消息可以选择这种方式
+![](https://qnpicmap.fcsluck.top/pics/202312212117647.png)
+
+
+### RocketMQ 发送异步消息
+异步消息通常用在对响应时间敏感的业务场景，即发送端不能容忍长时间地等待Broker的响应。发送完以后会有一个异步消息通知。
+#### 异步消息生产者
 
 
 
@@ -2526,11 +2900,142 @@ public class SendController {
 
 
 
+### RocketMQ发送单向消息
+
+这种方式主要用在不关心发送结果的场景，这种方式吞吐量很大，但是存在消息丢失的风险，例如日志信息的发送
+
+```java
+    @Test
+    public void testOneWayProducer() throws MQClientException, RemotingException, InterruptedException {
+        //创建默认的生产者
+        DefaultMQProducer producer = new DefaultMQProducer(MQConst.GROUP);
+        //设置nameServer地址
+        producer.setNamesrvAddr(MQConst.NAME_SERVER);
+        //启动实例列
+        producer.start();
+        Message msg = new Message(MQConst.TOPIC, ("单向日志消息").getBytes());
+        //发送单向消息
+        producer.sendOneway(msg);
+        System.out.println("单向消息发送成功");
+        //关闭实例
+        producer.shutdown();
+    }
+```
+
+
+### RocketMQ发送延迟消息
+
+消息放入mq后，过一段时间，才会被监听到，然后消费比如下订单业务，提交了一个订单就可以发送一个延时消息，3min后去检查这个订单的状态如果还是未付款就取消订单释放库存。
+
+```java
+@Test
+    public void testDelayProducer() throws Exception {
+        //创建默认的生产者
+        DefaultMQProducer producer = new DefaultMQProducer(MQConst.GROUP);
+        //设置nameServer地址
+        producer.setNamesrvAddr(MQConst.NAME_SERVER);
+        //启动实例
+        producer.start();
+        Message msg = new Message(MQConst.TOPIC, ("延迟消息").getBytes());
+        //给这个消息设定一个延迟等级
+        //messageDelayLevel "1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h
+        msg.setDelayTimeLevel(3);
+        //发送单向消息
+        producer.send(msg);
+        //打印时间
+        System.out.println("发送时间：" + new Date());
+        //关闭实例
+        producer.shutdown();
+    }
+
+    @Test
+    public void testDelayConsumer() throws Exception {
+        //创建默认的消费者
+        DefaultMQPushConsumer consumer = new DefaultMQPushConsumer(MQConst.GROUP);
+        //设置nameServer地址
+        consumer.setNamesrvAddr(MQConst.NAME_SERVER);
+        //订阅Topic
+        consumer.subscribe(MQConst.TOPIC, "*");
+        //设置消息处理线程数
+        consumer.registerMessageListener((MessageListenerConcurrently) (messageExtList, context) -> {
+            System.out.println(new Date() + "收到消息了：" + new String(messageExtList.get(0).getBody()));
+            return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
+        });
+        consumer.start();
+        System.in.read();
+    }
+```
+### RocketMQ发送顺序消息
+
+消息有序指的是可以**按照消息的发送顺序来消费(FIFO)**。RocketMQ可以严格的保证消息有序，可以分为：**分区有序或者全局有序**。
+可能大家会有疑问，mg不就是FIF0吗？
+rocketMq的broker的机制，导致了rocketMq会有这个问题
+因为一个broker中对应了四个queue
+
+
+
+
+### RocketMQ发送批量消息
+
+Rocketmq可以一次性发送一组消息，那么这一组消息会被当做一个消息消费。
+
+```java
+    @Test
+    public void testBatchProducer() throws Exception {
+        // 1. 创建生产者
+        DefaultMQProducer producer = new DefaultMQProducer(MQConst.GROUP);
+        producer.setNamesrvAddr(MQConst.NAME_SERVER);
+        producer.start();
+        List<Message> list = Arrays.asList(
+                new Message(MQConst.TOPIC, "我是一组A消息".getBytes()),
+                new Message(MQConst.TOPIC, "我是一组B消息".getBytes()),
+                new Message(MQConst.TOPIC, "我是一组C消息".getBytes())
+        );
+        // 2. 发送消息
+        SendResult send = producer.send(list);
+        System.out.println(send);
+//        关闭实例
+        producer.shutdown();
+    }
+
+    @Test
+    public void testBatchConsumer() throws Exception {
+        // 1. 创建消费者
+        DefaultMQPushConsumer consumer = new DefaultMQPushConsumer(MQConst.GROUP);
+        consumer.setNamesrvAddr(MQConst.NAME_SERVER);
+        consumer.subscribe(MQConst.TOPIC, "*");
+        consumer.registerMessageListener((List<MessageExt> msgs, ConsumeConcurrentlyContext context) -> {
+            System.out.println("收到消息了" + new Date());
+            System.out.println(msgs.size());
+            System.out.println(new String(msgs.get(0).getBody()));
+            return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
+        });
+        consumer.start();
+        Thread.sleep(1000000000);
+    }
+```
+
+
+### RocketMQ发送事务消息
+
+
+
+
+
+
+### RocketMQ发送带标签的消息
+
+
+
+
+---
 # 参考书籍
 
 
 1. [Spring Cloud Alibaba 微服务原理与实战 (豆瓣)](https://book.douban.com/subject/35041576/?from=mdouban)
 2. [微信公众平台](https://mp.weixin.qq.com/s/G1EE5WSA8DzkRmWvRGr_9w)
+3. [消息队列专题(RabbitMQ、Kafka、RocketMQ、Pulsar)\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1ia411k7oo/)
+4. [动力节点RocketMQ全套视频教程-5小时学会rocketmq消息队列\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1jL41187ny)
 
 ```cardlink
 url: https://book.douban.com/subject/35041576/?from=mdouban
