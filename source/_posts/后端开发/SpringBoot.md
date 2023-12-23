@@ -13,6 +13,103 @@ excerpt: it is some basic usage of SpringBoot .
 > [!WARNING] Tips
 > idea 已经不在支持创建 **springBoot2.x** 版本的项目了，最低要求 **java17+spring3.x** 版本，因此要想继续使用 springboot2.x 版本可以更换 SpringInitializer 服务器 url 为**阿里云**的： [Cloud Native App Initializer](https://start.aliyun.com)
 
+
+# SpringBoot 基础速成
+## Bean 配置
+
+### Bean 扫描
+
+实现 Bean 扫描的注解有以下方式：
+
+1. `@ComponentScan`：basePackages/value 接收一个包名字符串，表示扫描该包及其子包下的所有 bean 对象，将其自动注册到 IOC 容器中。
+2. `@ComponentScans`：value 接收多个@ComponentScan，扩展了@ComponentScan，相当于批量注册 bean 对象到 IOC 容器中。
+
+
+### Bean 注册
+
+实现 Bean 注册的方式分为：本地自定义的类注册和导入的第三方包中的类的注册。
+#### 自定义类的注册
+
+1. `@Component`：bean 基础注册注解，添加该注解的类会在 Springboot 程序启动时自动注册为 IOC 容器的 bean。
+2. `@Service`：业务类 bean 注册注解，一般用于业务处理的相关类，对应于包名为 service 下的 java 类。
+3. `@Controller`：控制器 bean 注册注解，一般用于控制层返回数据的相关类，对应于 controller 下的相关 java 类。
+4. `@Repository`：数据交互 bean 注册注解，一般在 mybatis 等数据库中间件较多，自己用该注解较少。
+5. ···：还有如 RestController 等进一步的封装注解，也可以实现不同意义的 bean 注册。
+
+| 注解 | 说明 | 位置 |
+| :----: | ---- | ---- |
+| `@Component` |声明 bean 的基础注解|不属于以下三类时，用此注解|
+| `@Controller` |@Component 的衍生注解|标注在控制器类上|
+| `@Service` |@Component 的衍生注解|标注在业务类上|
+| `@Repository` |@Component 的衍生注解|标注在数据访问类上（由于与 mybatis 整合，用的少）|
+#### 第三方类的注册
+
+如果要注册的 bean 对象*来自于第三方（不是自定义的）*，是无法用@Component 及衍生注解声明 bean 的.
+
+> [!NOTE] `@Import`
+> - 导入**配置类**：`@Import(Xxx.class)`
+> - 导入 **ImportSelector 接口实现类**
+![](https://qnpicmap.fcsluck.top/pics/202312231707570.png)
+
+> 一般静态数据都会存储在配置文件中，要么从 application.yml 使用 spel 表达式获取，要么放在 resources 目录下其他文件里通过 io 读取资源文件中的配置进行注入。
+#### 注册条件
+
+常用的几个注册条件如下表所示：
+
+| 注解 | 说明 |
+| ---- | ---- |
+| `@ConditionalOnProperty` |配置文件中*存在对应的属性，才声明该 bean*|
+| `@ConditionalOnMissingBean` |当*不存在当前类型的 bean 时，才声明该 bean*|
+| `@ConditionalOnclass` |当前环境*存在指定的这个类时，才声明该 bean*|
+
+## 自动配置原理
+
+遵循约定大约配置的原测，在 boot 程序启动后，起步依赖中的一些 bean 对象会自动注入到 ioc 容器。
+
+![](https://qnpicmap.fcsluck.top/pics/202312232146107.png)
+
+## 自定义 Starter
+
+在实际开发中，经常会定义一些公共组件，提供给各个项目团队使用。而在Spring Boot的项目中，一般会将这些公共组件封装为SprinaBoot的starter。
+
+1. `Maven:org.mybatis.spring.boot:mybatis-spring-boot-autoconfigure:3.0.0`--->自动配置功能
+2. `Maven:org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.0`--->依赖管理功能
+
+需求：自定义mybatis的starter
+
+- 创建`fmybatis-spring-boot-autoconfigure`模块，提供自动配置功能，并自定义配置文件`META-lNF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports`
+- 创建`fmybatis-spring-boot-starter模`块，在starter中引入自动配置模块
+
+核心自动装配类
+```java
+@AutoConfiguration//表示该类是一个自动配置类
+public class MyBatisAutoConfig {
+    //    sqlSessionFactory
+    @Bean
+    public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
+        SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
+        sqlSessionFactoryBean.setDataSource(dataSource);
+        return sqlSessionFactoryBean.getObject();
+    }
+
+    //    MapperScannerConfigurer
+    @Bean
+    public MapperScannerConfigurer mapperScannerConfigurer(BeanFactory beanFactory) {
+        MapperScannerConfigurer mapperScannerConfigurer = new MapperScannerConfigurer();
+//        设置扫描包：启动类所在的包及其子包
+        List<String> packages = AutoConfigurationPackages.get(beanFactory);
+        String group = packages.get(0);
+        mapperScannerConfigurer.setBasePackage(group);
+//        扫描的注解
+        mapperScannerConfigurer.setAnnotationClass(Mapper.class);
+        return mapperScannerConfigurer;
+    }
+}
+```
+完成后的目录结构如下图所示：
+![](https://qnpicmap.fcsluck.top/pics/202312232305656.png)
+
+---
 # 走进 SpringBoot 一站式开发
 
 **前置课程：**《Spring6 核心内容》《SpringMvc6》《SpringSecurity6》《Java-9-17 新特性篇》
@@ -27,7 +124,7 @@ Spring Boot 让您可以轻松地创建独立的、生产级别的 Spring 应用
 
 可以看到，曾经的 SpringBoot 2.5 版本将会在 2023 年 8 月底终止商业支持，届时将不会再对这类旧版本进行任何维护，因此，将我们的老版本 SpringBoot 项目进行升级已经迫在眉睫，目前最强的 3.1 正式版会维护到 2025 年中旬。
 
-在3.X 之后的变化相比2.X 可以说是相当大，尤其是其生态下的 SpringSecurity 框架，旧版本项目在升级之后 API 已经完全发生改变；以及内置 Tomcat 服务器的升级，Servlet 也升级到5以上，从 `javax` 全新升级到 `jakarta` 新包名；包括在 3.X 得到的大量新特性，如支持 GraalVM 打包本地镜像运行等；并且 Java 版本也强制要求为 17 版本。迁移到新版本不仅可以享受到免费维护支持，也可以感受 Java17带来的全新体验。
+在3.X 之后的变化相比2.X 可以说是相当大，尤其是其生态下的 SpringSecurity 框架，旧版本项目在升级之后 API 已经完全发生改变；以及内置 Tomcat 服务器的升级，Servlet 也升级到5以上，从 `javax` 全新升级到 `jakarta` 新包名；包括在 3.X 得到的大量新特性，如支持 GraalVM 打包本地镜像运行等；并且 Java 版本也强制要求为 17 版本。迁移到新版本不仅可以享受到免费维护支持，也可以感受 Java17 带来的全新体验。
 
 介绍了这么多，我们首先还是来看看 SpringBoot 功能有哪些：
 
@@ -2470,7 +2567,7 @@ public class WebConfiguration {
 
 ![image-20230306224859664](https://s2.loli.net/2023/03/06/XaoLIPrjDKzO9Tx.png)
 
-不对吧，为什么 Mybatis 这么好用，这么强大，却只有 10%的人喜欢呢？然而事实就是，在国外 JPA 几乎占据了主导地位，而 Mybatis 并不像国内那样受待见，所以你会发现，JPA 都有 SpringBoot 的官方直接提供的 starter，而 Mybatis 没有，直到 SpringBoot 3才开始加入到官方模版中。
+不对吧，为什么 Mybatis 这么好用，这么强大，却只有 10%的人喜欢呢？然而事实就是，在国外 JPA 几乎占据了主导地位，而 Mybatis 并不像国内那样受待见，所以你会发现，JPA 都有 SpringBoot 的官方直接提供的 starter，而 Mybatis 没有，直到 SpringBoot 3 才开始加入到官方模版中。
 
 那么，什么是 JPA？
 
@@ -4419,6 +4516,12 @@ public class AuthorizeController {
 4. 无法分布式共享: 传统 Session 方案不适用于多个服务器之间共享会话信息的场景，需要额外的管理和同步机制。
 
 综上所述，JWT 校验方案适用于无状态、分布式系统，几乎所有常见的前后端分离的架构都可以采用这种方案。而传统 Session 校验方案适用于需要即时失效、即时撤销和灵活权限管理的场景，适合传统的服务器端渲染应用，以及客户端支持 Cookie 功能的前后端分离架构。在选择校验方案时，需要根据具体的业务需求和技术场景进行选择。
+
+# 项目实战-大事件
+
+
+
+
 
 
 # Reference
