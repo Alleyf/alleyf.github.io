@@ -6,7 +6,7 @@
   <link href="https://alleyf.github.io/atom.xml" rel="self"/>
   
   <link href="https://alleyf.github.io/"/>
-  <updated>2023-12-20T14:46:18.353Z</updated>
+  <updated>2023-12-22T05:51:19.815Z</updated>
   <id>https://alleyf.github.io/</id>
   
   <author>
@@ -15,6 +15,48 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>WebMagic</title>
+    <link href="https://alleyf.github.io/2023/12/d14bc05f8236.html"/>
+    <id>https://alleyf.github.io/2023/12/d14bc05f8236.html</id>
+    <published>2023-12-22T05:36:04.000Z</published>
+    <updated>2023-12-22T05:51:19.815Z</updated>
+    
+    
+    <summary type="html">关于WebMagic爬虫框架的知识点。</summary>
+    
+    
+    
+    <category term="运维开发" scheme="https://alleyf.github.io/categories/%E8%BF%90%E7%BB%B4%E5%BC%80%E5%8F%91/"/>
+    
+    
+    <category term="爬虫" scheme="https://alleyf.github.io/tags/%E7%88%AC%E8%99%AB/"/>
+    
+    <category term="webmagic" scheme="https://alleyf.github.io/tags/webmagic/"/>
+    
+    <category term="pupeteer" scheme="https://alleyf.github.io/tags/pupeteer/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>数据集汇总与评测</title>
+    <link href="https://alleyf.github.io/2023/12/51038f653307.html"/>
+    <id>https://alleyf.github.io/2023/12/51038f653307.html</id>
+    <published>2023-12-22T02:58:30.000Z</published>
+    <updated>2023-12-22T04:10:54.636Z</updated>
+    
+    
+    <summary type="html">汇总一些LLM和KG研究领域常用数据集。</summary>
+    
+    
+    
+    <category term="科研学习" scheme="https://alleyf.github.io/categories/%E7%A7%91%E7%A0%94%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="dataset" scheme="https://alleyf.github.io/tags/dataset/"/>
+    
+  </entry>
   
   <entry>
     <title>Scrapy-修炼手册</title>
@@ -63,7 +105,7 @@
     <link href="https://alleyf.github.io/2023/12/5f1c44e4965a.html"/>
     <id>https://alleyf.github.io/2023/12/5f1c44e4965a.html</id>
     <published>2023-12-03T08:39:38.000Z</published>
-    <updated>2023-12-10T07:06:23.299Z</updated>
+    <updated>2023-12-23T03:28:52.035Z</updated>
     
     
     <summary type="html">关于互联网数据汇聚融合的调研结果。</summary>
@@ -357,7 +399,7 @@
     <link href="https://alleyf.github.io/2023/11/47f9bf6ba53a.html"/>
     <id>https://alleyf.github.io/2023/11/47f9bf6ba53a.html</id>
     <published>2023-11-13T14:02:25.000Z</published>
-    <updated>2023-12-21T02:14:32.034Z</updated>
+    <updated>2023-12-22T02:30:58.382Z</updated>
     
     
     <summary type="html">一些关于组会的概要记录。</summary>
@@ -403,52 +445,6 @@
     <category term="RabbiMQ" scheme="https://alleyf.github.io/tags/RabbiMQ/"/>
     
     <category term="JWT" scheme="https://alleyf.github.io/tags/JWT/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>司法领域KG-LLM调研四</title>
-    <link href="https://alleyf.github.io/2023/11/48c7937f4cdd.html"/>
-    <id>https://alleyf.github.io/2023/11/48c7937f4cdd.html</id>
-    <published>2023-11-07T05:08:27.000Z</published>
-    <updated>2023-11-22T07:28:20.357Z</updated>
-    
-    
-    <summary type="html">some overview about law KG and LLM。</summary>
-    
-    
-    
-    <category term="科研学习" scheme="https://alleyf.github.io/categories/%E7%A7%91%E7%A0%94%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-    <category term="NLP" scheme="https://alleyf.github.io/tags/NLP/"/>
-    
-    <category term="KG" scheme="https://alleyf.github.io/tags/KG/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>司法领域大模型调研三</title>
-    <link href="https://alleyf.github.io/2023/11/9924044a419d.html"/>
-    <id>https://alleyf.github.io/2023/11/9924044a419d.html</id>
-    <published>2023-11-01T06:14:51.000Z</published>
-    <updated>2023-11-22T06:15:33.357Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;方向参考&quot;&gt;&lt;a href=&quot;#方向参考&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="科研学习" scheme="https://alleyf.github.io/categories/%E7%A7%91%E7%A0%94%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-    <category term="NLP，KG" scheme="https://alleyf.github.io/tags/NLP%EF%BC%8CKG/"/>
     
   </entry>
   

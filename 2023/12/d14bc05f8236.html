@@ -18,18 +18,20 @@
   <meta name="author" content="fcs">
   <meta name="keywords" content="">
   
-    <meta name="description" content="关于互联网数据汇聚融合的调研结果。">
+    <meta name="description" content="关于WebMagic爬虫框架的知识点。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="多源异构司法数据汇聚融合-解决方案调研">
-<meta property="og:url" content="https://alleyf.github.io/2023/12/5f1c44e4965a.html">
+<meta property="og:title" content="WebMagic">
+<meta property="og:url" content="https://alleyf.github.io/2023/12/d14bc05f8236.html">
 <meta property="og:site_name" content="alleyf">
-<meta property="og:description" content="关于互联网数据汇聚融合的调研结果。">
+<meta property="og:description" content="关于WebMagic爬虫框架的知识点。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://picsum.photos/800/250">
-<meta property="article:published_time" content="2023-12-03T08:39:38.000Z">
-<meta property="article:modified_time" content="2023-12-23T03:28:52.035Z">
+<meta property="article:published_time" content="2023-12-22T05:36:04.000Z">
+<meta property="article:modified_time" content="2023-12-22T05:51:19.815Z">
 <meta property="article:author" content="alleyf">
-<meta property="article:tag" content="Spider">
+<meta property="article:tag" content="爬虫">
+<meta property="article:tag" content="webmagic">
+<meta property="article:tag" content="pupeteer">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://picsum.photos/800/250">
   
@@ -37,7 +39,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>多源异构司法数据汇聚融合-解决方案调研 - alleyf</title>
+  <title>WebMagic - alleyf</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -255,7 +257,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="多源异构司法数据汇聚融合-解决方案调研"></span>
+            <span id="subtitle" data-typed-text="WebMagic"></span>
           
         </div>
 
@@ -271,8 +273,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-12-03 16:39" pubdate>
-          2023年12月3日 下午
+        <time datetime="2023-12-22 13:36" pubdate>
+          2023年12月22日 下午
         </time>
       </span>
     
@@ -283,7 +285,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.4k 字
+          3.5k 字
         
       </span>
     
@@ -294,7 +296,7 @@
         
         
         
-          20 分钟
+          30 分钟
         
       </span>
     
@@ -340,12 +342,12 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">多源异构司法数据汇聚融合-解决方案调研</h1>
+            <h1 style="display: none">WebMagic</h1>
             
               <p class="note note-info">
                 
                   
-                    本文最后更新于：几秒前
+                    本文最后更新于：1 天前
                   
                 
               </p>
@@ -354,30 +356,24 @@
               <div class="markdown-body">
                 
                 <p><img src="https://picsum.photos/800/250" srcset="/img/loading.gif" lazyload></p>
-<h1 id="数据采集"><a href="#数据采集" class="headerlink" title="数据采集"></a>数据采集</h1><h2 id="数据源"><a href="#数据源" class="headerlink" title="数据源"></a>数据源</h2><ul>
-<li><strong>开源数据集：</strong> 查看已经存在的开源司法数据集，例如 Caselaw Access Project、Free Law Project 等。这些数据集可能包含大量的法律文本和相关元数据。</li>
-<li><strong>法院网站和数据库：</strong> 许多法院都提供了在线访问法律文本和案例的平台。你可以使用网络爬虫工具，例如 Scrapy 或 BeautifulSoup，来抓取这些数据。<br>裁判文书网： https:&#x2F;wenshu.court.gov.cn&#x2F;<br>openlaw： <a target="_blank" rel="noopener" href="https://openlaw.cn/">https://openlaw.cn/</a><br>把手案例（需要积分，不容易爬取）： <a target="_blank" rel="noopener" href="https://www.lawsdata.com/">https://www.lawsdata.com/</a></li>
-<li><strong>商业数据提供商：</strong> 一些公司专门提供法律数据服务，可以购买其数据，例如 Westlaw、LexisNexis 等。</li>
+<h1 id="WebMagic-背景介绍"><a href="#WebMagic-背景介绍" class="headerlink" title="WebMagic 背景介绍"></a>WebMagic 背景介绍</h1><p><a target="_blank" rel="noopener" href="http://webmagic.io/">WebMagic</a> 是一个简单灵活的Java爬虫框架。基于WebMagic，你可以快速开发出一个高效、易维护的爬虫。<br>WebMagic项目代码分为核心和扩展两部分。核心部分(webmagic-core)是一个精简的、模块化的爬虫实现，而扩展部分则包括一些便利的、实用性的功能。WebMagic的架构设计参照了Scrapy，目标是尽量的模块化，并体现爬虫的功能特点。</p>
+<h2 id="特性："><a href="#特性：" class="headerlink" title="特性："></a>特性：</h2><ul>
+<li>简单的API，可快速上手</li>
+<li>模块化的结构，可轻松扩展</li>
+<li>提供多线程和分布式支持</li>
 </ul>
-<h2 id="采集技术"><a href="#采集技术" class="headerlink" title="采集技术"></a>采集技术</h2><ul>
-<li>Jsoup:用于从 HTML 和 XML 文档中提取和操作数据的库。它支持 CSS 选择器、深度遍历文档和相关的信息提取。</li>
-<li>Apache HttpClient:用于处理 http 请求的客户端库。可以方便地发送 GET、POST 请求等。</li>
-<li>WebMagic：它是一个基于 Java 的开源爬虫框架，它提供了一个灵活且易于使用的 API，可以帮助开发人员快速开发爬虫程序。它支持多线程、分布式爬取，并且可以方便地进行网页解析和数据存储。首先，你需要导入 WebMagic 库。你可以从 WebMagic 的官方网站上下载最新的 jar 包，并将其添加到你的项目中。然后，你可以创建一个 Spider 对象，并定义爬取的起始 URL 和解析的规则。接下来，你可以使用 Pipeline 接口将爬取的数据进行处理和存储。</li>
-<li>okhttp:一个高效的 HTTP 客户端工具库。由 Square 开发并维护。</li>
-<li>HtmlUnit:一个“无界面”的浏览器,可以通过 Java 执行 JavaScript 脚本并与页面中的 HTML 元素进行交互。支援 DOM,CSS,AJAX 操作。</li>
-<li>Selenium:主要用于自动化测试。但也可以用于爬虫,通过模拟浏览器进行操作渲染出动态页面内容。</li>
-<li>Spiderman:封装了 Jsoup 和 Apache HttpClient,提供爬取网站的工具类。代码简洁。</li>
-<li>Colt:面向对象的爬虫框架,支持分布式和断点续爬功能。使用灵活简单。 </li>
-<li>Scrapy:Python 语言的强大爬虫框架,也有 Java 版本 scrapy-java-core。功能强大,支持分布式。</li>
-<li>WebHarvy:专注网页自动化测试,但也提供网页内容抓取能力。</li>
-<li>Grab:基于 okhttp 封装的下载器,支持自适应和代理设置。</li>
-<li>ChaojiCrawler:企业级开源爬虫框架,提供分布式高并发抓取能力。<br>根据项目需求,可以选择功能强大但入门难度高(如 Scrapy 和 Colt)或者功能简单上手快(如 Jsoup 和 Spiderman)的框架。</li>
-</ul>
-<hr>
-<h1 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h1><h2 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h2><p>互联网上存在着<strong>大量多样化的数据源，这些数据往往分散在不同的平台</strong>，而且不同来源的数据格式、结构、标准可能不同。通过<strong>汇聚融合这些数据</strong>，可以获得更全面、准确和有洞察力的信息。因此有必要构建<strong>互联网数据汇聚和融合平台</strong>，合理利用多个数据源，打破数据孤岛，实现资源的优化配置，提高数据的利用效率。<br>因此，本毕业设计主要研究基于Web前后端开发技术，实现数据汇聚融合系统的设计与实现。为了有效汇聚和融合并管理数据，需<strong>研究不同数据源的数据模型和结构，并选择合适的数据存储方案，实现数据的持久化</strong>。同时需要研究系统架构设计和设计模式，以便用户能够方便地查询、分析和理解融合的数据。</p>
-<h2 id="具体要求"><a href="#具体要求" class="headerlink" title="具体要求"></a>具体要求</h2><p>要求基于Web前后端技术对数据汇聚融合系统进行开发，其设计任务包括：<br>①爬取互联网数据，并实现<em>数据的转换和融合</em>。<br>②设计实施一个完整的互联网数据汇聚融合系统，并实现<em>数据源管理</em>。<br>③实现<em>统一的数据呈现</em>，以便用户能够方便地查询、分析数据。</p>
-<h2 id="任务节点"><a href="#任务节点" class="headerlink" title="任务节点"></a>任务节点</h2><p>（1）第1－3周：查阅相关文献资料，明确研究内容，了解研究所需理论基础。确定方案，完成开题报告。 <br>（2）第4－5周：熟悉掌握基本理论，熟悉相关工具软件的使用。论文开题；（至少完成1次阶段性报告） <br>（3）第6－9周： 完成对互联网数据的爬取，通过一定的智能化处理和转换融合，实现统一汇聚，并撰写相应章节的论文。<br>（4）第10－12周：设计和实施一个完整的互联网数据汇聚融合系统，实现统一的数据呈现和管理，并撰写相应章节的论文。<br>（5）第13－15周：完成英文资料的翻译，完成并修改毕业论文，准备论文答辩。 <br>（6）第16周：论文答辩。</p>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>[1]  [美] 克雷格•沃斯（Craig Walls）著. 丁雪丰译. SpringBoot实战(第4版)[M]. 人民邮电出版社, 2016年9月.<br>[2] 阳振坤,杨传辉,韩富晟等.OceanBase分布式关系数据库架构与技术[J&#x2F;OL].计算机研究与发展,1-16[2023-12-21].<br>[3] 周毅,李威,何金等.基于Scrapy框架的分布式网络爬虫系统设计与实现[J].现代信息科技,2021,5(19).<br>[4] 邢羽琪,杨柽.基于逆向技术的深层网络爬虫与数据分析[J].软件工程,2023,26(12).<br>[5]  [美] 泽卡斯（Zakas Nicholas）著. 李松峰等译. JavaScript高级程序设计(第4版). 人民邮电出版社, 2020年3月.<br>[6] Kumar, M., Bhatia, R., &amp; Rattan, D. (2017). A survey of Web crawlers for information retrieval. Wiley Interdisciplinary Reviews: Data Mining and Knowledge Discovery, 7(6), e1218.<br>[7] Apache Dubbo官方文档[EB&#x2F;OL]. 2022-11-01. <a target="_blank" rel="noopener" href="https://dubbo.apache.org/zh/">https://dubbo.apache.org/zh/</a>.</p>
+<p>WebMagic的结构分为<code>Downloader</code>、<code>PageProcessor</code>、<code>Scheduler</code>、<code>Pipeline</code>四大组件，并由Spider将它们彼此组织起来。这四大组件对应爬虫生命周期中的下载、处理、管理和持久化等功能。WebMagic的设计参考了Scapy，但是实现方式更Java化一些。<br>而Spider则将这几个组件组织起来，让它们可以互相交互，流程化的执行，可以认为Spider是一个大的容器，它也是WebMagic逻辑的核心。<br>WebMagic总体架构图如下：<br><img src="http://code4craft.github.io/images/posts/webmagic.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><h3 id="WebMagic的四个组件"><a href="#WebMagic的四个组件" class="headerlink" title="WebMagic的四个组件"></a>WebMagic的四个组件</h3><h4 id="1-Downloader"><a href="#1-Downloader" class="headerlink" title="1.Downloader"></a>1.Downloader</h4><p>Downloader负责从互联网上下载页面，以便后续处理。WebMagic默认使用了<a target="_blank" rel="noopener" href="http://hc.apache.org/index.html">Apache HttpClient</a>作为下载工具。</p>
+<h4 id="2-PageProcessor"><a href="#2-PageProcessor" class="headerlink" title="2.PageProcessor"></a>2.PageProcessor</h4><p>PageProcessor负责解析页面，抽取有用信息，以及发现新的链接。WebMagic使用<a target="_blank" rel="noopener" href="http://jsoup.org/">Jsoup</a>作为HTML解析工具，并基于其开发了解析XPath的工具<a target="_blank" rel="noopener" href="https://github.com/code4craft/xsoup">Xsoup</a>。<br>在这四个组件中，<code>PageProcessor</code>对于每个站点每个页面都不一样，是需要使用者定制的部分。</p>
+<h4 id="3-Scheduler"><a href="#3-Scheduler" class="headerlink" title="3.Scheduler"></a>3.Scheduler</h4><p>Scheduler负责管理待抓取的URL，以及一些去重的工作。WebMagic默认提供了JDK的内存队列来管理URL，并用集合来进行去重。也支持使用Redis进行分布式管理。<br>除非项目有一些特殊的分布式需求，否则无需自己定制Scheduler。</p>
+<h4 id="4-Pipeline"><a href="#4-Pipeline" class="headerlink" title="4.Pipeline"></a>4.Pipeline</h4><p>Pipeline负责抽取结果的处理，包括计算、持久化到文件、数据库等。WebMagic默认提供了“输出到控制台”和“保存到文件”两种结果处理方案。<br><code>Pipeline</code>定义了结果保存的方式，如果你要保存到指定数据库，则需要编写对应的Pipeline。对于一类需求一般只需编写一个<code>Pipeline</code>。</p>
+<h3 id="用于数据流转的对象"><a href="#用于数据流转的对象" class="headerlink" title="用于数据流转的对象"></a>用于数据流转的对象</h3><h4 id="1-Request"><a href="#1-Request" class="headerlink" title="1. Request"></a>1. Request</h4><p><code>Request</code>是对URL地址的一层封装，一个Request对应一个URL地址。<br>它是PageProcessor与Downloader交互的载体，也是PageProcessor控制Downloader唯一方式。<br>除了URL本身外，它还包含一个Key-Value结构的字段<code>extra</code>。你可以在extra中保存一些特殊的属性，然后在其他地方读取，以完成不同的功能。例如附加上一个页面的一些信息等。</p>
+<h4 id="2-Page"><a href="#2-Page" class="headerlink" title="2. Page"></a>2. Page</h4><p><code>Page</code>代表了从Downloader下载到的一个页面——可能是HTML，也可能是JSON或者其他文本格式的内容。<br>Page是WebMagic抽取过程的核心对象，它提供一些方法可供抽取、结果保存等。在第四章的例子中，我们会详细介绍它的使用。</p>
+<h4 id="3-ResultItems"><a href="#3-ResultItems" class="headerlink" title="3. ResultItems"></a>3. ResultItems</h4><p><code>ResultItems</code>相当于一个Map，它保存PageProcessor处理的结果，供Pipeline使用。它的API与Map很类似，值得注意的是它有一个字段<code>skip</code>，若设置为true，则不应被Pipeline处理。</p>
+<h2 id="WebMagic-快速入门"><a href="#WebMagic-快速入门" class="headerlink" title="WebMagic 快速入门"></a>WebMagic 快速入门</h2><ol>
+<li>添加Maven依赖：<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>us.codecraft<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>webmagic-core<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>$&#123;webmagic.version&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>us.codecraft<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>webmagic-extension<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>$&#123;webmagic.version&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure></li>
+<li>编写PageProcesser爬取解析页面：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">GithubRepoPageProcessor</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">PageProcessor</span> &#123;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-type">Site</span> <span class="hljs-variable">site</span> <span class="hljs-operator">=</span> Site.me().setRetryTimes(<span class="hljs-number">3</span>).setSleepTime(<span class="hljs-number">1000</span>);<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">process</span><span class="hljs-params">(Page page)</span> &#123;<br>        page.addTargetRequests(page.getHtml().links().regex(<span class="hljs-string">&quot;(https://github\\.com/\\w+/\\w+)&quot;</span>).all());<br>        page.putField(<span class="hljs-string">&quot;author&quot;</span>, page.getUrl().regex(<span class="hljs-string">&quot;https://github\\.com/(\\w+)/.*&quot;</span>).toString());<br>        page.putField(<span class="hljs-string">&quot;name&quot;</span>, page.getHtml().xpath(<span class="hljs-string">&quot;//h1[@class=&#x27;public&#x27;]/strong/a/text()&quot;</span>).toString());<br>        <span class="hljs-keyword">if</span> (page.getResultItems().get(<span class="hljs-string">&quot;name&quot;</span>)==<span class="hljs-literal">null</span>)&#123;<br>            <span class="hljs-comment">//skip this page</span><br>            page.setSkip(<span class="hljs-literal">true</span>);<br>        &#125;<br>        page.putField(<span class="hljs-string">&quot;readme&quot;</span>, page.getHtml().xpath(<span class="hljs-string">&quot;//div[@id=&#x27;readme&#x27;]/tidyText()&quot;</span>));<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> Site <span class="hljs-title function_">getSite</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> site;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        Spider.create(<span class="hljs-keyword">new</span> <span class="hljs-title class_">GithubRepoPageProcessor</span>()).addUrl(<span class="hljs-string">&quot;https://github.com/code4craft&quot;</span>).thread(<span class="hljs-number">5</span>).run();<br>    &#125;<br>&#125;<br><span class="hljs-comment">//注解方式</span><br><span class="hljs-meta">@TargetUrl(&quot;https://github.com/\\w+/\\w+&quot;)</span><br><span class="hljs-meta">@HelpUrl(&quot;https://github.com/\\w+&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">GithubRepo</span> &#123;<br><br>    <span class="hljs-meta">@ExtractBy(value = &quot;//h1[@class=&#x27;public&#x27;]/strong/a/text()&quot;, notNull = true)</span><br>    <span class="hljs-keyword">private</span> String name;<br><br>    <span class="hljs-meta">@ExtractByUrl(&quot;https://github\\.com/(\\w+)/.*&quot;)</span><br>    <span class="hljs-keyword">private</span> String author;<br><br>    <span class="hljs-meta">@ExtractBy(&quot;//div[@id=&#x27;readme&#x27;]/tidyText()&quot;)</span><br>    <span class="hljs-keyword">private</span> String readme;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        OOSpider.create(Site.me().setSleepTime(<span class="hljs-number">1000</span>)<br>                , <span class="hljs-keyword">new</span> <span class="hljs-title class_">ConsolePageModelPipeline</span>(), GithubRepo.class)<br>                .addUrl(<span class="hljs-string">&quot;https://github.com/code4craft&quot;</span>).thread(<span class="hljs-number">5</span>).run();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ol>
 
                 
               </div>
@@ -396,7 +392,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E7%A7%91%E7%A0%94%E5%AD%A6%E4%B9%A0/" class="category-chain-item">科研学习</a>
+  <a href="/categories/%E8%BF%90%E7%BB%B4%E5%BC%80%E5%8F%91/" class="category-chain-item">运维开发</a>
   
   
 
@@ -411,7 +407,11 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Spider/">#Spider</a>
+        <a href="/tags/%E7%88%AC%E8%99%AB/">#爬虫</a>
+      
+        <a href="/tags/webmagic/">#webmagic</a>
+      
+        <a href="/tags/pupeteer/">#pupeteer</a>
       
     </div>
   
@@ -423,8 +423,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>多源异构司法数据汇聚融合-解决方案调研</div>
-      <div>https://alleyf.github.io/2023/12/5f1c44e4965a.html</div>
+      <div>WebMagic</div>
+      <div>https://alleyf.github.io/2023/12/d14bc05f8236.html</div>
     </div>
     <div class="license-meta">
       
@@ -436,13 +436,13 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年12月3日</div>
+          <div>2023年12月22日</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2023年12月23日</div>
+          <div>2023年12月22日</div>
         </div>
       
       <div class="license-meta-item">
@@ -471,18 +471,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/12/3727d5849252.html" title="若依脚手架-学习">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">若依脚手架-学习</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/12/3e87c166eb21.html" title="正则表达式-Regex">
-                        <span class="hidden-mobile">正则表达式-Regex</span>
+                      <a href="/2023/12/51038f653307.html" title="数据集汇总与评测">
+                        <span class="hidden-mobile">数据集汇总与评测</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -503,7 +497,7 @@
         var options = Object.assign(
           {"clientID":"636f2864e051a199b91c","clientSecret":"5185fd11115bbcd8d2f636bc80de6bed98ed14c1","repo":"Gitalk","owner":"Alleyf","admin":["Alleyf"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":false,"proxy":"https://shielded-brushlands-08810.herokuapp.com/https://github.com/login/oauth/access_token"},
           {
-            id: 'a47b8c03857a1d5c95b7cf80e84d7cb8'
+            id: 'e9245c140f77381eae650f98438cf9b7'
           }
         )
         var gitalk = new Gitalk(options);
