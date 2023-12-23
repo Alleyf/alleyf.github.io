@@ -6,7 +6,7 @@
   <link href="https://alleyf.github.io/atom.xml" rel="self"/>
   
   <link href="https://alleyf.github.io/"/>
-  <updated>2023-12-22T05:51:19.815Z</updated>
+  <updated>2023-12-23T07:35:45.902Z</updated>
   <id>https://alleyf.github.io/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>后端开发规范手册</title>
+    <link href="https://alleyf.github.io/2023/12/02c1118dc726.html"/>
+    <id>https://alleyf.github.io/2023/12/02c1118dc726.html</id>
+    <published>2023-12-23T07:16:24.000Z</published>
+    <updated>2023-12-23T07:35:45.902Z</updated>
+    
+    
+    <summary type="html">关于后端开发的程序和包的命名规范。</summary>
+    
+    
+    
+    <category term="后端开发" scheme="https://alleyf.github.io/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
+    
+    
+    <category term="rules" scheme="https://alleyf.github.io/tags/rules/"/>
+    
+  </entry>
   
   <entry>
     <title>WebMagic</title>
@@ -105,7 +124,7 @@
     <link href="https://alleyf.github.io/2023/12/5f1c44e4965a.html"/>
     <id>https://alleyf.github.io/2023/12/5f1c44e4965a.html</id>
     <published>2023-12-03T08:39:38.000Z</published>
-    <updated>2023-12-23T03:28:52.035Z</updated>
+    <updated>2023-12-23T04:31:50.718Z</updated>
     
     
     <summary type="html">关于互联网数据汇聚融合的调研结果。</summary>
@@ -416,35 +435,6 @@
     <category term="KG" scheme="https://alleyf.github.io/tags/KG/"/>
     
     <category term="LLM" scheme="https://alleyf.github.io/tags/LLM/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SpringBoot_Vue项目实战</title>
-    <link href="https://alleyf.github.io/2023/11/9f9a776a7dab.html"/>
-    <id>https://alleyf.github.io/2023/11/9f9a776a7dab.html</id>
-    <published>2023-11-08T05:08:25.000Z</published>
-    <updated>2023-11-23T05:04:54.818Z</updated>
-    
-    
-    <summary type="html">A Demo for SpringBoot with Vue.</summary>
-    
-    
-    
-    <category term="后端开发" scheme="https://alleyf.github.io/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
-    
-    
-    <category term="SpringBoot" scheme="https://alleyf.github.io/tags/SpringBoot/"/>
-    
-    <category term="Vue" scheme="https://alleyf.github.io/tags/Vue/"/>
-    
-    <category term="Mysql" scheme="https://alleyf.github.io/tags/Mysql/"/>
-    
-    <category term="Redis" scheme="https://alleyf.github.io/tags/Redis/"/>
-    
-    <category term="RabbiMQ" scheme="https://alleyf.github.io/tags/RabbiMQ/"/>
-    
-    <category term="JWT" scheme="https://alleyf.github.io/tags/JWT/"/>
     
   </entry>
   

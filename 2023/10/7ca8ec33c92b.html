@@ -26,6 +26,9 @@
 <meta property="og:description" content="it is some basic usage of SpringBoot .">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://s2.loli.net/2023/07/10/VBkHuWr83jzpnXe.png">
+<meta property="og:image" content="https://qnpicmap.fcsluck.top/pics/202312231707570.png">
+<meta property="og:image" content="https://qnpicmap.fcsluck.top/pics/202312232146107.png">
+<meta property="og:image" content="https://qnpicmap.fcsluck.top/pics/202312232305656.png">
 <meta property="og:image" content="https://s2.loli.net/2023/07/10/qnjY5MdRrOemFaQ.png">
 <meta property="og:image" content="https://s2.loli.net/2022/11/22/hDGo7m9uBlgVn5A.png">
 <meta property="og:image" content="https://s2.loli.net/2023/07/11/V6lBrtp5QvbPyKk.png">
@@ -138,7 +141,7 @@
 <meta property="og:image" content="https://s2.loli.net/2023/07/24/4o76q5yNHkabuip.png">
 <meta property="og:image" content="https://s2.loli.net/2023/07/24/cqEgnQOZtFp1w7o.png">
 <meta property="article:published_time" content="2023-10-31T07:04:18.000Z">
-<meta property="article:modified_time" content="2023-12-17T08:44:25.721Z">
+<meta property="article:modified_time" content="2023-12-23T15:12:24.712Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="SpringBoot">
 <meta name="twitter:card" content="summary_large_image">
@@ -394,7 +397,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          119k 字
+          121k 字
         
       </span>
     
@@ -405,7 +408,7 @@
         
         
         
-          990 分钟
+          1010 分钟
         
       </span>
     
@@ -456,7 +459,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：6 天前
+                    本文最后更新于：2 小时前
                   
                 
               </p>
@@ -468,13 +471,103 @@
 <blockquote>
 <p>[!WARNING] Tips<br>idea 已经不在支持创建 <strong>springBoot2.x</strong> 版本的项目了，最低要求 <strong>java17+spring3.x</strong> 版本，因此要想继续使用 springboot2.x 版本可以更换 SpringInitializer 服务器 url 为<strong>阿里云</strong>的： <a target="_blank" rel="noopener" href="https://start.aliyun.com/">Cloud Native App Initializer</a></p>
 </blockquote>
+<h1 id="SpringBoot-基础速成"><a href="#SpringBoot-基础速成" class="headerlink" title="SpringBoot 基础速成"></a>SpringBoot 基础速成</h1><h2 id="Bean-配置"><a href="#Bean-配置" class="headerlink" title="Bean 配置"></a>Bean 配置</h2><h3 id="Bean-扫描"><a href="#Bean-扫描" class="headerlink" title="Bean 扫描"></a>Bean 扫描</h3><p>实现 Bean 扫描的注解有以下方式：</p>
+<ol>
+<li><code>@ComponentScan</code>：basePackages&#x2F;value 接收一个包名字符串，表示扫描该包及其子包下的所有 bean 对象，将其自动注册到 IOC 容器中。</li>
+<li><code>@ComponentScans</code>：value 接收多个@ComponentScan，扩展了@ComponentScan，相当于批量注册 bean 对象到 IOC 容器中。</li>
+</ol>
+<h3 id="Bean-注册"><a href="#Bean-注册" class="headerlink" title="Bean 注册"></a>Bean 注册</h3><p>实现 Bean 注册的方式分为：本地自定义的类注册和导入的第三方包中的类的注册。</p>
+<h4 id="自定义类的注册"><a href="#自定义类的注册" class="headerlink" title="自定义类的注册"></a>自定义类的注册</h4><ol>
+<li><code>@Component</code>：bean 基础注册注解，添加该注解的类会在 Springboot 程序启动时自动注册为 IOC 容器的 bean。</li>
+<li><code>@Service</code>：业务类 bean 注册注解，一般用于业务处理的相关类，对应于包名为 service 下的 java 类。</li>
+<li><code>@Controller</code>：控制器 bean 注册注解，一般用于控制层返回数据的相关类，对应于 controller 下的相关 java 类。</li>
+<li><code>@Repository</code>：数据交互 bean 注册注解，一般在 mybatis 等数据库中间件较多，自己用该注解较少。</li>
+<li>···：还有如 RestController 等进一步的封装注解，也可以实现不同意义的 bean 注册。</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th align="center">注解</th>
+<th>说明</th>
+<th>位置</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>@Component</code></td>
+<td>声明 bean 的基础注解</td>
+<td>不属于以下三类时，用此注解</td>
+</tr>
+<tr>
+<td align="center"><code>@Controller</code></td>
+<td>@Component 的衍生注解</td>
+<td>标注在控制器类上</td>
+</tr>
+<tr>
+<td align="center"><code>@Service</code></td>
+<td>@Component 的衍生注解</td>
+<td>标注在业务类上</td>
+</tr>
+<tr>
+<td align="center"><code>@Repository</code></td>
+<td>@Component 的衍生注解</td>
+<td>标注在数据访问类上（由于与 mybatis 整合，用的少）</td>
+</tr>
+</tbody></table>
+<h4 id="第三方类的注册"><a href="#第三方类的注册" class="headerlink" title="第三方类的注册"></a>第三方类的注册</h4><p>如果要注册的 bean 对象<em>来自于第三方（不是自定义的）</em>，是无法用@Component 及衍生注解声明 bean 的.</p>
+<blockquote>
+<p>[!NOTE] <code>@Import</code></p>
+<ul>
+<li>导入<strong>配置类</strong>：<code>@Import(Xxx.class)</code></li>
+<li>导入 <strong>ImportSelector 接口实现类</strong><br><img src="https://qnpicmap.fcsluck.top/pics/202312231707570.png" srcset="/img/loading.gif" lazyload></li>
+</ul>
+</blockquote>
+<blockquote>
+<p>一般静态数据都会存储在配置文件中，要么从 application.yml 使用 spel 表达式获取，要么放在 resources 目录下其他文件里通过 io 读取资源文件中的配置进行注入。</p>
+</blockquote>
+<h4 id="注册条件"><a href="#注册条件" class="headerlink" title="注册条件"></a>注册条件</h4><p>常用的几个注册条件如下表所示：</p>
+<table>
+<thead>
+<tr>
+<th>注解</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>@ConditionalOnProperty</code></td>
+<td>配置文件中<em>存在对应的属性，才声明该 bean</em></td>
+</tr>
+<tr>
+<td><code>@ConditionalOnMissingBean</code></td>
+<td>当<em>不存在当前类型的 bean 时，才声明该 bean</em></td>
+</tr>
+<tr>
+<td><code>@ConditionalOnclass</code></td>
+<td>当前环境<em>存在指定的这个类时，才声明该 bean</em></td>
+</tr>
+</tbody></table>
+<h2 id="自动配置原理"><a href="#自动配置原理" class="headerlink" title="自动配置原理"></a>自动配置原理</h2><p>遵循约定大约配置的原测，在 boot 程序启动后，起步依赖中的一些 bean 对象会自动注入到 ioc 容器。</p>
+<p><img src="https://qnpicmap.fcsluck.top/pics/202312232146107.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="自定义-Starter"><a href="#自定义-Starter" class="headerlink" title="自定义 Starter"></a>自定义 Starter</h2><p>在实际开发中，经常会定义一些公共组件，提供给各个项目团队使用。而在Spring Boot的项目中，一般会将这些公共组件封装为SprinaBoot的starter。</p>
+<ol>
+<li><code>Maven:org.mybatis.spring.boot:mybatis-spring-boot-autoconfigure:3.0.0</code>—&gt;自动配置功能</li>
+<li><code>Maven:org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.0</code>—&gt;依赖管理功能</li>
+</ol>
+<p>需求：自定义mybatis的starter</p>
+<ul>
+<li>创建<code>fmybatis-spring-boot-autoconfigure</code>模块，提供自动配置功能，并自定义配置文件<code>META-lNF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports</code></li>
+<li>创建<code>fmybatis-spring-boot-starter模</code>块，在starter中引入自动配置模块</li>
+</ul>
+<p>核心自动装配类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@AutoConfiguration</span><span class="hljs-comment">//表示该类是一个自动配置类</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyBatisAutoConfig</span> &#123;<br>    <span class="hljs-comment">//    sqlSessionFactory</span><br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-keyword">public</span> SqlSessionFactory <span class="hljs-title function_">sqlSessionFactory</span><span class="hljs-params">(DataSource dataSource)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>        <span class="hljs-type">SqlSessionFactoryBean</span> <span class="hljs-variable">sqlSessionFactoryBean</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">SqlSessionFactoryBean</span>();<br>        sqlSessionFactoryBean.setDataSource(dataSource);<br>        <span class="hljs-keyword">return</span> sqlSessionFactoryBean.getObject();<br>    &#125;<br><br>    <span class="hljs-comment">//    MapperScannerConfigurer</span><br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-keyword">public</span> MapperScannerConfigurer <span class="hljs-title function_">mapperScannerConfigurer</span><span class="hljs-params">(BeanFactory beanFactory)</span> &#123;<br>        <span class="hljs-type">MapperScannerConfigurer</span> <span class="hljs-variable">mapperScannerConfigurer</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">MapperScannerConfigurer</span>();<br><span class="hljs-comment">//        设置扫描包：启动类所在的包及其子包</span><br>        List&lt;String&gt; packages = AutoConfigurationPackages.get(beanFactory);<br>        <span class="hljs-type">String</span> <span class="hljs-variable">group</span> <span class="hljs-operator">=</span> packages.get(<span class="hljs-number">0</span>);<br>        mapperScannerConfigurer.setBasePackage(group);<br><span class="hljs-comment">//        扫描的注解</span><br>        mapperScannerConfigurer.setAnnotationClass(Mapper.class);<br>        <span class="hljs-keyword">return</span> mapperScannerConfigurer;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>完成后的目录结构如下图所示：<br><img src="https://qnpicmap.fcsluck.top/pics/202312232305656.png" srcset="/img/loading.gif" lazyload></p>
+<hr>
 <h1 id="走进-SpringBoot-一站式开发"><a href="#走进-SpringBoot-一站式开发" class="headerlink" title="走进 SpringBoot 一站式开发"></a>走进 SpringBoot 一站式开发</h1><p><strong>前置课程：</strong>《Spring6 核心内容》《SpringMvc6》《SpringSecurity6》《Java-9-17 新特性篇》</p>
 <p>**提醒：好奇能不能不学 SSM 直接 SpringBoot，这里声明一下，SpringBoot 只是用于快速创建 SSM 项目的脚手架，就像是个外壳一样，离开了 SSM 核心内容就是个空壳，不要本末倒置了。</p>
 <p>Spring Boot 让您可以轻松地创建独立的、生产级别的 Spring 应用程序，并“直接运行”这些应用程序。SpringBoot 为大量的第三方库添加了支持，能够做到开箱即用，简化大量繁琐配置，用最少的配置快速构建你想要的项目。在 2023 年，SpringBoot 迎来了它的第三个大版本，随着 SpringBoot 3 的正式发布，整个生态也迎来了一次重大革新。</p>
 <p>目前的最新版本以及对应的维护情况：</p>
 <p><img src="https://s2.loli.net/2023/07/10/qnjY5MdRrOemFaQ.png" srcset="/img/loading.gif" lazyload alt="image-20230710174659973"></p>
 <p>可以看到，曾经的 SpringBoot 2.5 版本将会在 2023 年 8 月底终止商业支持，届时将不会再对这类旧版本进行任何维护，因此，将我们的老版本 SpringBoot 项目进行升级已经迫在眉睫，目前最强的 3.1 正式版会维护到 2025 年中旬。</p>
-<p>在3.X 之后的变化相比2.X 可以说是相当大，尤其是其生态下的 SpringSecurity 框架，旧版本项目在升级之后 API 已经完全发生改变；以及内置 Tomcat 服务器的升级，Servlet 也升级到5以上，从 <code>javax</code> 全新升级到 <code>jakarta</code> 新包名；包括在 3.X 得到的大量新特性，如支持 GraalVM 打包本地镜像运行等；并且 Java 版本也强制要求为 17 版本。迁移到新版本不仅可以享受到免费维护支持，也可以感受 Java17带来的全新体验。</p>
+<p>在3.X 之后的变化相比2.X 可以说是相当大，尤其是其生态下的 SpringSecurity 框架，旧版本项目在升级之后 API 已经完全发生改变；以及内置 Tomcat 服务器的升级，Servlet 也升级到5以上，从 <code>javax</code> 全新升级到 <code>jakarta</code> 新包名；包括在 3.X 得到的大量新特性，如支持 GraalVM 打包本地镜像运行等；并且 Java 版本也强制要求为 17 版本。迁移到新版本不仅可以享受到免费维护支持，也可以感受 Java17 带来的全新体验。</p>
 <p>介绍了这么多，我们首先还是来看看 SpringBoot 功能有哪些：</p>
 <ul>
 <li>能够创建独立的 Spring 应用程序</li>
@@ -1210,7 +1303,7 @@
 <p>既然这里又是 SpringFactoriesLoader 加载 ApplicationContextFactory 实现，我们就直接去看有些啥：</p>
 <p><img src="https://s2.loli.net/2023/07/19/Nqd8vguDKtR2XmW.png" srcset="/img/loading.gif" lazyload alt="image-20230719002638475"></p>
 <p>我们也不出意外地在<code>spring.factories</code>中找到了这两个实现，因为目前是 Servlet 环境，所以在返回时得到最终的结果，也就是生成的 AnnotationConfigServletWebServerApplicationContext 对象，也就是说到这里为止，Spring 的容器就基本已经确定了，差不多可以开始运行了，下一个部分我们将继续介绍 SpringBoot 是如何实现自动扫描以及自动配置的。</p>
-<h3 id="自动配置原理"><a href="#自动配置原理" class="headerlink" title="自动配置原理"></a>自动配置原理</h3><p>既然主类已经在初始阶段注册为 Bean，那么在加载时，就会根据注解定义，进行更多的额外操作。所以我们来看看主类上的<code>@SpringBootApplication</code>注解做了什么事情。</p>
+<h3 id="自动配置原理-1"><a href="#自动配置原理-1" class="headerlink" title="自动配置原理"></a>自动配置原理</h3><p>既然主类已经在初始阶段注册为 Bean，那么在加载时，就会根据注解定义，进行更多的额外操作。所以我们来看看主类上的<code>@SpringBootApplication</code>注解做了什么事情。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Target(&#123;ElementType.TYPE&#125;)</span><br><span class="hljs-meta">@Retention(RetentionPolicy.RUNTIME)</span><br><span class="hljs-meta">@Documented</span><br><span class="hljs-meta">@Inherited</span><br><span class="hljs-meta">@SpringBootConfiguration</span><br><span class="hljs-meta">@EnableAutoConfiguration</span><br><span class="hljs-meta">@ComponentScan(</span><br><span class="hljs-meta">    excludeFilters = &#123;@Filter(</span><br><span class="hljs-meta">    type = FilterType.CUSTOM,</span><br><span class="hljs-meta">    classes = &#123;TypeExcludeFilter.class&#125;</span><br><span class="hljs-meta">), @Filter(</span><br><span class="hljs-meta">    type = FilterType.CUSTOM,</span><br><span class="hljs-meta">    classes = &#123;AutoConfigurationExcludeFilter.class&#125;</span><br><span class="hljs-meta">)&#125;</span><br><span class="hljs-meta">)</span><br><span class="hljs-keyword">public</span> <span class="hljs-meta">@interface</span> SpringBootApplication &#123;<br>  ...<br></code></pre></td></tr></table></figure>
 
 <p>我们发现，<code>@SpringBootApplication</code>上添加了<code>@ComponentScan</code>注解，此注解我们此前已经认识过了，但是这里并没有配置具体扫描的包，因此它会自动将声明此接口的类所在的包作为 basePackage，所以，当添加<code>@SpringBootApplication</code>之后也就等于直接开启了自动扫描，我们所有的配置都会自动加载，但是一定注意不能在主类之外的包进行 Bean 定义，否则无法扫描到，需要手动配置。</p>
@@ -1354,7 +1447,7 @@
 <p>​		但是以上这些操作都有一个共性，那就是它们都是通过某种条件去进行查询，而最后的查询结果，都是一个实体类，所以你会发现你写的很多 SQL 语句都是一个套路<code>select * from xxx where xxx=xxx</code>，实际上对于这种简单 SQL 语句，我们完全可以弄成一个模版来使用，那么能否有一种框架，帮我们把这些相同的套路给封装起来，直接把这类相似的 SQL 语句给屏蔽掉，不再由我们编写，而是让框架自己去组合拼接。</p>
 <h3 id="认识-SpringData-JPA"><a href="#认识-SpringData-JPA" class="headerlink" title="认识 SpringData JPA"></a>认识 SpringData JPA</h3><p>首先我们来看一个国外的统计：</p>
 <p><img src="https://s2.loli.net/2023/03/06/XaoLIPrjDKzO9Tx.png" srcset="/img/loading.gif" lazyload alt="image-20230306224859664"></p>
-<p>不对吧，为什么 Mybatis 这么好用，这么强大，却只有 10%的人喜欢呢？然而事实就是，在国外 JPA 几乎占据了主导地位，而 Mybatis 并不像国内那样受待见，所以你会发现，JPA 都有 SpringBoot 的官方直接提供的 starter，而 Mybatis 没有，直到 SpringBoot 3才开始加入到官方模版中。</p>
+<p>不对吧，为什么 Mybatis 这么好用，这么强大，却只有 10%的人喜欢呢？然而事实就是，在国外 JPA 几乎占据了主导地位，而 Mybatis 并不像国内那样受待见，所以你会发现，JPA 都有 SpringBoot 的官方直接提供的 starter，而 Mybatis 没有，直到 SpringBoot 3 才开始加入到官方模版中。</p>
 <p>那么，什么是 JPA？</p>
 <blockquote>
 <p>JPA（Java Persistence API）和 JDBC 类似，也是官方定义的一组接口，但是它相比传统的 JDBC，它是为了实现 ORM 而生的，即 Object-Relationl Mapping，它的作用是在关系型数据库和对象之间形成一个映射，这样，我们在具体的操作数据库的时候，就不需要再去和复杂的 SQL 语句打交道，只要像平时操作对象一样操作它就可以了。</p>
@@ -2089,7 +2182,7 @@
 <li>无法分布式共享: 传统 Session 方案不适用于多个服务器之间共享会话信息的场景，需要额外的管理和同步机制。</li>
 </ol>
 <p>综上所述，JWT 校验方案适用于无状态、分布式系统，几乎所有常见的前后端分离的架构都可以采用这种方案。而传统 Session 校验方案适用于需要即时失效、即时撤销和灵活权限管理的场景，适合传统的服务器端渲染应用，以及客户端支持 Cookie 功能的前后端分离架构。在选择校验方案时，需要根据具体的业务需求和技术场景进行选择。</p>
-<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cardlink">url: https://itbaima.net/<br>title: &quot;柏码 - 让每一行代码都闪耀智慧的光芒！&quot;<br>host: itbaima.net<br>favicon: /favicon.ico<br></code></pre></td></tr></table></figure>
+<h1 id="项目实战-大事件"><a href="#项目实战-大事件" class="headerlink" title="项目实战-大事件"></a>项目实战-大事件</h1><h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cardlink">url: https://itbaima.net/<br>title: &quot;柏码 - 让每一行代码都闪耀智慧的光芒！&quot;<br>host: itbaima.net<br>favicon: /favicon.ico<br></code></pre></td></tr></table></figure>
 <p><a target="_blank" rel="noopener" href="https://itbaima.net/">柏码 - 让每一行代码都闪耀智慧的光芒！</a></p>
 
                 
@@ -2155,7 +2248,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2023年12月17日</div>
+          <div>2023年12月23日</div>
         </div>
       
       <div class="license-meta-item">
