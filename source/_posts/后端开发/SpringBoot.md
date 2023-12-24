@@ -4519,6 +4519,14 @@ public class AuthorizeController {
 
 # 项目实战-大事件
 
+## 环境配置
+
+- 执行资料中的big_event.sql脚本，准备数据库表
+- 创建springboot工程，引入对应的依赖(web、mybatis、mysql驱动)
+- 配置文件application.yml中引入mybatis的配置信息
+- 创建包结构，并准备实体类
+
+
 
 
 

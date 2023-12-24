@@ -465,7 +465,7 @@ class SaveFilePipeline(FilesPipeline):
 ```
 3. 修改全局配置文件
 ```python
-   USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:120.0) Gecko/20100101 Firefox/120.0"
+USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:120.0) Gecko/20100101 Firefox/120.0"
 ROBOTSTXT_OBEY = True
 """文件下载存储路径"""
 FILES_STORE ='./laws'

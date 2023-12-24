@@ -296,7 +296,7 @@ public class Knife 4 jConfig {
 	```xml
 	   <!--        jackson-->  
 	<dependency>  
-	    <groupId>com. fasterxml. jackson. core</groupId>  
+	    <groupId>com.fasterxml.jackson.core</groupId>  
 	    <artifactId>jackson-databind</artifactId>  
 	</dependency>
 	```
@@ -310,7 +310,7 @@ public class Knife 4 jConfig {
 	```
 4. **Bean** 不要被循环或重复导入。
 5. 使用 **mybatis** 时由于没有给 `DTO` 实体的**属性添加与数据表对应的字段注释**，因此**属性名必须与字段名**一致。
-6. `@RequestParam` 一般用于 **Get** 请求路径传参，`@RequestBody` 一般用于 **Post** 请求 *Json* 传递请求体数据（*也可以用@RequestParam 传参但必须请求头注明 url 编码为表单格式*）。
+6. `@RequestParam` 一般用于 **Get** 请求路径传参，`@RequestBody` 一般用于 **Post** 请求 *Json* 传递请求体数据（*也可以用@RequestParam 传参但必须请求头注明 url 编码或者表单格式*）。
 7. 内部结束 **setInterval** 定时器：
 	```js
 	const coldTimer = setInterval (() => {  
