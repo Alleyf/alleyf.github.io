@@ -27,7 +27,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://picsum.photos/800/250">
 <meta property="article:published_time" content="2023-11-29T14:13:45.000Z">
-<meta property="article:modified_time" content="2023-12-25T01:45:51.325Z">
+<meta property="article:modified_time" content="2023-12-25T08:01:11.963Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="全栈">
 <meta property="article:tag" content="DevOps">
@@ -284,7 +284,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5.5k 字
+          7.1k 字
         
       </span>
     
@@ -295,7 +295,7 @@
         
         
         
-          46 分钟
+          59 分钟
         
       </span>
     
@@ -346,7 +346,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：4 分钟前
+                    本文最后更新于：10 小时前
                   
                 
               </p>
@@ -355,6 +355,37 @@
               <div class="markdown-body">
                 
                 <p><img src="https://picsum.photos/800/250" srcset="/img/loading.gif" lazyload></p>
+<h1 id="搜索引擎"><a href="#搜索引擎" class="headerlink" title="搜索引擎"></a>搜索引擎</h1><h2 id="ElasticSearch"><a href="#ElasticSearch" class="headerlink" title="ElasticSearch"></a>ElasticSearch</h2><p>Elasticsearch 是一款开源的高性能、分布式、可扩展的搜索和分析引擎。它能够实时地存储、搜索和分析大量的数据，常用于日志处理、全文搜索、安全性情报、业务分析等场景。Elasticsearch 基于 Apache Lucene 构建，设计上非常灵活，让复杂的搜索变得非常简单。</p>
+<p>其特点包括:</p>
+<ol>
+<li><strong>分布式和可扩展</strong>：Elasticsearch 自动处理数据的分片和索引，可以很容易地在多服务器之间进行分配和扩展。</li>
+<li><strong>实时性</strong>：Elasticsearch 是近实时的搜索平台，这意味着从索引文档到文档可搜索的延迟非常小，一般只有 1 秒。</li>
+<li><strong>全文搜索</strong>：提供了一套完整和强大的全文搜索功能，包括个性化的分析和高亮显示。</li>
+<li><strong>多语言支持</strong>：支持许多语言，包括中文，英文等等。</li>
+<li><strong>易于使用</strong>：提供了许多客户端库，包括 Java、Python、PHP、JavaScript 等，支持 RESTful API，使用 JSON 进行数据交。</li>
+<li><strong>集成 Kibana</strong>：Elasticsearch 与 Kibana 紧密集成，Kibana 可以为 Elasticsearch 数据库中的数据提供实时汇总和搜索。<br>Elasticsearch 已被许多世界著名公司所采用，包括 GitHub, Gold Man Sachs, Netflix 等。它是 ELK Stack (Elasticsearch &#x2F; Logstash &#x2F; Kibana) 的核心组件，被广泛应用于日志收集、分析和可视化。<br>如果你需要更深入地了解 Elasticsearch 或者想要在你的应用中使用 Elasticsearch，你可以访问他们的 GitHub 仓库，那里有详细的文档和一些有用的例子。</li>
+</ol>
+<h2 id="RediSearch"><a href="#RediSearch" class="headerlink" title="RediSearch"></a>RediSearch</h2><p>RediSearch 是一个全文搜索引擎，基于 Redis 构建，提供搜索和次序功能。RediSearch 的初衷是为了优化响应时间与性能，同时支持更多种类的查询。</p>
+<p>其主要特点包括：</p>
+<ol>
+<li><strong>速度</strong>：作为内存数据结构存储系统的 Redis 的一部分，RediSearch 能够提供快速的搜索结果。</li>
+<li><strong>数据结构</strong>：RediSearch 可以利用 Redis 数据库的数据结构，如字符串、列表、集合、有序集合、哈希等。</li>
+<li><strong>全文搜索</strong>: RediSearch 提供全文搜索，并支持复杂的查询，包括并集，交集和否定。</li>
+<li><strong>自定义搜索索引</strong>：可以按照字段定义索引。这使得搜索可以直观地按字段搜索，而不仅仅是全文搜索。</li>
+<li><strong>实时索引更新</strong>：与其他许多搜索引擎不同，如 Elasticsearch 或 Solr，RediSearch 允许在文档添加或更新时即时更新索引。</li>
+<li><strong>轻量级</strong>：RediSearch 非常轻量级，并且可以轻松地与任何应用程序集成。<br>以上就是关于 RediSearch 的基本介绍。如果你想查找更多信息或者下载试用，可以访问他们的 GitHub 仓库。</li>
+</ol>
+<h2 id="Meilisearch"><a href="#Meilisearch" class="headerlink" title="Meilisearch"></a>Meilisearch</h2><p>Meilisearch 是一个开源、轻量级、无服务器且易于使用的全文搜索数据库，适合所有类型的应用程序。它通过提供极其快速和相关的搜索结果，提升了用户体验。</p>
+<p>其主要特点有：</p>
+<ol>
+<li><strong>速度</strong>: Meilisearch 提供无与伦比的响应时间，为您的用户提供即时搜索结果，即使查询是模糊的。</li>
+<li><strong>相关性</strong>: Meilisearch 的搜索算法允许您通过单个搜索框显示最相关的搜索结果，这也是现代用户所期望的。</li>
+<li><strong>易于使用</strong>：它是即插即用的搜索引擎，可以轻易地与任何应用程序进行集成，无需复杂的配置。</li>
+<li><strong>定制性</strong>：它允许你调整搜索索引、停用词、同义词等，以满足你的需求。</li>
+<li><strong>实时更改索引</strong>：无需手动管理更新索引，Meilisearch 可以在新数据被添加时自动更新索引。</li>
+<li><strong>无服务器</strong>： Meilisearch 是一个无服务器解决方案，它可作为一个独立应用程序运行，无需担心后台服务器的管理和维护。</li>
+<li><strong>多语言支持</strong>：为各种语言提供的一流的搜索体验。<br>以上就是关于 Meilisearch 的基本介绍，如果你想学习更多或者见证它的性能，你可以去他们的 GitHub 仓库进行更详细的了解。</li>
+</ol>
 <h1 id="日志解决方案"><a href="#日志解决方案" class="headerlink" title="日志解决方案"></a>日志解决方案</h1><h2 id="Apache-SeaTunne-ClickHouse"><a href="#Apache-SeaTunne-ClickHouse" class="headerlink" title="Apache SeaTunne + ClickHouse"></a>Apache SeaTunne + ClickHouse</h2><h2 id="ELK"><a href="#ELK" class="headerlink" title="ELK"></a>ELK</h2><p>ELK Stack 是一个缩略词，用来描述由三个常见项目组成的堆栈：Elasticsearch、Logstash 和 Kibana。ELK Stack 通常被称为 Elasticsearch，它使您能够聚合来自所有系统和应用程序的日志，分析这些日志，并创建可视化来进行应用程序和基础设施监控、更快的故障排除、安全分析等。</p>
 <p><img src="https://pic3.zhimg.com/80/v2-f6f5cc297731ad3d7a5feb21f28ec76a_720w.webp" srcset="/img/loading.gif" lazyload></p>
 <h3 id="E-Elasticsearch"><a href="#E-Elasticsearch" class="headerlink" title="E &#x3D; Elasticsearch"></a><strong>E &#x3D; Elasticsearch</strong></h3><p>Elasticsearch 是在 Apache Lucene 上构建的分布式搜索和分析引擎。对各种语言、高性能和无架构 JSON 文档的支持使 Elasticsearch 成为各种日志分析和搜索使用案例的理想选择。 </p>
