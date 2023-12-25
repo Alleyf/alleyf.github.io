@@ -181,6 +181,27 @@
   </entry>
   
   <entry>
+    <title>全栈+运维-技术架构成熟解决方案</title>
+    <link href="https://alleyf.github.io/2023/11/e3cf5e8cdf6a.html"/>
+    <id>https://alleyf.github.io/2023/11/e3cf5e8cdf6a.html</id>
+    <published>2023-11-29T14:13:45.000Z</published>
+    <updated>2023-12-25T01:45:51.325Z</updated>
+    
+    
+    <summary type="html">关于全栈开发和运维的成熟解决方案。</summary>
+    
+    
+    
+    <category term="后端开发" scheme="https://alleyf.github.io/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
+    
+    
+    <category term="全栈" scheme="https://alleyf.github.io/tags/%E5%85%A8%E6%A0%88/"/>
+    
+    <category term="DevOps" scheme="https://alleyf.github.io/tags/DevOps/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Spring Cloud Alibaba 微服务原理与实战-阅读心得</title>
     <link href="https://alleyf.github.io/2023/11/d1d8bbbe9e18.html"/>
     <id>https://alleyf.github.io/2023/11/d1d8bbbe9e18.html</id>
@@ -410,31 +431,6 @@
     <category term="JWT" scheme="https://alleyf.github.io/tags/JWT/"/>
     
     <category term="SpingSecurity" scheme="https://alleyf.github.io/tags/SpingSecurity/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>周会</title>
-    <link href="https://alleyf.github.io/2023/11/47f9bf6ba53a.html"/>
-    <id>https://alleyf.github.io/2023/11/47f9bf6ba53a.html</id>
-    <published>2023-11-13T14:02:25.000Z</published>
-    <updated>2023-12-24T12:48:48.644Z</updated>
-    
-    
-    <summary type="html">一些关于组会的概要记录。</summary>
-    
-    
-    
-    <category term="科研学习" scheme="https://alleyf.github.io/categories/%E7%A7%91%E7%A0%94%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-    <category term="AIGC" scheme="https://alleyf.github.io/tags/AIGC/"/>
-    
-    <category term="NLP" scheme="https://alleyf.github.io/tags/NLP/"/>
-    
-    <category term="KG" scheme="https://alleyf.github.io/tags/KG/"/>
-    
-    <category term="LLM" scheme="https://alleyf.github.io/tags/LLM/"/>
     
   </entry>
   
