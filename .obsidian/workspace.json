@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/后端开发/SpringBoot.md",
+                "file": "source/_posts/后端开发/全栈+运维-技术架构成熟解决方案.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -99,7 +99,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/后端开发/SpringBoot.md"
+                "file": "source/_posts/后端开发/全栈+运维-技术架构成熟解决方案.md"
               }
             }
           }
@@ -190,14 +190,19 @@
       "cmdr:Obsidian Git: Open source control view": false,
       "omnisearch:Omnisearch": false,
       "table-editor-obsidian:Advanced Tables Toolbar": false,
-      "obsidian-excalidraw-plugin:新建绘图文件": false
+      "obsidian-excalidraw-plugin:新建绘图文件": false,
+      "hidden-folder-obsidian:显示文件夹": false
     }
   },
   "active": "f6d7e4f6e245a765",
   "lastOpenFiles": [
+    "public/tags/全栈/index.html",
+    "public/tags/全栈",
+    "public/tags/DevOps/index.html",
+    "public/tags/DevOps",
+    "source/_posts/后端开发/SpringBoot.md",
     "source/_posts/后端开发/SpringBoot启示录.md",
     "source/_posts/后端开发/SpringBoot+Vue项目实战.md",
-    "source/_posts/后端开发/SpringBoot.md",
     "source/_posts/后端开发/Java常用新特性-Lambda-Optional-Stream.md",
     "source/_posts/科研学习/会议讨论/周会.md",
     "source/_posts/后端开发/Spring Cloud Alibaba 微服务原理与实战-阅读心得.md",
@@ -212,16 +217,13 @@
     "public/tags/pupeteer/index.html",
     "public/tags/pupeteer",
     "public/tags/webmagic/index.html",
-    "public/tags/webmagic",
     "source/_posts/中间件和工具/正则表达式-Regex.md",
     "source/_posts/运维开发/WebMagic.md",
     "source/_posts/科研学习/调研报告/数据集汇总与评测.md",
     "source/_posts/后端开发/全栈+运维-技术架构成熟解决方案.md",
     "source/_posts/中间件和工具/Redis-缓存之美.md",
-    "public/2023/12/332f648a7b46.html",
     "source/_posts/后端开发/SpringCloud Alibaba-微服务进阶.md",
     "source/_posts/后端开发/SpringCloud-微服务基础.md",
-    "public/2023/12/9bbccae9adc3.html",
     "source/_posts/后端开发/若依脚手架-学习.md",
     "center.md",
     "canvas/未命名.canvas",
@@ -235,7 +237,6 @@
     "source/_obsidian/book-template.md",
     "attachment/其他内容 - [扩展篇] Java 9-17新特性介绍.md",
     "source/_obsidian/Post Template.md",
-    "source/_posts/后端开发/网页开发.md",
     "attachment/Pasted Image 20231128145734_285.png",
     "attachment/Pasted Image 20231128145719_276.png",
     "public/img/default.png",

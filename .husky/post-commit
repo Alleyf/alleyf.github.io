@@ -1,2 +1,4 @@
 #!/bin/env sh
 echo commit success!
+git push origin origin/new_master
+echo push success!
