@@ -70,15 +70,15 @@ excerpt: it is some basic usage of SpringBoot .
 
 ## 自定义 Starter
 
-在实际开发中，经常会定义一些公共组件，提供给各个项目团队使用。而在Spring Boot的项目中，一般会将这些公共组件封装为SprinaBoot的starter。
+在实际开发中，经常会定义一些公共组件，提供给各个项目团队使用。而在 Spring Boot 的项目中，一般会将这些公共组件封装为 SprinaBoot 的 starter。
 
-1. `Maven:org.mybatis.spring.boot:mybatis-spring-boot-autoconfigure:3.0.0`--->自动配置功能
-2. `Maven:org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.0`--->依赖管理功能
+1. `Maven:org.mybatis.spring.boot:mybatis-spring-boot-autoconfigure:3.0.0` --->自动配置功能
+2. `Maven:org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.0` --->依赖管理功能
 
-需求：自定义mybatis的starter
+需求：自定义 mybatis 的 starter
 
-- 创建`fmybatis-spring-boot-autoconfigure`模块，提供自动配置功能，并自定义配置文件`META-lNF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports`
-- 创建`fmybatis-spring-boot-starter模`块，在starter中引入自动配置模块
+- 创建 `fmybatis-spring-boot-autoconfigure` 模块，提供自动配置功能，并自定义配置文件 `META-lNF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports`
+- 创建 `fmybatis-spring-boot-starter模` 块，在 starter 中引入自动配置模块
 
 核心自动装配类
 ```java
@@ -220,7 +220,7 @@ host: maven.apache.org
 
 前面我们说了，SpringBoot 的核心思想就是约定大于配置，能在一开始默认的就直接默认，不用我们自己来进行配置，我们只需要配置某些特殊的部分即可，这一部分我们就来详细体验一下。
 
-我们来尝试将我们之前使用过的模块进行一下快速整合，可以看到在一开始的时候，我们没有勾选其他的依赖，因此这里只导入了最基本的`spring-boot-starter`依赖：
+我们来尝试将我们之前使用过的模块进行一下快速整合，可以看到在一开始的时候，我们没有勾选其他的依赖，因此这里只导入了最基本的 `spring-boot-starter` 依赖：
 
 ```xml
 <dependency>
@@ -229,7 +229,7 @@ host: maven.apache.org
 </dependency>
 ```
 
-所有的 SpringBoot 依赖都是以 starter 的形式命名的，之后我们需要导入其他模块也是导入`spring-boot-starter-xxxx`这种名称格式的依赖。
+所有的 SpringBoot 依赖都是以 starter 的形式命名的，之后我们需要导入其他模块也是导入 `spring-boot-starter-xxxx` 这种名称格式的依赖。
 
 首先我们还是从 SpringMvc 相关依赖开始。SpringBoot 为我们提供了包含内置 Tomcat 服务器的 Web 模块，我们只需要导入依赖就能直接运行服务器：
 
@@ -293,7 +293,7 @@ public Student index(){
 
 ![image-20230715171140388](/Users/nagocoler/Library/Application Support/typora-user-images/image-20230715171140388.png)
 
-最后浏览器能够直接得到`application/json`的响应数据，就是这么方便，这都得归功于 SpringBoot 对应的 start 帮助我们自动将处理 JSON 数据的 Converter 进行了配置，我们不需要再单独去配置 Converter 了。不过 SpringBoot 官方默认使用的是`Jackson`和`Gson` 的 HttpMessageConverter 来进行配置，不是我们之前教程中使用的 FastJSON 框架。
+最后浏览器能够直接得到 `application/json` 的响应数据，就是这么方便，这都得归功于 SpringBoot 对应的 start 帮助我们自动将处理 JSON 数据的 Converter 进行了配置，我们不需要再单独去配置 Converter 了。不过 SpringBoot 官方默认使用的是 `Jackson` 和 `Gson` 的 HttpMessageConverter 来进行配置，不是我们之前教程中使用的 FastJSON 框架。
 
 我们最后来看看这个 Start 包含了哪些依赖：
 
@@ -376,7 +376,7 @@ public class WebConfiguration implements WebMvcConfigurer {
 
 ![image-20230715182323772](https://s2.loli.net/2023/07/15/a4QbGBtMdZP6qec.png)
 
-密码直接展示在启动日志中，而默认用户名称为`user`我们可以直接登录：
+密码直接展示在启动日志中，而默认用户名称为 `user` 我们可以直接登录：
 
 ![image-20230715182448770](https://s2.loli.net/2023/07/15/StwKT5JLdG3Vacv.png)
 
@@ -414,7 +414,7 @@ public class SecurityConfiguration {
 </dependency>
 ```
 
-在默认情况下，我们需要在`resources`目录下创建两个目录：
+在默认情况下，我们需要在 `resources` 目录下创建两个目录：
 
 ![image-20230715225833930](https://s2.loli.net/2023/07/15/HfGt61A7OqVDesz.png)
 
@@ -453,7 +453,7 @@ public class TestController {
 </dependency>
 ```
 
-注意这里的`mybatis-spring-boot-starter`版本需要我们自己指定，因为它没有被父工程默认管理。
+注意这里的 `mybatis-spring-boot-starter` 版本需要我们自己指定，因为它没有被父工程默认管理。
 
 ![image-20230715231142842](https://s2.loli.net/2023/07/15/yWAUnZufkxH8CFp.png)
 
@@ -481,7 +481,7 @@ public class TestRunner implements ApplicationRunner {
 
 ### 配置文件介绍
 
-前面我们已经体验了 SpringBoot 带来的快捷开发体验，不过我们发现有些东西还是需要我们自己来编写配置才可以，不然 SpringBoot 项目无法正常启动，我们来看看如何编写配置。我们可以直接在`application.properties`中进行配置编写，它是整个 SpringBoot 的配置文件，比如要修改服务器的默认端口：
+前面我们已经体验了 SpringBoot 带来的快捷开发体验，不过我们发现有些东西还是需要我们自己来编写配置才可以，不然 SpringBoot 项目无法正常启动，我们来看看如何编写配置。我们可以直接在 `application.properties` 中进行配置编写，它是整个 SpringBoot 的配置文件，比如要修改服务器的默认端口：
 
 ![image-20230715232124133](https://s2.loli.net/2023/07/15/E3nsZG7DcaSzOBY.png)
 
@@ -491,7 +491,7 @@ public class TestRunner implements ApplicationRunner {
 
 ![image-20230715234130924](https://s2.loli.net/2023/07/15/HJWz7PIl6Sgk1nx.png)
 
-我们可以直接在程序中通过`@Value`来访问到（跟我们之前 Spring 基础篇讲的是一样的）
+我们可以直接在程序中通过 `@Value` 来访问到（跟我们之前 Spring 基础篇讲的是一样的）
 
 ```java
 @Controller
@@ -501,7 +501,7 @@ public class TestController {
 }
 ```
 
-配置文件除了使用`properties`格式以外，还有一种叫做`yaml`格式，它的语法如下：
+配置文件除了使用 `properties` 格式以外，还有一种叫做 `yaml` 格式，它的语法如下：
 
 ```yaml
 一级目录:
@@ -516,7 +516,7 @@ public class TestController {
 
 我们可以看到，每一级目录都是通过缩进（不能使用 Tab，只能使用空格）区分，并且键和值之间需要添加冒号+空格来表示。
 
-SpringBoot 也支持这种格式的配置文件，我们可以将`application.properties`修改为`application.yml`或是`application.yaml`来使用 YAML 语法编写配置：
+SpringBoot 也支持这种格式的配置文件，我们可以将 `application.properties` 修改为 `application.yml` 或是 `application.yaml` 来使用 YAML 语法编写配置：
 
 ```yaml
 server:
@@ -550,7 +550,7 @@ public class User {
 }
 ```
 
-注意，在 SpringBoot 整合之后，我们只需要直接在配置类上添加`@MapperScan`注解即可，跟我们之前的使用方法是一样的：
+注意，在 SpringBoot 整合之后，我们只需要直接在配置类上添加 `@MapperScan` 注解即可，跟我们之前的使用方法是一样的：
 
 ```java
 @Configuration
@@ -559,7 +559,7 @@ public class WebConfiguration implements WebMvcConfigurer {
   ...
 ```
 
-不过，为了方便，我们也可以直接为需要注册为 Mapper 的接口添加`@Mapper`注解，来表示这个接口作为 Mapper 使用：
+不过，为了方便，我们也可以直接为需要注册为 Mapper 的接口添加 `@Mapper` 注解，来表示这个接口作为 Mapper 使用：
 
 ![image-20230716000755756](https://s2.loli.net/2023/07/16/lTrXepw1c38IdSv.png)
 
@@ -634,7 +634,7 @@ java -jar demo-0.0.1-SNAPSHOT.jar
 
 当然，可能也会有小伙伴好奇，怎么才能像之前一样在我们的 Tomcat 服务器中运行呢？我们也可以将其打包为 War 包的形式部署到我们自己环境中的 Tomcat 服务器或是其他任何支持 Servlet 的服务器中，但是这种做法相对比较复杂，不太推荐采用这种方式进行项目部署，不过我们这里还是介绍一下。
 
-首先我们需要排除掉`spring-boot-starter-web`中自带的 Tomcat 服务器依赖：
+首先我们需要排除掉 `spring-boot-starter-web` 中自带的 Tomcat 服务器依赖：
 
 ```xml
 <dependency>
@@ -724,7 +724,7 @@ public class DemoApplication extends SpringBootServletInitializer {  //继承专
 
 下载好对应系统架构的 GraalVM 环境之后，就可以安装部署了，首先我们需要为 GraalVM 配置环境变量，将 GRAALVM_HOME 作为环境变量指向你的安装目录的 bin 目录下，接着我们就可以开始进行打包了（注意，SpringBoot 项目必须在创建的时候添加了 Native 支持才可以，否则无法正常打包）
 
-注意，一定要将`GRAALVM_HOME`配置到环境变量中，否则会报错：
+注意，一定要将 `GRAALVM_HOME` 配置到环境变量中，否则会报错：
 
 ![image-20230716163645399](https://s2.loli.net/2023/07/16/lCjUpPYWhkm6eTq.png)
 
@@ -734,7 +734,7 @@ public class DemoApplication extends SpringBootServletInitializer {  //继承专
 mvn -Pnative -DskipTests native:compile
 ```
 
-接着会自动安装`native-image`组件，然后进行本地镜像的编译（建议挂梯，不然卡一天都下不动）
+接着会自动安装 `native-image` 组件，然后进行本地镜像的编译（建议挂梯，不然卡一天都下不动）
 
 ![image-20230716164025545](https://s2.loli.net/2023/07/16/fxzCEJbmluGn8jy.png)
 
@@ -822,14 +822,14 @@ public class MainController {
 
 ![image-20230716171120646](https://s2.loli.net/2023/07/16/HCZQndu2YPwINoS.png)
 
-> - 只需要添加 `@Slf4j`注解即可直接使用 `log.info/debug/warn`等进行控制台日志打印
+> - 只需要添加 `@Slf4j` 注解即可直接使用 `log.info/debug/warn` 等进行控制台日志打印
 
 ---
 ### 配置 Logback 日志
 
 Logback 官网：[https://logback.qos.ch](https://logback.qos.ch/)
 
-和 JUL 一样，Logback 也能实现定制化，我们可以编写对应的配置文件，SpringBoot 推荐将配置文件名称命名为`logback-spring.xml`表示这是 SpringBoot 下 Logback 专用的配置，可以使用 SpringBoot 的高级 Proﬁle 功能，它的内容类似于这样：
+和 JUL 一样，Logback 也能实现定制化，我们可以编写对应的配置文件，SpringBoot 推荐将配置文件名称命名为 `logback-spring.xml` 表示这是 SpringBoot 下 Logback 专用的配置，可以使用 SpringBoot 的高级 Proﬁle 功能，它的内容类似于这样：
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -838,9 +838,9 @@ Logback 官网：[https://logback.qos.ch](https://logback.qos.ch/)
 </configuration>
 ```
 
-最外层由`configuration`包裹，一旦编写，那么就会替换默认的配置，所以如果内部什么都不写的话，那么会导致我们的 SpringBoot 项目没有配置任何日志输出方式，控制台也不会打印日志。
+最外层由 `configuration` 包裹，一旦编写，那么就会替换默认的配置，所以如果内部什么都不写的话，那么会导致我们的 SpringBoot 项目没有配置任何日志输出方式，控制台也不会打印日志。
 
-我们接着来看如何配置一个控制台日志打印，我们可以直接导入并使用 SpringBoot 为我们预设好的日志格式，在`org/springframework/boot/logging/logback/defaults.xml`中已经帮我们把日志的输出格式定义好了，我们只需要设置对应的`appender`即可：
+我们接着来看如何配置一个控制台日志打印，我们可以直接导入并使用 SpringBoot 为我们预设好的日志格式，在 `org/springframework/boot/logging/logback/defaults.xml` 中已经帮我们把日志的输出格式定义好了，我们只需要设置对应的 `appender` 即可：
 
 ```xml
 <included>
@@ -937,7 +937,7 @@ public User test(HttpServletRequest request){
 }
 ```
 
-通过这种方式，我们就可以向日志中传入自定义参数了，我们日志中添加这样一个占位符`%X{键值}`，名字保持一致：
+通过这种方式，我们就可以向日志中传入自定义参数了，我们日志中添加这样一个占位符 `%X{键值}`，名字保持一致：
 
 ```xml
 %clr([%X{reqId}]){faint} 
@@ -949,7 +949,7 @@ public User test(HttpServletRequest request){
 
 我们在之前发现，实际上 Banner 部分和日志部分是独立的，SpringBoot 启动后，会先打印 Banner 部分，那么这个 Banner 部分是否可以自定义呢？答案是可以的。
 
-我们可以直接来配置文件所在目录下创建一个名为`banner.txt`的文本文档，内容随便你：
+我们可以直接来配置文件所在目录下创建一个名为 `banner.txt` 的文本文档，内容随便你：
 
 ```txt
 //                          _ooOoo_                               //
@@ -996,7 +996,7 @@ ${AnsiColor.YELLOW} 当前 Spring Boot 版本：${spring-boot.version}
 
 在日常开发中，我们项目会有多个环境。例如开发环境（develop）也就是我们研发过程中疯狂敲代码修 BUG 阶段，生产环境（production ）项目开发得差不多了，可以放在服务器上跑了。不同的环境下，可能我们的配置文件也存在不同，但是我们不可能切换环境的时候又去重新写一次配置文件，所以我们可以将多个环境的配置文件提前写好，进行自由切换。
 
-由于 SpringBoot 只会读取`application.properties`或是`application.yml`文件，那么怎么才能实现自由切换呢？SpringBoot 给我们提供了一种方式，我们可以通过配置文件指定：
+由于 SpringBoot 只会读取 `application.properties` 或是 `application.yml` 文件，那么怎么才能实现自由切换呢？SpringBoot 给我们提供了一种方式，我们可以通过配置文件指定：
 
 ```yaml
 spring:
@@ -1004,7 +1004,7 @@ spring:
     active: dev
 ```
 
-接着我们分别创建两个环境的配置文件，`application-dev.yml`和`application-prod.yml`分别表示开发环境和生产环境的配置文件，比如开发环境我们使用的服务器端口为 8080，而生产环境下可能就需要设置为 80 或是 443 端口，那么这个时候就需要不同环境下的配置文件进行区分：
+接着我们分别创建两个环境的配置文件，`application-dev.yml` 和 `application-prod.yml` 分别表示开发环境和生产环境的配置文件，比如开发环境我们使用的服务器端口为 8080，而生产环境下可能就需要设置为 80 或是 443 端口，那么这个时候就需要不同环境下的配置文件进行区分：
 
 ```yaml
 server:
@@ -1035,7 +1035,7 @@ SpringBoot 自带的 **Logback** 日志系统也是支持多环境配置的，�
 </springProfile>
 ```
 
-注意`springProfile`是区分大小写的！
+注意 `springProfile` 是区分大小写的！
 
 那如果我们希望生产环境中不要打包开发环境下的配置文件呢，我们目前虽然可以切换开发环境，但是打包的时候依然是所有配置文件全部打包，这样总感觉还欠缺一点完美，因此，打包的问题就只能找 Maven 解决了，Maven 也可以设置多环境：
 
@@ -1093,7 +1093,7 @@ SpringBoot 自带的 **Logback** 日志系统也是支持多环境配置的，�
 </resources>
 ```
 
-接着，我们可以直接将 Maven 中的`environment`属性，传递给 SpringBoot 的配置文件，在构建时替换为对应的值：
+接着，我们可以直接将 Maven 中的 `environment` 属性，传递给 SpringBoot 的配置文件，在构建时替换为对应的值：
 
 ```yaml
 spring:
@@ -1107,12 +1107,12 @@ spring:
 
 
 > [!NOTE] 日志和环境配置总结
-> - SpringBoot 统一使用**SLFJ**日志门面结合 **logback** 日志实现进行打印，只需要添加 `@Slf4j 注解`即可进行 **log** 打印
+> - SpringBoot 统一使用**SLFJ**日志门面结合 **logback** 日志实现进行打印，只需要添加 `@Slf4j 注解` 即可进行 **log** 打印
 > - 编写 `logback-spring.xml` 文件进行日志信息自定义配置，可配置**日志样式、类型、有效期、大小**等。
-> - 编写`banner.txt`文件可自定义程序启动时的**banner 样式**
-> - 多环境配置需要编写`application.yml`设置*spring->profiles->active*属性进行环境切换，按需添加不同环境（**dev、prod**等）
+> - 编写 `banner.txt` 文件可自定义程序启动时的**banner 样式**
+> - 多环境配置需要编写 `application.yml` 设置*spring->profiles->active*属性进行环境切换，按需添加不同环境（**dev、prod**等）
 > - 多环境下可以按照不同环境配置日志打印规则，选择**控制台或文件**记录日志。
-> - 可以通过配置`pol.xml`文件的*profiles 和 build 下的 resources*设置多环境下根据当前使用环境**打包对应配置文件过滤其他文件**
+> - 可以通过配置 `pol.xml` 文件的*profiles 和 build 下的 resources*设置多环境下根据当前使用环境**打包对应配置文件过滤其他文件**
 
 
 ***
@@ -1463,7 +1463,7 @@ public class TestController {
 }
 ```
 
-我们可以直接在类名称上面添加`@Tag`注解，并填写相关信息，来为当前的 Controller 设置描述信息。接着我们可以为所有的请求映射配置描述信息：
+我们可以直接在类名称上面添加 `@Tag` 注解，并填写相关信息，来为当前的 Controller 设置描述信息。接着我们可以为所有的请求映射配置描述信息：
 
 ```java
 @ApiResponses({
@@ -1529,7 +1529,7 @@ springdoc:
 
 我们的项目开发完成之后，肯定是需要上线运行的，不过在项目的运行过程中，我们可能需要对其进行监控，从而实时观察其运行状态，并在发生问题时做出对应调整，因此，集成项目运行监控就很有必要了。
 
-SpringBoot 框架提供了`spring-boot-starter-actuator`模块来实现监控效果：
+SpringBoot 框架提供了 `spring-boot-starter-actuator` 模块来实现监控效果：
 
 ```xml
 <dependency>
@@ -1540,7 +1540,7 @@ SpringBoot 框架提供了`spring-boot-starter-actuator`模块来实现监控效
 
 添加好之后，Actuator 会自动注册一些接口用于查询当前 SpringBoot 应用程序的状态，官方文档如下： https://docs.spring.io/spring-boot/docs/3.1.1/actuator-api/htmlsingle/#overview
 
-默认情况下，所有 Actuator 自动注册的接口路径都是`/actuator/{id}`格式的（可在配置文件中修改），比如我们想要查询当前服务器的健康状态，就可以访问这个接口： http://localhost:8080/actuator/health ，结果会以 JSON 格式返回给我们：
+默认情况下，所有 Actuator 自动注册的接口路径都是 `/actuator/{id}` 格式的（可在配置文件中修改），比如我们想要查询当前服务器的健康状态，就可以访问这个接口： http://localhost:8080/actuator/health ，结果会以 JSON 格式返回给我们：
 
 ![image-20230716205752392](https://s2.loli.net/2023/07/16/h2dYo4sKPSfbGpq.png)
 
@@ -1669,7 +1669,7 @@ management:
 
 ### 启动原理与实现
 
-首先我们来看看，SpringBoot 项目启动之后，做了什么事情，SpringApplication 中的静态`run`方法：
+首先我们来看看，SpringBoot 项目启动之后，做了什么事情，SpringApplication 中的静态 `run` 方法：
 
 ```java
 public static ConfigurableApplicationContext run(Class<?> primarySource, String... args) {
@@ -1685,7 +1685,7 @@ public static ConfigurableApplicationContext run(Class<?>[] primarySources, Stri
 }
 ```
 
-我们发现，这里直接 new 了一个新的 SpringApplication 对象，传入我们的主类作为构造方法参数，并调用了非 static 的`run`方法，我们先来看看构造方法里面做了什么事情：
+我们发现，这里直接 new 了一个新的 SpringApplication 对象，传入我们的主类作为构造方法参数，并调用了非 static 的 `run` 方法，我们先来看看构造方法里面做了什么事情：
 
 ```java
 public SpringApplication(ResourceLoader resourceLoader, Class<?>... primarySources) {
@@ -1728,7 +1728,7 @@ static WebApplicationType deduceFromClasspath() {
 }
 ```
 
-通过阅读上面的源码，我们发现`getSpringFactoriesInstances`这个方法可以一次性获取指定类型已注册的实现类，我们先来研究一下它是怎么做到的。这里就要提到`spring.factories`文件了，它是 Spring 仿造 Java SPI 实现的一种类加载机制。它在 META-INF/spring.factories 文件中配置接口的实现类名称，然后在程序中读取这些配置文件并实例化。这种自定义的 SPI 机制是 Spring Boot Starter 实现的基础。
+通过阅读上面的源码，我们发现 `getSpringFactoriesInstances` 这个方法可以一次性获取指定类型已注册的实现类，我们先来研究一下它是怎么做到的。这里就要提到 `spring.factories` 文件了，它是 Spring 仿造 Java SPI 实现的一种类加载机制。它在 META-INF/spring.factories 文件中配置接口的实现类名称，然后在程序中读取这些配置文件并实例化。这种自定义的 SPI 机制是 Spring Boot Starter 实现的基础。
 
 SPI 的常见例子：
 
@@ -1737,7 +1737,7 @@ SPI 的常见例子：
 
 说白了就是人家定义接口，但是实现可能有很多种，但是核心只提供接口，需要我们按需选择对应的实现，这种方式是高度解耦的。
 
-我们可以来看看`spring-boot-starter`依赖中怎么定义的，其中有一个很关键的点：
+我们可以来看看 `spring-boot-starter` 依赖中怎么定义的，其中有一个很关键的点：
 
 ```xml
 <dependency>
@@ -1748,17 +1748,17 @@ SPI 的常见例子：
 </dependency>
 ```
 
-这个`spring-boot-autoconfigure`是什么东西？实际上这个就是我们整个依赖实现自动配置的关键。打开这个依赖内部，可以看到这里确实有一个`spring.factories`文件：
+这个 `spring-boot-autoconfigure` 是什么东西？实际上这个就是我们整个依赖实现自动配置的关键。打开这个依赖内部，可以看到这里确实有一个 `spring.factories` 文件：
 
 ![image-20230718233851593](https://s2.loli.net/2023/07/18/65netHWFdMjhlxV.png)
 
-这个里面定义了很多接口的实现类，比如我们刚刚看到的`ApplicationContextInitializer`接口：
+这个里面定义了很多接口的实现类，比如我们刚刚看到的 `ApplicationContextInitializer` 接口：
 
 ![image-20230718234021559](https://s2.loli.net/2023/07/18/gN9CZpKEcxurzIq.png)
 
-不仅仅是`spring-boot-starter`存在这样的文件，其他很多依赖，比如`spring-boot-start-test`也有着对应的`autoconfigure`模块，只不过大部分 SpringBoot 维护的组件，都默认将其中的`spring.factories`信息统一写到了`spring-boot-autoconfigure`和`spring-boot-starter`中，方便后续维护。
+不仅仅是 `spring-boot-starter` 存在这样的文件，其他很多依赖，比如 `spring-boot-start-test` 也有着对应的 `autoconfigure` 模块，只不过大部分 SpringBoot 维护的组件，都默认将其中的 `spring.factories` 信息统一写到了 `spring-boot-autoconfigure` 和 `spring-boot-starter` 中，方便后续维护。
 
-现在我们清楚，原来这些都是通过一个单独的文件定义的，所以我们来看看`getSpringFactoriesInstances`方法做了什么：
+现在我们清楚，原来这些都是通过一个单独的文件定义的，所以我们来看看 `getSpringFactoriesInstances` 方法做了什么：
 
 ```java
 private <T> List<T> getSpringFactoriesInstances(Class<T> type) {
@@ -1778,9 +1778,9 @@ public static SpringFactoriesLoader forDefaultResourceLocation(@Nullable ClassLo
 }
 ```
 
-所以`getSpringFactoriesInstances`其实就是通过读取所有`META-INF/spring.factories`文件得到的列表，然后实例化指定类型下读取到的所有实现类并返回，这样，我们就清楚 SpringBoot 这一大堆参与自动配置的类是怎么加载进来的了。
+所以 `getSpringFactoriesInstances` 其实就是通过读取所有 `META-INF/spring.factories` 文件得到的列表，然后实例化指定类型下读取到的所有实现类并返回，这样，我们就清楚 SpringBoot 这一大堆参与自动配置的类是怎么加载进来的了。
 
-现在我们回到一开始的地方，目前 SpringApplication 对象已经构造好了，继续来看看`run`方法做了什么：
+现在我们回到一开始的地方，目前 SpringApplication 对象已经构造好了，继续来看看 `run` 方法做了什么：
 
 ```java
 public ConfigurableApplicationContext run(String... args) {
@@ -1823,7 +1823,7 @@ public ConfigurableApplicationContext run(String... args) {
 
 我们发现，即使是 SpringBoot，也是离不开 Spring 最核心的 ApplicationContext 容器，因为它再怎么也是一个 Spring 项目，即使玩得再高级不还是得围绕 IoC 容器来进行么。所以说，SSM 阶段学习的内容才是真正的核心，而 SpringBoot 仅仅是对 Spring 进行的一层强化封装，便于快速创建 Spring 项目罢了，这也是为什么一直强调不能跳过 SSM 先学 SpringBoot 的原因。
 
-既然都谈到这里了，我们不妨再来看一下这里的 ApplicationContext 是怎么来的，打开`createApplicationContext`方法：
+既然都谈到这里了，我们不妨再来看一下这里的 ApplicationContext 是怎么来的，打开 `createApplicationContext` 方法：
 
 ```java
 protected ConfigurableApplicationContext createApplicationContext() {
@@ -1831,7 +1831,7 @@ protected ConfigurableApplicationContext createApplicationContext() {
 }
 ```
 
-我们发现在构造方法中`applicationContextFactory`直接使用的是 DEFAULT：
+我们发现在构造方法中 `applicationContextFactory` 直接使用的是 DEFAULT：
 
 ```java
 ...
@@ -1843,7 +1843,7 @@ this.applicationContextFactory = ApplicationContextFactory.DEFAULT;
 ApplicationContextFactory DEFAULT = new DefaultApplicationContextFactory();   //使用的是默认实现类
 ```
 
-我们继续向下扒 DefaultApplicationContextFactory 的源码`create`方法部分：
+我们继续向下扒 DefaultApplicationContextFactory 的源码 `create` 方法部分：
 
 ```java
 public ConfigurableApplicationContext create(WebApplicationType webApplicationType) {
@@ -1873,11 +1873,11 @@ private <T> T getFromSpringFactories(WebApplicationType webApplicationType,
 
 ![image-20230719002638475](https://s2.loli.net/2023/07/19/Nqd8vguDKtR2XmW.png)
 
-我们也不出意外地在`spring.factories`中找到了这两个实现，因为目前是 Servlet 环境，所以在返回时得到最终的结果，也就是生成的 AnnotationConfigServletWebServerApplicationContext 对象，也就是说到这里为止，Spring 的容器就基本已经确定了，差不多可以开始运行了，下一个部分我们将继续介绍 SpringBoot 是如何实现自动扫描以及自动配置的。
+我们也不出意外地在 `spring.factories` 中找到了这两个实现，因为目前是 Servlet 环境，所以在返回时得到最终的结果，也就是生成的 AnnotationConfigServletWebServerApplicationContext 对象，也就是说到这里为止，Spring 的容器就基本已经确定了，差不多可以开始运行了，下一个部分我们将继续介绍 SpringBoot 是如何实现自动扫描以及自动配置的。
 
 ### 自动配置原理
 
-既然主类已经在初始阶段注册为 Bean，那么在加载时，就会根据注解定义，进行更多的额外操作。所以我们来看看主类上的`@SpringBootApplication`注解做了什么事情。
+既然主类已经在初始阶段注册为 Bean，那么在加载时，就会根据注解定义，进行更多的额外操作。所以我们来看看主类上的 `@SpringBootApplication` 注解做了什么事情。
 
 ```java
 @Target({ElementType.TYPE})
@@ -1899,9 +1899,9 @@ public @interface SpringBootApplication {
   ...
 ```
 
-我们发现，`@SpringBootApplication`上添加了`@ComponentScan`注解，此注解我们此前已经认识过了，但是这里并没有配置具体扫描的包，因此它会自动将声明此接口的类所在的包作为 basePackage，所以，当添加`@SpringBootApplication`之后也就等于直接开启了自动扫描，我们所有的配置都会自动加载，但是一定注意不能在主类之外的包进行 Bean 定义，否则无法扫描到，需要手动配置。
+我们发现，`@SpringBootApplication` 上添加了 `@ComponentScan` 注解，此注解我们此前已经认识过了，但是这里并没有配置具体扫描的包，因此它会自动将声明此接口的类所在的包作为 basePackage，所以，当添加 `@SpringBootApplication` 之后也就等于直接开启了自动扫描，我们所有的配置都会自动加载，但是一定注意不能在主类之外的包进行 Bean 定义，否则无法扫描到，需要手动配置。
 
-我们自己类路径下的配置、还有各种 Bean 定义如何读取的问题解决了，接着我们来看第二个注解`@EnableAutoConfiguration`，它就是其他 Starter 自动配置的核心了，我们来看看它是如何定义的：
+我们自己类路径下的配置、还有各种 Bean 定义如何读取的问题解决了，接着我们来看第二个注解 `@EnableAutoConfiguration`，它就是其他 Starter 自动配置的核心了，我们来看看它是如何定义的：
 
 ```java
 @Target({ElementType.TYPE})
@@ -1914,7 +1914,7 @@ public @interface EnableAutoConfiguration {
   ...
 ```
 
-这里就是 SSM 阶段我们认识的老套路了，直接一手`@Import`，通过这种方式来将一些外部的类进行加载。我们来看看 AutoConfigurationImportSelector 做了什么事情：
+这里就是 SSM 阶段我们认识的老套路了，直接一手 `@Import`，通过这种方式来将一些外部的类进行加载。我们来看看 AutoConfigurationImportSelector 做了什么事情：
 
 ```java
 public class AutoConfigurationImportSelector implements DeferredImportSelector, BeanClassLoaderAware, ResourceLoaderAware, BeanFactoryAware, EnvironmentAware, Ordered {
@@ -1924,7 +1924,7 @@ public class AutoConfigurationImportSelector implements DeferredImportSelector, 
 
 我们看到它实现了很多接口，包括大量的 Aware 接口，我们在 SSM 阶段也介绍过，实际上就是为了感知某些必要的对象，在加载时将其存到当前类中。
 
-其中最核心的是`DeferredImportSelector`接口，它是`ImportSelector`的子类，它定义了`selectImports`方法，用于返回需要加载的类名称，在 Spring 加载 ImportSelector 时，会调用此方法来获取更多需要加载的类，并将这些类全部注册为 Bean：
+其中最核心的是 `DeferredImportSelector` 接口，它是 `ImportSelector` 的子类，它定义了 `selectImports` 方法，用于返回需要加载的类名称，在 Spring 加载 ImportSelector 时，会调用此方法来获取更多需要加载的类，并将这些类全部注册为 Bean：
 
 ```java
 public interface ImportSelector {
@@ -1937,9 +1937,9 @@ public interface ImportSelector {
 }
 ```
 
-到目前为止，我们了解了两种使用`@Import`有特殊机制的接口：ImportSelector（这里用到的）和 ImportBeanDefinitionRegistrar（之前 SSM 阶段源码有讲）当然还有普通的`@Configuration`配置类。
+到目前为止，我们了解了两种使用 `@Import` 有特殊机制的接口：ImportSelector（这里用到的）和 ImportBeanDefinitionRegistrar（之前 SSM 阶段源码有讲）当然还有普通的 `@Configuration` 配置类。
 
-为了后续更好理解我们可以来阅读一下`ConfigurationClassPostProcessor`的源码，实际上这个后置处理器是 Spring 中提供的，这是专门用于处理配置类的后置处理器，其中`ImportBeanDefinitionRegistrar`，还有这里的`ImportSelector`都是靠它来处理，不过当时 Spring 阶段没有深入讲解，我们来看看它到底是如何处理`@Import`的：
+为了后续更好理解我们可以来阅读一下 `ConfigurationClassPostProcessor` 的源码，实际上这个后置处理器是 Spring 中提供的，这是专门用于处理配置类的后置处理器，其中 `ImportBeanDefinitionRegistrar`，还有这里的 `ImportSelector` 都是靠它来处理，不过当时 Spring 阶段没有深入讲解，我们来看看它到底是如何处理 `@Import` 的：
 
 ```java
 @Override
@@ -2002,7 +2002,7 @@ public void processConfigBeanDefinitions(BeanDefinitionRegistry registry) {
 }
 ```
 
-我们就接着来看，`ConfigurationClassParser`是如何进行解析的，直接进入`parse`方法的关键部分：
+我们就接着来看，`ConfigurationClassParser` 是如何进行解析的，直接进入 `parse` 方法的关键部分：
 
 ```java
 protected void processConfigurationClass(ConfigurationClass configClass, Predicate<String> filter) throws IOException {
@@ -2021,7 +2021,7 @@ protected void processConfigurationClass(ConfigurationClass configClass, Predica
 }
 ```
 
-最后我们再来看最核心的`doProcessConfigurationClass`方法：
+最后我们再来看最核心的 `doProcessConfigurationClass` 方法：
 
 ```java
 protected final SourceClass doProcessConfigurationClass(ConfigurationClass configClass, SourceClass sourceClass)
@@ -2085,7 +2085,7 @@ private void processImports(ConfigurationClass configClass, SourceClass currentS
 }
 ```
 
-不难注意到，虽然这里特别处理了`ImportSelector`对象，但是还针对`ImportSelector`的子接口`DeferredImportSelector`进行了额外处理，Deferred 是延迟的意思，它是一个延迟执行的`ImportSelector`，并不会立即进处理，而是丢进 DeferredImportSelectorHandler，并且在我们上面提到的`parse`方法的最后进行处理：
+不难注意到，虽然这里特别处理了 `ImportSelector` 对象，但是还针对 `ImportSelector` 的子接口 `DeferredImportSelector` 进行了额外处理，Deferred 是延迟的意思，它是一个延迟执行的 `ImportSelector`，并不会立即进处理，而是丢进 DeferredImportSelectorHandler，并且在我们上面提到的 `parse` 方法的最后进行处理：
 
 ```java
 public void parse(Set<BeanDefinitionHolder> configCandidates) {
@@ -2094,7 +2094,7 @@ public void parse(Set<BeanDefinitionHolder> configCandidates) {
 }
 ```
 
-我们接着来看`DeferredImportSelector`正好就有一个`process`方法：
+我们接着来看 `DeferredImportSelector` 正好就有一个 `process` 方法：
 
 ```java
 ublic interface DeferredImportSelector extends ImportSelector {
@@ -2112,13 +2112,13 @@ ublic interface DeferredImportSelector extends ImportSelector {
           ...
 ```
 
-最后经过 ConfigurationClassParser 处理完成后，通过`parser.getConfigurationClasses()`就能得到通过配置类导入那些额外的配置类或是特殊的类。最后将这些配置类全部注册 BeanDefinition，然后就可以交给接下来的 Bean 初始化过程去处理了：
+最后经过 ConfigurationClassParser 处理完成后，通过 `parser.getConfigurationClasses()` 就能得到通过配置类导入那些额外的配置类或是特殊的类。最后将这些配置类全部注册 BeanDefinition，然后就可以交给接下来的 Bean 初始化过程去处理了：
 
 ```java
 this.reader.loadBeanDefinitions(configClasses);
 ```
 
-最后我们再去看`loadBeanDefinitions`是如何运行的：
+最后我们再去看 `loadBeanDefinitions` 是如何运行的：
 
 ```java
 public void loadBeanDefinitions(Set<ConfigurationClass> configurationModel) {
@@ -2150,7 +2150,7 @@ private void loadBeanDefinitionsForConfigurationClass(ConfigurationClass configC
 }
 ```
 
-这样，整个`@Configuration`配置类的底层配置流程我们就大致了解了。接着我们来看 AutoConfigurationImportSelector 是如何实现自动配置的，可以看到内部类 AutoConfigurationGroup 的 process 方法，它是父接口的实现，因为父接口是`DeferredImportSelector`，根据前面的推导，很容易得知，实际上最后会调用`process`方法获取所有的自动配置类：
+这样，整个 `@Configuration` 配置类的底层配置流程我们就大致了解了。接着我们来看 AutoConfigurationImportSelector 是如何实现自动配置的，可以看到内部类 AutoConfigurationGroup 的 process 方法，它是父接口的实现，因为父接口是 `DeferredImportSelector`，根据前面的推导，很容易得知，实际上最后会调用 `process` 方法获取所有的自动配置类：
 
 ```java
 public void process(AnnotationMetadata annotationMetadata, DeferredImportSelector deferredImportSelector) {
@@ -2170,7 +2170,7 @@ public void process(AnnotationMetadata annotationMetadata, DeferredImportSelecto
 }
 ```
 
-我们接着来看`getAutoConfigurationEntry`方法：
+我们接着来看 `getAutoConfigurationEntry` 方法：
 
 ```java
 protected AutoConfigurationImportSelector.AutoConfigurationEntry getAutoConfigurationEntry(AnnotationMetadata annotationMetadata) {
@@ -2249,7 +2249,7 @@ public class MybatisAutoConfiguration implements InitializingBean {
 
 可以看到里面直接将 SqlSessionFactory 和 SqlSessionTemplate 注册为 Bean 了，由于这个自动配置类在上面的一套流程中已经加载了，这样就不需要我们手动进行注册这些 Bean 了。不过这里有一个非常有意思的 @Conditional 注解，它可以根据条件来判断是否注册这个 Bean，比如 @ConditionalOnMissingBean 注解就是当这个 Bean 不存在的时候，才会注册，如果这个 Bean 已经被其他配置类给注册了，那么这里就不进行注册。
 
-经过这一套流程，简而言之就是 SpringBoot 读取`META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports`文件来确定要加载哪些自动配置类来实现的全自动化，真正做到添加依赖就能够直接完成配置和运行，至此，SpringBoot 的原理部分就探究完毕了。
+经过这一套流程，简而言之就是 SpringBoot 读取 `META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports` 文件来确定要加载哪些自动配置类来实现的全自动化，真正做到添加依赖就能够直接完成配置和运行，至此，SpringBoot 的原理部分就探究完毕了。
 
 ### 自定义 Starter 项目
 
@@ -2391,13 +2391,13 @@ public class HelloWorldProperties {
 }
 ```
 
-接着再编写`META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports`文件，并将我们的自动配置类添加即可：
+接着再编写 `META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports` 文件，并将我们的自动配置类添加即可：
 
 ```properties
 com.test.autoconfigure.HelloWorldAutoConfiguration
 ```
 
-最后再 Maven 根项目执行`install`安装到本地仓库，完成。接着就可以在其他项目中使用我们编写的自定义 starter 了。
+最后再 Maven 根项目执行 `install` 安装到本地仓库，完成。接着就可以在其他项目中使用我们编写的自定义 starter 了。
 
 
 ```cardlink
@@ -2430,7 +2430,7 @@ image: https://pica.zhimg.com/v2-eabb989cacb1af3c9ac9c2a84b710307_720w.jpg?sourc
 
 ### JDBC 模版类
 
-Spring JDBC 为我们提供了一个非常方便的`JdbcTemplate`类，它封装了常用的 JDBC 操作，我们可以快速使用这些方法来实现增删改查，这里我们还是配置一下 MySQL 数据源信息：
+Spring JDBC 为我们提供了一个非常方便的 `JdbcTemplate` 类，它封装了常用的 JDBC 操作，我们可以快速使用这些方法来实现增删改查，这里我们还是配置一下 MySQL 数据源信息：
 
 ```xml
 <dependency>
@@ -2459,7 +2459,7 @@ JdbcTemplate template;
 
 ![image-20230716000431492](https://s2.loli.net/2023/07/16/ygRp98mDKafXkw1.png)
 
-我们可以使用`queryForMap`快速以 Map 为结果的形式查询一行数据：
+我们可以使用 `queryForMap` 快速以 Map 为结果的形式查询一行数据：
 
 ```java
 @Test
@@ -2495,7 +2495,7 @@ void contextLoads() {
 }
 ```
 
-当然除了这些之外，它还提供了`update`方法适用于各种情况的查询、更新、删除操作：
+当然除了这些之外，它还提供了 `update` 方法适用于各种情况的查询、更新、删除操作：
 
 ```java
  @Test
@@ -2559,7 +2559,7 @@ public class WebConfiguration {
 
 ​		在我们之前编写的项目中，我们不难发现，实际上大部分的数据库交互操作，到最后都只会做一个事情，那就是把数据库中的数据映射为 Java 中的对象。比如我们要通过用户名去查找对应的用户，或是通过 ID 查找对应的学生信息，在使用 Mybatis 时，我们只需要编写正确的 SQL 语句就可以直接将获取的数据映射为对应的 Java 对象，通过调用 Mapper 中的方法就能直接获得实体类，这样就方便我们在 Java 中数据库表中的相关信息了。
 
-​		但是以上这些操作都有一个共性，那就是它们都是通过某种条件去进行查询，而最后的查询结果，都是一个实体类，所以你会发现你写的很多 SQL 语句都是一个套路`select * from xxx where xxx=xxx`，实际上对于这种简单 SQL 语句，我们完全可以弄成一个模版来使用，那么能否有一种框架，帮我们把这些相同的套路给封装起来，直接把这类相似的 SQL 语句给屏蔽掉，不再由我们编写，而是让框架自己去组合拼接。
+​		但是以上这些操作都有一个共性，那就是它们都是通过某种条件去进行查询，而最后的查询结果，都是一个实体类，所以你会发现你写的很多 SQL 语句都是一个套路 `select * from xxx where xxx=xxx`，实际上对于这种简单 SQL 语句，我们完全可以弄成一个模版来使用，那么能否有一种框架，帮我们把这些相同的套路给封装起来，直接把这类相似的 SQL 语句给屏蔽掉，不再由我们编写，而是让框架自己去组合拼接。
 
 ### 认识 SpringData JPA
 
@@ -2582,7 +2582,7 @@ public class WebConfiguration {
 
 在之前，我们使用 JDBC 或是 Mybatis 来操作数据，通过直接编写对应的 SQL 语句来实现数据访问，但是我们发现实际上我们在 Java 中大部分操作数据库的情况都是读取数据并封装为一个实体类，因此，为什么不直接将实体类直接对应到一个数据库表呢？也就是说，一张表里面有什么属性，那么我们的对象就有什么属性，所有属性跟数据库里面的字段一一对应，而读取数据时，只需要读取一行的数据并封装为我们定义好的实体类既可以，而具体的 SQL 语句执行，完全可以交给框架根据我们定义的映射关系去生成，不再由我们去编写，因为这些 SQL 实际上都是千篇一律的。
 
-而实现 JPA 规范的框架一般最常用的就是`Hibernate`，它是一个重量级框架，学习难度相比 Mybatis 也更高一些，而 SpringDataJPA 也是采用 Hibernate 框架作为底层实现，并对其加以封装。
+而实现 JPA 规范的框架一般最常用的就是 `Hibernate`，它是一个重量级框架，学习难度相比 Mybatis 也更高一些，而 SpringDataJPA 也是采用 Hibernate 框架作为底层实现，并对其加以封装。
 
 官网： https://spring.io/projects/spring-data-jpa
 
@@ -2641,7 +2641,7 @@ spring:
       ddl-auto: update
 ```
 
-`ddl-auto`属性用于设置自动表定义，可以实现自动在数据库中为我们创建一个表，表的结构会根据我们定义的实体类决定，它有以下几种：
+`ddl-auto` 属性用于设置自动表定义，可以实现自动在数据库中为我们创建一个表，表的结构会根据我们定义的实体类决定，它有以下几种：
 
 - `none`: 不执行任何操作，数据库表结构需要手动创建。
 - `create`: 框架在每次运行时都会删除所有表，并重新创建。
@@ -2717,7 +2717,7 @@ void contextLoads() {
 | Distinct           |             findDistinctByLastnameAndFirstname              | select distinct … where x.lastname = ?1 and x.firstname = ?2 |
 | And                |                 findByLastnameAndFirstname                  |         … where x.lastname = ?1 and x.firstname = ?2         |
 | Or                 |                  findByLastnameOrFirstname                  |         … where x.lastname = ?1 or x.firstname = ?2          |
-| Is，Equals         | findByFirstname`,`findByFirstnameIs`,`findByFirstnameEquals |                   … where x.firstname = ?1                   |
+| Is，Equals         | findByFirstname `,` findByFirstnameIs `,` findByFirstnameEquals |                   … where x.firstname = ?1                   |
 | Between            |                   findByStartDateBetween                    |            … where x.startDate between ?1 and ?2             |
 | LessThan           |                      findByAgeLessThan                      |                      … where x.age < ?1                      |
 | LessThanEqual      |                   findByAgeLessThanEqual                    |                     … where x.age <= ?1                      |
@@ -2729,8 +2729,8 @@ void contextLoads() {
 | IsNotNull，NotNull |                    findByAge(Is)NotNull                     |                    … where x.age not null                    |
 | Like               |                     findByFirstnameLike                     |                 … where x.firstname like ?1                  |
 | NotLike            |                   findByFirstnameNotLike                    |               … where x.firstname not like ?1                |
-| StartingWith       |                 findByFirstnameStartingWith                 |       … where x.firstname like ?1（参数与附加`%`绑定）       |
-| Containing         |                  findByFirstnameContaining                  |       … where x.firstname like ?1（参数绑定以`%`包装）       |
+| StartingWith       |                 findByFirstnameStartingWith                 |       … where x.firstname like ?1（参数与附加 `%` 绑定）       |
+| Containing         |                  findByFirstnameContaining                  |       … where x.firstname like ?1（参数绑定以 `%` 包装）       |
 | OrderBy            |                findByAgeOrderByLastnameDesc                 |         … where x.age = ?1 order by x.lastname desc          |
 | Not                |                      findByLastnameNot                      |                   … where x.lastname <> ?1                   |
 |                    |                                                             |                                                              |
@@ -3476,7 +3476,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
 ```
 
-接着我们就可以开始编写自动生成脚本了，这里依然选择测试类，用到`FastAutoGenerator`作为生成器：
+接着我们就可以开始编写自动生成脚本了，这里依然选择测试类，用到 `FastAutoGenerator` 作为生成器：
 
 ```java
 		@Test
@@ -3564,11 +3564,11 @@ void contextLoads() {
 
 速度可以说是非常之快，一个项目模版就搭建完成了，我们只需要接着写业务就可以了，当然如果需要更多定制化的话，可以在官网查看其他的配置：[https://baomidou.com/pages/981406/](https://baomidou.com/pages/981406/)
 
-对于一些有特殊要求的用户来说，我们希望能够以自己的模版来进行生产，怎么才能修改它自动生成的代码模版呢，我们可以直接找到`mybatis-plus-generator`的源码：
+对于一些有特殊要求的用户来说，我们希望能够以自己的模版来进行生产，怎么才能修改它自动生成的代码模版呢，我们可以直接找到 `mybatis-plus-generator` 的源码：
 
 ![image-20230721204530505](https://s2.loli.net/2023/07/21/lxaBgGPubOkptCT.png)
 
-生成模版都在在这个里面有写，我们要做的就是去修改这些模版，变成我们自己希望的样子，由于默认的模版解析引擎为 Velocity，我们需要复制以`.vm`结尾的文件到`resource`随便一个目录中，然后随便改：
+生成模版都在在这个里面有写，我们要做的就是去修改这些模版，变成我们自己希望的样子，由于默认的模版解析引擎为 Velocity，我们需要复制以 `.vm` 结尾的文件到 `resource` 随便一个目录中，然后随便改：
 
 ![image-20230721210716832](https://s2.loli.net/2023/07/21/gZlbG9JDIa3kSMO.png)
 
@@ -3598,11 +3598,11 @@ void contextLoads() {
 ![image-20230721211002961](https://s2.loli.net/2023/07/21/K6DufSwG3hdqPsr.png)
 
 > [!NOTE] MybatisPlus 核心用法
-> - `pom.xml`引入 **mybatisplus 依赖**，并配置**数据源、日志打印**等
+> - `pom.xml` 引入 **mybatisplus 依赖**，并配置**数据源、日志打印**等
 > - 手动编写：
-> 	1. 编写 **Xxxmapper** 接口继承`baseMapper<entity>`
-> 	2. 编写**IXxxService**接口继承`IService<entity>`
-> 	3. 编写**XxxServiceImpl**继承`ServiceImpl<Xxxmapper,entity>`并实现 **IXxxService**接口
+> 	1. 编写 **Xxxmapper** 接口继承 `baseMapper<entity>`
+> 	2. 编写**IXxxService**接口继承 `IService<entity>`
+> 	3. 编写**XxxServiceImpl**继承 `ServiceImpl<Xxxmapper,entity>` 并实现 **IXxxService**接口
 > - 代码生成器：
 > 	- 在测试文件中编写**代码生成器配置代码**，设置**注释信息、生成目录、项目包名**等
 > 	- 补充**多表关联表和外键**（*JoinTable/JoinColumn*）
@@ -3645,7 +3645,7 @@ void contextLoads() {
 
 如果各位小伙伴学习了 Nginx 代理，使用 Nginx 代理前端项目会更好一些。
 
-接着我们将所有的前端模版文件全部丢进对应的目录中，创建一个`web`目录到 resource 目录下，然后放入我们前端模版的全部文件：
+接着我们将所有的前端模版文件全部丢进对应的目录中，创建一个 `web` 目录到 resource 目录下，然后放入我们前端模版的全部文件：
 
 ![image-20230722154349756](https://s2.loli.net/2023/07/22/DtLF21ue7RVMQPY.png)
 
@@ -3710,7 +3710,7 @@ public class SecurityConfiguration {
 }
 ```
 
-虽然这样成功定义了登录接口相关内容，但是怎么才能让 SpringSecurity 在登录成功之后返回一个 JSON 数据给前端而不是默认的重定向呢？这时我们可以手动设置`SuccessHandler`和 `FailureHandler` 来实现：
+虽然这样成功定义了登录接口相关内容，但是怎么才能让 SpringSecurity 在登录成功之后返回一个 JSON 数据给前端而不是默认的重定向呢？这时我们可以手动设置 `SuccessHandler` 和 `FailureHandler` 来实现：
 
 ```java
 		@Bean
@@ -4024,7 +4024,7 @@ JWT 令牌的格式如下：
 
 ![image-20230307000004710](https://s2.loli.net/2023/03/07/Xu8lxYhKoJNr6it.png)
 
-一个 JWT 令牌由 3 部分组成：标头(Header)、有效载荷(Payload)和签名(Signature)。在传输的时候，会将 JWT 的钱 2 部分分别进行 Base64 编码后用`.`进行连接形成最终需要传输的字符串。
+一个 JWT 令牌由 3 部分组成：标头(Header)、有效载荷(Payload)和签名(Signature)。在传输的时候，会将 JWT 的钱 2 部分分别进行 Base64 编码后用 `.` 进行连接形成最终需要传输的字符串。
 
 * 标头：包含一些元数据信息，比如 JWT 签名所使用的加密算法，还有类型，这里统一都是 JWT。
 * 有效载荷：包括用户名称、令牌发布时间、过期时间、JWT ID 等，当然我们也可以自定义添加字段，我们的用户信息一般都在这里存放。
@@ -4032,7 +4032,7 @@ JWT 令牌的格式如下：
 
 这里还是补充一下一些概念，因为很多东西都是我们之前没有接触过的：
 
-- **Base64**：就是包括**小写字母 a-z、大写字母 A-Z、数字 0-9、符号"+"、"/"一共 64 个字符**的字符集（末尾还有 1 个或多个`=`用来凑够字节数），任何的符号都可以转换成这个字符集中的字符，这个转换过程就叫做 Base64 编码，编码之后会生成只包含上述 64 个字符的字符串。相反，如果需要原本的内容，我们也可以进行 Base64 解码，回到原有的样子。
+- **Base64**：就是包括**小写字母 a-z、大写字母 A-Z、数字 0-9、符号"+"、"/"一共 64 个字符**的字符集（末尾还有 1 个或多个 `=` 用来凑够字节数），任何的符号都可以转换成这个字符集中的字符，这个转换过程就叫做 Base64 编码，编码之后会生成只包含上述 64 个字符的字符串。相反，如果需要原本的内容，我们也可以进行 Base64 解码，回到原有的样子。
 
   ```java
   public void test(){
@@ -4055,7 +4055,7 @@ JWT 令牌的格式如下：
 
   对称加密和非对称加密都有很多的算法，比如**对称加密，就有：DES、IDEA、RC2**，*非对称加密有：RSA、DAS、ECC*
 
-* **不可逆加密算法：** 常见的不可逆加密算法有`MD5, HMAC, SHA-1, SHA-224, SHA-256, SHA-384, 和 SHA-512, 其中 SHA-224、SHA-256、SHA-384`，和 SHA-512 我们可以统称为 SHA2 加密算法，SHA 加密算法的安全性要比 MD5 更高，而 SHA2 加密算法比 SHA1 的要高，其中 SHA 后面的数字表示的是加密后的字符串长度，SHA1 默认会产生一个 160 位的信息摘要。经过不可逆加密算法得到的加密结果，是无法解密回去的，也就是说加密出来是什么就是什么了。本质上，其就是一种哈希函数，用于对一段信息产生摘要，以**防止被篡改**。
+* **不可逆加密算法：** 常见的不可逆加密算法有 `MD5, HMAC, SHA-1, SHA-224, SHA-256, SHA-384, 和 SHA-512, 其中 SHA-224、SHA-256、SHA-384`，和 SHA-512 我们可以统称为 SHA2 加密算法，SHA 加密算法的安全性要比 MD5 更高，而 SHA2 加密算法比 SHA1 的要高，其中 SHA 后面的数字表示的是加密后的字符串长度，SHA1 默认会产生一个 160 位的信息摘要。经过不可逆加密算法得到的加密结果，是无法解密回去的，也就是说加密出来是什么就是什么了。本质上，其就是一种哈希函数，用于对一段信息产生摘要，以**防止被篡改**。
 
   实际上这种算法就常常被用作信息摘要计算，同样的数据通过同样的算法计算得到的结果肯定也一样，而如果数据被修改，那么计算的结果肯定就不一样了。
 
@@ -4521,11 +4521,195 @@ public class AuthorizeController {
 
 ## 环境配置
 
-- 执行资料中的big_event.sql脚本，准备数据库表
-- 创建springboot工程，引入对应的依赖(web、mybatis、mysql驱动)
-- 配置文件application.yml中引入mybatis的配置信息
+- 执行资料中的 big_event.sql 脚本，准备数据库表
+- 创建 springboot 工程，引入对应的依赖(web、mybatis、mysql 驱动)
+- 配置文件 application.yml 中引入 mybatis 的配置信息
 - 创建包结构，并准备实体类
+## 参数校验
+| 参数名称 | 说明 | 类型 | 是否必须 | 备注 |
+| -------- | ---- | ---- | -------- | ---- |
+|username |用户名|string|是|4-16 位非空字符|
+|password|密码|string|是|4-16 位非空字符|
 
+- **使用 Spring Validation,对注册接口的参数进行合法性校验**
+
+1. 引入 Spring Validation 起步依赖
+2. 在参数前面添加 `@Pattern` 注解
+3. 在 **Controller** 类上添加 `@Validated` 注解
+
+```java
+@Validated //Controller上
+@Pattern(regexp = "^\\S{4,16}$", message = "用户名格式不正确") String username //方法参数上
+```
+
+- **参数校验失败异常处理**
+```java
+@RestControllerAdvice
+public class GlobalExceptionHandler
+@ExceptionHandler(Exception.class)
+public Result handleException(Exception e){
+e.printStackTrace();
+return Result.error(StringUtils.hasLength(e.getMessage())?e.getMessage():"操作失败")；
+```
+
+- **登录认证**
+采用 JWT 认证方式控制认证，登录后会返回给用户一个 jwt 令牌，令牌就是一段字符串。
+1. 承载业务数据，减少后续请求查询数据库的次数。
+2. 防篡改，保证信息的合法性和有效性。
+
+JWT（JSON Web Token）
+https://jwt.io/
+1. 定义了一种简洁的、自包含的格式，用于通信双方以 jso 数据格式安全的传输信息。
+2. 组成：
+🥇第一部分：**Header**(头)，记录*令牌类型、签名算法*等。例如：{"alg":"HS256","type":"JWT")
+🥈第二部分：**Payload**(有效载荷)，携带一些 *自定义信息、默认信息（不包括密码等私密数据）* 等。例如：`{"id":"1","username":"Tom"}`
+🥉第三部分：**Signature**(签名)，防止 Token 被篡改、确保安全性。将 *header、payload,并加入指定秘钥，通过指定签名算法计算而来*。
+
+![](https://qnpicmap.fcsluck.top/pics/202312260031612.png)
+
+载荷采用 `Base64` 编码，便于传输数据，中文 json 数据不支持直接传输。
+> `Base64`：是一种==基于 64 个可打印字符(A-Za-z0-9+)来表示二进制数据==的编码方式。
+
+采用java-jwt或者hutool都可以：
+```xml
+java-jwt：最基础的jwt包
+<dependency>
+    <groupId>com.auth0</groupId>
+    <artifactId>java-jwt</artifactId>
+    <version>4.4.0</version>
+</dependency>
+jjwt：对jwt封装后的包
+<dependency>  
+    <groupId>io.jsonwebtoken</groupId>  
+    <artifactId>jjwt</artifactId>  
+    <version>0.9.1</version>  
+</dependency>
+hutool-jwt：高度封装的jwt包
+<dependency>
+    <groupId>cn.hutool</groupId>
+    <artifactId>hutool-jwt</artifactId>
+    <version>5.8.16</version>
+</dependency>
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 常用第三方库
+
+
+## Hu-tool
+
+### 简介
+[hutool](https://doc.hutool.cn/pages/index/) 一个Java基础工具类，对文件、流、加密解密、转码、正则、线程、XML等JDK方法进行封装，组成各种Util工具类，同时提供以下组件：
+
+|模块|介绍|
+|---|---|
+|hutool-aop|JDK动态代理封装，提供非IOC下的切面支持|
+|hutool-bloomFilter|布隆过滤，提供一些Hash算法的布隆过滤|
+|hutool-cache|简单缓存实现|
+|hutool-core|核心，包括Bean操作、日期、各种Util等|
+|hutool-cron|定时任务模块，提供类Crontab表达式的定时任务|
+|hutool-crypto|加密解密模块，提供对称、非对称和摘要算法封装|
+|hutool-db|JDBC封装后的数据操作，基于ActiveRecord思想|
+|hutool-dfa|基于DFA模型的多关键字查找|
+|hutool-extra|扩展模块，对第三方封装（模板引擎、邮件、Servlet、二维码、Emoji、FTP、分词等）|
+|hutool-http|基于HttpUrlConnection的Http客户端封装|
+|hutool-log|自动识别日志实现的日志门面|
+|hutool-script|脚本执行封装，例如Javascript|
+|hutool-setting|功能更强大的Setting配置文件和Properties封装|
+|hutool-system|系统参数调用封装（JVM信息等）|
+|hutool-json|JSON实现|
+|hutool-captcha|图片验证码实现|
+|hutool-poi|针对POI中Excel和Word的封装|
+|hutool-socket|基于Java的NIO和AIO的Socket封装|
+|hutool-jwt|JSON Web Token (JWT)封装实现|
+
+## 用法
+
+`Hutool-all`是一个Hutool的集成打包产品，由于考虑到“懒人”用户及分不清各个模块作用的用户，“无脑”引入`hutool-all`模块是快速开始和深入应用的最佳方式。
+
+1. 引入`hutool-all`以便使用所有工具类功能。
+2. 引入`hutool-xxx`单独模块使用。
+3. 父工程引入 `hutool-bom` 进行版本管理，子工程按需引入 `hutool-xxx` 模块进行使用。
+### import方式
+
+如果你想像Spring-Boot一样引入Hutool，再由子模块决定用到哪些模块，你可以在父模块中加入：
+
+```xml
+<dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-bom</artifactId>
+            <version>${hutool.version}</version>
+            <type>pom</type>
+            <!-- 注意这里是import -->
+            <scope>import</scope>
+        </dependency>
+    </dependencies>
+</dependencyManagement>
+```
+
+在子模块中就可以引入自己需要的模块了：
+
+```java
+<dependencies>
+    <dependency>
+        <groupId>cn.hutool</groupId>
+        <artifactId>hutool-http</artifactId>
+    </dependency>
+</dependencies>
+```
+
+> 使用import的方式，只会引入hutool-bom内的dependencyManagement的配置，其它配置在这个引用方式下完全不起作用。
+
+### exclude方式
+
+如果你引入的模块比较多，但是某几个模块没用，你可以：
+
+```xml
+<dependencies>
+    <dependency>
+        <groupId>cn.hutool</groupId>
+        <artifactId>hutool-bom</artifactId>
+        <version>${hutool.version}</version>
+        <!-- 加不加这句都能跑，区别只有是否告警  -->
+        <type>pom</type>
+        <exclusions>
+            <exclusion>
+                    <groupId>cn.hutool</groupId>
+                    <artifactId>hutool-system</artifactId>
+            </exclusion>
+        </exclusions>
+    </dependency>
+</dependencies>
+```
+
+> 这个配置会传递依赖hutool-bom内所有dependencies的内容，当前hutool-bom内的dependencies全部设置了version，就意味着在maven resolve的时候hutool-bom内就算存在dependencyManagement也不会产生任何作用。
 
 
 
