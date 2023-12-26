@@ -142,7 +142,7 @@
 <meta property="og:image" content="https://s2.loli.net/2023/07/24/cqEgnQOZtFp1w7o.png">
 <meta property="og:image" content="https://qnpicmap.fcsluck.top/pics/202312260031612.png">
 <meta property="article:published_time" content="2023-10-31T07:04:18.000Z">
-<meta property="article:modified_time" content="2023-12-25T17:30:46.604Z">
+<meta property="article:modified_time" content="2023-12-26T07:18:31.121Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="SpringBoot">
 <meta name="twitter:card" content="summary_large_image">
@@ -398,7 +398,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          125k 字
+          128k 字
         
       </span>
     
@@ -409,7 +409,7 @@
         
         
         
-          1044 分钟
+          1064 分钟
         
       </span>
     
@@ -460,7 +460,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：34 分钟前
+                    本文最后更新于：4 小时前
                   
                 
               </p>
@@ -2245,36 +2245,30 @@
 <blockquote>
 <p><code>Base64</code>：是一种&#x3D;&#x3D;基于 64 个可打印字符(A-Za-z0-9+)来表示二进制数据&#x3D;&#x3D;的编码方式。</p>
 </blockquote>
-<p>采用java-jwt或者hutool都可以：</p>
+<p>采用 java-jwt 或者 hutool 都可以：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs xml">java-jwt：最基础的jwt包<br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.auth0<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>java-jwt<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>4.4.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>jjwt：对jwt封装后的包<br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>  <br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>io.jsonwebtoken<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>  <br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>jjwt<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>  <br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>0.9.1<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>  <br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>hutool-jwt：高度封装的jwt包<br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>cn.hutool<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>hutool-jwt<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>5.8.16<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
+<ul>
+<li><strong>编写 Jwt 工具类，实现 token 生成、验证等方法</strong></li>
+</ul>
+<ol>
+<li>JWT 校验时使用的签名秘钥，必须和生成 WT 令牌时使用的秘钥是配套的。</li>
+<li>如果 JWT 令牌解析校验时报错，则说明 JWT 令牌被篡改或失效了，令牌非法。</li>
+</ol>
+<p>&#x3D;&#x3D;hutool-jwt：&#x3D;&#x3D;</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs java">    <span class="hljs-meta">@Test</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">createJwtToken</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-type">User</span> <span class="hljs-variable">user</span> <span class="hljs-operator">=</span> User.builder().id(<span class="hljs-number">1</span>).username(<span class="hljs-string">&quot;alleyf&quot;</span>).build();<br><span class="hljs-comment">// 创建claims映射</span><br>        Map&lt;String, Object&gt; claims = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;() &#123;<br>            <span class="hljs-meta">@Serial</span><br>            <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">long</span> <span class="hljs-variable">serialVersionUID</span> <span class="hljs-operator">=</span> <span class="hljs-number">1L</span>;<br><br>            &#123;<br>                <span class="hljs-comment">// 添加用户id到claims映射中</span><br>                put(<span class="hljs-string">&quot;id&quot;</span>, user.getId());<br>                <span class="hljs-comment">// 添加用户名到claims映射中</span><br>                put(<span class="hljs-string">&quot;username&quot;</span>, user.getUsername());<br>                <span class="hljs-comment">// 添加过期时间到claims映射中</span><br>                put(<span class="hljs-string">&quot;expire_time&quot;</span>, System.currentTimeMillis() + expire);<br>            &#125;<br>        &#125;;<br><br>        <span class="hljs-comment">// 使用claims映射和密钥创建JWT令牌</span><br>        log.info(<span class="hljs-string">&quot;JWT令牌：&#123;&#125;&quot;</span>, JWTUtil.createToken(claims, secret.getBytes()));<br><br>    &#125;<br>    <span class="hljs-meta">@Test</span>  <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">parseToken</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">token</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHBpcmVfdGltZSI6MTcwMzYwMjk0MzQxNiwiaWQiOjEsInVzZXJuYW1lIjoiYWxsZXlmIn0.cw6142Ix4xHpYrM_Ol_VeNljw63oyIOKTjK_oFZiqkE&quot;</span>;  <br>        <span class="hljs-keyword">if</span> (JWTUtil.verify(token, secret.getBytes())) &#123;  <br>            cn.hutool.jwt.<span class="hljs-type">JWT</span> <span class="hljs-variable">jwt</span> <span class="hljs-operator">=</span> JWTUtil.parseToken(token);  <br>            System.out.println(jwt.getHeaders());  <br>            System.out.println(jwt.getPayloads());  <br>        &#125;  <br>    &#125; <br></code></pre></td></tr></table></figure>
 
+<blockquote>
+<p>hutool-jwt 解析 jwt 的结果如下：<br><code>JSONObject：&#123;&quot;typ&quot;:&quot;JWT&quot;,&quot;alg&quot;:&quot;HS256&quot;&#125;</code><br><code>JSONObject：&#123;&quot;expire_time&quot;:1703602943416,&quot;id&quot;:1,&quot;username&quot;:&quot;alleyf&quot;&#125;</code></p>
+</blockquote>
+<p>&#x3D;&#x3D;java-jwt：&#x3D;&#x3D;</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs java"> <span class="hljs-comment">// java-jwt用法</span><br>    <span class="hljs-meta">@Test</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testGen</span><span class="hljs-params">()</span> &#123;<br>        Map&lt;String, Object&gt; claims = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();<br>        claims.put(<span class="hljs-string">&quot;id&quot;</span>, <span class="hljs-number">1</span>);<br>        claims.put(<span class="hljs-string">&quot;username&quot;</span>, <span class="hljs-string">&quot;张三&quot;</span>);<br><span class="hljs-comment">//生成jWt的代码</span><br>        <span class="hljs-type">String</span> <span class="hljs-variable">token</span> <span class="hljs-operator">=</span> JWT.create()<br>                .withClaim(<span class="hljs-string">&quot;user&quot;</span>, claims)<span class="hljs-comment">//添加载荷</span><br>                .withExpiresAt(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>(System.currentTimeMillis() + expire))<br>                .sign(Algorithm.HMAC256(secret));<span class="hljs-comment">//指定算法，配置秘钥</span><br>        System.out.println(token);<br>    &#125;<br>    <span class="hljs-meta">@Test</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">parseJwtToken</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">token</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJ1c2VybmFtZSI6IuW8oOS4iSJ9LCJleHAiOjE3MDM2MDIxMzh9.Y6FXkyOfoCl0CJd53_iqI3D6acxyK81b7UjvAY7sM_s&quot;</span>;<br>        <span class="hljs-comment">// 解析JWT令牌</span><br>        <span class="hljs-type">JWTVerifier</span> <span class="hljs-variable">jwtVerifier</span> <span class="hljs-operator">=</span> JWT.require(Algorithm.HMAC256(secret)).build();<br>        <span class="hljs-type">DecodedJWT</span> <span class="hljs-variable">decodedJWT</span> <span class="hljs-operator">=</span> jwtVerifier.verify(token);<br>        Map&lt;String, Claim&gt; claims = decodedJWT.getClaims();<br>        log.info(<span class="hljs-string">&quot;JWT令牌：&#123;&#125;&quot;</span>, claims);<br>    &#125;<br></code></pre></td></tr></table></figure>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h1 id="常用第三方库"><a href="#常用第三方库" class="headerlink" title="常用第三方库"></a>常用第三方库</h1><h2 id="Hu-tool"><a href="#Hu-tool" class="headerlink" title="Hu-tool"></a>Hu-tool</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p><a target="_blank" rel="noopener" href="https://doc.hutool.cn/pages/index/">hutool</a> 一个Java基础工具类，对文件、流、加密解密、转码、正则、线程、XML等JDK方法进行封装，组成各种Util工具类，同时提供以下组件：</p>
+<blockquote>
+<p>java-jwt 解析 jwt 的结果如下：<br><code>Map&lt;String, Claim&gt;：&#123;exp=1703602138, user=&#123;&quot;id&quot;:1,&quot;username&quot;:&quot;张三&quot;&#125;&#125;</code></p>
+</blockquote>
+<p>由此可见 java-jwt 结果中嵌套了一层来存储用户信息，而 hutool-jwt 是直接将用户信息和过期时间保存在同一层的。</p>
+<h1 id="常用第三方库"><a href="#常用第三方库" class="headerlink" title="常用第三方库"></a>常用第三方库</h1><h2 id="Hu-tool"><a href="#Hu-tool" class="headerlink" title="Hu-tool"></a>Hu-tool</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p><a target="_blank" rel="noopener" href="https://doc.hutool.cn/pages/index/">hutool</a> 一个 Java 基础工具类，对文件、流、加密解密、转码、正则、线程、XML 等 JDK 方法进行封装，组成各种 Util 工具类，同时提供以下组件：</p>
 <table>
 <thead>
 <tr>
@@ -2284,11 +2278,11 @@
 </thead>
 <tbody><tr>
 <td>hutool-aop</td>
-<td>JDK动态代理封装，提供非IOC下的切面支持</td>
+<td>JDK 动态代理封装，提供非 IOC 下的切面支持</td>
 </tr>
 <tr>
 <td>hutool-bloomFilter</td>
-<td>布隆过滤，提供一些Hash算法的布隆过滤</td>
+<td>布隆过滤，提供一些 Hash 算法的布隆过滤</td>
 </tr>
 <tr>
 <td>hutool-cache</td>
@@ -2296,11 +2290,11 @@
 </tr>
 <tr>
 <td>hutool-core</td>
-<td>核心，包括Bean操作、日期、各种Util等</td>
+<td>核心，包括 Bean 操作、日期、各种 Util 等</td>
 </tr>
 <tr>
 <td>hutool-cron</td>
-<td>定时任务模块，提供类Crontab表达式的定时任务</td>
+<td>定时任务模块，提供类 Crontab 表达式的定时任务</td>
 </tr>
 <tr>
 <td>hutool-crypto</td>
@@ -2308,11 +2302,11 @@
 </tr>
 <tr>
 <td>hutool-db</td>
-<td>JDBC封装后的数据操作，基于ActiveRecord思想</td>
+<td>JDBC 封装后的数据操作，基于 ActiveRecord 思想</td>
 </tr>
 <tr>
 <td>hutool-dfa</td>
-<td>基于DFA模型的多关键字查找</td>
+<td>基于 DFA 模型的多关键字查找</td>
 </tr>
 <tr>
 <td>hutool-extra</td>
@@ -2320,7 +2314,7 @@
 </tr>
 <tr>
 <td>hutool-http</td>
-<td>基于HttpUrlConnection的Http客户端封装</td>
+<td>基于 HttpUrlConnection 的 Http 客户端封装</td>
 </tr>
 <tr>
 <td>hutool-log</td>
@@ -2328,19 +2322,19 @@
 </tr>
 <tr>
 <td>hutool-script</td>
-<td>脚本执行封装，例如Javascript</td>
+<td>脚本执行封装，例如 Javascript</td>
 </tr>
 <tr>
 <td>hutool-setting</td>
-<td>功能更强大的Setting配置文件和Properties封装</td>
+<td>功能更强大的 Setting 配置文件和 Properties 封装</td>
 </tr>
 <tr>
 <td>hutool-system</td>
-<td>系统参数调用封装（JVM信息等）</td>
+<td>系统参数调用封装（JVM 信息等）</td>
 </tr>
 <tr>
 <td>hutool-json</td>
-<td>JSON实现</td>
+<td>JSON 实现</td>
 </tr>
 <tr>
 <td>hutool-captcha</td>
@@ -2348,37 +2342,37 @@
 </tr>
 <tr>
 <td>hutool-poi</td>
-<td>针对POI中Excel和Word的封装</td>
+<td>针对 POI 中 Excel 和 Word 的封装</td>
 </tr>
 <tr>
 <td>hutool-socket</td>
-<td>基于Java的NIO和AIO的Socket封装</td>
+<td>基于 Java 的 NIO 和 AIO 的 Socket 封装</td>
 </tr>
 <tr>
 <td>hutool-jwt</td>
 <td>JSON Web Token (JWT)封装实现</td>
 </tr>
 </tbody></table>
-<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><p><code>Hutool-all</code>是一个Hutool的集成打包产品，由于考虑到“懒人”用户及分不清各个模块作用的用户，“无脑”引入<code>hutool-all</code>模块是快速开始和深入应用的最佳方式。</p>
+<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><p><code>Hutool-all</code> 是一个 Hutool 的集成打包产品，由于考虑到“懒人”用户及分不清各个模块作用的用户，“无脑”引入 <code>hutool-all</code> 模块是快速开始和深入应用的最佳方式。</p>
 <ol>
-<li>引入<code>hutool-all</code>以便使用所有工具类功能。</li>
-<li>引入<code>hutool-xxx</code>单独模块使用。</li>
+<li>引入 <code>hutool-all</code> 以便使用所有工具类功能。</li>
+<li>引入 <code>hutool-xxx</code> 单独模块使用。</li>
 <li>父工程引入 <code>hutool-bom</code> 进行版本管理，子工程按需引入 <code>hutool-xxx</code> 模块进行使用。</li>
 </ol>
-<h3 id="import方式"><a href="#import方式" class="headerlink" title="import方式"></a>import方式</h3><p>如果你想像Spring-Boot一样引入Hutool，再由子模块决定用到哪些模块，你可以在父模块中加入：</p>
+<h3 id="import-方式"><a href="#import-方式" class="headerlink" title="import 方式"></a>import 方式</h3><p>如果你想像 Spring-Boot 一样引入 Hutool，再由子模块决定用到哪些模块，你可以在父模块中加入：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependencyManagement</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>cn.hutool<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>hutool-bom<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>$&#123;hutool.version&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">type</span>&gt;</span>pom<span class="hljs-tag">&lt;/<span class="hljs-name">type</span>&gt;</span><br>            <span class="hljs-comment">&lt;!-- 注意这里是import --&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>import<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependencyManagement</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <p>在子模块中就可以引入自己需要的模块了：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java">&lt;dependencies&gt;<br>    &lt;dependency&gt;<br>        &lt;groupId&gt;cn.hutool&lt;/groupId&gt;<br>        &lt;artifactId&gt;hutool-http&lt;/artifactId&gt;<br>    &lt;/dependency&gt;<br>&lt;/dependencies&gt;<br></code></pre></td></tr></table></figure>
 
 <blockquote>
-<p>使用import的方式，只会引入hutool-bom内的dependencyManagement的配置，其它配置在这个引用方式下完全不起作用。</p>
+<p>使用 import 的方式，只会引入 hutool-bom 内的 dependencyManagement 的配置，其它配置在这个引用方式下完全不起作用。</p>
 </blockquote>
-<h3 id="exclude方式"><a href="#exclude方式" class="headerlink" title="exclude方式"></a>exclude方式</h3><p>如果你引入的模块比较多，但是某几个模块没用，你可以：</p>
+<h3 id="exclude-方式"><a href="#exclude-方式" class="headerlink" title="exclude 方式"></a>exclude 方式</h3><p>如果你引入的模块比较多，但是某几个模块没用，你可以：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>cn.hutool<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>hutool-bom<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>$&#123;hutool.version&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>        <span class="hljs-comment">&lt;!-- 加不加这句都能跑，区别只有是否告警  --&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">type</span>&gt;</span>pom<span class="hljs-tag">&lt;/<span class="hljs-name">type</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">exclusions</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">exclusion</span>&gt;</span><br>                    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>cn.hutool<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>                    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>hutool-system<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">exclusion</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">exclusions</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <blockquote>
-<p>这个配置会传递依赖hutool-bom内所有dependencies的内容，当前hutool-bom内的dependencies全部设置了version，就意味着在maven resolve的时候hutool-bom内就算存在dependencyManagement也不会产生任何作用。</p>
+<p>这个配置会传递依赖 hutool-bom 内所有 dependencies 的内容，当前 hutool-bom 内的 dependencies 全部设置了 version，就意味着在 maven resolve 的时候 hutool-bom 内就算存在 dependencyManagement 也不会产生任何作用。</p>
 </blockquote>
 <h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cardlink">url: https://itbaima.net/<br>title: &quot;柏码 - 让每一行代码都闪耀智慧的光芒！&quot;<br>host: itbaima.net<br>favicon: /favicon.ico<br></code></pre></td></tr></table></figure>
 <p><a target="_blank" rel="noopener" href="https://itbaima.net/">柏码 - 让每一行代码都闪耀智慧的光芒！</a></p>
