@@ -4570,7 +4570,7 @@ https://jwt.io/
 载荷采用 `Base64` 编码，便于传输数据，中文 json 数据不支持直接传输。
 > `Base64`：是一种==基于 64 个可打印字符(A-Za-z0-9+)来表示二进制数据==的编码方式。
 
-采用java-jwt或者hutool都可以：
+采用 java-jwt 或者 hutool 都可以：
 ```xml
 java-jwt：最基础的jwt包
 <dependency>
@@ -4592,16 +4592,82 @@ hutool-jwt：高度封装的jwt包
 </dependency>
 ```
 
+- **编写 Jwt 工具类，实现 token 生成、验证等方法**
+
+1. JWT 校验时使用的签名秘钥，必须和生成 WT 令牌时使用的秘钥是配套的。
+2. 如果 JWT 令牌解析校验时报错，则说明 JWT 令牌被篡改或失效了，令牌非法。
+
+==hutool-jwt：==
+```java
+    @Test
+    public void createJwtToken() {
+        User user = User.builder().id(1).username("alleyf").build();
+// 创建claims映射
+        Map<String, Object> claims = new HashMap<>() {
+            @Serial
+            private static final long serialVersionUID = 1L;
+
+            {
+                // 添加用户id到claims映射中
+                put("id", user.getId());
+                // 添加用户名到claims映射中
+                put("username", user.getUsername());
+                // 添加过期时间到claims映射中
+                put("expire_time", System.currentTimeMillis() + expire);
+            }
+        };
+
+        // 使用claims映射和密钥创建JWT令牌
+        log.info("JWT令牌：{}", JWTUtil.createToken(claims, secret.getBytes()));
+
+    }
+    @Test  
+    public void parseToken() {
+        String token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHBpcmVfdGltZSI6MTcwMzYwMjk0MzQxNiwiaWQiOjEsInVzZXJuYW1lIjoiYWxsZXlmIn0.cw6142Ix4xHpYrM_Ol_VeNljw63oyIOKTjK_oFZiqkE";  
+        if (JWTUtil.verify(token, secret.getBytes())) {  
+            cn.hutool.jwt.JWT jwt = JWTUtil.parseToken(token);  
+            System.out.println(jwt.getHeaders());  
+            System.out.println(jwt.getPayloads());  
+        }  
+    } 
+```
+
+> hutool-jwt 解析 jwt 的结果如下：
+> `JSONObject：{"typ":"JWT","alg":"HS256"}`
+> `JSONObject：{"expire_time":1703602943416,"id":1,"username":"alleyf"}`
 
 
+==java-jwt：==
 
+```java
+ // java-jwt用法
+    @Test
+    public void testGen() {
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("id", 1);
+        claims.put("username", "张三");
+//生成jWt的代码
+        String token = JWT.create()
+                .withClaim("user", claims)//添加载荷
+                .withExpiresAt(new Date(System.currentTimeMillis() + expire))
+                .sign(Algorithm.HMAC256(secret));//指定算法，配置秘钥
+        System.out.println(token);
+    }
+    @Test
+    public void parseJwtToken() {
+        String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJ1c2VybmFtZSI6IuW8oOS4iSJ9LCJleHAiOjE3MDM2MDIxMzh9.Y6FXkyOfoCl0CJd53_iqI3D6acxyK81b7UjvAY7sM_s";
+        // 解析JWT令牌
+        JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC256(secret)).build();
+        DecodedJWT decodedJWT = jwtVerifier.verify(token);
+        Map<String, Claim> claims = decodedJWT.getClaims();
+        log.info("JWT令牌：{}", claims);
+    }
+```
 
+> java-jwt 解析 jwt 的结果如下：
+> `Map<String, Claim>：{exp=1703602138, user={"id":1,"username":"张三"}}`
 
-
-
-
-
-
+由此可见 java-jwt 结果中嵌套了一层来存储用户信息，而 hutool-jwt 是直接将用户信息和过期时间保存在同一层的。
 
 
 
@@ -4624,40 +4690,40 @@ hutool-jwt：高度封装的jwt包
 ## Hu-tool
 
 ### 简介
-[hutool](https://doc.hutool.cn/pages/index/) 一个Java基础工具类，对文件、流、加密解密、转码、正则、线程、XML等JDK方法进行封装，组成各种Util工具类，同时提供以下组件：
+[hutool](https://doc.hutool.cn/pages/index/) 一个 Java 基础工具类，对文件、流、加密解密、转码、正则、线程、XML 等 JDK 方法进行封装，组成各种 Util 工具类，同时提供以下组件：
 
 |模块|介绍|
 |---|---|
-|hutool-aop|JDK动态代理封装，提供非IOC下的切面支持|
-|hutool-bloomFilter|布隆过滤，提供一些Hash算法的布隆过滤|
+|hutool-aop|JDK 动态代理封装，提供非 IOC 下的切面支持|
+|hutool-bloomFilter|布隆过滤，提供一些 Hash 算法的布隆过滤|
 |hutool-cache|简单缓存实现|
-|hutool-core|核心，包括Bean操作、日期、各种Util等|
-|hutool-cron|定时任务模块，提供类Crontab表达式的定时任务|
+|hutool-core|核心，包括 Bean 操作、日期、各种 Util 等|
+|hutool-cron|定时任务模块，提供类 Crontab 表达式的定时任务|
 |hutool-crypto|加密解密模块，提供对称、非对称和摘要算法封装|
-|hutool-db|JDBC封装后的数据操作，基于ActiveRecord思想|
-|hutool-dfa|基于DFA模型的多关键字查找|
+|hutool-db|JDBC 封装后的数据操作，基于 ActiveRecord 思想|
+|hutool-dfa|基于 DFA 模型的多关键字查找|
 |hutool-extra|扩展模块，对第三方封装（模板引擎、邮件、Servlet、二维码、Emoji、FTP、分词等）|
-|hutool-http|基于HttpUrlConnection的Http客户端封装|
+|hutool-http|基于 HttpUrlConnection 的 Http 客户端封装|
 |hutool-log|自动识别日志实现的日志门面|
-|hutool-script|脚本执行封装，例如Javascript|
-|hutool-setting|功能更强大的Setting配置文件和Properties封装|
-|hutool-system|系统参数调用封装（JVM信息等）|
-|hutool-json|JSON实现|
+|hutool-script|脚本执行封装，例如 Javascript|
+|hutool-setting|功能更强大的 Setting 配置文件和 Properties 封装|
+|hutool-system|系统参数调用封装（JVM 信息等）|
+|hutool-json|JSON 实现|
 |hutool-captcha|图片验证码实现|
-|hutool-poi|针对POI中Excel和Word的封装|
-|hutool-socket|基于Java的NIO和AIO的Socket封装|
+|hutool-poi|针对 POI 中 Excel 和 Word 的封装|
+|hutool-socket|基于 Java 的 NIO 和 AIO 的 Socket 封装|
 |hutool-jwt|JSON Web Token (JWT)封装实现|
 
 ## 用法
 
-`Hutool-all`是一个Hutool的集成打包产品，由于考虑到“懒人”用户及分不清各个模块作用的用户，“无脑”引入`hutool-all`模块是快速开始和深入应用的最佳方式。
+`Hutool-all` 是一个 Hutool 的集成打包产品，由于考虑到“懒人”用户及分不清各个模块作用的用户，“无脑”引入 `hutool-all` 模块是快速开始和深入应用的最佳方式。
 
-1. 引入`hutool-all`以便使用所有工具类功能。
-2. 引入`hutool-xxx`单独模块使用。
+1. 引入 `hutool-all` 以便使用所有工具类功能。
+2. 引入 `hutool-xxx` 单独模块使用。
 3. 父工程引入 `hutool-bom` 进行版本管理，子工程按需引入 `hutool-xxx` 模块进行使用。
-### import方式
+### import 方式
 
-如果你想像Spring-Boot一样引入Hutool，再由子模块决定用到哪些模块，你可以在父模块中加入：
+如果你想像 Spring-Boot 一样引入 Hutool，再由子模块决定用到哪些模块，你可以在父模块中加入：
 
 ```xml
 <dependencyManagement>
@@ -4685,9 +4751,9 @@ hutool-jwt：高度封装的jwt包
 </dependencies>
 ```
 
-> 使用import的方式，只会引入hutool-bom内的dependencyManagement的配置，其它配置在这个引用方式下完全不起作用。
+> 使用 import 的方式，只会引入 hutool-bom 内的 dependencyManagement 的配置，其它配置在这个引用方式下完全不起作用。
 
-### exclude方式
+### exclude 方式
 
 如果你引入的模块比较多，但是某几个模块没用，你可以：
 
@@ -4709,7 +4775,7 @@ hutool-jwt：高度封装的jwt包
 </dependencies>
 ```
 
-> 这个配置会传递依赖hutool-bom内所有dependencies的内容，当前hutool-bom内的dependencies全部设置了version，就意味着在maven resolve的时候hutool-bom内就算存在dependencyManagement也不会产生任何作用。
+> 这个配置会传递依赖 hutool-bom 内所有 dependencies 的内容，当前 hutool-bom 内的 dependencies 全部设置了 version，就意味着在 maven resolve 的时候 hutool-bom 内就算存在 dependencyManagement 也不会产生任何作用。
 
 
 
