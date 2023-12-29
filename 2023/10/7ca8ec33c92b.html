@@ -141,8 +141,9 @@
 <meta property="og:image" content="https://s2.loli.net/2023/07/24/4o76q5yNHkabuip.png">
 <meta property="og:image" content="https://s2.loli.net/2023/07/24/cqEgnQOZtFp1w7o.png">
 <meta property="og:image" content="https://qnpicmap.fcsluck.top/pics/202312260031612.png">
+<meta property="og:image" content="https://qnpicmap.fcsluck.top/pics/202312281217348.png">
 <meta property="article:published_time" content="2023-10-31T07:04:18.000Z">
-<meta property="article:modified_time" content="2023-12-26T07:18:31.121Z">
+<meta property="article:modified_time" content="2023-12-29T12:40:51.018Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="SpringBoot">
 <meta name="twitter:card" content="summary_large_image">
@@ -398,7 +399,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          128k 字
+          131k 字
         
       </span>
     
@@ -409,7 +410,7 @@
         
         
         
-          1064 分钟
+          1092 分钟
         
       </span>
     
@@ -460,7 +461,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：4 小时前
+                    本文最后更新于：1 分钟前
                   
                 
               </p>
@@ -2222,14 +2223,96 @@
 <li>在参数前面添加 <code>@Pattern</code> 注解</li>
 <li>在 <strong>Controller</strong> 类上添加 <code>@Validated</code> 注解</li>
 </ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Validated</span> <span class="hljs-comment">//Controller上</span><br><span class="hljs-meta">@Pattern(regexp = &quot;^\\S&#123;4,16&#125;$&quot;, message = &quot;用户名格式不正确&quot;)</span> String username <span class="hljs-comment">//方法参数上</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Validated</span> <span class="hljs-comment">//Controller或方法的形参前</span><br><span class="hljs-meta">@Pattern(regexp = &quot;^\\S&#123;4,16&#125;$&quot;, message = &quot;用户名格式不正确&quot;)</span> String username <span class="hljs-comment">//方法参数上</span><br></code></pre></td></tr></table></figure>
 
 <ul>
-<li><p><strong>参数校验失败异常处理</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RestControllerAdvice</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">GlobalExceptionHandler</span><br><span class="hljs-meta">@ExceptionHandler(Exception.class)</span><br><span class="hljs-keyword">public</span> Result <span class="hljs-title function_">handleException</span><span class="hljs-params">(Exception e)</span>&#123;<br>e.printStackTrace();<br><span class="hljs-keyword">return</span> Result.error(StringUtils.hasLength(e.getMessage())?e.getMessage():<span class="hljs-string">&quot;操作失败&quot;</span>)；<br></code></pre></td></tr></table></figure>
-</li>
-<li><p><strong>登录认证</strong><br>采用 JWT 认证方式控制认证，登录后会返回给用户一个 jwt 令牌，令牌就是一段字符串。</p>
-</li>
+<li><strong>参数校验失败异常处理</strong><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RestControllerAdvice</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">GlobalExceptionHandler</span><br><span class="hljs-meta">@ExceptionHandler(Exception.class)</span><br><span class="hljs-keyword">public</span> Result <span class="hljs-title function_">handleException</span><span class="hljs-params">(Exception e)</span>&#123;<br>e.printStackTrace();<br><span class="hljs-keyword">return</span> Result.error(StringUtils.hasLength(e.getMessage())?e.getMessage():<span class="hljs-string">&quot;操作失败&quot;</span>)；<br></code></pre></td></tr></table></figure></li>
+</ul>
+<p>&#x3D;&#x3D;实体参数校验&#x3D;&#x3D;<br>需要在<strong>实体类的属性上添加校验规则</strong>，然后在<strong>方法的形参前添加</strong> <code>@Validated</code> 注解。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 实体类的属性添加校验规则</span><br><span class="hljs-meta">@Pattern(regexp = &quot;^\\S&#123;4,16&#125;$&quot;, message = &quot;用户名格式不正确&quot;)</span>  <br><span class="hljs-keyword">private</span> String username;<br><span class="hljs-meta">@Email</span>  <br><span class="hljs-meta">@NotEmpty</span>  <br><span class="hljs-keyword">private</span> String email;<br><span class="hljs-comment">// 方法形参添加校验注解</span><br><span class="hljs-meta">@PutMapping(&quot;/update&quot;)</span>  <br><span class="hljs-keyword">public</span> Result <span class="hljs-title function_">update</span><span class="hljs-params">(<span class="hljs-meta">@Validated</span> <span class="hljs-meta">@RequestBody</span> User user)</span> &#123;  <br>    userService.update(user);  <br>    <span class="hljs-comment">// 返回用户信息  </span><br>    <span class="hljs-keyword">return</span> Result.success();  <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><code>jakarta.validation.constraints</code> 包中的常用校验注解如下表所示：</p>
+<table>
+<thead>
+<tr>
+<th>注解</th>
+<th>解释</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>@AssertTrue</td>
+<td>被注解的元素必须为true</td>
+<td></td>
+</tr>
+<tr>
+<td>@AssertFalse</td>
+<td>被注解的元素必须为false</td>
+<td></td>
+</tr>
+<tr>
+<td>@DecimalMax</td>
+<td>被注解的元素必须小于或等于指定的最大值</td>
+<td></td>
+</tr>
+<tr>
+<td>@DecimalMin</td>
+<td>被注解的元素必须大于或等于指定的最小值</td>
+<td></td>
+</tr>
+<tr>
+<td>@Digits</td>
+<td>被注解的元素必须是数字，并且限制整数和小数部分的位数</td>
+<td></td>
+</tr>
+<tr>
+<td>@Future</td>
+<td>被注解的元素必须是将来的日期</td>
+<td></td>
+</tr>
+<tr>
+<td>@Max</td>
+<td>被注解的元素必须小于或等于指定的最大值</td>
+<td></td>
+</tr>
+<tr>
+<td>@Min</td>
+<td>被注解的元素必须大于或等于指定的最小值</td>
+<td></td>
+</tr>
+<tr>
+<td>@NotNull</td>
+<td>被注解的元素不能为null</td>
+<td></td>
+</tr>
+<tr>
+<td>@Null</td>
+<td>被注解的元素必须为null</td>
+<td></td>
+</tr>
+<tr>
+<td>@Pattern</td>
+<td>被注解的元素必须符合指定正则表达式</td>
+<td></td>
+</tr>
+<tr>
+<td>@Size</td>
+<td>被注解的元素必须在指定范围内</td>
+<td><br></td>
+</tr>
+<tr>
+<td>@NotEmpty</td>
+<td>被注解的元素非null，且非空</td>
+<td></td>
+</tr>
+<tr>
+<td>@Email</td>
+<td>被注解的元素必须是邮箱格式</td>
+<td></td>
+</tr>
+</tbody></table>
+<ul>
+<li><strong>登录认证</strong><br>采用 JWT 认证方式控制认证，登录后会返回给用户一个 jwt 令牌，令牌就是一段字符串。</li>
 </ul>
 <ol>
 <li>承载业务数据，减少后续请求查询数据库的次数。</li>
@@ -2238,16 +2321,15 @@
 <p>JWT（JSON Web Token）<br><a target="_blank" rel="noopener" href="https://jwt.io/">https://jwt.io/</a></p>
 <ol>
 <li>定义了一种简洁的、自包含的格式，用于通信双方以 jso 数据格式安全的传输信息。</li>
-<li>组成：<br>🥇第一部分：<strong>Header</strong>(头)，记录<em>令牌类型、签名算法</em>等。例如：{“alg”:”HS256”,”type”:”JWT”)<br>🥈第二部分：<strong>Payload</strong>(有效载荷)，携带一些 <em>自定义信息、默认信息（不包括密码等私密数据）</em> 等。例如：<code>&#123;&quot;id&quot;:&quot;1&quot;,&quot;username&quot;:&quot;Tom&quot;&#125;</code><br>🥉第三部分：<strong>Signature</strong>(签名)，防止 Token 被篡改、确保安全性。将 <em>header、payload,并加入指定秘钥，通过指定签名算法计算而来</em>。</li>
+<li>组成：<br> 🥇第一部分：<strong>Header</strong>(头)，记录_令牌类型、签名算法_等。例如：{“alg”:”HS256”,”type”:”JWT”)<br> 🥈第二部分：<strong>Payload</strong>(有效载荷)，携带一些 <em>自定义信息、默认信息（不包括密码等私密数据）</em> 等。例如：<code>&#123;&quot;id&quot;:&quot;1&quot;,&quot;username&quot;:&quot;Tom&quot;&#125;</code><br> 🥉第三部分：<strong>Signature</strong>(签名)，防止 Token 被篡改、确保安全性。将 _header、payload,并加入指定秘钥，通过指定签名算法计算而来_。</li>
 </ol>
-<p><img src="https://qnpicmap.fcsluck.top/pics/202312260031612.png" srcset="/img/loading.gif" lazyload></p>
+<p><a target="_blank" rel="noopener" href="https://qnpicmap.fcsluck.top/pics/202312260031612.png"><img src="https://qnpicmap.fcsluck.top/pics/202312260031612.png" srcset="/img/loading.gif" lazyload></a></p>
 <p>载荷采用 <code>Base64</code> 编码，便于传输数据，中文 json 数据不支持直接传输。</p>
 <blockquote>
 <p><code>Base64</code>：是一种&#x3D;&#x3D;基于 64 个可打印字符(A-Za-z0-9+)来表示二进制数据&#x3D;&#x3D;的编码方式。</p>
 </blockquote>
-<p>采用 java-jwt 或者 hutool 都可以：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs xml">java-jwt：最基础的jwt包<br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.auth0<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>java-jwt<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>4.4.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>jjwt：对jwt封装后的包<br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>  <br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>io.jsonwebtoken<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>  <br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>jjwt<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>  <br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>0.9.1<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>  <br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>hutool-jwt：高度封装的jwt包<br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>cn.hutool<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>hutool-jwt<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>5.8.16<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
-
+<p>采用<code>java-jwt</code>或者<code>hutool</code>都可以：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs xml">java-jwt：最基础的jwt包<br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.auth0<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>java-jwt<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>4.4.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>jjwt：对jwt封装后的包<br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>  <br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>io.jsonwebtoken<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>  <br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>jjwt<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>  <br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>0.9.1<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>  <br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>hutool-jwt：高度封装的jwt包<br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>cn.hutool<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>hutool-jwt<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>5.8.16<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br></code></pre></td></tr></table></figure>
 <ul>
 <li><strong>编写 Jwt 工具类，实现 token 生成、验证等方法</strong></li>
 </ul>
@@ -2268,6 +2350,42 @@
 <p>java-jwt 解析 jwt 的结果如下：<br><code>Map&lt;String, Claim&gt;：&#123;exp=1703602138, user=&#123;&quot;id&quot;:1,&quot;username&quot;:&quot;张三&quot;&#125;&#125;</code></p>
 </blockquote>
 <p>由此可见 java-jwt 结果中嵌套了一层来存储用户信息，而 hutool-jwt 是直接将用户信息和过期时间保存在同一层的。</p>
+<h2 id="细节要点"><a href="#细节要点" class="headerlink" title="细节要点"></a>细节要点</h2><ol>
+<li><p>在用户实体上的密码字段添加 <code>@JsonIgnore</code> 设置密码在序列化转换为 json 字符串时忽略，从而在 json 字符串结果在不包含密码来保证信息安全，</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Pattern(regexp = &quot;^\\S&#123;4,16&#125;$&quot;)</span>  <br><span class="hljs-meta">@JsonIgnore</span>  <br><span class="hljs-keyword">private</span> String password;<br></code></pre></td></tr></table></figure></li>
+<li><p>在实体的日期相关属性上一般可以添加 <code>@JsonFormat</code>对序列化的json字符串格式进行设置，对日期一般设置以下格式：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@JsonFormat(pattern = &quot;yyyy-MM-dd HH:mm:ss&quot;)</span><br></code></pre></td></tr></table></figure></li>
+<li><p><strong>分组校验</strong>：对同一个实体类被复用于不同的业务作为参数时分组采用不同的校验规则，以隔离校验条件实现不同业务逻辑。</p>
+<blockquote>
+<p>   <strong>未指定分组的校验项默认属于 <code>Default</code> 分组，并且分组可以继承，子类可以继承父类所有校验项</strong>。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Data</span><br><span class="hljs-meta">@Builder</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Category</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">BaseEntity</span> &#123;<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 主键ID</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@NotNull(message = &quot;主键ID不能为空&quot;, groups = &#123;Edit.class&#125;)</span><br>    <span class="hljs-keyword">private</span> Integer id;<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 分类名称</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@NotEmpty(message = &quot;分类名称不能为空&quot;, groups = &#123;Add.class, Edit.class&#125;)</span><br>    <span class="hljs-meta">@Length(min = 2, max = 10, groups = &#123;Add.class, Edit.class&#125;)</span><br>    <span class="hljs-keyword">private</span> String categoryName;<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 分类别名</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@NotEmpty(message = &quot;分类别名不能为空&quot;, groups = &#123;Add.class, Edit.class&#125;)</span><br>    <span class="hljs-meta">@Length(min = 1, max = 10, groups = &#123;Add.class, Edit.class&#125;)</span><br>    <span class="hljs-keyword">private</span> String categoryAlias;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 新增分组</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">Add</span> &#123;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 修改分组</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">Edit</span> &#123;<br>    &#125;<br>&#125;  <br></code></pre></td></tr></table></figure>
+<p>&#x3D;&#x3D;controller层&#x3D;&#x3D;：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@PostMapping(&quot;/add&quot;)</span><br>    <span class="hljs-keyword">public</span> Result&lt;?&gt; add(<span class="hljs-meta">@Validated(Category.Add.class)</span> <span class="hljs-meta">@RequestBody</span> Category category) &#123;<br>        categoryService.add(category);<br>        <span class="hljs-keyword">return</span> Result.success();<br>    &#125;<br><span class="hljs-meta">@PutMapping(&quot;/update&quot;)</span><br>    <span class="hljs-keyword">public</span> Result&lt;?&gt; edit(<span class="hljs-meta">@Validated(Category.Edit.class)</span> <span class="hljs-meta">@RequestBody</span> Category category) &#123;<br>        categoryService.edit(category);<br>        <span class="hljs-keyword">return</span> Result.success();<br>    &#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>自定义校验，已有的Valid校验不满足需求时可以自定义校验注解进行定制化校验，自定义校验需要包括以下几点：</p>
+</li>
+<li><p>在配置文件中<strong>开启数据库下划线命名字段到驼峰命名变量的自动转换</strong>，否则无法接收到数据库字段信息，数据库字段名通过下划线连接，而 java 程序中变量名遵循驼峰原则，因此两者需要进行转换。</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-comment"># mybatis配置  </span><br><span class="hljs-attr">mybatis:</span>  <br>  <span class="hljs-attr">configuration:</span>  <br>    <span class="hljs-comment">#  开启驼峰命名与下划线命名的自动转换  </span><br>    <span class="hljs-attr">map-underscore-to-camel-case:</span> <span class="hljs-literal">true</span>  <br>    <span class="hljs-comment"># 日志实现类，开启后所有数据库操作都会在控制台打印出sql语句</span><br>    <span class="hljs-attr">log-impl:</span> <span class="hljs-string">org.apache.ibatis.logging.stdout.StdOutImpl</span>   <br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>springboot 每个 web 请求都是一个线程</strong>，spring boot web 层基于 servlet，servlet 的每个 request 是一个线程，因此用户每次请求都会从线程池中获取一个线程，从而隔离不同请求。</p>
+</li>
+<li><p>ThreadLocal，提供线程局部变量，每次设置新键值都是独立的，不会修改原来的键值，&#x3D;&#x3D;常用于存储登录用户的信息&#x3D;&#x3D;。</p>
+<ul>
+<li>用来存取数据：<code>set()/get()</code>，<em>减少参数传递</em></li>
+<li>使用 ThreadLocal 存储的数据，<em>线程安全，同一线程参数共享，不同线程参数隔离。</em></li>
+<li>用完记得调用<code>remove</code>方法释放数据，<em>否则会造成内存泄漏</em>。</li>
+</ul>
+</li>
+</ol>
+<p><img src="https://qnpicmap.fcsluck.top/pics/202312281217348.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>每个请求都隔离在各自的线程中，因此 userId 的存取都是线程安全的获取到各自正确的值。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@SuppressWarnings(&quot;all&quot;)</span>  <br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ThreadLocalUtil</span> &#123;  <br>    <span class="hljs-comment">//提供ThreadLocal对象,  </span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">ThreadLocal</span> <span class="hljs-variable">THREAD_LOCAL</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ThreadLocal</span>();  <br>  <br>    <span class="hljs-comment">//根据键获取值  </span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> &lt;T&gt; T <span class="hljs-title function_">get</span><span class="hljs-params">()</span> &#123;  <br>        <span class="hljs-keyword">return</span> (T) THREAD_LOCAL.get();  <br>    &#125;  <br>  <br>    <span class="hljs-comment">//存储键值对  </span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">set</span><span class="hljs-params">(Object value)</span> &#123;  <br>        THREAD_LOCAL.set(value);  <br>    &#125;  <br>  <br>  <br>    <span class="hljs-comment">//清除ThreadLocal 防止内存泄漏  </span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">remove</span><span class="hljs-params">()</span> &#123;  <br>        THREAD_LOCAL.remove();  <br>    &#125;  <br>&#125;<br><span class="hljs-comment">// 存取用户信息：拦截器中请求处理前存储用户数据，请求中获取数据，请求完成释放数据。</span><br>ThreadLocalUtil.set(userInfo);<br><span class="hljs-type">JSONObject</span> <span class="hljs-variable">userJsonObj</span> <span class="hljs-operator">=</span> ThreadLocalUtil.get();<br>ThreadLocalUtil.remove();<br></code></pre></td></tr></table></figure>
+
+<p>6. </p>
+<hr>
 <h1 id="常用第三方库"><a href="#常用第三方库" class="headerlink" title="常用第三方库"></a>常用第三方库</h1><h2 id="Hu-tool"><a href="#Hu-tool" class="headerlink" title="Hu-tool"></a>Hu-tool</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p><a target="_blank" rel="noopener" href="https://doc.hutool.cn/pages/index/">hutool</a> 一个 Java 基础工具类，对文件、流、加密解密、转码、正则、线程、XML 等 JDK 方法进行封装，组成各种 Util 工具类，同时提供以下组件：</p>
 <table>
 <thead>
@@ -2440,7 +2558,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2023年12月26日</div>
+          <div>2023年12月29日</div>
         </div>
       
       <div class="license-meta-item">
