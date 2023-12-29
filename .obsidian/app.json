@@ -24,7 +24,7 @@
   "spellcheck": false,
   "attachmentFolderPath": "attachment",
   "rightToLeft": false,
-  "readableLineLength": true,
+  "readableLineLength": false,
   "showIndentGuide": true,
   "newLinkFormat": "shortest",
   "alwaysUpdateLinks": true,
