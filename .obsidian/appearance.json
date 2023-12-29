@@ -11,5 +11,6 @@
     "print",
     "page-magin",
     "image-grid"
-  ]
+  ],
+  "showViewHeader": true
 }

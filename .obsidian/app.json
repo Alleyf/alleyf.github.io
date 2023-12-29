@@ -24,9 +24,10 @@
   "spellcheck": false,
   "attachmentFolderPath": "attachment",
   "rightToLeft": false,
-  "readableLineLength": false,
+  "readableLineLength": true,
   "showIndentGuide": true,
   "newLinkFormat": "shortest",
   "alwaysUpdateLinks": true,
-  "useMarkdownLinks": true
+  "useMarkdownLinks": true,
+  "showInlineTitle": true
 }

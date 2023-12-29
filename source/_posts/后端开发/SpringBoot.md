@@ -4574,19 +4574,19 @@ public Result update(@Validated @RequestBody User user) {
 
 | 注解         | 解释                                                 |      |
 | ------------ | ---------------------------------------------------- | ---- |
-| @AssertTrue  | 被注解的元素必须为true                               |      |
-| @AssertFalse | 被注解的元素必须为false                              |      |
+| @AssertTrue  | 被注解的元素必须为 true                               |      |
+| @AssertFalse | 被注解的元素必须为 false                              |      |
 | @DecimalMax  | 被注解的元素必须小于或等于指定的最大值               |      |
 | @DecimalMin  | 被注解的元素必须大于或等于指定的最小值               |      |
 | @Digits      | 被注解的元素必须是数字，并且限制整数和小数部分的位数 |      |
 | @Future      | 被注解的元素必须是将来的日期                         |      |
 | @Max         | 被注解的元素必须小于或等于指定的最大值               |      |
 | @Min         | 被注解的元素必须大于或等于指定的最小值               |      |
-| @NotNull     | 被注解的元素不能为null                               |      |
-| @Null        | 被注解的元素必须为null                               |      |
+| @NotNull     | 被注解的元素不能为 null                               |      |
+| @Null        | 被注解的元素必须为 null                               |      |
 | @Pattern     | 被注解的元素必须符合指定正则表达式                   |      |
 | @Size        | 被注解的元素必须在指定范围内                         | <br> |
-| @NotEmpty    | 被注解的元素非null，且非空                           |      |
+| @NotEmpty    | 被注解的元素非 null，且非空                           |      |
 | @Email       | 被注解的元素必须是邮箱格式                                                     |      |
 
 
@@ -4604,13 +4604,13 @@ https://jwt.io/
     🥈第二部分：**Payload**(有效载荷)，携带一些 _自定义信息、默认信息（不包括密码等私密数据）_ 等。例如：`{"id":"1","username":"Tom"}`  
     🥉第三部分：**Signature**(签名)，防止 Token 被篡改、确保安全性。将 _header、payload,并加入指定秘钥，通过指定签名算法计算而来_。
 
-[![](https://qnpicmap.fcsluck.top/pics/202312260031612.png)](https://qnpicmap.fcsluck.top/pics/202312260031612.png)
+[![](https://qnpicmap.fcsluck.top/pics/202312260031612.png)]( https://qnpicmap.fcsluck.top/pics/202312260031612.png )
 
 载荷采用 `Base64` 编码，便于传输数据，中文 json 数据不支持直接传输。
 
 > `Base64`：是一种==基于 64 个可打印字符(A-Za-z0-9+)来表示二进制数据==的编码方式。
 
-采用` java-jwt `或者` hutool `都可以：
+采用 ` java-jwt ` 或者 ` hutool ` 都可以：
 
 ```xml
 java-jwt：最基础的jwt包
@@ -4721,7 +4721,7 @@ hutool-jwt：高度封装的jwt包
 @JsonIgnore  
 private String password;
 ```
-2. 在实体的日期相关属性上一般可以添加 `@JsonFormat`对序列化的json字符串格式进行设置，对日期一般设置以下格式：
+2. 在实体的日期相关属性上一般可以添加 `@JsonFormat` 对序列化的 json 字符串格式进行设置，对日期一般设置以下格式：
 ```java
 @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 ```
@@ -4762,7 +4762,7 @@ public class Category extends BaseEntity {
     }
 }  
 ```
-==controller层==：
+==controller 层==：
 ```java
 @PostMapping("/add")
     public Result<?> add(@Validated(Category.Add.class) @RequestBody Category category) {
@@ -4776,8 +4776,10 @@ public class Category extends BaseEntity {
     }
 ```
 
-4. 自定义校验，已有的Valid校验不满足需求时可以自定义校验注解进行定制化校验，自定义校验需要包括以下几点：
-   
+4. **自定义校验**，已有的 Valid 校验不满足需求时可以自定义校验注解进行定制化校验，自定义校验需要包括以下几点：
+   - 自定义注解 State（包含三部分：`message、groups、payload`），并且 `@Constraint` 添加校验器
+   - 自定义校验数据的类 StateValidation（校验器）实现 `ConstraintValidator` 接口重写 `isValid` 方法
+   - 在需要自定义校验的地方使用自定义注解
 
 5. 在配置文件中**开启数据库下划线命名字段到驼峰命名变量的自动转换**，否则无法接收到数据库字段信息，数据库字段名通过下划线连接，而 java 程序中变量名遵循驼峰原则，因此两者需要进行转换。
 ```yml
@@ -4790,12 +4792,17 @@ mybatis:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl   
 ```
 
-4. **springboot 每个 web 请求都是一个线程**，spring boot web 层基于 servlet，servlet 的每个 request 是一个线程，因此用户每次请求都会从线程池中获取一个线程，从而隔离不同请求。
+6. `PageHelper` 分页实现：
+   - `controller` 层：请求参数设置*pageNum、pageSize 和附加条件参数*（一般设置为不必须参数）
+   - `service` 层：**1.创建 pageBean 对象，2.开启分页查询 pageHelper，3.调用 mapper 方法条件查询，4.设置 pageBean,填充数据并返回 pageBean**
+   - `mapper` 层：不使用 `sql` 注解，通过` xml `配置文件编写动态 sql（==mapper 标签的 namespace 属性指定扫描的 mapper 类、select 标签 id 属性指定映射 mapper 中的方法名、select 标签的 resultType 属性指定返回值映射类、where 标签条件查询结合 if 标签进行动态条件查询==）
+   
+7. **springboot 每个 web 请求都是一个线程**，spring boot web 层基于 servlet，servlet 的每个 request 是一个线程，因此用户每次请求都会从线程池中获取一个线程，从而隔离不同请求。
 
-5. ThreadLocal，提供线程局部变量，每次设置新键值都是独立的，不会修改原来的键值，==常用于存储登录用户的信息==。
+8. ThreadLocal，提供线程局部变量，每次设置新键值都是独立的，不会修改原来的键值，==常用于存储登录用户的信息==。
 	- 用来存取数据：`set()/get()`，*减少参数传递*
 	- 使用 ThreadLocal 存储的数据，*线程安全，同一线程参数共享，不同线程参数隔离。*
-	- 用完记得调用`remove`方法释放数据，*否则会造成内存泄漏*。
+	- 用完记得调用 `remove` 方法释放数据，*否则会造成内存泄漏*。
 
 ![](https://qnpicmap.fcsluck.top/pics/202312281217348.png)
 
@@ -4829,7 +4836,7 @@ JSONObject userJsonObj = ThreadLocalUtil.get();
 ThreadLocalUtil.remove();
 ```
 
-6. 
+9. 
 
 
 

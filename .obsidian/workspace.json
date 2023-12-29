@@ -109,12 +109,12 @@
       "command-palette:打开命令面板": false,
       "obsidian-file-cleaner:清理文件": false,
       "obsidian-textgenerator-plugin:Generate Text!": false,
-      "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": false,
+      "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": true,
       "templates:插入模板": false,
       "cmdr:Calendar: Open view": false,
       "cmdr:Obsidian Git: Open source control view": false,
       "omnisearch:Omnisearch": false,
-      "hidden-folder-obsidian:显示文件夹": false
+      "hidden-folder-obsidian:显示文件夹": true
     }
   },
   "active": "4d955ed5242fb188",
