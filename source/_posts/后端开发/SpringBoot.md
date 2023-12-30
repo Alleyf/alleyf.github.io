@@ -4711,7 +4711,250 @@ hutool-jwt：高度封装的jwt包
 
 由此可见 java-jwt 结果中嵌套了一层来存储用户信息，而 hutool-jwt 是直接将用户信息和过期时间保存在同一层的。
 
+## 文件上传
 
+### 本地存储
+
+文件上传思路：
+
+1. 获取文件名和后缀基本信息（如果需要文件大小等附加信息也可以直接获取）
+2. 引入 yml 文件配置的文件存储路径，判断目录是否存在，不存在则新建该目录
+3. 定义一个文件唯一标识码 UUID,保证文件名唯一，防止同名文件被覆盖
+4. 拼接目录+uuid+类型得到待存储的文件名
+5. 把文件存储到本地磁盘目录
+
+```java
+@PostMapping("/upload")
+public Result<String> upload(@RequestParam MultipartFile file) throws IOException {
+//        将文件存储到本地磁盘上
+        //获取文件名和后缀
+        String originalFilename = file.getOriginalFilename();
+        String type = FileUtil.extName(originalFilename);
+        //引入yml文件配置的文件存储路径，判断目录是否存在
+        File uploadFileDirectory = new File(fileUploadPath);
+//        判断文件目录是否存在 如果不存在，就创建一个文件夹
+        if (!uploadFileDirectory.exists()) {
+            Assert.isTrue(uploadFileDirectory.mkdirs(), "创建文件目录失败");
+        }
+        //定义一个文件唯一标识码,保证文件名唯一防止被覆盖
+        String uuid = IdUtil.fastSimpleUUID();
+        //使用文件IO获取到文件
+        File uploadFile = new File(fileUploadPath + uuid + StrUtil.DOT + type);
+        //把文件存储到磁盘目录，抛出IO异常
+        file.transferTo(uploadFile);
+//        file.transferTo(new File(fileUploadPath + originalFilename));
+        return Result.success("success");
+    }
+```
+
+> [!NOTE] 本地存储缺陷
+> - 无法直接访问
+> - 本地存储空间消耗较大
+
+### 云端存储
+
+第三方服务-通用思路：
+- 准备工作：开通第三方 OSS 对象存储服务，如阿里云 oss，腾讯云 oss，七牛云 oss 等。
+- 创建 bucket（存储空间是用户用于游储对象(Object,就是文件)的容器，所有的对象都必须隶属于某个存储空间。）
+- 获取 AccessKey (秘钥用户名)和 SecretKey（密码）
+- 参照官方 SDK 编写入门程序
+- 集成使用
+
+本次测试以七牛云 oss 存储为例进行测试：
+
+==文件上传工具类：==
+```java
+package org.fcs.utils;
+
+import cn.hutool.core.io.FileUtil;
+import cn.hutool.core.util.IdUtil;
+import cn.hutool.core.util.StrUtil;
+import com.qiniu.storage.Configuration;
+import com.qiniu.storage.Region;
+import com.qiniu.storage.UploadManager;
+import com.qiniu.util.Auth;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+
+/**
+ * 七牛云文件上传配置类
+ *
+ * @Author alleyf
+ * @Date 2023/12/30 21:46
+ * @Version 1.0
+ */
+@Component
+@Slf4j
+public class QiniuOssUtil {
+
+
+    /**
+     * 公钥
+     */
+    @Value("${qiniu.accessKey}")
+    private String accessKey;
+    /**
+     * 私钥
+     */
+    @Value("${qiniu.secretKey}")
+    private String accessSecretKey;
+    /**
+     * 空间名
+     */
+    @Value("${qiniu.bucket}")
+    private String bucket;
+    /**
+     * 域名
+     */
+    @Value("${qiniu.domain}")
+    private String url;
+
+    /**
+     * 处理多文件
+     *
+     * @param multipartFiles 文件数组
+     * @return map
+     */
+    public List<Map<String, String>> uploadImages(MultipartFile[] multipartFiles) throws IOException {
+        log.info(multipartFiles.length + "张图片上传中...");
+        List<Map<String, String>> imageUrls = new ArrayList<>();
+        for (MultipartFile file : multipartFiles) {
+            String originalFilename = file.getOriginalFilename();
+            String fileUrl = uploadImageQiniu(file);
+            Map<String, String> fileMap = new HashMap<>() {
+                {
+                    put(originalFilename, fileUrl);
+                }
+            };
+            imageUrls.add(fileMap);
+        }
+        log.info(imageUrls.size() + "张图片上传成功");
+        return imageUrls;
+    }
+
+    /**
+     * 上传文件到七牛云
+     *
+     * @param multipartFile 文件
+     * @return 文件访问地址
+     */
+    private String uploadImageQiniu(MultipartFile multipartFile) throws IOException {
+        //1、获取文件上传的流
+        byte[] fileBytes = multipartFile.getBytes();
+        //2、创建日期目录分隔
+//            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+//            String datePath = dateFormat.format(new Date());
+        String dirPath = "bigEvent/";
+        //3、获取文件名
+        String originalFilename = multipartFile.getOriginalFilename();
+        String type = FileUtil.extName(originalFilename);
+        //定义一个文件唯一标识码,保证文件名唯一防止被覆盖
+        String uuid = IdUtil.fastSimpleUUID();
+        String filename = dirPath + uuid + StrUtil.DOT + type;
+        //4.构造一个带指定 Region 对象的配置类
+        //(根据自己的对象空间的地址选)
+        Configuration cfg = new Configuration(Region.regionAs0());
+        /*未绑定个人域名，需要关闭https的配置
+         域名不支持https访问会报错ssl验证error
+         cfh.useHttpsDomains=false 关闭实列即可，默认是开启的
+         */
+        UploadManager uploadManager = new UploadManager(cfg);
+        //5.获取七牛云提供的 token
+        Auth auth = Auth.create(accessKey, accessSecretKey);
+        String upToken = auth.uploadToken(bucket);
+        uploadManager.put(fileBytes, filename, upToken);
+        return url + filename;
+    }
+}
+
+```
+
+==Controller接口实现层：==
+
+```java
+/**
+ * @Author alleyf
+ * @Date 2023/12/30 19:42
+ * @Version 1.0
+ */
+@RestController
+@CrossOrigin
+@RequestMapping("/api/file")
+public class FileUploadController {
+
+    @Value("${files.upload.path}")
+    private String fileUploadPath;
+
+    @Resource
+    private QiniuOssUtil qiniuOssUtil;
+
+    /**
+     * 上传文件到本地
+     *
+     * @param file
+     * @return
+     * @throws IOException
+     */
+    @PostMapping("/uploadToLocal")
+    public Result<String> uploadToLocal(@RequestParam MultipartFile file) throws IOException {
+//        将文件存储到本地磁盘上
+        //获取文件名和后缀
+        String originalFilename = file.getOriginalFilename();
+        String type = FileUtil.extName(originalFilename);
+        //引入yml文件配置的文件存储路径，判断目录是否存在
+        File uploadFileDirectory = new File(fileUploadPath);
+//        判断文件目录是否存在 如果不存在，就创建一个文件夹
+        if (!uploadFileDirectory.exists()) {
+            Assert.isTrue(uploadFileDirectory.mkdirs(), "创建文件目录失败");
+        }
+        //定义一个文件唯一标识码,保证文件名唯一防止被覆盖
+        String uuid = IdUtil.fastSimpleUUID();
+        //使用文件IO获取到文件
+        File uploadFile = new File(fileUploadPath + uuid + StrUtil.DOT + type);
+        //把文件存储到磁盘目录，抛出IO异常
+        file.transferTo(uploadFile);
+//        file.transferTo(new File(fileUploadPath + originalFilename));
+        return Result.success("success");
+    }
+
+    /**
+     * 上传文件到七牛云
+     *
+     * @param file 文件
+     * @return 地址结果
+     * @throws IOException 异常
+     */
+    @PostMapping("/uploadToQiniu")
+    public Result<List<Map<String, String>>> uploadToQiniu(@RequestParam(required = false, value = "file") MultipartFile[] file) throws IOException {
+        List<Map<String, String>> uploadedUrls = qiniuOssUtil.uploadImages(file);
+        return Result.success(uploadedUrls);
+    }
+}
+```
+
+接口测试结果如下图所示：
+
+![|500](https://qnpicmap.fcsluck.top/pics/202312302242685.png)
+
+
+> `tomcat` 默认上传的**单个文件大小限制是1M，同时上传默认的文件大小是10M**，需要进行以下配置调整：
+```yml
+spring:
+  # 调整上传文件大小
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 500MB
+```
 
 ## 细节要点
 
@@ -4793,9 +5036,18 @@ mybatis:
 ```
 
 6. `PageHelper` 分页实现：
+   - 引入**xml 依赖**：
+```xml
+<!--        pageHelper-->  
+<dependency>  
+    <groupId>com.github.pagehelper</groupId>  
+    <artifactId>pagehelper-spring-boot-starter</artifactId>  
+    <version>1.4.7</version>  
+</dependency>   
+```
    - `controller` 层：请求参数设置*pageNum、pageSize 和附加条件参数*（一般设置为不必须参数）
    - `service` 层：**1.创建 pageBean 对象，2.开启分页查询 pageHelper，3.调用 mapper 方法条件查询，4.设置 pageBean,填充数据并返回 pageBean**
-   - `mapper` 层：不使用 `sql` 注解，通过` xml `配置文件编写动态 sql（==mapper 标签的 namespace 属性指定扫描的 mapper 类、select 标签 id 属性指定映射 mapper 中的方法名、select 标签的 resultType 属性指定返回值映射类、where 标签条件查询结合 if 标签进行动态条件查询==）
+   - `mapper` 层：不使用 `sql` 注解，通过 ` xml ` 配置文件编写动态 sql（==mapper 标签的 namespace 属性指定扫描的 mapper 类、select 标签 id 属性指定映射 mapper 中的方法名、select 标签的 resultType 属性指定返回值映射类、where 标签条件查询结合 if 标签进行动态条件查询==）
    
 7. **springboot 每个 web 请求都是一个线程**，spring boot web 层基于 servlet，servlet 的每个 request 是一个线程，因此用户每次请求都会从线程池中获取一个线程，从而隔离不同请求。
 
