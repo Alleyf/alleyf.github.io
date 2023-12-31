@@ -20,17 +20,12 @@ Fellings：
 <h3>Support:</h3>
 如果您觉得文章对您有用的话，<a href='https://ko-fi.com/B0B1R9U90' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://storage.ko-fi.com/cdn/kofi2.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
----
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/B0B1R9U90)
-<br>
-
 <div align='center'>
-    <img src="http://qnpicmap.fcsluck.top/pics/202311131334305.png" alt="image-20220910212636463" style="zoom: 20%; pic_center" /></div>
+    <img src="http://qnpicmap.fcsluck.top/pics/202311131334305.png" alt="image-20220910212636463" width="25%" heigh="25%" style="zoom: 20%; pic_center" />
+    </div>
 <h3>VideoShare</h3>
 
----
 {% mmedia "bilibili" "bvid:BV1rG411j7u9" %}
-
 
 {%  mmedia "meting" "auto:https://y.qq.com/n/yqq/song/004JaCzc1KhTrU.html" "autoplay" %}
 

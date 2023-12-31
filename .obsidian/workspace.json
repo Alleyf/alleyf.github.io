@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/后端开发/SpringBoot.md",
+                "file": "source/about/index.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -39,7 +39,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/后端开发/SpringBoot.md"
+                "file": "source/about/index.md"
               }
             }
           }
@@ -113,15 +113,16 @@
       "templates:插入模板": false,
       "cmdr:Calendar: Open view": false,
       "cmdr:Obsidian Git: Open source control view": false,
-      "omnisearch:Omnisearch": false
+      "omnisearch:Omnisearch": false,
+      "hidden-folder-obsidian:显示文件夹": false
     }
   },
-  "active": "4d955ed5242fb188",
+  "active": "4a383e802b683e84",
   "lastOpenFiles": [
+    "source/_posts/后端开发/SpringBoot.md",
     "source/_posts/运维开发/Git-简记.md",
     "source/_posts/中间件和工具/正则表达式-Regex.md",
     "source/_posts/运维开发/各种环境配置.md",
-    "source/_posts/后端开发/SpringBoot.md",
     "source/_posts/科研学习/会议讨论/周会.md",
     "source/_posts/运维开发/Scrapy-修炼手册.md",
     "source/_posts/后端开发/后端开发规范手册.md",
