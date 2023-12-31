@@ -993,7 +993,6 @@ galleries:
   banner_img: https://api.likepoems.com/img/nature
   banner_img_height: 80
   banner_mask_alpha: 0.3
-  url: /atom.xml
   title: 画廊
   subtitle: 记录生活的点点滴滴
   desc: 记录生活的点点滴滴
