@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/rss/index.md",
+                "file": "source/about/index.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -39,7 +39,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/rss/index.md"
+                "file": "source/about/index.md"
               }
             }
           }
@@ -119,13 +119,13 @@
   },
   "active": "4d955ed5242fb188",
   "lastOpenFiles": [
+    "source/Rss/index.md",
+    "source/about/index.md",
+    "source/tags/index.md",
+    "source/gallery/index.md",
     "public/rss/index.html",
     "public/rss",
-    "source/gallery/index.md",
-    "source/rss/index.md",
-    "source/tags/index.md",
-    "source/about/index.md",
-    "source/rss",
+    "source/Rss",
     "source/_posts/后端开发/SpringBoot.md",
     "source/_posts/运维开发/Git-简记.md",
     "source/_posts/中间件和工具/正则表达式-Regex.md",
@@ -147,7 +147,6 @@
     "source/_posts/科研学习/调研报告/多源异构司法数据汇聚融合-解决方案调研.md",
     "public/2023/12/51038f653307.html",
     "public/2023/12/d14bc05f8236.html",
-    "public/tags/dataset/index.html",
     "source/_posts/运维开发/WebMagic.md",
     "source/_posts/科研学习/调研报告/数据集汇总与评测.md",
     "source/_posts/中间件和工具/Redis-缓存之美.md",
