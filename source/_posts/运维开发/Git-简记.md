@@ -158,6 +158,8 @@ pull 拉取远程仓库时会自动对进行冲突检测，如果不存在冲突
 
 ```shell
 git pull origin main
+git pull origin main –allow-unrelated-histories #当不是clone远程仓库时，本地和远程仓库是独立的两个仓库，需要设置允许未关联的仓库进行pull
+git pull --rebase origin main #如果上面参数设置还是没用就变基远程内容到本地，手动合并冲突
 ```
 ### 提交文件
 ```shell
@@ -172,7 +174,7 @@ git commit 只会提交**存储区中的文件到仓库**，**未跟踪即未添
 ![image.png](http://qnpicmap.fcsluck.top/pics/202311162235693.png)
 ```shell
 git push "远程库名" 
-git push -u origin main # -u为指定上传目的地分支upstream的缩写
+git push -u origin main –allow-unrelated-histories # -u为指定上传目的地分支upstream的缩写
 ```
 ## 查看记录
 查看提交记录：
@@ -226,6 +228,7 @@ git diff main master #比较main和master分支的差异
 ## 删除文件
 ```shell
 git rm filename #删除指定文件（包括工作区和暂存区）
+git rm -r -f --cached openlaw/__pycache__/ #删除已经提交跟踪的python编译文件
 ```
 ![image.png](http://qnpicmap.fcsluck.top/pics/202311202300549.png)
 ## 忽略文件

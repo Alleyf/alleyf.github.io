@@ -4878,7 +4878,7 @@ public class QiniuOssUtil {
 
 ```
 
-==Controller接口实现层：==
+==Controller 接口实现层：==
 
 ```java
 /**
@@ -4946,7 +4946,7 @@ public class FileUploadController {
 ![|500](https://qnpicmap.fcsluck.top/pics/202312302242685.png)
 
 
-> `tomcat` 默认上传的**单个文件大小限制是1M，同时上传默认的文件大小是10M**，需要进行以下配置调整：
+> `tomcat` 默认上传的**单个文件大小限制是 1M，同时上传默认的文件大小是 10M**，需要进行以下配置调整：
 ```yml
 spring:
   # 调整上传文件大小
@@ -4955,6 +4955,115 @@ spring:
       max-file-size: 100MB
       max-request-size: 500MB
 ```
+
+## 登陆优化
+
+### 令牌主动失效机制
+
+- 登录成功后，给浏览器响应令牌的同时，把==该令牌存储到 redis 中==
+- LoginInterceptor 拦截器中，需要==验证浏览器携带的令牌，并同时需要获取到 redis 中存储的与之相同的令牌==
+- 当用户==修改密码成功后，删除 redis 中存储的旧令牌==
+
+SpringBoot集成 Redis
+1. 导入 `spring-boot-starter-data-redis` 起步依赖
+2. 在 yml 配置文件中，配置 redis 连接信息
+3. 调用 `APl(StringRedisTemplate)` 完成字符串的存取操作
+
+springboot的redis依赖：
+```xml
+<dependency>  
+    <groupId>org.springframework.boot</groupId>  
+    <artifactId>spring-boot-starter-data-redis</artifactId>  
+</dependency>
+```
+
+配置文件配置redis连接信息：
+```yml
+#  redis  
+data:  
+  redis:  
+    host: 127.0.0.1  
+    port: 6379  
+    password: 123456  
+    database: 0  
+    timeout: 3000
+```
+
+使用StringRedisTemplate操作redis：
+```java
+@Test  
+public void test() {  
+    redis.opsForValue().set("user:name", "alleyf", 20, TimeUnit.SECONDS);  
+    log.info("user:name:{}", redis.opsForValue().get("user:name"));  
+}
+```
+
+**redis控制token有效与否**
+```java
+//登录时保存token到redis 
+redis.opsForValue().set(jwtToken, jwtToken, expire / 1000, TimeUnit.SECONDS);
+//拦截器从redis中获取相同token，存在且相同则验证通过，否则token过期或有误
+Assert.notNull(redis.opsForValue().get(token), "token已过期");
+//修改密码时删除token，使原token失效
+redis.opsForValue().getOperations().delete(token);  
+result = Result.success("密码修改成功");
+```
+
+
+## 项目部署
+
+项目写完后需要使用以下maven打包插件将项目打包为jar包运行于云服务器上：
+```xml
+<build>
+    <!--打包插件-->
+    <plugins>
+        <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+        </plugin>
+    </plugins>
+</build>
+```
+
+然后使用maven的 `package` 命令对项目进行打包，打包过程中会自动测试所有`@test`注解的方法，所有测试用例通过才能打包成功。
+
+![|350](https://qnpicmap.fcsluck.top/pics/202312312156709.png)
+
+接着执行以下命令即可运行jar包：
+```sh
+java -jar big_event-1.0-SNAPSHOT.jar 
+```
+
+## 环境属性配置
+
+### 命令行参数
+
+在启动jar时可以添加需要的参数进行动态配置：
+```sh
+#可以指定运行参数（eg：修改运行端口）
+java -jar big_event-1.0-SNAPSHOT.jar --server.port=10010
+```
+
+### 环境变量
+
+设置系统的环境变量（eg：*windows的用户变量，可以设置一个变量名为：server.port，值为：8080*），jar包启动时会自动读取环境变量进行配置.
+
+
+### 外部配置文件
+
+可以在jar包同级目录下编写一个`application.yml`外部配置文件，根据内容覆盖原配置文件的部分配置。
+![|500](https://qnpicmap.fcsluck.top/pics/202312312205570.png)
+
+
+**环境属性配置优先级如下**：
+*优先级从上往下依次变高*。
+
+- 项目中resources目录下的application.yml
+- Jar包所在目录下的application.yml
+- 操作系统环境变量
+- 命令行参数
+
+
 
 ## 细节要点
 
@@ -5088,7 +5197,8 @@ JSONObject userJsonObj = ThreadLocalUtil.get();
 ThreadLocalUtil.remove();
 ```
 
-9. 
+9. 当**子类继承父类时**并且添加了` @Data` 注解，需要在类上添加 `@EqualsAndHashCode(callSuper = true)` 注解，添加之后就可以在生成`equals/hashCode`方法时**包含其父类的属性，否则生成的方法不包括父类属性**。或者在主包目录下新建 `lombok.config`文件，并添加 `config.stopBubbling=true` 
+和`lombok.equalsAndHashCode.callSuper=call`，效果与第一种方法一样。
 
 
 
