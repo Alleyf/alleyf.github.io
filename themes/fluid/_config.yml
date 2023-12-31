@@ -993,6 +993,19 @@ galleries:
   banner_img: https://api.likepoems.com/img/nature
   banner_img_height: 80
   banner_mask_alpha: 0.3
+  url: /atom.xml
+  title: 画廊
+  subtitle: 记录生活的点点滴滴
+  desc: 记录生活的点点滴滴
+
+#---------------------------
+# 订阅
+# Subscribe
+#---------------------------
+RSS:
+  enable: true
+  url: /atom.xml
+  title: 订阅我的博客
 
 #
 # 通过 hexo new page 命令创建的页面
