@@ -4964,12 +4964,12 @@ spring:
 - LoginInterceptor 拦截器中，需要==验证浏览器携带的令牌，并同时需要获取到 redis 中存储的与之相同的令牌==
 - 当用户==修改密码成功后，删除 redis 中存储的旧令牌==
 
-SpringBoot集成 Redis
+SpringBoot 集成 Redis
 1. 导入 `spring-boot-starter-data-redis` 起步依赖
 2. 在 yml 配置文件中，配置 redis 连接信息
 3. 调用 `APl(StringRedisTemplate)` 完成字符串的存取操作
 
-springboot的redis依赖：
+springboot 的 redis 依赖：
 ```xml
 <dependency>  
     <groupId>org.springframework.boot</groupId>  
@@ -4977,7 +4977,7 @@ springboot的redis依赖：
 </dependency>
 ```
 
-配置文件配置redis连接信息：
+配置文件配置 redis 连接信息：
 ```yml
 #  redis  
 data:  
@@ -4989,7 +4989,7 @@ data:
     timeout: 3000
 ```
 
-使用StringRedisTemplate操作redis：
+使用 StringRedisTemplate 操作 redis：
 ```java
 @Test  
 public void test() {  
@@ -4998,7 +4998,7 @@ public void test() {
 }
 ```
 
-**redis控制token有效与否**
+**redis 控制 token 有效与否**
 ```java
 //登录时保存token到redis 
 redis.opsForValue().set(jwtToken, jwtToken, expire / 1000, TimeUnit.SECONDS);
@@ -5012,7 +5012,7 @@ result = Result.success("密码修改成功");
 
 ## 项目部署
 
-项目写完后需要使用以下maven打包插件将项目打包为jar包运行于云服务器上：
+项目写完后需要使用以下 maven 打包插件将项目打包为 jar 包运行于云服务器上：
 ```xml
 <build>
     <!--打包插件-->
@@ -5025,11 +5025,11 @@ result = Result.success("密码修改成功");
 </build>
 ```
 
-然后使用maven的 `package` 命令对项目进行打包，打包过程中会自动测试所有`@test`注解的方法，所有测试用例通过才能打包成功。
+然后使用 maven 的 `package` 命令对项目进行打包，打包过程中会自动测试所有 `@test` 注解的方法，所有测试用例通过才能打包成功。
 
 ![|350](https://qnpicmap.fcsluck.top/pics/202312312156709.png)
 
-接着执行以下命令即可运行jar包：
+接着执行以下命令即可运行 jar 包：
 ```sh
 java -jar big_event-1.0-SNAPSHOT.jar 
 ```
@@ -5038,7 +5038,7 @@ java -jar big_event-1.0-SNAPSHOT.jar
 
 ### 命令行参数
 
-在启动jar时可以添加需要的参数进行动态配置：
+在启动 jar 时可以添加需要的参数进行动态配置：
 ```sh
 #可以指定运行参数（eg：修改运行端口）
 java -jar big_event-1.0-SNAPSHOT.jar --server.port=10010
@@ -5046,23 +5046,114 @@ java -jar big_event-1.0-SNAPSHOT.jar --server.port=10010
 
 ### 环境变量
 
-设置系统的环境变量（eg：*windows的用户变量，可以设置一个变量名为：server.port，值为：8080*），jar包启动时会自动读取环境变量进行配置.
+设置系统的环境变量（eg：*windows 的用户变量，可以设置一个变量名为：server.port，值为：8080*），jar 包启动时会自动读取环境变量进行配置.
 
 
 ### 外部配置文件
 
-可以在jar包同级目录下编写一个`application.yml`外部配置文件，根据内容覆盖原配置文件的部分配置。
+可以在 jar 包同级目录下编写一个 `application.yml` 外部配置文件，根据内容覆盖原配置文件的部分配置。
 ![|500](https://qnpicmap.fcsluck.top/pics/202312312205570.png)
 
 
 **环境属性配置优先级如下**：
 *优先级从上往下依次变高*。
 
-- 项目中resources目录下的application.yml
-- Jar包所在目录下的application.yml
+- 项目中 resources 目录下的 application.yml
+- Jar 包所在目录下的 application.yml
 - 操作系统环境变量
 - 命令行参数
 
+
+
+## 多环境开发-Profiles
+
+### 单文件多环境配置
+
+Spring Boott 提供的 Profiles 可以用来隔离应用程序配置的各个部分，并在特定环境下指定部分配置生效.
+
+如何隔离不同环境？
+```yml
+---
+```
+
+如何指定哪些配置属于哪个环境？
+```yml
+spring:
+	config:
+		activate:
+			on-profile: 环境名称
+```
+
+如何指定哪个环境的配置生效？
+```yml
+spring:
+	profiles:
+		active: 环境名称
+```
+
+多环境配置，不同环境之间通过 `---` 分隔符区分：
+```yml
+# 通用信息，指定生效环境和多环境共用信息
+spring:  
+  profiles:  
+    #    active: '@environment@'  #注意YAML配置文件需要加单引号 ，否则会报错  
+    active: prod #注意YAML配置文件需要加单引号 ，否则会报错  
+  
+---  
+# 开发环境  
+spring:  
+  config:  
+    activate:  
+      on-profile: dev  
+server:  
+  port: 8081  
+  
+---  
+# 生产环境  
+spring:  
+  config:  
+    activate:  
+      on-profile: prod  
+server:  
+  port: 8082  
+  
+---  
+# 测试环境  
+spring:  
+  config:  
+    activate:  
+      on-profile: test  
+server:  
+  port: 8083
+```
+
+> **通用环境配置信息与特定环境配置冲突，则采用特定环境配置信息**，特定环境配置优先级高于通用配置。
+
+### 多文件多环境配置
+
+1. 通过多个文件分别配置不同环境的属性
+2. 文件的名字为 `application-环境名称.yml`
+3. 在 `application.yml` 中激活环境
+
+![](https://qnpicmap.fcsluck.top/pics/202401011443743.png)
+
+在 resources 目录下创建多环境 ` application-xxx.yml ` 文件（专有配置）和 ` application.yml `（通用配置和环境激活配置）根配置文件。
+
+![](https://qnpicmap.fcsluck.top/pics/202401011448628.png)
+
+### 多环境开发-Pofiles-分组
+
+尽管按照环境拆分多文件配置，但是如果一个环境中配置太多也不利于维护管理，因此可以按照功能对不同环境的配置拆分为不同模块进行分组，如下图所示：
+![|500](https://qnpicmap.fcsluck.top/pics/202401011452761.png)
+
+分组配置，一个组内包含多个模块配置。
+按照配置的类别，把配置信息配置到不同的配置文件中
+`application-分类名.yml`
+在 application.yml 中定义分组
+`spring.profiles.group`
+在 application.yml 中激活分组
+`spring,profiles.active`
+![](https://qnpicmap.fcsluck.top/pics/202401011538970.png)
 
 
 ## 细节要点
@@ -5197,8 +5288,8 @@ JSONObject userJsonObj = ThreadLocalUtil.get();
 ThreadLocalUtil.remove();
 ```
 
-9. 当**子类继承父类时**并且添加了` @Data` 注解，需要在类上添加 `@EqualsAndHashCode(callSuper = true)` 注解，添加之后就可以在生成`equals/hashCode`方法时**包含其父类的属性，否则生成的方法不包括父类属性**。或者在主包目录下新建 `lombok.config`文件，并添加 `config.stopBubbling=true` 
-和`lombok.equalsAndHashCode.callSuper=call`，效果与第一种方法一样。
+9. 当**子类继承父类时**并且添加了 ` @Data` 注解，需要在类上添加 `@EqualsAndHashCode(callSuper = true)` 注解，添加之后就可以在生成 `equals/hashCode` 方法时**包含其父类的属性，否则生成的方法不包括父类属性**。或者在主包目录下新建 `lombok.config` 文件，并添加 `config.stopBubbling=true` 
+和 `lombok.equalsAndHashCode.callSuper=call`，效果与第一种方法一样。
 
 
 
