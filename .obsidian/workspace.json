@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/后端开发/SpringBoot.md",
+                "file": "source/_posts/前端开发/前端三件套-后端必备.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -39,7 +39,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/后端开发/SpringBoot.md"
+                "file": "source/_posts/前端开发/前端三件套-后端必备.md"
               }
             }
           }
@@ -114,20 +114,30 @@
       "cmdr:Calendar: Open view": false,
       "cmdr:Obsidian Git: Open source control view": false,
       "omnisearch:Omnisearch": false,
-      "hidden-folder-obsidian:显示文件夹": false
+      "hidden-folder-obsidian:显示文件夹": false,
+      "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "9f4abcc8cd94cbdc",
+  "active": "7debd791db616930",
   "lastOpenFiles": [
+    "public/2024/01/e99038e3aa4f.html",
+    "public/2024/01",
+    "public/2024",
+    "public/categories/前端开发/index.html",
+    "public/categories/前端开发",
+    "public/archives/2024/01/index.html",
+    "public/archives/2024/01",
+    "public/archives/2024/index.html",
+    "public/archives/2024",
+    "public/tags/frontend/index.html",
+    "public/tags/frontend",
+    "source/_posts/后端开发/SpringBoot.md",
+    "source/_posts/前端开发/前端三件套-后端必备.md",
     "source/_posts/运维开发/各种环境配置.md",
     "source/about/index.md",
     "source/Rss/index.md",
     "source/tags/index.md",
     "source/gallery/index.md",
-    "public/rss/index.html",
-    "public/rss",
-    "source/Rss",
-    "source/_posts/后端开发/SpringBoot.md",
     "source/_posts/运维开发/Git-简记.md",
     "source/_posts/中间件和工具/正则表达式-Regex.md",
     "source/_posts/科研学习/会议讨论/周会.md",
@@ -135,25 +145,17 @@
     "source/_posts/后端开发/后端开发规范手册.md",
     "source/_posts/后端开发/Spring核心学习.md",
     "source/_posts/后端开发/全栈+运维-技术架构成熟解决方案.md",
-    "public/2023/11/e3cf5e8cdf6a.html",
     "source/_posts/后端开发/Spring Cloud Alibaba 微服务原理与实战-阅读心得.md",
     "source/_posts/后端开发/SpringBoot启示录.md",
-    "public/tags/全栈/index.html",
-    "public/tags/全栈",
-    "public/tags/DevOps/index.html",
-    "public/tags/DevOps",
     "source/_posts/后端开发/SpringBoot+Vue项目实战.md",
     "source/_posts/后端开发/Java常用新特性-Lambda-Optional-Stream.md",
     "source/_posts/科研学习/调研报告/多源异构司法数据汇聚融合-解决方案调研.md",
-    "public/2023/12/51038f653307.html",
-    "public/2023/12/d14bc05f8236.html",
     "source/_posts/运维开发/WebMagic.md",
     "source/_posts/科研学习/调研报告/数据集汇总与评测.md",
     "source/_posts/中间件和工具/Redis-缓存之美.md",
     "source/_posts/后端开发/SpringCloud Alibaba-微服务进阶.md",
     "source/_posts/后端开发/SpringCloud-微服务基础.md",
     "source/_posts/后端开发/若依脚手架-学习.md",
-    "center.md",
     "canvas/未命名.canvas",
     "attachment/Pasted Image 20231203133358_381.png",
     "attachment/Pasted Image 20231203133343_369.png",
