@@ -6,7 +6,7 @@
   <link href="https://alleyf.github.io/atom.xml" rel="self"/>
   
   <link href="https://alleyf.github.io/"/>
-  <updated>2024-01-02T03:14:05.661Z</updated>
+  <updated>2024-01-02T05:58:34.499Z</updated>
   <id>https://alleyf.github.io/</id>
   
   <author>
@@ -17,11 +17,34 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title></title>
+    <link href="https://alleyf.github.io/2024/01/b87d14108aff.html"/>
+    <id>https://alleyf.github.io/2024/01/b87d14108aff.html</id>
+    <published>2024-01-02T05:09:33.837Z</published>
+    <updated>2024-01-02T05:58:34.499Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;!DOCTYPE html&gt;&lt;html lang=&quot;zh-CN&quot;&gt;&lt;head&gt;&lt;title&gt;前端三件套-后端必备&lt;/title&gt;&lt;meta property=&quot;og:title&quot; content=&quot;前端三件套-后端必备&quot;&gt;&lt;meta name=&quot;author&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="前端开发" scheme="https://alleyf.github.io/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>前端三件套-后端必备</title>
     <link href="https://alleyf.github.io/2024/01/e99038e3aa4f.html"/>
     <id>https://alleyf.github.io/2024/01/e99038e3aa4f.html</id>
     <published>2024-01-01T11:00:54.000Z</published>
-    <updated>2024-01-02T03:14:05.661Z</updated>
+    <updated>2024-01-02T13:30:34.275Z</updated>
     
     
     <summary type="html">后端程序员需要掌握的前端必备知识。</summary>
@@ -46,7 +69,7 @@
     <link href="https://alleyf.github.io/2023/12/02c1118dc726.html"/>
     <id>https://alleyf.github.io/2023/12/02c1118dc726.html</id>
     <published>2023-12-23T07:16:24.000Z</published>
-    <updated>2023-12-27T07:52:10.134Z</updated>
+    <updated>2024-01-02T12:16:16.376Z</updated>
     
     
     <summary type="html">关于后端开发的程序和包的命名规范。</summary>
@@ -406,25 +429,6 @@
     <id>https://alleyf.github.io/2023/11/53a88a28555b.html</id>
     <published>2023-11-13T15:40:30.000Z</published>
     <updated>2023-11-18T14:24:23.415Z</updated>
-    
-    
-    <summary type="html">some keypoints about paperReading</summary>
-    
-    
-    
-    <category term="科研学习" scheme="https://alleyf.github.io/categories/%E7%A7%91%E7%A0%94%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-    <category term="Paper" scheme="https://alleyf.github.io/tags/Paper/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>论文阅读模板(最好读英文原文)</title>
-    <link href="https://alleyf.github.io/2023/11/fa4d17378db3.html"/>
-    <id>https://alleyf.github.io/2023/11/fa4d17378db3.html</id>
-    <published>2023-11-13T15:39:46.000Z</published>
-    <updated>2023-11-14T02:40:56.963Z</updated>
     
     
     <summary type="html">some keypoints about paperReading</summary>
