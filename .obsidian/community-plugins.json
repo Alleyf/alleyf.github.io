@@ -15,9 +15,9 @@
   "omnisearch",
   "obsidian-custom-frames",
   "table-editor-obsidian",
-  "obsidian-admonition",
   "obsidian-memos",
   "obsidian-checklist-plugin",
   "number-headings-obsidian",
-  "marp-slides"
+  "marp-slides",
+  "obsidian-admonition"
 ]

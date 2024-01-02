@@ -38,6 +38,18 @@
       "icon": "lucide-pencil",
       "name": "drawio",
       "mode": "any"
+    },
+    {
+      "id": "marp-slides:preview",
+      "icon": "sliders",
+      "name": "Slide Preview",
+      "mode": "any"
+    },
+    {
+      "id": "obsidian-memos:open-memos",
+      "icon": "bell-plus",
+      "name": "Obsidian Memos: Open Memos",
+      "mode": "any"
     }
   ],
   "pageHeader": [],

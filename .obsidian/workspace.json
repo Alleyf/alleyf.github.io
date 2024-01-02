@@ -126,7 +126,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 347.5
+    "width": 339.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -145,7 +145,7 @@
       "obsidian-memos:Memos": false
     }
   },
-  "active": "7debd791db616930",
+  "active": "6b3424229e6ce2ba",
   "lastOpenFiles": [
     "public/2024/01/b87d14108aff.html",
     "diary/2024-01-03.md",
