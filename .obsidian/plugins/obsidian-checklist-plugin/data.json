@@ -1,0 +1,15 @@
+{
+  "todoPageName": "st\nlf",
+  "showChecked": true,
+  "showAllTodos": false,
+  "autoRefresh": true,
+  "subGroups": false,
+  "groupBy": "page",
+  "sortDirectionItems": "new->old",
+  "sortDirectionGroups": "new->old",
+  "sortDirectionSubGroups": "new->old",
+  "includeFiles": "",
+  "lookAndFeel": "compact",
+  "_collapsedSections": [],
+  "_hiddenTags": []
+}

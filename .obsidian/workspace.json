@@ -4,12 +4,13 @@
     "type": "split",
     "children": [
       {
-        "id": "e2edf95daeec6aa4",
+        "id": "b0d76acd74bcd59a",
         "type": "tabs",
         "children": [
           {
-            "id": "9f4abcc8cd94cbdc",
+            "id": "6b3424229e6ce2ba",
             "type": "leaf",
+            "pinned": true,
             "state": {
               "type": "markdown",
               "state": {
@@ -17,7 +18,16 @@
                 "mode": "source",
                 "backlinks": false,
                 "source": false
-              }
+              },
+              "pinned": true
+            }
+          },
+          {
+            "id": "8825a39dd255332c",
+            "type": "leaf",
+            "state": {
+              "type": "memos_view",
+              "state": {}
             }
           }
         ]
@@ -72,7 +82,7 @@
       {
         "id": "612f0098096832bc",
         "type": "tabs",
-        "dimension": 47.356321839080465,
+        "dimension": 34.08045977011494,
         "children": [
           {
             "id": "bdaaa10e2f08b79f",
@@ -81,13 +91,37 @@
               "type": "calendar",
               "state": {}
             }
+          },
+          {
+            "id": "fa083a293c68a184",
+            "type": "leaf",
+            "state": {
+              "type": "advanced-tables-toolbar",
+              "state": {}
+            }
+          }
+        ],
+        "currentTab": 1
+      },
+      {
+        "id": "94ed18f343f34498",
+        "type": "tabs",
+        "dimension": 34.08045977011494,
+        "children": [
+          {
+            "id": "73bd255a1d218621",
+            "type": "leaf",
+            "state": {
+              "type": "todo",
+              "state": {}
+            }
           }
         ]
       },
       {
         "id": "c712742b5e0ae1de",
         "type": "tabs",
-        "dimension": 52.643678160919535,
+        "dimension": 31.839080459770113,
         "children": [
           {
             "id": "7debd791db616930",
@@ -101,7 +135,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 273.5
+    "width": 312.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -114,12 +148,24 @@
       "cmdr:Calendar: Open view": false,
       "cmdr:Obsidian Git: Open source control view": false,
       "omnisearch:Omnisearch": false,
-      "hidden-folder-obsidian:显示文件夹": false,
-      "table-editor-obsidian:Advanced Tables Toolbar": false
+      "table-editor-obsidian:Advanced Tables Toolbar": false,
+      "obsidian-memos:Memos": false,
+      "daily-notes:打开/创建今天的日记": false
     }
   },
-  "active": "7debd791db616930",
+  "active": "6b3424229e6ce2ba",
   "lastOpenFiles": [
+    "diary/2024-01-02.md",
+    "source/_posts/前端开发/前端三件套-后端必备.md",
+    "attachment/Pasted Image 20240102110312.jpeg",
+    "source/_posts/运维开发/各种环境配置.md",
+    "diary/2024-01-01.md",
+    "MEMO.md",
+    "README.md",
+    "README_zh.md",
+    "diary/delete.md",
+    "diary",
+    "source/_posts/科研学习/会议讨论/周会.md",
     "public/2024/01/e99038e3aa4f.html",
     "public/2024/01",
     "public/2024",
@@ -129,18 +175,13 @@
     "public/archives/2024/01",
     "public/archives/2024/index.html",
     "public/archives/2024",
-    "public/tags/frontend/index.html",
-    "public/tags/frontend",
     "source/_posts/后端开发/SpringBoot.md",
-    "source/_posts/前端开发/前端三件套-后端必备.md",
-    "source/_posts/运维开发/各种环境配置.md",
     "source/about/index.md",
     "source/Rss/index.md",
     "source/tags/index.md",
     "source/gallery/index.md",
     "source/_posts/运维开发/Git-简记.md",
     "source/_posts/中间件和工具/正则表达式-Regex.md",
-    "source/_posts/科研学习/会议讨论/周会.md",
     "source/_posts/运维开发/Scrapy-修炼手册.md",
     "source/_posts/后端开发/后端开发规范手册.md",
     "source/_posts/后端开发/Spring核心学习.md",
@@ -150,12 +191,6 @@
     "source/_posts/后端开发/SpringBoot+Vue项目实战.md",
     "source/_posts/后端开发/Java常用新特性-Lambda-Optional-Stream.md",
     "source/_posts/科研学习/调研报告/多源异构司法数据汇聚融合-解决方案调研.md",
-    "source/_posts/运维开发/WebMagic.md",
-    "source/_posts/科研学习/调研报告/数据集汇总与评测.md",
-    "source/_posts/中间件和工具/Redis-缓存之美.md",
-    "source/_posts/后端开发/SpringCloud Alibaba-微服务进阶.md",
-    "source/_posts/后端开发/SpringCloud-微服务基础.md",
-    "source/_posts/后端开发/若依脚手架-学习.md",
     "canvas/未命名.canvas",
     "attachment/Pasted Image 20231203133358_381.png",
     "attachment/Pasted Image 20231203133343_369.png",
@@ -166,7 +201,6 @@
     "public/img/default.png",
     "public/img/police_beian.png",
     "public/img/fluid.png",
-    "public/img/loading.gif",
     "未命名.canvas",
     "canvas/review plans.canvas",
     "canvas/AI学习思路.canvas",
