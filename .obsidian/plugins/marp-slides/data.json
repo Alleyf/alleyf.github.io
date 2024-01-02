@@ -1,0 +1,9 @@
+{
+  "CHROME_PATH": "",
+  "ThemePath": "MarpTheme",
+  "EnableHTML": false,
+  "MathTypesettings": "mathjax",
+  "HTMLExportMode": "bare",
+  "EXPORT_PATH": "D:\\",
+  "EnableSyncPreview": true
+}

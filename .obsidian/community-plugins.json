@@ -13,10 +13,11 @@
   "obsidian-icon-folder",
   "obsidian-enhancing-export",
   "omnisearch",
-  "hidden-folder-obsidian",
   "obsidian-custom-frames",
   "table-editor-obsidian",
   "obsidian-admonition",
   "obsidian-memos",
-  "obsidian-checklist-plugin"
+  "obsidian-checklist-plugin",
+  "number-headings-obsidian",
+  "marp-slides"
 ]

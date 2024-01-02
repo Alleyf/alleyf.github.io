@@ -21,14 +21,6 @@
               },
               "pinned": true
             }
-          },
-          {
-            "id": "8825a39dd255332c",
-            "type": "leaf",
-            "state": {
-              "type": "memos_view",
-              "state": {}
-            }
           }
         ]
       }
@@ -100,8 +92,7 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 1
+        ]
       },
       {
         "id": "94ed18f343f34498",
@@ -135,7 +126,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 312.5
+    "width": 347.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -149,48 +140,50 @@
       "cmdr:Obsidian Git: Open source control view": false,
       "omnisearch:Omnisearch": false,
       "table-editor-obsidian:Advanced Tables Toolbar": false,
-      "obsidian-memos:Memos": false,
-      "daily-notes:打开/创建今天的日记": false
+      "daily-notes:打开/创建今天的日记": false,
+      "marp-slides:Show Slide Preview": false,
+      "obsidian-memos:Memos": false
     }
   },
-  "active": "6b3424229e6ce2ba",
+  "active": "7debd791db616930",
   "lastOpenFiles": [
+    "public/2024/01/b87d14108aff.html",
+    "diary/2024-01-03.md",
+    "diary/2024-01-01.md",
     "diary/2024-01-02.md",
     "source/_posts/前端开发/前端三件套-后端必备.md",
+    "source/_posts/后端开发/后端开发规范手册.md",
+    "source/_obsidian/周报模板.md",
+    "source/_obsidian/Cnote Template.md",
+    "source/_obsidian/电子书模板.md",
+    "source/_obsidian/学习笔记模板.md",
+    "attachment/AwesomeMarp_blue.md",
+    "source/_obsidian/学术汇报模板.md",
+    "未命名.md",
+    "source/_obsidian/注释.md",
+    "学术汇报模板.html",
+    "attachment/AwesomeMarp_blue.html",
+    "MarpTheme/am_red.css",
+    "MarpTheme/am_purple.css",
+    "MarpTheme/am_green.css",
+    "MarpTheme/am_dark.css",
+    "MarpTheme/am_brown.css",
+    "MarpTheme/am_blue.css",
+    "source/_posts/前端开发/前端三件套-后端必备.html",
+    "MarpTheme/Obsidian-marp主题/rose-pine-dawn.css",
+    "source/_posts/前端开发/uni-app.md",
+    "source/_posts/前端开发/Vue.md",
     "attachment/Pasted Image 20240102110312.jpeg",
     "source/_posts/运维开发/各种环境配置.md",
-    "diary/2024-01-01.md",
     "MEMO.md",
     "README.md",
     "README_zh.md",
     "diary/delete.md",
-    "diary",
     "source/_posts/科研学习/会议讨论/周会.md",
-    "public/2024/01/e99038e3aa4f.html",
-    "public/2024/01",
-    "public/2024",
-    "public/categories/前端开发/index.html",
-    "public/categories/前端开发",
-    "public/archives/2024/01/index.html",
-    "public/archives/2024/01",
-    "public/archives/2024/index.html",
-    "public/archives/2024",
     "source/_posts/后端开发/SpringBoot.md",
     "source/about/index.md",
     "source/Rss/index.md",
     "source/tags/index.md",
-    "source/gallery/index.md",
-    "source/_posts/运维开发/Git-简记.md",
-    "source/_posts/中间件和工具/正则表达式-Regex.md",
-    "source/_posts/运维开发/Scrapy-修炼手册.md",
-    "source/_posts/后端开发/后端开发规范手册.md",
-    "source/_posts/后端开发/Spring核心学习.md",
-    "source/_posts/后端开发/全栈+运维-技术架构成熟解决方案.md",
-    "source/_posts/后端开发/Spring Cloud Alibaba 微服务原理与实战-阅读心得.md",
-    "source/_posts/后端开发/SpringBoot启示录.md",
-    "source/_posts/后端开发/SpringBoot+Vue项目实战.md",
-    "source/_posts/后端开发/Java常用新特性-Lambda-Optional-Stream.md",
-    "source/_posts/科研学习/调研报告/多源异构司法数据汇聚融合-解决方案调研.md",
     "canvas/未命名.canvas",
     "attachment/Pasted Image 20231203133358_381.png",
     "attachment/Pasted Image 20231203133343_369.png",

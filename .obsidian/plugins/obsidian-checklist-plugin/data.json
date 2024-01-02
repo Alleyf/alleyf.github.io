@@ -1,15 +1,18 @@
 {
-  "todoPageName": "st\nlf",
+  "todoPageName": "st\nlf\nwo",
   "showChecked": true,
   "showAllTodos": false,
   "autoRefresh": true,
   "subGroups": false,
-  "groupBy": "page",
+  "groupBy": "tag",
   "sortDirectionItems": "new->old",
   "sortDirectionGroups": "new->old",
   "sortDirectionSubGroups": "new->old",
   "includeFiles": "",
   "lookAndFeel": "compact",
-  "_collapsedSections": [],
+  "_collapsedSections": [
+    "#wo",
+    "#lf"
+  ],
   "_hiddenTags": []
 }

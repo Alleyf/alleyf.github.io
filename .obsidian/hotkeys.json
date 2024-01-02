@@ -178,7 +178,6 @@
   "obsidian-excalidraw-plugin:save": [],
   "obsidian-pangu:pangu-format": [],
   "editor:insert-embed": [],
-  "editor:toggle-comments": [],
   "theme:use-dark": [
     {
       "modifiers": [
@@ -339,5 +338,6 @@
       ],
       "key": "J"
     }
-  ]
+  ],
+  "editor:toggle-comments": []
 }

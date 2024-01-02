@@ -7,15 +7,15 @@ sticky: 75
 excerpt: it is some basic usage of uni-app .
 ---
 
-# 快速上手
+# 1 快速上手
 
 > 知识点：网络请求、模板语法、打开页面和页面传参。
 
-# 基础组件
+# 2 基础组件
 
 > 基础组件分为以下十几大类：
 
-## 视图容器（View Container）：
+## 2.1 视图容器（View Container）：
 
 
 > [!NOTE] 组件
@@ -53,7 +53,7 @@ excerpt: it is some basic usage of uni-app .
 > 
 > 可覆盖在原生组件的上的图片组件
 
-## 基础内容（Basic Content）：
+## 2.2 基础内容（Basic Content）：
 
 > [!NOTE] 组件
 > 
@@ -73,7 +73,7 @@ excerpt: it is some basic usage of uni-app .
 > 
 > 进度条
 
-## 表单组件（Form）：
+## 2.3 表单组件（Form）：
 
 > [!NOTE] 组件
 > 
@@ -125,7 +125,7 @@ excerpt: it is some basic usage of uni-app .
 > 
 > 多行文本输入框
 
-## 路由与页面跳转（Navigation）：
+## 2.4 路由与页面跳转（Navigation）：
 
 > [!NOTE] 组件 
 > [navigator](https://uniapp.dcloud.net.cn/component/navigator)
@@ -158,19 +158,19 @@ excerpt: it is some basic usage of uni-app .
 > 
 > 实时音视频录制，也称直播推流
 
-## 地图（Map）：
+## 2.5 地图（Map）：
 > 
 > [map](https://uniapp.dcloud.net.cn/component/map)
 > 
 > 地图
 > 
-## 画布（Canvas）：
+## 2.6 画布（Canvas）：
 > 
 > [canvas](https://uniapp.dcloud.net.cn/component/canvas)
 > 
 > 画布
 > 
-## webview（Web-view）：
+## 2.7 webview（Web-view）：
 > 
 > [web-view](https://uniapp.dcloud.net.cn/component/web-view)
 > 
@@ -186,7 +186,7 @@ excerpt: it is some basic usage of uni-app .
 > 
 > 沉浸视频流广告组件
 
-## 页面属性配置
+## 2.8 页面属性配置
 > 
 > [custom-tab-bar](https://uniapp.dcloud.net.cn/component/custom-tab-bar)
 > 
@@ -200,7 +200,7 @@ excerpt: it is some basic usage of uni-app .
 > 
 > 页面属性配置节点
 > 
-## uniCloud
+## 2.9 uniCloud
 > 
 > [unicloud-db组件](https://uniapp.dcloud.net.cn/uniCloud/unicloud-db)
 > 
