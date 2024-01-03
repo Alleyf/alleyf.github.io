@@ -339,5 +339,13 @@
       "key": "J"
     }
   ],
-  "editor:toggle-comments": []
+  "editor:toggle-comments": [],
+  "obsidian42-text-transporter:obsidian42-text-transporter-SB": [
+    {
+      "modifiers": [
+        "Alt"
+      ],
+      "key": "Z"
+    }
+  ]
 }

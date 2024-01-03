@@ -21,6 +21,19 @@
               },
               "pinned": true
             }
+          },
+          {
+            "id": "c5958c138988dc69",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "source/_posts/运维开发/各种环境配置.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
           }
         ]
       }
@@ -136,22 +149,24 @@
       "obsidian-textgenerator-plugin:Generate Text!": false,
       "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": true,
       "templates:插入模板": false,
-      "cmdr:Calendar: Open view": false,
-      "cmdr:Obsidian Git: Open source control view": false,
       "omnisearch:Omnisearch": false,
       "table-editor-obsidian:Advanced Tables Toolbar": false,
       "daily-notes:打开/创建今天的日记": false,
       "marp-slides:Show Slide Preview": false,
-      "obsidian-memos:Memos": false
+      "obsidian-memos:Memos": false,
+      "cmdr:Calendar: Open view": false,
+      "cmdr:Obsidian Git: Open source control view": false,
+      "obsidian42-text-transporter:Obsidian42 - Text Transporter": false
     }
   },
   "active": "6b3424229e6ce2ba",
   "lastOpenFiles": [
-    "public/2024/01/b87d14108aff.html",
+    "source/_posts/运维开发/各种环境配置.md",
+    "source/_posts/前端开发/前端三件套-后端必备.md",
     "diary/2024-01-03.md",
+    "public/2024/01/b87d14108aff.html",
     "diary/2024-01-01.md",
     "diary/2024-01-02.md",
-    "source/_posts/前端开发/前端三件套-后端必备.md",
     "source/_posts/后端开发/后端开发规范手册.md",
     "source/_obsidian/周报模板.md",
     "source/_obsidian/Cnote Template.md",
@@ -170,11 +185,9 @@
     "MarpTheme/am_brown.css",
     "MarpTheme/am_blue.css",
     "source/_posts/前端开发/前端三件套-后端必备.html",
-    "MarpTheme/Obsidian-marp主题/rose-pine-dawn.css",
     "source/_posts/前端开发/uni-app.md",
     "source/_posts/前端开发/Vue.md",
     "attachment/Pasted Image 20240102110312.jpeg",
-    "source/_posts/运维开发/各种环境配置.md",
     "MEMO.md",
     "README.md",
     "README_zh.md",

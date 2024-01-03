@@ -1,6 +1,6 @@
 {
   "todoPageName": "st\nlf\nwo",
-  "showChecked": true,
+  "showChecked": false,
   "showAllTodos": false,
   "autoRefresh": true,
   "subGroups": false,

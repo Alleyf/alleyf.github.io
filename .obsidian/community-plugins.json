@@ -6,18 +6,18 @@
   "obsidian-paste-image-rename",
   "obsidian-style-settings",
   "obsidian-git",
-  "cmdr",
   "calendar",
   "easy-typing-obsidian",
   "obsidian-textgenerator-plugin",
   "obsidian-icon-folder",
   "obsidian-enhancing-export",
   "omnisearch",
-  "obsidian-custom-frames",
   "table-editor-obsidian",
   "obsidian-memos",
   "obsidian-checklist-plugin",
   "number-headings-obsidian",
   "marp-slides",
-  "obsidian-admonition"
+  "obsidian-admonition",
+  "cmdr",
+  "obsidian42-text-transporter"
 ]

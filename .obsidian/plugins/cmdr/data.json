@@ -34,12 +34,6 @@
       "mode": "any"
     },
     {
-      "id": "obsidian-custom-frames:open-custom-frames-drawio",
-      "icon": "lucide-pencil",
-      "name": "drawio",
-      "mode": "any"
-    },
-    {
       "id": "marp-slides:preview",
       "icon": "sliders",
       "name": "Slide Preview",
@@ -47,8 +41,8 @@
     },
     {
       "id": "obsidian-memos:open-memos",
-      "icon": "bell-plus",
-      "name": "Obsidian Memos: Open Memos",
+      "icon": "lightbulb",
+      "name": "Open Memos",
       "mode": "any"
     }
   ],
