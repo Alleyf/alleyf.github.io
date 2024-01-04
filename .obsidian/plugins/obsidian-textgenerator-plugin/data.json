@@ -50,7 +50,7 @@
     "reload": true
   },
   "autoSuggestOptions": {
-    "isEnabled": true,
+    "isEnabled": false,
     "delay": 300,
     "numberOfSuggestions": 5,
     "triggerPhrase": "  ",

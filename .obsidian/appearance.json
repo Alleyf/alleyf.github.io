@@ -10,7 +10,8 @@
     "image-cards",
     "print",
     "page-magin",
-    "image-grid"
+    "image-grid",
+    "custom-admonitions.d61bb4"
   ],
   "showViewHeader": true
 }

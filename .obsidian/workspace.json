@@ -23,16 +23,18 @@
             }
           },
           {
-            "id": "c5958c138988dc69",
+            "id": "c52cbad81e80961c",
             "type": "leaf",
+            "pinned": true,
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/运维开发/各种环境配置.md",
+                "file": "attachment/大事件.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
-              }
+              },
+              "pinned": true
             }
           }
         ]
@@ -153,16 +155,22 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false,
       "daily-notes:打开/创建今天的日记": false,
       "marp-slides:Show Slide Preview": false,
-      "obsidian-memos:Memos": false,
       "cmdr:Calendar: Open view": false,
       "cmdr:Obsidian Git: Open source control view": false,
-      "obsidian42-text-transporter:Obsidian42 - Text Transporter": false
+      "obsidian42-text-transporter:Obsidian42 - Text Transporter": false,
+      "obsidian-memos:Memos": false
     }
   },
   "active": "6b3424229e6ce2ba",
   "lastOpenFiles": [
-    "source/_posts/运维开发/各种环境配置.md",
+    "attachment/大事件.md",
     "source/_posts/前端开发/前端三件套-后端必备.md",
+    "source/_posts/科研学习/调研报告/司法领域大模型调研一.md",
+    "source/_posts/科研学习/调研报告/司法领域大模型调研三.md",
+    "source/_posts/科研学习/调研报告/司法领域大模型调研二.md",
+    "source/_posts/科研学习/调研报告/司法领域大模型调研四.md",
+    "diary/2024-01-04.md",
+    "source/_posts/运维开发/各种环境配置.md",
     "diary/2024-01-03.md",
     "public/2024/01/b87d14108aff.html",
     "diary/2024-01-01.md",
@@ -192,11 +200,6 @@
     "README.md",
     "README_zh.md",
     "diary/delete.md",
-    "source/_posts/科研学习/会议讨论/周会.md",
-    "source/_posts/后端开发/SpringBoot.md",
-    "source/about/index.md",
-    "source/Rss/index.md",
-    "source/tags/index.md",
     "canvas/未命名.canvas",
     "attachment/Pasted Image 20231203133358_381.png",
     "attachment/Pasted Image 20231203133343_369.png",
