@@ -35,8 +35,7 @@
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -55,7 +54,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/运维开发/各种环境配置.md"
+                "file": "source/_posts/前端开发/前端三件套-后端必备.md"
               }
             }
           }
@@ -160,10 +159,10 @@
       "obsidian-memos:Memos": false
     }
   },
-  "active": "fc0d59d3ec2c3754",
+  "active": "6b3424229e6ce2ba",
   "lastOpenFiles": [
-    "source/_posts/前端开发/前端三件套-后端必备.md",
     "source/_posts/运维开发/各种环境配置.md",
+    "source/_posts/前端开发/前端三件套-后端必备.md",
     "attachment/大事件.md",
     "diary/2024-01-06.md",
     "source/_posts/科研学习/会议讨论/ETMS.md",
