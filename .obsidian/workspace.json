@@ -23,12 +23,12 @@
             }
           },
           {
-            "id": "fc0d59d3ec2c3754",
+            "id": "9d888add87bebfca",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/运维开发/各种环境配置.md",
+                "file": "source/_posts/后端开发/后端学习.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -161,8 +161,9 @@
   },
   "active": "6b3424229e6ce2ba",
   "lastOpenFiles": [
-    "source/_posts/运维开发/各种环境配置.md",
+    "source/_posts/后端开发/后端学习.md",
     "source/_posts/前端开发/前端三件套-后端必备.md",
+    "source/_posts/运维开发/各种环境配置.md",
     "attachment/大事件.md",
     "diary/2024-01-06.md",
     "source/_posts/科研学习/会议讨论/ETMS.md",
@@ -197,7 +198,6 @@
     "source/_posts/前端开发/uni-app.md",
     "source/_posts/前端开发/Vue.md",
     "attachment/Pasted Image 20240102110312.jpeg",
-    "MEMO.md",
     "canvas/未命名.canvas",
     "attachment/Pasted Image 20231203133358_381.png",
     "attachment/Pasted Image 20231203133343_369.png",

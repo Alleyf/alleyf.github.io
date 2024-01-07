@@ -44,6 +44,18 @@
       "icon": "lightbulb",
       "name": "Open Memos",
       "mode": "any"
+    },
+    {
+      "id": "number-headings-obsidian:number-headings",
+      "icon": "plus-circle",
+      "name": "Number Headings: Number all headings in document",
+      "mode": "any"
+    },
+    {
+      "id": "number-headings-obsidian:remove-number-headings",
+      "icon": "minus-circle",
+      "name": "Number Headings: Remove numbering from all headings in document",
+      "mode": "any"
     }
   ],
   "pageHeader": [],
