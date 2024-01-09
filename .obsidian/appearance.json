@@ -8,10 +8,8 @@
   "baseFontSize": 17,
   "enabledCssSnippets": [
     "image-cards",
-    "print",
     "page-magin",
-    "image-grid",
-    "custom-admonitions.d61bb4"
+    "image-grid"
   ],
   "showViewHeader": true
 }

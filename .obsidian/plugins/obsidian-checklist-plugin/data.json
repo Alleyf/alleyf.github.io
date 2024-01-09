@@ -1,5 +1,5 @@
 {
-  "todoPageName": "st\nlf\nwo",
+  "todoPageName": "学习\n生活\n工作",
   "showChecked": false,
   "showAllTodos": false,
   "autoRefresh": true,
@@ -11,8 +11,7 @@
   "includeFiles": "",
   "lookAndFeel": "compact",
   "_collapsedSections": [
-    "#wo",
-    "#lf"
+    "#wo"
   ],
   "_hiddenTags": []
 }

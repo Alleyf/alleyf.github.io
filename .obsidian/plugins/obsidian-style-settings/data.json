@@ -106,5 +106,8 @@
   "blue-topaz-theme@@fancy-hr-icon": "'🌓'",
   "Blue-Topaz-Codebox-Highlight@@mute-code-indent-line": false,
   "Blue-Topaz-Codebox-Highlight@@whole-code-wrap": true,
-  "Blue-Topaz-Codebox-Highlight@@nowrap-edit-codebox": false
+  "Blue-Topaz-Codebox-Highlight@@nowrap-edit-codebox": false,
+  "floating-toc-styles@@enable-heading-nowrap": false,
+  "floating-toc-styles@@indicator-bar-position": 0,
+  "floating-toc-styles@@enable-background-blur-dept": false
 }

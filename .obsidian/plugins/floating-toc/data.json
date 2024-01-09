@@ -1,0 +1,11 @@
+{
+  "ignoreHeaders": "6\n5\n4",
+  "ignoreTopHeader": false,
+  "positionStyle": "right",
+  "isLoadOnMobile": false,
+  "isLeft": true,
+  "isDefaultPin": false,
+  "isTooltip": false,
+  "defaultCollapsedLevel": 6,
+  "expandAllSubheadings": false
+}

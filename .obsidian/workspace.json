@@ -23,19 +23,20 @@
             }
           },
           {
-            "id": "9d888add87bebfca",
+            "id": "5f451a7465385bf8",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/后端开发/后端学习.md",
+                "file": "source/_obsidian/学术汇报模板.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -54,7 +55,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/前端开发/前端三件套-后端必备.md"
+                "file": "source/_obsidian/学术汇报模板.md"
               }
             }
           }
@@ -159,33 +160,36 @@
       "obsidian-memos:Memos": false
     }
   },
-  "active": "6b3424229e6ce2ba",
+  "active": "5f451a7465385bf8",
   "lastOpenFiles": [
-    "source/_posts/后端开发/后端学习.md",
     "source/_posts/前端开发/前端三件套-后端必备.md",
+    "source/_posts/科研学习/论文总结/Explainability for large language models A survey.md",
+    "source/_posts/科研学习/调研报告/多源异构司法数据汇聚融合-解决方案调研.md",
+    "source/_posts/科研学习/论文总结/Paper_Reading_Tables.md",
+    "source/_obsidian/学习笔记模板.md",
+    "source/_obsidian/学术汇报模板.md",
+    "attachment/Explainability for large language models A survey.html",
+    "attachment/Explainability-for-large-language-models--A-survey-T8F38499.md",
+    "source/_posts/科研学习/会议讨论/周会.md",
+    "未命名.md",
+    "diary/2024-01-06.md",
+    "diary/2024-01-04.md",
+    "diary/2024-01-03.md",
+    "diary/2024-01-02.md",
+    "source/_posts/后端开发/后端学习.md",
+    "source/_obsidian/周报模板.md",
     "source/_posts/运维开发/各种环境配置.md",
     "attachment/大事件.md",
-    "diary/2024-01-06.md",
     "source/_posts/科研学习/会议讨论/ETMS.md",
-    "source/_posts/科研学习/会议讨论/周会.md",
     "source/_posts/科研学习/调研报告/司法领域大模型调研一.md",
     "source/_posts/科研学习/调研报告/司法领域大模型调研三.md",
     "source/_posts/科研学习/调研报告/司法领域大模型调研二.md",
     "source/_posts/科研学习/调研报告/司法领域大模型调研四.md",
-    "diary/2024-01-04.md",
-    "diary/2024-01-03.md",
     "public/2024/01/b87d14108aff.html",
     "diary/2024-01-01.md",
-    "diary/2024-01-02.md",
     "source/_posts/后端开发/后端开发规范手册.md",
-    "source/_obsidian/周报模板.md",
     "source/_obsidian/Cnote Template.md",
     "source/_obsidian/电子书模板.md",
-    "source/_obsidian/学习笔记模板.md",
-    "attachment/AwesomeMarp_blue.md",
-    "source/_obsidian/学术汇报模板.md",
-    "未命名.md",
-    "source/_obsidian/注释.md",
     "学术汇报模板.html",
     "attachment/AwesomeMarp_blue.html",
     "MarpTheme/am_red.css",
@@ -194,9 +198,6 @@
     "MarpTheme/am_dark.css",
     "MarpTheme/am_brown.css",
     "MarpTheme/am_blue.css",
-    "source/_posts/前端开发/前端三件套-后端必备.html",
-    "source/_posts/前端开发/uni-app.md",
-    "source/_posts/前端开发/Vue.md",
     "attachment/Pasted Image 20240102110312.jpeg",
     "canvas/未命名.canvas",
     "attachment/Pasted Image 20231203133358_381.png",
