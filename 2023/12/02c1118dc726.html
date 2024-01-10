@@ -27,7 +27,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://picsum.photos/800/250">
 <meta property="article:published_time" content="2023-12-23T07:16:24.000Z">
-<meta property="article:modified_time" content="2024-01-02T12:16:16.376Z">
+<meta property="article:modified_time" content="2024-01-10T03:34:26.714Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="rules">
 <meta name="twitter:card" content="summary_large_image">
@@ -307,7 +307,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5.4k 字
+          6.7k 字
         
       </span>
     
@@ -318,7 +318,7 @@
         
         
         
-          46 分钟
+          56 分钟
         
       </span>
     
@@ -369,7 +369,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：7 天前
+                    本文最后更新于：几秒前
                   
                 
               </p>
@@ -714,6 +714,100 @@
 </li>
 </ol>
 <hr>
+<h1 id="个人开发经验"><a href="#个人开发经验" class="headerlink" title="个人开发经验"></a>个人开发经验</h1><h2 id="微服务项目规范"><a href="#微服务项目规范" class="headerlink" title="微服务项目规范"></a>微服务项目规范</h2><h3 id="结构规范"><a href="#结构规范" class="headerlink" title="结构规范"></a>结构规范</h3><blockquote>
+<p>[!TIP] 设计技巧</p>
+<ol>
+<li><strong>核心公共模块</strong>：微服务将公共组件和配置抽象到一个模块中集中配置管理，提高可维护、可扩展性；</li>
+<li><strong>业务模块</strong>：将各个业务按照一定的粒度进行拆分解耦为不同业务模块，被其他业务模块调用的模块需要额外添加api接口模块集中管理rpc&#x2F;feign接口和数据传输对象，否则就只需要业务service模块；</li>
+<li><strong>网关模块</strong>：对全局业务统一调度管理，对用户发来的请求进行负载均衡根据网关路由尽可能分配到负载压力较小的服务器上提供可靠高可用服务。</li>
+</ol>
+</blockquote>
+<ol>
+<li><strong>项目总结构如下所示：</strong></li>
+</ol>
+<ul>
+<li>主项目：全局配置依赖管理<ul>
+<li>gateway网关子项目：统一配置网关</li>
+<li>实际业务子项目：子项目配置依赖管理<ul>
+<li>子项目api：供其他微服务rpc&#x2F;feign调用接口模块</li>
+<li>子项目service：实际业务功能模块</li>
+</ul>
+</li>
+<li>项目核心子项目（xxx-core）：包含全局公共组件和配置<ul>
+<li><code>util</code>：工具组件（JwtUtils、UserHolder···）</li>
+<li><code>constant</code>：全局常量（ErrorCodeEnum、AmqConsts、ApiRouterConsts、CacheConsts、SystemConfigConsts···）</li>
+<li><code>json</code>：json序列化和反序列化器配置（@JsonCOmponent）</li>
+<li><code>config</code>：包含全局公共配置（接口文档配置、springSecurity配置）</li>
+<li><code>annotation</code>：公共注解</li>
+<li><code>aspect</code>：公共切片（日志切片）</li>
+<li><code>exception</code>：公共异常（自定义业务异常、全局异常捕获处理）</li>
+<li><code>filter</code>：公共过滤器（防止 XSS 攻击的过滤器）</li>
+<li><code>interceptor</code>：公共拦截器（token解析拦截器）</li>
+<li><code>wrapper</code>：公共装饰器（XSS 过滤处理）</li>
+<li><code>model</code>：公共枚举、视图类<ul>
+<li><em>vo</em>：公共视图类<ul>
+<li><strong>req</strong>：请求视图基本类（分页请求基类···）</li>
+<li><strong>resp</strong>：响应视图基本类（HttpRest响应基类、分页响应基类）</li>
+</ul>
+</li>
+<li><em>enum</em>：公共枚举类</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li><strong>项目业务API模块（xxx-api）根包名下的综合结构如下：</strong></li>
+</ol>
+<ul>
+<li><code>dto</code>：数据传输对象<ul>
+<li><em>req</em>：请求对象</li>
+<li><em>reps</em>：响应对象</li>
+</ul>
+</li>
+<li><code>service</code>：rpc&#x2F;feign业务接口</li>
+</ul>
+<ol start="3">
+<li><strong>项目业务模块（xxx-service）根包名下的综合结构如下：</strong></li>
+</ol>
+<ul>
+<li><code>config</code>：配置</li>
+<li><code>controller</code>：控制器</li>
+<li><code>mapper</code>：数据库操作接口</li>
+<li><code>service</code>：业务功能接口<ul>
+<li><em>impl</em>：业务功能实现类</li>
+<li><em>xxx.java</em>：业务接口</li>
+</ul>
+</li>
+<li><code>model</code>：实体、视图对象<ul>
+<li><em>entity</em>：数据库表ORM映射实体</li>
+<li><em>enum</em>：业务枚举类</li>
+<li><em>vo</em>：前端视图对象<ul>
+<li><strong>req</strong>：请求视图对象</li>
+<li><strong>resp</strong>：响应视图对象</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>util</code>：业务工具类</li>
+<li><code>annotation</code>：业务注解类</li>
+<li><code>aspect</code>：业务切片类</li>
+<li><code>exception</code>：业务自定义异常</li>
+<li><code>interceptor</code>：业务拦截器</li>
+<li><code>manager</code>：业务管理类<ul>
+<li><em>mq</em>：AMQP 消息管理类</li>
+<li><em>cache</em>：缓存管理类</li>
+</ul>
+</li>
+</ul>
+<h3 id="命名规范"><a href="#命名规范" class="headerlink" title="命名规范"></a>命名规范</h3><ol>
+<li>包名全部小写，POJO类后缀名全部大写，其他类、接口、枚举、记录类型全部首字母大写并遵循驼峰命名原则；</li>
+<li>方法、属性、局部变量全部遵循驼峰命名原则；</li>
+<li>常量和记录类型的属性全部大写以下划线分隔；</li>
+</ol>
+<hr>
 <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
 <li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/zero-legend/p/14057772.html">SpringBoot编码规范和命名规则 - Judy_Zhu - 博客园</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1w44y1576p/?share_source=copy_web&vd_source=a003372ca81f3829d1ca954d2bb4ebf6">一个案例教你“走通”设计数据库的三个流程_哔哩哔哩_bilibili</a></li>
@@ -784,7 +878,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年1月2日</div>
+          <div>2024年1月10日</div>
         </div>
       
       <div class="license-meta-item">
