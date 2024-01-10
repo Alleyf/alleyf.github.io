@@ -21,8 +21,22 @@
               },
               "pinned": true
             }
+          },
+          {
+            "id": "3f09d63106c6bcd1",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "source/_posts/后端开发/后端开发规范手册.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -41,7 +55,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/前端开发/前端三件套-后端必备.md"
+                "file": "source/_posts/后端开发/后端开发规范手册.md"
               }
             }
           }
@@ -146,10 +160,10 @@
       "obsidian-memos:Memos": false
     }
   },
-  "active": "6b3424229e6ce2ba",
+  "active": "3f09d63106c6bcd1",
   "lastOpenFiles": [
-    "source/_obsidian/学术汇报模板.md",
     "source/_posts/前端开发/前端三件套-后端必备.md",
+    "source/_obsidian/学术汇报模板.md",
     "source/_obsidian/学术汇报模板.html",
     "source/_posts/科研学习/论文总结/Explainability for large language models A survey.md",
     "source/_posts/科研学习/调研报告/多源异构司法数据汇聚融合-解决方案调研.md",
