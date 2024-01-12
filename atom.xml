@@ -65,14 +65,14 @@
   </entry>
   
   <entry>
-    <title>后端开发规范手册</title>
-    <link href="https://alleyf.github.io/2023/12/02c1118dc726.html"/>
-    <id>https://alleyf.github.io/2023/12/02c1118dc726.html</id>
+    <title>后端开发手册</title>
+    <link href="https://alleyf.github.io/2023/12/76481f063d8b.html"/>
+    <id>https://alleyf.github.io/2023/12/76481f063d8b.html</id>
     <published>2023-12-23T07:16:24.000Z</published>
-    <updated>2024-01-10T03:34:26.714Z</updated>
+    <updated>2024-01-12T09:05:49.617Z</updated>
     
     
-    <summary type="html">关于后端开发的程序和包的命名规范。</summary>
+    <summary type="html">关于后端开发的个人经验。</summary>
     
     
     
@@ -172,7 +172,7 @@
     <link href="https://alleyf.github.io/2023/12/5f1c44e4965a.html"/>
     <id>https://alleyf.github.io/2023/12/5f1c44e4965a.html</id>
     <published>2023-12-03T08:39:38.000Z</published>
-    <updated>2024-01-09T07:14:50.375Z</updated>
+    <updated>2024-01-10T12:18:09.941Z</updated>
     
     
     <summary type="html">关于互联网数据汇聚融合的调研结果。</summary>
@@ -359,7 +359,7 @@
     <link href="https://alleyf.github.io/2023/11/59c10a08fce4.html"/>
     <id>https://alleyf.github.io/2023/11/59c10a08fce4.html</id>
     <published>2023-11-18T06:53:11.000Z</published>
-    <updated>2024-01-06T06:44:05.903Z</updated>
+    <updated>2024-01-11T09:38:24.356Z</updated>
     
     
     <summary type="html">一些关于各种spring中间件和系统环境配置的教程</summary>
