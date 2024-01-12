@@ -218,36 +218,48 @@ public class SwaggerConfiguration {
     }
 }
 ```
-#### knife 4 j
+#### knife4j
 springboot 3 使用 knife 4.1.0 版本接口文档配置：
 1. `pom. xml` 引入依赖：
 ```xml
-	      <!--        knife4j接口文档模块-->  
-	<dependency>  
-	    <groupId>com. github. xiaoymin</groupId>  
-	    <artifactId>knife 4 j-openapi 3-jakarta-spring-boot-starter</artifactId>  
-	    <version>4.1.0</version>  
-	</dependency>
+<!--        knife4j-->  
+<dependency>  
+    <groupId>com.github.xiaoymin</groupId>  
+    <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId> 
+    <version>4.1.0</version>
+</dependency>
 ```
 2. `application. yml` 配置静态资源:
 ```yml
-	   # springdoc-openapi 项目配置，访问地址： http://127.0.0.1:8080/doc.html
-	springdoc:  
-	  swagger-ui:  
-	    path: /swagger-ui. html  
-	    tags-sorter: alpha  
-	    operations-sorter: alpha  
-	  api-docs:  
-	    path: /v 3/api-docs  
-	  group-configs:  
-	    - group: 'default'  
-	      paths-to-match: '/**'  
-	      packages-to-scan: com. example  
-	# knife 4 j 的增强配置，不需要增强可以不配  
-	knife 4 j:  
-	  enable: true  
-	  setting:  
-	    language: zh_cn
+--- #knife4j 接口文档配置  
+springdoc:  
+  swagger-ui:  
+    # 访问路径  
+    path: /swagger-ui.html  
+    # 标签排序  
+    tags-sorter: alpha  
+    # 操作排序  
+    operations-sorter: alpha  
+  # api文档配置  
+  api-docs:  
+    # 访问路径  
+    path: /v3/api-docs  
+  # 组配置  
+  group-configs:  
+    # 组  
+    - group: 'default'  
+      # 匹配路径  
+      paths-to-match: '/**'  
+      # 扫描包  
+      packages-to-scan: com.csdc.mshdcf  
+# knife4j的增强配置，不需要增强可以不配  
+knife4j:  
+  # 是否开启  
+  enable: true  
+  # 设置  
+  setting:  
+    # 语言  
+    language: zh_cn
 	``` 
  3. `SecurityConfiguration. java` 设置接口文档相关静态资源放行:
 ```java
@@ -261,30 +273,25 @@ springboot 3 使用 knife 4.1.0 版本接口文档配置：
 ```
 4. 添加 `Knife 4 jConfig. java` knife 4 j 相关配置文件：
 ```java
-/*  
- * Copyright (c) alleyf 2023-11. 适度编码益脑，沉迷编码伤身，合理安排时间，享受快乐生活。 */  
-package com. example. config;  
-import io. swagger. v 3. oas. models. ExternalDocumentation;  
-import io. swagger. v 3. oas. models. OpenAPI;  
-import io. swagger. v 3. oas. models. info. Info;  
-import io. swagger. v 3. oas. models. info. License;  
-import org. springframework. context. annotation. Bean;  
-import org. springframework. context. annotation. Configuration;  
 @Configuration  
-public class Knife 4 jConfig {  
+public class Knife4jConfig {  
     @Bean  
-    public OpenAPI springShopOpenAPI () {  
-        return new OpenAPI ()  
-                .info (new Info (). title ("SPDemoGo")  
-                        .description ("SPDemoGoAPI 文档")  
-                        .version ("v 1")  
-                        .license (new License (). name ("Apache 2.0"). url (" http://springdoc.org" )))  
-                .externalDocs (new ExternalDocumentation ()  
-                        .description ("外部文档")  
-                        .url (" https://springshop.wiki.github.org/docs" ));  
+    public OpenAPI springShopOpenApi() {  
+        return new OpenAPI()  
+                .info(new Info().title("MSHDCF")  
+                        .description("多源异构数据汇聚融合接口文档")  
+                        .version("v 1")  
+                        .license(new License().name("Apache 2.0").url(" https://springdoc.org")))  
+                .externalDocs(new ExternalDocumentation()  
+                        .description("外部文档")  
+                        .url(" https://springshop.wiki.github.org/docs"));  
     }  
 }
 ```
+
+swagger访问地址为： http://localhost:8081/swagger-ui/index.html
+knife4j访问地址为： http://localhost:8081/doc.html
+
 
 ---
 ### 踩坑

@@ -994,6 +994,20 @@ ${AnsiColor.YELLOW} 当前 Spring Boot 版本：${spring-boot.version}
 
 ## 多环境配置
 
+### 配置加载顺序
+
+![|403](https://upload-images.jianshu.io/upload_images/13184578-31bb8d4c59d678b6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/478/format/webp)
+如果在不同的目录中存在多个配置文件，它的读取顺序是：  
+
+> 1、config/application.properties（项目根目录中config目录下）  
+> 2、config/application.yml  
+> 3、application.properties（项目根目录下）  
+> 4、application.yml  
+> 5、resources/config/application.properties（项目resources目录中config目录下）  
+> 6、resources/config/application.yml  
+> 7、resources/application.properties（项目的resources目录下）  
+> 8、resources/application.yml
+
 在日常开发中，我们项目会有多个环境。例如开发环境（develop）也就是我们研发过程中疯狂敲代码修 BUG 阶段，生产环境（production ）项目开发得差不多了，可以放在服务器上跑了。不同的环境下，可能我们的配置文件也存在不同，但是我们不可能切换环境的时候又去重新写一次配置文件，所以我们可以将多个环境的配置文件提前写好，进行自由切换。
 
 由于 SpringBoot 只会读取 `application.properties` 或是 `application.yml` 文件，那么怎么才能实现自由切换呢？SpringBoot 给我们提供了一种方式，我们可以通过配置文件指定：
