@@ -6,7 +6,7 @@
   <link href="https://alleyf.github.io/atom.xml" rel="self"/>
   
   <link href="https://alleyf.github.io/"/>
-  <updated>2024-01-02T05:58:34.499Z</updated>
+  <updated>2024-01-16T13:15:59.527Z</updated>
   <id>https://alleyf.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>入门机器学习</title>
+    <link href="https://alleyf.github.io/2024/01/92e1da0544e0.html"/>
+    <id>https://alleyf.github.io/2024/01/92e1da0544e0.html</id>
+    <published>2024-01-16T04:49:25.000Z</published>
+    <updated>2024-01-16T13:15:59.527Z</updated>
+    
+    
+    <summary type="html">Deep learning</summary>
+    
+    
+    
+    <category term="科研学习" scheme="https://alleyf.github.io/categories/%E7%A7%91%E7%A0%94%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="AIGC" scheme="https://alleyf.github.io/tags/AIGC/"/>
+    
+    <category term="DL" scheme="https://alleyf.github.io/tags/DL/"/>
+    
+  </entry>
   
   <entry>
     <title></title>
@@ -69,7 +90,7 @@
     <link href="https://alleyf.github.io/2023/12/76481f063d8b.html"/>
     <id>https://alleyf.github.io/2023/12/76481f063d8b.html</id>
     <published>2023-12-23T07:16:24.000Z</published>
-    <updated>2024-01-12T09:05:49.617Z</updated>
+    <updated>2024-01-22T06:32:11.249Z</updated>
     
     
     <summary type="html">关于后端开发的个人经验。</summary>
@@ -130,7 +151,7 @@
     <link href="https://alleyf.github.io/2023/12/332f648a7b46.html"/>
     <id>https://alleyf.github.io/2023/12/332f648a7b46.html</id>
     <published>2023-12-11T06:24:44.000Z</published>
-    <updated>2023-12-30T11:25:54.991Z</updated>
+    <updated>2024-01-23T12:57:00.157Z</updated>
     
     
     <summary type="html">关于Scrapy爬虫框架的知识点。</summary>
@@ -172,7 +193,7 @@
     <link href="https://alleyf.github.io/2023/12/5f1c44e4965a.html"/>
     <id>https://alleyf.github.io/2023/12/5f1c44e4965a.html</id>
     <published>2023-12-03T08:39:38.000Z</published>
-    <updated>2024-01-10T12:18:09.941Z</updated>
+    <updated>2024-01-26T00:47:18.275Z</updated>
     
     
     <summary type="html">关于互联网数据汇聚融合的调研结果。</summary>
@@ -359,7 +380,7 @@
     <link href="https://alleyf.github.io/2023/11/59c10a08fce4.html"/>
     <id>https://alleyf.github.io/2023/11/59c10a08fce4.html</id>
     <published>2023-11-18T06:53:11.000Z</published>
-    <updated>2024-01-11T09:38:24.356Z</updated>
+    <updated>2024-01-23T09:26:08.225Z</updated>
     
     
     <summary type="html">一些关于各种spring中间件和系统环境配置的教程</summary>
@@ -420,25 +441,6 @@
     <category term="springcloud" scheme="https://alleyf.github.io/tags/springcloud/"/>
     
     <category term="微服务" scheme="https://alleyf.github.io/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Paper_Reading_Method</title>
-    <link href="https://alleyf.github.io/2023/11/53a88a28555b.html"/>
-    <id>https://alleyf.github.io/2023/11/53a88a28555b.html</id>
-    <published>2023-11-13T15:40:30.000Z</published>
-    <updated>2023-11-18T14:24:23.415Z</updated>
-    
-    
-    <summary type="html">some keypoints about paperReading</summary>
-    
-    
-    
-    <category term="科研学习" scheme="https://alleyf.github.io/categories/%E7%A7%91%E7%A0%94%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-    <category term="Paper" scheme="https://alleyf.github.io/tags/Paper/"/>
     
   </entry>
   

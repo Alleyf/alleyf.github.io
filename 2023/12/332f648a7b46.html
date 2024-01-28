@@ -27,7 +27,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://picsum.photos/800/250">
 <meta property="article:published_time" content="2023-12-11T06:24:44.000Z">
-<meta property="article:modified_time" content="2023-12-30T11:25:54.991Z">
+<meta property="article:modified_time" content="2024-01-23T12:57:00.157Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="python">
 <meta property="article:tag" content="Scrapy">
@@ -371,7 +371,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：13 天前
+                    本文最后更新于：5 天前
                   
                 
               </p>
@@ -526,6 +526,9 @@ D --&gt; G
 <p>在上面的示例中，首先定义了一个名为 MySpider 的 Spider 类，并指定了要爬取的起始 URL。然后在 parse 方法中，使用 response 对象的 xpath 方法对页面进行解析，提取出所有 h1 标签中的文本内容，并将其打印出来。<br>需要注意的是，在 Scrapy 中使用 response 对象的 xpath 方法时，返回的是一个 SelectorList 对象，可以通过 extract()方法将其转换为 Python 列表，从而获取所需的数据。<br>除了 xpath 之外，Scrapy 还支持 CSS 选择器和正则表达式等方式进行页面解析。不同的选择器适用于不同情况下的页面结构和数据提取需求。<br>小说爬取示例中的数据解析方式就采取的是 xpath：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">parse</span>(<span class="hljs-params">self, response</span>):  <span class="hljs-comment"># 解析函数  </span><br>    <span class="hljs-comment"># 获取小说信息列表  </span><br>    list_selector = response.xpath(<span class="hljs-string">&#x27;//div[@class=&quot;book-mid-info&quot;]&#x27;</span>)  <br>    <span class="hljs-keyword">for</span> one_selector <span class="hljs-keyword">in</span> list_selector:  <br>        <span class="hljs-comment"># 获取小说标题、作者、分类、状态、摘要  </span><br>        title = one_selector.xpath(<span class="hljs-string">&#x27;h2/a/text()&#x27;</span>).extract()[<span class="hljs-number">0</span>]  <br>        author = one_selector.xpath(<span class="hljs-string">&#x27;p[1]/a[1]/text()&#x27;</span>).extract()[<span class="hljs-number">0</span>]  <br>        category = one_selector.xpath(<span class="hljs-string">&#x27;p[1]/a[2]/text()&#x27;</span>).extract()[<span class="hljs-number">0</span>]  <br>        status = one_selector.xpath(<span class="hljs-string">&#x27;p[1]/span/text()&#x27;</span>).extract()[<span class="hljs-number">0</span>]  <br>        abstract = one_selector.xpath(<span class="hljs-string">&#x27;p[2]/text()&#x27;</span>).extract()[<span class="hljs-number">0</span>]  <br>        <span class="hljs-comment"># 返回小说信息  </span><br>        <span class="hljs-keyword">yield</span> &#123;  <br>            <span class="hljs-string">&#x27;title&#x27;</span>: title,  <br>            <span class="hljs-string">&#x27;author&#x27;</span>: author,  <br>            <span class="hljs-string">&#x27;category&#x27;</span>: category,  <br>            <span class="hljs-string">&#x27;status&#x27;</span>: status,  <br>            <span class="hljs-string">&#x27;abstract&#x27;</span>: abstract  <br>        &#125;  <br></code></pre></td></tr></table></figure>
 <h3 id="css-解析"><a href="#css-解析" class="headerlink" title="css 解析"></a>css 解析</h3><p>CSS 全称 Cascading Style Sheets，即层叠样式表，用于表现 HTML 或 XML 的样式。CSS 表达式的语法比 XPath 简洁，但是功能不如 XPath 强大，大多作为 XPath 的辅助。<br>scrapy 中的 css 表达式用法和示例如下表可见：</p>
+<blockquote>
+<p><strong>空格</strong>可以跳跃式解析标签，<code>&gt;</code>是一层一层解析不能跳跃。</p>
+</blockquote>
 <table>
 <thead>
 <tr>
@@ -1341,7 +1344,7 @@ yagmaill 库安装成功后，就可以实现邮件发送功能了，主要有�
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2023年12月30日</div>
+          <div>2024年1月23日</div>
         </div>
       
       <div class="license-meta-item">

@@ -27,7 +27,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://picsum.photos/800/250">
 <meta property="article:published_time" content="2023-12-03T08:39:38.000Z">
-<meta property="article:modified_time" content="2024-01-10T12:18:09.941Z">
+<meta property="article:modified_time" content="2024-01-26T00:47:18.275Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="Spider">
 <meta name="twitter:card" content="summary_large_image">
@@ -307,7 +307,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.8k 字
+          2.4k 字
         
       </span>
     
@@ -318,7 +318,7 @@
         
         
         
-          24 分钟
+          20 分钟
         
       </span>
     
@@ -369,7 +369,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2 天前
+                    本文最后更新于：3 天前
                   
                 
               </p>
@@ -386,9 +386,9 @@
 <li><code>司法案例</code><ul>
 <li>裁判文书网（selenium无法登录）： https:&#x2F;wenshu.court.gov.cn&#x2F;</li>
 <li>openlaw（需登录，基本已实现）： <a target="_blank" rel="noopener" href="https://openlaw.cn/">https://openlaw.cn/</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.12309.gov.cn/12309/zjxflws/index.shtml">法律文书公开（案例信息字段较少，无需登录）</a></li>
-<li><a target="_blank" rel="noopener" href="http://www.12348.gov.cn/#/publicies/sfks/sfks">中国法律服务网（无需登录，案例中含有简介、争议焦点、裁决结果和解读，是否可以构成数据集？）</a></li>
-<li>把手案例（首先登录，然后按照大的案由类型调用api得到json获取普通案例列表，通过案例id调用案件详细信息得到json数据提取详细信息）： <a target="_blank" rel="noopener" href="https://www.lawsdata.com/#/searchList">https://www.lawsdata.com/#/searchList</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.12309.gov.cn/12309/zjxflws/index.shtml">12309中国检察网（案例信息字段较少，无需登录）</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.12348.gov.cn/#/publicies/sfks/sfks">中国法律服务网（无需登录，案例基本信息较少，但含有简介、争议焦点、裁决结果和解读，是否可以构成数据集？）</a></li>
+<li>把手案例（首先登录，然后按照大的<a target="_blank" rel="noopener" href="https://www.lawsdata.com/sweet/compass-instrument/instrument/dict/tree/dictReason">案由类型（树形结构）</a>调用api得到json获取普通案例列表，通过案例id调用案件详细信息得到json数据提取详细信息）： <a target="_blank" rel="noopener" href="https://www.lawsdata.com/#/searchList">https://www.lawsdata.com/#/searchList</a></li>
 </ul>
 </li>
 <li><code>法律法规</code><ul>
@@ -402,19 +402,11 @@
 </li>
 </ul>
 <hr>
-<h2 id="采集技术"><a href="#采集技术" class="headerlink" title="采集技术"></a>采集技术</h2><ul>
-<li>Jsoup:用于从 HTML 和 XML 文档中提取和操作数据的库。它支持 CSS 选择器、深度遍历文档和相关的信息提取。</li>
-<li>Apache HttpClient:用于处理 http 请求的客户端库。可以方便地发送 GET、POST 请求等。</li>
+<h2 id="采集技术"><a href="#采集技术" class="headerlink" title="采集技术"></a>采集技术</h2><p><a target="_blank" rel="noopener" href="https://feapder.com/#/README">简介及安装 - feapder官方文档|feapder-document</a>feapder是一款上手简单，功能强大的Python爬虫框架</p>
+<ul>
 <li>WebMagic：它是一个基于 Java 的开源爬虫框架，它提供了一个灵活且易于使用的 API，可以帮助开发人员快速开发爬虫程序。它支持多线程、分布式爬取，并且可以方便地进行网页解析和数据存储。首先，你需要导入 WebMagic 库。你可以从 WebMagic 的官方网站上下载最新的 jar 包，并将其添加到你的项目中。然后，你可以创建一个 Spider 对象，并定义爬取的起始 URL 和解析的规则。接下来，你可以使用 Pipeline 接口将爬取的数据进行处理和存储。</li>
-<li>okhttp:一个高效的 HTTP 客户端工具库。由 Square 开发并维护。</li>
-<li>HtmlUnit:一个“无界面”的浏览器,可以通过 Java 执行 JavaScript 脚本并与页面中的 HTML 元素进行交互。支援 DOM,CSS,AJAX 操作。</li>
 <li>Selenium:主要用于自动化测试。但也可以用于爬虫,通过模拟浏览器进行操作渲染出动态页面内容。</li>
-<li>Spiderman:封装了 Jsoup 和 Apache HttpClient,提供爬取网站的工具类。代码简洁。</li>
-<li>Colt:面向对象的爬虫框架,支持分布式和断点续爬功能。使用灵活简单。 </li>
 <li>Scrapy:Python 语言的强大爬虫框架,也有 Java 版本 scrapy-java-core。功能强大,支持分布式。</li>
-<li>WebHarvy:专注网页自动化测试,但也提供网页内容抓取能力。</li>
-<li>Grab:基于 okhttp 封装的下载器,支持自适应和代理设置。</li>
-<li>ChaojiCrawler:企业级开源爬虫框架,提供分布式高并发抓取能力。<br>根据项目需求,可以选择功能强大但入门难度高(如 Scrapy 和 Colt)或者功能简单上手快(如 Jsoup 和 Spiderman)的框架。</li>
 </ul>
 <hr>
 <h1 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h1><h2 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h2><p>互联网上存在着<strong>大量多样化的数据源，这些数据往往分散在不同的平台</strong>，而且不同来源的数据格式、结构、标准可能不同。通过<strong>汇聚融合这些数据</strong>，可以获得更全面、准确和有洞察力的信息。因此有必要构建<strong>互联网数据汇聚和融合平台</strong>，合理利用多个数据源，打破数据孤岛，实现资源的优化配置，提高数据的利用效率。<br>因此，本毕业设计主要研究基于Web前后端开发技术，实现数据汇聚融合系统的设计与实现。为了有效汇聚和融合并管理数据，需<strong>研究不同数据源的数据模型和结构，并选择合适的数据存储方案，实现数据的持久化</strong>。同时需要研究系统架构设计和设计模式，以便用户能够方便地查询、分析和理解融合的数据。</p>
@@ -488,7 +480,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年1月10日</div>
+          <div>2024年1月26日</div>
         </div>
       
       <div class="license-meta-item">

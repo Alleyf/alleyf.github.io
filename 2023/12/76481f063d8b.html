@@ -27,7 +27,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://picsum.photos/800/250">
 <meta property="article:published_time" content="2023-12-23T07:16:24.000Z">
-<meta property="article:modified_time" content="2024-01-12T09:05:49.617Z">
+<meta property="article:modified_time" content="2024-01-22T06:32:11.249Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="rules">
 <meta name="twitter:card" content="summary_large_image">
@@ -307,7 +307,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          7.2k 字
+          7.3k 字
         
       </span>
     
@@ -318,7 +318,7 @@
         
         
         
-          60 分钟
+          61 分钟
         
       </span>
     
@@ -369,7 +369,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：1 小时前
+                    本文最后更新于：6 天前
                   
                 
               </p>
@@ -739,11 +739,11 @@
 <li>主项目：全局配置依赖管理<ul>
 <li>gateway 网关子项目：统一配置网关</li>
 <li>实际业务子项目：子项目配置依赖管理<ul>
-<li>子项目 api：供其他微服务 rpc&#x2F;feign 调用接口模块</li>
+<li>子项目 api：供其他微服务 rpc&#x2F;feign 调用接口模块（<em>也可以单独抽取出来</em>）</li>
 <li>子项目 service：实际业务功能模块</li>
 </ul>
 </li>
-<li>项目核心子项目（xxx-core）：包含全局公共组件和配置<ul>
+<li>项目核心子项目（xxx-common）：包含全局公共组件和配置<ul>
 <li><code>util</code>：工具组件（JwtUtils、UserHolder···）</li>
 <li><code>enums</code>：枚举类型（ErrorCodeEnum···）</li>
 <li><code>constant</code>：全局常量（AmqConsts、ApiRouterConsts、CacheConsts、SystemConfigConsts···）</li>
@@ -755,12 +755,13 @@
 <li><code>filter</code>：公共过滤器（防止 XSS 攻击的过滤器）</li>
 <li><code>interceptor</code>：公共拦截器（token 解析拦截器）</li>
 <li><code>wrapper</code>：公共装饰器（XSS 过滤处理）</li>
-<li><code>model</code>：公共枚举、视图类<ul>
+<li><code>domain</code>：公共业务、视图类<ul>
 <li><em>vo</em>：公共视图类<ul>
 <li><strong>req</strong>：请求视图基本类（分页请求基类···）</li>
 <li><strong>resp</strong>：响应视图基本类（HttpRest 响应基类、分页响应基类）</li>
 </ul>
 </li>
+<li><em>bo</em>：业务对象类</li>
 </ul>
 </li>
 </ul>
@@ -772,9 +773,9 @@
 <li><strong>项目业务 API 模块（xxx-api）根包名下的综合结构如下：</strong></li>
 </ol>
 <ul>
-<li><code>dto</code>：数据传输对象<ul>
-<li><em>req</em>：请求对象</li>
-<li><em>reps</em>：响应对象</li>
+<li><code>domain</code>：数据库相关对象</li>
+<li><code>model</code>：模型对象（dto等）<ul>
+<li><code>dto</code>：数据传输对象</li>
 </ul>
 </li>
 <li><code>service</code>：rpc&#x2F;feign 业务接口</li>
@@ -786,18 +787,20 @@
 <li><code>config</code>：配置</li>
 <li><code>controller</code>：控制器</li>
 <li><code>mapper</code>：数据库操作接口</li>
+<li><code>dubbo</code>：dubbo接口实现类</li>
 <li><code>service</code>：业务功能接口<ul>
 <li><em>impl</em>：业务功能实现类</li>
-<li><em>xxx.java</em>：业务接口</li>
+<li><em>xxxService.java</em>：业务接口</li>
 </ul>
 </li>
-<li><code>model</code>：实体、视图对象<ul>
+<li><code>domain</code>：实体、视图对象<ul>
 <li><em>entity</em>：数据库表 ORM 映射实体</li>
 <li><em>vo</em>：前端视图对象<ul>
 <li><strong>req</strong>：请求视图对象</li>
 <li><strong>resp</strong>：响应视图对象</li>
 </ul>
 </li>
+<li><em>bo</em>：业务对象</li>
 </ul>
 </li>
 <li><code>util</code>：业务工具类</li>
@@ -892,7 +895,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年1月12日</div>
+          <div>2024年1月22日</div>
         </div>
       
       <div class="license-meta-item">
