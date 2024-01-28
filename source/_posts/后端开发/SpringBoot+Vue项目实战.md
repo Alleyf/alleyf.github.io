@@ -219,7 +219,7 @@ public class SwaggerConfiguration {
 }
 ```
 #### knife4j
-springboot 3 使用 knife 4.1.0 版本接口文档配置：
+springboot 3 使用 [knife 4.1.0 版本接口文档](https://blog.csdn.net/N_007/article/details/131188656)配置：
 1. `pom. xml` 引入依赖：
 ```xml
 <!--        knife4j-->  
