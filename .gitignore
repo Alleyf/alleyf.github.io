@@ -7,3 +7,8 @@ public/
 .deploy*/
 _multiconfig.yml
 themes/
+
+
+
+# Ignore Smart Connections folder
+.smart-connections

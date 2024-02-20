@@ -1,0 +1,45 @@
+{
+  "logoType": "default",
+  "logo": {
+    "lucideIcon": "",
+    "imagePath": "",
+    "imageLink": ""
+  },
+  "logoScale": 1.2,
+  "iconColorType": "default",
+  "wordmark": "Obsidian",
+  "customFont": "interfaceFont",
+  "fontSize": "4em",
+  "fontColorType": "default",
+  "fontWeight": 600,
+  "maxResults": 5,
+  "showStarredFiles": false,
+  "showRecentFiles": true,
+  "maxRecentFiles": 5,
+  "storeRecentFile": true,
+  "showPath": true,
+  "selectionHighlight": "default",
+  "showShortcuts": true,
+  "markdownOnly": false,
+  "unresolvedLinks": false,
+  "recentFilesStore": [
+    {
+      "filepath": "source/_posts/运维开发/各种环境配置.md",
+      "timestamp": 1708446499058
+    },
+    {
+      "filepath": "source/_posts/运维开发/Git-简记.md",
+      "timestamp": 1708446495583
+    },
+    {
+      "filepath": "source/_posts/后端开发/SpringBoot启示录.md",
+      "timestamp": 1708446469554
+    }
+  ],
+  "starredFileStore": [],
+  "searchDelay": 0,
+  "replaceNewTabs": true,
+  "newTabOnStart": true,
+  "closePreviousSessionTabs": true,
+  "omnisearch": true
+}

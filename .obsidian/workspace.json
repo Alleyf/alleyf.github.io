@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/科研学习/调研报告/多源异构司法数据汇聚融合-解决方案调研.md",
+                "file": "source/_posts/运维开发/各种环境配置.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -31,6 +31,22 @@
     "children": [
       {
         "id": "2a43dceb1fe6e893",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "ea9d01f0e8811c49",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "source/_posts/运维开发/各种环境配置.md"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "127ce483c402c70b",
         "type": "tabs",
         "children": [
           {
@@ -72,16 +88,6 @@
             "state": {
               "type": "advanced-tables-toolbar",
               "state": {}
-            }
-          },
-          {
-            "id": "ea9d01f0e8811c49",
-            "type": "leaf",
-            "state": {
-              "type": "outline",
-              "state": {
-                "file": "source/_posts/科研学习/调研报告/多源异构司法数据汇聚融合-解决方案调研.md"
-              }
             }
           }
         ]
@@ -138,8 +144,17 @@
       "obsidian-memos:Memos": false
     }
   },
-  "active": "7debd791db616930",
+  "active": "2f2d6472f7b9c85f",
   "lastOpenFiles": [
+    "source/_posts/运维开发/Git-简记.md",
+    "source/_posts/后端开发/SpringBoot启示录.md",
+    "source/_posts/运维开发/各种环境配置.md",
+    "source/_posts/科研学习/会议讨论/周会.md",
+    "diary/2024-02-18.md",
+    "source/_posts/中间件和工具/正则表达式-Regex.md",
+    "source/_posts/后端开发/SpringCloud Alibaba-微服务进阶.md",
+    "source/_posts/科研学习/调研报告/多源异构司法数据汇聚融合-解决方案调研.md",
+    "source/_posts/后端开发/SpringBoot.md",
     "public/2022/09/2287b3ce6876.html",
     "public/2022/09/4cbddaa6c46d.html",
     "public/2022/09/6fa69d868900.html",
@@ -150,14 +165,9 @@
     "public/2023/05/faacd117811f.html",
     "public/2023/05/b3e3b0d1c6cb.html",
     "public/2024/01/92e1da0544e0.html",
-    "public/categories/科研学习/page/3/index.html",
     "diary/2024-01-28.md",
-    "source/_posts/科研学习/会议讨论/周会.md",
     "source/_posts/前端开发/前端三件套-后端必备.md",
-    "source/_posts/运维开发/Git-简记.md",
-    "source/_posts/科研学习/调研报告/多源异构司法数据汇聚融合-解决方案调研.md",
     "source/_posts/后端开发/后端学习.md",
-    "source/_posts/运维开发/各种环境配置.md",
     "source/_posts/运维开发/Scrapy-修炼手册.md",
     "source/_posts/后端开发/后端开发手册.md",
     "canvas/未命名.canvas",
@@ -173,11 +183,7 @@
     "source/_obsidian/学习笔记模板.md",
     "source/_posts/后端开发/SpringCloud-微服务基础.md",
     "source/_posts/后端开发/SpringCloud-微服务应用.md",
-    "source/_posts/后端开发/SpringBoot.md",
     "source/_posts/后端开发/SpringBoot+Vue项目实战.md",
-    "source/_posts/后端开发/SpringBoot启示录.md",
-    "source/_posts/后端开发/SpringCloud Alibaba-微服务进阶.md",
-    "source/_posts/后端开发/Spring核心学习.md",
     "attachment/Pasted Image 20240102110312.jpeg",
     "attachment/Pasted Image 20231203133358_381.png",
     "attachment/Pasted Image 20231203133343_369.png",

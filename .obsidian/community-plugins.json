@@ -9,7 +9,6 @@
   "calendar",
   "easy-typing-obsidian",
   "obsidian-textgenerator-plugin",
-  "obsidian-icon-folder",
   "obsidian-enhancing-export",
   "omnisearch",
   "table-editor-obsidian",
@@ -20,5 +19,7 @@
   "obsidian-admonition",
   "cmdr",
   "obsidian42-text-transporter",
-  "floating-toc"
+  "floating-toc",
+  "obsidian-linter",
+  "home-tab"
 ]
