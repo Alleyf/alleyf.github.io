@@ -18,8 +18,9 @@
   "marp-slides",
   "obsidian-admonition",
   "cmdr",
-  "obsidian42-text-transporter",
   "floating-toc",
   "obsidian-linter",
-  "home-tab"
+  "home-tab",
+  "obsidian42-text-transporter",
+  "local-gpt"
 ]

@@ -339,13 +339,20 @@
       "key": "J"
     }
   ],
-  "editor:toggle-comments": [],
   "obsidian42-text-transporter:obsidian42-text-transporter-SB": [
     {
       "modifiers": [
         "Alt"
       ],
       "key": "Z"
+    }
+  ],
+  "local-gpt:context-menu": [
+    {
+      "modifiers": [
+        "Alt"
+      ],
+      "key": "G"
     }
   ]
 }

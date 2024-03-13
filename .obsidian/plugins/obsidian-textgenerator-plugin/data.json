@@ -4,7 +4,7 @@
   "models": {},
   "api_key": "",
   "encrypt_keys": false,
-  "selectedProvider": "OpenAI Chat (Langchain)",
+  "selectedProvider": "Default (Custom)",
   "max_tokens": 500,
   "temperature": 0.7,
   "frequency_penalty": 0.5,
@@ -73,6 +73,26 @@
     "OpenAI Chat (Langchain)": {
       "basePath": "https://api.chatanywhere.com.cn",
       "api_key": ""
+    },
+    "Google Palm (Langchain)": {},
+    "OpenAI Instruct (Langchain)": {
+      "basePath": "https://api.openai.com/v1",
+      "model": "gpt-3.5-turbo-instruct"
+    },
+    "Chat Anthropic (Langchain)": {},
+    "Huggingface (Langchain)": {},
+    "Ollama (Langchain)": {},
+    "Default (Custom)": {
+      "endpoint": "http://localhost:11434/api/generate ",
+      "handlebars_headers_in": "{\n      \"Content-Type\": \"application/json\",\n      \"authorization\": \"Bearer {{api_key}}\"\n}",
+      "handlebars_body_in": "{\n    \"model\": \"{{model}}\",\n    \"temperature\": {{temperature}},\n    \"top_p\": {{top_p}},\n    \"frequency_penalty\": {{frequency_penalty}},\n    \"presence_penalty\": {{presence_penalty}},\n    \"max_tokens\": {{max_tokens}},\n    \"stream\": {{stream}},\n\t\"stop\": \"{{stop}}\",\n    \"prompt\": \"{{escp content}}\",\n    \"messages\": [\n      {{#each messages}}{{#if @index}},{{/if}}\n      {\n        \"role\": \"{{role}}\",\n        \"content\": \"{{escp content}}\"\n      }{{/each}}\n    ]\n  }",
+      "path_to_choices": "choices",
+      "path_to_message_content": "message.content",
+      "path_to_error_message": "error.message",
+      "sanatization_streaming": "(chunk) => {\n    let resultText = \"\";\n    const lines = chunk.split(\"\\ndata: \");\n  \n    const parsedLines = lines\n      .map((line) => line.replace(/^data: /, \"\").trim()) // Remove the \"data: \" prefix\n      .filter((line) => line !== \"\" && line !== \"[DONE]\") // Remove empty lines and \"[DONE]\"\n      .map((line) => JSON.parse(line)); // Parse the JSON string\n  \n    for (const parsedLine of parsedLines) {\n      const { choices } = parsedLine;\n      const { delta } = choices[0];\n      const { content } = delta;\n      // Update the UI with the new content\n      if (content) {\n        resultText += content;\n      }\n    }\n    return resultText;\n  }",
+      "model": "gemma:2b",
+      "presence_penalty": 0.5,
+      "top_p": 1
     }
   },
   "LLMProviderOptionsKeysHashed": {
