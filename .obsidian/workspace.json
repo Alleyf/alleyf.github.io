@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/科研学习/学习方法/Paper_Reading_Method.md",
+                "file": "source/_posts/科研学习/论文总结/BERT Pre-training of Deep Bidirectional Transformers for Language Understanding.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -39,7 +39,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/科研学习/学习方法/Paper_Reading_Method.md"
+                "file": "source/_posts/科研学习/论文总结/BERT Pre-training of Deep Bidirectional Transformers for Language Understanding.md"
               }
             }
           }
@@ -146,11 +146,11 @@
   },
   "active": "f64abe0c03db0d67",
   "lastOpenFiles": [
+    "source/_posts/科研学习/学习方法/Paper_Reading_Method.md",
     "public/tags/Transformer/index.html",
     "public/tags/Transformer",
     "attachment/AwesomeMarp_blue.md",
     "source/_posts/科研学习/论文总结/BERT Pre-training of Deep Bidirectional Transformers for Language Understanding.md",
-    "source/_posts/科研学习/学习方法/Paper_Reading_Method.md",
     "source/_posts/科研学习/会议讨论/周会.md",
     "public/2024/03/6a2e377c641a.html",
     "public/2024/03/8e4f20768995.html",
@@ -166,7 +166,6 @@
     "public/tags/可解释性",
     "public/page/8/index.html",
     "public/page/8",
-    "public/archives/2024/02/index.html",
     "source/_posts/科研学习/调研报告/司法领域大模型调研一.md",
     "source/_posts/中间件和工具/Redis-缓存之美.md",
     "source/_posts/科研学习/调研报告/数据集汇总与评测.md",
