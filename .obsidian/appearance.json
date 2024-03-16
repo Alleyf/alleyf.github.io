@@ -7,9 +7,8 @@
   "interfaceFontFamily": "Arial Black",
   "baseFontSize": 17,
   "enabledCssSnippets": [
-    "image-cards",
-    "page-magin",
-    "image-grid"
+    "image-grid",
+    "page-magin"
   ],
   "showViewHeader": true
 }

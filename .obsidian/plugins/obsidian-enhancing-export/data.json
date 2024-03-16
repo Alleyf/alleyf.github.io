@@ -57,20 +57,21 @@
         "textemplate": "preset:textemplate"
       },
       "extension": ".pdf",
-      "openExportedFile": true
+      "openExportedFile": true,
+      "runCommand": false
     }
   ],
   "pandocPath": {
-    "win32": "F:\\pandoc-3.1.9\\pandoc.exe"
+    "win32": "A:\\sofawares\\Pandoc\\pandoc.exe"
   },
   "defaultExportDirectoryMode": "Custom",
   "openExportedFile": true,
   "env": {},
   "showExportProgressBar": true,
   "customDefaultExportDirectory": {
-    "win32": "D:\\"
+    "win32": "A:\\dashboard"
   },
-  "lastEditName": "my-pdf",
+  "lastEditName": "PDF",
   "lastExportDirectory": {
     "win32": "D:\\"
   },

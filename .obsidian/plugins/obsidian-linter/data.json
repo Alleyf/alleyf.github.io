@@ -101,7 +101,7 @@
       "style": "space"
     },
     "convert-bullet-list-markers": {
-      "enabled": true
+      "enabled": false
     },
     "default-language-for-code-fences": {
       "enabled": false,
@@ -178,8 +178,8 @@
     },
     "heading-blank-lines": {
       "enabled": false,
-      "bottom": true,
-      "empty-line-after-yaml": true
+      "bottom": false,
+      "empty-line-after-yaml": false
     },
     "line-break-at-document-end": {
       "enabled": false
