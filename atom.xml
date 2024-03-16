@@ -6,7 +6,7 @@
   <link href="https://alleyf.github.io/atom.xml" rel="self"/>
   
   <link href="https://alleyf.github.io/"/>
-  <updated>2024-03-13T02:28:16.254Z</updated>
+  <updated>2024-03-14T14:38:19.955Z</updated>
   <id>https://alleyf.github.io/</id>
   
   <author>
@@ -17,14 +17,33 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>国家重点研究计划课题四调研1</title>
-    <link href="https://alleyf.github.io/2024/03/1c5cde563cc8.html"/>
-    <id>https://alleyf.github.io/2024/03/1c5cde563cc8.html</id>
-    <published>2024-03-12T06:08:41.000Z</published>
-    <updated>2024-03-13T02:28:16.254Z</updated>
+    <title>科研思路</title>
+    <link href="https://alleyf.github.io/2024/03/8e4f20768995.html"/>
+    <id>https://alleyf.github.io/2024/03/8e4f20768995.html</id>
+    <published>2024-03-14T12:51:41.000Z</published>
+    <updated>2024-03-14T14:38:19.955Z</updated>
     
     
-    <summary type="html">司法数据资产综合效能评估，精细化管理实现资源优化配置</summary>
+    <summary type="html">some keypoints about research</summary>
+    
+    
+    
+    <category term="科研学习" scheme="https://alleyf.github.io/categories/%E7%A7%91%E7%A0%94%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="Paper" scheme="https://alleyf.github.io/tags/Paper/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>国家重点研究计划课题四-任务三-调研1</title>
+    <link href="https://alleyf.github.io/2024/03/6a2e377c641a.html"/>
+    <id>https://alleyf.github.io/2024/03/6a2e377c641a.html</id>
+    <published>2024-03-13T11:55:20.000Z</published>
+    <updated>2024-03-14T10:48:33.897Z</updated>
+    
+    
+    <summary type="html">司法数据资产综合效能评估技术</summary>
     
     
     
@@ -416,29 +435,6 @@
     <category term="正则表达式" scheme="https://alleyf.github.io/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
     
     <category term="Regex" scheme="https://alleyf.github.io/tags/Regex/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SpringCloud-微服务应用</title>
-    <link href="https://alleyf.github.io/2023/11/ce56947e919e.html"/>
-    <id>https://alleyf.github.io/2023/11/ce56947e919e.html</id>
-    <published>2023-11-23T08:39:49.000Z</published>
-    <updated>2023-11-28T06:30:03.129Z</updated>
-    
-    
-    <summary type="html">关于微服务应用的一些常见知识点（分布式权限校验、数据库分布式等）。</summary>
-    
-    
-    
-    <category term="后端开发" scheme="https://alleyf.github.io/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
-    
-    
-    <category term="Mysql" scheme="https://alleyf.github.io/tags/Mysql/"/>
-    
-    <category term="Redis" scheme="https://alleyf.github.io/tags/Redis/"/>
-    
-    <category term="springcloud" scheme="https://alleyf.github.io/tags/springcloud/"/>
     
   </entry>
   
