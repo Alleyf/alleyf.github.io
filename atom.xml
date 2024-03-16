@@ -103,7 +103,7 @@
     <link href="https://alleyf.github.io/2024/02/bc09878197d9.html"/>
     <id>https://alleyf.github.io/2024/02/bc09878197d9.html</id>
     <published>2024-02-28T02:23:11.000Z</published>
-    <updated>2024-03-16T17:47:32.745Z</updated>
+    <updated>2024-03-16T18:04:05.823Z</updated>
     
     
     <summary type="html">BERT（Bidirectional Encoder Representations from Transformers）是一种创新的语言表示模型，它通过从无标签文本中预训练深度双向表示，利用Transformers架构在每一层都同时考虑了词汇的左右上下文。这种方法使得BERT模型在经过简单的微调后，就能在多种NLP任务上达到最先进的水平，包括但不限于问答和语言推断任务。BERT的设计理念简单而有效，它在十一个自然语言处理任务上取得了新的最先进结果，显著提高了GLUE、MultiNLI、SQuAD v1.1和SQuAD v2.0等基准测试的得分。</summary>
