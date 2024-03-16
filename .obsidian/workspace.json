@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "a319c4bf3efa1dab",
+        "id": "544377187a963d6c",
         "type": "tabs",
         "children": [
           {
-            "id": "c16ffc83e2887e8b",
+            "id": "f64abe0c03db0d67",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/科研学习/会议讨论/周会.md",
+                "file": "source/_posts/科研学习/学习方法/Paper_Reading_Method.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -39,7 +39,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/科研学习/会议讨论/周会.md"
+                "file": "source/_posts/科研学习/学习方法/Paper_Reading_Method.md"
               }
             }
           }
@@ -144,18 +144,21 @@
       "obsidian-memos:Memos": false
     }
   },
-  "active": "c16ffc83e2887e8b",
+  "active": "f64abe0c03db0d67",
   "lastOpenFiles": [
+    "public/tags/Transformer/index.html",
+    "public/tags/Transformer",
+    "attachment/AwesomeMarp_blue.md",
+    "source/_posts/科研学习/论文总结/BERT Pre-training of Deep Bidirectional Transformers for Language Understanding.md",
+    "source/_posts/科研学习/学习方法/Paper_Reading_Method.md",
+    "source/_posts/科研学习/会议讨论/周会.md",
     "public/2024/03/6a2e377c641a.html",
     "public/2024/03/8e4f20768995.html",
     "source/_obsidian/周报模板.md",
-    "source/_posts/科研学习/会议讨论/周会.md",
     "source/_posts/运维开发/各种环境配置.md",
     "source/_posts/科研学习/论文总结/Papers Reading.md",
-    "source/_posts/科研学习/学习方法/Paper_Reading_Method.md",
     "source/_posts/科研学习/学习方法/科研思路.md",
     "source/_posts/科研学习/调研报告/国家重点研究计划课题四-任务三-调研1.md",
-    "source/_posts/科研学习/论文总结/BERT Pre-training of Deep Bidirectional Transformers for Language Understanding.md",
     "source/_posts/科研学习/论文总结/Explainability for large language models A survey.md",
     "node_modules/fsevents",
     "public/2024/01/dde3edb72c38.html",
@@ -164,8 +167,6 @@
     "public/page/8/index.html",
     "public/page/8",
     "public/archives/2024/02/index.html",
-    "public/archives/2024/02",
-    "public/archives/page/8/index.html",
     "source/_posts/科研学习/调研报告/司法领域大模型调研一.md",
     "source/_posts/中间件和工具/Redis-缓存之美.md",
     "source/_posts/科研学习/调研报告/数据集汇总与评测.md",
@@ -181,7 +182,6 @@
     "source/_obsidian/学习笔记模板.md",
     "source/_posts/科研学习/论文总结/Deep residual learning for image recognition.md",
     "source/_posts/科研学习/论文总结/Paper_Reading_Tables.md",
-    "diary/2024-02-25.md",
     "canvas/未命名.canvas",
     "canvas/AI学习思路.canvas",
     "attachment/Pasted Image 20240102110312.jpeg",
