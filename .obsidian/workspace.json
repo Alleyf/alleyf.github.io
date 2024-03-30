@@ -11,8 +11,13 @@
             "id": "79c29bf06ae23c62",
             "type": "leaf",
             "state": {
-              "type": "home-tab-view",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "source/_posts/运维开发/各种环境配置.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
             }
           }
         ]
@@ -34,7 +39,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/科研学习/会议讨论/周会.md"
+                "file": "source/_posts/运维开发/各种环境配置.md"
               }
             }
           }
