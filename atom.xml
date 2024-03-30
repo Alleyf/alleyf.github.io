@@ -6,7 +6,7 @@
   <link href="https://alleyf.github.io/atom.xml" rel="self"/>
   
   <link href="https://alleyf.github.io/"/>
-  <updated>2024-03-14T14:38:19.955Z</updated>
+  <updated>2024-03-28T09:17:35.986Z</updated>
   <id>https://alleyf.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>国家重点研究计划课题四-任务三-调研</title>
+    <link href="https://alleyf.github.io/2024/03/0bb1af708fab.html"/>
+    <id>https://alleyf.github.io/2024/03/0bb1af708fab.html</id>
+    <published>2024-03-28T09:16:36.000Z</published>
+    <updated>2024-03-28T09:17:35.986Z</updated>
+    
+    
+    <summary type="html">法院数据资产评估与管理</summary>
+    
+    
+    
+    <category term="科研学习" scheme="https://alleyf.github.io/categories/%E7%A7%91%E7%A0%94%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="科研" scheme="https://alleyf.github.io/tags/%E7%A7%91%E7%A0%94/"/>
+    
+    <category term="司法" scheme="https://alleyf.github.io/tags/%E5%8F%B8%E6%B3%95/"/>
+    
+  </entry>
   
   <entry>
     <title>科研思路</title>
@@ -32,27 +53,6 @@
     
     
     <category term="Paper" scheme="https://alleyf.github.io/tags/Paper/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>国家重点研究计划课题四-任务三-调研1</title>
-    <link href="https://alleyf.github.io/2024/03/6a2e377c641a.html"/>
-    <id>https://alleyf.github.io/2024/03/6a2e377c641a.html</id>
-    <published>2024-03-13T11:55:20.000Z</published>
-    <updated>2024-03-26T14:45:24.825Z</updated>
-    
-    
-    <summary type="html">司法数据资产综合效能评估技术</summary>
-    
-    
-    
-    <category term="科研学习" scheme="https://alleyf.github.io/categories/%E7%A7%91%E7%A0%94%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-    <category term="law" scheme="https://alleyf.github.io/tags/law/"/>
-    
-    <category term="科研" scheme="https://alleyf.github.io/tags/%E7%A7%91%E7%A0%94/"/>
     
   </entry>
   
