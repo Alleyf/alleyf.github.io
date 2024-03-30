@@ -24,9 +24,7 @@ Git 是由 Linus Torvalds 于2005年创立的分布式版本控制系统。与�
 # 原理解析
 ## 工作流程
 git 分为三个区，工作流程如下：
-
 ![|675](https://telegra.ph/file/6214322fe06366c305abd.png)
-
 ![image.png|675](http://qnpicmap.fcsluck.top/pics/202311162202035.png)
 ## 文件状态
 git 文件有四种状态：
@@ -232,6 +230,19 @@ git rm -r -f --cached openlaw/__pycache__/ #删除已经提交跟踪的python编
 1. 只需要将要忽略的文件的**文件名或文件夹/** 添加到 `.gitignore` 文件中即可。
 2. `.gitignore` 文件中可使用**通配符**进行匹配（eg：*.log）
 ![image.png](http://qnpicmap.fcsluck.top/pics/202311202320021.png)
+
+**取消忽略**
+
+1. 首先查看已经被忽略的所有文件
+```shell
+git status --ignored
+```
+2. 取消忽略的文件
+```shell
+git add -f path/file(被忽略的文件)
+```
+
+
 **.gitignore 模糊匹配规则**
 ![](http://qnpicmap.fcsluck.top/pics/202312021622490.png)
 # 分支
@@ -292,7 +303,6 @@ git push "远程库名" -d "branch name"
 ![](http://qnpicmap.fcsluck.top/pics/202312031336740.png)
 ## 回退/溯版本
 ### 回滚
-
 > [!tip] IDEA 文件颜色
 > 1. 工作区：红色
 > 2. 暂存区：绿色
@@ -362,6 +372,35 @@ GitHub flow 最大的亮点在于**部署（Deploy）发生在 合并（Merge）
 	- 定期合并已经成功验证的分支，及时删除已经合并的分支
 	- 保持合适的分支数量
 	- 为分支设置合适的管理权限
+
+# 常见问题
+## 项目过大拉取超时
+通过git拉取GitHub上的项目失败报错信息如下
+```shell
+fetch-pack: unexpected disconnect while reading sideband packet
+fatal: early EOF
+fatal: fetch-pack: invalid index-pack output
+```
+**原因：** 因为拉取的项目过大导致失败
+**解决：**
+1. 利用镜像网站
+> *将链接中的 github.com 替换为 github.com.cnpmjs.org* 
+> 如果方法1报以下错误
+> Could not resolve host: github.com.cnpmjs.org
+> 在git控制台上输入下面这句，然后在正常去拉取，它会使你默认使用镜像
+```shell
+git config --global url."https://hub.fastgit.xyz/".insteadOf https://github.com/
+```
+2. 拉取最近提交的一次提交，然后再拉取全部
+```shell
+git clone --depth 1 [链接] 
+git fetch --unshallow
+```
+3. 延长克隆的时间
+```shell
+git config --global http.postBuffer 600000
+```
+4. 通过将github项目导入码云，然后再拉取
 # 参考文献
 1. [【GeekHour】一小时Git教程\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1HM411377j/)
 2. [Git 备忘清单 & git cheatsheet & Quick Reference](https://wangchujiang.com/reference/docs/git.html)
