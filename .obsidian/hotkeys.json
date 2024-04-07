@@ -281,14 +281,6 @@
       "key": "."
     }
   ],
-  "editor:toggle-highlight": [
-    {
-      "modifiers": [
-        "Mod"
-      ],
-      "key": "`"
-    }
-  ],
   "editor:insert-tag": [
     {
       "modifiers": [
@@ -361,6 +353,23 @@
         "Mod"
       ],
       "key": "\\"
+    }
+  ],
+  "editor:toggle-highlight": [
+    {
+      "modifiers": [
+        "Alt"
+      ],
+      "key": "B"
+    }
+  ],
+  "easy-typing-obsidian:easy-typing-delete-blank-line": [],
+  "editing-toolbar:editor:toggle-strikethrough": [
+    {
+      "modifiers": [
+        "Alt"
+      ],
+      "key": "V"
     }
   ]
 }

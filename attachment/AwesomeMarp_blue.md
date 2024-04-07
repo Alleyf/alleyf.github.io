@@ -686,7 +686,7 @@ Awesome Marp v1.1 提供了 4 种列表分列的方式，分别为：
   
   - 其余效果与 `fixedtitleA` 相同 
   
-  - 但是页面正文内容需要包裹在 `<div class="div'></div>` 标签中 
+  - 但是页面正文内容需要包裹在 `<div class="div"></div>` 标签中 
 </div>
 
 ## 5.31 其他自定义样式
@@ -699,8 +699,7 @@ Awesome Marp v1.1 提供了 4 种列表分列的方式，分别为：
 
 <!-- _class: footnote -->
 
-<div class="tdiv">
-> 
+
 #### 5.31.1.1 脚注的自定义样式：`footnote`
 
 使用方法：
@@ -710,6 +709,7 @@ Awesome Marp v1.1 提供了 4 种列表分列的方式，分别为：
 - 页面的脚注内容，写在 `<div class = "bdiv"></div>` 
 
 举个例子，展示一下显示效果：
+<div class="tdiv">
 
 - 一方面，经济金融化程度的加深，使得金融部门能够凭借资本跨期配置提前抽取其他部门的未来价值，从而扩大金融和非金融部门之间的外部收入差距$^1$。另一方面，经济金融化不断增加企业股东权力，促使企业更加追求股东价值最大化，这一导向将弱化普通劳动者阶层的议价能力，食利者阶层的财产性收入增加必然会挤压劳动收入份额，从而扩大了内部收入差距$^2$。
 
@@ -759,7 +759,7 @@ Awesome Marp v1.1 提供了 4 种列表分列的方式，分别为：
   - 图片 `![]()`：本地路径、网络路径（参阅：[图床与 PicGo——让你爱上记录与分享](https://sspai.com/post/65716)）
   - 数学公式：行内公式 `$...$`、行间公式 `$$...$$`
   - 支持 HTML 元素：`<br>`/`<hr>`/`<b></b>`/`<i></i>`/`<kbd></kbd>` 等
-  
+
 ## 5.35 推荐的 Markdown 编辑器
 
 <!-- _class: cols-2-64 navbar -->
@@ -832,14 +832,14 @@ footer: 范财胜（武汉理工大学） # 设置页脚区域的内容，如果
 
 <div class="icons">
 
-- <i class="fa-solid fa-envelope"></i>
-  - alleyf@qq.com
-- <i class="fa-brands fa-weixin"></i> 
-  - favourhong_sdufe
-- <i class="fa-solid fa-house"></i> 
-  - 公众号：Cephalosporan
+<i class="fa-solid fa-envelope"></i>
+  alleyf@qq.com
+<i class="fa-brands fa-weixin"></i> 
+  favourhong_sdufe
+<i class="fa-solid fa-house"></i> 
+  公众号：Cephalosporan
 
-<div>
+</div>
 
 ## 5.38 创作不易，buy me a coffee 🤙~ 
 

@@ -211,10 +211,10 @@
       "icon": "git-pull-request"
     }
   ],
-  "appendMethod": "workspace",
+  "appendMethod": "body",
   "shouldShowMenuOnSelect": false,
   "cMenuVisibility": true,
-  "cMenuBottomValue": 4.25,
+  "cMenuBottomValue": 2,
   "cMenuNumRows": 32,
   "cMenuWidth": 502,
   "cMenuFontColor": "#a5a5a5",

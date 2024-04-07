@@ -8,10 +8,10 @@
 
 
 :root {
-  --font-family-main: 'Latin Modern Math', 'Adobe Garamond', '方正宋刻本秀楷简体', 'Calibri', '楷体', '华文中宋', '楷体', '霞鹜文楷 屏幕阅读版';
-  --font-family-title: 'Optima LT Medium', 'Arial', '方正苏新诗柳楷简体', '黑体';
+  --font-family-main: 'Times New Roman', 'Latin Modern Math', 'Adobe Garamond', '霞鹜文楷', '方正宋刻本秀楷简体', 'Calibri', '楷体', '华文中宋', '楷体', '屏幕阅读版';
+  --font-family-title: 'Optima LT Medium', 'Arial', '朱雀仿宋（预览测试版）', '方正苏新诗柳楷简体', '黑体';
   --font-family-footer: 'Charm', 'Calibri', '叶根友毛笔行书修正版', '方正苏新诗柳楷简体', '楷体';
-  --font-family-code: 'Fira Code', 'HYMingChanKeBen W', 'Consolas', '霞鹜文楷等宽', '华文中宋', '宋体';
+  --font-family-code: 'Fira Code', 'HYMingChanKeBen W', 'Consolas', '霞鹜文楷等宽', '华文中宋', '宋体','霞鹜文楷';
   --font-size-1: 55px;
   --foot-size-subtitle: 42px;
   --font-size-2-3: 38px;
@@ -31,6 +31,8 @@
   --color-trans: #72bdcb;
   --color-navbar-bg: #d0e9ee;
   --color-code-bg: #e8f4f6;
+  --color-em-fc: #83d187;
+  --color-del-fc: #8d8d8b;
 }
 
 
@@ -39,6 +41,8 @@ section {
   font-size: var(--font-size-main);
   color: var(--color-main);
   text-align: justify;
+  width: 1280px;
+  /* height: 960px; */
 }
 
 h1 {
@@ -221,7 +225,7 @@ code {
   border-radius: 1px;
   background-color: var(--color-code-bg);
   font-family: var(--font-family-code);
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   letter-spacing: -1px;
 }
 
@@ -233,13 +237,21 @@ strong {
 
 em {
   font-size: 0.9rem;
-  font-style: normal;
+  font-style: italic;
+  color: var(--color-em-fc);
+}
+
+s {
+  font-size: small;
+  text-decoration: none;
+  text-align: center;
+  display: block;
+  color: var(--color-del-fc);
 }
 
 img {
   max-width: 95%;
   border-radius: 8px;
-  margin: auto;
 }
 
 img[alt*='#l'] {
@@ -699,7 +711,7 @@ section.cols2_ol_sq ul li::before {
   position: relative;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
+  /* font-size: 20px; */
   font-family: var(--font-family-title);
   background-color: var(--color-much);
   /* border-radius: 50%; */
@@ -1328,7 +1340,7 @@ section.navbar header>em,
 section.navbar header>strong,
 section.navbar header>em>strong {
   font-style: normal;
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: normal;
   color: var(--color-navbar-font);
 }

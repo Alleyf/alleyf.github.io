@@ -1,0 +1,210 @@
+/* @theme HUST */
+
+@charset "UTF-8";
+@import "default";
+@auto-scaling true;
+
+:root{
+  --font-family-title: '朱雀仿宋（预览测试版）'; 
+  --font-family-main: '霞鹜文楷';  
+  --font-family-code: 'Monaspace Xenon Var', 'Courier New', '霞鹜文楷';
+  --color-theme: #286787;
+  --color-code-bg: #eff2f3;
+  --img-cover: url("https://image-hosting-walton.oss-cn-beijing.aliyuncs.com/img/202310222003838.svg");
+  --img-content: url("https://image-hosting-walton.oss-cn-beijing.aliyuncs.com/img/202310222001581.svg");
+  --img-school-logo: url("https://image-hosting-walton.oss-cn-beijing.aliyuncs.com/img/202310161926524.svg");
+  --img-school-motto: url("https://image-hosting-walton.oss-cn-beijing.aliyuncs.com/img/202310202002103.svg");
+}
+
+/* 全局设置 */
+
+/* 设置背景 */
+section {
+  background-image: var(--img-school-logo);
+  background-position: right 2% top 2%;
+  background-repeat: no-repeat;
+  background-size: auto 9%;
+}
+/* 设置标题 */
+h1{
+  font-family: var(--font-family-title);
+  color: var(--color-theme);
+  font-size: 1.6rem;
+  position: absolute;
+  top: 3%;
+  display: block;
+}
+h2{
+  font-family: var(--font-family-main);
+  color: var(--color-theme);
+  font-size: 1.3rem;
+}
+h3{
+  font-family: var(--font-family-main);
+  color: var(--color-theme);
+  font-size: 1.2rem;
+}
+/* 设置内容 */
+p, ul, ol{
+  font-family: var(--font-family-main);
+  font-size: 1.1rem;
+  text-align: justify;
+}
+/* 设置代码 */
+code {
+  font-family: var(--font-family-code);
+  font-size: 1rem;
+  font-variant-ligatures: discretionary-ligatures;
+  font-feature-settings: "liga" 1, "dlig" 1, "ss01" 1, "ss02" 1, "ss03" 1, "ss04" 1, "ss05" 1, "ss06" 1, "ss07" 1, "ss08" 1;
+}
+/* 设置链接 */
+a {
+  font-family: var(--font-family-main);
+  color: var(--color-theme);
+}
+/* 设置页码 */
+section::after {
+  position: absolute;
+  bottom: 1%;
+  right: 1%;
+  font-size: 2rem;
+  color: var(--color-theme);
+  font-family: var(--font-family-main);
+  content: attr(data-marpit-pagination);
+}
+/* 设置表格 */
+table {
+  border-collapse: collapse;
+  font-family: var(--font-family-main);
+  font-size: 1rem; 
+  margin-left: auto;
+  margin-right: auto;
+}
+th {  /* 设置表头 */
+  font-family: var(--font-family-title); 
+  font-size: 1.05rem;
+  color: var(--color-theme);
+  font-weight: bold;
+}
+tr:first-child {
+  border-top: 2px solid black;
+}
+tr:last-child {
+  border-bottom: 2px solid black;
+}
+
+/* 设置 16:9 标题页 */
+section.cover {
+  background-image: var(--img-school-logo), var(--img-cover);
+  background-position: right 2% top 2%, -0.1% calc(50% + 5px);
+  background-repeat: no-repeat, no-repeat;
+  background-size: auto 9%, auto 104%;
+}
+section.cover h1{
+  position: absolute;
+  font-size: 2rem;
+  top: 45%;
+  left: 60%;
+  width: 70%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+section.cover p{
+  position: absolute;
+  font-size: 1.2rem;
+  top: 75%;
+  left: 60%;
+  width: 70%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+/* 设置 4:3 标题页 */
+section.cover1 h1 {
+  position: absolute;
+  font-size: 2rem;
+  top: 45%;
+  left: 50%;
+  width: 90%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+section.cover1 p{
+  position: absolute;
+  font-size: 1.2rem;
+  top: 75%;
+  left: 50%;
+  width: 9rem;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+/* 设置 16:9 目录页 */
+section.toc {
+  background-image: var(--img-school-logo), var(--img-content);
+  background-position: right 2% top 2%, left center;
+  background-repeat: no-repeat, no-repeat;
+  background-size: auto 9%, 35% auto;
+}
+section.toc h1 {
+  position: absolute;
+  font-size: 2rem;
+  width: 30%;
+  top: 50%;
+  transform: translateY(60%);
+  left: 1%;
+  text-align: center;
+}
+section.toc ul{
+  position: absolute;
+  font-size: 1.5rem;
+  font-weight: bold;
+  list-style-type: none;
+  line-height: 150%;
+  width: 55%;
+  left: 40%;
+  display: table;
+  align-items: center;
+  justify-content: center;
+}
+/* 设置 4:3 目录页 */
+section.toc1 ul{
+  position: absolute;
+  font-size: 1.5rem;
+  font-weight: bold;
+  list-style-type: none;
+  line-height: 150%;
+  width: 70%;
+  display: table;
+  align-items: center;
+  justify-content: center;
+}
+/* 设置 16:9 结束页 */
+section.ending {
+  background-image: var(--img-school-logo), var(--img-cover), var(--img-school-motto);
+  background-position: right 2% top 2%, -0.1% calc(50% + 5px), 85% 45%;
+  background-repeat: no-repeat, no-repeat, no-repeat;
+  background-size: auto 9%, auto 104%, 70%;
+}
+section.ending h1{
+  position: absolute;
+  font-size: 2rem;
+  top: 50%;
+  left: 60%;
+  width: 70%;
+  transform: translate(-50%, 100%);
+  text-align: center;
+}
+/* 设置 4:3 结束页 */
+section.ending1 {
+  background-image: var(--img-school-logo), var(--img-school-motto);
+  background-position: right 2% top 2%, center 45%;
+  background-repeat: no-repeat,  no-repeat;
+  background-size: auto 9%, 100%;
+}
+section.ending1 h1{
+  position: absolute;
+  font-size: 2rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 100%);
+  text-align: center;
+}

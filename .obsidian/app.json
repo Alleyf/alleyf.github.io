@@ -26,8 +26,11 @@
   "rightToLeft": false,
   "readableLineLength": true,
   "showIndentGuide": true,
-  "newLinkFormat": "shortest",
+  "newLinkFormat": "absolute",
   "alwaysUpdateLinks": true,
   "useMarkdownLinks": true,
-  "showInlineTitle": true
+  "showInlineTitle": false,
+  "showUnsupportedFiles": false,
+  "propertiesInDocument": "visible",
+  "foldHeading": true
 }

@@ -1,6 +1,6 @@
 {
   "Tabout": true,
-  "SelectionEnhance": false,
+  "SelectionEnhance": true,
   "IntrinsicSymbolPairs": true,
   "BaseObEditEnhance": false,
   "FW2HWEnhance": true,
@@ -15,7 +15,7 @@
   "AutoCapitalMode": "typing",
   "PunctuationSpaceMode": "typing",
   "InlineCodeSpaceMode": 1,
-  "InlineFormulaSpaceMode": 1,
+  "InlineFormulaSpaceMode": 0,
   "InlineLinkSpaceMode": 1,
   "InlineLinkSmartSpace": true,
   "UserDefinedRegSwitch": true,

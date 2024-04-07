@@ -1,10 +1,13 @@
 [
   "file-explorer",
-  "canvas",
-  "page-preview",
+  "graph",
+  "backlink",
   "daily-notes",
   "templates",
   "command-palette",
+  "markdown-importer",
   "outline",
+  "word-count",
+  "workspaces",
   "file-recovery"
 ]

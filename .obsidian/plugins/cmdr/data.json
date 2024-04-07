@@ -22,21 +22,9 @@
   "titleBar": [],
   "statusBar": [
     {
-      "id": "obsidian-enhancing-export:obsidian-enhancing-export:export",
-      "icon": "file-output",
-      "name": "Obsidian Enhancing Export: 导出为......",
-      "mode": "any"
-    },
-    {
       "id": "workspace:export-pdf",
       "icon": "files",
       "name": "导出为 PDF",
-      "mode": "any"
-    },
-    {
-      "id": "marp-slides:preview",
-      "icon": "sliders",
-      "name": "Slide Preview",
       "mode": "any"
     },
     {
@@ -55,6 +43,12 @@
       "id": "number-headings-obsidian:remove-number-headings",
       "icon": "minus-circle",
       "name": "Number Headings: Remove numbering from all headings in document",
+      "mode": "any"
+    },
+    {
+      "id": "marp-slides:preview",
+      "icon": "sliders",
+      "name": "Marp Slides: Slide Preview",
       "mode": "any"
     }
   ],
