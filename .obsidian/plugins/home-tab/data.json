@@ -24,6 +24,14 @@
   "unresolvedLinks": false,
   "recentFilesStore": [
     {
+      "filepath": "source/_posts/科研学习/会议讨论/周会.md",
+      "timestamp": 1712451372279
+    },
+    {
+      "filepath": "source/_obsidian/周报模板.md",
+      "timestamp": 1712451363765
+    },
+    {
       "filepath": "source/_posts/科研学习/学习方法/DL概念知识库.md",
       "timestamp": 1712450354149
     },
@@ -34,14 +42,6 @@
     {
       "filepath": "attachment/AwesomeMarp_blue.md",
       "timestamp": 1712415527785
-    },
-    {
-      "filepath": "source/_obsidian/电子书模板.md",
-      "timestamp": 1712415503748
-    },
-    {
-      "filepath": "source/_obsidian/学术汇报模板.md",
-      "timestamp": 1712415497636
     }
   ],
   "starredFileStore": [],
