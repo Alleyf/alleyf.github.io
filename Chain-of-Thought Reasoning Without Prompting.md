@@ -4,20 +4,20 @@ date: 2024-04-05
 tags:
   - 科研
   - COT
-sticky: 60
+sticky: 80
 excerpt: 无提示的思维链推理：模型内在CoT推理能力的激发
 author: fcs
 index_img: https://picsum.photos/800/250
 lang: zh-CN
 theme: am_blue
-_class: 
+_class: lead
 paginate: true
 headingDivider:
   - 1
   - 2
   - 3
-header: \ ![](http://www.whut.edu.cn/images/whutlogo.png)
-footer: \ *[<i class="fa-solid fa-home"></i>范财胜（华中科技大学）](http://alleyf.github.io)*  *alleyf@qq.com* *<i class="fa-solid fa-clock"></i>2024-01-02*
+header: 
+footer: \ *[<i class="fa-solid fa-home"></i>[范财胜](http://alleyf.github.io)*  *alleyf@qq.com* *<i class="fa-solid fa-clock"></i>2024-01-02*
 backgroundColor: 
 backgroundImage: url('https://marp.app/assets/hero-background.svg')
 size: 16:9
@@ -28,10 +28,12 @@ size: 16:9
 <!-- _paginate: "" --> 
 # 无提示的思维链推理
 #### 手工构造 COT 提示 ✖️ 内在 COT 激发 ✔️
+
 汇报人：[范财胜](http://alleyf.github.io)
-所属单位：华中科技大学
+所属单位：武汉理工大学
 汇报时间：2024-04-18
 联系方式：<alleyf@qq.com>
+
 # 📕 目录
 <!-- _class: cols2_ol_ci fglass toc_a  -->
 <!-- _footer: "" -->

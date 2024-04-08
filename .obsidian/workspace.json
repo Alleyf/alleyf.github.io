@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/科研学习/调研报告/国家重点研究计划课题四-任务三-调研.md",
+                "file": "source/_posts/科研学习/论文总结/Chain-of-Thought Reasoning Without Prompting.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -55,7 +55,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/科研学习/调研报告/国家重点研究计划课题四-任务三-调研.md"
+                "file": "source/_posts/科研学习/论文总结/Chain-of-Thought Reasoning Without Prompting.md"
               }
             }
           }
@@ -144,8 +144,20 @@
       "obsidian-memos:Memos": false
     }
   },
-  "active": "b44a828d803c53f3",
+  "active": "7debd791db616930",
   "lastOpenFiles": [
+    "public/2024/04/57aa88256e24.html",
+    "public/2024/04/cbf1873f0c65.html",
+    "public/tags/COT/index.html",
+    "public/tags/COT",
+    "Chain-of-Thought Reasoning Without Prompting.md",
+    "source/_posts/科研学习/论文总结/Chain-of-Thought Reasoning Without Prompting.md",
+    "Chain-of-Thought Reasoning Without Prompting.html",
+    "source/_posts/科研学习/论文总结/Deep residual learning for image recognition.md",
+    "source/_posts/科研学习/论文总结/Explainability for large language models A survey.md",
+    "source/_obsidian/学术汇报模板.md",
+    "学术汇报模板.md",
+    "source/_posts/科研学习/调研报告/国家重点研究计划课题四-任务三-调研.md",
     "source/_obsidian/周报模板.md",
     "source/_posts/科研学习/学习方法/DL概念知识库.md",
     "public/archives/2024/page/2/index.html",
@@ -154,28 +166,17 @@
     "public/archives/2024/04/index.html",
     "public/archives/2024/04",
     "public/2024/04/bb23d8b3249d.html",
-    "public/2024/04/99ba4f2b6906.html",
-    "public/2024/04",
-    "source/_posts/科研学习/论文总结/Chain-of-Thought Reasoning Without Prompting.md",
     "attachment/AwesomeMarp_blue.md",
     "source/_obsidian/电子书模板.md",
-    "source/_obsidian/学术汇报模板.md",
     "source/_obsidian/学习笔记模板.md",
-    "学术汇报模板.md",
-    "Chain-of-Thought Reasoning Without Prompting.md",
-    "MarpTheme/Marp_rose-pine-dawn.css",
-    "Chain-of-Thought Reasoning Without Prompting.html",
     "themes/landscape/README.md",
     "source/_posts/科研学习/学习方法/Paper_Reading_Method.md",
     "source/_posts/科研学习/学习方法/科研思路.md",
     "source/_posts/科研学习/会议讨论/周会.md",
     "source/_posts/科研学习/论文总结/BERT Pre-training of Deep Bidirectional Transformers for Language Understanding.md",
     "source/_posts/中间件和工具/正则表达式-Regex.md",
-    "source/_posts/科研学习/调研报告/国家重点研究计划课题四-任务三-调研.md",
     "source/_posts/运维开发/各种环境配置.md",
-    "source/_posts/科研学习/论文总结/Explainability for large language models A survey.md",
     "source/_posts/科研学习/论文总结/Paper_Reading_Tables.md",
-    "source/_posts/科研学习/论文总结/Deep residual learning for image recognition.md",
     "source/_posts/科研学习/论文总结/Papers Reading.md",
     "diary/2024-03-29.md",
     "source/_posts/运维开发/Git-简记.md",
