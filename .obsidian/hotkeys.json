@@ -290,14 +290,6 @@
     }
   ],
   "workspace:new-tab": [],
-  "obsidian-style-settings:style-settings-class-toggle-blue-topaz-theme-justify-align": [
-    {
-      "modifiers": [
-        "Alt"
-      ],
-      "key": "E"
-    }
-  ],
   "obsidian-enhancing-export:obsidian-enhancing-export:export": [
     {
       "modifiers": [
@@ -363,13 +355,29 @@
       "key": "B"
     }
   ],
-  "easy-typing-obsidian:easy-typing-delete-blank-line": [],
+  "easy-typing-obsidian:easy-typing-delete-blank-line": [
+    {
+      "modifiers": [
+        "Mod",
+        "Shift"
+      ],
+      "key": "K"
+    }
+  ],
   "editing-toolbar:editor:toggle-strikethrough": [
     {
       "modifiers": [
         "Alt"
       ],
       "key": "V"
+    }
+  ],
+  "obsidian-style-settings:style-settings-class-toggle-blue-topaz-theme-justify-align": [
+    {
+      "modifiers": [
+        "Alt"
+      ],
+      "key": "Q"
     }
   ]
 }
