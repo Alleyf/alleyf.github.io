@@ -150,15 +150,16 @@
       "cmdr:Obsidian Git: Open source control view": false,
       "obsidian-textgenerator-plugin:Generate Text!": true,
       "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": true,
-      "graph:查看关系图谱": false,
       "workspaces:管理工作区布局": false,
       "marp-slides:Show Slide Preview": false,
       "markdown-importer:打开 Markdown 格式转换器": false,
-      "obsidian-memos:Memos": false
+      "obsidian-memos:Memos": false,
+      "graph:查看关系图谱": false
     }
   },
-  "active": "bdaaa10e2f08b79f",
+  "active": "35a8b979ca76b32d",
   "lastOpenFiles": [
+    "attachment/20240314_csFan_初稿v2.docx",
     "source/_posts/科研学习/调研报告/多源异构司法数据汇聚融合-解决方案调研.md",
     "source/_posts/科研学习/会议讨论/周会.md",
     "source/_posts/科研学习/论文总结/Chain-of-Thought Reasoning Without Prompting.md",
