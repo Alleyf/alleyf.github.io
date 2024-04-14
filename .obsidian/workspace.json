@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/科研学习/调研报告/多源异构司法数据汇聚融合-解决方案调研.md",
+                "file": "source/_posts/科研学习/学习方法/Paper_Reading_Method.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -33,7 +33,8 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -68,7 +69,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/科研学习/调研报告/多源异构司法数据汇聚融合-解决方案调研.md"
+                "file": "source/_posts/科研学习/会议讨论/周会.md"
               }
             }
           }
@@ -157,21 +158,21 @@
       "graph:查看关系图谱": false
     }
   },
-  "active": "35a8b979ca76b32d",
+  "active": "5c5d8d803f03c2e8",
   "lastOpenFiles": [
-    "attachment/20240314_csFan_初稿v2.docx",
+    "source/_posts/科研学习/学习方法/Paper_Reading_Method.md",
     "source/_posts/科研学习/调研报告/多源异构司法数据汇聚融合-解决方案调研.md",
     "source/_posts/科研学习/会议讨论/周会.md",
+    "source/_posts/运维开发/各种环境配置.md",
+    "attachment/20240314_csFan_初稿v2.docx",
     "source/_posts/科研学习/论文总结/Chain-of-Thought Reasoning Without Prompting.md",
     "attachment/~$240314_范财胜_初稿v2.docx",
     "attachment/20240314_范财胜_初稿v2.docx",
-    "source/_posts/科研学习/学习方法/Paper_Reading_Method.md",
     "public/2024/04/8dac79c540fe.html",
     "public/2024/04/1929349c41a3.html",
     "source/_posts/科研学习/调研报告/国家重点研究计划课题四-任务三-调研.md",
     "source/_posts/科研学习/科研学习.md",
     "source/_posts/科研学习/论文总结/论文总结.md",
-    "source/_posts/运维开发/各种环境配置.md",
     "source/_posts/科研学习/学习方法/科研思路.md",
     "source/_posts/科研学习/学习方法/DL概念知识库.md",
     "source/_posts/科研学习/论文总结/Explainability for large language models A survey.md",
@@ -185,7 +186,6 @@
     "source/_obsidian/学术汇报模板.md",
     "学术汇报模板.md",
     "source/_obsidian/周报模板.md",
-    "public/archives/2024/page/2/index.html",
     "attachment/AwesomeMarp_blue.md",
     "source/_obsidian/电子书模板.md",
     "source/_obsidian/学习笔记模板.md",
