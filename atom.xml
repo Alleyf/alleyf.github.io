@@ -6,7 +6,7 @@
   <link href="https://alleyf.github.io/atom.xml" rel="self"/>
   
   <link href="https://alleyf.github.io/"/>
-  <updated>2024-04-06T14:26:02.085Z</updated>
+  <updated>2024-04-13T11:53:09.585Z</updated>
   <id>https://alleyf.github.io/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="https://alleyf.github.io/2024/04/1929349c41a3.html"/>
+    <id>https://alleyf.github.io/2024/04/1929349c41a3.html</id>
+    <published>2024-04-13T11:53:09.585Z</published>
+    <updated>2024-04-13T11:53:09.585Z</updated>
+    
+    
+    
+    
+    <category term="科研学习" scheme="https://alleyf.github.io/categories/%E7%A7%91%E7%A0%94%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="https://alleyf.github.io/2024/04/8dac79c540fe.html"/>
+    <id>https://alleyf.github.io/2024/04/8dac79c540fe.html</id>
+    <published>2024-04-13T11:52:33.849Z</published>
+    <updated>2024-04-13T11:52:33.849Z</updated>
+    
+    
+    
+    
+    <category term="科研学习" scheme="https://alleyf.github.io/categories/%E7%A7%91%E7%A0%94%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+  </entry>
   
   <entry>
     <title></title>
@@ -395,50 +425,6 @@
     <category term="Java" scheme="https://alleyf.github.io/tags/Java/"/>
     
     <category term="Lambda" scheme="https://alleyf.github.io/tags/Lambda/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>全栈+运维-技术架构成熟解决方案</title>
-    <link href="https://alleyf.github.io/2023/11/e3cf5e8cdf6a.html"/>
-    <id>https://alleyf.github.io/2023/11/e3cf5e8cdf6a.html</id>
-    <published>2023-11-29T14:13:45.000Z</published>
-    <updated>2023-12-25T08:01:11.963Z</updated>
-    
-    
-    <summary type="html">关于全栈开发和运维的成熟解决方案。</summary>
-    
-    
-    
-    <category term="后端开发" scheme="https://alleyf.github.io/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
-    
-    
-    <category term="全栈" scheme="https://alleyf.github.io/tags/%E5%85%A8%E6%A0%88/"/>
-    
-    <category term="DevOps" scheme="https://alleyf.github.io/tags/DevOps/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spring Cloud Alibaba 微服务原理与实战-阅读心得</title>
-    <link href="https://alleyf.github.io/2023/11/d1d8bbbe9e18.html"/>
-    <id>https://alleyf.github.io/2023/11/d1d8bbbe9e18.html</id>
-    <published>2023-11-28T06:41:00.000Z</published>
-    <updated>2023-12-24T10:51:23.070Z</updated>
-    
-    
-    <summary type="html">关于springcloud-alibaba微服务和中间件的阅读收获。</summary>
-    
-    
-    
-    <category term="后端开发" scheme="https://alleyf.github.io/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
-    
-    
-    <category term="SpringCloud-Alibaba" scheme="https://alleyf.github.io/tags/SpringCloud-Alibaba/"/>
-    
-    <category term="微服务" scheme="https://alleyf.github.io/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
-    
-    <category term="Java" scheme="https://alleyf.github.io/tags/Java/"/>
     
   </entry>
   
