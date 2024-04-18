@@ -47,34 +47,11 @@
   </entry>
   
   <entry>
-    <title></title>
-    <link href="https://alleyf.github.io/2024/04/cbf1873f0c65.html"/>
-    <id>https://alleyf.github.io/2024/04/cbf1873f0c65.html</id>
-    <published>2024-04-06T13:24:51.858Z</published>
-    <updated>2024-04-06T14:26:02.085Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;!DOCTYPE html&gt;&lt;html lang=&quot;zh-CN&quot;&gt;&lt;head&gt;&lt;title&gt;Chain-of-Thought Reasoning Without Prompting&lt;/title&gt;&lt;meta property=&quot;og:title&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="科研学习" scheme="https://alleyf.github.io/categories/%E7%A7%91%E7%A0%94%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-  </entry>
-  
-  <entry>
     <title>Chain-of-Thought Reasoning Without Prompting</title>
-    <link href="https://alleyf.github.io/2024/04/57aa88256e24.html"/>
-    <id>https://alleyf.github.io/2024/04/57aa88256e24.html</id>
-    <published>2024-04-04T16:00:00.000Z</published>
-    <updated>2024-04-08T07:01:48.399Z</updated>
+    <link href="https://alleyf.github.io/2024/04/b05d9d8e6654.html"/>
+    <id>https://alleyf.github.io/2024/04/b05d9d8e6654.html</id>
+    <published>2024-04-05T02:23:00.000Z</published>
+    <updated>2024-04-18T11:56:29.388Z</updated>
     
     
     <summary type="html">无提示的思维链推理：模型内在CoT推理能力的激发</summary>
@@ -95,7 +72,7 @@
     <link href="https://alleyf.github.io/2024/03/0bb1af708fab.html"/>
     <id>https://alleyf.github.io/2024/03/0bb1af708fab.html</id>
     <published>2024-03-28T09:16:36.000Z</published>
-    <updated>2024-04-08T06:25:32.882Z</updated>
+    <updated>2024-04-16T06:22:53.019Z</updated>
     
     
     <summary type="html">法院数据资产评估与管理</summary>
@@ -425,6 +402,27 @@
     <category term="Java" scheme="https://alleyf.github.io/tags/Java/"/>
     
     <category term="Lambda" scheme="https://alleyf.github.io/tags/Lambda/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>全栈+运维-技术架构成熟解决方案</title>
+    <link href="https://alleyf.github.io/2023/11/e3cf5e8cdf6a.html"/>
+    <id>https://alleyf.github.io/2023/11/e3cf5e8cdf6a.html</id>
+    <published>2023-11-29T14:13:45.000Z</published>
+    <updated>2023-12-25T08:01:11.963Z</updated>
+    
+    
+    <summary type="html">关于全栈开发和运维的成熟解决方案。</summary>
+    
+    
+    
+    <category term="后端开发" scheme="https://alleyf.github.io/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
+    
+    
+    <category term="全栈" scheme="https://alleyf.github.io/tags/%E5%85%A8%E6%A0%88/"/>
+    
+    <category term="DevOps" scheme="https://alleyf.github.io/tags/DevOps/"/>
     
   </entry>
   
