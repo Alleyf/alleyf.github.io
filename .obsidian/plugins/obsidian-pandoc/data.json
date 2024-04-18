@@ -1,0 +1,15 @@
+{
+  "showCLICommands": false,
+  "addExtensionsToInternalLinks": "html",
+  "injectAppCSS": "light",
+  "injectThemeCSS": false,
+  "customCSSFile": null,
+  "displayYAMLFrontmatter": false,
+  "linkStrippingBehaviour": "link",
+  "highDPIDiagrams": true,
+  "pandoc": "A:\\sofawares\\Pandoc\\pandoc.exe",
+  "pdflatex": "",
+  "outputFolder": "A:\\dashboard",
+  "extraArguments": "",
+  "exportFrom": "md"
+}

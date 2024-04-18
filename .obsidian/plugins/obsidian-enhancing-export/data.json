@@ -10,7 +10,8 @@
       "name": "Html"
     },
     {
-      "name": "TextBundle"
+      "name": "TextBundle",
+      "arguments": "-f ”${fromFormat}“ --resource-path=\"${currentDir}\" --resource-path=\"${attachmentFolderPath}\" --lua-filter=\"${luaDir}/markdown.lua\" -V media_dir=\"${outputDir}/${outputFileName}.textbundle/assets\" -s -o \"${outputDir}/${outputFileName}.textbundle/text.md\" -t commonmark_x-attributes"
     },
     {
       "name": "Typst"
@@ -71,7 +72,7 @@
   "customDefaultExportDirectory": {
     "win32": "A:\\dashboard"
   },
-  "lastEditName": "PDF",
+  "lastEditName": "my-pdf",
   "lastExportDirectory": {
     "win32": "D:\\"
   },

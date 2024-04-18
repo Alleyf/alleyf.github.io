@@ -21,5 +21,8 @@
   "obsidian-textgenerator-plugin",
   "obsidian-style-settings",
   "easy-typing-obsidian",
-  "marp-slides"
+  "marp-slides",
+  "obsidian-enhancing-export",
+  "obsidian-pandoc",
+  "obsidian-excalidraw-plugin"
 ]

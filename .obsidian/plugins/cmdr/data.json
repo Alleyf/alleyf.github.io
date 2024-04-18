@@ -50,6 +50,12 @@
       "icon": "sliders",
       "name": "Marp Slides: Slide Preview",
       "mode": "any"
+    },
+    {
+      "id": "obsidian-enhancing-export:obsidian-enhancing-export:export",
+      "icon": "document",
+      "name": "Enhancing Export: 导出为......",
+      "mode": "any"
     }
   ],
   "pageHeader": [],

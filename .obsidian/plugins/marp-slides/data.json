@@ -4,7 +4,7 @@
   "EnableHTML": true,
   "MathTypesettings": "mathjax",
   "HTMLExportMode": "bare",
-  "EXPORT_PATH": "D:\\",
+  "EXPORT_PATH": "A:\\dashboard\\",
   "EnableSyncPreview": true,
   "EnableMarkdownItPlugins": true
 }
