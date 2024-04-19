@@ -17,7 +17,8 @@
       "name": "Typst"
     },
     {
-      "name": "PDF"
+      "name": "PDF",
+      "customArguments": "--pdf-engine=xelatex"
     },
     {
       "name": "Word (.docx)"
@@ -62,9 +63,7 @@
       "runCommand": false
     }
   ],
-  "pandocPath": {
-    "win32": "A:\\sofawares\\Pandoc\\pandoc.exe"
-  },
+  "pandocPath": {},
   "defaultExportDirectoryMode": "Custom",
   "openExportedFile": true,
   "env": {},
@@ -72,9 +71,9 @@
   "customDefaultExportDirectory": {
     "win32": "A:\\dashboard"
   },
-  "lastEditName": "my-pdf",
+  "lastEditName": "PDF",
   "lastExportDirectory": {
-    "win32": "D:\\"
+    "win32": "A:\\dashboard"
   },
   "lastExportType": "my-pdf"
 }

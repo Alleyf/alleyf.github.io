@@ -1,9 +1,7 @@
 ---
-title: Chain-of-Thought Reasoning Without Prompting 
-date: 2024-04-05 10:23:00 
-tags:
-  - 科研
-  - COT
+title: Chain-of-Thought Reasoning Without Prompting
+date: 2024-04-05 20:14:59
+tags: 科研，CoT
 sticky: 80
 excerpt: 无提示的思维链推理：模型内在CoT推理能力的激发
 author: fcs
@@ -12,7 +10,7 @@ lang: zh-CN
 theme: am_blue
 _class: lead
 paginate: true
-headingDivider:
+headingDivider: 
   - 1
   - 2
   - 3
@@ -29,7 +27,6 @@ size: 16:9
 #### 手工构造 COT 提示 ✖️ 内在 COT 激发 ✔️
 
 汇报人：[范财胜](http://alleyf.github.io)
-所属单位：武汉理工大学
 汇报时间：2024-04-19
 联系方式：<alleyf@qq.com>
 
@@ -117,7 +114,7 @@ $$
 ![#c|600](https://qnpicmap.fcsluck.top/pics/202404061659851.png)
 ~~图 4 不同解码步骤中的替代 token 的分析~~
 > 那么为什么选择解码的第一个步骤而不是其他阶段进行分支呢？
-> ==现象：== 早期分支，例如在第一个解码步骤，显著增强了潜在路径的多样性。相反，**后期分支会受到先前生成的令牌的显着影响**。例如，以标记“5”启动会大大降低纠正错误路径的可能性。尽管如此，**最佳分支点可能会因任务而异**；例如，在年奇偶校验任务中，中路径分支可以有效地产生正确的 CoT 路径。
+> ==现象：== 早期分支，例如在第一个解码步骤，显著增强了潜在路径的多样性。相反，**后期分支会受到先前生成的令牌的显著影响**。例如，以标记“5”启动会大大降低纠正错误路径的可能性。尽管如此，**最佳分支点可能会因任务而异**；例如，在年奇偶校验任务中，中路径分支可以有效地产生正确的 CoT 路径。
 > ==思考：== **悬崖勒马，为时不晚**！
 
 ## 4 路径聚合
@@ -137,7 +134,7 @@ $\Delta_{k,a}$ 是答案为 a 的第 k 个解码路径的置信度，把答案�
 > 其中 [question] 根据任务填充实际问题，在解码过程中，使用 **k = 10** 作为第一个解码位置替代 top-k token 的默认值。
 
 模型选择
-- PaLM-2 预训练的模型系列，具有不同的尺度，范围从 X-Small、Small、Medium 和 Large； 
+- PaLM-2 预训练的模型系列，具有不同的尺度，范围从 X-Small、Small、Medium 到 Large； 
 - Mistral-7B 开源模型，实验主要集中在预训练模型上，但也包括指令调整模型（表示为“inst-tuned”或“IT”）的实验。
 
 在一系列推理基准测试中评估了 CoT 解码方法，证明了其在解码过程中不需要专门的提示即可成功恢复 CoT 推理路径的能力。

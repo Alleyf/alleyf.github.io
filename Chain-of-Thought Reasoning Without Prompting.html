@@ -32,7 +32,6 @@
 <h1 id="%E6%97%A0%E6%8F%90%E7%A4%BA%E7%9A%84%E6%80%9D%E7%BB%B4%E9%93%BE%E6%8E%A8%E7%90%86">无提示的思维链推理</h1>
 <h4 id="%E6%89%8B%E5%B7%A5%E6%9E%84%E9%80%A0-cot-%E6%8F%90%E7%A4%BA-%E2%9C%96%EF%B8%8F-%E5%86%85%E5%9C%A8-cot-%E6%BF%80%E5%8F%91-%E2%9C%94%EF%B8%8F">手工构造 COT 提示 <img class="emoji" draggable="false" alt="✖️" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2716.svg" data-marp-twemoji=""/> 内在 COT 激发 <img class="emoji" draggable="false" alt="✔️" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2714.svg" data-marp-twemoji=""/></h4>
 <p>汇报人：<a href="http://alleyf.github.io">范财胜</a><br />
-所属单位：武汉理工大学<br />
 汇报时间：2024-04-19<br />
 联系方式：<a href="mailto:alleyf@qq.com">alleyf@qq.com</a></p>
 </section>
@@ -169,7 +168,7 @@
 <s>图 4 不同解码步骤中的替代 token 的分析</s></p>
 <blockquote>
 <p>那么为什么选择解码的第一个步骤而不是其他阶段进行分支呢？<br />
-<mark>现象：</mark> 早期分支，例如在第一个解码步骤，显著增强了潜在路径的多样性。相反，<strong>后期分支会受到先前生成的令牌的显着影响</strong>。例如，以标记“5”启动会大大降低纠正错误路径的可能性。尽管如此，<strong>最佳分支点可能会因任务而异</strong>；例如，在年奇偶校验任务中，中路径分支可以有效地产生正确的 CoT 路径。<br />
+<mark>现象：</mark> 早期分支，例如在第一个解码步骤，显著增强了潜在路径的多样性。相反，<strong>后期分支会受到先前生成的令牌的显著影响</strong>。例如，以标记“5”启动会大大降低纠正错误路径的可能性。尽管如此，<strong>最佳分支点可能会因任务而异</strong>；例如，在年奇偶校验任务中，中路径分支可以有效地产生正确的 CoT 路径。<br />
 <mark>思考：</mark> <strong>悬崖勒马，为时不晚</strong>！</p>
 </blockquote>
 <footer> <em><a href="http://alleyf.github.io">范财胜</a></em>  <em><a href="mailto:alleyf@qq.com">alleyf@qq.com</a></em> <em>2024-04-19</em></footer>
@@ -194,7 +193,7 @@
 </blockquote>
 <p>模型选择</p>
 <ul>
-<li>PaLM-2 预训练的模型系列，具有不同的尺度，范围从 X-Small、Small、Medium 和 Large；</li>
+<li>PaLM-2 预训练的模型系列，具有不同的尺度，范围从 X-Small、Small、Medium 到 Large；</li>
 <li>Mistral-7B 开源模型，实验主要集中在预训练模型上，但也包括指令调整模型（表示为“inst-tuned”或“IT”）的实验。</li>
 </ul>
 <p>在一系列推理基准测试中评估了 CoT 解码方法，证明了其在解码过程中不需要专门的提示即可成功恢复 CoT 推理路径的能力。</p>
