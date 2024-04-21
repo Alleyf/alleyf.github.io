@@ -22,7 +22,16 @@
   "showShortcuts": true,
   "markdownOnly": false,
   "unresolvedLinks": false,
-  "recentFilesStore": [],
+  "recentFilesStore": [
+    {
+      "filepath": "source/_posts/科研学习/会议讨论/周会.md",
+      "timestamp": 1713664259034
+    },
+    {
+      "filepath": "source/_posts/运维开发/各种环境配置.md",
+      "timestamp": 1713608865793
+    }
+  ],
   "starredFileStore": [],
   "searchDelay": 0,
   "replaceNewTabs": true,

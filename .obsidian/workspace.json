@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "43ecf5ff630e5d7f",
+        "id": "cbe5ed0220cfcbc2",
         "type": "tabs",
         "children": [
           {
-            "id": "6bb66bcfe506445d",
+            "id": "f24d2229abb8fee2",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -19,22 +19,8 @@
                 "source": false
               }
             }
-          },
-          {
-            "id": "eba1ab8dd10025a6",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "source/_posts/科研学习/论文总结/Chain-of-Thought Reasoning Without Prompting.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -69,7 +55,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/科研学习/论文总结/Chain-of-Thought Reasoning Without Prompting.md"
+                "file": "source/_posts/科研学习/会议讨论/周会.md"
               }
             }
           }
@@ -161,7 +147,7 @@
       "obsidian-memos:Memos": false
     }
   },
-  "active": "7debd791db616930",
+  "active": "f24d2229abb8fee2",
   "lastOpenFiles": [
     "public/2024/04/c649f2c38f75.html",
     "public/2024/04/40f64f9b6cf6.html",
