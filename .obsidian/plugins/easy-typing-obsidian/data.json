@@ -9,7 +9,7 @@
   "ChineseEnglishSpace": true,
   "ChineseNumberSpace": true,
   "EnglishNumberSpace": false,
-  "ChineseNoSpace": false,
+  "ChineseNoSpace": true,
   "PunctuationSpace": false,
   "AutoCapital": false,
   "AutoCapitalMode": "typing",
@@ -19,7 +19,7 @@
   "InlineLinkSpaceMode": 1,
   "InlineLinkSmartSpace": true,
   "UserDefinedRegSwitch": true,
-  "UserDefinedRegExp": "{{.*?}}|++\n<.*?>|--\n\\[\\!.*?\\][-+]{0,1}|-+\n(file:///|https?://|ftp://|obsidian://|zotero://|www.)[^\\s（）《》。,，！？;；：“”‘’\\)\\(\\[\\]\\{\\}']+|++\n\n[a-zA-Z0-9_\\-.]+@[a-zA-Z0-9_\\-.]+|++\n(?<!#)#[\\u4e00-\\u9fa5\\w\\/]+|++",
+  "UserDefinedRegExp": "{{.*?}}|++\n<.*?>|--\n\\[\\!.*?\\][-+]{0,1}|-+\n(file:///|https?://|ftp://|obsidian://|zotero://|www.)[^\\s（）《》。,，！？;；：“”‘’\\)\\(\\[\\]\\{\\}']+|++\n\n[a-zA-Z0-9_\\-.]+@[a-zA-Z0-9_\\-.]+|++\n(?<!#)#[\\u4e00-\\u9fa5\\w\\/]+|++\n\n(?<=[\\u4e00-\\u9fa5])\\s+(?=[\\u4e00-\\u9fa5])\n",
   "debug": false,
   "userSelRepRuleTrigger": [
     "-",

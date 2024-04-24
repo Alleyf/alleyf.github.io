@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "cbe5ed0220cfcbc2",
+        "id": "67bfc1b394237c72",
         "type": "tabs",
         "children": [
           {
-            "id": "f24d2229abb8fee2",
+            "id": "d2b1a0b30ee71894",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/科研学习/会议讨论/周会.md",
+                "file": "source/_posts/科研学习/调研报告/国家重点研究计划课题四-任务三-调研.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -55,7 +55,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/科研学习/会议讨论/周会.md"
+                "file": "source/_posts/科研学习/调研报告/国家重点研究计划课题四-任务三-调研.md"
               }
             }
           }
@@ -90,8 +90,7 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 1
+        ]
       },
       {
         "id": "94ed18f343f34498",
@@ -147,8 +146,12 @@
       "obsidian-memos:Memos": false
     }
   },
-  "active": "f24d2229abb8fee2",
+  "active": "d2b1a0b30ee71894",
   "lastOpenFiles": [
+    "source/_posts/科研学习/会议讨论/周会.md",
+    "source/_posts/科研学习/调研报告/国家重点研究计划课题四-任务三-调研.md",
+    "source/_posts/科研学习/学习方法/Paper_Reading_Method.md",
+    "source/_posts/科研学习/学习方法/科研思路.md",
     "public/2024/04/c649f2c38f75.html",
     "public/2024/04/40f64f9b6cf6.html",
     "public/2024/04/c6fa1edd5f61.html",
@@ -159,22 +162,17 @@
     "public/tags/科研，CoT",
     "public/tags/架构/index.html",
     "public/tags/架构",
-    "source/_posts/科研学习/会议讨论/周会.md",
     "source/_posts/后端开发/未命名看板.md",
     "source/_posts/科研学习/论文总结/Chain-of-Thought Reasoning Without Prompting.md",
     "Chain-of-Thought Reasoning Without Prompting.md",
     "source/_posts/后端开发/DDD-领域驱动设计.md",
     "source/_posts/科研学习/科研学习.md",
-    "public/2024/04/b05d9d8e6654.html",
     "source/_posts/科研学习/论文总结/BERT Pre-training of Deep Bidirectional Transformers for Language Understanding.md",
     "diary/2024-04-05.md",
     "Excalidraw/草图.md",
-    "source/_posts/科研学习/学习方法/Paper_Reading_Method.md",
-    "source/_posts/科研学习/调研报告/国家重点研究计划课题四-任务三-调研.md",
     "source/_posts/科研学习/调研报告/多源异构司法数据汇聚融合-解决方案调研.md",
     "source/_posts/运维开发/各种环境配置.md",
     "source/_posts/科研学习/论文总结/论文总结.md",
-    "source/_posts/科研学习/学习方法/科研思路.md",
     "source/_posts/科研学习/学习方法/DL概念知识库.md",
     "source/_posts/科研学习/论文总结/Explainability for large language models A survey.md",
     "source/_posts/科研学习/论文总结/Deep residual learning for image recognition.md",

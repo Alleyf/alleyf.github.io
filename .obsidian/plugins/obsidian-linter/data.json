@@ -1,7 +1,7 @@
 {
   "ruleConfigs": {
     "add-blank-line-after-yaml": {
-      "enabled": false
+      "enabled": true
     },
     "escape-yaml-special-characters": {
       "enabled": false,
@@ -93,7 +93,7 @@
       "enabled": false
     },
     "auto-correct-common-misspellings": {
-      "enabled": true,
+      "enabled": false,
       "ignore-words": ""
     },
     "blockquote-style": {
@@ -165,21 +165,21 @@
       "tabsize": 4
     },
     "empty-line-around-blockquotes": {
-      "enabled": false
+      "enabled": true
     },
     "empty-line-around-code-fences": {
-      "enabled": false
+      "enabled": true
     },
     "empty-line-around-math-blocks": {
-      "enabled": false
+      "enabled": true
     },
     "empty-line-around-tables": {
-      "enabled": false
+      "enabled": true
     },
     "heading-blank-lines": {
-      "enabled": false,
+      "enabled": true,
       "bottom": false,
-      "empty-line-after-yaml": false
+      "empty-line-after-yaml": true
     },
     "line-break-at-document-end": {
       "enabled": false
@@ -188,10 +188,10 @@
       "enabled": false
     },
     "paragraph-blank-lines": {
-      "enabled": false
+      "enabled": true
     },
     "remove-empty-lines-between-list-markers-and-checklists": {
-      "enabled": false
+      "enabled": true
     },
     "remove-link-spacing": {
       "enabled": false
@@ -241,6 +241,21 @@
     },
     "remove-multiple-blank-lines-on-paste": {
       "enabled": false
+    },
+    "dedupe-yaml-array-values": {
+      "enabled": false,
+      "dedupe-alias-key": true,
+      "dedupe-tag-key": true,
+      "dedupe-array-keys": true,
+      "ignore-keys": ""
+    },
+    "sort-yaml-array-values": {
+      "enabled": false,
+      "sort-alias-key": true,
+      "sort-tag-key": true,
+      "sort-array-keys": true,
+      "ignore-keys": "",
+      "sort-order": "Ascending Alphabetical"
     }
   },
   "lintOnSave": true,

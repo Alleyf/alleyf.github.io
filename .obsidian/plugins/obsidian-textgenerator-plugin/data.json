@@ -1,6 +1,6 @@
 {
   "version": "0.5.13",
-  "endpoint": "https://api.chatanywhere.com.cn",
+  "endpoint": "https://api.chatanywhere.tech",
   "models": {},
   "api_key": "",
   "encrypt_keys": false,
@@ -71,8 +71,9 @@
       "base_path": "https://api.openai.com/v1"
     },
     "OpenAI Chat (Langchain)": {
-      "basePath": "https://api.chatanywhere.com.cn",
-      "api_key": ""
+      "basePath": "https://api.chatanywhere.tech",
+      "api_key": "",
+      "model": "gpt-3.5-turbo-0613"
     },
     "Google Palm (Langchain)": {},
     "OpenAI Instruct (Langchain)": {
@@ -98,5 +99,6 @@
   "LLMProviderOptionsKeysHashed": {
     "OpenAI Chat (Langchain).api_key": "__@#key_prefix#@__sk-xyiJ3GM0Fx5C1EeIg89qHgoSVv7iZ0y6Mt72RSysupNskOig"
   },
-  "api_key_encrypted": "__@#key_prefix#@__sk-xyiJ3GM0Fx5C1EeIg89qHgoSVv7iZ0y6Mt72RSysupNskOig"
+  "api_key_encrypted": "__@#key_prefix#@__sk-xyiJ3GM0Fx5C1EeIg89qHgoSVv7iZ0y6Mt72RSysupNskOig",
+  "model": "gpt-3.5-turbo-0613"
 }

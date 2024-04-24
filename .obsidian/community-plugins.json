@@ -24,5 +24,6 @@
   "obsidian-echarts",
   "obsidian-kanban",
   "obsidian-table-generator",
-  "obsidian-theme-design-utilities"
+  "obsidian-theme-design-utilities",
+  "obsidian-linter"
 ]

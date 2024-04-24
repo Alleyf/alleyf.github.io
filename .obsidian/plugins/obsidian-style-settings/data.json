@@ -74,8 +74,6 @@
   "blue-topaz-theme@@text-highlight@@light": "#000000",
   "blue-topaz-theme@@text-highlight@@dark": "#FFFFFF",
   "blue-topaz-theme@@ob-pdf-style-selection-light": "pdf-style-default-light",
-  "blue-topaz-theme@@activeline-background@@light": "#00000000",
-  "blue-topaz-theme@@activeline-background@@dark": "#FFFFFF00",
   "blue-topaz-theme@@accent-strong@@light": "#7B7CE4",
   "blue-topaz-theme@@accent-strong@@dark": "#7B7CE4",
   "blue-topaz-theme@@toggle-inline-title-background": false,
@@ -109,5 +107,15 @@
   "blue-topaz-theme@@memos-inputbox": true,
   "blue-topaz-theme@@callout-style-settings": "admonition-bg-color-same",
   "blue-topaz-theme@@full-width-callout": false,
-  "blue-topaz-theme@@admonition-bg-color-same": false
+  "blue-topaz-theme@@admonition-bg-color-same": false,
+  "blue-topaz-theme@@clutter-free-headings": true,
+  "blue-topaz-theme@@funny-header-anim": false,
+  "blue-topaz-theme@@font-family-change-to-default": false,
+  "blue-topaz-theme@@show-border-table": true,
+  "blue-topaz-theme@@h1-toggle-underline": true,
+  "blue-topaz-theme@@h1-toggle-short-underline": false,
+  "blue-topaz-theme@@header-1-background": false,
+  "blue-topaz-theme@@h2-toggle-underline": false,
+  "blue-topaz-theme@@activeline-background@@light": "#5BD1912E",
+  "blue-topaz-theme@@activeline-background@@dark": "#5BD1912E"
 }

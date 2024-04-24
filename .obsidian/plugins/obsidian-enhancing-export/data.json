@@ -1,7 +1,8 @@
 {
   "items": [
     {
-      "name": "Markdown"
+      "name": "Markdown",
+      "customArguments": ""
     },
     {
       "name": "Markdown (Hugo)"
@@ -10,8 +11,7 @@
       "name": "Html"
     },
     {
-      "name": "TextBundle",
-      "arguments": "-f ”${fromFormat}“ --resource-path=\"${currentDir}\" --resource-path=\"${attachmentFolderPath}\" --lua-filter=\"${luaDir}/markdown.lua\" -V media_dir=\"${outputDir}/${outputFileName}.textbundle/assets\" -s -o \"${outputDir}/${outputFileName}.textbundle/text.md\" -t commonmark_x-attributes"
+      "name": "TextBundle"
     },
     {
       "name": "Typst"
@@ -21,7 +21,8 @@
       "customArguments": "--pdf-engine=xelatex"
     },
     {
-      "name": "Word (.docx)"
+      "name": "Word (.docx)",
+      "customArguments": "--from markdown-yaml_metadata_block"
     },
     {
       "name": "OpenOffice"
@@ -49,31 +50,15 @@
     },
     {
       "name": "Bibliography"
-    },
-    {
-      "name": "my-pdf",
-      "type": "pandoc",
-      "arguments": "-f markdown --resource-path=\"${currentDir}\" --resource-path=\"${attachmentFolderPath}\" --lua-filter=\"${luaDir}/pdf.lua\" ${ options.textemplate ? `--resource-path=\"${pluginDir}/textemplate\" --template=\"${options.textemplate}\"` : ` ` } -s -o \"${outputPath}\" -t pdf",
-      "customArguments": "--pdf-engine=xelatex --template=\"${pluginDir}/textemplate/eisvogel.tex\" --toc --number-sections",
-      "optionsMeta": {
-        "textemplate": "preset:textemplate"
-      },
-      "extension": ".pdf",
-      "openExportedFile": true,
-      "runCommand": false
     }
   ],
-  "pandocPath": {},
-  "defaultExportDirectoryMode": "Custom",
+  "defaultExportDirectoryMode": "Auto",
   "openExportedFile": true,
   "env": {},
   "showExportProgressBar": true,
-  "customDefaultExportDirectory": {
-    "win32": "A:\\dashboard"
-  },
-  "lastEditName": "PDF",
   "lastExportDirectory": {
     "win32": "A:\\dashboard"
   },
-  "lastExportType": "my-pdf"
+  "lastEditName": "Markdown",
+  "lastExportType": "Word (.docx)"
 }
