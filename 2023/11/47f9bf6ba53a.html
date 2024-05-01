@@ -67,8 +67,9 @@
 <meta property="og:image" content="http://qnpicmap.fcsluck.top/pics/202312010946492.png">
 <meta property="og:image" content="http://qnpicmap.fcsluck.top/pics/202312010959280.png">
 <meta property="og:image" content="https://qnpicmap.fcsluck.top/pics/202312220944712.png">
+<meta property="og:image" content="https://telegra.ph/file/2944dd7dcd136f629e731.png">
 <meta property="article:published_time" content="2023-11-13T14:02:25.000Z">
-<meta property="article:modified_time" content="2024-04-21T14:59:34.490Z">
+<meta property="article:modified_time" content="2024-05-01T14:14:45.029Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="AIGC">
 <meta property="article:tag" content="NLP">
@@ -351,7 +352,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          26k 字
+          27k 字
         
       </span>
     
@@ -362,7 +363,7 @@
         
         
         
-          221 分钟
+          225 分钟
         
       </span>
     
@@ -413,7 +414,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：3 天前
+                    本文最后更新于：2 小时前
                   
                 
               </p>
@@ -531,11 +532,11 @@
 <h3 id="4-1-2-大模型数据集研究（何雨欣）"><a href="#4-1-2-大模型数据集研究（何雨欣）" class="headerlink" title="4.1.2 大模型数据集研究（何雨欣）"></a>4.1.2 大模型数据集研究（何雨欣）</h3><p>[[司法领域大模型调研一]]</p>
 <ol>
 <li>CIFA 数据集</li>
-<li>复旦大学 DISC 数据集<br><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310201112594.png" srcset="/img/loading.gif" lazyload alt="image.png"><blockquote>
+<li>复旦大学 DISC 数据集<br><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310201112594.png" srcset="/img/loading.gif" lazyload alt="image.png"></li>
+</ol>
+<blockquote>
 <p>大模型数据集存在什么问题</p>
 </blockquote>
-</li>
-</ol>
 <h3 id="4-1-3-国自然科学基金"><a href="#4-1-3-国自然科学基金" class="headerlink" title="4.1.3 国自然科学基金"></a>4.1.3 国自然科学基金</h3><p>几个大部分（科学问题）</p>
 <ol>
 <li>知识图谱构建</li>
@@ -832,14 +833,10 @@
 <p> BM25（Best Match 25）是一种用于信息检索的算法，它在搜索引擎中被广泛应用。BM25 算法是一种基于概率模型的非常有效的排序算法，它考虑了查询词项的频率、文档长度以及文档中词项的分布情况。</p>
 <p>BM25 算法的原理如下：</p>
 <ol>
-<li><p>首先，计算查询词项在文档中出现的频率（term frequency，TF）和查询词项在整个文集中出现的频率（document frequency，DF）。这些频率信息将用于衡量一个文档与查询的相关性。</p>
-</li>
-<li><p>然后，计算一个调整因子（inverse document frequency，IDF），来衡量一个词项对于整个文集来说有多重要。IDF 值越大表示该词项越重要且稀有。</p>
-</li>
-<li><p>接着，计算一个得分公式（score），该公式综合考虑了 TF、DF 和 IDF 等因素。具体而言，得分公式为：score &#x3D; IDF * (k1 + 1) * TF &#x2F; (k1 * (1 - b + b * docLength &#x2F; avgDocLength) + TF)，其中 k1 和 b 是两个可调参数，docLength 是文档长度，avgDocLength 是平均文档长度。</p>
-</li>
-<li><p>最后，对所有文档进行排序，并返回与查询最相关的前几个结果。</p>
-</li>
+<li>首先，计算查询词项在文档中出现的频率（term frequency，TF）和查询词项在整个文集中出现的频率（document frequency，DF）。这些频率信息将用于衡量一个文档与查询的相关性。</li>
+<li>然后，计算一个调整因子（inverse document frequency，IDF），来衡量一个词项对于整个文集来说有多重要。IDF 值越大表示该词项越重要且稀有。</li>
+<li>接着，计算一个得分公式（score），该公式综合考虑了 TF、DF 和 IDF 等因素。具体而言，得分公式为：score &#x3D; IDF * (k1 + 1) * TF &#x2F; (k1 * (1 - b + b * docLength &#x2F; avgDocLength) + TF)，其中 k1 和 b 是两个可调参数，docLength 是文档长度，avgDocLength 是平均文档长度。</li>
+<li>最后，对所有文档进行排序，并返回与查询最相关的前几个结果。</li>
 </ol>
 <p>总结起来，BM25 算法通过计算 TF、DF 和 IDF 等因素来衡量一个文档与查询的相关性，并通过得分公式对文档进行排序。它是一种非常有效的排序算法，可以提高搜索引擎的检索质量。</p>
 <p><em>解决方案</em></p>
@@ -854,8 +851,10 @@
 <li>LeCaRD<br>Legal Case Retrieval Dataset(LeCaRD)包含 107 个查询用例和 10,700 个候选用例。查询和结果均来自中最高人民法院公布的刑事案件。<br><img src="http://qnpicmap.fcsluck.top/pics/202311240926992.png" srcset="/img/loading.gif" lazyload alt="image.png"><br><u>法律事实和法律问题</u><br>区别：</li>
 <li>焦点不同：法律事实关注具体事件，而法律问题关注法律规则和原则的适用。</li>
 <li>证明和解释：法律事实通常需要证据来证明，而法律问题需要解释和适用法律规则。</li>
-<li>具体与抽象：法律事实是案件中的具体情况，而法律问题是更为抽象的概念，涉及对法律原则的理解和运用。<br>举例说明：<br><font color="#a5a5a5">在一起合同纠纷中，合同的签订和履行过程（法律事实）可能需要通过证据来证明。然而，法院在解决法律问题时可能需要考虑合同法规定的原则，如合同的成立条件、解释规则、违约后的救济等（法律问题）。</font><br><em>评估</em><br>无排序的度量指标：精度(P),召回率(R),微观 F1(Mi-F1),宏观 F1(Ma-F1)<br>信息检索系统常用的度量指标：平均平均精度(MAP),平均倒数秩 MRR),归一化贴现累积增益(NDCG)<br>可以仅考虑一定数量的顶级推荐 k,，而不是通常的精度和召回率。这样，该指标就不会关心排名较低的结果。根据所选的 k 值，相应的度量分别表示为 precision@k (“k 处的精度”)和 recall(@k(“k 处的召回率”)。<br>DCG（贴现累计增益指标）：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cardlink">url: https://poe.com/s/ORZPvWRkZ9BG9pxtXtC9<br>title: &quot;DCG指标是什么举例说明&quot;<br>description: &quot;Poe lets you ask questions, get instant answers, and have back-and-forth conversations with AI. Gives access to GPT-4, gpt-3.5-turbo, Claude from Anthropic, and a variety of other bots.&quot;<br>host: poe.com<br>favicon: https://psc2.cf2.poecdn.net/favicon.svg<br>image: https://qph.fs.quoracdn.net/main-qimg-5dc8be84df58be9e253b3fc8cea0f1d8<br></code></pre></td></tr></table></figure></li>
+<li>具体与抽象：法律事实是案件中的具体情况，而法律问题是更为抽象的概念，涉及对法律原则的理解和运用。<br>举例说明：<br><font color="#a5a5a5">在一起合同纠纷中，合同的签订和履行过程（法律事实）可能需要通过证据来证明。然而，法院在解决法律问题时可能需要考虑合同法规定的原则，如合同的成立条件、解释规则、违约后的救济等（法律问题）。</font><br><em>评估</em><br>无排序的度量指标：精度(P),召回率(R),微观 F1(Mi-F1),宏观 F1(Ma-F1)<br>信息检索系统常用的度量指标：平均平均精度(MAP),平均倒数秩 MRR),归一化贴现累积增益(NDCG)<br>可以仅考虑一定数量的顶级推荐 k,，而不是通常的精度和召回率。这样，该指标就不会关心排名较低的结果。根据所选的 k 值，相应的度量分别表示为 precision@k (“k 处的精度”)和 recall(@k(“k 处的召回率”)。<br>DCG（贴现累计增益指标）：</li>
 </ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cardlink">url: https://poe.com/s/ORZPvWRkZ9BG9pxtXtC9<br>title: &quot;DCG指标是什么举例说明&quot;<br>description: &quot;Poe lets you ask questions, get instant answers, and have back-and-forth conversations with AI. Gives access to GPT-4, gpt-3.5-turbo, Claude from Anthropic, and a variety of other bots.&quot;<br>host: poe.com<br>favicon: https://psc2.cf2.poecdn.net/favicon.svg<br>image: https://qph.fs.quoracdn.net/main-qimg-5dc8be84df58be9e253b3fc8cea0f1d8<br></code></pre></td></tr></table></figure>
+
 <p><a target="_blank" rel="noopener" href="https://poe.com/s/ORZPvWRkZ9BG9pxtXtC9">Conversation with Claude-instant-100k on Poe</a></p>
 <p><em>结果</em></p>
 <p>通过对案例输入进行适当的重新表述，集成到基线中来评估 PromptCase,其显著提高检索的性能。</p>
@@ -1003,12 +1002,9 @@
 <p>分类则是一种有监督学习技术，它<strong>基于已知的标签或类别信息来构建一个预测模型</strong>。分类算法通过学习训练集中的样本特征与其对应标签之间的关系，并根据这些关系对新样本进行预测分类。分类算法需要有带有正确标签的训练数据集来进行模型训练。</p>
 <p>总结而言，聚类和分类之间主要区别在于：</p>
 <ol>
-<li><p>监督学习 vs 无监督学习：分类是一种监督学习技术，需要已知标签或类别信息进行模型训练；而聚类是一种无监督学习技术，不需要任何已知的标签或类别信息。</p>
-</li>
-<li><p>预测模型 vs 数据探索：分类算法构建一个预测模型，可以对新样本进行分类预测；聚类算法通过发现数据中的模式和结构，用于数据探索和发现潜在的模式。</p>
-</li>
-<li><p>样本标签 vs 簇：分类算法通过样本标签将数据分为不同的类别；聚类算法</p>
-</li>
+<li>监督学习 vs 无监督学习：分类是一种监督学习技术，需要已知标签或类别信息进行模型训练；而聚类是一种无监督学习技术，不需要任何已知的标签或类别信息。</li>
+<li>预测模型 vs 数据探索：分类算法构建一个预测模型，可以对新样本进行分类预测；聚类算法通过发现数据中的模式和结构，用于数据探索和发现潜在的模式。</li>
+<li>样本标签 vs 簇：分类算法通过样本标签将数据分为不同的类别；聚类算法</li>
 </ol>
 <p> <img src="http://qnpicmap.fcsluck.top/pics/202312010959280.png" srcset="/img/loading.gif" lazyload></p>
 <p><strong>K-means 聚类</strong></p>
@@ -1383,15 +1379,15 @@ H --&gt; N[GNN-分裂层次聚类算法]
 <h1 id="37-2024-03-15-学术例会"><a href="#37-2024-03-15-学术例会" class="headerlink" title="37 2024-03-15 (学术例会)"></a>37 2024-03-15 (学术例会)</h1><h1 id="38-2024-03-17-（项目例会）"><a href="#38-2024-03-17-（项目例会）" class="headerlink" title="38 2024-03-17 （项目例会）"></a>38 2024-03-17 （项目例会）</h1><blockquote>
 <p>[!NOTE] 周会总结</p>
 <ol>
-<li><h2 id="已学内容："><a href="#已学内容：" class="headerlink" title="已学内容："></a>已学内容：</h2></li>
+<li>已学内容：</li>
 <li>下周计划：<ul>
 <li>开始开发毕业设计数据分析和redis监控功能，撰写第二次阶段性报告；</li>
 <li>调整直播相关数据库表设计，开发直播课程增删改查基本操作接口；</li>
 <li>配合师兄搭建司法服务平台基础架构</li>
 </ul>
 </li>
-<li><h2 id="学习感悟："><a href="#学习感悟：" class="headerlink" title="学习感悟："></a>学习感悟：</h2></li>
-<li><h2 id="指导建议："><a href="#指导建议：" class="headerlink" title="指导建议："></a>指导建议：</h2></li>
+<li>学习感悟：</li>
+<li>指导建议：</li>
 <li>总体任务：<ul>
 <li>毕业设计(⭐⭐⭐⭐⭐)：测试本地爬虫云端部署，处理数据智能处理bug，撰写阶段性报告，起草毕业设计论文大纲</li>
 <li>etms(⭐⭐⭐⭐⭐)：账户管理处添加实名认证接口，实现手机号+验证码直接注册；实现直播频道、角色、分类和配置的增删改查基本操作</li>
@@ -1421,7 +1417,7 @@ H --&gt; N[GNN-分裂层次聚类算法]
 <li>修改配置AICC平台依赖的中间件，辅助师兄毕业设计功能落地。</li>
 </ul>
 </li>
-<li><h2 id="学习感悟：-1"><a href="#学习感悟：-1" class="headerlink" title="学习感悟："></a>学习感悟：</h2></li>
+<li>学习感悟：</li>
 <li>指导建议：<ul>
 <li>爬虫能爬多少爬取多少（[128193,1892,793699,352047,38308]）</li>
 <li>增加多个数据源，除了openlaw，还要添加其他的</li>
@@ -1461,7 +1457,8 @@ H --&gt; N[GNN-分裂层次聚类算法]
 <li>完善aicc落地功能</li>
 </ul>
 </li>
-<li><h2 id="学习感悟：-2"><a href="#学习感悟：-2" class="headerlink" title="学习感悟："></a>学习感悟：</h2></li>
+<li><p>学习感悟：</p>
+</li>
 <li><p>指导建议：</p>
 <ul>
 <li>完成阿里云手机号注册登录修改</li>
@@ -1502,8 +1499,8 @@ H --&gt; N[GNN-分裂层次聚类算法]
 <li>学习TypeScript</li>
 </ul>
 </li>
-<li><h2 id="学习感悟：-3"><a href="#学习感悟：-3" class="headerlink" title="学习感悟："></a>学习感悟：</h2></li>
-<li><h2 id="指导建议：-1"><a href="#指导建议：-1" class="headerlink" title="指导建议："></a>指导建议：</h2></li>
+<li>学习感悟：</li>
+<li>指导建议：</li>
 <li>总体任务：<ul>
 <li>毕业设计(⭐⭐⭐⭐⭐)：</li>
 <li>etms(⭐⭐⭐⭐⭐)：</li>
@@ -1535,8 +1532,8 @@ H --&gt; N[GNN-分裂层次聚类算法]
 <li>查询项目所有的直播课程，根据项目id查询其所有的直播课程</li>
 </ul>
 </li>
-<li><h2 id="学习感悟：-4"><a href="#学习感悟：-4" class="headerlink" title="学习感悟："></a>学习感悟：</h2></li>
-<li><h2 id="指导建议：-2"><a href="#指导建议：-2" class="headerlink" title="指导建议："></a>指导建议：</h2></li>
+<li>学习感悟：</li>
+<li>指导建议：</li>
 <li>总体任务：<ul>
 <li>毕业设计(⭐⭐⭐⭐⭐)：</li>
 <li>etms(⭐⭐⭐⭐⭐)：</li>
@@ -1565,12 +1562,46 @@ H --&gt; N[GNN-分裂层次聚类算法]
 <li>添加课程使用频次字段，当项目添加课程时频次+1；除此以外根据飞书<a target="_blank" rel="noopener" href="https://yv7s0nk4c8z.feishu.cn/wiki/YdKowu6yHi6C76kAOl6c46cXnQd">Docs</a>数据表头里的课程数据补全现有课程数据表字段</li>
 </ul>
 </li>
-<li><h2 id="学习感悟：-5"><a href="#学习感悟：-5" class="headerlink" title="学习感悟："></a>学习感悟：</h2></li>
+<li>学习感悟：</li>
 <li>指导建议：<ul>
 <li>分节整理评价指标：指标定义，实施方法，评价结果</li>
 <li>基础指标，借鉴其他领域指标，司法特色指标</li>
 </ul>
 </li>
+<li>总体任务：<ul>
+<li>毕业设计(⭐⭐⭐⭐⭐)：</li>
+<li>etms(⭐⭐⭐⭐⭐)：</li>
+<li>国重点(⭐⭐⭐)：</li>
+<li>学术汇报(⭐⭐⭐⭐)：</li>
+<li>落地辅助(⭐⭐⭐⭐)：</li>
+<li>司法服务平台基建(⭐⭐⭐⭐⭐)：</li>
+<li>个人生活（⭐⭐⭐⭐⭐没时间了）：矫正牙齿，考驾照，锻炼身体</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+<blockquote>
+<p>[!NOTE] 周会总结</p>
+<ol>
+<li>已学内容：<ul>
+<li>撰写毕业设计论文第四章和第五章（85%）并重新入库毕业设计系统的数据库表</li>
+<li>直播课程业务代码优化与完善（补充课程表相关字段、查询课程学科树并优化查询课程速度）及测试</li>
+</ul>
+</li>
+<li>下周计划：<ul>
+<li><input checked="" disabled="" type="checkbox"> 撰写完毕业设计初稿内容（参考文献）</li>
+<li><input checked="" disabled="" type="checkbox"> 完善毕业设计系统完整功能测试（下周要进行演示）</li>
+<li><input checked="" disabled="" type="checkbox"> 完善系统管理的双token授权和刷新、密码登录改为非对称加密（待商量）</li>
+<li><input disabled="" type="checkbox"> 添加学员选课相关接口，多选多个课程（必修、选修）</li>
+<li><input disabled="" type="checkbox"> 联调测试并修改直播课程相关业务接口功能</li>
+<li><input disabled="" type="checkbox"> 开发AICC事件抽取落地的文书管理业务接口</li>
+<li><input checked="" disabled="" type="checkbox"> 整理撰写GLED论文实验部分</li>
+<li><input checked="" disabled="" type="checkbox"> 调研国重点（综合指标、服务审判执行指标、服务廉洁司法指标、服务社会经济发展指标、服务人民群众指标，目前应用指标属于数据本身统计指标不是数据资产评价的指标），继续调研和梳理数据资产评价指标以及评价方法，从五个维度探究，基础维度、质量维度、应用维度、成本维度、风险维度，各维度细分一级指标和二级指标等，先确定指标和简单的方法描述</li>
+<li><img src="https://telegra.ph/file/2944dd7dcd136f629e731.png" srcset="/img/loading.gif" lazyload></li>
+</ul>
+</li>
+<li>学习感悟：</li>
+<li>指导建议：</li>
 <li>总体任务：<ul>
 <li>毕业设计(⭐⭐⭐⭐⭐)：</li>
 <li>etms(⭐⭐⭐⭐⭐)：</li>
@@ -1653,7 +1684,7 @@ H --&gt; N[GNN-分裂层次聚类算法]
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年4月21日</div>
+          <div>2024年5月1日</div>
         </div>
       
       <div class="license-meta-item">
