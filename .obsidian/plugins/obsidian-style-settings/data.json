@@ -87,7 +87,7 @@
   "blue-topaz-theme@@link-underline-internal": false,
   "blue-topaz-theme@@circular-checkbox": false,
   "blue-topaz-theme@@toggle-checked-decoration": true,
-  "blue-topaz-theme@@justify-align": true,
+  "blue-topaz-theme@@justify-align": false,
   "blue-topaz-theme@@style-options-for-kanban-plugin-dynamic": "style-options-for-kanban-plugin-dynamic-neon-one",
   "blue-topaz-theme@@hr-for-pagination": true,
   "blue-topaz-theme@@tag-style-option": "rainbow-tag",
