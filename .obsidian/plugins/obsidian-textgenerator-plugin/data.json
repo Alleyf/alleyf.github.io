@@ -51,9 +51,9 @@
   },
   "autoSuggestOptions": {
     "isEnabled": false,
-    "delay": 300,
+    "delay": 49,
     "numberOfSuggestions": 5,
-    "triggerPhrase": "  ",
+    "triggerPhrase": "",
     "stop": ".",
     "showStatus": true
   },
@@ -73,7 +73,7 @@
     "OpenAI Chat (Langchain)": {
       "basePath": "https://api.chatanywhere.tech",
       "api_key": "",
-      "model": "gpt-3.5-turbo-0613"
+      "model": "gpt-3.5-turbo"
     },
     "Google Palm (Langchain)": {},
     "OpenAI Instruct (Langchain)": {
@@ -84,21 +84,25 @@
     "Huggingface (Langchain)": {},
     "Ollama (Langchain)": {},
     "Default (Custom)": {
-      "endpoint": "http://localhost:11434/api/generate ",
+      "endpoint": "https://api.deepseek.com/v1",
       "handlebars_headers_in": "{\n      \"Content-Type\": \"application/json\",\n      \"authorization\": \"Bearer {{api_key}}\"\n}",
-      "handlebars_body_in": "{\n    \"model\": \"{{model}}\",\n    \"temperature\": {{temperature}},\n    \"top_p\": {{top_p}},\n    \"frequency_penalty\": {{frequency_penalty}},\n    \"presence_penalty\": {{presence_penalty}},\n    \"max_tokens\": {{max_tokens}},\n    \"stream\": {{stream}},\n\t\"stop\": \"{{stop}}\",\n    \"prompt\": \"{{escp content}}\",\n    \"messages\": [\n      {{#each messages}}{{#if @index}},{{/if}}\n      {\n        \"role\": \"{{role}}\",\n        \"content\": \"{{escp content}}\"\n      }{{/each}}\n    ]\n  }",
+      "handlebars_body_in": "{\n    \"model\": \"{{model}}\",\n    \"temperature\": {{temperature}},\n    \"messages\": [\n      {{#each messages}}{{#if @index}},{{/if}}\n      {\n        \"role\": \"{{role}}\",\n        \"content\": \"{{escp content}}\"\n      }{{/each}}\n    ]\n  }",
       "path_to_choices": "choices",
       "path_to_message_content": "message.content",
       "path_to_error_message": "error.message",
       "sanatization_streaming": "(chunk) => {\n    let resultText = \"\";\n    const lines = chunk.split(\"\\ndata: \");\n  \n    const parsedLines = lines\n      .map((line) => line.replace(/^data: /, \"\").trim()) // Remove the \"data: \" prefix\n      .filter((line) => line !== \"\" && line !== \"[DONE]\") // Remove empty lines and \"[DONE]\"\n      .map((line) => JSON.parse(line)); // Parse the JSON string\n  \n    for (const parsedLine of parsedLines) {\n      const { choices } = parsedLine;\n      const { delta } = choices[0];\n      const { content } = delta;\n      // Update the UI with the new content\n      if (content) {\n        resultText += content;\n      }\n    }\n    return resultText;\n  }",
-      "model": "gemma:2b",
+      "model": "deepseek-chat",
       "presence_penalty": 0.5,
-      "top_p": 1
+      "top_p": 1,
+      "api_key": "",
+      "streamable": true,
+      "role": "user"
     }
   },
   "LLMProviderOptionsKeysHashed": {
-    "OpenAI Chat (Langchain).api_key": "__@#key_prefix#@__sk-xyiJ3GM0Fx5C1EeIg89qHgoSVv7iZ0y6Mt72RSysupNskOig"
+    "OpenAI Chat (Langchain).api_key": "__@#key_prefix#@__sk-xyiJ3GM0Fx5C1EeIg89qHgoSVv7iZ0y6Mt72RSysupNskOig",
+    "Default (Custom).api_key": "__@#key_prefix#@__sk-9f022d642976437e8235a332cb8187ac"
   },
   "api_key_encrypted": "__@#key_prefix#@__sk-xyiJ3GM0Fx5C1EeIg89qHgoSVv7iZ0y6Mt72RSysupNskOig",
-  "model": "gpt-3.5-turbo-0613"
+  "model": "gpt-3.5-turbo"
 }
