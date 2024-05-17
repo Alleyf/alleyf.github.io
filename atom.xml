@@ -6,7 +6,7 @@
   <link href="https://alleyf.github.io/atom.xml" rel="self"/>
   
   <link href="https://alleyf.github.io/"/>
-  <updated>2024-04-19T07:43:30.528Z</updated>
+  <updated>2024-04-19T02:59:19.032Z</updated>
   <id>https://alleyf.github.io/</id>
   
   <author>
@@ -15,30 +15,6 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title></title>
-    <link href="https://alleyf.github.io/2024/04/c6fa1edd5f61.html"/>
-    <id>https://alleyf.github.io/2024/04/c6fa1edd5f61.html</id>
-    <published>2024-04-19T07:43:02.939Z</published>
-    <updated>2024-04-19T07:43:30.528Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;%% kanban:settings&lt;/p&gt;
-&lt;figure class=&quot;highlight json&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td</summary>
-        
-      
-    
-    
-    
-    <category term="后端开发" scheme="https://alleyf.github.io/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
-    
-    
-  </entry>
   
   <entry>
     <title>DDD-领域驱动设计</title>
@@ -121,7 +97,7 @@
     <link href="https://alleyf.github.io/2024/03/8e4f20768995.html"/>
     <id>https://alleyf.github.io/2024/03/8e4f20768995.html</id>
     <published>2024-03-14T12:51:41.000Z</published>
-    <updated>2024-04-23T02:59:33.282Z</updated>
+    <updated>2024-05-11T05:21:45.334Z</updated>
     
     
     <summary type="html">some keypoints about research</summary>
@@ -430,6 +406,27 @@
     <category term="Java" scheme="https://alleyf.github.io/tags/Java/"/>
     
     <category term="Lambda" scheme="https://alleyf.github.io/tags/Lambda/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>全栈+运维-技术架构成熟解决方案</title>
+    <link href="https://alleyf.github.io/2023/11/e3cf5e8cdf6a.html"/>
+    <id>https://alleyf.github.io/2023/11/e3cf5e8cdf6a.html</id>
+    <published>2023-11-29T14:13:45.000Z</published>
+    <updated>2023-12-25T08:01:11.963Z</updated>
+    
+    
+    <summary type="html">关于全栈开发和运维的成熟解决方案。</summary>
+    
+    
+    
+    <category term="后端开发" scheme="https://alleyf.github.io/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
+    
+    
+    <category term="全栈" scheme="https://alleyf.github.io/tags/%E5%85%A8%E6%A0%88/"/>
+    
+    <category term="DevOps" scheme="https://alleyf.github.io/tags/DevOps/"/>
     
   </entry>
   
