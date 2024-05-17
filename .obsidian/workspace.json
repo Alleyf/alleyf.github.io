@@ -4,16 +4,29 @@
     "type": "split",
     "children": [
       {
-        "id": "15bb1e946e8e67c3",
+        "id": "1ba1d61c9ec6183f",
         "type": "tabs",
         "children": [
           {
-            "id": "581954e3b29968eb",
+            "id": "8017550a9ff6bdd8",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/运维开发/Kubernetes入门.md",
+                "file": "source/_posts/科研学习/会议讨论/周会.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "47d5871b2ce34418",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "source/_posts/运维开发/各种环境配置.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -55,7 +68,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/运维开发/Kubernetes入门.md"
+                "file": "source/_posts/科研学习/会议讨论/周会.md"
               }
             }
           }
@@ -63,8 +76,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 214.5,
-    "collapsed": true
+    "width": 200
   },
   "right": {
     "id": "ef878eb90911b56c",
@@ -84,14 +96,6 @@
             }
           },
           {
-            "id": "41a3ee28cf19eee7",
-            "type": "leaf",
-            "state": {
-              "type": "copilot-chat-view",
-              "state": {}
-            }
-          },
-          {
             "id": "b6d7c47699945de8",
             "type": "leaf",
             "state": {
@@ -99,8 +103,7 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 2
+        ]
       },
       {
         "id": "94ed18f343f34498",
@@ -152,24 +155,26 @@
       "graph:查看关系图谱": false,
       "canvas:新建白板": false,
       "media-extended:Open media": false,
-      "copilot:Copilot Chat": false,
       "table-editor-obsidian:Advanced Tables Toolbar": false,
       "obsidian-memos:Memos": false
     }
   },
-  "active": "581954e3b29968eb",
+  "active": "8017550a9ff6bdd8",
   "lastOpenFiles": [
+    "source/_posts/运维开发/各种环境配置.md",
     "source/_posts/科研学习/会议讨论/周会.md",
+    "source/_posts/后端开发/Java设计模式.md",
+    "source/_posts/后端开发/未命名看板.md",
+    "source/_posts/科研学习/学习方法/Paper_Reading_Method.md",
+    "source/_posts/科研学习/学习方法/latex手册.md",
     "source/_posts/运维开发/Kubernetes入门.md",
+    "source/_posts/科研学习/学习方法/科研思路.md",
     "source/_posts/运维开发/未命名看板.md",
     "diary/2024-05-09.md",
     "source/_posts/科研学习/调研报告/国家重点研究计划课题四-任务三-调研.md",
     "diary/2024-05-06.md",
-    "source/_posts/运维开发/各种环境配置.md",
     "source/_obsidian/周报模板.md",
     "diary/2024-05-05.md",
-    "source/_posts/科研学习/学习方法/科研思路.md",
-    "source/_posts/科研学习/学习方法/Paper_Reading_Method.md",
     "public/2024/04/c649f2c38f75.html",
     "public/2024/04/40f64f9b6cf6.html",
     "public/2024/04/c6fa1edd5f61.html",
@@ -180,7 +185,6 @@
     "public/tags/科研，CoT",
     "public/tags/架构/index.html",
     "public/tags/架构",
-    "source/_posts/后端开发/未命名看板.md",
     "source/_posts/科研学习/论文总结/Chain-of-Thought Reasoning Without Prompting.md",
     "Chain-of-Thought Reasoning Without Prompting.md",
     "source/_posts/后端开发/DDD-领域驱动设计.md",
@@ -193,8 +197,6 @@
     "source/_posts/科研学习/学习方法/DL概念知识库.md",
     "source/_posts/科研学习/论文总结/Explainability for large language models A survey.md",
     "source/_posts/科研学习/论文总结/Deep residual learning for image recognition.md",
-    "source/_obsidian/学术汇报模板.md",
-    "学术汇报模板.md",
     "canvas/未命名.canvas",
     "canvas/AI学习思路.canvas",
     "attachment/Pasted Image 20240102110312.jpeg",

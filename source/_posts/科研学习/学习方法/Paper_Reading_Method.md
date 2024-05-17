@@ -60,6 +60,7 @@ excerpt: some keypoints about paperReading
  - 来源机构：
  - 发表日期：
  - 原文链接/DOI：
+ - 开源代码：
  - 标签：（阅读文章内容后给文章打上标签，标签通常是领域、学科或专有名词）  
  
  第二步、一句话总结这篇文文章；  
@@ -87,6 +88,7 @@ excerpt: some keypoints about paperReading
 引言：
 	Background(背景)：
 	Motivation(动机):
+	Innovation(创新点):
 	Contribution(贡献)：
 研究方法：
 	模型架构：
@@ -98,7 +100,6 @@ excerpt: some keypoints about paperReading
 	其他策略：
 实验结果：
 研究结论：
-创新点：
 感想&疑问：
 ```
 

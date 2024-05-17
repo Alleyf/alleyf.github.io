@@ -65,7 +65,7 @@
     "ImageExtractorEmbded": true,
     "ImageExtractor": true
   },
-  "displayErrorInEditor": false,
+  "displayErrorInEditor": true,
   "LLMProviderOptions": {
     "whisper": {
       "base_path": "https://api.openai.com/v1"
