@@ -51,7 +51,7 @@
 <meta property="og:image" content="https://qnpicmap.fcsluck.top/pics/202311182136214.png">
 <meta property="og:image" content="https://user-images.githubusercontent.com/9840435/60266022-72a82400-98e7-11e9-9958-f9004c2f97e1.gif">
 <meta property="article:published_time" content="2023-11-18T06:53:11.000Z">
-<meta property="article:modified_time" content="2024-04-30T13:42:06.272Z">
+<meta property="article:modified_time" content="2024-05-22T12:11:01.620Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="java">
 <meta property="article:tag" content="mysql">
@@ -397,7 +397,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：17 天前
+                    本文最后更新于：18 小时前
                   
                 
               </p>
@@ -1068,6 +1068,8 @@
 <blockquote>
 <p>[!warning] 端口占用<br>问题：端口并没有被占用却提示端口被占用<br>方法：重启NAT网络就可以解决<br><code>net stop winnat</code> 接着 <code>net start winnat</code></p>
 </blockquote>
+<h2 id="重启NAT网络"><a href="#重启NAT网络" class="headerlink" title="重启NAT网络"></a>重启NAT网络</h2><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs dos"><span class="hljs-built_in">net</span> stop winnat<br><span class="hljs-built_in">net</span> <span class="hljs-built_in">start</span> winnat<br></code></pre></td></tr></table></figure>
+
 <blockquote>
 <p>[!NOTE]<br>如果本地端口没有被占用，检查是否是与hyper-v保留端口冲突了<br>查看hyper-v启动后的保留端口范围<br><code>netsh interface ipv4 show excludedportrange protocol=tcp</code></p>
 <ul>
@@ -1729,7 +1731,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年4月30日</div>
+          <div>2024年5月22日</div>
         </div>
       
       <div class="license-meta-item">
