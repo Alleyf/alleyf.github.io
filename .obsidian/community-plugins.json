@@ -20,10 +20,10 @@
   "marp-slides",
   "obsidian-enhancing-export",
   "media-extended",
-  "obsidian-echarts",
-  "obsidian-kanban",
   "obsidian-table-generator",
   "obsidian-theme-design-utilities",
   "obsidian-linter",
-  "table-editor-obsidian"
+  "table-editor-obsidian",
+  "obsidian-emoji-toolbar",
+  "remotely-save"
 ]
