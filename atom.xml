@@ -97,7 +97,7 @@
     <link href="https://alleyf.github.io/2024/03/8e4f20768995.html"/>
     <id>https://alleyf.github.io/2024/03/8e4f20768995.html</id>
     <published>2024-03-14T12:51:41.000Z</published>
-    <updated>2024-05-11T05:21:45.334Z</updated>
+    <updated>2024-06-17T08:56:01.376Z</updated>
     
     
     <summary type="html">some keypoints about research</summary>
@@ -349,6 +349,25 @@
   </entry>
   
   <entry>
+    <title>多源异构司法数据汇聚融合-解决方案调研</title>
+    <link href="https://alleyf.github.io/2023/12/5f1c44e4965a.html"/>
+    <id>https://alleyf.github.io/2023/12/5f1c44e4965a.html</id>
+    <published>2023-12-03T08:39:38.000Z</published>
+    <updated>2024-05-31T08:54:01.007Z</updated>
+    
+    
+    <summary type="html">关于互联网数据汇聚融合的调研结果。</summary>
+    
+    
+    
+    <category term="科研学习" scheme="https://alleyf.github.io/categories/%E7%A7%91%E7%A0%94%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="Spider" scheme="https://alleyf.github.io/tags/Spider/"/>
+    
+  </entry>
+  
+  <entry>
     <title>正则表达式-Regex</title>
     <link href="https://alleyf.github.io/2023/12/3e87c166eb21.html"/>
     <id>https://alleyf.github.io/2023/12/3e87c166eb21.html</id>
@@ -408,29 +427,6 @@
     <category term="全栈" scheme="https://alleyf.github.io/tags/%E5%85%A8%E6%A0%88/"/>
     
     <category term="DevOps" scheme="https://alleyf.github.io/tags/DevOps/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spring Cloud Alibaba 微服务原理与实战-阅读心得</title>
-    <link href="https://alleyf.github.io/2023/11/d1d8bbbe9e18.html"/>
-    <id>https://alleyf.github.io/2023/11/d1d8bbbe9e18.html</id>
-    <published>2023-11-28T06:41:00.000Z</published>
-    <updated>2023-12-24T10:51:23.070Z</updated>
-    
-    
-    <summary type="html">关于springcloud-alibaba微服务和中间件的阅读收获。</summary>
-    
-    
-    
-    <category term="后端开发" scheme="https://alleyf.github.io/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
-    
-    
-    <category term="SpringCloud-Alibaba" scheme="https://alleyf.github.io/tags/SpringCloud-Alibaba/"/>
-    
-    <category term="微服务" scheme="https://alleyf.github.io/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
-    
-    <category term="Java" scheme="https://alleyf.github.io/tags/Java/"/>
     
   </entry>
   
