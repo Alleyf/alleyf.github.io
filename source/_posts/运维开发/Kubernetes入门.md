@@ -30,11 +30,13 @@ Kubernetes 通过一组 API 来管理这些功能，这些 API 可以被不同�
 
 Kubernetes 已经成为云原生技术栈中一个非常重要的组件，广泛用于生产环境，帮助开发者和系统管理员更高效地部署和管理应用程序。
 
+![|575](https://qnpicmap.fcsluck.top/pics/202406220059961.png)
+
 # 2 系统架构
 
 Kubernetes 提供了一个运行分布式系统的框架，能够无缝地扩展和管理跨主机集群的容器应用。以下是 Kubernetes 的主要系统架构组件：
 
-Master Node（主节点）：
+**Master Node（主节点）**：
 
 负责集群的管理和控制。
 包含以下主要组件：
@@ -42,7 +44,8 @@ API Server：Kubernetes API 的前端，对外提供RESTful API。
 Scheduler：负责决定将 Pod 放在哪个 Node 上运行。
 Controller Manager：运行集群中的各种控制器，例如 Node Controller、Namespace Controller、Deployment Controller 等。
 Etcd：一个轻量级、分布式的键值存储系统，用于存储集群的所有数据。
-Node（工作节点）：
+
+**Node（工作节点）**：
 
 运行集群中的工作负载。
 每个 Node 包含以下组件：
