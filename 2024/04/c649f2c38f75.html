@@ -27,7 +27,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://picsum.photos/800/250">
 <meta property="article:published_time" content="2024-04-05T12:14:59.000Z">
-<meta property="article:modified_time" content="2024-04-19T05:09:54.753Z">
+<meta property="article:modified_time" content="2024-06-22T11:46:13.026Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="科研，CoT">
 <meta name="twitter:card" content="summary_large_image">
@@ -369,7 +369,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2 个月前
+                    本文最后更新于：5 小时前
                   
                 
               </p>
@@ -381,7 +381,8 @@
 <!-- _header: "" --> 
 <!-- _footer: "" --> 
 <!-- _paginate: "" --> 
-<h1 id="无提示的思维链推理"><a href="#无提示的思维链推理" class="headerlink" title="无提示的思维链推理"></a>无提示的思维链推理</h1><h4 id="手工构造-COT-提示-✖️-内在-COT-激发-✔️"><a href="#手工构造-COT-提示-✖️-内在-COT-激发-✔️" class="headerlink" title="手工构造 COT 提示 ✖️ 内在 COT 激发 ✔️"></a>手工构造 COT 提示 ✖️ 内在 COT 激发 ✔️</h4><p>汇报人：<a href="http://alleyf.github.io/">范财胜</a><br>汇报时间：2024-04-19<br>联系方式：<a href="mailto:&#97;&#108;&#108;&#x65;&#121;&#102;&#x40;&#113;&#x71;&#x2e;&#99;&#111;&#x6d;">&#97;&#108;&#108;&#x65;&#121;&#102;&#x40;&#113;&#x71;&#x2e;&#99;&#111;&#x6d;</a></p>
+
+<h1 id="无提示的思维链推理"><a href="#无提示的思维链推理" class="headerlink" title="无提示的思维链推理"></a>无提示的思维链推理</h1><h4 id="手工构造-COT-提示-✖️-内在-COT-激发-✔️"><a href="#手工构造-COT-提示-✖️-内在-COT-激发-✔️" class="headerlink" title="手工构造 COT 提示 ✖️ 内在 COT 激发 ✔️"></a>手工构造 COT 提示 ✖️ 内在 COT 激发 ✔️</h4><p>汇报人：<a href="http://alleyf.github.io/">范财胜</a><br>汇报时间：2024-04-19<br>联系方式：<a href="mailto:&#97;&#x6c;&#108;&#101;&#x79;&#x66;&#64;&#x71;&#113;&#x2e;&#99;&#x6f;&#x6d;">&#97;&#x6c;&#108;&#101;&#x79;&#x66;&#64;&#x71;&#113;&#x2e;&#99;&#x6f;&#x6d;</a></p>
 <h1 id="📕-目录"><a href="#📕-目录" class="headerlink" title="📕 目录"></a>📕 目录</h1><!-- _class: cols2_ol_ci fglass toc_a  -->
 <!-- _footer: "" -->
 <!-- _header: "CONTENT" -->
@@ -471,14 +472,16 @@
 <h2 id="2-路径提取"><a href="#2-路径提取" class="headerlink" title="2 路径提取"></a>2 路径提取</h2><blockquote>
 <p> 既然存在模型本身固有 CoT 推理路径，那么该 <code>如何提取该路径引导模型输出呢</code>？<br> &#x3D;&#x3D;现象：&#x3D;&#x3D; 在模型的概率评估中，CoT 路径的排名并不总是高于非 CoT 路径。此外，它们往往不能代表所有路径中的主导答案。例如，在 GSM8K 问题中，普遍的答案“60”与贪婪解码结果一致，无法作为识别正确路径的可靠指标。<br>&#x3D;&#x3D;方法：&#x3D;&#x3D; 在检查模型的 logits（原始预测值）后，发现 CoT 路径的解码结果通常具有更有高的概率置信度，即 decode 每步中，概率最大的 token 和概率次大的 token 之间存在显著的概率差异：</p>
 </blockquote>
-<p>$$<br>\Delta_{k,\text{answer}} &#x3D; \frac 1 n \sum _ { x _ t \in \text{answer}} p ( x _ t ^ 1 \mid x _ { &lt; t })-p(x_t^2\mid x_{&lt;t})<br>$$<br>其中$x^1_t$ 和 $x^2_t$代表着在第 k 条路径的第 t 个解码步骤中排名最高的两个 token，$n$ 代表答案的 token 总数。这种基于最终答案对应 token 的概率置信度的方法称为<strong>CoT-Decoding</strong>。</p>
+<p>$$<br>\Delta_{k,\text{answer}} &#x3D; \frac 1 n \sum _ { x _ t \in \text{answer}} p ( x _ t ^ 1 \mid x _ { &lt; t })-p(x_t^2\mid x_{&lt;t})<br>$$</p>
+<p>其中$x^1_t$ 和 $x^2_t$代表着在第 k 条路径的第 t 个解码步骤中排名最高的两个 token，$n$ 代表答案的 token 总数。这种基于最终答案对应 token 的概率置信度的方法称为<strong>CoT-Decoding</strong>。</p>
 <p>另一种是根据解码路径的长度来选择 CoT 路径（直觉上，更长的解码路径更有可能包含 CoT）。这种基于长度的选择方法在一定程度上适用于数学推理问题，但在其他推理任务中的普适性是有限的。</p>
 <h2 id="3-分支选择"><a href="#3-分支选择" class="headerlink" title="3 分支选择"></a>3 分支选择</h2><p><img src="https://qnpicmap.fcsluck.top/pics/202404061659851.png" srcset="/img/loading.gif" lazyload alt="#c|600"><br><del>图 4 不同解码步骤中的替代 token 的分析</del></p>
 <blockquote>
 <p>那么为什么选择解码的第一个步骤而不是其他阶段进行分支呢？<br>&#x3D;&#x3D;现象：&#x3D;&#x3D; 早期分支，例如在第一个解码步骤，显著增强了潜在路径的多样性。相反，<strong>后期分支会受到先前生成的令牌的显著影响</strong>。例如，以标记“5”启动会大大降低纠正错误路径的可能性。尽管如此，<strong>最佳分支点可能会因任务而异</strong>；例如，在年奇偶校验任务中，中路径分支可以有效地产生正确的 CoT 路径。<br>&#x3D;&#x3D;思考：&#x3D;&#x3D; <strong>悬崖勒马，为时不晚</strong>！</p>
 </blockquote>
 <h2 id="4-路径聚合"><a href="#4-路径聚合" class="headerlink" title="4 路径聚合"></a>4 路径聚合</h2><p>由于考虑了 top k 解码路径，一种自然的扩展是聚合所有这些路径上的答案，类似于<strong>多数投票机制</strong>。这种聚合背后的基本原理是减轻对于模型 logits 中微小差异的敏感性。但是由于路径中大多数答案都是错误的，因此提出了一种加权聚合方法最大化$\tilde{\Delta}_{a}$：</p>
-<p>$$\tilde{\Delta}<em>{a}&#x3D;\sum</em>{k}\Delta_{k,a}$$<br>$\Delta_{k,a}$ 是答案为 a 的第 k 个解码路径的置信度，把答案相同的多个解码路径的置信度进行加权聚合，得分最高的答案作为最终答案，这种聚合增强了结果的稳定性。</p>
+<p>$$\tilde{\Delta}<em>{a}&#x3D;\sum</em>{k}\Delta_{k,a}$$</p>
+<p>$\Delta_{k,a}$ 是答案为 a 的第 k 个解码路径的置信度，把答案相同的多个解码路径的置信度进行加权聚合，得分最高的答案作为最终答案，这种聚合增强了结果的稳定性。</p>
 <h1 id="🔬-实验结果"><a href="#🔬-实验结果" class="headerlink" title="🔬 实验结果"></a>🔬 实验结果</h1><!-- _class: navbar  -->
 <!-- _header: \ *[引言](#3)* *[研究方法](#8)* **[实验结果](#13)** *[研究结论](#21)* *[创新点](#22)* *[感想&疑问](#23)* -->
 <p>实验设置<br>对于所有实验，模型的默认输入是标准 QA 格式 ：</p>
@@ -493,13 +496,10 @@
 <p>在一系列推理基准测试中评估了 CoT 解码方法，证明了其在解码过程中不需要专门的提示即可成功恢复 CoT 推理路径的能力。</p>
 <h2 id="1-K-值的选择"><a href="#1-K-值的选择" class="headerlink" title="1 K 值的选择"></a>1 K 值的选择</h2><!-- _class: cols-2 cols2_ol_sq  -->  
 
-
 <p><img src="https://qnpicmap.fcsluck.top/pics/202404052214387.png" srcset="/img/loading.gif" lazyload alt=" |391"><br><del>图 5 PaLM-2 模型系列的 GSM8K 数据集的准确性与解码中使用的 top-k token 的关系</del></p>
 <ul>
-<li><p>较高的 k 值通常会提高模型性能，这表明在许多情况下，正确的 CoT 路径可能确实存在，但在模型解码过程中 <code>通常排名较低</code>。</p>
-</li>
-<li><p>对于指令调整模型，k 的影响不太显着，表明 <code>指令调整过程有效地将大部分 CoT 路径引入到前几个解码路径</code>。</p>
-</li>
+<li>较高的 k 值通常会提高模型性能，这表明在许多情况下，正确的 CoT 路径可能确实存在，但在模型解码过程中 <code>通常排名较低</code>。</li>
+<li>对于指令调整模型，k 的影响不太显着，表明 <code>指令调整过程有效地将大部分 CoT 路径引入到前几个解码路径</code>。</li>
 </ul>
 <h2 id="2-数学推理任务"><a href="#2-数学推理任务" class="headerlink" title="2 数学推理任务"></a>2 数学推理任务</h2><p>任务设定：小学数学问题（GSM8K）以及多步算术数据集。<br><del>表 1 不同大小的 PaLM-2 模型系列的数学推理任务的准确性</del></p>
 <p><img src="https://qnpicmap.fcsluck.top/pics/202404052224452.png" srcset="/img/loading.gif" lazyload alt="#c w:860 |525"></p>
@@ -618,7 +618,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年4月19日</div>
+          <div>2024年6月22日</div>
         </div>
       
       <div class="license-meta-item">
