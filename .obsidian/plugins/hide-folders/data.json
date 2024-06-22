@@ -1,0 +1,17 @@
+{
+  "areFoldersHidden": true,
+  "matchCaseInsensitive": true,
+  "addHiddenFoldersToObsidianIgnoreList": false,
+  "hideBottomStatusBarIndicatorText": false,
+  "enableCompatQuickExplorer": false,
+  "attachmentFolderNames": [
+    "attachment",
+    "diary",
+    "MarpTheme",
+    "node_modules",
+    "public",
+    "ascaffolds",
+    "scripts",
+    "themes"
+  ]
+}
