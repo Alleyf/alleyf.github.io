@@ -44,12 +44,6 @@
       "icon": "minus-circle",
       "name": "Number Headings: Remove numbering from all headings in document",
       "mode": "any"
-    },
-    {
-      "id": "obsidian-enhancing-export:obsidian-enhancing-export:export",
-      "icon": "document",
-      "name": "Enhancing Export: 导出为......",
-      "mode": "any"
     }
   ],
   "pageHeader": [],
