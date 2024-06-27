@@ -51,7 +51,7 @@
 <meta property="og:image" content="https://qnpicmap.fcsluck.top/pics/202311182136214.png">
 <meta property="og:image" content="https://user-images.githubusercontent.com/9840435/60266022-72a82400-98e7-11e9-9958-f9004c2f97e1.gif">
 <meta property="article:published_time" content="2023-11-18T06:53:11.000Z">
-<meta property="article:modified_time" content="2024-05-22T12:11:01.620Z">
+<meta property="article:modified_time" content="2024-06-27T18:06:59.487Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="java">
 <meta property="article:tag" content="mysql">
@@ -346,7 +346,7 @@
         
         
         
-          682 分钟
+          686 分钟
         
       </span>
     
@@ -397,7 +397,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：1 个月前
+                    本文最后更新于：几秒前
                   
                 
               </p>
@@ -1090,6 +1090,22 @@
 
 <h2 id="切换用户"><a href="#切换用户" class="headerlink" title="切换用户"></a>切换用户</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">sudo su username(root) <span class="hljs-comment">#切换身份到目标用户</span><br></code></pre></td></tr></table></figure>
 
+<h2 id="磁盘空间"><a href="#磁盘空间" class="headerlink" title="磁盘空间"></a>磁盘空间</h2><p><code>df</code>命令在Linux系统中用于显示文件系统的磁盘空间使用情况。<code>-h</code>是<code>df</code>命令的一个选项，它代表“human-readable”，意味着输出将以易于阅读的格式显示，例如以KB、MB、GB等单位，而不是默认的块（block）大小。</p>
+<p>使用<code>df -h</code>时，你会得到以下类型的信息：</p>
+<ul>
+<li>文件系统（Filesystem）：磁盘或分区的名称。</li>
+<li>容量（Size）：文件系统的总大小。</li>
+<li>已用（Used）：已使用的磁盘空间。</li>
+<li>可用（Available）：当前可用的磁盘空间。</li>
+<li>已用百分比（Use%）：磁盘空间使用的百分比。</li>
+<li>挂载点（Mounted on）：文件系统挂载的目录。</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">dh -f<br></code></pre></td></tr></table></figure>
+
+<p>例如，执行<code>df -h</code>命令后，输出可能如下所示：</p>
+<figure class="highlight erlang-repl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs erlang-repl">Filesystem      Size  Used Avail Use<span class="hljs-comment">% Mounted on </span><br>/dev/sda1       <span class="hljs-number">100</span>G   <span class="hljs-number">20</span>G   <span class="hljs-number">80</span>G  <span class="hljs-number">20</span><span class="hljs-comment">%  / </span><br>tmpfs           <span class="hljs-number">3.9</span>G     <span class="hljs-number">0</span>  <span class="hljs-number">3.9</span>G   <span class="hljs-number">0</span><span class="hljs-comment">%  /dev/shm</span><br></code></pre></td></tr></table></figure>
+
+<p>在这个例子中，<code>/dev/sda1</code>是一个磁盘分区，总大小为100GB，已使用20GB，剩余80GB，使用了20%的空间，并且挂载在根目录<code>/</code>上。<code>tmpfs</code>是一个临时文件系统，通常用于存储临时文件，大小为3.9GB，尚未使用任何空间。</p>
 <h2 id="内核信息"><a href="#内核信息" class="headerlink" title="内核信息"></a>内核信息</h2><p>查看 Linux 系统内核的主要命令和方法有:</p>
 <ol>
 <li>uname 命令</li>
@@ -1731,7 +1747,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年5月22日</div>
+          <div>2024年6月28日</div>
         </div>
       
       <div class="license-meta-item">
