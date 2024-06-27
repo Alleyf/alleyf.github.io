@@ -6,7 +6,7 @@
   <link href="https://alleyf.github.io/atom.xml" rel="self"/>
   
   <link href="https://alleyf.github.io/"/>
-  <updated>2024-04-19T02:59:19.032Z</updated>
+  <updated>2024-06-27T17:51:07.896Z</updated>
   <id>https://alleyf.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>运维排忧解难</title>
+    <link href="https://alleyf.github.io/2024/06/c47de4b3720d.html"/>
+    <id>https://alleyf.github.io/2024/06/c47de4b3720d.html</id>
+    <published>2024-06-27T16:37:11.000Z</published>
+    <updated>2024-06-27T17:51:07.896Z</updated>
+    
+    
+    <summary type="html">运维排错解决问题的必查手册</summary>
+    
+    
+    
+    <category term="运维开发" scheme="https://alleyf.github.io/categories/%E8%BF%90%E7%BB%B4%E5%BC%80%E5%8F%91/"/>
+    
+    
+    <category term="DevOps" scheme="https://alleyf.github.io/tags/DevOps/"/>
+    
+    <category term="运维" scheme="https://alleyf.github.io/tags/%E8%BF%90%E7%BB%B4/"/>
+    
+  </entry>
   
   <entry>
     <title>DDD-领域驱动设计</title>
@@ -406,27 +427,6 @@
     <category term="Java" scheme="https://alleyf.github.io/tags/Java/"/>
     
     <category term="Lambda" scheme="https://alleyf.github.io/tags/Lambda/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>全栈+运维-技术架构成熟解决方案</title>
-    <link href="https://alleyf.github.io/2023/11/e3cf5e8cdf6a.html"/>
-    <id>https://alleyf.github.io/2023/11/e3cf5e8cdf6a.html</id>
-    <published>2023-11-29T14:13:45.000Z</published>
-    <updated>2023-12-25T08:01:11.963Z</updated>
-    
-    
-    <summary type="html">关于全栈开发和运维的成熟解决方案。</summary>
-    
-    
-    
-    <category term="后端开发" scheme="https://alleyf.github.io/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
-    
-    
-    <category term="全栈" scheme="https://alleyf.github.io/tags/%E5%85%A8%E6%A0%88/"/>
-    
-    <category term="DevOps" scheme="https://alleyf.github.io/tags/DevOps/"/>
     
   </entry>
   

@@ -18,19 +18,19 @@
   <meta name="author" content="fcs">
   <meta name="keywords" content="">
   
-    <meta name="description" content="DDD数据库设计落地">
+    <meta name="description" content="运维排错解决问题的必查手册">
 <meta property="og:type" content="article">
-<meta property="og:title" content="DDD-领域驱动设计">
-<meta property="og:url" content="https://alleyf.github.io/2024/04/40f64f9b6cf6.html">
+<meta property="og:title" content="运维排忧解难">
+<meta property="og:url" content="https://alleyf.github.io/2024/06/c47de4b3720d.html">
 <meta property="og:site_name" content="alleyf">
-<meta property="og:description" content="DDD数据库设计落地">
+<meta property="og:description" content="运维排错解决问题的必查手册">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://picsum.photos/800/250">
-<meta property="article:published_time" content="2024-04-18T12:14:59.000Z">
-<meta property="article:modified_time" content="2024-04-19T02:59:19.032Z">
+<meta property="article:published_time" content="2024-06-27T16:37:11.000Z">
+<meta property="article:modified_time" content="2024-06-27T17:51:07.896Z">
 <meta property="article:author" content="alleyf">
-<meta property="article:tag" content="微服务">
-<meta property="article:tag" content="架构">
+<meta property="article:tag" content="DevOps">
+<meta property="article:tag" content="运维">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://picsum.photos/800/250">
   
@@ -38,7 +38,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>DDD-领域驱动设计 - alleyf</title>
+  <title>运维排忧解难 - alleyf</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -280,7 +280,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="DDD-领域驱动设计"></span>
+            <span id="subtitle" data-typed-text="运维排忧解难"></span>
           
         </div>
 
@@ -296,8 +296,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-04-18 20:14" pubdate>
-          2024年4月18日 晚上
+        <time datetime="2024-06-28 00:37" pubdate>
+          2024年6月28日 凌晨
         </time>
       </span>
     
@@ -308,7 +308,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          762 字
+          2.8k 字
         
       </span>
     
@@ -319,7 +319,7 @@
         
         
         
-          7 分钟
+          24 分钟
         
       </span>
     
@@ -365,12 +365,12 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">DDD-领域驱动设计</h1>
+            <h1 style="display: none">运维排忧解难</h1>
             
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2 个月前
+                    本文最后更新于：几秒前
                   
                 
               </p>
@@ -379,35 +379,167 @@
               <div class="markdown-body">
                 
                 <p><img src="https://picsum.photos/800/250" srcset="/img/loading.gif" lazyload></p>
-<p>以现实中的事物、行为和关系为基础构建领域驱动模型（分别对应对象、方法和关联），强调以业务领域为中心进行软件开发。DDD 旨在创建软件模型，这些模型与业务专家所理解的业务概念紧密相连，确保软件设计能够反映业务需求。</p>
-<h1 id="需求变更设计"><a href="#需求变更设计" class="headerlink" title="需求变更设计"></a>需求变更设计</h1><p>需求变更时判断变更需求和原来领域对象的关系的判断方法？</p>
+<h1 id="1-常用指令"><a href="#1-常用指令" class="headerlink" title="1 常用指令"></a>1 常用指令</h1><blockquote>
+<p>[!NOTE] 符号说明<br>指令中小括号<code>()</code>内为<strong>选填项</strong>，<code>&lt;&gt;</code>为<strong>填充项</strong>（根据实际变量进行填充）。</p>
+</blockquote>
+<h2 id="1-1-Linux-指令"><a href="#1-1-Linux-指令" class="headerlink" title="1.1 Linux 指令"></a>1.1 Linux 指令</h2><p><a href="source/_posts/%E8%BF%90%E7%BB%B4%E5%BC%80%E5%8F%91/%E5%90%84%E7%A7%8D%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE.md">各种环境配置</a></p>
+<h3 id="1-1-1-Ssh连接"><a href="#1-1-1-Ssh连接" class="headerlink" title="1.1.1 Ssh连接"></a>1.1.1 Ssh连接</h3><p>-p 指定端口，默认不带则为22端口</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">ssh -p &lt;port&gt; &lt;username&gt;@&lt;ip/hostname&gt;<br></code></pre></td></tr></table></figure>
+
+<h3 id="1-1-2-文件传输"><a href="#1-1-2-文件传输" class="headerlink" title="1.1.2 文件传输"></a>1.1.2 文件传输</h3><blockquote>
+<p>通过ssh协议用于在本地计算机和远程计算机之间安全地复制文件</p>
+</blockquote>
 <ol>
-<li>遵循单一职责原则（即只做自己分内之事，其他的事别人来做，自己只调用）</li>
-<li>判断新需求和原领域对象是否存在<strong>变换一致</strong>的关系（即一个变更时另外一个是不是一定跟着变）.</li>
-<li>如果两者变换一致则内聚在一个模块，否则分为不同领域对象抽象共性接口采用合适的设计模式实现需求变更。</li>
+<li>本地到远程</li>
 </ol>
-<h1 id="领域模型设计-数据库设计"><a href="#领域模型设计-数据库设计" class="headerlink" title="领域模型设计-数据库设计"></a>领域模型设计-数据库设计</h1><blockquote>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">scp (-p &lt;port&gt;) &lt;/path/to/local/file&gt; &lt;username&gt;@&lt;remote_host/host_name&gt;:&lt;/path/to/remote/directory&gt;<br></code></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>远程到本地</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">scp (-p &lt;port&gt;) &lt;username&gt;@&lt;remote_host/host_name&gt;: &lt;/path/to/remote/directory&gt; &lt;/path/to/local/file&gt; <br></code></pre></td></tr></table></figure>
+
+<h3 id="1-1-3-查看资源"><a href="#1-1-3-查看资源" class="headerlink" title="1.1.3 查看资源"></a>1.1.3 查看资源</h3><p>查看所有资源占用情况，降序排列，<code>top</code> 默认会实时更新显示的信息，通常每秒刷新一次。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">top <br></code></pre></td></tr></table></figure>
+
 <ol>
-<li>领域模型中，不论对象还是属性，在命名时都采用中文</li>
-<li>数据库设计时，要细化为英文命名，或者汉语拼音首字母，同时要确定字段类型与是否为空等其它属性</li>
-<li>采用四种关系：一对一关系、一对多关系、多对一关系、多对多关系和继承关系（领域模型设计特有）</li>
+<li><strong>排序</strong>：<ul>
+<li>按 CPU 使用率排序：按 <code>P</code> 键。</li>
+<li>按内存使用率排序：按 <code>M</code> 键。</li>
+<li>按执行时间排序：按 <code>T</code> 键。</li>
+</ul>
+</li>
+<li><strong>搜索进程</strong>：<ul>
+<li>输入 <code>u</code> 键，然后输入用户名，可以显示该用户的所有进程。</li>
+<li>输入 <code>p</code> 键，然后输入进程ID（PID），可以快速定位到特定进程。</li>
+</ul>
+</li>
+<li><strong>过滤进程</strong>：<ul>
+<li>输入 <code>U</code> 键，然后输入用户名，可以过滤显示该用户的进程。</li>
+<li>输入 <code>P</code> 键，然后输入进程ID（PID），可以过滤显示该PID的进程。</li>
+</ul>
+</li>
+<li><strong>杀死进程</strong>：<ul>
+<li>输入 <code>k</code> 键，然后输入进程ID和要发送的信号（默认是SIGTERM，即15），可以杀死进程。</li>
+</ul>
+</li>
+</ol>
+<h3 id="1-1-4-查看进程"><a href="#1-1-4-查看进程" class="headerlink" title="1.1.4 查看进程"></a>1.1.4 查看进程</h3><p><code>ps</code> 命令在 Unix-like 系统中用于显示当前进程的状态。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">ps<br></code></pre></td></tr></table></figure>
+
+<ol>
+<li><p>参数说明</p>
+<ul>
+<li><code>USER</code>：进程所有者的用户名。</li>
+<li><code>PID</code>：进程的ID。</li>
+<li><code>%CPU</code>：进程占用的CPU百分比。</li>
+<li><code>%MEM</code>：进程占用的内存百分比。</li>
+<li><code>VSZ</code>：虚拟内存大小（Virtual Size）。</li>
+<li><code>RSS</code>：实际内存大小（Resident Set Size）。</li>
+<li><code>TTY</code>：进程终端类型。</li>
+<li><code>STAT</code>：进程状态。</li>
+<li><code>START</code>：进程启动时间。</li>
+<li><code>TIME</code>：进程占用CPU的时间。</li>
+<li><code>COMMAND</code>：启动进程的命令。</li>
+</ul>
+</li>
+<li><p>常见组合</p>
+<ul>
+<li>ps aux (–sort&#x3D;-%mem&#x2F;cpu)： 显示所有进程(按照内存&#x2F;CPU使用率降序排列进程)</li>
+<li>ps -ef：显示所有进程的完整信息。</li>
+<li>ps -p PID：显示特定进程的详细信息。</li>
+</ul>
+</li>
+</ol>
+<h3 id="1-1-5-查看编辑文件"><a href="#1-1-5-查看编辑文件" class="headerlink" title="1.1.5 查看编辑文件"></a>1.1.5 查看编辑文件</h3><h4 id="1-1-5-1-查看目录"><a href="#1-1-5-1-查看目录" class="headerlink" title="1.1.5.1 查看目录"></a>1.1.5.1 查看目录</h4><p>列出当前目录下的文件和文件夹</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">ls</span><br></code></pre></td></tr></table></figure>
+
+<ol>
+<li><p>常见搭配</p>
+<ul>
+<li>ls -lh：组合使用 <code>-l</code> 和 <code>-h</code> 选项，以易读的格式显示文件大小。</li>
+<li>ls -l：以长列表格式显示文件详细信息，包括权限、所有者、大小和最后修改时间。</li>
+<li>ls -lt：以修改时间排序，最新修改的文件排在最前面。</li>
+<li>ls -lS：以文件大小排序。</li>
+<li>ls -a：显示所有文件，包括以点（<code>.</code>）开头的隐藏文件。</li>
+<li>ls -R：递归地列出所有子目录的内容。</li>
+<li>ls -F：在每个文件名后添加一个字符以指示文件类型，例如，<code>/</code> 表示目录，<code>*</code> 表示可执行文件。</li>
+<li>ls -o：显示文件所有者和组，但不显示组名。</li>
+<li>ls –color：使用颜色来区分不同类型的文件。</li>
+<li>ls *.txt：列出当前目录下所有的 <code>.txt</code> 文件。</li>
+</ul>
+</li>
+<li><p>参数解释：<code>drwxr-xr-x 10 root root 4.0K Feb 22 21:41 clash</code></p>
+<ul>
+<li>d：目录&#x2F;文件</li>
+<li>rwx：文件所有者的权限，<code>r</code> 代表可读（read），<code>w</code> 代表可写（write），<code>x</code> 代表可执行（execute）</li>
+<li>r-x：文件所有者同组的用户（group）的权限，可读可执行但不可写</li>
+<li>r-x：其他用户（others）的权限，可读可执行但不可写</li>
+<li>10：硬链接指向这个目录的个数，目录至少为2（一个是 <code>.</code> 表示当前目录，另一个是 <code>..</code> 表示父目录），加上目录下文件和子目录的数量。</li>
+<li>root root：文件所有者和组的名称。</li>
+<li>4.0K：目录占用空间大小（不包括子文件和子目录）。</li>
+<li>Feb 22 21:41：目录最后修改的日期和时间。</li>
+<li>clash：目录名称。</li>
+</ul>
+</li>
+</ol>
+<h4 id="1-1-5-2-查看内容"><a href="#1-1-5-2-查看内容" class="headerlink" title="1.1.5.2 查看内容"></a>1.1.5.2 查看内容</h4><p>查看文件内容，打印在控制台</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">cat</span> &lt;fileName&gt;<br></code></pre></td></tr></table></figure>
+
+<h4 id="1-1-5-3-新建文件"><a href="#1-1-5-3-新建文件" class="headerlink" title="1.1.5.3 新建文件"></a>1.1.5.3 新建文件</h4><p>新增一个文件，或写入内容到文件中</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">cat</span> &gt; &lt;file.txt&gt;<br><span class="hljs-built_in">echo</span> &lt;content&gt; &gt; &lt;file.txt&gt;<br><span class="hljs-built_in">touch</span> &lt;file.txt&gt;<br></code></pre></td></tr></table></figure>
+
+<h4 id="1-1-5-4-编辑内容"><a href="#1-1-5-4-编辑内容" class="headerlink" title="1.1.5.4 编辑内容"></a>1.1.5.4 编辑内容</h4><p>使用Vim编辑器编辑文件</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">vi(m) &lt;fileName&gt;<br></code></pre></td></tr></table></figure>
+
+<ol>
+<li>常见操作：<ul>
+<li>i：进入插入写模式</li>
+<li>esc：退出当前模式</li>
+<li>：指令模式</li>
+<li>:q：直接退出</li>
+<li>:wq：保存退出</li>
+</ul>
+</li>
+</ol>
+<h2 id="1-2-K8s-和-Docker相关指令"><a href="#1-2-K8s-和-Docker相关指令" class="headerlink" title="1.2 K8s 和 Docker相关指令"></a>1.2 K8s 和 Docker相关指令</h2><h3 id="1-2-1-K8s"><a href="#1-2-1-K8s" class="headerlink" title="1.2.1 K8s"></a>1.2.1 K8s</h3><h4 id="1-2-1-1-集群"><a href="#1-2-1-1-集群" class="headerlink" title="1.2.1.1 集群"></a>1.2.1.1 集群</h4><p>获取 prod 集群中所有节点信息</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment"># 正式集群</span><br>kube-prod get nodes<br><span class="hljs-comment"># 测试集群</span><br>kube-test get nodes<br></code></pre></td></tr></table></figure>
+
+<h4 id="1-2-1-2-节点"><a href="#1-2-1-2-节点" class="headerlink" title="1.2.1.2 节点"></a>1.2.1.2 节点</h4><p>获取指定命名空间下的所有 pod</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">kube-prod get pod -n &lt;namespace&gt;<br></code></pre></td></tr></table></figure>
+
+<p>获取指定 pod 的详情（<code>可根据 event 排查 pod 的错误信息</code>）</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">kube-prod describe pod &lt;pod-name&gt; -n &lt;namespace&gt;<br></code></pre></td></tr></table></figure>
+
+<h3 id="1-2-2-Docker"><a href="#1-2-2-Docker" class="headerlink" title="1.2.2 Docker"></a>1.2.2 Docker</h3><h4 id="1-2-2-1-保存镜像"><a href="#1-2-2-1-保存镜像" class="headerlink" title="1.2.2.1 保存镜像"></a>1.2.2.1 保存镜像</h4><p>将指定本地镜像保存为tar压缩包</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">docker save -o &lt;image.tar&gt; &lt;image&gt;<br></code></pre></td></tr></table></figure>
+
+<h4 id="1-2-2-2-加载镜像"><a href="#1-2-2-2-加载镜像" class="headerlink" title="1.2.2.2 加载镜像"></a>1.2.2.2 加载镜像</h4><p>根据指定镜像压缩包加载镜像到本地</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">docker load -i &lt;image.tar&gt;<br></code></pre></td></tr></table></figure>
+
+<h1 id="2-常见问题"><a href="#2-常见问题" class="headerlink" title="2 常见问题"></a>2 常见问题</h1><blockquote>
+<p>[!warning] Tips</p>
+<ol>
+<li><strong>重启（物理机、虚拟机、服务、pod等）</strong> 可能是<code>最直接常见的办法</code>，但<code>不是最有效</code>的办法，具体问题具体分析，重在<strong>根据问题逐步搜索的排查思路，自顶向下排查，自底向上解决</strong>。</li>
+<li><em>遇到问题不要慌，众里寻它先百度，属是不行再问路，先思考后动脑，多学多看多实践，能力日益节节高</em>。</li>
 </ol>
 </blockquote>
-<h2 id="继承关系"><a href="#继承关系" class="headerlink" title="继承关系"></a>继承关系</h2><p>继承关系时领域模型设计中特有的关系，在转化为数据库设计时有三种方案。</p>
-<h3 id="方案一"><a href="#方案一" class="headerlink" title="方案一"></a>方案一</h3><p><img src="https://qnpicmap.fcsluck.top/pics/202404182059319.png" srcset="/img/loading.gif" lazyload alt="|475|in1"></p>
-<p>子对象数量少、属性少时可以采用父子共用一个表，包含父子所有属性对应的字段（父子主键一致），但是存在表稀疏问题，导致大量字段为空，使得存储空间浪费。</p>
-<blockquote>
-<p>优点：简单，整个继承关系的数据全部保存在这个表里<br>缺点：造成“表稀疏”</p>
-</blockquote>
-<h3 id="方案二"><a href="#方案二" class="headerlink" title="方案二"></a>方案二</h3><p><img src="https://qnpicmap.fcsluck.top/pics/202404182101703.png" srcset="/img/loading.gif" lazyload alt="|400"></p>
-<p><img src="https://qnpicmap.fcsluck.top/pics/202404182102555.png" srcset="/img/loading.gif" lazyload alt="|400"></p>
-<p>每个子类对应一个表，每个表包含父类属性和子类特有属性（所有子类主键一致，以标识属于一个父类），适用于单次仅查询某一个子对象，不适合单词查询父类的所有子类对象。</p>
-<h3 id="方案三"><a href="#方案三" class="headerlink" title="方案三"></a>方案三</h3><p><img src="https://qnpicmap.fcsluck.top/pics/202404182105167.png" srcset="/img/loading.gif" lazyload alt="|525"></p>
-<p>为父类和子类各自都有一张表，子类只包含其特有属性（父子主键一致），当查询父类的所有子类时根据主键查询父类共性信息再查询所有子类表获取特有信息。</p>
-<p><img src="https://qnpicmap.fcsluck.top/pics/202404182112485.png" srcset="/img/loading.gif" lazyload alt="|350"></p>
-<blockquote>
-<p>NoSQL数据库设计中一般采用第一种方案，因为NoSQL数据库把所有join操作的多表信息以集合（数组或对象）的形式全部集成在一个表中。</p>
-</blockquote>
+<h2 id="2-1-镜像无法拉取"><a href="#2-1-镜像无法拉取" class="headerlink" title="2.1 镜像无法拉取"></a>2.1 镜像无法拉取</h2><ol>
+<li>原因：由于国内防火墙导致国外官方镜像仓库被墙无法拉取镜像</li>
+<li>办法：<ul>
+<li>出国旅游：windosw开启魔法拉取镜像后通过docker save和load转移镜像，并push到本地私有镜像仓库留存。</li>
+<li>取而代之：寻找国内镜像源仓库，直接拉取国内镜像仓库的镜像到本地，并推送到本地私有仓库留存。（国内镜像仓库不稳定，可能会清除镜像）</li>
+</ul>
+</li>
+</ol>
+<h2 id="2-2-内存-硬盘满载-溢出"><a href="#2-2-内存-硬盘满载-溢出" class="headerlink" title="2.2 内存&#x2F;硬盘满载&#x2F;溢出"></a>2.2 内存&#x2F;硬盘满载&#x2F;溢出</h2><ol>
+<li>原因：随着时间的累积和负载变化，内存或硬盘资源可能会不够，虚拟机负载过大，无法提供正常响应。</li>
+<li>办法：<ul>
+<li>内存：清理无用进程（kill），重启虚拟机（reboot），扩容内存（vcenter扩大虚拟机内存）</li>
+<li>硬盘：查看磁盘分区和挂载情况（df -h），清理无用文件（rm -rf），转移文件（mv），硬盘扩容（分配更多分布式存储容量，添加一块磁盘并进行磁盘分区）</li>
+</ul>
+</li>
+</ol>
 
                 
               </div>
@@ -426,7 +558,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/" class="category-chain-item">后端开发</a>
+  <a href="/categories/%E8%BF%90%E7%BB%B4%E5%BC%80%E5%8F%91/" class="category-chain-item">运维开发</a>
   
   
 
@@ -441,9 +573,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">#微服务</a>
+        <a href="/tags/DevOps/">#DevOps</a>
       
-        <a href="/tags/%E6%9E%B6%E6%9E%84/">#架构</a>
+        <a href="/tags/%E8%BF%90%E7%BB%B4/">#运维</a>
       
     </div>
   
@@ -455,8 +587,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>DDD-领域驱动设计</div>
-      <div>https://alleyf.github.io/2024/04/40f64f9b6cf6.html</div>
+      <div>运维排忧解难</div>
+      <div>https://alleyf.github.io/2024/06/c47de4b3720d.html</div>
     </div>
     <div class="license-meta">
       
@@ -468,13 +600,13 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年4月18日</div>
+          <div>2024年6月28日</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年4月19日</div>
+          <div>2024年6月28日</div>
         </div>
       
       <div class="license-meta-item">
@@ -503,18 +635,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/06/c47de4b3720d.html" title="运维排忧解难">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">运维排忧解难</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/04/1929349c41a3.html" title="">
-                        <span class="hidden-mobile"></span>
+                      <a href="/2024/04/40f64f9b6cf6.html" title="DDD-领域驱动设计">
+                        <span class="hidden-mobile">DDD-领域驱动设计</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -535,7 +661,7 @@
         var options = Object.assign(
           {"clientID":"636f2864e051a199b91c","clientSecret":"5185fd11115bbcd8d2f636bc80de6bed98ed14c1","repo":"Gitalk","owner":"Alleyf","admin":["Alleyf"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":false,"proxy":"https://shielded-brushlands-08810.herokuapp.com/https://github.com/login/oauth/access_token"},
           {
-            id: '346678aab16398ed375513f250ad41fa'
+            id: '535be7c14aba7ea0b1df01b4c6bfcf13'
           }
         )
         var gitalk = new Gitalk(options);
