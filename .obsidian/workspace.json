@@ -13,28 +13,14 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/运维开发/运维问题记录.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "365414cbf01cfe31",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "conflict-files-obsidian-git.md",
+                "file": "source/_posts/运维开发/运维排错.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -69,7 +55,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "conflict-files-obsidian-git.md"
+                "file": "source/_posts/运维开发/运维排错.md"
               }
             }
           }
@@ -161,11 +147,11 @@
       "hide-folders:Show hidden folders": false
     }
   },
-  "active": "365414cbf01cfe31",
+  "active": "a55a0525c2b8c07f",
   "lastOpenFiles": [
     "source/_posts/运维开发/运维问题记录.md",
-    "source/_posts/运维开发/运维排错.md",
     "conflict-files-obsidian-git.md",
+    "source/_posts/运维开发/运维排错.md",
     "source/_posts/运维开发/各种环境配置.md",
     "source/_posts/科研学习/会议讨论/周会.md",
     "source/_obsidian/周报模板.md",
