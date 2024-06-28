@@ -27,7 +27,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://picsum.photos/800/250">
 <meta property="article:published_time" content="2024-06-27T16:37:11.000Z">
-<meta property="article:modified_time" content="2024-06-27T18:06:14.100Z">
+<meta property="article:modified_time" content="2024-06-28T12:39:30.069Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="DevOps">
 <meta property="article:tag" content="运维">
@@ -308,7 +308,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.3k 字
+          3.5k 字
         
       </span>
     
@@ -319,7 +319,7 @@
         
         
         
-          28 分钟
+          30 分钟
         
       </span>
     
@@ -370,7 +370,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：19 小时前
+                    本文最后更新于：几秒前
                   
                 
               </p>
@@ -451,7 +451,13 @@
 </ul>
 </li>
 </ol>
-<h3 id="1-1-5-查看编辑文件"><a href="#1-1-5-查看编辑文件" class="headerlink" title="1.1.5 查看编辑文件"></a>1.1.5 查看编辑文件</h3><h4 id="1-1-5-1-查看目录"><a href="#1-1-5-1-查看目录" class="headerlink" title="1.1.5.1 查看目录"></a>1.1.5.1 查看目录</h4><p>列出当前目录下的文件和文件夹</p>
+<h3 id="1-1-5-查看内存"><a href="#1-1-5-查看内存" class="headerlink" title="1.1.5 查看内存"></a>1.1.5 查看内存</h3><p>以人类可读的方式展示内存使用状态。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">free -mh<br></code></pre></td></tr></table></figure>
+
+<h3 id="1-1-6-查看硬盘"><a href="#1-1-6-查看硬盘" class="headerlink" title="1.1.6 查看硬盘"></a>1.1.6 查看硬盘</h3><p>以人类可读的方式展示磁盘分配状态。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">df</span> -h<br></code></pre></td></tr></table></figure>
+
+<h3 id="1-1-7-查看编辑文件"><a href="#1-1-7-查看编辑文件" class="headerlink" title="1.1.7 查看编辑文件"></a>1.1.7 查看编辑文件</h3><h4 id="1-1-7-1-查看目录"><a href="#1-1-7-1-查看目录" class="headerlink" title="1.1.7.1 查看目录"></a>1.1.7.1 查看目录</h4><p>列出当前目录下的文件和文件夹</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">ls</span><br></code></pre></td></tr></table></figure>
 
 <ol>
@@ -483,13 +489,13 @@
 </ul>
 </li>
 </ol>
-<h4 id="1-1-5-2-查看内容"><a href="#1-1-5-2-查看内容" class="headerlink" title="1.1.5.2 查看内容"></a>1.1.5.2 查看内容</h4><p>查看文件内容，打印在控制台</p>
+<h4 id="1-1-7-2-查看内容"><a href="#1-1-7-2-查看内容" class="headerlink" title="1.1.7.2 查看内容"></a>1.1.7.2 查看内容</h4><p>查看文件内容，打印在控制台</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">cat</span> &lt;fileName&gt;<br></code></pre></td></tr></table></figure>
 
-<h4 id="1-1-5-3-新建文件"><a href="#1-1-5-3-新建文件" class="headerlink" title="1.1.5.3 新建文件"></a>1.1.5.3 新建文件</h4><p>新增一个文件，或写入内容到文件中</p>
+<h4 id="1-1-7-3-新建文件"><a href="#1-1-7-3-新建文件" class="headerlink" title="1.1.7.3 新建文件"></a>1.1.7.3 新建文件</h4><p>新增一个文件，或写入内容到文件中</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">cat</span> &gt; &lt;file.txt&gt;<br><span class="hljs-built_in">echo</span> &lt;content&gt; &gt; &lt;file.txt&gt;<br><span class="hljs-built_in">touch</span> &lt;file.txt&gt;<br></code></pre></td></tr></table></figure>
 
-<h4 id="1-1-5-4-编辑内容"><a href="#1-1-5-4-编辑内容" class="headerlink" title="1.1.5.4 编辑内容"></a>1.1.5.4 编辑内容</h4><p>使用Vim编辑器编辑文件</p>
+<h4 id="1-1-7-4-编辑内容"><a href="#1-1-7-4-编辑内容" class="headerlink" title="1.1.7.4 编辑内容"></a>1.1.7.4 编辑内容</h4><p>使用Vim编辑器编辑文件</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">vi(m) &lt;fileName&gt;<br></code></pre></td></tr></table></figure>
 
 <ol>
@@ -515,7 +521,7 @@
 <ol>
 <li>查看镜像源配置</li>
 </ol>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">cat</span> /etc/docker/daemon.json<br></code></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">cat</span> /etc/docker/daemon.json<br><span class="hljs-built_in">cat</span> ~/.docker/config.json<br></code></pre></td></tr></table></figure>
 
 <ol start="2">
 <li>修改配置<br>多个镜像源以逗号分隔</li>
@@ -524,12 +530,15 @@
 
 <p>常见镜像源：</p>
 <ul>
+<li><a target="_blank" rel="noopener" href="https://mirror.iscas.ac.cn/">ISCAS 开源镜像站</a></li>
+<li><a target="_blank" rel="noopener" href="https://docker.rainbond.cc/">docker.rainbond.cc</a></li>
 <li><a target="_blank" rel="noopener" href="http://hub-mirror.c.163.com/">网易云镜像源</a></li>
 <li><a target="_blank" rel="noopener" href="https://dockerhub.icu/">icu紧急镜像源</a></li>
 <li><a href="https://<your_code>.mirror.aliyuncs.com">阿里云镜像源</a></li>
 <li><a target="_blank" rel="noopener" href="https://docker.mirrors.sjtug.sjtu.edu.cn/">上海交大镜像站</a></li>
 <li><a target="_blank" rel="noopener" href="https://docker.nju.edu.cn/">南京大学镜像站</a></li>
 <li><a target="_blank" rel="noopener" href="https://github.com/cmliu/CF-Workers-docker.io/issues/8">DockerHub国内镜像源列表-20240618</a></li>
+<li><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/2430473">从 Docker Hub 拉取镜像受阻？这些解决方案帮你轻松应对-腾讯云开发者社区-腾讯云</a></li>
 </ul>
 <blockquote>
 <p>测速（测速前先移除本地的镜像！）<br>docker rmi nginx:latest<br>time docker pull nginx:latest</p>
@@ -553,10 +562,11 @@
 </ol>
 </blockquote>
 <h2 id="2-1-镜像无法拉取"><a href="#2-1-镜像无法拉取" class="headerlink" title="2.1 镜像无法拉取"></a>2.1 镜像无法拉取</h2><ol>
-<li>原因：由于国内防火墙导致国外官方镜像仓库被墙无法拉取镜像</li>
+<li>原因：由于国内防火墙导致国外官方镜像仓库被墙无法拉取镜像，本地镜像库缓存导致拉取时没有找到最新镜像，docker网络问题</li>
 <li>办法：<ul>
 <li>出国旅游：windosw开启魔法拉取镜像后通过docker save和load转移镜像，并push到本地私有镜像仓库留存。</li>
 <li>取而代之：寻找国内镜像源仓库，直接拉取国内镜像仓库的镜像到本地，并推送到本地私有仓库留存。（国内镜像仓库不稳定，可能会清除镜像）</li>
+<li>重启docker：docker pull卡在waiting则可能是网络问题，将pod所在节点的docker进行重启。</li>
 </ul>
 </li>
 </ol>
