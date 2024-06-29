@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/运维开发/各种环境配置.md",
+                "file": "source/_posts/运维开发/运维排忧解难.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -55,7 +55,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/运维开发/各种环境配置.md"
+                "file": "source/_posts/运维开发/运维排忧解难.md"
               }
             }
           }
@@ -147,8 +147,9 @@
       "obsidian-memos:Memos": false
     }
   },
-  "active": "7debd791db616930",
+  "active": "d9e6fad588cf181f",
   "lastOpenFiles": [
+    "source/_posts/运维开发/各种环境配置.md",
     "public/2024/06/1d24d86ba310.html",
     "source/_posts/运维开发/运维排忧解难.md",
     "source/_posts/运维开发/运维问题记录.md",
@@ -159,7 +160,6 @@
     "public/archives/2024/06",
     "public/2024/06/c47de4b3720d.html",
     "public/2024/06",
-    "source/_posts/运维开发/各种环境配置.md",
     "source/_posts/运维开发/WebMagic.md",
     "source/_posts/运维开发/Scrapy-修炼手册.md",
     "source/_posts/运维开发/MarkDown-真经.md",
@@ -184,7 +184,6 @@
     "source/_posts/课程学习/Filter.md",
     "source/_posts/课程学习/专业问答整理.md",
     "public/2024/04/c649f2c38f75.html",
-    "public/2024/04/40f64f9b6cf6.html",
     "canvas/未命名.canvas",
     "canvas/AI学习思路.canvas",
     "attachment/Pasted Image 20240102110312.jpeg",
