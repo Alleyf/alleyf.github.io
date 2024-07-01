@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "e571d8d377aad101",
+        "id": "b14895adc026a62d",
         "type": "tabs",
         "children": [
           {
-            "id": "d9e6fad588cf181f",
+            "id": "7d5c7ec29dbfe47a",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -147,7 +147,7 @@
       "obsidian-memos:Memos": false
     }
   },
-  "active": "d9e6fad588cf181f",
+  "active": "7d5c7ec29dbfe47a",
   "lastOpenFiles": [
     "source/_posts/运维开发/各种环境配置.md",
     "public/2024/06/1d24d86ba310.html",
