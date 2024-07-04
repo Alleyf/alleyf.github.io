@@ -24,20 +24,12 @@
   "unresolvedLinks": false,
   "recentFilesStore": [
     {
-      "filepath": "source/_posts/运维开发/运维排错.md",
-      "timestamp": 1720075599156
+      "filepath": "conflict-files-obsidian-git.md",
+      "timestamp": 1720075644223
     },
     {
       "filepath": "source/_posts/运维开发/运维问题记录.md",
       "timestamp": 1719539811891
-    },
-    {
-      "filepath": "source/_posts/运维开发/各种环境配置.md",
-      "timestamp": 1719476794366
-    },
-    {
-      "filepath": "source/_posts/科研学习/会议讨论/周会.md",
-      "timestamp": 1719196080956
     }
   ],
   "starredFileStore": [],
