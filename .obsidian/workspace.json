@@ -14,8 +14,22 @@
               "type": "home-tab-view",
               "state": {}
             }
+          },
+          {
+            "id": "bf6c6ece25fc7b64",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "conflict-files-obsidian-git.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -49,7 +63,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "conflict-files-obsidian-git.md"
+              }
             }
           }
         ]
@@ -140,19 +156,24 @@
       "obsidian-memos:Memos": false
     }
   },
-  "active": "b563e96b1e39d0cc",
+  "active": "7debd791db616930",
   "lastOpenFiles": [
+    "public/tags/工具/index.html",
+    "public/tags/工具",
+    "public/archives/2024/07/index.html",
+    "public/archives/2024/07",
+    "public/2024/07/e01892fcb965.html",
+    "public/2024/07",
+    "conflict-files-obsidian-git.md",
+    "source/_posts/中间件和工具/常用软件和环境.md",
     "source/_posts/运维开发/运维排忧解难.md",
     "source/_posts/运维开发/各种环境配置.md",
     "public/2024/06/1d24d86ba310.html",
     "source/_posts/运维开发/运维问题记录.md",
-    "conflict-files-obsidian-git.md",
     "public/tags/运维/index.html",
     "public/tags/运维",
     "public/archives/2024/06/index.html",
     "public/archives/2024/06",
-    "public/2024/06/c47de4b3720d.html",
-    "public/2024/06",
     "source/_posts/运维开发/WebMagic.md",
     "source/_posts/运维开发/Scrapy-修炼手册.md",
     "source/_posts/运维开发/MarkDown-真经.md",
@@ -163,20 +184,16 @@
     "source/_posts/科研学习/论文总结/A survey of large language models.md",
     "source/categories/index.md",
     "source/gallery/index.md",
-    "public/2023/12/5f1c44e4965a.html",
     "Large Language Models for Generative Information  Extraction A Survey.md",
     "source/_posts/科研学习/学习方法/科研思路.md",
     "source/_posts/科研学习/会议讨论/周会.md",
     "source/_posts/运维开发/Git-简记.md",
-    "Large Language Models for Generative Information  Extraction A Survey.html",
     "source/_posts/科研学习/学习方法/Paper_Reading_Method.md",
     "source/_obsidian/学术汇报模板.md",
     "source/_posts/科研学习/论文总结/Papers Reading.md",
     "source/_posts/科研学习/调研报告/多源异构司法数据汇聚融合-解决方案调研.md",
     "source/_posts/科研学习/调研报告/司法领域大模型调研二.md",
     "source/_posts/课程学习/Filter.md",
-    "source/_posts/课程学习/专业问答整理.md",
-    "public/2024/04/c649f2c38f75.html",
     "canvas/未命名.canvas",
     "canvas/AI学习思路.canvas",
     "attachment/Pasted Image 20240102110312.jpeg",
