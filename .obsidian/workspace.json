@@ -4,20 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "b14895adc026a62d",
+        "id": "69f73ade028deca5",
         "type": "tabs",
         "children": [
           {
-            "id": "7d5c7ec29dbfe47a",
+            "id": "b563e96b1e39d0cc",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "source/_posts/运维开发/运维排忧解难.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
+              "type": "home-tab-view",
+              "state": {}
             }
           }
         ]
@@ -54,9 +49,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "source/_posts/运维开发/运维排忧解难.md"
-              }
+              "state": {}
             }
           }
         ]
@@ -147,11 +140,11 @@
       "obsidian-memos:Memos": false
     }
   },
-  "active": "7d5c7ec29dbfe47a",
+  "active": "b563e96b1e39d0cc",
   "lastOpenFiles": [
+    "source/_posts/运维开发/运维排忧解难.md",
     "source/_posts/运维开发/各种环境配置.md",
     "public/2024/06/1d24d86ba310.html",
-    "source/_posts/运维开发/运维排忧解难.md",
     "source/_posts/运维开发/运维问题记录.md",
     "conflict-files-obsidian-git.md",
     "public/tags/运维/index.html",
