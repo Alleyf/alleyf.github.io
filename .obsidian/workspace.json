@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "ff8cc187ecba8dad",
+        "id": "5617fec3d8f31660",
         "type": "tabs",
         "children": [
           {
-            "id": "10560de6c6dbd0e9",
+            "id": "55f4a7a7bb8d03b5",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/运维开发/运维排忧解难.md",
+                "file": "source/_posts/中间件和工具/常用软件和环境.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -55,7 +55,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/运维开发/运维排忧解难.md"
+                "file": "source/_posts/中间件和工具/常用软件和环境.md"
               }
             }
           }
@@ -147,11 +147,12 @@
       "obsidian-memos:Memos": false
     }
   },
-  "active": "10560de6c6dbd0e9",
+  "active": "55f4a7a7bb8d03b5",
   "lastOpenFiles": [
+    "source/_posts/中间件和工具/常用软件和环境.md",
+    "source/_posts/运维开发/运维排忧解难.md",
     "source/_posts/运维开发/运维问题记录.md",
     "conflict-files-obsidian-git.md",
-    "source/_posts/运维开发/运维排忧解难.md",
     "source/_posts/运维开发/运维排错.md",
     "source/_posts/运维开发/各种环境配置.md",
     "source/_posts/科研学习/会议讨论/周会.md",
@@ -176,7 +177,6 @@
     "source/_posts/课程学习/Filter.md",
     "source/_posts/课程学习/专业问答整理.md",
     "source/_posts/科研学习/调研报告/国家重点研究计划课题四-任务三-调研.md",
-    "source/_posts/后端开发/Java设计模式.md",
     "public/2024/04/c649f2c38f75.html",
     "public/2024/04/40f64f9b6cf6.html",
     "public/2024/04/c6fa1edd5f61.html",
