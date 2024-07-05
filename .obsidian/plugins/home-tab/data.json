@@ -24,8 +24,12 @@
   "unresolvedLinks": false,
   "recentFilesStore": [
     {
-      "filepath": "conflict-files-obsidian-git.md",
-      "timestamp": 1720193359710
+      "filepath": "source/_posts/中间件和工具/常用软件和环境.md",
+      "timestamp": 1720198805529
+    },
+    {
+      "filepath": "source/_posts/运维开发/各种环境配置.md",
+      "timestamp": 1720193839576
     },
     {
       "filepath": "source/_posts/运维开发/运维排忧解难.md",
