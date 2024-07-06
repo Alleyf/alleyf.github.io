@@ -477,11 +477,23 @@ DaemonSet保证在**每个匹配的Node上都运行一个容器副本**，常用
 
 ##### 5.2.1.3.2 服务发现
 
+![|350](https://qnpicmap.fcsluck.top/pics/202407061726447.png)
+
 ###### Service
 
-
+Service简写"svc"。Pod不能直接提供给外网访问，而是应该使用service。Service就是把Pod暴露出来提供服务，Service才是真正的“服务”，它的中文名就叫“服务”。
+可以说Service是一个**应用服务的抽象**，定义了Pod逻辑集合和访问这个Pod集合的策路。Service代理Pod集合，对外表现为一个访问入口，访问该入口的请求将经过负载均衡，转发到后端Pod中的容器。
+![](https://qnpicmap.fcsluck.top/pics/202407062213550.png)
 
 ###### Ingress
+
+在Kubernetes中，Ingress是一个API对象，它管理外部访问集群内服务的HTTP和HTTPS路由。Ingress可以提供URL路由、负载均衡、SSL/TLS终止，以及名称基的虚拟托管。Ingress允许你定义基于请求的路由规则，将外部请求转发到集群内的适当服务。
+ 
+##### 5.2.1.3.3 配置与存储
+
+###### Volume
+
+###### CSI
 
 ### 5.2.2 资源清单
 
