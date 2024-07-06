@@ -27,7 +27,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://picsum.photos/800/250">
 <meta property="article:published_time" content="2024-06-27T16:37:11.000Z">
-<meta property="article:modified_time" content="2024-07-05T15:29:19.384Z">
+<meta property="article:modified_time" content="2024-07-06T09:06:28.199Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="DevOps">
 <meta property="article:tag" content="运维">
@@ -308,7 +308,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4k 字
+          7.5k 字
         
       </span>
     
@@ -319,7 +319,7 @@
         
         
         
-          34 分钟
+          63 分钟
         
       </span>
     
@@ -370,7 +370,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2 小时前
+                    本文最后更新于：4 分钟前
                   
                 
               </p>
@@ -578,24 +578,28 @@
 <li>原因：随着时间的累积和负载变化，内存或硬盘资源可能会不够，虚拟机负载过大，无法提供正常响应。</li>
 <li>办法：<ul>
 <li>内存：清理无用进程（kill），重启虚拟机（reboot），扩容内存（vcenter扩大虚拟机内存）</li>
-<li>硬盘：查看磁盘分区和挂载情况（df -h），清理无用文件（rm -rf），转移文件（mv），硬盘扩容（分配更多分布式存储容量，添加一块磁盘并进行磁盘分区）<blockquote>
-<p>[!failure]- Failure<br>  SyntaxError: Unexpected token ‘&lt;’, “&lt;&lt;&lt;&lt;&lt;&lt;&lt; HE”… is not valid JSON</p>
-<ul>
-<li><p>JSON.parse</p>
-</li>
-<li><p>plugin:obsidian-textgenerator-plugin:176841 PackageManager.load<br>plugin:obsidian-textgenerator-plugin:176841:33</p>
-</li>
+<li>硬盘：查看磁盘分区和挂载情况（df -h），清理无用文件（rm -rf），转移文件（mv），硬盘扩容（分配更多分布式存储容量，添加一块磁盘并进行磁盘分区）</li>
 </ul>
-</blockquote>
-</li>
-</ul>
-<blockquote>
-<ul>
-<li>plugin:obsidian-textgenerator-plugin:179856 async TextGeneratorPlugin.onload    plugin:obsidian-textgenerator-plugin:179856:7</li>
-</ul>
-</blockquote>
 </li>
 </ol>
+<h1 id="3-常用镜像"><a href="#3-常用镜像" class="headerlink" title="3 常用镜像"></a>3 常用镜像</h1><h2 id="3-1-基础设施"><a href="#3-1-基础设施" class="headerlink" title="3.1 基础设施"></a>3.1 基础设施</h2><h3 id="3-1-1-Longhorn"><a href="#3-1-1-Longhorn" class="headerlink" title="3.1.1 Longhorn"></a>3.1.1 Longhorn</h3><p>longhornio&#x2F;csi-attacher:v2.2.1-lh1<br>longhornio&#x2F;csi-provisioner:v1.6.0-lh1<br>longhornio&#x2F;csi-resizer:v0.5.1-lh1<br>longhornio&#x2F;csi-snapshotter:v2.1.1-lh1<br>longhornio&#x2F;longhorn-engine:v1.1.0<br>longhornio&#x2F;longhorn-instance-manager:v1_20201216<br>longhornio&#x2F;longhorn-manager:v1.1.0<br>longhornio&#x2F;csi-node-driver-registrar:v1.2.0-lh1<br>longhornio&#x2F;longhorn-ui:v1.1.0</p>
+<h3 id="3-1-2-数据库"><a href="#3-1-2-数据库" class="headerlink" title="3.1.2 数据库"></a>3.1.2 数据库</h3><h4 id="3-1-2-1-关系型"><a href="#3-1-2-1-关系型" class="headerlink" title="3.1.2.1 关系型"></a>3.1.2.1 关系型</h4><p>busybox:1.32<br>registry.csdc.info&#x2F;publish&#x2F;mysql:5.7.31<br>mysql:5.7.31<br>nacos&#x2F;nacos-mysql-master:latest<br>nacos&#x2F;nacos-mysql-slave:latest<br>prom&#x2F;mysqld-exporter</p>
+<h4 id="3-1-2-2-非关系型"><a href="#3-1-2-2-非关系型" class="headerlink" title="3.1.2.2 非关系型"></a>3.1.2.2 非关系型</h4><h5 id="3-1-2-2-1-Redis"><a href="#3-1-2-2-1-Redis" class="headerlink" title="3.1.2.2.1 Redis"></a>3.1.2.2.1 Redis</h5><p>registry.csdc.info&#x2F;publish&#x2F;redis507<br>registry.csdc.info&#x2F;publish&#x2F;redis-exporter135<br>oliver006&#x2F;redis_exporter:v1.3.4<br>registry.csdc.info&#x2F;publish&#x2F;redisinsight:latest</p>
+<h5 id="3-1-2-2-2-Neo4j"><a href="#3-1-2-2-2-Neo4j" class="headerlink" title="3.1.2.2.2 Neo4j"></a>3.1.2.2.2 Neo4j</h5><p>neo4j:3.5</p>
+<h5 id="3-1-2-2-3-ELK"><a href="#3-1-2-2-3-ELK" class="headerlink" title="3.1.2.2.3 ELK"></a>3.1.2.2.3 ELK</h5><p>registry.csdc.info&#x2F;publish&#x2F;elasticsearch-ik-py:7.16.2<br>registry.csdc.info&#x2F;publish&#x2F;elasticsearch-ik:7.9.2<br>docker.elastic.co&#x2F;kibana&#x2F;kibana:7.16.2<br>registry.csdc.info&#x2F;elk&#x2F;logstash&#x2F;logstash:7.16.2<br>docker.elastic.co&#x2F;eck&#x2F;eck-operator:1.9.1</p>
+<h5 id="3-1-2-2-4-Mongodb"><a href="#3-1-2-2-4-Mongodb" class="headerlink" title="3.1.2.2.4 Mongodb"></a>3.1.2.2.4 Mongodb</h5><p>registry.csdc.info&#x2F;publish&#x2F;mongodb424:latest<br>registry.csdc.info&#x2F;publish&#x2F;mongodb-exporter:latest</p>
+<h4 id="3-1-2-3-OSS"><a href="#3-1-2-3-OSS" class="headerlink" title="3.1.2.3 OSS"></a>3.1.2.3 OSS</h4><p>minio&#x2F;minio:RELEASE.2022-03-17T06-34-49Z</p>
+<h3 id="3-1-3-反向代理"><a href="#3-1-3-反向代理" class="headerlink" title="3.1.3 反向代理"></a>3.1.3 反向代理</h3><p>nginx:stable<br>nginx:1.7.9<br>nginx:1.15</p>
+<h3 id="3-1-4-微服务中间件"><a href="#3-1-4-微服务中间件" class="headerlink" title="3.1.4 微服务中间件"></a>3.1.4 微服务中间件</h3><h4 id="3-1-4-1-Nacos"><a href="#3-1-4-1-Nacos" class="headerlink" title="3.1.4.1 Nacos"></a>3.1.4.1 Nacos</h4><p>nacos&#x2F;nacos-server:0.9.0<br>registry.csdc.info&#x2F;publish&#x2F;nacos&#x2F;nacos-server:0.9.0<br>nacos&#x2F;nacos-server:2.0.3<br>registry.csdc.info&#x2F;publish&#x2F;nacos221:latest</p>
+<h4 id="3-1-4-2-RabbitMQ"><a href="#3-1-4-2-RabbitMQ" class="headerlink" title="3.1.4.2 RabbitMQ"></a>3.1.4.2 RabbitMQ</h4><p>docker.io&#x2F;bitnami&#x2F;rabbitmq:3.11.6-debian-11-r0</p>
+<h4 id="3-1-4-3-Seata"><a href="#3-1-4-3-Seata" class="headerlink" title="3.1.4.3 Seata"></a>3.1.4.3 Seata</h4><p>docker.io&#x2F;seataio&#x2F;seata-server:latest<br>registry.csdc.info&#x2F;etms&#x2F;seata-server:latest</p>
+<h3 id="3-1-5-Gitlab"><a href="#3-1-5-Gitlab" class="headerlink" title="3.1.5 Gitlab"></a>3.1.5 Gitlab</h3><p>registry.csdc.info&#x2F;publish&#x2F;docker:stable-dind<br>gitlab&#x2F;gitlab-runner:alpine-v13.7.0<br>gitlab&#x2F;gitlab-runner-helper:x86_64-943fc252</p>
+<h3 id="3-1-6-Harbor"><a href="#3-1-6-Harbor" class="headerlink" title="3.1.6 Harbor"></a>3.1.6 Harbor</h3><p>harbor.newershoe.com:8443&#x2F;library&#x2F;etcd</p>
+<h3 id="3-1-7-监控看板"><a href="#3-1-7-监控看板" class="headerlink" title="3.1.7 监控看板"></a>3.1.7 监控看板</h3><h4 id="3-1-7-1-Grafana"><a href="#3-1-7-1-Grafana" class="headerlink" title="3.1.7.1 Grafana"></a>3.1.7.1 Grafana</h4><p>rancher&#x2F;grafana-grafana:7.1.5<br>rancher&#x2F;prometheus-auth:v0.2.1<br>grafana&#x2F;loki:2.4.2<br>grafana&#x2F;grafana:8.3.5<br>grafana&#x2F;promtail:2.1.0</p>
+<h4 id="3-1-7-2-Prometheus"><a href="#3-1-7-2-Prometheus" class="headerlink" title="3.1.7.2 Prometheus"></a>3.1.7.2 Prometheus</h4><p>rancher&#x2F;prom-prometheus:v2.18.2<br>rancher&#x2F;coreos-prometheus-config-reloader:v0.39.0<br>rancher&#x2F;jimmidyson-configmap-reload:v0.3.0<br>rancher&#x2F;mirrored-library-nginx:1.19.9-alpine</p>
+<h3 id="3-1-8-SSH"><a href="#3-1-8-SSH" class="headerlink" title="3.1.8 SSH"></a>3.1.8 SSH</h3><p>registry.csdc.info&#x2F;publish&#x2F;panubo-sshd:latest<br>panubo&#x2F;sshd</p>
+<h3 id="3-1-9-其他"><a href="#3-1-9-其他" class="headerlink" title="3.1.9 其他"></a>3.1.9 其他</h3><p>registry.csdc.info&#x2F;publish&#x2F;dingtalk-chatbot:1.0.3<br>registry.csdc.info&#x2F;publish&#x2F;databasetools:0.0.2<br>registry.csdc.info&#x2F;publish&#x2F;rsync-ssh:latest<br>rancher&#x2F;rancher-agent:v2.5.8<br>rancher&#x2F;fleet:v0.3.1<br>rancher&#x2F;gitjob:v0.1.8<br>rancher&#x2F;nginx-ingress-controller-defaultbackend:1.5-rancher1<br>rancher&#x2F;nginx-ingress-controller:nginx-0.35.0-rancher1<br>rancher&#x2F;calico-kube-controllers:v3.16.1<br>rancher&#x2F;calico-cni:v3.16.1<br>rancher&#x2F;calico-pod2daemon-flexvol:v3.16.1<br>rancher&#x2F;calico-node:v3.16.1<br>rancher&#x2F;coreos-flannel:v0.13.0-rancher1<br>rancher&#x2F;coredns-coredns:1.7.0<br>rancher&#x2F;cluster-proportional-autoscaler:1.8.1<br>rancher&#x2F;metrics-server:v0.3.6<br>rancher&#x2F;hyperkube:v1.19.3-rancher1<br>registry.csdc.info&#x2F;publish&#x2F;k8s-sidecar:1.15.1<br>registry.csdc.info&#x2F;publish&#x2F;kube-state-metrics:v2.2.4<br>quay.io&#x2F;prometheus&#x2F;alertmanager:v0.23.0<br>jimmidyson&#x2F;configmap-reload:v0.5.0<br>quay.io&#x2F;prometheus&#x2F;node-exporter:v1.3.0<br>prom&#x2F;pushgateway:v1.4.2<br>quay.io&#x2F;prometheus&#x2F;prometheus:v2.31.1<br>rancher&#x2F;rancher-operator:v0.1.3<br>registry.csdc.info&#x2F;publish&#x2F;tomcat:7<br>registry.csdc.info&#x2F;elk&#x2F;filebeat:7.9.2<br>registry.csdc.info&#x2F;publish&#x2F;locust-tasks<br>registry.csdc.info&#x2F;publish&#x2F;kubectl:v1.14</p>
+<h3 id="3-1-10-Research"><a href="#3-1-10-Research" class="headerlink" title="3.1.10 Research"></a>3.1.10 Research</h3><p>conda:fus<br>centos:latest<br>nvidia&#x2F;cuda:10.1-devel-ubuntu18.04<br>nvidia&#x2F;cuda:10.1-cudnn7-devel-centos7</p>
 
                 
               </div>
@@ -662,7 +666,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年7月5日</div>
+          <div>2024年7月6日</div>
         </div>
       
       <div class="license-meta-item">
