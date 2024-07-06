@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "69f73ade028deca5",
+        "id": "98b30c11a0441146",
         "type": "tabs",
         "children": [
           {
-            "id": "b563e96b1e39d0cc",
+            "id": "9c5dc57a64cbeef1",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/中间件和工具/常用软件和环境.md",
+                "file": "source/_posts/运维开发/运维排忧解难.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -55,7 +55,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/中间件和工具/常用软件和环境.md"
+                "file": "source/_posts/运维开发/运维排忧解难.md"
               }
             }
           }
@@ -147,8 +147,11 @@
       "obsidian-memos:Memos": false
     }
   },
-  "active": "b563e96b1e39d0cc",
+  "active": "9c5dc57a64cbeef1",
   "lastOpenFiles": [
+    "source/_posts/运维开发/Kubernetes入门.md",
+    "source/_posts/运维开发/运维问题记录.md",
+    "source/_posts/中间件和工具/常用软件和环境.md",
     "source/_posts/运维开发/各种环境配置.md",
     "conflict-files-obsidian-git.md",
     "public/tags/工具/index.html",
@@ -157,17 +160,14 @@
     "public/archives/2024/07",
     "public/2024/07/e01892fcb965.html",
     "public/2024/07",
-    "source/_posts/中间件和工具/常用软件和环境.md",
     "source/_posts/运维开发/运维排忧解难.md",
     "public/2024/06/1d24d86ba310.html",
-    "source/_posts/运维开发/运维问题记录.md",
     "public/tags/运维/index.html",
     "public/tags/运维",
     "public/archives/2024/06/index.html",
     "source/_posts/运维开发/WebMagic.md",
     "source/_posts/运维开发/Scrapy-修炼手册.md",
     "source/_posts/运维开发/MarkDown-真经.md",
-    "source/_posts/运维开发/Kubernetes入门.md",
     "source/_posts/科研学习/论文总结/Large Language Models for Generative Information  Extraction A Survey.md",
     "source/_posts/科研学习/论文总结/Explainability for large language models A survey.md",
     "source/_posts/科研学习/论文总结/Chain-of-Thought Reasoning Without Prompting.md",

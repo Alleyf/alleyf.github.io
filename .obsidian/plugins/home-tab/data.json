@@ -24,16 +24,20 @@
   "unresolvedLinks": false,
   "recentFilesStore": [
     {
-      "filepath": "source/_posts/中间件和工具/常用软件和环境.md",
-      "timestamp": 1720198805529
-    },
-    {
-      "filepath": "source/_posts/运维开发/各种环境配置.md",
-      "timestamp": 1720193839576
-    },
-    {
       "filepath": "source/_posts/运维开发/运维排忧解难.md",
-      "timestamp": 1720192955933
+      "timestamp": 1720247679923
+    },
+    {
+      "filepath": "source/_posts/运维开发/Kubernetes入门.md",
+      "timestamp": 1720228597856
+    },
+    {
+      "filepath": "source/_posts/运维开发/运维问题记录.md",
+      "timestamp": 1720228591932
+    },
+    {
+      "filepath": "source/_posts/中间件和工具/常用软件和环境.md",
+      "timestamp": 1720228508209
     }
   ],
   "starredFileStore": [],
