@@ -432,47 +432,41 @@ Kubernetes 集群中的 Pod 存在如下两种使用途径：
 >    - **声明式部署（Declarative updates）**：用户可以定义 Pod 的期望状态，控制器会负责将当前状态更改为期望状态。
 
 3. 分类：
-**Deployment（无状态）**：用于运行无状态应用程序，提供声明式的更新能力，可以指定 Pod 副本的数量，并确保始终运行指定数量的 Pod 副本，提供功能（**创建Replica Set/Pod，滚动升级/回滚，平容和缩容，暂停与恢复Deployment**）
+**Deployment（无状态）**：用于运行无状态应用程序，提供声明式的更新能力，可以指定 Pod 副本的数量，并确保始终运行指定数量的 Pod 副本，提供功能（**创建 Replica Set/Pod，滚动升级/回滚，平容和缩容，暂停与恢复 Deployment**）
 ![|400](https://qnpicmap.fcsluck.top/pics/202407061019309.png)
-
-**ReplicaSet（无状态）**（在 **Deployment** 中内部使用）：确保 Pod 副本的精确数量始终运行。Deployment 控制器使用 **ReplicaSet 来确保 Pod 副本的一致性**，通过`selector`来选择对哪些Pod（`label`）生效，动态更新Pod的副本数。
+**ReplicaSet（无状态）**（在 **Deployment** 中内部使用）：确保 Pod 副本的精确数量始终运行。Deployment 控制器使用 **ReplicaSet 来确保 Pod 副本的一致性**，通过 `selector` 来选择对哪些 Pod（`label`）生效，动态更新 Pod 的副本数。
 
 ---
-
 **StatefulSet（有状态）**：用于运行有状态的应用程序，如数据库。StatefulSet 为每个 Pod 提供持久化标识、顺序部署、扩展和滚动更新，以及存储的持久化。
 1. 主要特点：
 	- 稳定的持久化存储
 	- 稳定的网络标志
-	- 有序部署，有序扩展：即Pod是有顺序的，在*部署或者扩展的时候要据定义的顺序依次依次进行（即从0到N-1,在下一个Pod运行之前所有之前的Pod必须都是Running和Ready状态)，是于init containers来实现*
+	- 有序部署，有序扩展：即 Pod 是有顺序的，在*部署或者扩展的时候要据定义的顺序依次依次进行（即从 0 到 N-1,在下一个 Pod 运行之前所有之前的 Pod 必须都是 Running 和 Ready 状态)，是于 init containers 来实现*
 	- 有序收缩，有序删除
 1. 组成：
-   - **Headless Service**：StatefulSet中每个Pod的DNS格式为`statefulSetName-{0~N-1).serviceName.namespace.svc.cluster.local`
-	1. **serviceName**：Headless Service的名字
-	2. **0~N-1**：Pod所在的序号，从0开始到N-1
-	3. **statefulSetName**：StatefulSet的名字
-	4. **namespace**：服务所在的namespace,Headless Servic和StatefulSet必须在相同的namespace
+   - **Headless Service**：StatefulSet 中每个 Pod 的 DNS 格式为 `statefulSetName-{0~N-1).serviceName.namespace.svc.cluster.local`
+	1. **serviceName**：Headless Service 的名字
+	2. **0~N-1**：Pod 所在的序号，从 0 开始到 N-1
+	3. **statefulSetName**：StatefulSet 的名字
+	4. **namespace**：服务所在的 namespace,Headless Servic 和 StatefulSet 必须在相同的 namespace
 	5. **.cluster.local**：Cluster Domain
   - **volumeClaimTemplate**：用于动态供应存储卷（PersistentVolume）的模板，它定义了存储卷的要求和特性，但并不直接创建存储卷。
     1. **PersistentVolume (PV)**：预配置的存储卷，已经由管理员设置好并可供使用。
-	2. **PersistentVolumeClaim (PVC)**：类似于对PV的请求，用户根据需要请求存储，Kubernetes会自动匹配合适的PV。
-	3. **volumeClaimTemplate**：是一个模板，用于在StatefulSet等控制器中动态创建PVC。
+	2. **PersistentVolumeClaim (PVC)**：类似于对 PV 的请求，用户根据需要请求存储，Kubernetes 会自动匹配合适的 PV。
+	3. **volumeClaimTemplate**：是一个模板，用于在 StatefulSet 等控制器中动态创建 PVC。
 
 ---
-
 **DaemonSet（守护进程）**：确保在集群中的**所有（或某些）节点上运行一个 Pod 副本**，通常用于运行日志收集器、监控代理等。
-
-DaemonSet保证在**每个匹配的Node上都运行一个容器副本**，常用来部署一些集群的日志、监控或者其他系统管理应用。典型的应用包括：
-- *日志收集*，比如fluentd,logstash等
-- *系统监控*，比如Prometheus Node Exporter,.collectd,New Relic agent,Ganglia gmond
-- *系统程序*，比如kube-proy,kube-dns,glusterd,ceph等
+DaemonSet 保证在**每个匹配的 Node 上都运行一个容器副本**，常用来部署一些集群的日志、监控或者其他系统管理应用。典型的应用包括：
+- *日志收集*，比如 fluentd,logstash 等
+- *系统监控*，比如 Prometheus Node Exporter,.collectd,New Relic agent,Ganglia gmond
+- *系统程序*，比如 kube-proy,kube-dns,glusterd,ceph 等
 ![|600](https://qnpicmap.fcsluck.top/pics/202407061118025.png)
 
 ---
-
 **Job（任务）**：负责批处理任务的 Pod，确保指定数量的 Pod 成功完成任务。
 
 ---
-
 **CronJob（定时任务）**：基于时间表创建 Job 对象，用于定时任务。
 
 ##### 5.2.1.3.2 服务发现
@@ -481,35 +475,124 @@ DaemonSet保证在**每个匹配的Node上都运行一个容器副本**，常用
 
 ###### Service
 
-Service简写"svc"。Pod不能直接提供给外网访问，而是应该使用service。Service就是把Pod暴露出来提供服务，Service才是真正的“服务”，它的中文名就叫“服务”。
-可以说Service是一个**应用服务的抽象**，定义了Pod逻辑集合和访问这个Pod集合的策路。Service代理Pod集合，对外表现为一个访问入口，访问该入口的请求将经过负载均衡，转发到后端Pod中的容器。
+Service 简写"svc"。Pod 不能直接提供给外网访问，而是应该使用 service。Service 就是把 Pod 暴露出来提供服务，Service 才是真正的“服务”，它的中文名就叫“服务”。
+可以说 Service 是一个**应用服务的抽象**，定义了 Pod 逻辑集合和访问这个 Pod 集合的策路。Service 代理 Pod 集合，对外表现为一个访问入口，访问该入口的请求将经过负载均衡，转发到后端 Pod 中的容器。
 ![](https://qnpicmap.fcsluck.top/pics/202407062213550.png)
 
 ###### Ingress
 
-在Kubernetes中，Ingress是一个API对象，它管理外部访问集群内服务的HTTP和HTTPS路由。Ingress可以提供URL路由、负载均衡、SSL/TLS终止，以及名称基的虚拟托管。Ingress允许你定义基于请求的路由规则，将外部请求转发到集群内的适当服务。
- 
-##### 5.2.1.3.3 配置与存储
+在 Kubernetes 中，Ingress 是一个 API 对象，它管理外部访问集群内服务的 HTTP 和 HTTPS 路由。Ingress 可以提供 URL 路由、负载均衡、SSL/TLS 终止，以及名称基的虚拟托管。Ingress 允许你定义基于请求的路由规则，将外部请求转发到集群内的适当服务。
+
+##### 5.2.1.3.3 存储
 
 ###### Volume
 
+数据卷，共享 Pod 中容器使用的数据。用来放持久化的数据，比如数据库数据。
+
 ###### CSI
+
+Container Storage Interface 是由来自 Kubernetes、Mesos、Docker 等社区成员联合制定的一个行业标准接口规范，旨在将任意存储系统暴露给容器化应用程序。
+CSI 规范定义了存储提供商实现 CSI 兼容的 Volume Plugin 的最小操作集和部署建议。CSI 规范的主要焦点是声明 Volume Plugin 必须实现的接口。
+
+##### 5.2.1.3.4 特殊类型配置
+
+###### ConfigMap
+
+ConfigMap 是 Kubernetes 中的一个 API 资源，用于**存储配置数据**，这些数据可以被 Pods 以多种方式使用。ConfigMap 通常用于存储应用的配置信息，比如**环境变量、配置文件等**，使得这些信息与应用程序代码分离，便于管理和更新。
+ConfigMap 可以**包含键值对，这些键值对可以被映射到容器的环境变量中**，或者作为配置文件挂载到容器的文件系统中。ConfigMap 的数据可以以多种格式存储，比如 JSON、YAML、属性文件等。
+
+###### Secret
+
+Secret 是 Kubernetes 中用于**存储敏感信息的 API 资源，例如密码、OAuth 令牌、SSH 密钥等**。与 ConfigMap 类似，Secret 也用于**存储键值对**，但 Secret 提供了额外的安全特性来保护这些敏感数据。
+在 Kubernetes 中，Secret 可以有几种不同的类型，每种类型都定义了如何存储和处理 Secret 中的数据。以下是一些常见的 Secret 类型：
+1. **Opaque**：这是默认的 Secret 类型，用于存储不特定于任何类型的敏感数据。例如，密码、令牌或密钥。Opaque 类型的 Secret 没有特定的结构要求。
+2. kubernetes.io/service-account-token ：这种类型的 Secret 自动由 API 服务器创建和管理，用于存储服务账户的访问令牌。Pod 使用服务账户时，这个类型的 Secret 会自动挂载到 Pod 中。
+3. kubernetes.io/dockerconfigjson：用于存储私有 Docker 注册表的认证信息。这种类型的 Secret 允许 Pod 从私有 Docker 注册表中拉取镜像。
+4. kubernetes.io/tls：用于存储 TLS 证书和私钥。这种类型的 Secret 通常用于配置服务的 TLS 通信。
+5. kubernetes.io/basic-auth：用于存储 HTTP 基本认证的用户名和密码。
+6. kubernetes.io/ssh-auth：用于存储 SSH 私钥，用于 SSH 认证。
+7. kubernetes.io/azure-disks：用于存储 Azure 磁盘的认证信息。
+8. kubernetes.io/azure-file：用于存储 Azure 文件的认证信息。
+9. kubernetes.io/gcp-secrets：用于存储 Google Cloud Platform 的机密信息。
+10. kubernetes.io/flocker：用于存储 Flocker 卷的认证信息。
+
+每种类型的 Secret 都有其特定的用途和存储方式。例如，`kubernetes.io/tls` 类型的 Secret 会自动将证书和私钥挂载到 Pod 中，并配置为服务的 TLS 证书。而 `kubernetes.io/dockerconfigjson` 类型的 Secret 允许 Kubernetes 集群访问私有 Docker 注册表。
+在创建 Secret 时，可以通过 `type` 字段指定 Secret 的类型。如果不指定类型，默认为 `Opaque`。不同类型的 Secret 可能会影响 Kubernetes 如何处理和挂载这些 Secret。
+
+###### DownwardAPI
+
+DownwardAPI 是 Kubernetes 中的一种资源类型，**它允许 Pod 中的容器访问有关其环境（Pod）的信息**。这些信息包括但不限于：
+
+- Pod 的名称
+- Pod 的命名空间
+- Pod的 IP 地址
+- Pod 标签（Labels）
+- Pod 注解（Annotations）
+
+downwardAPI 提供了两种方式用于将 pod 的信息注入到容器内部：
+1. **环境变量**：用于单个变量，可以将 Pod 信息和容器信息直接注入容器内部
+2. **volume 挂载**：将 pod 信息生成为文件，直接挂载到容器内部中去
+
+使用 DownwardAPI 可以使得容器在运行时能够自省其环境，这在某些场景下非常有用，比如*日志记录、监控或者配置管理*。
+
+##### 5.2.1.3.5 其他
+
+###### Role
+
+在Kubernetes中，Role 和 RoleBinding 是基于角色的访问控制（Role-Based Access Control，RBAC）的两种资源对象，它们用于定义权限和分配权限。
+
+Role 是一个资源对象，它定义了一组权限，这些权限可以被应用到一个或多个Kubernetes资源上。Role 通常与特定的命名空间（Namespace）相关联，这意味着它的作用域限制在命名空间内。Role 定义了一组规则，这些规则指定了用户可以对哪些资源执行哪些操作。
+
+Role 的定义通常包括：
+
+- **API组（API Groups）**：指定Role 适用的API组。
+- **资源类型（Resources）**：指定可以操作的资源类型，如pods, services等。
+- **资源名称（Resource Names）**：可以指定特定资源的名称。
+- **动词（Verbs）**：指定可以对资源执行的操作，如get, list, watch, create, update, patch, delete等。
+
+###### RoleBinding
+
+RoleBinding 是一个资源对象，它将一个或多个Role 分配给一组用户、用户组或服务账户。RoleBinding 也与特定的命名空间相关联，这意味着它的作用域限制在命名空间内。
+
+RoleBinding 的定义通常包括：
+
+- **RoleRef**：指定要绑定的Role。
+- **Subjects**：指定Role 要分配给哪些用户或用户组。
 
 ### 5.2.2 资源清单
 
 ### 5.2.3 对象的规约和状态
 
+在 Kubernetes 中，对象的规约（Spec）和状态（Status）是资源对象的两个重要部分，它们定义了对象的期望配置和当前状态。
+
 #### 5.2.3.1 规约
 
-spec 是规约、规格的意思，spec 是必需的。它描述了对象
-的期望状态(Desired State 一希望对象所具有的特征，当创
-建 Kubernetes 的对象时，必须得供对象的规约.用来描述该对象的状期望状态，以及关于对象的一些基本信息（例如名称）。
+spec 是规约、规格的意思，spec 是必需的。它描述了对象的期望状态(Desired State ）即希望对象所具有的特征，当创建 Kubernetes 的对象时，必须得供对象的规约，用来描述该对象的期望状态，以及关于对象的一些基本信息（例如名称）。
+
+- **定义**：规约是 Kubernetes 资源对象的一部分，它定义了**用户期望的配置或行为**。规约是用户对资源的期望声明，Kubernetes 系统会尝试将资源的实际状态与规约匹配。
+- **用途**：规约通常用于**定义资源的配置**，例如 Pod 的规约定义了**容器的镜像、环境变量、存储卷**等。
+- **不可变性**：规约通常是不可变的，**一旦创建，用户不应该直接修改它**。如果需要更新资源的配置，应该创建一个新的规约对象。
 
 #### 5.2.3.2 状态
 
-表示对象的实际状态，该属性由 K8s 自己维护， 
+表示对象的实际状态，该属性由 K8s 自己维护。
+- **定义**：状态是 Kubernetes 资源对象的一部分，它记录了**资源的当前状态**。状态由 Kubernetes 系统维护，用户不应该手动修改。
+- **用途**：状态**提供了资源的运行时信息**，例如 Pod 的状态可以是 `Running、Pending、Succeeded 或 Failed`。
+- **可变性**：状态是可变的，Kubernetes 控制器会*根据资源的实际运行情况更新状态*。
 
-# 6 参考文献
+# 6 实战操作篇
+
+## 6.1 K8s集群搭建
+
+### 6.1.1 搭建方案
+
+#### 6.1.1.1 Minikube
+
+### 6.1.2 命令行工具kubectl
+
+### 6.1.3 API概述
+
+# 7 参考文献
 
 1. [Kubernetes-win-useage](https://www.yuque.com/xiaoguai-pbjfj/cxxcrs/ocefqltbmbgl5eqg?singleDoc#%20%E3%80%8AKubernetes%E3%80%8B)
 2. [Kubernetes一小时入门课程 - 视频配套笔记 | GeekHour](https://geekhour.net/2023/12/23/kubernetes/)

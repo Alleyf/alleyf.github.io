@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/运维开发/运维排忧解难.md",
+                "file": "source/_posts/运维开发/Kubernetes入门.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -55,7 +55,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/运维开发/运维排忧解难.md"
+                "file": "source/_posts/运维开发/Kubernetes入门.md"
               }
             }
           }
@@ -149,6 +149,7 @@
   },
   "active": "9c5dc57a64cbeef1",
   "lastOpenFiles": [
+    "source/_posts/科研学习/会议讨论/周会.md",
     "source/_posts/运维开发/Kubernetes入门.md",
     "source/_posts/运维开发/运维排忧解难.md",
     "source/_posts/运维开发/运维问题记录.md",
@@ -176,7 +177,6 @@
     "source/gallery/index.md",
     "Large Language Models for Generative Information  Extraction A Survey.md",
     "source/_posts/科研学习/学习方法/科研思路.md",
-    "source/_posts/科研学习/会议讨论/周会.md",
     "source/_posts/运维开发/Git-简记.md",
     "source/_posts/科研学习/学习方法/Paper_Reading_Method.md",
     "source/_obsidian/学术汇报模板.md",
