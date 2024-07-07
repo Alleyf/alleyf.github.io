@@ -3,8 +3,8 @@ title: Kubernetes入门
 date: 2024-05-10 23:54:16
 tags:
   - K8s
-sticky: 80
-excerpt: 
+sticky: 100
+excerpt: k8s入门（基础介绍，核心概念，实战演练）
 author: fcs
 index_img: https://picsum.photos/800/250
 lang: zh-CN
@@ -525,7 +525,7 @@ DownwardAPI 是 Kubernetes 中的一种资源类型，**它允许 Pod 中的容�
 
 - Pod 的名称
 - Pod 的命名空间
-- Pod的 IP 地址
+- Pod 的 IP 地址
 - Pod 标签（Labels）
 - Pod 注解（Annotations）
 
@@ -539,25 +539,25 @@ downwardAPI 提供了两种方式用于将 pod 的信息注入到容器内部：
 
 ###### Role
 
-在Kubernetes中，Role 和 RoleBinding 是基于角色的访问控制（Role-Based Access Control，RBAC）的两种资源对象，它们用于定义权限和分配权限。
+在 Kubernetes 中，Role 和 RoleBinding 是基于角色的访问控制（Role-Based Access Control，RBAC）的两种资源对象，它们用于定义权限和分配权限。
 
-Role 是一个资源对象，它定义了一组权限，这些权限可以被应用到一个或多个Kubernetes资源上。Role 通常与特定的命名空间（Namespace）相关联，这意味着它的作用域限制在命名空间内。Role 定义了一组规则，这些规则指定了用户可以对哪些资源执行哪些操作。
+Role 是一个资源对象，它定义了一组权限，这些权限可以被应用到一个或多个 Kubernetes 资源上。Role 通常与特定的命名空间（Namespace）相关联，这意味着它的作用域限制在命名空间内。Role 定义了一组规则，这些规则指定了用户可以对哪些资源执行哪些操作。
 
 Role 的定义通常包括：
 
-- **API组（API Groups）**：指定Role 适用的API组。
-- **资源类型（Resources）**：指定可以操作的资源类型，如pods, services等。
+- **API 组（API Groups）**：指定 Role 适用的 API 组。
+- **资源类型（Resources）**：指定可以操作的资源类型，如 pods, services 等。
 - **资源名称（Resource Names）**：可以指定特定资源的名称。
-- **动词（Verbs）**：指定可以对资源执行的操作，如get, list, watch, create, update, patch, delete等。
+- **动词（Verbs）**：指定可以对资源执行的操作，如 get, list, watch, create, update, patch, delete 等。
 
 ###### RoleBinding
 
-RoleBinding 是一个资源对象，它将一个或多个Role 分配给一组用户、用户组或服务账户。RoleBinding 也与特定的命名空间相关联，这意味着它的作用域限制在命名空间内。
+RoleBinding 是一个资源对象，它将一个或多个 Role 分配给一组用户、用户组或服务账户。RoleBinding 也与特定的命名空间相关联，这意味着它的作用域限制在命名空间内。
 
 RoleBinding 的定义通常包括：
 
-- **RoleRef**：指定要绑定的Role。
-- **Subjects**：指定Role 要分配给哪些用户或用户组。
+- **RoleRef**：指定要绑定的 Role。
+- **Subjects**：指定 Role 要分配给哪些用户或用户组。
 
 ### 5.2.2 资源清单
 
@@ -582,7 +582,7 @@ spec 是规约、规格的意思，spec 是必需的。它描述了对象的期�
 
 # 6 实战操作篇
 
-## 6.1 K8s集群搭建
+## 6.1 K8s 集群搭建
 
 ### 6.1.1 搭建方案
 
@@ -590,23 +590,88 @@ spec 是规约、规格的意思，spec 是必需的。它描述了对象的期�
 
 ##### 6.1.1.1.1 服务器要求
 
-3台服务器（一主两从：1master，2node）
-最低配置：2核心，2GB内存，20G硬盘
+3 台服务器（一主两从：1master，2node）
+最低配置：2 核心，2GB 内存，20G 硬盘
 最好能联网，不能联网的话需要有提供对应境像的私有仓库
 
 ##### 6.1.1.1.2 环境配置
 
 操作系统：CentOS7
 Docker：20+
-k8s：1.23.6（1.24+以后由于CRI不支持docker作为容器运行时）
+k8s：1.23.6（1.24+以后由于 CRI 不支持 docker 作为容器运行时）
 
 ##### 6.1.1.1.3 安装步骤
 
-1. 初始操作：
+###### 初始操作（所有节点）
 
-### 6.1.2 命令行工具kubectl
+- #配置静态ip
+	- [【Linux】为 VMware 的 Linux 系统（CentOS 7）设置静态IP地址-CSDN博客](https://blog.csdn.net/m0_50513629/article/details/139055933)
+	- 注意有个命令需要把interface=ens33 改成你对应的网卡,可以使用ifconfig 查看到你的网卡信息 如果你的网阿卡是ens192 只需要把上面的命令改成interface=ens192
+- #关闭防火墙
+	- systemctl stop firewalld
+	- systemctl disable firewalld
+- #关闭selinux
+	- sudo sed -i 's/enforcing/disabled/' /etc/selinux/config #永久
+	- setenforce 0 #临时
+- #关闭swap
+	- swapoff -a #临时
+	- sed -ri 's/.*swap.*/#&/' /etc/fstab #永久
+	- #关闭完swap后 ，一定重启一下虚拟机！！I
+- #根据规划设置主机名
+	- `hostnamectl set-hostname <hostname>`
+- #在master添加hosts
 
-### 6.1.3 API概述
+```sh
+cat >> /etc/hosts << EOF
+192.168.19.100 centos7-100-master
+192.168.19.101 centos7-101-node1
+192.168.19.102 centos7-102-node2
+EOF
+```
+
+- #将桥接的IPv4流量传远划iptables的链
+
+```sh
+cat > /etc/sysctl.d/k8s.conf << EOF
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-ip6tables = 1
+EOF
+```
+
+- sysctl --system #生救
+- #时间同步
+	- yum install ntpdate -y
+	- ntpdate time.windows.com
+- [配置yum国内镜像源](https://blog.csdn.net/m0_49605975/article/details/120039048)
+	1. 备份源文件：mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
+	2. 下载国内 yum 源配置文件到/etc/yum.repos.d/：
+		- 阿里源（推荐）：curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
+		- 网易源：curl -o  /etc/yum.repos.d/CentOS-Base.repo http://mirrors.163.com/.help/CentOS7-Base-163.repo
+	3. 清理 yum 缓存，并生成新的缓存：
+	   - yum clean all
+	   - yum makecache
+	4. 更新 yum 源检查是否生效：yum update
+
+> [!TIP] 温馨提示
+> 一个节点设置完成后，可为其新建一个快照，然后通过VMware的克隆功能克隆两个一样的虚拟机；然后只需要调整静态ip和主机名称即可（`vi /etc/sysconfig/network-scripts/ifcfg-ens33`，`hostnamectl set-hostname <hostname>`）
+
+###### 安装基础软件（所有节点）
+
+1. 安装 docker
+2. 配置阿里云镜像源
+3. 安装 kubeadm、kubelet、kubectl
+
+###### 部署 Kubernetes Master
+
+###### 加入 Kubernetes Node
+
+###### 部署 CNI 网络插件
+
+###### 测试 Kubernetes 集群
+
+### 6.1.2 命令行工具 Kubectl
+
+### 6.1.3 API 概述
 
 # 7 参考文献
 
@@ -614,3 +679,4 @@ k8s：1.23.6（1.24+以后由于CRI不支持docker作为容器运行时）
 2. [Kubernetes一小时入门课程 - 视频配套笔记 | GeekHour](https://geekhour.net/2023/12/23/kubernetes/)
 3. [Kubernetes一小时轻松入门\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1Se411r7vY/?spm_id_from=333.788.recommend_more_video.2&vd_source=9c896fa9c3f9023797e8efe7be0c113e)
 4. [Kubernetes（K8S）全套入门+微服务实战项目，带你一站式深入掌握K8S核心能力](https://www.bilibili.com/video/BV1MT411x7GH)
+5. [【Linux】为 VMware 的 Linux 系统（CentOS 7）设置静态IP地址-CSDN博客](https://blog.csdn.net/m0_50513629/article/details/139055933)
