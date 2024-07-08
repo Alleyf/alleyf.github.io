@@ -1,7 +1,9 @@
 [
   "file-explorer",
   "graph",
+  "backlink",
   "canvas",
+  "outgoing-link",
   "daily-notes",
   "templates",
   "command-palette",
