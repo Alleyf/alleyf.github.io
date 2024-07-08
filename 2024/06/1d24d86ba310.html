@@ -27,7 +27,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://picsum.photos/800/250">
 <meta property="article:published_time" content="2024-06-27T16:37:11.000Z">
-<meta property="article:modified_time" content="2024-07-08T16:11:09.289Z">
+<meta property="article:modified_time" content="2024-07-08T16:11:36.766Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="DevOps">
 <meta property="article:tag" content="运维">
@@ -308,7 +308,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          8.2k 字
+          8.1k 字
         
       </span>
     
@@ -319,7 +319,7 @@
         
         
         
-          69 分钟
+          68 分钟
         
       </span>
     
@@ -558,12 +558,10 @@
 <h4 id="1-2-2-3-加载镜像"><a href="#1-2-2-3-加载镜像" class="headerlink" title="1.2.2.3 加载镜像"></a>1.2.2.3 加载镜像</h4><p>根据指定镜像压缩包加载镜像到本地</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">docker load -i &lt;image.tar&gt;<br></code></pre></td></tr></table></figure>
 
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
 <h4 id="1-2-2-4-删除镜像"><a href="#1-2-2-4-删除镜像" class="headerlink" title="1.2.2.4 删除镜像"></a>1.2.2.4 删除镜像</h4><p>删除所有未使用的镜像，容器和存储卷。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sh">docker image prune<br>docker container prune<br>docker volume prune<br></code></pre></td></tr></table></figure>
 
-<p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</p>
-<h4 id="1-2-2-4-更新镜像"><a href="#1-2-2-4-更新镜像" class="headerlink" title="1.2.2.4 更新镜像"></a>1.2.2.4 更新镜像</h4><p>对已有的变更环境进行保存以便于pod重启后维持最新环境</p>
+<h4 id="1-2-2-5-更新镜像"><a href="#1-2-2-5-更新镜像" class="headerlink" title="1.2.2.5 更新镜像"></a>1.2.2.5 更新镜像</h4><p>对已有的变更环境进行保存以便于pod重启后维持最新环境</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">docker commit [OPTIONS] CONTAINER [REPOSITORY[:TAG]]<br>docker commit -a <span class="hljs-string">&#x27;fcs&#x27;</span>(commit msg) c3a6f02ad044(containerId/name) conda:fcs202407080840(newImageName)<br></code></pre></td></tr></table></figure>
 
 <ul>
