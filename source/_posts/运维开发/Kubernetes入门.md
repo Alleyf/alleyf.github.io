@@ -602,7 +602,7 @@ k8s：1.23.6（1.24+以后由于 CRI 不支持 docker 作为容器运行时）
 
 - #配置静态ip
 	- [【Linux】为 VMware 的 Linux 系统（CentOS 7）设置静态IP地址-CSDN博客](https://blog.csdn.net/m0_50513629/article/details/139055933)
-	- 注意有个命令需要把interface=ens33 改成你对应的网卡,可以使用ifconfig 查看到你的网卡信息 如果你的网阿卡是ens192 只需要把上面的命令改成interface=ens192
+	- 注意有个命令需要把 interface=ens33 改成你对应的网卡,可以使用 ifconfig 查看到你的网卡信息如果你的网阿卡是 ens192 只需要把上面的命令改成 interface=ens192
 - #关闭防火墙
 	- systemctl stop firewalld
 	- systemctl disable firewalld
@@ -649,16 +649,22 @@ EOF
 	4. 更新 yum 源检查是否生效：yum update
 
 > [!TIP] 温馨提示
-> 一个节点设置完成后，可为其新建一个快照，然后通过VMware的克隆功能克隆两个一样的虚拟机；然后只需要调整静态ip和主机名称即可（`vi /etc/sysconfig/network-scripts/ifcfg-ens33`，`hostnamectl set-hostname <hostname>`）
+> 一个节点设置完成后，可为其新建一个快照，然后通过 VMware 的克隆功能克隆两个一样的虚拟机；然后只需要调整静态 ip 和主机名称即可（`vi /etc/sysconfig/network-scripts/ifcfg-ens33`，`hostnamectl set-hostname <hostname>`）
 
 ###### 安装基础软件（所有节点）
 
 1. 安装 docker：
-   - [各种环境配置#Docker](source/_posts/运维开发/各种环境配置.md#Docker)
-   - 修改`cgroup`:
+   - [各种环境配置#Docker](source/_posts/运维开发/各种环境配置.md#Docker)，docker版本和k8s有兼容关系，版本对应才行，具体看[kubernetes/CHANGELOG/CHANGELOG-1.23.md at master · kubernetes/kubernetes · GitHub](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.23.md)。
+
+>      docker版本降级：
+>      1. yum downgrade --setopt=obsoletes=0 -y docker-ce-20.10.0-3.el7 docker-ce-cli-20.10.0-3.el7 containerd.io
+>      2. systemctl start docker
+>      3. docker version
+
+   - 修改 `cgroup`:
 
 ```sh
-cat > /etc/docker/daemon.json <<EOF { "exec-opts": ["native.cgroupdriver=systemd"] } EOF
+cat > /etc/docker/daemon.json << EOF { "exec-opts": ["native.cgroupdriver=systemd"] } EOF
 ```
 
 1. 配置阿里云镜像源:
@@ -696,7 +702,7 @@ kubeadm init \
 ```
 
  ![|500](https://qnpicmap.fcsluck.top/pics/202407080128851.png)
-2. #安装成功后，复制如下配置并执行
+2. #安装成功后 ，复制如下配置并执行
 
 ```sh
 mkdir -p $HOME/.kube
@@ -711,9 +717,48 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 ###### 加入 Kubernetes Node
 
+> 分别在 centos7-101-node1 和 centos7-102-node2 执行
+
+1. #下方命令可以在 k8s master 控制台初始化成功后复制 join 命令
+
+```sh
+kubeadm join 192.68.19.100:6443 --token <master控制台的token>
+ --discovery-token-ca-cert-hash <master控制台的hash>
+
+
+kubeadm join 192.68.19.100:6443 --token xnnhf0.1mebzdx2hzrlqqtk  --discovery-token-ca-cert-hash sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+```
+
+#如果初始化的token不小心清空了 ，可以通过如下命令获取或者里新申请
+#如果token已经过期。就重新申请:
+
+```sh
+kubeadm token create
+```
+
+#token没有过期可以通过如下命令获取
+
+```sh
+kubeadm token list
+```
+
+#获取--discovery-token-ca-cert-hash值，得到值后需要在前面拼接上sha256:
+
+```sh
+openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl
+rsa -pubin -outform der 2>/dev/null |\
+openssl dgst -sha256 -hex | sed 's/^.* //'
+```
+
+#或者直接新建新token和cert-hash：
+
+```sh
+sudo kubeadm token create --print-join-command
+```
+
 ###### 部署 CNI 网络插件
 
-###### 6.1.2 测试 Kubernetes 集群
+###### 5.1.2 测试 Kubernetes 集群
 
 ### 5.1.2 命令行工具 Kubectl
 

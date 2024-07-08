@@ -4,24 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "52d468e14d49fbec",
+        "id": "44e1b5ca930a0c2e",
         "type": "tabs",
         "children": [
           {
-            "id": "e4edb09fc794697c",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "source/_posts/运维开发/各种环境配置.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "5df9cf330a60203e",
+            "id": "6b64598f75f5608d",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -32,9 +19,34 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "a87fcf606778e602",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "source/_posts/运维开发/运维排忧解难.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "6644be90460c6f96",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "source/_posts/运维开发/各种环境配置.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -190,8 +202,9 @@
       "obsidian-memos:Memos": false
     }
   },
-  "active": "5df9cf330a60203e",
+  "active": "6b64598f75f5608d",
   "lastOpenFiles": [
+    "source/_posts/运维开发/运维排忧解难.md",
     "source/_posts/运维开发/各种环境配置.md",
     "source/_posts/运维开发/Kubernetes入门.md",
     "public/tags/K8s/index.html",
@@ -201,7 +214,6 @@
     "public/2024/05/9b5fa9c35ad7.html",
     "public/2024/05",
     "source/_posts/科研学习/会议讨论/周会.md",
-    "source/_posts/运维开发/运维排忧解难.md",
     "source/_posts/运维开发/运维问题记录.md",
     "source/_posts/中间件和工具/常用软件和环境.md",
     "conflict-files-obsidian-git.md",
