@@ -60,7 +60,7 @@
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -95,7 +95,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/运维开发/运维排忧解难.md"
+                "file": "source/_posts/运维开发/各种环境配置.md"
               }
             }
           }
@@ -136,7 +136,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/_posts/运维开发/运维排忧解难.md",
+                "file": "source/_posts/运维开发/各种环境配置.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -148,7 +148,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/运维开发/运维排忧解难.md",
+                "file": "source/_posts/运维开发/各种环境配置.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -216,11 +216,11 @@
       "obsidian-memos:Memos": false
     }
   },
-  "active": "a87fcf606778e602",
+  "active": "6644be90460c6f96",
   "lastOpenFiles": [
     "conflict-files-obsidian-git.md",
-    "source/_posts/运维开发/Kubernetes入门.md",
     "source/_posts/运维开发/运维排忧解难.md",
+    "source/_posts/运维开发/Kubernetes入门.md",
     "source/_posts/运维开发/各种环境配置.md",
     "public/tags/K8s/index.html",
     "public/tags/K8s",

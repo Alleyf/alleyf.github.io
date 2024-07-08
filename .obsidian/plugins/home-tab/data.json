@@ -24,20 +24,20 @@
   "unresolvedLinks": false,
   "recentFilesStore": [
     {
+      "filepath": "source/_posts/运维开发/各种环境配置.md",
+      "timestamp": 1720455107162
+    },
+    {
+      "filepath": "conflict-files-obsidian-git.md",
+      "timestamp": 1720455105289
+    },
+    {
       "filepath": "source/_posts/运维开发/运维排忧解难.md",
       "timestamp": 1720455085172
     },
     {
-      "filepath": "conflict-files-obsidian-git.md",
-      "timestamp": 1720455069758
-    },
-    {
       "filepath": "source/_posts/运维开发/Kubernetes入门.md",
       "timestamp": 1720453846610
-    },
-    {
-      "filepath": "source/_posts/运维开发/各种环境配置.md",
-      "timestamp": 1720453827721
     }
   ],
   "starredFileStore": [],
