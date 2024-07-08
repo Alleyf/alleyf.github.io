@@ -27,7 +27,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://picsum.photos/800/250">
 <meta property="article:published_time" content="2024-05-10T15:54:16.000Z">
-<meta property="article:modified_time" content="2024-07-07T17:37:49.409Z">
+<meta property="article:modified_time" content="2024-07-08T15:51:15.016Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="K8s">
 <meta name="twitter:card" content="summary_large_image">
@@ -307,7 +307,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          23k 字
+          24k 字
         
       </span>
     
@@ -318,7 +318,7 @@
         
         
         
-          191 分钟
+          199 分钟
         
       </span>
     
@@ -369,7 +369,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：几秒前
+                    本文最后更新于：17 分钟前
                   
                 
               </p>
@@ -778,7 +778,7 @@
 <h5 id="5-1-1-1-3-安装步骤"><a href="#5-1-1-1-3-安装步骤" class="headerlink" title="5.1.1.1.3 安装步骤"></a>5.1.1.1.3 安装步骤</h5><h6 id="初始操作（所有节点）"><a href="#初始操作（所有节点）" class="headerlink" title="初始操作（所有节点）"></a>初始操作（所有节点）</h6><ul>
 <li>#配置静态ip<ul>
 <li><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_50513629/article/details/139055933">【Linux】为 VMware 的 Linux 系统（CentOS 7）设置静态IP地址-CSDN博客</a></li>
-<li>注意有个命令需要把interface&#x3D;ens33 改成你对应的网卡,可以使用ifconfig 查看到你的网卡信息 如果你的网阿卡是ens192 只需要把上面的命令改成interface&#x3D;ens192</li>
+<li>注意有个命令需要把 interface&#x3D;ens33 改成你对应的网卡,可以使用 ifconfig 查看到你的网卡信息如果你的网阿卡是 ens192 只需要把上面的命令改成 interface&#x3D;ens192</li>
 </ul>
 </li>
 <li>#关闭防火墙<ul>
@@ -834,16 +834,25 @@
 </li>
 </ul>
 <blockquote>
-<p>[!TIP] 温馨提示<br>一个节点设置完成后，可为其新建一个快照，然后通过VMware的克隆功能克隆两个一样的虚拟机；然后只需要调整静态ip和主机名称即可（<code>vi /etc/sysconfig/network-scripts/ifcfg-ens33</code>，<code>hostnamectl set-hostname &lt;hostname&gt;</code>）</p>
+<p>[!TIP] 温馨提示<br>一个节点设置完成后，可为其新建一个快照，然后通过 VMware 的克隆功能克隆两个一样的虚拟机；然后只需要调整静态 ip 和主机名称即可（<code>vi /etc/sysconfig/network-scripts/ifcfg-ens33</code>，<code>hostnamectl set-hostname &lt;hostname&gt;</code>）</p>
 </blockquote>
 <h6 id="安装基础软件（所有节点）"><a href="#安装基础软件（所有节点）" class="headerlink" title="安装基础软件（所有节点）"></a>安装基础软件（所有节点）</h6><ol>
 <li>安装 docker：<ul>
-<li><a href="source/_posts/%E8%BF%90%E7%BB%B4%E5%BC%80%E5%8F%91/%E5%90%84%E7%A7%8D%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE.md#Docker">各种环境配置#Docker</a></li>
-<li>修改<code>cgroup</code>:</li>
+<li><a href="source/_posts/%E8%BF%90%E7%BB%B4%E5%BC%80%E5%8F%91/%E5%90%84%E7%A7%8D%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE.md#Docker">各种环境配置#Docker</a>，docker版本和k8s有兼容关系，版本对应才行，具体看<a target="_blank" rel="noopener" href="https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.23.md">kubernetes&#x2F;CHANGELOG&#x2F;CHANGELOG-1.23.md at master · kubernetes&#x2F;kubernetes · GitHub</a>。</li>
 </ul>
 </li>
 </ol>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">cat</span> &gt; /etc/docker/daemon.json &lt;&lt;<span class="hljs-string">EOF &#123; &quot;exec-opts&quot;: [&quot;native.cgroupdriver=systemd&quot;] &#125; EOF</span><br></code></pre></td></tr></table></figure>
+<blockquote>
+<pre><code class="hljs"> docker版本降级：
+ 1. yum downgrade --setopt=obsoletes=0 -y docker-ce-20.10.0-3.el7 docker-ce-cli-20.10.0-3.el7 containerd.io
+ 2. systemctl start docker
+ 3. docker version
+</code></pre>
+</blockquote>
+<ul>
+<li>修改 <code>cgroup</code>:</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">cat</span> &gt; /etc/docker/daemon.json &lt;&lt; <span class="hljs-string">EOF &#123; &quot;exec-opts&quot;: [&quot;native.cgroupdriver=systemd&quot;] &#125; EOF</span><br></code></pre></td></tr></table></figure>
 
 <ol>
 <li>配置阿里云镜像源:</li>
@@ -860,13 +869,33 @@
 </ol>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sh">kubeadm init \<br>--apiserver-advertise-address=192.168.19.100 \<br>--image-repository registry.aliyuncs.com/google_containers \<br>--kubernetes-version v1.23.6 \<br>--service-cidr=10.96.0.0/12 \<br>--pod-network-cidr=10.244.0.0/16<br></code></pre></td></tr></table></figure>
 
-<p> <img src="https://qnpicmap.fcsluck.top/pics/202407080128851.png" srcset="/img/loading.gif" lazyload alt="|500"><br>2. #安装成功后，复制如下配置并执行</p>
+<p> <img src="https://qnpicmap.fcsluck.top/pics/202407080128851.png" srcset="/img/loading.gif" lazyload alt="|500"><br>2. #安装成功后 ，复制如下配置并执行</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">mkdir</span> -p <span class="hljs-variable">$HOME</span>/.kube<br>sudo <span class="hljs-built_in">cp</span> -i /etc/kubernetes/admin.conf <span class="hljs-variable">$HOME</span>/.kube/config<br>sudo <span class="hljs-built_in">chown</span> $(<span class="hljs-built_in">id</span> -u):$(<span class="hljs-built_in">id</span> -g) <span class="hljs-variable">$HOME</span>/.kube/config<br></code></pre></td></tr></table></figure>
 
 <ol start="3">
 <li>检查是否安装成功<br>kubectl get nodes：<br><code>NAME                 STATUS     ROLES                  AGE   VERSION</code><br><code>centos7-100-master   NotReady   control-plane,master   11m   v1.23.6</code></li>
 </ol>
-<h6 id="加入-Kubernetes-Node"><a href="#加入-Kubernetes-Node" class="headerlink" title="加入 Kubernetes Node"></a>加入 Kubernetes Node</h6><h6 id="部署-CNI-网络插件"><a href="#部署-CNI-网络插件" class="headerlink" title="部署 CNI 网络插件"></a>部署 CNI 网络插件</h6><h6 id="6-1-2-测试-Kubernetes-集群"><a href="#6-1-2-测试-Kubernetes-集群" class="headerlink" title="6.1.2 测试 Kubernetes 集群"></a>6.1.2 测试 Kubernetes 集群</h6><h3 id="5-1-2-命令行工具-Kubectl"><a href="#5-1-2-命令行工具-Kubectl" class="headerlink" title="5.1.2 命令行工具 Kubectl"></a>5.1.2 命令行工具 Kubectl</h3><h3 id="5-1-3-API-概述"><a href="#5-1-3-API-概述" class="headerlink" title="5.1.3 API 概述"></a>5.1.3 API 概述</h3><h1 id="6-📖参考文献"><a href="#6-📖参考文献" class="headerlink" title="6 📖参考文献"></a>6 📖参考文献</h1><ol>
+<h6 id="加入-Kubernetes-Node"><a href="#加入-Kubernetes-Node" class="headerlink" title="加入 Kubernetes Node"></a>加入 Kubernetes Node</h6><blockquote>
+<p>分别在 centos7-101-node1 和 centos7-102-node2 执行</p>
+</blockquote>
+<ol>
+<li>#下方命令可以在 k8s master 控制台初始化成功后复制 join 命令</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sh">kubeadm <span class="hljs-built_in">join</span> 192.68.19.100:6443 --token &lt;master控制台的token&gt;<br> --discovery-token-ca-cert-hash &lt;master控制台的<span class="hljs-built_in">hash</span>&gt;<br><br><br>kubeadm <span class="hljs-built_in">join</span> 192.68.19.100:6443 --token xnnhf0.1mebzdx2hzrlqqtk  --discovery-token-ca-cert-hash sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855<br></code></pre></td></tr></table></figure>
+
+<p>#如果初始化的token不小心清空了 ，可以通过如下命令获取或者里新申请<br>#如果token已经过期。就重新申请:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">kubeadm token create<br></code></pre></td></tr></table></figure>
+
+<p>#token没有过期可以通过如下命令获取</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">kubeadm token list<br></code></pre></td></tr></table></figure>
+
+<p>#获取–discovery-token-ca-cert-hash值，得到值后需要在前面拼接上sha256:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sh">openssl x509 -pubkey -<span class="hljs-keyword">in</span> /etc/kubernetes/pki/ca.crt | openssl<br>rsa -pubin -outform der 2&gt;/dev/null |\<br>openssl dgst -sha256 -hex | sed <span class="hljs-string">&#x27;s/^.* //&#x27;</span><br></code></pre></td></tr></table></figure>
+
+<p>#或者直接新建新token和cert-hash：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">sudo kubeadm token create --print-join-command<br></code></pre></td></tr></table></figure>
+
+<h6 id="部署-CNI-网络插件"><a href="#部署-CNI-网络插件" class="headerlink" title="部署 CNI 网络插件"></a>部署 CNI 网络插件</h6><h6 id="5-1-2-测试-Kubernetes-集群"><a href="#5-1-2-测试-Kubernetes-集群" class="headerlink" title="5.1.2 测试 Kubernetes 集群"></a>5.1.2 测试 Kubernetes 集群</h6><h3 id="5-1-2-命令行工具-Kubectl"><a href="#5-1-2-命令行工具-Kubectl" class="headerlink" title="5.1.2 命令行工具 Kubectl"></a>5.1.2 命令行工具 Kubectl</h3><h3 id="5-1-3-API-概述"><a href="#5-1-3-API-概述" class="headerlink" title="5.1.3 API 概述"></a>5.1.3 API 概述</h3><h1 id="6-📖参考文献"><a href="#6-📖参考文献" class="headerlink" title="6 📖参考文献"></a>6 📖参考文献</h1><ol>
 <li><a target="_blank" rel="noopener" href="https://www.yuque.com/xiaoguai-pbjfj/cxxcrs/ocefqltbmbgl5eqg?singleDoc#%20%E3%80%8AKubernetes%E3%80%8B">Kubernetes-win-useage</a></li>
 <li><a target="_blank" rel="noopener" href="https://geekhour.net/2023/12/23/kubernetes/">Kubernetes一小时入门课程 - 视频配套笔记 | GeekHour</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Se411r7vY/?spm_id_from=333.788.recommend_more_video.2&vd_source=9c896fa9c3f9023797e8efe7be0c113e">Kubernetes一小时轻松入门_哔哩哔哩_bilibili</a></li>
