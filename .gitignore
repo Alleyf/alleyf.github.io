@@ -8,6 +8,9 @@ public/
 _multiconfig.yml
 themes/
 
+.obsidian/plugins/home-tab/data.json
+.obsidian/workspace.json
+
 
 
 # Ignore Smart Connections folder
