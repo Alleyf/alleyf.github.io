@@ -654,9 +654,9 @@ EOF
 ###### 安装基础软件（所有节点）
 
 1. 安装 docker：
-   - [各种环境配置#Docker](source/_posts/运维开发/各种环境配置.md#Docker)，docker版本和k8s有兼容关系，版本对应才行，具体看[kubernetes/CHANGELOG/CHANGELOG-1.23.md at master · kubernetes/kubernetes · GitHub](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.23.md)。
+   - [各种环境配置#Docker](source/_posts/运维开发/各种环境配置.md#Docker)，docker 版本和 k8s 有兼容关系，版本对应才行，具体看 [kubernetes/CHANGELOG/CHANGELOG-1.23.md at master · kubernetes/kubernetes · GitHub](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.23.md)。
 
->      docker版本降级：
+>      docker 版本降级：
 >      1. yum downgrade --setopt=obsoletes=0 -y docker-ce-20.10.0-3.el7 docker-ce-cli-20.10.0-3.el7 containerd.io
 >      2. systemctl start docker
 >      3. docker version
@@ -730,7 +730,7 @@ kubeadm join 192.68.19.100:6443 --token xnnhf0.1mebzdx2hzrlqqtk  --discovery-tok
 ```
 
 #如果初始化的token不小心清空了 ，可以通过如下命令获取或者里新申请
-#如果token已经过期。就重新申请:
+#如果token已经过期 。就重新申请:
 
 ```sh
 kubeadm token create
@@ -742,7 +742,7 @@ kubeadm token create
 kubeadm token list
 ```
 
-#获取--discovery-token-ca-cert-hash值，得到值后需要在前面拼接上sha256:
+#获取 --discovery-token-ca-cert-hash 值，得到值后需要在前面拼接上 sha256:
 
 ```sh
 openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl
@@ -750,7 +750,7 @@ rsa -pubin -outform der 2>/dev/null |\
 openssl dgst -sha256 -hex | sed 's/^.* //'
 ```
 
-#或者直接新建新token和cert-hash：
+#或者直接新建新token和cert -hash：
 
 ```sh
 sudo kubeadm token create --print-join-command
@@ -759,6 +759,13 @@ sudo kubeadm token create --print-join-command
 ###### 部署 CNI 网络插件
 
 ###### 5.1.2 测试 Kubernetes 集群
+
+#在master节点上执行
+#下载calico配置文件 ，可能会网络超时
+curl https://docs.projectcalico.org/manifests/calico.yaml -O
+#修改calico.yaml 文件中的 cidr 配置，修改为与初始化的 cidr 相同
+#修改 `IP_AUTODETECTION_METHOD` 下的网卡名称
+#删除镜像`docker.io/`前缀，避免下载过慢导致失败
 
 ### 5.1.2 命令行工具 Kubectl
 
