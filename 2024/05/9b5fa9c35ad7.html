@@ -27,7 +27,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://picsum.photos/800/250">
 <meta property="article:published_time" content="2024-05-10T15:54:16.000Z">
-<meta property="article:modified_time" content="2024-07-13T04:31:51.927Z">
+<meta property="article:modified_time" content="2024-07-13T14:49:43.020Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="K8s">
 <meta name="twitter:card" content="summary_large_image">
@@ -307,7 +307,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          24k 字
+          28k 字
         
       </span>
     
@@ -318,7 +318,7 @@
         
         
         
-          203 分钟
+          231 分钟
         
       </span>
     
@@ -369,7 +369,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2 小时前
+                    本文最后更新于：1 小时前
                   
                 
               </p>
@@ -899,7 +899,7 @@
 <ol>
 <li>#下载calico配置文件 ，可能会网络超时</li>
 </ol>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">https://calico-v3-25.netlify.app/archive/v3.25/manifests/calico.yaml<br></code></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">curl -O https://calico-v3-25.netlify.app/archive/v3.25/manifests/calico.yaml<br></code></pre></td></tr></table></figure>
 
 <ol start="2">
 <li>#修改calico .yaml 文件中的 <code>CALICO_IPV4POOL_CIDR</code> 配置，修改为与部署 master 初始化的 cidr 相同（即：<code>--pod-network-cidr=10.244.0.0/16</code>）</li>
@@ -913,10 +913,173 @@
 </ol>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">kubectl apply -f calico.yaml<br></code></pre></td></tr></table></figure>
 
+<p><img src="https://qnpicmap.fcsluck.top/pics/202407131502094.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://qnpicmap.fcsluck.top/pics/202407131501885.png" srcset="/img/loading.gif" lazyload></p>
 <blockquote>
 <p>[!Warning] Tips<br>执行上述命令后会自动运行一些 pod，但是可能会由于<strong>镜像被墙而无法拉取</strong>，因此需要<strong>配置可用镜像源或者指定镜像源 pull 后再 docker save 和 load 转移到其他节点</strong>上。</p>
 </blockquote>
-<h6 id="5-1-2-测试-Kubernetes-集群"><a href="#5-1-2-测试-Kubernetes-集群" class="headerlink" title="5.1.2 测试 Kubernetes 集群"></a>5.1.2 测试 Kubernetes 集群</h6><h3 id="5-1-2-命令行工具-Kubectl"><a href="#5-1-2-命令行工具-Kubectl" class="headerlink" title="5.1.2 命令行工具 Kubectl"></a>5.1.2 命令行工具 Kubectl</h3><h3 id="5-1-3-API-概述"><a href="#5-1-3-API-概述" class="headerlink" title="5.1.3 API 概述"></a>5.1.3 API 概述</h3><h1 id="6-📖参考文献"><a href="#6-📖参考文献" class="headerlink" title="6 📖参考文献"></a>6 📖参考文献</h1><ol>
+<h6 id="5-1-2-测试-Kubernetes-集群"><a href="#5-1-2-测试-Kubernetes-集群" class="headerlink" title="5.1.2 测试 Kubernetes 集群"></a>5.1.2 测试 Kubernetes 集群</h6><ol>
+<li>#创建部署</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">kubectl create deployment nginx --image=nginx<br></code></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>#暴露端口</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">kubectl expose deployment nginx --port=80 --<span class="hljs-built_in">type</span>=NodePort<br></code></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>#查看Pod以及服务信息</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">kubectl get pod,svc<br></code></pre></td></tr></table></figure>
+
+<h3 id="5-1-2-命令行工具-Kubectl"><a href="#5-1-2-命令行工具-Kubectl" class="headerlink" title="5.1.2 命令行工具 Kubectl"></a>5.1.2 命令行工具 Kubectl</h3><h4 id="5-1-2-1-自动补全"><a href="#5-1-2-1-自动补全" class="headerlink" title="5.1.2.1 自动补全"></a>5.1.2.1 自动补全</h4><h4 id="5-1-2-2-任意节点使用-Kubectl"><a href="#5-1-2-2-任意节点使用-Kubectl" class="headerlink" title="5.1.2.2 任意节点使用 Kubectl"></a>5.1.2.2 任意节点使用 Kubectl</h4><ol>
+<li>#将master节点中&#x2F;etc&#x2F;kubemnetes&#x2F;admin .conf 拷贝到需要运行的服务器的&#x2F;etc&#x2F;kubernetes 目录中</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">scp /etc/kubernetes/admin.conf root@centos7-101-nodel:/etc/kubernetes<br></code></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>#在对应的服务器上配置环境变量</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;export KUBECONFIG=/etc/kubernetes/admin.conf&quot;</span> &gt;&gt; ~/.bash_profile<br><span class="hljs-built_in">source</span> ~/.bash_profile<br></code></pre></td></tr></table></figure>
+
+<h4 id="5-1-2-3-资源操作"><a href="#5-1-2-3-资源操作" class="headerlink" title="5.1.2.3 资源操作"></a>5.1.2.3 资源操作</h4><h5 id="5-1-2-3-1-查询"><a href="#5-1-2-3-1-查询" class="headerlink" title="5.1.2.3.1 查询"></a>5.1.2.3.1 查询</h5><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment">#查看pod详细信息，包含pod状态，数量，所在节点，ip和名称等</span><br>kubectl get po -o wide<br><span class="hljs-comment">#查看deploy详细信息，包含名称，数量，容器名称，镜像名称和选择器等</span><br>kubectl get deploy -o wide<br><span class="hljs-comment">#查看service详细信息，包含服务名称，类型，ip，端口和选择器等</span><br>kubectl get svc -o wide<br><span class="hljs-comment">#查看namespace详细信息，包含名称，状态</span><br>kubectl get ns -o wide<br><span class="hljs-comment">#查看node详细信息，包含名称，状态，角色，版本，ip，os，内核和容器版本等</span><br>kubectl get no -o wide<br></code></pre></td></tr></table></figure>
+
+<h4 id="5-1-2-4-Pod-与集群"><a href="#5-1-2-4-Pod-与集群" class="headerlink" title="5.1.2.4 Pod 与集群"></a>5.1.2.4 Pod 与集群</h4><h4 id="5-1-2-5-资源类型与别名"><a href="#5-1-2-5-资源类型与别名" class="headerlink" title="5.1.2.5 资源类型与别名"></a>5.1.2.5 资源类型与别名</h4><table>
+<thead>
+<tr>
+<th>资源类型</th>
+<th>别名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>pods</td>
+<td>po</td>
+</tr>
+<tr>
+<td>deployments</td>
+<td>deploy</td>
+</tr>
+<tr>
+<td>services</td>
+<td>svc</td>
+</tr>
+<tr>
+<td>namespace</td>
+<td>ns</td>
+</tr>
+<tr>
+<td>nodes</td>
+<td>no</td>
+</tr>
+</tbody></table>
+<h4 id="5-1-2-6-格式化输出"><a href="#5-1-2-6-格式化输出" class="headerlink" title="5.1.2.6 格式化输出"></a>5.1.2.6 格式化输出</h4><ul>
+<li>输出 json 格式 -o json</li>
+<li>仅打印资源名称 -o name</li>
+<li>以纯文本格式输出所有信息 -o wide</li>
+<li>输出 yaml 格式 -o yaml <code>eg:kubectl get deploy nginx -o yaml</code></li>
+</ul>
+<h3 id="5-1-3-API-概述"><a href="#5-1-3-API-概述" class="headerlink" title="5.1.3 API 概述"></a>5.1.3 API 概述</h3><h4 id="5-1-3-1-类型"><a href="#5-1-3-1-类型" class="headerlink" title="5.1.3.1 类型"></a>5.1.3.1 类型</h4><p>Kubernetes（通常简称为 k8s）是一个开源的容器编排系统，用于自动化应用程序的部署、扩展和管理。Kubernetes 版本通常分为几个阶段，以反映其成熟度和稳定性。以下是三种主要版本的概述：</p>
+<ol>
+<li><p><strong>Alpha（阿尔法）版本</strong>：</p>
+<ul>
+<li>这是 Kubernetes 功能开发的最早期阶段。</li>
+<li>Alpha 功能通常是实验性的，可能包含许多漏洞和不稳定性。</li>
+<li>它们可能在 API 或功能上发生重大变化，甚至可能在后续版本中被完全移除。</li>
+<li>Alpha 版本不推荐用于生产环境，仅供开发和测试使用。</li>
+</ul>
+</li>
+<li><p><strong>Beta（贝塔）版本</strong>：</p>
+<ul>
+<li>Beta 版本是功能开发的进一步成熟阶段，比 Alpha 版本更稳定。</li>
+<li>它们在功能上可能已经相对完整，但仍然可能包含一些未解决的问题或需要进一步测试的地方。</li>
+<li>Beta 功能在 API 和功能上的变化风险较低，但仍然可能发生一些不兼容的更改。</li>
+<li>Beta 版本可以用于更广泛的测试，但仍然不建议在生产环境中使用。</li>
+</ul>
+</li>
+<li><p><strong>Stable（稳定）版本</strong>：</p>
+<ul>
+<li>稳定版本是 Kubernetes 功能开发的最终阶段，具有高度的可靠性和成熟度。</li>
+<li>这些功能已经经过广泛的测试和验证，API 和功能的变化非常有限。</li>
+<li>稳定版本是推荐用于生产环境的，因为它们提供了最低的风险和最好的支持。</li>
+<li>Kubernetes 的稳定版本通常会定期发布，并且会提供长期的维护和安全更新。</li>
+</ul>
+</li>
+</ol>
+<p>在 Kubernetes 的开发过程中，新功能首先作为 Alpha 版本引入，然后逐步发展到 Beta，最终成为稳定版本。这个过程允许社区和用户有足够的时间来测试新功能，并在它们被广泛采用之前提供反馈。</p>
+<h4 id="5-1-3-2-访问控制"><a href="#5-1-3-2-访问控制" class="headerlink" title="5.1.3.2 访问控制"></a>5.1.3.2 访问控制</h4><h5 id="5-1-3-2-1-认证（Authentication）"><a href="#5-1-3-2-1-认证（Authentication）" class="headerlink" title="5.1.3.2.1 认证（Authentication）"></a>5.1.3.2.1 认证（Authentication）</h5><p>认证是确定用户或服务账户身份的过程。在 Kubernetes 中，认证机制确保只有经过验证的用户和系统才能访问集群资源。Kubernetes 支持多种认证方式，包括但不限于：</p>
+<ul>
+<li><strong>客户端证书</strong>：使用 TLS 证书进行认证。</li>
+<li><strong>令牌</strong>：使用 JSON Web Tokens (JWT) 或服务账户令牌进行认证。</li>
+<li><strong>密码</strong>：使用用户名和密码进行基本认证。</li>
+<li><strong>OpenID Connect</strong>：使用 OpenID Connect 令牌进行认证。</li>
+<li><strong>Webhook</strong>：通过远程服务器进行认证。</li>
+</ul>
+<p>认证通常是通过 Kubernetes API 服务器来完成的，API 服务器配置了认证机制，以验证所有进入的请求。</p>
+<h5 id="5-1-3-2-2-授权（Authorization）"><a href="#5-1-3-2-2-授权（Authorization）" class="headerlink" title="5.1.3.2.2 授权（Authorization）"></a>5.1.3.2.2 授权（Authorization）</h5><p>授权是在认证之后进行的，它决定了经过认证的用户或服务账户可以执行哪些操作。Kubernetes 提供了几种授权策略，包括：</p>
+<ul>
+<li><strong>Node</strong>：授权节点可以访问 API 服务器。</li>
+<li><strong>RBAC（基于角色的访问控制）</strong>：定义角色和角色绑定，控制用户可以访问的资源和执行的操作。</li>
+<li><strong>ABAC（基于属性的访问控制）</strong>：基于属性（如用户属性、资源属性等）进行访问控制。</li>
+<li><strong>Webhook</strong>：通过远程服务器进行授权决策。</li>
+</ul>
+<p>RBAC 是 Kubernetes 中最常用的授权机制，它允许管理员创建精细的权限策略，将权限分配给用户、组或服务账户。RBAC 通过定义角色（Role）和集群角色（ClusterRole），以及将这些角色分配给用户的机制来实现。</p>
+<p>在 Kubernetes 中，认证和授权通常一起工作，以确保用户和系统能够安全地访问和管理集群资源。管理员需要根据组织的安全需求和最佳实践来配置这些机制。</p>
+<h4 id="5-1-3-3-废弃API说明"><a href="#5-1-3-3-废弃API说明" class="headerlink" title="5.1.3.3 废弃API说明"></a>5.1.3.3 废弃API说明</h4><p>在 Kubernetes 中，API 版本遵循语义版本控制（Semantic Versioning），通常表示为 <code>MAJOR.MINOR.PATCH</code> 的形式。随着 Kubernetes 的发展，某些 API 可能会被标记为废弃（Deprecated），这意味着这些 API 将在未来的版本中被移除或替换。以下是废弃 API 的一些说明：</p>
+<ol>
+<li><p><strong>废弃的阶段</strong>：</p>
+<ul>
+<li>Kubernetes 通常会在 API 被完全移除前的几个版本中标记 API 为废弃。</li>
+<li>废弃的 API 通常会经历几个阶段，如 “Deprecated”、”Removed in upcoming release” 等。</li>
+</ul>
+</li>
+<li><p><strong>废弃的原因</strong>：</p>
+<ul>
+<li>API 可能因为安全问题、性能问题、更好的替代方案出现或不符合设计原则而被废弃。</li>
+<li>废弃也可能是为了简化 API 表面或推动用户迁移到更稳定、更安全、更高效的 API。</li>
+</ul>
+</li>
+<li><p><strong>废弃的通告</strong>：</p>
+<ul>
+<li>Kubernetes 社区会在发布新版本时，通过官方文档、博客、邮件列表等方式通告 API 的废弃信息。</li>
+<li>用户可以通过 Kubernetes 的官方文档或 API 文档来查找有关 API 废弃的详细信息。</li>
+</ul>
+</li>
+<li><p><strong>废弃的 API 的使用</strong>：</p>
+<ul>
+<li>即使 API 被标记为废弃，它可能仍然在当前版本中可用，但社区强烈建议用户停止使用并迁移到推荐的替代 API。</li>
+<li>Kubernetes 通常会提供迁移指南和工具，以帮助用户平滑过渡到新的 API。</li>
+</ul>
+</li>
+<li><p><strong>替代方案</strong>：</p>
+<ul>
+<li>当 API 被废弃时，Kubernetes 会推荐使用新的 API 版本或不同的 API 来实现相同的功能。</li>
+<li>用户应该根据官方文档的指导，评估替代方案并进行必要的代码和配置更新。</li>
+</ul>
+</li>
+<li><p><strong>社区反馈</strong>：</p>
+<ul>
+<li>用户可以通过 Kubernetes 的社区渠道，如 GitHub 仓库、邮件列表、论坛等，提供关于废弃 API 的反馈和建议。</li>
+</ul>
+</li>
+<li><p><strong>长期支持（LTS）版本</strong>：</p>
+<ul>
+<li>对于需要长期稳定运行的环境，用户可能会选择使用 Kubernetes 的长期支持版本，这些版本通常会有更长的支持周期和更慢的 API 更新速度。</li>
+</ul>
+</li>
+</ol>
+<p>废弃 API 是 Kubernetes 发展过程中的一个自然现象，它有助于推动技术的进步和维护生态系统的健康。用户应该密切关注 Kubernetes 的更新和通告，以确保他们的应用程序和集群配置能够适应这些变化。</p>
+<h3 id="5-1-4-深入Pod"><a href="#5-1-4-深入Pod" class="headerlink" title="5.1.4 深入Pod"></a>5.1.4 深入Pod</h3><h4 id="5-1-4-1-Pod配置文件"><a href="#5-1-4-1-Pod配置文件" class="headerlink" title="5.1.4.1 Pod配置文件"></a>5.1.4.1 Pod配置文件</h4><h4 id="5-1-4-2-探针"><a href="#5-1-4-2-探针" class="headerlink" title="5.1.4.2 探针"></a>5.1.4.2 探针</h4><h5 id="5-1-4-2-1-类型"><a href="#5-1-4-2-1-类型" class="headerlink" title="5.1.4.2.1 类型"></a>5.1.4.2.1 类型</h5><ol>
+<li>StartupProbe</li>
+<li>LivenessProbe</li>
+<li>ReadinessProbe</li>
+</ol>
+<h5 id="5-1-4-2-2-探测方式"><a href="#5-1-4-2-2-探测方式" class="headerlink" title="5.1.4.2.2 探测方式"></a>5.1.4.2.2 探测方式</h5><ol>
+<li>ExecAction</li>
+<li>TCPSocketAction</li>
+<li>HTTPGetAction</li>
+</ol>
+<h5 id="5-1-4-2-3-参数配置"><a href="#5-1-4-2-3-参数配置" class="headerlink" title="5.1.4.2.3 参数配置"></a>5.1.4.2.3 参数配置</h5><h4 id="5-1-4-3-生命周期"><a href="#5-1-4-3-生命周期" class="headerlink" title="5.1.4.3 生命周期"></a>5.1.4.3 生命周期</h4><h1 id="6-📖参考文献"><a href="#6-📖参考文献" class="headerlink" title="6 📖参考文献"></a>6 📖参考文献</h1><ol>
 <li><a target="_blank" rel="noopener" href="https://www.yuque.com/xiaoguai-pbjfj/cxxcrs/ocefqltbmbgl5eqg?singleDoc#%20%E3%80%8AKubernetes%E3%80%8B">Kubernetes-win-useage</a></li>
 <li><a target="_blank" rel="noopener" href="https://geekhour.net/2023/12/23/kubernetes/">Kubernetes一小时入门课程 - 视频配套笔记 | GeekHour</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Se411r7vY/?spm_id_from=333.788.recommend_more_video.2&vd_source=9c896fa9c3f9023797e8efe7be0c113e">Kubernetes一小时轻松入门_哔哩哔哩_bilibili</a></li>
