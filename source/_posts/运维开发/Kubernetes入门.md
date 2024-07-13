@@ -758,14 +758,33 @@ sudo kubeadm token create --print-join-command
 
 ###### 部署 CNI 网络插件
 
-###### 5.1.2 测试 Kubernetes 集群
-
 #在master节点上执行
-#下载calico配置文件 ，可能会网络超时
-curl https://docs.projectcalico.org/manifests/calico.yaml -O
-#修改calico.yaml 文件中的 cidr 配置，修改为与初始化的 cidr 相同
-#修改 `IP_AUTODETECTION_METHOD` 下的网卡名称
-#删除镜像`docker.io/`前缀，避免下载过慢导致失败
+1. #下载calico配置文件 ，可能会网络超时
+
+```sh
+https://calico-v3-25.netlify.app/archive/v3.25/manifests/calico.yaml
+```
+
+2. #修改calico .yaml 文件中的 `CALICO_IPV4POOL_CIDR` 配置，修改为与部署 master 初始化的 cidr 相同（即：`--pod-network-cidr=10.244.0.0/16`）
+3. #修改 `IP_AUTODETECTION_METHOD` 下的网卡名称
+4. #删除镜像 `docker.io/` 前缀，避免下载过慢导致失败
+
+```sh
+sed -i 's#docker.io/##g' calico.yaml
+
+grep image calico.yaml #查看去除docker.io镜像源后的镜像
+```
+
+5. 应用执行 calico.yml
+
+```sh
+kubectl apply -f calico.yaml
+```
+
+> [!Warning] Tips
+> 执行上述命令后会自动运行一些 pod，但是可能会由于**镜像被墙而无法拉取**，因此需要**配置可用镜像源或者指定镜像源 pull 后再 docker save 和 load 转移到其他节点**上。
+
+###### 5.1.2 测试 Kubernetes 集群
 
 ### 5.1.2 命令行工具 Kubectl
 
