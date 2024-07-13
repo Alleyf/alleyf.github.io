@@ -762,7 +762,7 @@ sudo kubeadm token create --print-join-command
 1. #下载calico配置文件 ，可能会网络超时
 
 ```sh
-https://calico-v3-25.netlify.app/archive/v3.25/manifests/calico.yaml
+curl -O https://calico-v3-25.netlify.app/archive/v3.25/manifests/calico.yaml
 ```
 
 2. #修改calico .yaml 文件中的 `CALICO_IPV4POOL_CIDR` 配置，修改为与部署 master 初始化的 cidr 相同（即：`--pod-network-cidr=10.244.0.0/16`）
@@ -781,14 +781,194 @@ grep image calico.yaml #查看去除docker.io镜像源后的镜像
 kubectl apply -f calico.yaml
 ```
 
+![](https://qnpicmap.fcsluck.top/pics/202407131502094.png)
+
+![](https://qnpicmap.fcsluck.top/pics/202407131501885.png)
+
 > [!Warning] Tips
 > 执行上述命令后会自动运行一些 pod，但是可能会由于**镜像被墙而无法拉取**，因此需要**配置可用镜像源或者指定镜像源 pull 后再 docker save 和 load 转移到其他节点**上。
 
 ###### 5.1.2 测试 Kubernetes 集群
 
+1. #创建部署
+
+```sh
+kubectl create deployment nginx --image=nginx
+```
+
+2. #暴露端口
+
+```sh
+kubectl expose deployment nginx --port=80 --type=NodePort
+```
+
+3. #查看Pod以及服务信息
+
+```sh
+kubectl get pod,svc
+```
+
 ### 5.1.2 命令行工具 Kubectl
 
+#### 5.1.2.1 自动补全
+
+#### 5.1.2.2 任意节点使用 Kubectl
+
+1. #将master节点中/etc/kubemnetes/admin .conf 拷贝到需要运行的服务器的/etc/kubernetes 目录中
+
+```sh
+scp /etc/kubernetes/admin.conf root@centos7-101-nodel:/etc/kubernetes
+```
+
+2. #在对应的服务器上配置环境变量
+
+```sh
+echo "export KUBECONFIG=/etc/kubernetes/admin.conf" >> ~/.bash_profile
+source ~/.bash_profile
+```
+
+#### 5.1.2.3 资源操作
+
+##### 5.1.2.3.1 查询
+
+```sh
+#查看pod详细信息，包含pod状态，数量，所在节点，ip和名称等
+kubectl get po -o wide
+#查看deploy详细信息，包含名称，数量，容器名称，镜像名称和选择器等
+kubectl get deploy -o wide
+#查看service详细信息，包含服务名称，类型，ip，端口和选择器等
+kubectl get svc -o wide
+#查看namespace详细信息，包含名称，状态
+kubectl get ns -o wide
+#查看node详细信息，包含名称，状态，角色，版本，ip，os，内核和容器版本等
+kubectl get no -o wide
+```
+
+#### 5.1.2.4 Pod 与集群
+
+#### 5.1.2.5 资源类型与别名
+
+| 资源类型        | 别名     |
+| ----------- | ------ |
+| pods        | po     |
+| deployments | deploy |
+| services    | svc    |
+| namespace   | ns     |
+| nodes       | no     |
+
+#### 5.1.2.6 格式化输出
+
+- 输出 json 格式 -o json
+- 仅打印资源名称 -o name
+- 以纯文本格式输出所有信息 -o wide
+- 输出 yaml 格式 -o yaml `eg:kubectl get deploy nginx -o yaml`
+
 ### 5.1.3 API 概述
+
+#### 5.1.3.1 类型
+
+Kubernetes（通常简称为 k8s）是一个开源的容器编排系统，用于自动化应用程序的部署、扩展和管理。Kubernetes 版本通常分为几个阶段，以反映其成熟度和稳定性。以下是三种主要版本的概述：
+
+1. **Alpha（阿尔法）版本**：
+   - 这是 Kubernetes 功能开发的最早期阶段。
+   - Alpha 功能通常是实验性的，可能包含许多漏洞和不稳定性。
+   - 它们可能在 API 或功能上发生重大变化，甚至可能在后续版本中被完全移除。
+   - Alpha 版本不推荐用于生产环境，仅供开发和测试使用。
+
+2. **Beta（贝塔）版本**：
+   - Beta 版本是功能开发的进一步成熟阶段，比 Alpha 版本更稳定。
+   - 它们在功能上可能已经相对完整，但仍然可能包含一些未解决的问题或需要进一步测试的地方。
+   - Beta 功能在 API 和功能上的变化风险较低，但仍然可能发生一些不兼容的更改。
+   - Beta 版本可以用于更广泛的测试，但仍然不建议在生产环境中使用。
+
+3. **Stable（稳定）版本**：
+   - 稳定版本是 Kubernetes 功能开发的最终阶段，具有高度的可靠性和成熟度。
+   - 这些功能已经经过广泛的测试和验证，API 和功能的变化非常有限。
+   - 稳定版本是推荐用于生产环境的，因为它们提供了最低的风险和最好的支持。
+   - Kubernetes 的稳定版本通常会定期发布，并且会提供长期的维护和安全更新。
+
+在 Kubernetes 的开发过程中，新功能首先作为 Alpha 版本引入，然后逐步发展到 Beta，最终成为稳定版本。这个过程允许社区和用户有足够的时间来测试新功能，并在它们被广泛采用之前提供反馈。
+
+#### 5.1.3.2 访问控制
+
+##### 5.1.3.2.1 认证（Authentication）
+
+认证是确定用户或服务账户身份的过程。在 Kubernetes 中，认证机制确保只有经过验证的用户和系统才能访问集群资源。Kubernetes 支持多种认证方式，包括但不限于：
+
+- **客户端证书**：使用 TLS 证书进行认证。
+- **令牌**：使用 JSON Web Tokens (JWT) 或服务账户令牌进行认证。
+- **密码**：使用用户名和密码进行基本认证。
+- **OpenID Connect**：使用 OpenID Connect 令牌进行认证。
+- **Webhook**：通过远程服务器进行认证。
+
+认证通常是通过 Kubernetes API 服务器来完成的，API 服务器配置了认证机制，以验证所有进入的请求。
+
+##### 5.1.3.2.2 授权（Authorization）
+
+授权是在认证之后进行的，它决定了经过认证的用户或服务账户可以执行哪些操作。Kubernetes 提供了几种授权策略，包括：
+
+- **Node**：授权节点可以访问 API 服务器。
+- **RBAC（基于角色的访问控制）**：定义角色和角色绑定，控制用户可以访问的资源和执行的操作。
+- **ABAC（基于属性的访问控制）**：基于属性（如用户属性、资源属性等）进行访问控制。
+- **Webhook**：通过远程服务器进行授权决策。
+
+RBAC 是 Kubernetes 中最常用的授权机制，它允许管理员创建精细的权限策略，将权限分配给用户、组或服务账户。RBAC 通过定义角色（Role）和集群角色（ClusterRole），以及将这些角色分配给用户的机制来实现。
+
+在 Kubernetes 中，认证和授权通常一起工作，以确保用户和系统能够安全地访问和管理集群资源。管理员需要根据组织的安全需求和最佳实践来配置这些机制。
+
+#### 5.1.3.3 废弃API说明
+
+在 Kubernetes 中，API 版本遵循语义版本控制（Semantic Versioning），通常表示为 `MAJOR.MINOR.PATCH` 的形式。随着 Kubernetes 的发展，某些 API 可能会被标记为废弃（Deprecated），这意味着这些 API 将在未来的版本中被移除或替换。以下是废弃 API 的一些说明：
+
+1. **废弃的阶段**：
+   - Kubernetes 通常会在 API 被完全移除前的几个版本中标记 API 为废弃。
+   - 废弃的 API 通常会经历几个阶段，如 "Deprecated"、"Removed in upcoming release" 等。
+
+2. **废弃的原因**：
+   - API 可能因为安全问题、性能问题、更好的替代方案出现或不符合设计原则而被废弃。
+   - 废弃也可能是为了简化 API 表面或推动用户迁移到更稳定、更安全、更高效的 API。
+
+3. **废弃的通告**：
+   - Kubernetes 社区会在发布新版本时，通过官方文档、博客、邮件列表等方式通告 API 的废弃信息。
+   - 用户可以通过 Kubernetes 的官方文档或 API 文档来查找有关 API 废弃的详细信息。
+
+4. **废弃的 API 的使用**：
+   - 即使 API 被标记为废弃，它可能仍然在当前版本中可用，但社区强烈建议用户停止使用并迁移到推荐的替代 API。
+   - Kubernetes 通常会提供迁移指南和工具，以帮助用户平滑过渡到新的 API。
+
+5. **替代方案**：
+   - 当 API 被废弃时，Kubernetes 会推荐使用新的 API 版本或不同的 API 来实现相同的功能。
+   - 用户应该根据官方文档的指导，评估替代方案并进行必要的代码和配置更新。
+
+6. **社区反馈**：
+   - 用户可以通过 Kubernetes 的社区渠道，如 GitHub 仓库、邮件列表、论坛等，提供关于废弃 API 的反馈和建议。
+
+7. **长期支持（LTS）版本**：
+   - 对于需要长期稳定运行的环境，用户可能会选择使用 Kubernetes 的长期支持版本，这些版本通常会有更长的支持周期和更慢的 API 更新速度。
+
+废弃 API 是 Kubernetes 发展过程中的一个自然现象，它有助于推动技术的进步和维护生态系统的健康。用户应该密切关注 Kubernetes 的更新和通告，以确保他们的应用程序和集群配置能够适应这些变化。
+
+### 5.1.4 深入Pod
+
+#### 5.1.4.1 Pod配置文件
+
+#### 5.1.4.2 探针
+
+##### 5.1.4.2.1 类型
+
+1. StartupProbe
+2. LivenessProbe
+3. ReadinessProbe
+
+##### 5.1.4.2.2 探测方式
+
+1. ExecAction
+2. TCPSocketAction
+3. HTTPGetAction
+
+##### 5.1.4.2.3 参数配置
+
+#### 5.1.4.3 生命周期
 
 # 6 📖参考文献
 
