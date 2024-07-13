@@ -27,7 +27,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://picsum.photos/800/250">
 <meta property="article:published_time" content="2024-05-10T15:54:16.000Z">
-<meta property="article:modified_time" content="2024-07-11T15:09:19.317Z">
+<meta property="article:modified_time" content="2024-07-13T04:31:51.927Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="K8s">
 <meta name="twitter:card" content="summary_large_image">
@@ -318,7 +318,7 @@
         
         
         
-          201 分钟
+          203 分钟
         
       </span>
     
@@ -369,7 +369,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：9 小时前
+                    本文最后更新于：2 小时前
                   
                 
               </p>
@@ -895,8 +895,28 @@
 <p>#或者直接新建新token和cert -hash：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">sudo kubeadm token create --print-join-command<br></code></pre></td></tr></table></figure>
 
-<h6 id="部署-CNI-网络插件"><a href="#部署-CNI-网络插件" class="headerlink" title="部署 CNI 网络插件"></a>部署 CNI 网络插件</h6><h6 id="5-1-2-测试-Kubernetes-集群"><a href="#5-1-2-测试-Kubernetes-集群" class="headerlink" title="5.1.2 测试 Kubernetes 集群"></a>5.1.2 测试 Kubernetes 集群</h6><p>#在master节点上执行<br>#下载calico配置文件 ，可能会网络超时<br>curl <a target="_blank" rel="noopener" href="https://docs.projectcalico.org/manifests/calico.yaml">https://docs.projectcalico.org/manifests/calico.yaml</a> -O<br>#修改calico.yaml 文件中的 cidr 配置，修改为与初始化的 cidr 相同<br>#修改 <code>IP_AUTODETECTION_METHOD</code> 下的网卡名称<br>#删除镜像<code>docker.io/</code>前缀，避免下载过慢导致失败</p>
-<h3 id="5-1-2-命令行工具-Kubectl"><a href="#5-1-2-命令行工具-Kubectl" class="headerlink" title="5.1.2 命令行工具 Kubectl"></a>5.1.2 命令行工具 Kubectl</h3><h3 id="5-1-3-API-概述"><a href="#5-1-3-API-概述" class="headerlink" title="5.1.3 API 概述"></a>5.1.3 API 概述</h3><h1 id="6-📖参考文献"><a href="#6-📖参考文献" class="headerlink" title="6 📖参考文献"></a>6 📖参考文献</h1><ol>
+<h6 id="部署-CNI-网络插件"><a href="#部署-CNI-网络插件" class="headerlink" title="部署 CNI 网络插件"></a>部署 CNI 网络插件</h6><p>#在master节点上执行</p>
+<ol>
+<li>#下载calico配置文件 ，可能会网络超时</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">https://calico-v3-25.netlify.app/archive/v3.25/manifests/calico.yaml<br></code></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>#修改calico .yaml 文件中的 <code>CALICO_IPV4POOL_CIDR</code> 配置，修改为与部署 master 初始化的 cidr 相同（即：<code>--pod-network-cidr=10.244.0.0/16</code>）</li>
+<li>#修改 <code>IP_AUTODETECTION_METHOD</code> 下的网卡名称</li>
+<li>#删除镜像 <code>docker.io/</code> 前缀，避免下载过慢导致失败</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sh">sed -i <span class="hljs-string">&#x27;s#docker.io/##g&#x27;</span> calico.yaml<br><br>grep image calico.yaml <span class="hljs-comment">#查看去除docker.io镜像源后的镜像</span><br></code></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>应用执行 calico.yml</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">kubectl apply -f calico.yaml<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>[!Warning] Tips<br>执行上述命令后会自动运行一些 pod，但是可能会由于<strong>镜像被墙而无法拉取</strong>，因此需要<strong>配置可用镜像源或者指定镜像源 pull 后再 docker save 和 load 转移到其他节点</strong>上。</p>
+</blockquote>
+<h6 id="5-1-2-测试-Kubernetes-集群"><a href="#5-1-2-测试-Kubernetes-集群" class="headerlink" title="5.1.2 测试 Kubernetes 集群"></a>5.1.2 测试 Kubernetes 集群</h6><h3 id="5-1-2-命令行工具-Kubectl"><a href="#5-1-2-命令行工具-Kubectl" class="headerlink" title="5.1.2 命令行工具 Kubectl"></a>5.1.2 命令行工具 Kubectl</h3><h3 id="5-1-3-API-概述"><a href="#5-1-3-API-概述" class="headerlink" title="5.1.3 API 概述"></a>5.1.3 API 概述</h3><h1 id="6-📖参考文献"><a href="#6-📖参考文献" class="headerlink" title="6 📖参考文献"></a>6 📖参考文献</h1><ol>
 <li><a target="_blank" rel="noopener" href="https://www.yuque.com/xiaoguai-pbjfj/cxxcrs/ocefqltbmbgl5eqg?singleDoc#%20%E3%80%8AKubernetes%E3%80%8B">Kubernetes-win-useage</a></li>
 <li><a target="_blank" rel="noopener" href="https://geekhour.net/2023/12/23/kubernetes/">Kubernetes一小时入门课程 - 视频配套笔记 | GeekHour</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Se411r7vY/?spm_id_from=333.788.recommend_more_video.2&vd_source=9c896fa9c3f9023797e8efe7be0c113e">Kubernetes一小时轻松入门_哔哩哔哩_bilibili</a></li>
@@ -968,7 +988,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年7月11日</div>
+          <div>2024年7月13日</div>
         </div>
       
       <div class="license-meta-item">
