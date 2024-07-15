@@ -5,7 +5,7 @@
   "nativeMenus": false,
   "translucency": true,
   "interfaceFontFamily": "",
-  "baseFontSize": 18,
+  "baseFontSize": 17,
   "enabledCssSnippets": [
     "image-grid",
     "custom-admonitions.d61bb4"
