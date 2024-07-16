@@ -4,18 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "554da06f29075805",
+        "id": "99f3562c589a2cd1",
         "type": "tabs",
         "children": [
           {
-            "id": "65952bc30ff868c4",
+            "id": "69eda1a7f85e536c",
             "type": "leaf",
             "state": {
-              "type": "diff-view",
-              "state": {
-                "file": ".obsidian/plugins/home-tab/data.json",
-                "staged": true
-              }
+              "type": "home-tab-view",
+              "state": {}
             }
           }
         ]
@@ -143,7 +140,7 @@
       "obsidian-memos:Memos": false
     }
   },
-  "active": "65952bc30ff868c4",
+  "active": "69eda1a7f85e536c",
   "lastOpenFiles": [
     "source/_posts/运维开发/Kubernetes入门.md",
     "source/_posts/运维开发/运维排忧解难.md",
