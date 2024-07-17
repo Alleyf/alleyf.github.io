@@ -27,7 +27,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://picsum.photos/800/250">
 <meta property="article:published_time" content="2024-05-10T15:54:16.000Z">
-<meta property="article:modified_time" content="2024-07-13T14:49:43.020Z">
+<meta property="article:modified_time" content="2024-07-17T16:30:39.044Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="K8s">
 <meta name="twitter:card" content="summary_large_image">
@@ -307,7 +307,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          28k 字
+          29k 字
         
       </span>
     
@@ -318,7 +318,7 @@
         
         
         
-          231 分钟
+          239 分钟
         
       </span>
     
@@ -369,7 +369,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：4 天前
+                    本文最后更新于：1 小时前
                   
                 
               </p>
@@ -945,7 +945,10 @@
 
 <h4 id="5-1-2-3-资源操作"><a href="#5-1-2-3-资源操作" class="headerlink" title="5.1.2.3 资源操作"></a>5.1.2.3 资源操作</h4><h5 id="5-1-2-3-1-查询"><a href="#5-1-2-3-1-查询" class="headerlink" title="5.1.2.3.1 查询"></a>5.1.2.3.1 查询</h5><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment">#查看pod详细信息，包含pod状态，数量，所在节点，ip和名称等</span><br>kubectl get po -o wide<br><span class="hljs-comment">#查看deploy详细信息，包含名称，数量，容器名称，镜像名称和选择器等</span><br>kubectl get deploy -o wide<br><span class="hljs-comment">#查看service详细信息，包含服务名称，类型，ip，端口和选择器等</span><br>kubectl get svc -o wide<br><span class="hljs-comment">#查看namespace详细信息，包含名称，状态</span><br>kubectl get ns -o wide<br><span class="hljs-comment">#查看node详细信息，包含名称，状态，角色，版本，ip，os，内核和容器版本等</span><br>kubectl get no -o wide<br></code></pre></td></tr></table></figure>
 
-<h4 id="5-1-2-4-Pod-与集群"><a href="#5-1-2-4-Pod-与集群" class="headerlink" title="5.1.2.4 Pod 与集群"></a>5.1.2.4 Pod 与集群</h4><h4 id="5-1-2-5-资源类型与别名"><a href="#5-1-2-5-资源类型与别名" class="headerlink" title="5.1.2.5 资源类型与别名"></a>5.1.2.5 资源类型与别名</h4><table>
+<h4 id="5-1-2-4-Pod-与集群"><a href="#5-1-2-4-Pod-与集群" class="headerlink" title="5.1.2.4 Pod 与集群"></a>5.1.2.4 Pod 与集群</h4><h5 id="5-1-2-4-1-新建Pod"><a href="#5-1-2-4-1-新建Pod" class="headerlink" title="5.1.2.4.1 新建Pod"></a>5.1.2.4.1 新建Pod</h5><p>指定yml配置文件（类似于docker-compose.yml配置文件）启动资源（deployment、pod等）</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">kubectl apply -f &lt;nginx-demo.yml&gt;<br></code></pre></td></tr></table></figure>
+
+<h4 id="5-1-2-5-资源类型与别名"><a href="#5-1-2-5-资源类型与别名" class="headerlink" title="5.1.2.5 资源类型与别名"></a>5.1.2.5 资源类型与别名</h4><table>
 <thead>
 <tr>
 <th>资源类型</th>
@@ -1069,7 +1072,11 @@
 </li>
 </ol>
 <p>废弃 API 是 Kubernetes 发展过程中的一个自然现象，它有助于推动技术的进步和维护生态系统的健康。用户应该密切关注 Kubernetes 的更新和通告，以确保他们的应用程序和集群配置能够适应这些变化。</p>
-<h3 id="5-1-4-深入Pod"><a href="#5-1-4-深入Pod" class="headerlink" title="5.1.4 深入Pod"></a>5.1.4 深入Pod</h3><h4 id="5-1-4-1-Pod配置文件"><a href="#5-1-4-1-Pod配置文件" class="headerlink" title="5.1.4.1 Pod配置文件"></a>5.1.4.1 Pod配置文件</h4><h4 id="5-1-4-2-探针"><a href="#5-1-4-2-探针" class="headerlink" title="5.1.4.2 探针"></a>5.1.4.2 探针</h4><h5 id="5-1-4-2-1-类型"><a href="#5-1-4-2-1-类型" class="headerlink" title="5.1.4.2.1 类型"></a>5.1.4.2.1 类型</h5><ol>
+<h3 id="5-1-4-深入Pod"><a href="#5-1-4-深入Pod" class="headerlink" title="5.1.4 深入Pod"></a>5.1.4 深入Pod</h3><h4 id="5-1-4-1-Pod配置文件"><a href="#5-1-4-1-Pod配置文件" class="headerlink" title="5.1.4.1 Pod配置文件"></a>5.1.4.1 Pod配置文件</h4><p>以一个nginx的pod demo的配置文件为例：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">apiVersion:</span> <span class="hljs-string">v1</span> <span class="hljs-comment">#Api 文档版本</span><br><span class="hljs-attr">kind:</span> <span class="hljs-string">Pod</span> <span class="hljs-comment"># 资源对象类型，Deployment，Statefulset等</span><br><span class="hljs-attr">metadata:</span> <span class="hljs-comment">#Pod相关元数据，描述Pod信息</span><br>    <span class="hljs-attr">name:</span> <span class="hljs-string">nginx-demo</span> <span class="hljs-comment">#定义Pod的名称</span><br>    <span class="hljs-attr">labels:</span> <span class="hljs-comment">#定义Pod的标签</span><br>      <span class="hljs-attr">type:</span> <span class="hljs-string">app</span> <span class="hljs-comment"># 自定义的label标签</span><br>      <span class="hljs-attr">version:</span> <span class="hljs-number">1.0</span><span class="hljs-number">.0</span> <span class="hljs-comment"># 自定义的版本号</span><br>    <span class="hljs-attr">namespace:</span> <span class="hljs-string">&#x27;web&#x27;</span> <span class="hljs-comment"># 命名空间配置</span><br><span class="hljs-attr">spec:</span> <span class="hljs-comment"># 期望 Pod 按照这里的描述进行创建</span><br>  <span class="hljs-attr">containers:</span> <span class="hljs-comment"># 对于pod中容器的描述</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">nginx</span> <span class="hljs-comment"># 容器的名称</span><br>    <span class="hljs-attr">image:</span> <span class="hljs-string">nginx:1.7.9</span> <span class="hljs-comment"># 可拉取得镜像名称</span><br>    <span class="hljs-attr">imagePullPolicy:</span> <span class="hljs-string">IfNotPresent</span> <span class="hljs-comment"># 镜像拉取策略：本地有则用无责拉取远程</span><br>    <span class="hljs-attr">command:</span> <span class="hljs-comment"># 指定容器启动时执行的命令</span><br>    <span class="hljs-bullet">-</span> <span class="hljs-string">nginx</span><br>    <span class="hljs-bullet">-</span> <span class="hljs-string">-g</span><br>    <span class="hljs-bullet">-</span> <span class="hljs-string">&#x27;daemon off;&#x27;</span> <span class="hljs-comment">#nginx -g &#x27;daemon off;&#x27;</span><br>    <span class="hljs-attr">workingDir:</span> <span class="hljs-string">/usr/share/nginx/html</span> <span class="hljs-comment"># 定义容器启动后的工作目录</span><br>    <span class="hljs-attr">ports:</span><br>    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">http</span> <span class="hljs-comment"># 端口名称</span><br>      <span class="hljs-attr">containerPort:</span> <span class="hljs-number">80</span> <span class="hljs-comment"># 容器内要暴露的端口</span><br>      <span class="hljs-attr">protocol:</span> <span class="hljs-string">TCP</span> <span class="hljs-comment"># 端口通信协议</span><br>    <span class="hljs-attr">env:</span> <span class="hljs-comment"># 环境变量</span><br>    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">JVM_OPTS</span> <span class="hljs-comment"># 环境变量名称</span><br>      <span class="hljs-attr">value:</span> <span class="hljs-string">&#x27;Xms128m -Xmx128m&#x27;</span> <span class="hljs-comment"># 环境变量值</span><br>    <br>    <span class="hljs-attr">resources:</span><br>        <span class="hljs-attr">requests:</span> <span class="hljs-comment"># 最少需要的资源</span><br>          <span class="hljs-attr">cpu:</span> <span class="hljs-string">100m</span> <span class="hljs-comment"># 限制cpu最少使用100毫核，0.1核心</span><br>          <span class="hljs-attr">memory:</span> <span class="hljs-string">128Mi</span> <span class="hljs-comment"># 限制内存最少使用128M</span><br>        <span class="hljs-attr">limits:</span><br>          <span class="hljs-attr">cpu:</span> <span class="hljs-string">200m</span> <span class="hljs-comment"># 限制cpu最多使用200毫核，0.2核心</span><br>          <span class="hljs-attr">memory:</span> <span class="hljs-string">256Mi</span> <span class="hljs-comment"># 限制内存最多使用256M</span><br><br>  <span class="hljs-attr">restartPolicy:</span> <span class="hljs-string">OnFailure</span> <span class="hljs-comment"># 重启策略，非正常退出运行失败时进行重启</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="5-1-4-2-探针"><a href="#5-1-4-2-探针" class="headerlink" title="5.1.4.2 探针"></a>5.1.4.2 探针</h4><p>容器内应用的监视机制，根据不同的探针来判断容器应用当前的状态</p>
+<h5 id="5-1-4-2-1-类型"><a href="#5-1-4-2-1-类型" class="headerlink" title="5.1.4.2.1 类型"></a>5.1.4.2.1 类型</h5><ol>
 <li>StartupProbe</li>
 <li>LivenessProbe</li>
 <li>ReadinessProbe</li>
@@ -1151,7 +1158,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年7月13日</div>
+          <div>2024年7月18日</div>
         </div>
       
       <div class="license-meta-item">
