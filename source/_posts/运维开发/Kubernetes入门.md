@@ -846,6 +846,14 @@ kubectl get no -o wide
 
 #### 5.1.2.4 Pod 与集群
 
+##### 5.1.2.4.1 新建Pod
+
+指定yml配置文件（类似于docker-compose.yml配置文件）启动资源（deployment、pod等）
+
+```sh
+kubectl apply -f <nginx-demo.yml>
+```
+
 #### 5.1.2.5 资源类型与别名
 
 | 资源类型        | 别名     |
@@ -952,7 +960,49 @@ RBAC 是 Kubernetes 中最常用的授权机制，它允许管理员创建精细
 
 #### 5.1.4.1 Pod配置文件
 
+以一个nginx的pod demo的配置文件为例：
+
+```yml
+apiVersion: v1 #Api 文档版本
+kind: Pod # 资源对象类型，Deployment，Statefulset等
+metadata: #Pod相关元数据，描述Pod信息
+    name: nginx-demo #定义Pod的名称
+    labels: #定义Pod的标签
+      type: app # 自定义的label标签
+      version: 1.0.0 # 自定义的版本号
+    namespace: 'web' # 命名空间配置
+spec: # 期望 Pod 按照这里的描述进行创建
+  containers: # 对于pod中容器的描述
+  - name: nginx # 容器的名称
+    image: nginx:1.7.9 # 可拉取得镜像名称
+    imagePullPolicy: IfNotPresent # 镜像拉取策略：本地有则用无责拉取远程
+    command: # 指定容器启动时执行的命令
+    - nginx
+    - -g
+    - 'daemon off;' #nginx -g 'daemon off;'
+    workingDir: /usr/share/nginx/html # 定义容器启动后的工作目录
+    ports:
+    - name: http # 端口名称
+      containerPort: 80 # 容器内要暴露的端口
+      protocol: TCP # 端口通信协议
+    env: # 环境变量
+    - name: JVM_OPTS # 环境变量名称
+      value: 'Xms128m -Xmx128m' # 环境变量值
+    
+    resources:
+        requests: # 最少需要的资源
+          cpu: 100m # 限制cpu最少使用100毫核，0.1核心
+          memory: 128Mi # 限制内存最少使用128M
+        limits:
+          cpu: 200m # 限制cpu最多使用200毫核，0.2核心
+          memory: 256Mi # 限制内存最多使用256M
+
+  restartPolicy: OnFailure # 重启策略，非正常退出运行失败时进行重启
+```
+
 #### 5.1.4.2 探针
+
+容器内应用的监视机制，根据不同的探针来判断容器应用当前的状态
 
 ##### 5.1.4.2.1 类型
 
