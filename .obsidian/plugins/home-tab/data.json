@@ -24,24 +24,8 @@
   "unresolvedLinks": false,
   "recentFilesStore": [
     {
-      "filepath": "conflict-files-obsidian-git.md",
-      "timestamp": 1721177323285
-    },
-    {
       "filepath": "source/_posts/运维开发/运维排忧解难.md",
-      "timestamp": 1721132329945
-    },
-    {
-      "filepath": "source/_posts/运维开发/运维问题记录.md",
-      "timestamp": 1721132328975
-    },
-    {
-      "filepath": "source/_posts/运维开发/OSS备份方案.md",
-      "timestamp": 1721093829544
-    },
-    {
-      "filepath": "source/_posts/运维开发/Kubernetes入门.md",
-      "timestamp": 1721093810999
+      "timestamp": 1721265550809
     }
   ],
   "starredFileStore": [],

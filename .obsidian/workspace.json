@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "e7c36a8e7c44237c",
+        "id": "aa43393e3b628a38",
         "type": "tabs",
         "children": [
           {
-            "id": "c72100dc12b3dbb2",
+            "id": "c05ded99ff8dc0d3",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -19,22 +19,8 @@
                 "source": false
               }
             }
-          },
-          {
-            "id": "40e0de7782432d47",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "conflict-files-obsidian-git.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -69,7 +55,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "conflict-files-obsidian-git.md"
+                "file": "source/_posts/运维开发/运维排忧解难.md"
               }
             }
           }
@@ -161,7 +147,7 @@
       "obsidian-memos:Memos": false
     }
   },
-  "active": "40e0de7782432d47",
+  "active": "c05ded99ff8dc0d3",
   "lastOpenFiles": [
     "source/_posts/运维开发/运维排忧解难.md",
     "conflict-files-obsidian-git.md",
