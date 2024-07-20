@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "050e642e066e3eb8",
+        "id": "566515513dcaef4c",
         "type": "tabs",
         "children": [
           {
-            "id": "31b8300547eddd1d",
+            "id": "9b4e5ef02ad6201a",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/运维开发/运维排忧解难.md",
+                "file": "source/_posts/运维开发/各种环境配置.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -55,7 +55,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/运维开发/运维排忧解难.md"
+                "file": "source/_posts/运维开发/各种环境配置.md"
               }
             }
           }
@@ -147,7 +147,7 @@
       "obsidian-memos:Memos": false
     }
   },
-  "active": "31b8300547eddd1d",
+  "active": "9b4e5ef02ad6201a",
   "lastOpenFiles": [
     "source/_posts/运维开发/运维排忧解难.md",
     "source/_posts/运维开发/Kubernetes入门.md",
