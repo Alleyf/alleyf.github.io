@@ -4,63 +4,18 @@
     "type": "split",
     "children": [
       {
-        "id": "e5b89fe12c20b836",
+        "id": "1d2ac5e2876ca6d7",
         "type": "tabs",
         "children": [
           {
-            "id": "bbb7ffe81cd6dcb8",
+            "id": "46e9f46424b0f8af",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "source/_posts/运维开发/Kubernetes入门.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "6c1da9a6971f8f63",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "source/_posts/运维开发/各种环境配置.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "6d7821e088de13b1",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "source/_posts/运维开发/运维排忧解难.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "9b41d4b5bafbf38f",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "source/_posts/科研学习/会议讨论/周会.md",
-                "mode": "preview",
-                "backlinks": false,
-                "source": false
-              }
+              "type": "home-tab-view",
+              "state": {}
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -94,9 +49,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "source/_posts/运维开发/各种环境配置.md"
-              }
+              "state": {}
             }
           }
         ]
@@ -187,31 +140,31 @@
       "obsidian-memos:Memos": false
     }
   },
-  "active": "6c1da9a6971f8f63",
+  "active": "46e9f46424b0f8af",
   "lastOpenFiles": [
+    "source/_posts/运维开发/运维排忧解难.md",
+    "source/_posts/运维开发/各种环境配置.md",
     "attachment/Pasted image 20240721233501.png",
     "source/_posts/运维开发/Kubernetes入门.md",
-    "source/_posts/运维开发/运维排忧解难.md",
-    "source/_posts/科研学习/会议讨论/周会.md",
     "conflict-files-obsidian-git.md",
+    "source/_posts/运维开发/运维问题记录.md",
     "source/_posts/运维开发/OSS备份方案.md",
-    "public/2024/07/4fd90f719b64.html",
-    "attachment/OSS备份方案.png",
     "attachment/OSS备份方案-2.png",
     "attachment/OSS备份方案-1.png",
+    "attachment/OSS备份方案.png",
     "source/_posts/运维开发/MarkDown-真经.md",
-    "source/_posts/运维开发/各种环境配置.md",
     "public/tags/K8s/index.html",
     "public/tags/K8s",
     "public/archives/2024/05/index.html",
     "public/archives/2024/05",
     "public/2024/05/9b5fa9c35ad7.html",
     "public/2024/05",
-    "source/_posts/运维开发/运维问题记录.md",
+    "source/_posts/科研学习/会议讨论/周会.md",
     "source/_posts/中间件和工具/常用软件和环境.md",
     "public/tags/工具/index.html",
     "public/tags/工具",
     "public/archives/2024/07/index.html",
+    "public/archives/2024/07",
     "source/_posts/运维开发/WebMagic.md",
     "source/_posts/运维开发/Scrapy-修炼手册.md",
     "source/_posts/科研学习/论文总结/Large Language Models for Generative Information  Extraction A Survey.md",
@@ -236,7 +189,6 @@
     "attachment/Pasted Image 20231202101022_171.png",
     "attachment/Pasted Image 20231202100951_001.png",
     "attachment/Pasted Image 20231128145734_285.png",
-    "attachment/Pasted Image 20231128145719_276.png",
     "未命名.canvas",
     "canvas/review plans.canvas",
     "source/_posts/英语学习/EnglishWords.canvas",
