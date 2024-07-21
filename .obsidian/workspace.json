@@ -21,20 +21,19 @@
             }
           },
           {
-            "id": "e3d23538662ea64d",
+            "id": "6d7821e088de13b1",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "conflict-files-obsidian-git.md",
+                "file": "source/_posts/运维开发/运维排忧解难.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -69,7 +68,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "conflict-files-obsidian-git.md"
+                "file": "source/_posts/运维开发/Kubernetes入门.md"
               }
             }
           }
@@ -161,11 +160,11 @@
       "obsidian-memos:Memos": false
     }
   },
-  "active": "e3d23538662ea64d",
+  "active": "bbb7ffe81cd6dcb8",
   "lastOpenFiles": [
+    "source/_posts/运维开发/运维排忧解难.md",
     "source/_posts/运维开发/Kubernetes入门.md",
     "conflict-files-obsidian-git.md",
-    "source/_posts/运维开发/运维排忧解难.md",
     "source/_posts/运维开发/OSS备份方案.md",
     "public/2024/07/4fd90f719b64.html",
     "attachment/OSS备份方案.png",

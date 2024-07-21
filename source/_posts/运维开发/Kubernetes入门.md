@@ -603,6 +603,11 @@ k8s：1.23.6（1.24+以后由于 CRI 不支持 docker 作为容器运行时）
 - #配置静态ip
 	- [【Linux】为 VMware 的 Linux 系统（CentOS 7）设置静态IP地址-CSDN博客](https://blog.csdn.net/m0_50513629/article/details/139055933)
 	- 注意有个命令需要把 interface=ens33 改成你对应的网卡,可以使用 ifconfig 查看到你的网卡信息如果你的网阿卡是 ens192 只需要把上面的命令改成 interface=ens192
+	- 配置完静态ip后要重启网络：
+	  1. systemctl stop NetworkManager
+	  2. systemctl disable NetworkManager
+	  3. service network restart
+	  4. ip addr
 - #关闭防火墙
 	- systemctl stop firewalld
 	- systemctl disable firewalld
@@ -634,7 +639,7 @@ net.bridge.bridge-nf-call-ip6tables = 1
 EOF
 ```
 
-- sysctl --system #生救
+- sysctl --system #生校
 - #时间同步
 	- yum install ntpdate -y
 	- ntpdate time.windows.com
