@@ -27,7 +27,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://picsum.photos/800/250">
 <meta property="article:published_time" content="2024-06-27T16:37:11.000Z">
-<meta property="article:modified_time" content="2024-07-17T16:26:00.466Z">
+<meta property="article:modified_time" content="2024-07-21T04:49:02.349Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="DevOps">
 <meta property="article:tag" content="运维">
@@ -308,7 +308,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          8.7k 字
+          9.9k 字
         
       </span>
     
@@ -319,7 +319,7 @@
         
         
         
-          73 分钟
+          83 分钟
         
       </span>
     
@@ -370,7 +370,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：3 天前
+                    本文最后更新于：几秒前
                   
                 
               </p>
@@ -380,14 +380,14 @@
                 
                 <p><img src="https://picsum.photos/800/250" srcset="/img/loading.gif" lazyload></p>
 <h1 id="1-常用指令"><a href="#1-常用指令" class="headerlink" title="1 常用指令"></a>1 常用指令</h1><blockquote>
-<p>[!NOTE] 符号说明<br>指令中小括号<code>()</code>内为<strong>选填项</strong>，<code>&lt;&gt;</code>为<strong>填充项</strong>（根据实际变量进行填充）。</p>
+<p>[!NOTE] 符号说明<br>指令中小括号 <code>()</code> 内为<strong>选填项</strong>，<code>&lt;&gt;</code> 为<strong>填充项</strong>（根据实际变量进行填充）。</p>
 </blockquote>
 <h2 id="1-1-Linux-指令"><a href="#1-1-Linux-指令" class="headerlink" title="1.1 Linux 指令"></a>1.1 Linux 指令</h2><p><a href="source/_posts/%E8%BF%90%E7%BB%B4%E5%BC%80%E5%8F%91/%E5%90%84%E7%A7%8D%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE.md">各种环境配置</a></p>
-<h3 id="1-1-1-Ssh连接"><a href="#1-1-1-Ssh连接" class="headerlink" title="1.1.1 Ssh连接"></a>1.1.1 Ssh连接</h3><p>-p 指定端口，默认不带则为22端口</p>
+<h3 id="1-1-1-Ssh-连接"><a href="#1-1-1-Ssh-连接" class="headerlink" title="1.1.1 Ssh 连接"></a>1.1.1 Ssh 连接</h3><p>-p 指定端口，默认不带则为 22 端口</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">ssh -p &lt;port&gt; &lt;username&gt;@&lt;ip/hostname&gt;<br></code></pre></td></tr></table></figure>
 
 <h3 id="1-1-2-文件传输"><a href="#1-1-2-文件传输" class="headerlink" title="1.1.2 文件传输"></a>1.1.2 文件传输</h3><blockquote>
-<p>通过ssh协议用于在本地计算机和远程计算机之间安全地复制文件</p>
+<p>通过 ssh 协议用于在本地计算机和远程计算机之间安全地复制文件</p>
 </blockquote>
 <ol>
 <li>本地到远程</li>
@@ -413,16 +413,16 @@
 </li>
 <li><strong>搜索进程</strong>：<ul>
 <li>输入 <code>u</code> 键，然后输入用户名，可以显示该用户的所有进程。</li>
-<li>输入 <code>p</code> 键，然后输入进程ID（PID），可以快速定位到特定进程。</li>
+<li>输入 <code>p</code> 键，然后输入进程 ID（PID），可以快速定位到特定进程。</li>
 </ul>
 </li>
 <li><strong>过滤进程</strong>：<ul>
 <li>输入 <code>U</code> 键，然后输入用户名，可以过滤显示该用户的进程。</li>
-<li>输入 <code>P</code> 键，然后输入进程ID（PID），可以过滤显示该PID的进程。</li>
+<li>输入 <code>P</code> 键，然后输入进程 ID（PID），可以过滤显示该 PID 的进程。</li>
 </ul>
 </li>
 <li><strong>杀死进程</strong>：<ul>
-<li>输入 <code>k</code> 键，然后输入进程ID和要发送的信号（默认是SIGTERM，即15），可以杀死进程。</li>
+<li>输入 <code>k</code> 键，然后输入进程 ID 和要发送的信号（默认是 SIGTERM，即 15），可以杀死进程。</li>
 </ul>
 </li>
 </ol>
@@ -433,21 +433,21 @@
 <li><p>参数说明</p>
 <ul>
 <li><code>USER</code>：进程所有者的用户名。</li>
-<li><code>PID</code>：进程的ID。</li>
-<li><code>%CPU</code>：进程占用的CPU百分比。</li>
+<li><code>PID</code>：进程的 ID。</li>
+<li><code>%CPU</code>：进程占用的 CPU 百分比。</li>
 <li><code>%MEM</code>：进程占用的内存百分比。</li>
 <li><code>VSZ</code>：虚拟内存大小（Virtual Size）。</li>
 <li><code>RSS</code>：实际内存大小（Resident Set Size）。</li>
 <li><code>TTY</code>：进程终端类型。</li>
 <li><code>STAT</code>：进程状态。</li>
 <li><code>START</code>：进程启动时间。</li>
-<li><code>TIME</code>：进程占用CPU的时间。</li>
+<li><code>TIME</code>：进程占用 CPU 的时间。</li>
 <li><code>COMMAND</code>：启动进程的命令。</li>
 </ul>
 </li>
 <li><p>常见组合</p>
 <ul>
-<li>ps aux (–sort&#x3D;-%mem&#x2F;cpu)： 显示所有进程(按照内存&#x2F;CPU使用率降序排列进程)</li>
+<li>ps aux (–sort&#x3D;-%mem&#x2F;cpu)： 显示所有进程(按照内存&#x2F;CPU 使用率降序排列进程)</li>
 <li>ps -ef：显示所有进程的完整信息。</li>
 <li>ps -p PID：显示特定进程的详细信息。</li>
 </ul>
@@ -459,9 +459,12 @@
 <h3 id="1-1-7-查看硬盘"><a href="#1-1-7-查看硬盘" class="headerlink" title="1.1.7 查看硬盘"></a>1.1.7 查看硬盘</h3><p>以人类可读的方式展示磁盘分配状态。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">df</span> -h<br></code></pre></td></tr></table></figure>
 
-<h3 id="1-1-8-查看编辑文件"><a href="#1-1-8-查看编辑文件" class="headerlink" title="1.1.8 查看编辑文件"></a>1.1.8 查看编辑文件</h3><h4 id="1-1-8-1-查看文件数量"><a href="#1-1-8-1-查看文件数量" class="headerlink" title="1.1.8.1 查看文件数量"></a>1.1.8.1 查看文件数量</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">find /path/to/directory -<span class="hljs-built_in">type</span> f | <span class="hljs-built_in">wc</span> -l<br></code></pre></td></tr></table></figure>
+<h3 id="1-1-8-查看系统日志"><a href="#1-1-8-查看系统日志" class="headerlink" title="1.1.8 查看系统日志"></a>1.1.8 查看系统日志</h3><p><code>journalctl</code> 是 <code>systemd</code> 系统服务管理器的一部分，用于查询和显示日志消息。它提供了一种方便的方式来查看系统日志，特别是与特定服务或单元相关的日志。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">sudo journalctl -u &lt;NetworkManager&gt;<br></code></pre></td></tr></table></figure>
 
-<h4 id="1-1-8-2-查看目录"><a href="#1-1-8-2-查看目录" class="headerlink" title="1.1.8.2 查看目录"></a>1.1.8.2 查看目录</h4><p>列出当前目录下的文件和文件夹</p>
+<h3 id="1-1-9-查看编辑文件"><a href="#1-1-9-查看编辑文件" class="headerlink" title="1.1.9 查看编辑文件"></a>1.1.9 查看编辑文件</h3><h4 id="1-1-9-1-查看文件数量"><a href="#1-1-9-1-查看文件数量" class="headerlink" title="1.1.9.1 查看文件数量"></a>1.1.9.1 查看文件数量</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">find /path/to/directory -<span class="hljs-built_in">type</span> f | <span class="hljs-built_in">wc</span> -l<br></code></pre></td></tr></table></figure>
+
+<h4 id="1-1-9-2-查看目录"><a href="#1-1-9-2-查看目录" class="headerlink" title="1.1.9.2 查看目录"></a>1.1.9.2 查看目录</h4><p>列出当前目录下的文件和文件夹</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">ls</span><br></code></pre></td></tr></table></figure>
 
 <ol>
@@ -493,13 +496,13 @@
 </ul>
 </li>
 </ol>
-<h4 id="1-1-8-3-查看内容"><a href="#1-1-8-3-查看内容" class="headerlink" title="1.1.8.3 查看内容"></a>1.1.8.3 查看内容</h4><p>查看文件内容，打印在控制台</p>
+<h4 id="1-1-9-3-查看内容"><a href="#1-1-9-3-查看内容" class="headerlink" title="1.1.9.3 查看内容"></a>1.1.9.3 查看内容</h4><p>查看文件内容，打印在控制台</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">cat</span> &lt;fileName&gt;<br></code></pre></td></tr></table></figure>
 
-<h4 id="1-1-8-4-新建文件"><a href="#1-1-8-4-新建文件" class="headerlink" title="1.1.8.4 新建文件"></a>1.1.8.4 新建文件</h4><p>新增一个文件，或写入内容到文件中</p>
+<h4 id="1-1-9-4-新建文件"><a href="#1-1-9-4-新建文件" class="headerlink" title="1.1.9.4 新建文件"></a>1.1.9.4 新建文件</h4><p>新增一个文件，或写入内容到文件中</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">cat</span> &gt; &lt;file.txt&gt;<br><span class="hljs-built_in">echo</span> &lt;content&gt; &gt; &lt;file.txt&gt;<br><span class="hljs-built_in">touch</span> &lt;file.txt&gt;<br></code></pre></td></tr></table></figure>
 
-<h4 id="1-1-8-5-编辑内容"><a href="#1-1-8-5-编辑内容" class="headerlink" title="1.1.8.5 编辑内容"></a>1.1.8.5 编辑内容</h4><p>使用Vim编辑器编辑文件</p>
+<h4 id="1-1-9-5-编辑内容"><a href="#1-1-9-5-编辑内容" class="headerlink" title="1.1.9.5 编辑内容"></a>1.1.9.5 编辑内容</h4><p>使用 Vim 编辑器编辑文件</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">vi(m) &lt;fileName&gt;<br></code></pre></td></tr></table></figure>
 
 <ol>
@@ -512,7 +515,7 @@
 </ul>
 </li>
 </ol>
-<h2 id="1-2-K8s-和-Docker相关指令"><a href="#1-2-K8s-和-Docker相关指令" class="headerlink" title="1.2 K8s 和 Docker相关指令"></a>1.2 K8s 和 Docker相关指令</h2><p><a target="_blank" rel="noopener" href="https://www.rainbond.com/docs/quick-start/quick-install">快速安装 | Rainbond</a></p>
+<h2 id="1-2-K8s-和-Docker-相关指令"><a href="#1-2-K8s-和-Docker-相关指令" class="headerlink" title="1.2 K8s 和 Docker 相关指令"></a>1.2 K8s 和 Docker 相关指令</h2><p><a target="_blank" rel="noopener" href="https://www.rainbond.com/docs/quick-start/quick-install">快速安装 | Rainbond</a></p>
 <h3 id="1-2-1-K8s"><a href="#1-2-1-K8s" class="headerlink" title="1.2.1 K8s"></a>1.2.1 K8s</h3><h4 id="1-2-1-1-集群"><a href="#1-2-1-1-集群" class="headerlink" title="1.2.1.1 集群"></a>1.2.1.1 集群</h4><p>获取 prod 集群中所有节点信息</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment"># 正式集群</span><br>kube-prod get nodes<br><span class="hljs-comment"># 测试集群</span><br>kube-test get nodes<br></code></pre></td></tr></table></figure>
 
@@ -522,8 +525,11 @@
 <p>获取指定 pod 的详情（<code>可根据 event 排查 pod 的错误信息</code>）</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">kube-prod describe pod &lt;pod-name&gt; -n &lt;namespace&gt;<br></code></pre></td></tr></table></figure>
 
-<p>条件查询指定命名空间下指定状态的pod并批量删除</p>
+<p>条件查询指定命名空间下指定状态的 pod 并批量删除</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">kubectl get pods -n etms | grep Evicted | awk <span class="hljs-string">&#x27;&#123;print $1&#125;&#x27;</span> | xargs kubectl delete pods --kubeconfig ./kube_config_cluster.yml -n etms<br></code></pre></td></tr></table></figure>
+
+<p>强制删除 pod</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">kubectl delete pod hsas-1721236200-5q59b --grace-period=0 --force -n hsas<br></code></pre></td></tr></table></figure>
 
 <h3 id="1-2-2-Docker"><a href="#1-2-2-Docker" class="headerlink" title="1.2.2 Docker"></a>1.2.2 Docker</h3><h4 id="1-2-2-1-配置镜像"><a href="#1-2-2-1-配置镜像" class="headerlink" title="1.2.2.1 配置镜像"></a>1.2.2.1 配置镜像</h4><p>为镜像仓库配置下载源，查看 <code>/etc/docker/daemon.json</code> 文件来确定当前配置的镜像源，如果该文件不存在或为空，则默认使用 Docker 官方镜像源。</p>
 <ol>
@@ -558,7 +564,7 @@
 </ol>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sh">systemctl restart docker.service<br>sudo systemctl daemon-reload<br>sudo systemctl restart docker<br></code></pre></td></tr></table></figure>
 
-<h4 id="1-2-2-2-保存镜像"><a href="#1-2-2-2-保存镜像" class="headerlink" title="1.2.2.2 保存镜像"></a>1.2.2.2 保存镜像</h4><p>将指定本地镜像保存为tar压缩包</p>
+<h4 id="1-2-2-2-保存镜像"><a href="#1-2-2-2-保存镜像" class="headerlink" title="1.2.2.2 保存镜像"></a>1.2.2.2 保存镜像</h4><p>将指定本地镜像保存为 tar 压缩包</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">docker save -o &lt;image.tar&gt; &lt;image&gt;<br></code></pre></td></tr></table></figure>
 
 <h4 id="1-2-2-3-加载镜像"><a href="#1-2-2-3-加载镜像" class="headerlink" title="1.2.2.3 加载镜像"></a>1.2.2.3 加载镜像</h4><p>根据指定镜像压缩包加载镜像到本地</p>
@@ -567,7 +573,7 @@
 <h4 id="1-2-2-4-删除镜像"><a href="#1-2-2-4-删除镜像" class="headerlink" title="1.2.2.4 删除镜像"></a>1.2.2.4 删除镜像</h4><p>删除所有未使用的镜像，容器和存储卷。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sh">docker image prune<br>docker container prune<br>docker volume prune<br></code></pre></td></tr></table></figure>
 
-<h4 id="1-2-2-5-更新镜像"><a href="#1-2-2-5-更新镜像" class="headerlink" title="1.2.2.5 更新镜像"></a>1.2.2.5 更新镜像</h4><p>对已有的变更环境进行保存以便于pod重启后维持最新环境</p>
+<h4 id="1-2-2-5-更新镜像"><a href="#1-2-2-5-更新镜像" class="headerlink" title="1.2.2.5 更新镜像"></a>1.2.2.5 更新镜像</h4><p>对已有的变更环境进行保存以便于 pod 重启后维持最新环境</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">docker commit [OPTIONS] CONTAINER [REPOSITORY[:TAG]]<br>docker commit -a <span class="hljs-string">&#x27;fcs&#x27;</span>(commit msg) c3a6f02ad044(containerId/name) conda:fcs202407080840(newImageName)<br></code></pre></td></tr></table></figure>
 
 <ul>
@@ -582,41 +588,32 @@
 <li><code>REPOSITORY</code> 是新创建镜像的仓库名称。</li>
 <li><code>TAG</code> 是可选的，用于给镜像指定一个标签，如果不指定，默认标签是 <code>latest</code>。</li>
 </ul>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>origin&#x2F;new_master</p>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
+<h2 id="1-3-MySQL-指令"><a href="#1-3-MySQL-指令" class="headerlink" title="1.3 MySQL 指令"></a>1.3 MySQL 指令</h2><h3 id="1-3-1-找到配置文件位置"><a href="#1-3-1-找到配置文件位置" class="headerlink" title="1.3.1 找到配置文件位置"></a>1.3.1 找到配置文件位置</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">show variables like &#x27;datadir&#x27;;<br></code></pre></td></tr></table></figure>
+
+<h3 id="1-3-2-查看日志所在位置"><a href="#1-3-2-查看日志所在位置" class="headerlink" title="1.3.2 查看日志所在位置"></a>1.3.2 查看日志所在位置</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">show variables like &#x27;log_bin&#x27;;<br></code></pre></td></tr></table></figure>
+
 <h1 id="2-常见问题"><a href="#2-常见问题" class="headerlink" title="2 常见问题"></a>2 常见问题</h1><blockquote>
 <p>[!warning] Tips</p>
 <ol>
-<li><strong>重启（物理机、虚拟机、服务、pod等）</strong> 可能是<code>最直接常见的办法</code>，但<code>不是最有效</code>的办法，具体问题具体分析，重在<strong>根据问题逐步搜索的排查思路，自顶向下排查，自底向上解决</strong>。</li>
+<li><strong>重启（物理机、虚拟机、服务、pod 等）</strong> 可能是 <code>最直接常见的办法</code>，但 <code>不是最有效</code> 的办法，具体问题具体分析，重在<strong>根据问题逐步搜索的排查思路，自顶向下排查，自底向上解决</strong>。</li>
 <li><em>遇到问题不要慌，众里寻它先百度，属是不行再问路，先思考后动脑，多学多看多实践，能力日益节节高</em>。</li>
 </ol>
 </blockquote>
 <h2 id="2-1-镜像无法拉取"><a href="#2-1-镜像无法拉取" class="headerlink" title="2.1 镜像无法拉取"></a>2.1 镜像无法拉取</h2><ol>
-<li>原因：由于国内防火墙导致国外官方镜像仓库被墙无法拉取镜像，本地镜像库缓存导致拉取时没有找到最新镜像，docker网络问题</li>
+<li>原因：由于国内防火墙导致国外官方镜像仓库被墙无法拉取镜像，本地镜像库缓存导致拉取时没有找到最新镜像，docker 网络问题，系统网络问题</li>
 <li>办法：<ul>
-<li>出国旅游：windosw开启魔法拉取镜像后通过docker save和load转移镜像，并push到本地私有镜像仓库留存。</li>
+<li>出国旅游：windosw 开启魔法拉取镜像后通过 docker save 和 load 转移镜像，并 push 到本地私有镜像仓库留存。</li>
 <li>取而代之：寻找国内镜像源仓库，直接拉取国内镜像仓库的镜像到本地，并推送到本地私有仓库留存。（国内镜像仓库不稳定，可能会清除镜像）</li>
-<li>重启docker：docker pull卡在waiting则可能是网络问题，将pod所在节点的docker进行重启。</li>
+<li>重启 docker：docker pull 卡在 waiting 则可能是网络问题，将 pod 所在节点的 docker 进行重启。</li>
+<li>检查 hosts 添加记录：<code>cat /etc/hosts</code> 记录格式：ip    domain</li>
+<li>重启系统网络：<code>sudo systemctl restart NetworkManager</code></li>
 </ul>
 </li>
 </ol>
 <h2 id="2-2-内存-硬盘满载-溢出"><a href="#2-2-内存-硬盘满载-溢出" class="headerlink" title="2.2 内存&#x2F;硬盘满载&#x2F;溢出"></a>2.2 内存&#x2F;硬盘满载&#x2F;溢出</h2><ol>
 <li>原因：随着时间的累积和负载变化，内存或硬盘资源可能会不够，虚拟机负载过大，无法提供正常响应。</li>
 <li>办法：<ul>
-<li>内存：清理无用进程（kill），重启虚拟机（reboot），扩容内存（vcenter扩大虚拟机内存）</li>
+<li>内存：清理无用进程（kill），重启虚拟机（reboot），扩容内存（vcenter 扩大虚拟机内存）</li>
 <li>硬盘：查看磁盘分区和挂载情况（df -h），清理无用文件（rm -rf），转移文件（mv），硬盘扩容（分配更多分布式存储容量，添加一块磁盘并进行磁盘分区）</li>
 </ul>
 </li>
@@ -629,7 +626,33 @@
 </ul>
 </li>
 </ol>
-<h1 id="3-常用镜像"><a href="#3-常用镜像" class="headerlink" title="3 常用镜像"></a>3 常用镜像</h1><h2 id="3-1-基础设施"><a href="#3-1-基础设施" class="headerlink" title="3.1 基础设施"></a>3.1 基础设施</h2><h3 id="3-1-1-Longhorn"><a href="#3-1-1-Longhorn" class="headerlink" title="3.1.1 Longhorn"></a>3.1.1 Longhorn</h3><p>longhornio&#x2F;csi-attacher:v2.2.1-lh1<br>longhornio&#x2F;csi-provisioner:v1.6.0-lh1<br>longhornio&#x2F;csi-resizer:v0.5.1-lh1<br>longhornio&#x2F;csi-snapshotter:v2.1.1-lh1<br>longhornio&#x2F;longhorn-engine:v1.1.0<br>longhornio&#x2F;longhorn-instance-manager:v1_20201216<br>longhornio&#x2F;longhorn-manager:v1.1.0<br>longhornio&#x2F;csi-node-driver-registrar:v1.2.0-lh1<br>longhornio&#x2F;longhorn-ui:v1.1.0</p>
+<h2 id="2-4-CPU-核心过多软锁定"><a href="#2-4-CPU-核心过多软锁定" class="headerlink" title="2.4 CPU 核心过多软锁定"></a>2.4 CPU 核心过多软锁定</h2><ol>
+<li>问题描述：</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">   [1539310.375852]NMI watchdog:BUG:soft lockup CPU<span class="hljs-comment">#20 stuck for 23s![migration/20:111]</span><br>[1539310.375856]NMI watchdog:BUG:soft lockup CPU<span class="hljs-comment">#28 stuck for 23s![kubelet:9779]</span><br></code></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>原因：日志表明系统遇到了一个“软锁定”（soft lockup）的情况。这通常意味着某个进程或线程在 CPU 上运行了很长时间，导致系统监视器认为它可能已经冻结或卡住。<ul>
+<li><strong>死锁</strong>：一个或多个进程可能陷入了死锁状态，导致 CPU 无法处理其他任务。</li>
+<li><strong>资源竞争</strong>：进程之间可能存在资源竞争，导致 CPU 长时间占用。</li>
+<li><strong>无限循环</strong>：代码中可能存在无限循环，导致 CPU 被持续占用。</li>
+<li><strong>内核问题</strong>：可能是内核本身的问题，比如驱动程序或内核补丁引起的问题。</li>
+<li><strong>高负载</strong>：系统可能由于高负载而无法及时响应。</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>cpu stuck 软锁定的原因有很多种，比如供电不足、虚拟机 cpu 核心数超过物理机核心数、虚拟机&#x2F;物理机 cpu 太忙或磁盘 IO 太高、linux 内核 bug 等</p>
+</blockquote>
+<ol>
+<li>办法：<ul>
+<li>使用 <code>cat /var/dmesg</code> 或 <code>journalctl</code> 查看内核日志。</li>
+<li>查看核心数是否过多（eg：32），关机减少核心数（eg：12）；所有虚拟机的虚拟 cpu 加起来可能会超过物理机实际 cpu 线程数，但单个虚拟机的虚拟 cpu 处理器数不能超过物理机线程数，<strong>一般虚拟 cpu 个数和物理机 cpu 个数保持一致，总处理器数设为物理机的一半</strong>。(参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45603370/article/details/140293255">虚拟机如何选择处理器和内核数量，实现最佳性能_虚拟机设置cpu处理器只有处理内核数量-CSDN博客</a>)</li>
+</ul>
+</li>
+</ol>
+<h2 id="2-5-MySQL-故障"><a href="#2-5-MySQL-故障" class="headerlink" title="2.5 MySQL 故障"></a>2.5 MySQL 故障</h2><p>参考：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/paul8339/p/16880095.html">MySQL启动报错[ERROR] InnoDB: Trying to access page number 4294967295 in space 0, space name innodb</a></p>
+<h1 id="3-常用镜像"><a href="#3-常用镜像" class="headerlink" title="3 常用镜像"></a>3 常用镜像</h1><h2 id="3-1-基础设施"><a href="#3-1-基础设施" class="headerlink" title="3.1 基础设施"></a>3.1 基础设施</h2><h3 id="3-1-1-Longhorn"><a href="#3-1-1-Longhorn" class="headerlink" title="3.1.1 Longhorn"></a>3.1.1 Longhorn</h3><p>longhornio&#x2F;csi-attacher:v2.2.1-lh1<br>longhornio&#x2F;csi-provisioner:v1.6.0-lh1<br><code>longhornio/csi-resizer:v0.5.1-lh1</code><br>longhornio&#x2F;csi-snapshotter:v2.1.1-lh1<br>longhornio&#x2F;longhorn-engine:v1.1.0<br>longhornio&#x2F;longhorn-instance-manager:v1_20201216<br>longhornio&#x2F;longhorn-manager:v1.1.0<br>longhornio&#x2F;csi-node-driver-registrar:v1.2.0-lh1<br>longhornio&#x2F;longhorn-ui:v1.1.0</p>
 <h3 id="3-1-2-数据库"><a href="#3-1-2-数据库" class="headerlink" title="3.1.2 数据库"></a>3.1.2 数据库</h3><h4 id="3-1-2-1-关系型"><a href="#3-1-2-1-关系型" class="headerlink" title="3.1.2.1 关系型"></a>3.1.2.1 关系型</h4><p>busybox:1.32<br>registry.csdc.info&#x2F;publish&#x2F;mysql:5.7.31<br>mysql:5.7.31<br>nacos&#x2F;nacos-mysql-master:latest<br>nacos&#x2F;nacos-mysql-slave:latest<br>prom&#x2F;mysqld-exporter</p>
 <h4 id="3-1-2-2-非关系型"><a href="#3-1-2-2-非关系型" class="headerlink" title="3.1.2.2 非关系型"></a>3.1.2.2 非关系型</h4><h5 id="3-1-2-2-1-Redis"><a href="#3-1-2-2-1-Redis" class="headerlink" title="3.1.2.2.1 Redis"></a>3.1.2.2.1 Redis</h5><p>registry.csdc.info&#x2F;publish&#x2F;redis507<br>registry.csdc.info&#x2F;publish&#x2F;redis-exporter135<br>oliver006&#x2F;redis_exporter:v1.3.4<br>registry.csdc.info&#x2F;publish&#x2F;redisinsight:latest</p>
 <h5 id="3-1-2-2-2-Neo4j"><a href="#3-1-2-2-2-Neo4j" class="headerlink" title="3.1.2.2.2 Neo4j"></a>3.1.2.2.2 Neo4j</h5><p>neo4j:3.5</p>
@@ -648,9 +671,10 @@
 <h3 id="3-1-9-其他"><a href="#3-1-9-其他" class="headerlink" title="3.1.9 其他"></a>3.1.9 其他</h3><p>registry.csdc.info&#x2F;publish&#x2F;dingtalk-chatbot:1.0.3<br>registry.csdc.info&#x2F;publish&#x2F;databasetools:0.0.2<br>registry.csdc.info&#x2F;publish&#x2F;rsync-ssh:latest<br>rancher&#x2F;rancher-agent:v2.5.8<br>rancher&#x2F;fleet:v0.3.1<br>rancher&#x2F;gitjob:v0.1.8<br>rancher&#x2F;nginx-ingress-controller-defaultbackend:1.5-rancher1<br>rancher&#x2F;nginx-ingress-controller:nginx-0.35.0-rancher1<br>rancher&#x2F;calico-kube-controllers:v3.16.1<br>rancher&#x2F;calico-cni:v3.16.1<br>rancher&#x2F;calico-pod2daemon-flexvol:v3.16.1<br>rancher&#x2F;calico-node:v3.16.1<br>rancher&#x2F;coreos-flannel:v0.13.0-rancher1<br>rancher&#x2F;coredns-coredns:1.7.0<br>rancher&#x2F;cluster-proportional-autoscaler:1.8.1<br>rancher&#x2F;metrics-server:v0.3.6<br>rancher&#x2F;hyperkube:v1.19.3-rancher1<br>registry.csdc.info&#x2F;publish&#x2F;k8s-sidecar:1.15.1<br>registry.csdc.info&#x2F;publish&#x2F;kube-state-metrics:v2.2.4<br>quay.io&#x2F;prometheus&#x2F;alertmanager:v0.23.0<br>jimmidyson&#x2F;configmap-reload:v0.5.0<br>quay.io&#x2F;prometheus&#x2F;node-exporter:v1.3.0<br>prom&#x2F;pushgateway:v1.4.2<br>quay.io&#x2F;prometheus&#x2F;prometheus:v2.31.1<br>rancher&#x2F;rancher-operator:v0.1.3<br>registry.csdc.info&#x2F;publish&#x2F;tomcat:7<br>registry.csdc.info&#x2F;elk&#x2F;filebeat:7.9.2<br>registry.csdc.info&#x2F;publish&#x2F;locust-tasks<br>registry.csdc.info&#x2F;publish&#x2F;kubectl:v1.14</p>
 <h3 id="3-1-10-Research"><a href="#3-1-10-Research" class="headerlink" title="3.1.10 Research"></a>3.1.10 Research</h3><p>conda:fus<br>centos:latest<br>nvidia&#x2F;cuda:10.1-devel-ubuntu18.04<br>nvidia&#x2F;cuda:10.1-cudnn7-devel-centos7</p>
 <h1 id="4-参考文献"><a href="#4-参考文献" class="headerlink" title="4 参考文献"></a>4 参考文献</h1><ol>
-<li><a target="_blank" rel="noopener" href="https://github.com/EbookFoundation/free-programming-books/blob/main/books/free-programming-books-zh.md">free-programming-books&#x2F;books&#x2F;free-programming-books-zh.md at main · EbookFoundation&#x2F;free-programming-books</a></li>
-<li><a target="_blank" rel="noopener" href="https://kubernetes.io/zh-cn/docs/concepts/scheduling-eviction/node-pressure-eviction/">Site Unreachable</a></li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_59267075/article/details/127710880">Fetching Title#rbro</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/EbookFoundation/free-programming-books/blob/main/books/free-programming-books-zh.md">free-programming-books&#x2F;books&#x2F;free-programming-books-zh.md</a></li>
+<li><a target="_blank" rel="noopener" href="https://kubernetes.io/zh-cn/docs/concepts/scheduling-eviction/node-pressure-eviction/">节点压力驱逐 | Kubernetes</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_59267075/article/details/127710880">Error排错：The node was low on resource: ephemeral-storage</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45603370/article/details/140293255">虚拟机如何选择处理器和内核数量，实现最佳性能_虚拟机设置cpu处理器只有处理内核数量</a></li>
 </ol>
 
                 
@@ -718,7 +742,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年7月18日</div>
+          <div>2024年7月21日</div>
         </div>
       
       <div class="license-meta-item">

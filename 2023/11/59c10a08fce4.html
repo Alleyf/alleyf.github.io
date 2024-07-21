@@ -51,7 +51,7 @@
 <meta property="og:image" content="https://qnpicmap.fcsluck.top/pics/202311182136214.png">
 <meta property="og:image" content="https://user-images.githubusercontent.com/9840435/60266022-72a82400-98e7-11e9-9958-f9004c2f97e1.gif">
 <meta property="article:published_time" content="2023-11-18T06:53:11.000Z">
-<meta property="article:modified_time" content="2024-07-08T15:12:48.364Z">
+<meta property="article:modified_time" content="2024-07-21T04:49:02.348Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="java">
 <meta property="article:tag" content="mysql">
@@ -346,7 +346,7 @@
         
         
         
-          689 分钟
+          692 分钟
         
       </span>
     
@@ -397,7 +397,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：12 天前
+                    本文最后更新于：几秒前
                   
                 
               </p>
@@ -409,6 +409,11 @@
 <blockquote>
 <p>一切安装启动的应用都要开启<strong>防火墙 TCP 端口和云服务商安全组规则</strong>才能访问。</p>
 </blockquote>
+<h1 id="虚拟机"><a href="#虚拟机" class="headerlink" title="虚拟机"></a>虚拟机</h1><ul>
+<li>静态网络配置</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs sh">TYPE=Ethernet<br>PROXY_METHOD=none<br>BROWSER_ONLY=no<br>BOOTPROTO=static<br>DEFROUTE=<span class="hljs-built_in">yes</span><br>IPV4_FAILURE_FATAL=no<br>IPV6INIT=no<br>IPV6_AUTOCONF=no<br>IPV6_DEFROUTE=no<br>IPV6_FAILURE_FATAL=no<br>IPV6_ADDR_GEN_MODE=stable-privacy<br>NAME=ens160<br>UUID=46db2a62-5e68-452b-8333-c8ff3386779e<br>DEVICE=ens160<br>ONBOOT=<span class="hljs-built_in">yes</span><br>IPADDR=192.168.88.221<br>NETMASK=255.255.255.0<br>GATEWAY=192.168.88.254<br>DNS1=192.168.88.102<br>DNS2=8.8.8.8<br></code></pre></td></tr></table></figure>
+
 <h1 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h1><p>安装 jdk：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">yum install java-1.8.0-openjdk<br></code></pre></td></tr></table></figure>
 
@@ -1747,7 +1752,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年7月8日</div>
+          <div>2024年7月21日</div>
         </div>
       
       <div class="license-meta-item">
