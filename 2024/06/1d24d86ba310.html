@@ -27,7 +27,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://picsum.photos/800/250">
 <meta property="article:published_time" content="2024-06-27T16:37:11.000Z">
-<meta property="article:modified_time" content="2024-07-21T04:51:23.811Z">
+<meta property="article:modified_time" content="2024-07-21T09:41:24.433Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="DevOps">
 <meta property="article:tag" content="运维">
@@ -308,7 +308,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          10k 字
+          11k 字
         
       </span>
     
@@ -319,7 +319,7 @@
         
         
         
-          84 分钟
+          88 分钟
         
       </span>
     
@@ -370,7 +370,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：7 分钟前
+                    本文最后更新于：23 分钟前
                   
                 
               </p>
@@ -465,6 +465,8 @@
 <h3 id="1-1-9-查看编辑文件"><a href="#1-1-9-查看编辑文件" class="headerlink" title="1.1.9 查看编辑文件"></a>1.1.9 查看编辑文件</h3><h4 id="1-1-9-1-搜索文件"><a href="#1-1-9-1-搜索文件" class="headerlink" title="1.1.9.1 搜索文件"></a>1.1.9.1 搜索文件</h4><p>按照关键词搜索含有关键词的文件</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">find . -<span class="hljs-built_in">type</span> f -<span class="hljs-built_in">exec</span> grep -l <span class="hljs-string">&#x27;mysql-master&#x27;</span> &#123;&#125; \;<br></code></pre></td></tr></table></figure>
 
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">grep <span class="hljs-string">&#x27;temporary password&#x27;</span> /var/log/mysqld.log<br></code></pre></td></tr></table></figure>
+
 <h4 id="1-1-9-2-查看文件数量"><a href="#1-1-9-2-查看文件数量" class="headerlink" title="1.1.9.2 查看文件数量"></a>1.1.9.2 查看文件数量</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">find /path/to/directory -<span class="hljs-built_in">type</span> f | <span class="hljs-built_in">wc</span> -l<br></code></pre></td></tr></table></figure>
 
 <h4 id="1-1-9-3-查看目录"><a href="#1-1-9-3-查看目录" class="headerlink" title="1.1.9.3 查看目录"></a>1.1.9.3 查看目录</h4><p>列出当前目录下的文件和文件夹</p>
@@ -533,6 +535,9 @@
 
 <p>强制删除 pod</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">kubectl delete pod hsas-1721236200-5q59b --grace-period=0 --force -n hsas<br></code></pre></td></tr></table></figure>
+
+<h4 id="1-2-1-3-Pod"><a href="#1-2-1-3-Pod" class="headerlink" title="1.2.1.3 Pod"></a>1.2.1.3 Pod</h4><p>启动定时任务</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">kubectl-prod -n mysql create job --from=cronjob/cweb-mysql-backup cweb-k8s-mysql-master<br></code></pre></td></tr></table></figure>
 
 <h3 id="1-2-2-Docker"><a href="#1-2-2-Docker" class="headerlink" title="1.2.2 Docker"></a>1.2.2 Docker</h3><h4 id="1-2-2-1-配置镜像"><a href="#1-2-2-1-配置镜像" class="headerlink" title="1.2.2.1 配置镜像"></a>1.2.2.1 配置镜像</h4><p>为镜像仓库配置下载源，查看 <code>/etc/docker/daemon.json</code> 文件来确定当前配置的镜像源，如果该文件不存在或为空，则默认使用 Docker 官方镜像源。</p>
 <ol>
@@ -655,6 +660,19 @@
 </li>
 </ol>
 <h2 id="2-5-MySQL-故障"><a href="#2-5-MySQL-故障" class="headerlink" title="2.5 MySQL 故障"></a>2.5 MySQL 故障</h2><p>参考：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/paul8339/p/16880095.html">MySQL启动报错[ERROR] InnoDB: Trying to access page number 4294967295 in space 0, space name innodb</a></p>
+<h3 id="2-5-1-K8s-集群连不上"><a href="#2-5-1-K8s-集群连不上" class="headerlink" title="2.5.1 K8s 集群连不上"></a>2.5.1 K8s 集群连不上</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_45547688/article/details/131325877">k8s 集群 kubelet日志报错 command failed“ err&#x3D;“failed to parse kubelet flag: unknown flag: –network-p_command failed” err&#x3D;”failed to parse kubelet flag</a><br>kubelet版本节点之间不一致</p>
+<p>查看状态和日志：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">systemctl status kubelet.service<br>journalctl -u kubelet -f<br></code></pre></td></tr></table></figure>
+
+<p>查看版本：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">rpm -qa | grep kube<br></code></pre></td></tr></table></figure>
+
+<p>版本降级：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">yum downgrade kubeadm-1.18.0-0.x86_64 kubectl-1.18.0-0.x86_64 kubelet-1.18.0-0.x86_64<br></code></pre></td></tr></table></figure>
+
+<p>重启kubelet：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">sudo systemctl restart kubelet.service<br>systemctl daemon-reload<br></code></pre></td></tr></table></figure>
+
 <h1 id="3-常用镜像"><a href="#3-常用镜像" class="headerlink" title="3 常用镜像"></a>3 常用镜像</h1><h2 id="3-1-基础设施"><a href="#3-1-基础设施" class="headerlink" title="3.1 基础设施"></a>3.1 基础设施</h2><h3 id="3-1-1-Longhorn"><a href="#3-1-1-Longhorn" class="headerlink" title="3.1.1 Longhorn"></a>3.1.1 Longhorn</h3><p>longhornio&#x2F;csi-attacher:v2.2.1-lh1<br>longhornio&#x2F;csi-provisioner:v1.6.0-lh1<br><code>longhornio/csi-resizer:v0.5.1-lh1</code><br>longhornio&#x2F;csi-snapshotter:v2.1.1-lh1<br>longhornio&#x2F;longhorn-engine:v1.1.0<br>longhornio&#x2F;longhorn-instance-manager:v1_20201216<br>longhornio&#x2F;longhorn-manager:v1.1.0<br>longhornio&#x2F;csi-node-driver-registrar:v1.2.0-lh1<br>longhornio&#x2F;longhorn-ui:v1.1.0</p>
 <h3 id="3-1-2-数据库"><a href="#3-1-2-数据库" class="headerlink" title="3.1.2 数据库"></a>3.1.2 数据库</h3><h4 id="3-1-2-1-关系型"><a href="#3-1-2-1-关系型" class="headerlink" title="3.1.2.1 关系型"></a>3.1.2.1 关系型</h4><p>busybox:1.32<br>registry.csdc.info&#x2F;publish&#x2F;mysql:5.7.31<br>mysql:5.7.31<br>nacos&#x2F;nacos-mysql-master:latest<br>nacos&#x2F;nacos-mysql-slave:latest<br>prom&#x2F;mysqld-exporter</p>
 <h4 id="3-1-2-2-非关系型"><a href="#3-1-2-2-非关系型" class="headerlink" title="3.1.2.2 非关系型"></a>3.1.2.2 非关系型</h4><h5 id="3-1-2-2-1-Redis"><a href="#3-1-2-2-1-Redis" class="headerlink" title="3.1.2.2.1 Redis"></a>3.1.2.2.1 Redis</h5><p>registry.csdc.info&#x2F;publish&#x2F;redis507<br>registry.csdc.info&#x2F;publish&#x2F;redis-exporter135<br>oliver006&#x2F;redis_exporter:v1.3.4<br>registry.csdc.info&#x2F;publish&#x2F;redisinsight:latest</p>
