@@ -601,7 +601,8 @@ k8s：1.23.6（1.24+以后由于 CRI 不支持 docker 作为容器运行时）
 ###### 初始操作（所有节点）
 
 - #配置静态ip
-	- [【Linux】为 VMware 的 Linux 系统（CentOS 7）设置静态IP地址-CSDN博客](https://blog.csdn.net/m0_50513629/article/details/139055933)
+	- [【Linux】为 VMware 的 Linux 系统（CentOS 7）设置静态IP地址](https://blog.csdn.net/m0_50513629/article/details/139055933)
+	- [centOS 7下无法启动网络（service network start）错误解决办法](https://www.cnblogs.com/zhizhao/p/9442487.html)
 	- 注意有个命令需要把 interface=ens33 改成你对应的网卡,可以使用 ifconfig 查看到你的网卡信息如果你的网阿卡是 ens192 只需要把上面的命令改成 interface=ens192
 	- 配置完静态ip后要重启网络：
 	  1. systemctl stop NetworkManager
