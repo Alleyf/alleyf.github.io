@@ -11,8 +11,13 @@
             "id": "46e9f46424b0f8af",
             "type": "leaf",
             "state": {
-              "type": "home-tab-view",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "source/_posts/运维开发/运维排忧解难.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
             }
           }
         ]
@@ -49,7 +54,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "source/_posts/运维开发/运维排忧解难.md"
+              }
             }
           }
         ]
