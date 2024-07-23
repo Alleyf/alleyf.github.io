@@ -4,37 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "e5b89fe12c20b836",
+        "id": "8eafdca3510ebf2b",
         "type": "tabs",
         "children": [
           {
-            "id": "bbb7ffe81cd6dcb8",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "source/_posts/运维开发/Kubernetes入门.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "6c1da9a6971f8f63",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "source/_posts/运维开发/各种环境配置.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "6d7821e088de13b1",
+            "id": "af2dd8aad4f4bae3",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -45,22 +19,8 @@
                 "source": false
               }
             }
-          },
-          {
-            "id": "9b41d4b5bafbf38f",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "source/_posts/科研学习/会议讨论/周会.md",
-                "mode": "preview",
-                "backlinks": false,
-                "source": false
-              }
-            }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -95,7 +55,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/运维开发/各种环境配置.md"
+                "file": "source/_posts/运维开发/运维排忧解难.md"
               }
             }
           }
@@ -187,7 +147,7 @@
       "obsidian-memos:Memos": false
     }
   },
-  "active": "6c1da9a6971f8f63",
+  "active": "af2dd8aad4f4bae3",
   "lastOpenFiles": [
     "attachment/Pasted image 20240721233501.png",
     "source/_posts/运维开发/Kubernetes入门.md",
