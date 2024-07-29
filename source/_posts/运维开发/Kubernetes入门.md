@@ -604,7 +604,7 @@ k8s：1.23.6（1.24+以后由于 CRI 不支持 docker 作为容器运行时）
 	- [【Linux】为 VMware 的 Linux 系统（CentOS 7）设置静态IP地址](https://blog.csdn.net/m0_50513629/article/details/139055933)
 	- [centOS 7下无法启动网络（service network start）错误解决办法](https://www.cnblogs.com/zhizhao/p/9442487.html)
 	- 注意有个命令需要把 interface=ens33 改成你对应的网卡,可以使用 ifconfig 查看到你的网卡信息如果你的网阿卡是 ens192 只需要把上面的命令改成 interface=ens192
-	- 配置完静态ip后要重启网络：
+	- 配置完静态 ip 后要重启网络：
 	  1. systemctl stop NetworkManager
 	  2. systemctl disable NetworkManager
 	  3. service network restart
@@ -852,9 +852,9 @@ kubectl get no -o wide
 
 #### 5.1.2.4 Pod 与集群
 
-##### 5.1.2.4.1 新建Pod
+##### 5.1.2.4.1 新建 Pod
 
-指定yml配置文件（类似于docker-compose.yml配置文件）启动资源（deployment、pod等）
+指定 yml 配置文件（类似于 docker-compose.yml 配置文件）启动资源（deployment、pod 等）
 
 ```sh
 kubectl apply -f <nginx-demo.yml>
@@ -930,7 +930,7 @@ RBAC 是 Kubernetes 中最常用的授权机制，它允许管理员创建精细
 
 在 Kubernetes 中，认证和授权通常一起工作，以确保用户和系统能够安全地访问和管理集群资源。管理员需要根据组织的安全需求和最佳实践来配置这些机制。
 
-#### 5.1.3.3 废弃API说明
+#### 5.1.3.3 废弃 API 说明
 
 在 Kubernetes 中，API 版本遵循语义版本控制（Semantic Versioning），通常表示为 `MAJOR.MINOR.PATCH` 的形式。随着 Kubernetes 的发展，某些 API 可能会被标记为废弃（Deprecated），这意味着这些 API 将在未来的版本中被移除或替换。以下是废弃 API 的一些说明：
 
@@ -962,11 +962,11 @@ RBAC 是 Kubernetes 中最常用的授权机制，它允许管理员创建精细
 
 废弃 API 是 Kubernetes 发展过程中的一个自然现象，它有助于推动技术的进步和维护生态系统的健康。用户应该密切关注 Kubernetes 的更新和通告，以确保他们的应用程序和集群配置能够适应这些变化。
 
-### 5.1.4 深入Pod
+### 5.1.4 深入 Pod
 
-#### 5.1.4.1 Pod配置文件
+#### 5.1.4.1 Pod 配置文件
 
-以一个nginx的pod demo的配置文件为例：
+以一个 nginx 的 pod demo 的配置文件为例：
 
 ```yml
 apiVersion: v1 #Api 文档版本
@@ -1013,18 +1013,113 @@ spec: # 期望 Pod 按照这里的描述进行创建
 ##### 5.1.4.2.1 类型
 
 1. StartupProbe
+   k8s 1.16 版本新增的深针，用于判断应用程序是香已经启动了。当配置了 startupProbe 后，会先禁用其他探针，直到 startupProbe 成功后，其他探针才会继续。
+作用：由于有时候不能准确预估应用一定是多长时间启动成功，因比配置另外两种方式不方便配置初始化时长来检测，而配置了 statupProbe 后，只有在应用启动成功了，才会执行另外两种探针，可以更加方使的结合使用另外两种探针使用。
+
+```yaml
+startupProbe:
+	httpGet:
+		path: /api/startup
+		port: 80
+```
+
 2. LivenessProbe
+   用于深测容器中的应用是否运行，如果探测失败，kubelet 会根据配置的重启策路进行重启，若没有配置，默认就认为容器启动成功，不会执行重启策略。
+
+```yaml
+livenessProbe:
+	failureThreshold: 5
+	httpGet:
+		path: /health
+		port: 8080
+		scheme: HTTP
+	initialDelaySeconds: 60
+	periodSeconds: 10
+```
+
 3. ReadinessProbe
+用于探测容器内的程序是否健康，它的返回值如果返回 success，那么认为该容器已经完全启动，并且该容器是可以接收外部流量的。
+
+```yaml
+readinessProbe:
+	failureThreshold: 3 #错误次数
+	httpGet:
+		path: /ready
+		port: 8181
+		scheme: HTTP
+	periodSeconds: 10 #间隔时i间
+	successThreshold: 1
+```
 
 ##### 5.1.4.2.2 探测方式
 
 1. ExecAction
+   在容器内部执行一个命令，如果返回值为 0，则认为容器是健康的。
+
+```yml
+livenessProbe:
+exec:
+	command:
+		- cat
+		- ·/health
+```
+
 2. TCPSocketAction
+   通过 tcp 连接监测容器内端口是否开放，如果开放则证明该容器健康。
+
+```yml
+livenessProbe:
+	tcpSocket:
+		port: 80
+```
+
 3. HTTPGetAction
+生产环境用的较多的方式，发送 HTTP 请求到容器内的应用程序，如果接口返回的状态码在 200~400 之间，则认为容器健康。(eg: java 应用)
+
+```yml
+livenessProbe:
+	failureThreshold: 5
+	httpGet:
+		path: /health
+		port: 8080
+		scheme: HTTP
+		httpHeaders:
+			- name: xxx
+			- value: xxx
+```
 
 ##### 5.1.4.2.3 参数配置
 
+- initialDelaySeconds: 60 #初始化时间 （写死了，不确定）
+- timeoutSeconds: 2 #超时时间
+- periodSeconds: 5 #间隔时间
+- successThreshold: 1 #检查1次成功就表示成功
+- failureThreshold: 2 #监测失败2次就表示失败
+
 #### 5.1.4.3 生命周期
+
+![](https://qnpicmap.fcsluck.top/pics/202407291453761.png)
+方向：从左到右，从上到下。
+
+##### 5.1.4.3.1 Pod 退出流程
+
+1. Endpoint别除pod的ip地址
+2. Pod变成Terminating状态
+   变为删除中的状态后，会给pod一个宽限期，让pod去执行一些清理或销毁操作。
+配置参数：
+#作用与pod中的所有容器
+terminationGracePeriodSeconds: 30
+containers:
+    - xxx
+3. 执行preStop钩子函数
+
+##### 5.1.4.3.2 PreStop 的应用
+
+###### 注册中心下线
+
+###### 数据清理
+
+###### 数据销毁
 
 # 6 📖参考文献
 
