@@ -27,7 +27,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://picsum.photos/800/250">
 <meta property="article:published_time" content="2024-05-10T15:54:16.000Z">
-<meta property="article:modified_time" content="2024-07-29T07:32:11.998Z">
+<meta property="article:modified_time" content="2024-07-31T06:27:27.470Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="K8s">
 <meta name="twitter:card" content="summary_large_image">
@@ -307,7 +307,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          30k 字
+          32k 字
         
       </span>
     
@@ -318,7 +318,7 @@
         
         
         
-          251 分钟
+          263 分钟
         
       </span>
     
@@ -1123,11 +1123,46 @@
 </ul>
 <h4 id="5-1-4-3-生命周期"><a href="#5-1-4-3-生命周期" class="headerlink" title="5.1.4.3 生命周期"></a>5.1.4.3 生命周期</h4><p><img src="https://qnpicmap.fcsluck.top/pics/202407291453761.png" srcset="/img/loading.gif" lazyload><br>方向：从左到右，从上到下。</p>
 <h5 id="5-1-4-3-1-Pod-退出流程"><a href="#5-1-4-3-1-Pod-退出流程" class="headerlink" title="5.1.4.3.1 Pod 退出流程"></a>5.1.4.3.1 Pod 退出流程</h5><ol>
-<li>Endpoint别除pod的ip地址</li>
-<li>Pod变成Terminating状态<br>变为删除中的状态后，会给pod一个宽限期，让pod去执行一些清理或销毁操作。<br>配置参数：</li>
+<li>Endpoint 别除 pod 的 ip 地址</li>
+<li>Pod 变成 Terminating 状态<br>变为删除中的状态后，会给 pod 一个宽限期，让 pod 去执行一些清理或销毁操作。<br>配置参数：</li>
 </ol>
-<p>#作用与pod中的所有容器<br>terminationGracePeriodSeconds: 30<br>containers:<br>    - xxx<br>3. 执行preStop钩子函数</p>
-<h5 id="5-1-4-3-2-PreStop-的应用"><a href="#5-1-4-3-2-PreStop-的应用" class="headerlink" title="5.1.4.3.2 PreStop 的应用"></a>5.1.4.3.2 PreStop 的应用</h5><h6 id="注册中心下线"><a href="#注册中心下线" class="headerlink" title="注册中心下线"></a>注册中心下线</h6><h6 id="数据清理"><a href="#数据清理" class="headerlink" title="数据清理"></a>数据清理</h6><h6 id="数据销毁"><a href="#数据销毁" class="headerlink" title="数据销毁"></a>数据销毁</h6><h1 id="6-📖参考文献"><a href="#6-📖参考文献" class="headerlink" title="6 📖参考文献"></a>6 📖参考文献</h1><ol>
+<p>#作用与pod中的所有容器<br>terminationGracePeriodSeconds: 30<br>containers:<br>    - xxx<br>3. 执行 preStop 钩子函数</p>
+<h5 id="5-1-4-3-2-PreStop-的应用"><a href="#5-1-4-3-2-PreStop-的应用" class="headerlink" title="5.1.4.3.2 PreStop 的应用"></a>5.1.4.3.2 PreStop 的应用</h5><ol>
+<li>注册中心下线</li>
+<li>数据清理</li>
+<li>数据销毁</li>
+</ol>
+<h3 id="5-1-5-资源调度"><a href="#5-1-5-资源调度" class="headerlink" title="5.1.5 资源调度"></a>5.1.5 资源调度</h3><h4 id="5-1-5-1-Label-和-Selector"><a href="#5-1-5-1-Label-和-Selector" class="headerlink" title="5.1.5.1 Label 和 Selector"></a>5.1.5.1 Label 和 Selector</h4><h5 id="5-1-5-1-1-标签-Label"><a href="#5-1-5-1-1-标签-Label" class="headerlink" title="5.1.5.1.1 标签(Label)"></a>5.1.5.1.1 标签(Label)</h5><h6 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h6><p>在名类资源的 <code>sepc.metadata.labels</code> 中进行配置</p>
+<h6 id="Kubectl"><a href="#Kubectl" class="headerlink" title="Kubectl"></a>Kubectl</h6><p>临时创建 label：<code>kubectl label po &lt;资源名称&gt; app=hello -n &lt;命名空间&gt;</code><br>修改已经存在的标签：</p>
+<ol>
+<li><code>kubectl label po &lt;资源名称&gt; app=hello -n &lt;命名空间&gt; --overwrite</code></li>
+<li><code>kubectl edit po &lt;资源名称&gt; -n &lt;命名空间&gt;</code>，修改 label 配置<br>查看 label：<code>kubectl get po -n &lt;命名空间&gt; --show-labels</code></li>
+</ol>
+<h5 id="5-1-5-1-2-选择器-Selector"><a href="#5-1-5-1-2-选择器-Selector" class="headerlink" title="5.1.5.1.2 选择器(Selector)"></a>5.1.5.1.2 选择器(Selector)</h5><h6 id="配置文件-1"><a href="#配置文件-1" class="headerlink" title="配置文件"></a>配置文件</h6><p>在各对象的配置 spec.selector 或其他可以写 selector 的属性中编写</p>
+<h6 id="Kubectl-1"><a href="#Kubectl-1" class="headerlink" title="Kubectl"></a>Kubectl</h6><ol>
+<li>单值匹配：<code>kubectl get po -n web -l type=app</code></li>
+<li>介于匹配：<code>kubectl get po -n web -l &#39;version in (1.0.0,1.1.0,1.2.0)&#39; --show-labels</code></li>
+<li>多值匹配（与的关系）：<code>kubectl get po -n web -l version!=1.2.0,type=app --show-labels</code></li>
+<li>混合匹配：<code>kubectl get po -n web -l &#39;target!=cs,type=app,version in (1.0.0,1.1.0,1.2.0)&#39; --show-labels</code></li>
+</ol>
+<h4 id="5-1-5-2-Deployment"><a href="#5-1-5-2-Deployment" class="headerlink" title="5.1.5.2 Deployment"></a>5.1.5.2 Deployment</h4><h5 id="5-1-5-2-1-功能"><a href="#5-1-5-2-1-功能" class="headerlink" title="5.1.5.2.1 功能"></a>5.1.5.2.1 功能</h5><h6 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h6><p>创速-个 deployment</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">kubectl create deploy nginx-deploy --image=nginx:1.7.9<br></code></pre></td></tr></table></figure>
+
+<p>或执行</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">kubectl create -f xxx.yaml --record<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>–record 会在 annotation 中记录当前命令创建或升级了资源，后续可以查看做过哪些变动操作</p>
+</blockquote>
+<p>查看部署信息</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">kubectl get deployments<br></code></pre></td></tr></table></figure>
+
+<p>查看 rs</p>
+<h6 id="滚动更新"><a href="#滚动更新" class="headerlink" title="滚动更新"></a>滚动更新</h6><p><em>一个deployment多个replicaset对应多个pod</em>，<strong>修改pod配置后就会进行滚动更新</strong>（<code>只修改deployment配置并不会出发滚动更新</code>），根据滚动更新策略（eg：新增后删除：先新建一个新的replicaset然后新建一个与之关联的pod，然后对旧replicaset的pod缩容删除一个，循环此过程直到所有旧的pod全部删除，新的replicaset里含有等量的新pod）</p>
+<p>多个滚动更新并行：<strong>多个滚动更新并发时新的更新会覆盖旧的更新，旧的更新失效，新的更新依旧对最原始的deployment进行更新</strong>。</p>
+<h6 id="回滚"><a href="#回滚" class="headerlink" title="回滚"></a>回滚</h6><p>有时候你可能想回退一个Deployment,例知，当Deployment不稳定时，比如一直crash looping.<br>默认情况下，kubernetes会在系统中保存前两次的Deployment的rollout历史记录，以便你可以随时会退（你可以修改revision history limit来更改保存的revision数)。</p>
+<p>案例：<br>更新deployment时参数不小心写错，如nginx:1.9.1写成了nginx:1.91<br><code>kubectl set deployment/nginx-deployment nginx=nginx:1.91</code><br>监控滚动升级状态，由于镜像名称错误，下载镜像失败，因此更新过程会卡住<br><code>kubectl rollout status deployments nginx-deployment</code></p>
+<h6 id="扩容缩容"><a href="#扩容缩容" class="headerlink" title="扩容缩容"></a>扩容缩容</h6><h6 id="5-1-5-2-2-暂停与恢复"><a href="#5-1-5-2-2-暂停与恢复" class="headerlink" title="5.1.5.2.2 暂停与恢复"></a>5.1.5.2.2 暂停与恢复</h6><h5 id="5-1-5-2-2-配置文件"><a href="#5-1-5-2-2-配置文件" class="headerlink" title="5.1.5.2.2 配置文件"></a>5.1.5.2.2 配置文件</h5><h1 id="6-📖参考文献"><a href="#6-📖参考文献" class="headerlink" title="6 📖参考文献"></a>6 📖参考文献</h1><ol>
 <li><a target="_blank" rel="noopener" href="https://www.yuque.com/xiaoguai-pbjfj/cxxcrs/ocefqltbmbgl5eqg?singleDoc#%20%E3%80%8AKubernetes%E3%80%8B">Kubernetes-win-useage</a></li>
 <li><a target="_blank" rel="noopener" href="https://geekhour.net/2023/12/23/kubernetes/">Kubernetes一小时入门课程 - 视频配套笔记 | GeekHour</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Se411r7vY/?spm_id_from=333.788.recommend_more_video.2&vd_source=9c896fa9c3f9023797e8efe7be0c113e">Kubernetes一小时轻松入门_哔哩哔哩_bilibili</a></li>
@@ -1199,7 +1234,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年7月29日</div>
+          <div>2024年7月31日</div>
         </div>
       
       <div class="license-meta-item">
