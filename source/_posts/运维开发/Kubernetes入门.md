@@ -1103,23 +1103,103 @@ livenessProbe:
 
 ##### 5.1.4.3.1 Pod 退出流程
 
-1. Endpoint别除pod的ip地址
-2. Pod变成Terminating状态
-   变为删除中的状态后，会给pod一个宽限期，让pod去执行一些清理或销毁操作。
+1. Endpoint 别除 pod 的 ip 地址
+2. Pod 变成 Terminating 状态
+   变为删除中的状态后，会给 pod 一个宽限期，让 pod 去执行一些清理或销毁操作。
 配置参数：
 #作用与pod中的所有容器
 terminationGracePeriodSeconds: 30
 containers:
     - xxx
-3. 执行preStop钩子函数
+3. 执行 preStop 钩子函数
 
 ##### 5.1.4.3.2 PreStop 的应用
 
-###### 注册中心下线
+1. 注册中心下线
+2. 数据清理
+3. 数据销毁
 
-###### 数据清理
+### 5.1.5 资源调度
 
-###### 数据销毁
+#### 5.1.5.1 Label 和 Selector
+
+##### 5.1.5.1.1 标签(Label)
+
+###### 配置文件
+
+在名类资源的 `sepc.metadata.labels` 中进行配置
+
+###### Kubectl
+
+临时创建 label：`kubectl label po <资源名称> app=hello -n <命名空间>`
+修改已经存在的标签：
+1. `kubectl label po <资源名称> app=hello -n <命名空间> --overwrite`
+2. `kubectl edit po <资源名称> -n <命名空间>`，修改 label 配置
+查看 label：`kubectl get po -n <命名空间> --show-labels`
+
+##### 5.1.5.1.2 选择器(Selector)
+
+###### 配置文件
+
+在各对象的配置 spec.selector 或其他可以写 selector 的属性中编写
+
+###### Kubectl
+
+1. 单值匹配：`kubectl get po -n web -l type=app`
+2. 介于匹配：`kubectl get po -n web -l 'version in (1.0.0,1.1.0,1.2.0)' --show-labels`
+3. 多值匹配（与的关系）：`kubectl get po -n web -l version!=1.2.0,type=app --show-labels`
+4. 混合匹配：`kubectl get po -n web -l 'target!=cs,type=app,version in (1.0.0,1.1.0,1.2.0)' --show-labels`
+
+#### 5.1.5.2 Deployment
+
+##### 5.1.5.2.1 功能
+
+###### 创建
+
+创速-个 deployment
+
+```sh
+kubectl create deploy nginx-deploy --image=nginx:1.7.9
+```
+
+或执行
+
+```sh
+kubectl create -f xxx.yaml --record
+```
+
+> --record 会在 annotation 中记录当前命令创建或升级了资源，后续可以查看做过哪些变动操作
+
+查看部署信息
+
+```sh
+kubectl get deployments
+```
+
+查看 rs
+
+###### 滚动更新
+
+*一个deployment多个replicaset对应多个pod*，**修改pod配置后就会进行滚动更新**（`只修改deployment配置并不会出发滚动更新`），根据滚动更新策略（eg：新增后删除：先新建一个新的replicaset然后新建一个与之关联的pod，然后对旧replicaset的pod缩容删除一个，循环此过程直到所有旧的pod全部删除，新的replicaset里含有等量的新pod）
+
+多个滚动更新并行：**多个滚动更新并发时新的更新会覆盖旧的更新，旧的更新失效，新的更新依旧对最原始的deployment进行更新**。
+
+###### 回滚
+
+有时候你可能想回退一个Deployment,例知，当Deployment不稳定时，比如一直crash looping.
+默认情况下，kubernetes会在系统中保存前两次的Deployment的rollout历史记录，以便你可以随时会退（你可以修改revision history limit来更改保存的revision数)。
+
+案例：
+更新deployment时参数不小心写错，如nginx:1.9.1写成了nginx:1.91
+`kubectl set deployment/nginx-deployment nginx=nginx:1.91`
+监控滚动升级状态，由于镜像名称错误，下载镜像失败，因此更新过程会卡住
+`kubectl rollout status deployments nginx-deployment`
+
+###### 扩容缩容
+
+###### 5.1.5.2.2 暂停与恢复
+
+##### 5.1.5.2.2 配置文件
 
 # 6 📖参考文献
 
@@ -1129,3 +1209,4 @@ containers:
 4. [Kubernetes（K8S）全套入门+微服务实战项目，带你一站式深入掌握K8S核心能力](https://www.bilibili.com/video/BV1MT411x7GH)
 5. [【Linux】为 VMware 的 Linux 系统（CentOS 7）设置静态IP地址-CSDN博客](https://blog.csdn.net/m0_50513629/article/details/139055933)
 6. [Kubernetes 安装部署(国内源)-阿里云开发者社区](https://developer.aliyun.com/article/1147479#:~:text=%E5%A4%8D%E5%88%B6%E6%89%A7%E8%A1%8C%E5%8D%B3%E5%8F%AF%20%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96%E5%8C%85%2C%E6%B7%BB%E5%8A%A0docker%E6%BA%90%E4%BB%93%E5%BA%93%2C%E5%AE%89%E8%A3%85%2C%E5%90%AF%E5%8A%A8%2C%E6%B7%BB%E5%8A%A0%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8%2C%E6%9F%A5%E7%9C%8B%E7%89%88%E6%9C%AC%EF%BC%88%E9%AA%8C%E8%AF%81%E6%98%AF%E5%90%A6%E5%AE%89%E8%A3%85%E6%88%90%E5%8A%9F%EF%BC%89%20yum%20install%20yum-utils%20-y,%26%26%20%20yum-config-manager%20--add-repo%20http%3A%2F%2Fmirrors.aliyun.com%2Fdocker-ce%2Flinux%2Fcentos%2Fdocker-ce.repo%20%26%26%20%5C)
+
