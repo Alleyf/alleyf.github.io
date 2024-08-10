@@ -1,6 +1,6 @@
 {
   "version": "0.5.13",
-  "endpoint": "https://api.chatanywhere.tech",
+  "endpoint": "https://free.gpt.ge",
   "models": {},
   "api_key": "",
   "encrypt_keys": false,
@@ -71,7 +71,7 @@
       "base_path": "https://api.openai.com/v1"
     },
     "OpenAI Chat (Langchain)": {
-      "basePath": "https://api.chatanywhere.tech",
+      "basePath": "https://free.gpt.ge",
       "api_key": "",
       "model": "gpt-3.5-turbo"
     },
@@ -100,9 +100,9 @@
     }
   },
   "LLMProviderOptionsKeysHashed": {
-    "OpenAI Chat (Langchain).api_key": "__@#key_prefix#@__sk-xyiJ3GM0Fx5C1EeIg89qHgoSVv7iZ0y6Mt72RSysupNskOig",
+    "OpenAI Chat (Langchain).api_key": "__@#key_prefix#@__sk-tmQdXYrg9JiiHdYiA902954a1e154088Aa9cF7F0C4A0D4Fc",
     "Default (Custom).api_key": "__@#key_prefix#@__sk-9f022d642976437e8235a332cb8187ac"
   },
-  "api_key_encrypted": "__@#key_prefix#@__sk-xyiJ3GM0Fx5C1EeIg89qHgoSVv7iZ0y6Mt72RSysupNskOig",
+  "api_key_encrypted": "__@#key_prefix#@__sk-tmQdXYrg9JiiHdYiA902954a1e154088Aa9cF7F0C4A0D4Fc",
   "model": "gpt-3.5-turbo"
 }
