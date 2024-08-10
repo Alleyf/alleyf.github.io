@@ -6,7 +6,7 @@
   <link href="https://alleyf.github.io/atom.xml" rel="self"/>
   
   <link href="https://alleyf.github.io/"/>
-  <updated>2024-07-16T16:03:32.274Z</updated>
+  <updated>2024-08-10T07:36:12.071Z</updated>
   <id>https://alleyf.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>研究思路</title>
+    <link href="https://alleyf.github.io/2024/08/e73efe4b2ca2.html"/>
+    <id>https://alleyf.github.io/2024/08/e73efe4b2ca2.html</id>
+    <published>2024-08-10T05:59:49.000Z</published>
+    <updated>2024-08-10T07:36:12.071Z</updated>
+    
+    
+    <summary type="html">科研思路思考</summary>
+    
+    
+    
+    <category term="科研学习" scheme="https://alleyf.github.io/categories/%E7%A7%91%E7%A0%94%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="科研" scheme="https://alleyf.github.io/tags/%E7%A7%91%E7%A0%94/"/>
+    
+    <category term="灵感" scheme="https://alleyf.github.io/tags/%E7%81%B5%E6%84%9F/"/>
+    
+  </entry>
   
   <entry>
     <title></title>
@@ -85,7 +106,7 @@
     <link href="https://alleyf.github.io/2024/05/9b5fa9c35ad7.html"/>
     <id>https://alleyf.github.io/2024/05/9b5fa9c35ad7.html</id>
     <published>2024-05-10T15:54:16.000Z</published>
-    <updated>2024-07-31T06:27:27.470Z</updated>
+    <updated>2024-08-01T06:49:17.009Z</updated>
     
     
     <summary type="html">k8s入门（基础介绍，核心概念，实战演练）</summary>
@@ -409,25 +430,6 @@
     <category term="Scrapy" scheme="https://alleyf.github.io/tags/Scrapy/"/>
     
     <category term="爬虫" scheme="https://alleyf.github.io/tags/%E7%88%AC%E8%99%AB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>若依脚手架-学习</title>
-    <link href="https://alleyf.github.io/2023/12/3727d5849252.html"/>
-    <id>https://alleyf.github.io/2023/12/3727d5849252.html</id>
-    <published>2023-12-04T08:29:12.000Z</published>
-    <updated>2023-12-07T12:45:02.959Z</updated>
-    
-    
-    <summary type="html">关于springboot脚手架一些常见知识点。</summary>
-    
-    
-    
-    <category term="后端开发" scheme="https://alleyf.github.io/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
-    
-    
-    <category term="ssm" scheme="https://alleyf.github.io/tags/ssm/"/>
     
   </entry>
   
