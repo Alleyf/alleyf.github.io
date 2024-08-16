@@ -1194,6 +1194,15 @@ kubectl get deployments
 `kubectl set deployment/nginx-deployment nginx=nginx:1.91`
 监控滚动升级状态，由于镜像名称错误，下载镜像失败，因此更新过程会卡住
 `kubectl rollout status deployments nginx-deployment`
+查看历史滚动更新的deploy的版本：
+`kubectl rollout history deployment/nginx-deploy`
+查看历史版本信息：
+`kubectl rollout history deployment/nginx-deploy --revision=2`
+回退到指定版本：
+`kubectl rollout undo deployment/nginx-deploy -n app --to-revision=2`
+
+> [!Warning] 注意
+> 可以通过设置`spec.revisonHistoryLimit`，来指定deployment保留多少revison，如果设置为*0*，则不允许deployment回退了.
 
 ###### 扩容缩容
 
@@ -1209,16 +1218,3 @@ kubectl get deployments
 4. [Kubernetes（K8S）全套入门+微服务实战项目，带你一站式深入掌握K8S核心能力](https://www.bilibili.com/video/BV1MT411x7GH)
 5. [【Linux】为 VMware 的 Linux 系统（CentOS 7）设置静态IP地址-CSDN博客](https://blog.csdn.net/m0_50513629/article/details/139055933)
 6. [Kubernetes 安装部署(国内源)-阿里云开发者社区](https://developer.aliyun.com/article/1147479#:~:text=%E5%A4%8D%E5%88%B6%E6%89%A7%E8%A1%8C%E5%8D%B3%E5%8F%AF%20%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96%E5%8C%85%2C%E6%B7%BB%E5%8A%A0docker%E6%BA%90%E4%BB%93%E5%BA%93%2C%E5%AE%89%E8%A3%85%2C%E5%90%AF%E5%8A%A8%2C%E6%B7%BB%E5%8A%A0%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8%2C%E6%9F%A5%E7%9C%8B%E7%89%88%E6%9C%AC%EF%BC%88%E9%AA%8C%E8%AF%81%E6%98%AF%E5%90%A6%E5%AE%89%E8%A3%85%E6%88%90%E5%8A%9F%EF%BC%89%20yum%20install%20yum-utils%20-y,%26%26%20%20yum-config-manager%20--add-repo%20http%3A%2F%2Fmirrors.aliyun.com%2Fdocker-ce%2Flinux%2Fcentos%2Fdocker-ce.repo%20%26%26%20%5C)
-
-
-> [!failure]- Failure 
->   SyntaxError: Unexpected token '<', "<<<<<<< HE"... is not valid JSON
->   
->   - JSON.parse
->   
->   - plugin:obsidian-textgenerator-plugin:176841 PackageManager.load
->     plugin:obsidian-textgenerator-plugin:176841:33
->   
->   - plugin:obsidian-textgenerator-plugin:179856 async TextGeneratorPlugin.onload    plugin:obsidian-textgenerator-plugin:179856:7
->   
->  
