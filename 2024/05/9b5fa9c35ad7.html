@@ -27,7 +27,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://picsum.photos/800/250">
 <meta property="article:published_time" content="2024-05-10T15:54:16.000Z">
-<meta property="article:modified_time" content="2024-08-16T14:09:06.256Z">
+<meta property="article:modified_time" content="2024-09-28T09:17:39.339Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="K8s">
 <meta name="twitter:card" content="summary_large_image">
@@ -307,7 +307,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          32k 字
+          33k 字
         
       </span>
     
@@ -318,7 +318,7 @@
         
         
         
-          266 分钟
+          272 分钟
         
       </span>
     
@@ -369,7 +369,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2 小时前
+                    本文最后更新于：3 天前
                   
                 
               </p>
@@ -1158,14 +1158,28 @@
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">kubectl get deployments<br></code></pre></td></tr></table></figure>
 
 <p>查看 rs</p>
-<h6 id="滚动更新"><a href="#滚动更新" class="headerlink" title="滚动更新"></a>滚动更新</h6><p><em>一个deployment多个replicaset对应多个pod</em>，<strong>修改pod配置后就会进行滚动更新</strong>（<code>只修改deployment配置并不会出发滚动更新</code>），根据滚动更新策略（eg：新增后删除：先新建一个新的replicaset然后新建一个与之关联的pod，然后对旧replicaset的pod缩容删除一个，循环此过程直到所有旧的pod全部删除，新的replicaset里含有等量的新pod）</p>
-<p>多个滚动更新并行：<strong>多个滚动更新并发时新的更新会覆盖旧的更新，旧的更新失效，新的更新依旧对最原始的deployment进行更新</strong>。</p>
-<h6 id="回滚"><a href="#回滚" class="headerlink" title="回滚"></a>回滚</h6><p>有时候你可能想回退一个Deployment,例知，当Deployment不稳定时，比如一直crash looping.<br>默认情况下，kubernetes会在系统中保存前两次的Deployment的rollout历史记录，以便你可以随时会退（你可以修改revision history limit来更改保存的revision数)。</p>
-<p>案例：<br>更新deployment时参数不小心写错，如nginx:1.9.1写成了nginx:1.91<br><code>kubectl set deployment/nginx-deployment nginx=nginx:1.91</code><br>监控滚动升级状态，由于镜像名称错误，下载镜像失败，因此更新过程会卡住<br><code>kubectl rollout status deployments nginx-deployment</code><br>查看历史滚动更新的deploy的版本：<br><code>kubectl rollout history deployment/nginx-deploy</code><br>查看历史版本信息：<br><code>kubectl rollout history deployment/nginx-deploy --revision=2</code><br>回退到指定版本：<br><code>kubectl rollout undo deployment/nginx-deploy -n app --to-revision=2</code></p>
+<h6 id="滚动更新"><a href="#滚动更新" class="headerlink" title="滚动更新"></a>滚动更新</h6><p><em>一个 deployment 多个 replicaset 对应多个 pod</em>，<strong>修改 pod 配置后就会进行滚动更新</strong>（<code>只修改deployment配置并不会出发滚动更新</code>），根据滚动更新策略（eg：新增后删除：先新建一个新的 replicaset 然后新建一个与之关联的 pod，然后对旧 replicaset 的 pod 缩容删除一个，循环此过程直到所有旧的 pod 全部删除，新的 replicaset 里含有等量的新 pod）</p>
+<p>多个滚动更新并行：<strong>多个滚动更新并发时新的更新会覆盖旧的更新，旧的更新失效，新的更新依旧对最原始的 deployment 进行更新</strong>。</p>
+<h6 id="回滚"><a href="#回滚" class="headerlink" title="回滚"></a>回滚</h6><p>有时候你可能想回退一个 Deployment,例知，当 Deployment 不稳定时，比如一直 crash looping.<br>默认情况下，kubernetes 会在系统中保存前两次的 Deployment 的 rollout 历史记录，以便你可以随时会退（你可以修改 revision history limit 来更改保存的 revision 数)。</p>
+<p>案例：<br>更新 deployment 时参数不小心写错，如 nginx:1.9.1 写成了 nginx:1.91<br><code>kubectl set deployment/nginx-deployment nginx=nginx:1.91</code><br>监控滚动升级状态，由于镜像名称错误，下载镜像失败，因此更新过程会卡住<br><code>kubectl rollout status deployments nginx-deployment</code><br>查看历史滚动更新的 deploy 的版本：<br><code>kubectl rollout history deployment/nginx-deploy</code><br>查看历史版本信息：<br><code>kubectl rollout history deployment/nginx-deploy --revision=2</code><br>回退到指定版本：<br><code>kubectl rollout undo deployment/nginx-deploy -n app --to-revision=2</code></p>
 <blockquote>
-<p>[!Warning] 注意<br>可以通过设置<code>spec.revisonHistoryLimit</code>，来指定deployment保留多少revison，如果设置为<em>0</em>，则不允许deployment回退了.</p>
+<p>[!Warning] 注意<br>可以通过设置 <code>spec.revisonHistoryLimit</code>，来指定 deployment 保留多少 revison，如果设置为<em>0</em>，则不允许 deployment 回退了.</p>
 </blockquote>
-<h6 id="扩容缩容"><a href="#扩容缩容" class="headerlink" title="扩容缩容"></a>扩容缩容</h6><h6 id="5-1-5-2-2-暂停与恢复"><a href="#5-1-5-2-2-暂停与恢复" class="headerlink" title="5.1.5.2.2 暂停与恢复"></a>5.1.5.2.2 暂停与恢复</h6><h5 id="5-1-5-2-2-配置文件"><a href="#5-1-5-2-2-配置文件" class="headerlink" title="5.1.5.2.2 配置文件"></a>5.1.5.2.2 配置文件</h5><h1 id="6-📖参考文献"><a href="#6-📖参考文献" class="headerlink" title="6 📖参考文献"></a>6 📖参考文献</h1><ol>
+<h6 id="扩容缩容"><a href="#扩容缩容" class="headerlink" title="扩容缩容"></a>扩容缩容</h6><p>通过 kube scale 命令可以进行自动扩容&#x2F;缩容，以及通过 kube edit 编辑 repli cas 也可以实现扩容&#x2F;缩容<br>扩容与缩容只是直接创建副本数，没有更新 pod template 因此不会创建新的 rs</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">subectl scale replicas=3 deploy nginx-deploy<br></code></pre></td></tr></table></figure>
+
+<h6 id="暂停与恢复"><a href="#暂停与恢复" class="headerlink" title="暂停与恢复"></a>暂停与恢复</h6><p>由于每次对 pod template 中的信息发生修改后，都会触发更新 deployment 操作，那么此时如果频繁修改信息，就会产生多次更新，而实际上只需要执行最后一次更新即可，当出现此类情况时我们就可以暂停 deployment 的 rollout<br>通过 <code>kubectl rollout pause deployment&lt;name&gt;</code> 就可以实现暂停，直到你下次恢复后才会继续进行滚动更新<br>尝试对容器进行修改。然后查看是否发生更新操作了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">kubectl <span class="hljs-built_in">set</span> image deploy &lt;name&gt; nginx=nginx:1.17.9<br>kubectl get po<br></code></pre></td></tr></table></figure>
+
+<p>通过以上操作可以看到实际并没有发生修改，此时我们再次进行修改一些属性，如限制 nginx 容器的最大 cpu 为 0.2 核，最大内存为 128M,最小内存为 64M,最小 cpu 为0.1核</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">kubectl <span class="hljs-built_in">set</span> resources deploy &lt;deploy_name&gt; -c &lt;container_name&gt; --limits=cpu=200m,memory=128Mi --requests=cpu100m,memory=64Mi<br></code></pre></td></tr></table></figure>
+
+<p>通过格式化输出 <code>kubectl get deploy &lt;name&gt; -oyaml</code>, 可以看到配置确实发生了修改，再通过 <code>kubectl get po</code> 可以看到 pod 没有被更新</p>
+<ol>
+<li>暂停：<code>kubectl rollout pause deploy nginx-deploy</code></li>
+<li>恢复：<code>kubectl rollout resume deploy nginx-deploy</code></li>
+</ol>
+<h6 id="6-配置文件"><a href="#6-配置文件" class="headerlink" title="6 配置文件"></a>6 配置文件</h6><h1 id="6-📖参考文献"><a href="#6-📖参考文献" class="headerlink" title="6 📖参考文献"></a>6 📖参考文献</h1><ol>
 <li><a target="_blank" rel="noopener" href="https://www.yuque.com/xiaoguai-pbjfj/cxxcrs/ocefqltbmbgl5eqg?singleDoc#%20%E3%80%8AKubernetes%E3%80%8B">Kubernetes-win-useage</a></li>
 <li><a target="_blank" rel="noopener" href="https://geekhour.net/2023/12/23/kubernetes/">Kubernetes一小时入门课程 - 视频配套笔记 | GeekHour</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Se411r7vY/?spm_id_from=333.788.recommend_more_video.2&vd_source=9c896fa9c3f9023797e8efe7be0c113e">Kubernetes一小时轻松入门_哔哩哔哩_bilibili</a></li>
@@ -1237,7 +1251,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年8月16日</div>
+          <div>2024年9月28日</div>
         </div>
       
       <div class="license-meta-item">
