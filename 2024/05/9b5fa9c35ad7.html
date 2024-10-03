@@ -27,7 +27,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://picsum.photos/800/250">
 <meta property="article:published_time" content="2024-05-10T15:54:16.000Z">
-<meta property="article:modified_time" content="2024-09-28T09:17:39.339Z">
+<meta property="article:modified_time" content="2024-10-01T08:22:08.879Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="K8s">
 <meta name="twitter:card" content="summary_large_image">
@@ -307,7 +307,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          33k 字
+          34k 字
         
       </span>
     
@@ -318,7 +318,7 @@
         
         
         
-          272 分钟
+          280 分钟
         
       </span>
     
@@ -369,7 +369,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：3 天前
+                    本文最后更新于：2 天前
                   
                 
               </p>
@@ -1171,7 +1171,7 @@
 <h6 id="暂停与恢复"><a href="#暂停与恢复" class="headerlink" title="暂停与恢复"></a>暂停与恢复</h6><p>由于每次对 pod template 中的信息发生修改后，都会触发更新 deployment 操作，那么此时如果频繁修改信息，就会产生多次更新，而实际上只需要执行最后一次更新即可，当出现此类情况时我们就可以暂停 deployment 的 rollout<br>通过 <code>kubectl rollout pause deployment&lt;name&gt;</code> 就可以实现暂停，直到你下次恢复后才会继续进行滚动更新<br>尝试对容器进行修改。然后查看是否发生更新操作了</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">kubectl <span class="hljs-built_in">set</span> image deploy &lt;name&gt; nginx=nginx:1.17.9<br>kubectl get po<br></code></pre></td></tr></table></figure>
 
-<p>通过以上操作可以看到实际并没有发生修改，此时我们再次进行修改一些属性，如限制 nginx 容器的最大 cpu 为 0.2 核，最大内存为 128M,最小内存为 64M,最小 cpu 为0.1核</p>
+<p>通过以上操作可以看到实际并没有发生修改，此时我们再次进行修改一些属性，如限制 nginx 容器的最大 cpu 为 0.2 核，最大内存为 128M,最小内存为 64M,最小 cpu 为 0.1 核</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">kubectl <span class="hljs-built_in">set</span> resources deploy &lt;deploy_name&gt; -c &lt;container_name&gt; --limits=cpu=200m,memory=128Mi --requests=cpu100m,memory=64Mi<br></code></pre></td></tr></table></figure>
 
 <p>通过格式化输出 <code>kubectl get deploy &lt;name&gt; -oyaml</code>, 可以看到配置确实发生了修改，再通过 <code>kubectl get po</code> 可以看到 pod 没有被更新</p>
@@ -1179,7 +1179,13 @@
 <li>暂停：<code>kubectl rollout pause deploy nginx-deploy</code></li>
 <li>恢复：<code>kubectl rollout resume deploy nginx-deploy</code></li>
 </ol>
-<h6 id="6-配置文件"><a href="#6-配置文件" class="headerlink" title="6 配置文件"></a>6 配置文件</h6><h1 id="6-📖参考文献"><a href="#6-📖参考文献" class="headerlink" title="6 📖参考文献"></a>6 📖参考文献</h1><ol>
+<h5 id="5-1-5-2-2-配置文件"><a href="#5-1-5-2-2-配置文件" class="headerlink" title="5.1.5.2.2 配置文件"></a>5.1.5.2.2 配置文件</h5><h4 id="5-1-5-3-StatefulSet"><a href="#5-1-5-3-StatefulSet" class="headerlink" title="5.1.5.3 StatefulSet"></a>5.1.5.3 StatefulSet</h4><h5 id="5-1-5-3-1-功能"><a href="#5-1-5-3-1-功能" class="headerlink" title="5.1.5.3.1 功能"></a>5.1.5.3.1 功能</h5><h6 id="创健"><a href="#创健" class="headerlink" title="创健"></a>创健</h6><h6 id="扩容缩容-1"><a href="#扩容缩容-1" class="headerlink" title="扩容缩容"></a>扩容缩容</h6><h6 id="镜像更新"><a href="#镜像更新" class="headerlink" title="镜像更新"></a>镜像更新</h6><ol>
+<li>RollingUpdate –&gt;灰度发布</li>
+<li>OnDelete</li>
+</ol>
+<h6 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h6><h6 id="删除-Pvc"><a href="#删除-Pvc" class="headerlink" title="删除 Pvc"></a>删除 Pvc</h6><h5 id="5-1-5-3-2-配置文件"><a href="#5-1-5-3-2-配置文件" class="headerlink" title="5.1.5.3.2 配置文件"></a>5.1.5.3.2 配置文件</h5><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-meta">---</span><br><span class="hljs-attr">apiversion:</span> <span class="hljs-string">v1</span><br><span class="hljs-attr">kind:</span> <span class="hljs-string">Service</span><br><span class="hljs-attr">metadata:</span><br>	<span class="hljs-attr">name:</span> <span class="hljs-string">nginx</span><br>	<span class="hljs-attr">labels:</span> <br>		<span class="hljs-attr">app:</span> <span class="hljs-string">nginx</span><br><span class="hljs-attr">spec:</span><br>	<span class="hljs-attr">ports:</span><br>	<span class="hljs-bullet">-</span> <span class="hljs-attr">port:</span> <span class="hljs-number">80</span><br>	  <span class="hljs-attr">name:</span> <span class="hljs-string">web</span><br>	<span class="hljs-attr">clusterIP:</span> <span class="hljs-string">None</span><br>	<span class="hljs-attr">selector:</span><br>		<span class="hljs-attr">app:</span> <span class="hljs-string">nginx</span><br><span class="hljs-meta">---</span><br><span class="hljs-attr">apiVersion:</span> <span class="hljs-string">apps/v1</span><br><span class="hljs-attr">kind:</span> <span class="hljs-string">StatefulSet</span> <span class="hljs-comment"># StatefulSet类型的资源</span><br><span class="hljs-attr">metadata:</span><br>	<span class="hljs-attr">name:</span> <span class="hljs-string">web</span> <span class="hljs-comment"># StatefulSet对象的名字</span><br><span class="hljs-attr">spec:</span><br>	<span class="hljs-attr">serviceName:</span> <span class="hljs-string">&quot;nginx&quot;</span> <span class="hljs-comment"># 使用哪个service来管理</span><br>	<span class="hljs-attr">replicas:</span> <span class="hljs-number">2</span><br>	<span class="hljs-attr">selector:</span><br>		<span class="hljs-attr">matchLabels:</span><br>			<span class="hljs-attr">app:</span> <span class="hljs-string">nginx</span><br>	<span class="hljs-attr">template:</span> <span class="hljs-comment"># pod模板</span><br>		<span class="hljs-attr">metadata:</span><br>			<span class="hljs-attr">labels:</span><br>				<span class="hljs-attr">app:</span> <span class="hljs-string">nginx</span><br>	<span class="hljs-attr">spec:</span> <span class="hljs-comment"># 规格</span><br>		<span class="hljs-attr">containers:</span><br>		<span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">nginx</span> <span class="hljs-comment"># 容器名称</span><br>		  <span class="hljs-attr">image:</span> <span class="hljs-string">nginx:1.7.9</span> <span class="hljs-comment"># 镜像名称和版本</span><br>		  <span class="hljs-attr">ports:</span> <span class="hljs-comment"># 容器内部要暴露的端口</span><br>		  <span class="hljs-bullet">-</span> <span class="hljs-attr">containerPort:</span> <span class="hljs-number">80</span> <span class="hljs-comment"># 具体暴露的端口号</span><br>			<span class="hljs-attr">name:</span> <span class="hljs-string">web</span> <span class="hljs-comment"># 端口名称</span><br>		  <span class="hljs-attr">volumeMounts:</span> <span class="hljs-comment"># 加载存储卷</span><br>		  <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">www</span> <span class="hljs-comment"># 指定加载哪个数据卷</span><br>				<span class="hljs-attr">mountPath:</span> <span class="hljs-string">/usr/share/nginx/html</span> <span class="hljs-comment"># 加载到容器中的哪个目录</span><br>	<span class="hljs-attr">volumeclaimTemplates:</span> <span class="hljs-comment"># 数据卷模板</span><br>	  <span class="hljs-bullet">-</span> <span class="hljs-attr">metadata:</span> <span class="hljs-comment"># 数据卷描述</span><br>			<span class="hljs-attr">name:</span> <span class="hljs-string">www</span> <span class="hljs-comment"># 数据卷名称</span><br>				<span class="hljs-attr">annotations:</span> <span class="hljs-comment">#数据卷注解</span><br>					<span class="hljs-attr">volume.alpha.kubernetes.io/storage-class:</span> <span class="hljs-string">anything</span><br>		<span class="hljs-attr">spec:</span> <span class="hljs-comment"># 数据卷期望配置（规约）</span><br>			<span class="hljs-attr">accessModes:</span> [<span class="hljs-string">&quot;ReadWriteOnce&quot;</span>] <span class="hljs-comment"># 访问模式</span><br>			<span class="hljs-attr">resources:</span><br>				<span class="hljs-attr">requests:</span><br>					<span class="hljs-attr">storage:</span> <span class="hljs-string">1Gi</span> <span class="hljs-comment"># 请求1G存储资源</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="6-📖参考文献"><a href="#6-📖参考文献" class="headerlink" title="6 📖参考文献"></a>6 📖参考文献</h1><ol>
 <li><a target="_blank" rel="noopener" href="https://www.yuque.com/xiaoguai-pbjfj/cxxcrs/ocefqltbmbgl5eqg?singleDoc#%20%E3%80%8AKubernetes%E3%80%8B">Kubernetes-win-useage</a></li>
 <li><a target="_blank" rel="noopener" href="https://geekhour.net/2023/12/23/kubernetes/">Kubernetes一小时入门课程 - 视频配套笔记 | GeekHour</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Se411r7vY/?spm_id_from=333.788.recommend_more_video.2&vd_source=9c896fa9c3f9023797e8efe7be0c113e">Kubernetes一小时轻松入门_哔哩哔哩_bilibili</a></li>
@@ -1251,7 +1257,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年9月28日</div>
+          <div>2024年10月1日</div>
         </div>
       
       <div class="license-meta-item">
