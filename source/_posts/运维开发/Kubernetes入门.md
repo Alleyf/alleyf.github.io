@@ -604,7 +604,7 @@ k8s：1.23.6（1.24+以后由于 CRI 不支持 docker 作为容器运行时）
 	- [【Linux】为 VMware 的 Linux 系统（CentOS 7）设置静态IP地址](https://blog.csdn.net/m0_50513629/article/details/139055933)
 	- [centOS 7下无法启动网络（service network start）错误解决办法](https://www.cnblogs.com/zhizhao/p/9442487.html)
 	- 注意有个命令需要把 interface=ens33 改成你对应的网卡,可以使用 ifconfig 查看到你的网卡信息如果你的网阿卡是 ens192 只需要把上面的命令改成 interface=ens192
-	- 配置完静态ip后要重启网络：
+	- 配置完静态 ip 后要重启网络：
 	  1. systemctl stop NetworkManager
 	  2. systemctl disable NetworkManager
 	  3. service network restart
@@ -852,9 +852,9 @@ kubectl get no -o wide
 
 #### 5.1.2.4 Pod 与集群
 
-##### 5.1.2.4.1 新建Pod
+##### 5.1.2.4.1 新建 Pod
 
-指定yml配置文件（类似于docker-compose.yml配置文件）启动资源（deployment、pod等）
+指定 yml 配置文件（类似于 docker-compose.yml 配置文件）启动资源（deployment、pod 等）
 
 ```sh
 kubectl apply -f <nginx-demo.yml>
@@ -930,7 +930,7 @@ RBAC 是 Kubernetes 中最常用的授权机制，它允许管理员创建精细
 
 在 Kubernetes 中，认证和授权通常一起工作，以确保用户和系统能够安全地访问和管理集群资源。管理员需要根据组织的安全需求和最佳实践来配置这些机制。
 
-#### 5.1.3.3 废弃API说明
+#### 5.1.3.3 废弃 API 说明
 
 在 Kubernetes 中，API 版本遵循语义版本控制（Semantic Versioning），通常表示为 `MAJOR.MINOR.PATCH` 的形式。随着 Kubernetes 的发展，某些 API 可能会被标记为废弃（Deprecated），这意味着这些 API 将在未来的版本中被移除或替换。以下是废弃 API 的一些说明：
 
@@ -962,11 +962,11 @@ RBAC 是 Kubernetes 中最常用的授权机制，它允许管理员创建精细
 
 废弃 API 是 Kubernetes 发展过程中的一个自然现象，它有助于推动技术的进步和维护生态系统的健康。用户应该密切关注 Kubernetes 的更新和通告，以确保他们的应用程序和集群配置能够适应这些变化。
 
-### 5.1.4 深入Pod
+### 5.1.4 深入 Pod
 
-#### 5.1.4.1 Pod配置文件
+#### 5.1.4.1 Pod 配置文件
 
-以一个nginx的pod demo的配置文件为例：
+以一个 nginx 的 pod demo 的配置文件为例：
 
 ```yml
 apiVersion: v1 #Api 文档版本
@@ -1013,18 +1013,300 @@ spec: # 期望 Pod 按照这里的描述进行创建
 ##### 5.1.4.2.1 类型
 
 1. StartupProbe
+   k8s 1.16 版本新增的深针，用于判断应用程序是香已经启动了。当配置了 startupProbe 后，会先禁用其他探针，直到 startupProbe 成功后，其他探针才会继续。
+作用：由于有时候不能准确预估应用一定是多长时间启动成功，因比配置另外两种方式不方便配置初始化时长来检测，而配置了 statupProbe 后，只有在应用启动成功了，才会执行另外两种探针，可以更加方使的结合使用另外两种探针使用。
+
+```yaml
+startupProbe:
+	httpGet:
+		path: /api/startup
+		port: 80
+```
+
 2. LivenessProbe
+   用于深测容器中的应用是否运行，如果探测失败，kubelet 会根据配置的重启策路进行重启，若没有配置，默认就认为容器启动成功，不会执行重启策略。
+
+```yaml
+livenessProbe:
+	failureThreshold: 5
+	httpGet:
+		path: /health
+		port: 8080
+		scheme: HTTP
+	initialDelaySeconds: 60
+	periodSeconds: 10
+```
+
 3. ReadinessProbe
+用于探测容器内的程序是否健康，它的返回值如果返回 success，那么认为该容器已经完全启动，并且该容器是可以接收外部流量的。
+
+```yaml
+readinessProbe:
+	failureThreshold: 3 #错误次数
+	httpGet:
+		path: /ready
+		port: 8181
+		scheme: HTTP
+	periodSeconds: 10 #间隔时i间
+	successThreshold: 1
+```
 
 ##### 5.1.4.2.2 探测方式
 
 1. ExecAction
+   在容器内部执行一个命令，如果返回值为 0，则认为容器是健康的。
+
+```yml
+livenessProbe:
+exec:
+	command:
+		- cat
+		- ·/health
+```
+
 2. TCPSocketAction
+   通过 tcp 连接监测容器内端口是否开放，如果开放则证明该容器健康。
+
+```yml
+livenessProbe:
+	tcpSocket:
+		port: 80
+```
+
 3. HTTPGetAction
+生产环境用的较多的方式，发送 HTTP 请求到容器内的应用程序，如果接口返回的状态码在 200~400 之间，则认为容器健康。(eg: java 应用)
+
+```yml
+livenessProbe:
+	failureThreshold: 5
+	httpGet:
+		path: /health
+		port: 8080
+		scheme: HTTP
+		httpHeaders:
+			- name: xxx
+			- value: xxx
+```
 
 ##### 5.1.4.2.3 参数配置
 
+- initialDelaySeconds: 60 #初始化时间 （写死了，不确定）
+- timeoutSeconds: 2 #超时时间
+- periodSeconds: 5 #间隔时间
+- successThreshold: 1 #检查1次成功就表示成功
+- failureThreshold: 2 #监测失败2次就表示失败
+
 #### 5.1.4.3 生命周期
+
+![](https://qnpicmap.fcsluck.top/pics/202407291453761.png)
+方向：从左到右，从上到下。
+
+##### 5.1.4.3.1 Pod 退出流程
+
+1. Endpoint 别除 pod 的 ip 地址
+2. Pod 变成 Terminating 状态
+   变为删除中的状态后，会给 pod 一个宽限期，让 pod 去执行一些清理或销毁操作。
+配置参数：
+#作用与pod中的所有容器
+terminationGracePeriodSeconds: 30
+containers:
+    - xxx
+3. 执行 preStop 钩子函数
+
+##### 5.1.4.3.2 PreStop 的应用
+
+1. 注册中心下线
+2. 数据清理
+3. 数据销毁
+
+### 5.1.5 资源调度
+
+#### 5.1.5.1 Label 和 Selector
+
+##### 5.1.5.1.1 标签(Label)
+
+###### 配置文件
+
+在名类资源的 `sepc.metadata.labels` 中进行配置
+
+###### Kubectl
+
+临时创建 label：`kubectl label po <资源名称> app=hello -n <命名空间>`
+修改已经存在的标签：
+1. `kubectl label po <资源名称> app=hello -n <命名空间> --overwrite`
+2. `kubectl edit po <资源名称> -n <命名空间>`，修改 label 配置
+查看 label：`kubectl get po -n <命名空间> --show-labels`
+
+##### 5.1.5.1.2 选择器(Selector)
+
+###### 配置文件
+
+在各对象的配置 spec.selector 或其他可以写 selector 的属性中编写
+
+###### Kubectl
+
+1. 单值匹配：`kubectl get po -n web -l type=app`
+2. 介于匹配：`kubectl get po -n web -l 'version in (1.0.0,1.1.0,1.2.0)' --show-labels`
+3. 多值匹配（与的关系）：`kubectl get po -n web -l version!=1.2.0,type=app --show-labels`
+4. 混合匹配：`kubectl get po -n web -l 'target!=cs,type=app,version in (1.0.0,1.1.0,1.2.0)' --show-labels`
+
+#### 5.1.5.2 Deployment
+
+##### 5.1.5.2.1 功能
+
+###### 创建
+
+创速-个 deployment
+
+```sh
+kubectl create deploy nginx-deploy --image=nginx:1.7.9
+```
+
+或执行
+
+```sh
+kubectl create -f xxx.yaml --record
+```
+
+> --record 会在 annotation 中记录当前命令创建或升级了资源，后续可以查看做过哪些变动操作
+
+查看部署信息
+
+```sh
+kubectl get deployments
+```
+
+查看 rs
+
+###### 滚动更新
+
+*一个 deployment 多个 replicaset 对应多个 pod*，**修改 pod 配置后就会进行滚动更新**（`只修改deployment配置并不会出发滚动更新`），根据滚动更新策略（eg：新增后删除：先新建一个新的 replicaset 然后新建一个与之关联的 pod，然后对旧 replicaset 的 pod 缩容删除一个，循环此过程直到所有旧的 pod 全部删除，新的 replicaset 里含有等量的新 pod）
+
+多个滚动更新并行：**多个滚动更新并发时新的更新会覆盖旧的更新，旧的更新失效，新的更新依旧对最原始的 deployment 进行更新**。
+
+###### 回滚
+
+有时候你可能想回退一个 Deployment,例知，当 Deployment 不稳定时，比如一直 crash looping.
+默认情况下，kubernetes 会在系统中保存前两次的 Deployment 的 rollout 历史记录，以便你可以随时会退（你可以修改 revision history limit 来更改保存的 revision 数)。
+
+案例：
+更新 deployment 时参数不小心写错，如 nginx:1.9.1 写成了 nginx:1.91
+`kubectl set deployment/nginx-deployment nginx=nginx:1.91`
+监控滚动升级状态，由于镜像名称错误，下载镜像失败，因此更新过程会卡住
+`kubectl rollout status deployments nginx-deployment`
+查看历史滚动更新的 deploy 的版本：
+`kubectl rollout history deployment/nginx-deploy`
+查看历史版本信息：
+`kubectl rollout history deployment/nginx-deploy --revision=2`
+回退到指定版本：
+`kubectl rollout undo deployment/nginx-deploy -n app --to-revision=2`
+
+> [!Warning] 注意
+> 可以通过设置 `spec.revisonHistoryLimit`，来指定 deployment 保留多少 revison，如果设置为*0*，则不允许 deployment 回退了.
+
+###### 扩容缩容
+
+通过 kube scale 命令可以进行自动扩容/缩容，以及通过 kube edit 编辑 repli cas 也可以实现扩容/缩容
+扩容与缩容只是直接创建副本数，没有更新 pod template 因此不会创建新的 rs
+
+```bash
+subectl scale replicas=3 deploy nginx-deploy
+```
+
+###### 暂停与恢复
+
+由于每次对 pod template 中的信息发生修改后，都会触发更新 deployment 操作，那么此时如果频繁修改信息，就会产生多次更新，而实际上只需要执行最后一次更新即可，当出现此类情况时我们就可以暂停 deployment 的 rollout
+通过 `kubectl rollout pause deployment<name>` 就可以实现暂停，直到你下次恢复后才会继续进行滚动更新
+尝试对容器进行修改。然后查看是否发生更新操作了
+
+```bash
+kubectl set image deploy <name> nginx=nginx:1.17.9
+kubectl get po
+```
+
+通过以上操作可以看到实际并没有发生修改，此时我们再次进行修改一些属性，如限制 nginx 容器的最大 cpu 为 0.2 核，最大内存为 128M,最小内存为 64M,最小 cpu 为 0.1 核
+
+```bash
+kubectl set resources deploy <deploy_name> -c <container_name> --limits=cpu=200m,memory=128Mi --requests=cpu100m,memory=64Mi
+```
+
+通过格式化输出 `kubectl get deploy <name> -oyaml`, 可以看到配置确实发生了修改，再通过 `kubectl get po` 可以看到 pod 没有被更新
+
+1. 暂停：`kubectl rollout pause deploy nginx-deploy`
+2. 恢复：`kubectl rollout resume deploy nginx-deploy`
+
+##### 5.1.5.2.2 配置文件
+
+#### 5.1.5.3 StatefulSet
+
+##### 5.1.5.3.1 功能
+
+###### 创健
+
+###### 扩容缩容
+
+###### 镜像更新
+
+1. RollingUpdate -->灰度发布
+2. OnDelete
+
+###### 删除
+
+###### 删除 Pvc
+
+##### 5.1.5.3.2 配置文件
+
+```yml
+---
+apiversion: v1
+kind: Service
+metadata:
+	name: nginx
+	labels: 
+		app: nginx
+spec:
+	ports:
+	- port: 80
+	  name: web
+	clusterIP: None
+	selector:
+		app: nginx
+---
+apiVersion: apps/v1
+kind: StatefulSet # StatefulSet类型的资源
+metadata:
+	name: web # StatefulSet对象的名字
+spec:
+	serviceName: "nginx" # 使用哪个service来管理
+	replicas: 2
+	selector:
+		matchLabels:
+			app: nginx
+	template: # pod模板
+		metadata:
+			labels:
+				app: nginx
+	spec: # 规格
+		containers:
+		- name: nginx # 容器名称
+		  image: nginx:1.7.9 # 镜像名称和版本
+		  ports: # 容器内部要暴露的端口
+		  - containerPort: 80 # 具体暴露的端口号
+			name: web # 端口名称
+		  volumeMounts: # 加载存储卷
+		  - name: www # 指定加载哪个数据卷
+				mountPath: /usr/share/nginx/html # 加载到容器中的哪个目录
+	volumeclaimTemplates: # 数据卷模板
+	  - metadata: # 数据卷描述
+			name: www # 数据卷名称
+				annotations: #数据卷注解
+					volume.alpha.kubernetes.io/storage-class: anything
+		spec: # 数据卷期望配置（规约）
+			accessModes: ["ReadWriteOnce"] # 访问模式
+			resources:
+				requests:
+					storage: 1Gi # 请求1G存储资源
+```
 
 # 6 📖参考文献
 
