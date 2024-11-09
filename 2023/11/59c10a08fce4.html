@@ -52,7 +52,7 @@
 <meta property="og:image" content="https://qnpicmap.fcsluck.top/pics/202311182136214.png">
 <meta property="og:image" content="https://user-images.githubusercontent.com/9840435/60266022-72a82400-98e7-11e9-9958-f9004c2f97e1.gif">
 <meta property="article:published_time" content="2023-11-18T06:53:11.000Z">
-<meta property="article:modified_time" content="2024-07-21T16:00:28.927Z">
+<meta property="article:modified_time" content="2024-11-09T17:29:26.164Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="java">
 <meta property="article:tag" content="mysql">
@@ -347,7 +347,7 @@
         
         
         
-          731 分钟
+          732 分钟
         
       </span>
     
@@ -398,7 +398,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：4 个月前
+                    本文最后更新于：几秒前
                   
                 
               </p>
@@ -468,7 +468,7 @@
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">mysql -u root -p<br></code></pre></td></tr></table></figure>
 
 <p>修改密码验证策略（简单策略或者调整验证条件）：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs mysql"># set global validate_password_policy=0;<br>show global variables like &quot;validate_pass%&quot;;<br># 设置无特殊字符限制，数字限制等<br>set global validate_password_special_char_count=0;<br>set global validate_password_mixed_case_count=0;<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs mysql"># 弱校验模式：set global validate_password_policy=0;<br># 一般校验模式：set global validate_password_policy=1;<br>show global variables like &quot;validate_pass%&quot;;<br># 设置无特殊字符限制，数字限制等<br>set global validate_password_special_char_count=0;<br>set global validate_password_mixed_case_count=0;<br>set global validate_password_number_count=0;<br></code></pre></td></tr></table></figure>
 
 <p>修改密码：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs mysql">alter user &#x27;root&#x27;@&#x27;localhost&#x27; identified by &#x27;@test654321&#x27;;<br># 新建并授权新用户任意ip可连接<br>grant all privileges on *.* to root@&quot;%&quot; identified by &#x27;1234560&#x27; with grant option;<br># 刷新权限<br>flush privileges;<br></code></pre></td></tr></table></figure>
@@ -1866,7 +1866,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年7月22日</div>
+          <div>2024年11月10日</div>
         </div>
       
       <div class="license-meta-item">
