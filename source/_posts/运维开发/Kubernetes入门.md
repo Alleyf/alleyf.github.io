@@ -794,7 +794,7 @@ kubectl apply -f calico.yaml
 > [!Warning] Tips
 > 执行上述命令后会自动运行一些 pod，但是可能会由于**镜像被墙而无法拉取**，因此需要**配置可用镜像源或者指定镜像源 pull 后再 docker save 和 load 转移到其他节点**上。
 
-###### 5.1.2 测试 Kubernetes 集群
+###### 测试 Kubernetes 集群
 
 1. #创建部署
 
