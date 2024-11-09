@@ -1243,9 +1243,79 @@ kubectl set resources deploy <deploy_name> -c <container_name> --limits=cpu=200m
 
 ###### 创健
 
+```yaml
+---
+apiversion: v1 # 版本号
+kind: Service # Service类型的资源
+metadata:
+	name: nginx # Service 对象名称
+	labels: 
+		app: nginx # 标签
+spec:
+	ports:
+	- port: 80 # 对外端口号
+	  name: web # 端口名称
+	clusterIP: None # 集群IP
+	selector: 
+		app: nginx # 选择器
+---
+apiVersion: apps/v1 # 版本号
+kind: StatefulSet # StatefulSet类型的资源
+metadata:
+	name: web # StatefulSet对象的名字
+spec:
+	serviceName: "nginx" # 使用哪个service来管理
+	replicas: 2
+	selector:
+		matchLabels:
+			app: nginx
+	template: # pod模板
+		metadata:
+			labels:
+				app: nginx
+	spec: # 规格
+		containers:
+		- name: nginx # 容器名称
+		  image: nginx:1.7.9 # 镜像名称和版本
+		  ports: # 容器内部要暴露的端口
+		  - containerPort: 80 # 具体暴露的端口号
+			name: web # 端口名称
+		  volumeMounts: # 加载存储卷
+		  - name: www # 指定加载哪个数据卷
+				mountPath: /usr/share/nginx/html # 加载到容器中的哪个目录
+	volumeclaimTemplates: # 数据卷模板
+	  - metadata: # 数据卷描述
+			name: www # 数据卷名称
+				annotations: #数据卷注解
+					volume.alpha.kubernetes.io/storage-class: anything
+		spec: # 数据卷期望配置（规约）
+			accessModes: ["ReadWriteOnce"] # 访问模式
+			resources:
+				requests:
+					storage: 1Gi # 请求1G存储资源
+```
+
 ###### 扩容缩容
 
+1. 扩容
+
+```sh
+kubectl scale statefulset web --replicas=5
+```
+
+1. 缩容
+
+```sh
+kubectl patch statefulset web -p '{"spec":{"replicas":3}}'
+```
+
 ###### 镜像更新
+
+```sh
+kubectl patch statefulset web --type='json' -p='[{"op": "replace",
+"path": "/spec/template/spec/containers/0/image",
+"value": "nginx:1.9.1"}]'
+```
 
 1. RollingUpdate -->灰度发布
 2. OnDelete
@@ -1258,21 +1328,21 @@ kubectl set resources deploy <deploy_name> -c <container_name> --limits=cpu=200m
 
 ```yml
 ---
-apiversion: v1
-kind: Service
+apiversion: v1 # 版本号
+kind: Service # Service类型的资源
 metadata:
-	name: nginx
+	name: nginx # Service 对象名称
 	labels: 
-		app: nginx
+		app: nginx # 标签
 spec:
 	ports:
-	- port: 80
-	  name: web
-	clusterIP: None
-	selector:
-		app: nginx
+	- port: 80 # 对外端口号
+	  name: web # 端口名称
+	clusterIP: None # 集群IP
+	selector: 
+		app: nginx # 选择器
 ---
-apiVersion: apps/v1
+apiVersion: apps/v1 # 版本号
 kind: StatefulSet # StatefulSet类型的资源
 metadata:
 	name: web # StatefulSet对象的名字
