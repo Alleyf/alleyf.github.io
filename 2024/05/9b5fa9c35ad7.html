@@ -27,7 +27,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://picsum.photos/800/250">
 <meta property="article:published_time" content="2024-05-10T15:54:16.000Z">
-<meta property="article:modified_time" content="2024-11-09T17:29:26.163Z">
+<meta property="article:modified_time" content="2024-11-14T15:08:12.629Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="K8s">
 <meta name="twitter:card" content="summary_large_image">
@@ -307,7 +307,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          35k 字
+          36k 字
         
       </span>
     
@@ -318,7 +318,7 @@
         
         
         
-          291 分钟
+          298 分钟
         
       </span>
     
@@ -1195,8 +1195,44 @@
 
 <ol>
 <li>RollingUpdate –&gt;灰度发布</li>
+</ol>
+<p>利用滚动更新中的 partition 属性，可以实现简易的灰度发布效果。</p>
+<blockquote>
+<p>例如我们有 5 个 pod，如果当前 partition 设置为 3，那么此时滚动更新时，只会更新那些序号&gt;&#x3D; 3 的 pod<br>利用该机制，找们可以通过控制 partition 的值，来决定只更新其中一部分 pod，确认设有问题后再主健增大更新的 pod 数量，最将实现全部 pod 更新。</p>
+</blockquote>
+<ol>
 <li>OnDelete</li>
 </ol>
+<h6 id="金丝雀发布-灰度发布"><a href="#金丝雀发布-灰度发布" class="headerlink" title="金丝雀发布&#x2F;灰度发布"></a>金丝雀发布&#x2F;灰度发布</h6><p><strong>灰度发布</strong>和<strong>金丝雀发布</strong>都是指在软件开发和运维中，分阶段将新版本或新功能发布给用户，以减少风险和确保系统的稳定性。这两种发布策略通常用于快速发现问题并将影响控制在较小范围内。</p>
+<hr>
+<ol>
+<li><strong>灰度发布</strong><br>灰度发布，也称渐进发布，是指将新版本分阶段发布给用户群体，逐步扩大使用范围。这样可以通过观察和收集一部分用户的反馈来判断是否存在问题，并避免一次性发布给所有用户带来的风险。</li>
+</ol>
+<p><strong>特点：</strong></p>
+<ul>
+<li><strong>控制范围</strong>：通过用户群体的逐步扩展控制风险范围。</li>
+<li><strong>受控发布</strong>：新功能逐步对更大范围的用户开放，可以提前识别潜在问题。</li>
+<li><strong>版本回滚</strong>：如果出现问题，可以及时回滚版本，影响较小。</li>
+</ul>
+<p><strong>应用场景</strong>：<br>适用于新功能不确定是否会影响系统稳定性的场景，尤其是用户规模较大的系统。</p>
+<hr>
+<ol start="2">
+<li><strong>金丝雀发布</strong><br>金丝雀发布（Canary Release）源自煤矿工人在矿井放置金丝雀的做法，以测试矿井空气是否安全。它指的是在发布新版本时，先让一小部分用户使用新版本，类似于灰度发布，但通常用户范围较小，常被称为“试水”。</li>
+</ol>
+<p><strong>特点：</strong></p>
+<ul>
+<li><strong>小范围验证</strong>：仅对少数用户（如测试用户或早期用户）开放，以验证新版本的稳定性。</li>
+<li><strong>动态调整</strong>：如果小范围用户反馈良好，可以逐步扩大范围。</li>
+<li><strong>灵活性强</strong>：比灰度发布更加保守，但灵活性更高。</li>
+</ul>
+<p><strong>应用场景</strong>：<br>适合高风险功能的发布，比如涉及核心业务、用户数量大、系统复杂的场景。</p>
+<hr>
+<p><strong>区别</strong>：</p>
+<ul>
+<li>灰度发布通常是逐步扩大用户群体，持续进行不同阶段的测试；金丝雀发布则偏向于初期的小范围验证。</li>
+<li>金丝雀发布通常风险更小，用户数量受控严格，灰度发布在成功后会逐步推广到全量用户。</li>
+</ul>
+<p>总的来说，这两种方法都旨在降低发布新版本的风险，确保系统的稳定性和用户体验。</p>
 <h6 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h6><h6 id="删除-Pvc"><a href="#删除-Pvc" class="headerlink" title="删除 Pvc"></a>删除 Pvc</h6><h5 id="5-1-5-3-2-配置文件"><a href="#5-1-5-3-2-配置文件" class="headerlink" title="5.1.5.3.2 配置文件"></a>5.1.5.3.2 配置文件</h5><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-meta">---</span><br><span class="hljs-attr">apiversion:</span> <span class="hljs-string">v1</span> <span class="hljs-comment"># 版本号</span><br><span class="hljs-attr">kind:</span> <span class="hljs-string">Service</span> <span class="hljs-comment"># Service类型的资源</span><br><span class="hljs-attr">metadata:</span><br>	<span class="hljs-attr">name:</span> <span class="hljs-string">nginx</span> <span class="hljs-comment"># Service 对象名称</span><br>	<span class="hljs-attr">labels:</span> <br>		<span class="hljs-attr">app:</span> <span class="hljs-string">nginx</span> <span class="hljs-comment"># 标签</span><br><span class="hljs-attr">spec:</span><br>	<span class="hljs-attr">ports:</span><br>	<span class="hljs-bullet">-</span> <span class="hljs-attr">port:</span> <span class="hljs-number">80</span> <span class="hljs-comment"># 对外端口号</span><br>	  <span class="hljs-attr">name:</span> <span class="hljs-string">web</span> <span class="hljs-comment"># 端口名称</span><br>	<span class="hljs-attr">clusterIP:</span> <span class="hljs-string">None</span> <span class="hljs-comment"># 集群IP</span><br>	<span class="hljs-attr">selector:</span> <br>		<span class="hljs-attr">app:</span> <span class="hljs-string">nginx</span> <span class="hljs-comment"># 选择器</span><br><span class="hljs-meta">---</span><br><span class="hljs-attr">apiVersion:</span> <span class="hljs-string">apps/v1</span> <span class="hljs-comment"># 版本号</span><br><span class="hljs-attr">kind:</span> <span class="hljs-string">StatefulSet</span> <span class="hljs-comment"># StatefulSet类型的资源</span><br><span class="hljs-attr">metadata:</span><br>	<span class="hljs-attr">name:</span> <span class="hljs-string">web</span> <span class="hljs-comment"># StatefulSet对象的名字</span><br><span class="hljs-attr">spec:</span><br>	<span class="hljs-attr">serviceName:</span> <span class="hljs-string">&quot;nginx&quot;</span> <span class="hljs-comment"># 使用哪个service来管理</span><br>	<span class="hljs-attr">replicas:</span> <span class="hljs-number">2</span><br>	<span class="hljs-attr">selector:</span><br>		<span class="hljs-attr">matchLabels:</span><br>			<span class="hljs-attr">app:</span> <span class="hljs-string">nginx</span><br>	<span class="hljs-attr">template:</span> <span class="hljs-comment"># pod模板</span><br>		<span class="hljs-attr">metadata:</span><br>			<span class="hljs-attr">labels:</span><br>				<span class="hljs-attr">app:</span> <span class="hljs-string">nginx</span><br>	<span class="hljs-attr">spec:</span> <span class="hljs-comment"># 规格</span><br>		<span class="hljs-attr">containers:</span><br>		<span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">nginx</span> <span class="hljs-comment"># 容器名称</span><br>		  <span class="hljs-attr">image:</span> <span class="hljs-string">nginx:1.7.9</span> <span class="hljs-comment"># 镜像名称和版本</span><br>		  <span class="hljs-attr">ports:</span> <span class="hljs-comment"># 容器内部要暴露的端口</span><br>		  <span class="hljs-bullet">-</span> <span class="hljs-attr">containerPort:</span> <span class="hljs-number">80</span> <span class="hljs-comment"># 具体暴露的端口号</span><br>			<span class="hljs-attr">name:</span> <span class="hljs-string">web</span> <span class="hljs-comment"># 端口名称</span><br>		  <span class="hljs-attr">volumeMounts:</span> <span class="hljs-comment"># 加载存储卷</span><br>		  <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">www</span> <span class="hljs-comment"># 指定加载哪个数据卷</span><br>				<span class="hljs-attr">mountPath:</span> <span class="hljs-string">/usr/share/nginx/html</span> <span class="hljs-comment"># 加载到容器中的哪个目录</span><br>	<span class="hljs-attr">volumeclaimTemplates:</span> <span class="hljs-comment"># 数据卷模板</span><br>	  <span class="hljs-bullet">-</span> <span class="hljs-attr">metadata:</span> <span class="hljs-comment"># 数据卷描述</span><br>			<span class="hljs-attr">name:</span> <span class="hljs-string">www</span> <span class="hljs-comment"># 数据卷名称</span><br>				<span class="hljs-attr">annotations:</span> <span class="hljs-comment">#数据卷注解</span><br>					<span class="hljs-attr">volume.alpha.kubernetes.io/storage-class:</span> <span class="hljs-string">anything</span><br>		<span class="hljs-attr">spec:</span> <span class="hljs-comment"># 数据卷期望配置（规约）</span><br>			<span class="hljs-attr">accessModes:</span> [<span class="hljs-string">&quot;ReadWriteOnce&quot;</span>] <span class="hljs-comment"># 访问模式</span><br>			<span class="hljs-attr">resources:</span><br>				<span class="hljs-attr">requests:</span><br>					<span class="hljs-attr">storage:</span> <span class="hljs-string">1Gi</span> <span class="hljs-comment"># 请求1G存储资源</span><br></code></pre></td></tr></table></figure>
 
 <h1 id="6-📖参考文献"><a href="#6-📖参考文献" class="headerlink" title="6 📖参考文献"></a>6 📖参考文献</h1><ol>
@@ -1271,7 +1307,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年11月10日</div>
+          <div>2024年11月14日</div>
         </div>
       
       <div class="license-meta-item">
