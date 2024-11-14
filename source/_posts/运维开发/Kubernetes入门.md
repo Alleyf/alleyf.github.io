@@ -1324,7 +1324,7 @@ kubectl patch statefulset web --type='json' -p='[{"op": "replace",
 > 例如我们有 5 个 pod，如果当前 partition 设置为 3，那么此时滚动更新时，只会更新那些序号>= 3 的 pod
 利用该机制，找们可以通过控制 partition 的值，来决定只更新其中一部分 pod，确认设有问题后再主健增大更新的 pod 数量，最将实现全部 pod 更新。
 
-1. OnDelete
+2. OnDelete
 
 ###### 金丝雀发布/灰度发布
 
