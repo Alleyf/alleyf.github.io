@@ -1243,12 +1243,126 @@ kubectl set resources deploy <deploy_name> -c <container_name> --limits=cpu=200m
 
 ###### 创健
 
+```yaml
+---
+apiversion: v1 # 版本号
+kind: Service # Service类型的资源
+metadata:
+	name: nginx # Service 对象名称
+	labels: 
+		app: nginx # 标签
+spec:
+	ports:
+	- port: 80 # 对外端口号
+	  name: web # 端口名称
+	clusterIP: None # 集群IP
+	selector: 
+		app: nginx # 选择器
+---
+apiVersion: apps/v1 # 版本号
+kind: StatefulSet # StatefulSet类型的资源
+metadata:
+	name: web # StatefulSet对象的名字
+spec:
+	serviceName: "nginx" # 使用哪个service来管理
+	replicas: 2
+	selector:
+		matchLabels:
+			app: nginx
+	template: # pod模板
+		metadata:
+			labels:
+				app: nginx
+	spec: # 规格
+		containers:
+		- name: nginx # 容器名称
+		  image: nginx:1.7.9 # 镜像名称和版本
+		  ports: # 容器内部要暴露的端口
+		  - containerPort: 80 # 具体暴露的端口号
+			name: web # 端口名称
+		  volumeMounts: # 加载存储卷
+		  - name: www # 指定加载哪个数据卷
+				mountPath: /usr/share/nginx/html # 加载到容器中的哪个目录
+	volumeclaimTemplates: # 数据卷模板
+	  - metadata: # 数据卷描述
+			name: www # 数据卷名称
+				annotations: #数据卷注解
+					volume.alpha.kubernetes.io/storage-class: anything
+		spec: # 数据卷期望配置（规约）
+			accessModes: ["ReadWriteOnce"] # 访问模式
+			resources:
+				requests:
+					storage: 1Gi # 请求1G存储资源
+```
+
 ###### 扩容缩容
+
+1. 扩容
+
+```sh
+kubectl scale statefulset web --replicas=5
+```
+
+1. 缩容
+
+```sh
+kubectl patch statefulset web -p '{"spec":{"replicas":3}}'
+```
 
 ###### 镜像更新
 
+```sh
+kubectl patch statefulset web --type='json' -p='[{"op": "replace",
+"path": "/spec/template/spec/containers/0/image",
+"value": "nginx:1.9.1"}]'
+```
+
 1. RollingUpdate -->灰度发布
+
+利用滚动更新中的 partition 属性，可以实现简易的灰度发布效果。
+
+> 例如我们有 5 个 pod，如果当前 partition 设置为 3，那么此时滚动更新时，只会更新那些序号>= 3 的 pod
+利用该机制，找们可以通过控制 partition 的值，来决定只更新其中一部分 pod，确认设有问题后再主健增大更新的 pod 数量，最将实现全部 pod 更新。
+
 2. OnDelete
+
+###### 金丝雀发布/灰度发布
+
+**灰度发布**和**金丝雀发布**都是指在软件开发和运维中，分阶段将新版本或新功能发布给用户，以减少风险和确保系统的稳定性。这两种发布策略通常用于快速发现问题并将影响控制在较小范围内。
+
+---
+
+1. **灰度发布**
+灰度发布，也称渐进发布，是指将新版本分阶段发布给用户群体，逐步扩大使用范围。这样可以通过观察和收集一部分用户的反馈来判断是否存在问题，并避免一次性发布给所有用户带来的风险。
+
+**特点：**
+- **控制范围**：通过用户群体的逐步扩展控制风险范围。
+- **受控发布**：新功能逐步对更大范围的用户开放，可以提前识别潜在问题。
+- **版本回滚**：如果出现问题，可以及时回滚版本，影响较小。
+
+**应用场景**：
+适用于新功能不确定是否会影响系统稳定性的场景，尤其是用户规模较大的系统。
+
+---
+
+2. **金丝雀发布**
+金丝雀发布（Canary Release）源自煤矿工人在矿井放置金丝雀的做法，以测试矿井空气是否安全。它指的是在发布新版本时，先让一小部分用户使用新版本，类似于灰度发布，但通常用户范围较小，常被称为“试水”。
+
+**特点：**
+- **小范围验证**：仅对少数用户（如测试用户或早期用户）开放，以验证新版本的稳定性。
+- **动态调整**：如果小范围用户反馈良好，可以逐步扩大范围。
+- **灵活性强**：比灰度发布更加保守，但灵活性更高。
+
+**应用场景**：
+适合高风险功能的发布，比如涉及核心业务、用户数量大、系统复杂的场景。
+
+---
+
+**区别**：
+- 灰度发布通常是逐步扩大用户群体，持续进行不同阶段的测试；金丝雀发布则偏向于初期的小范围验证。
+- 金丝雀发布通常风险更小，用户数量受控严格，灰度发布在成功后会逐步推广到全量用户。
+
+总的来说，这两种方法都旨在降低发布新版本的风险，确保系统的稳定性和用户体验。
 
 ###### 删除
 
@@ -1258,21 +1372,21 @@ kubectl set resources deploy <deploy_name> -c <container_name> --limits=cpu=200m
 
 ```yml
 ---
-apiversion: v1
-kind: Service
+apiversion: v1 # 版本号
+kind: Service # Service类型的资源
 metadata:
-	name: nginx
+	name: nginx # Service 对象名称
 	labels: 
-		app: nginx
+		app: nginx # 标签
 spec:
 	ports:
-	- port: 80
-	  name: web
-	clusterIP: None
-	selector:
-		app: nginx
+	- port: 80 # 对外端口号
+	  name: web # 端口名称
+	clusterIP: None # 集群IP
+	selector: 
+		app: nginx # 选择器
 ---
-apiVersion: apps/v1
+apiVersion: apps/v1 # 版本号
 kind: StatefulSet # StatefulSet类型的资源
 metadata:
 	name: web # StatefulSet对象的名字
