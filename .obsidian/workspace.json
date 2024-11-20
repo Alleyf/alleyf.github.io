@@ -8,52 +8,21 @@
         "type": "tabs",
         "children": [
           {
-            "id": "d2b3cb0e70b4be24",
+            "id": "0cb6839ac3dc827d",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/后端开发/开发踩坑日记.md",
+                "file": "source/_posts/运维开发/运维排忧解难.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "开发踩坑日记"
-            }
-          },
-          {
-            "id": "1ad1cb334c8d9938",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "source/_posts/科研学习/会议讨论/周会.md",
-                "mode": "preview",
-                "backlinks": false,
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "周会"
-            }
-          },
-          {
-            "id": "e602a4f0db3b0240",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "source/_posts/科研学习/会议讨论/周会.md",
-                "mode": "preview",
-                "backlinks": false,
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "周会"
+              "title": "运维排忧解难"
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -90,10 +59,10 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/科研学习/会议讨论/周会.md"
+                "file": "source/_posts/运维开发/运维排忧解难.md"
               },
               "icon": "lucide-list",
-              "title": "周会 的大纲"
+              "title": "运维排忧解难 的大纲"
             }
           }
         ]
@@ -191,8 +160,9 @@
       "obsidian-memos:Memos": false
     }
   },
-  "active": "e602a4f0db3b0240",
+  "active": "0cb6839ac3dc827d",
   "lastOpenFiles": [
+    "source/_posts/运维开发/运维排忧解难.md",
     "conflict-files-obsidian-git.md",
     "source/_posts/科研学习/会议讨论/周会.md",
     "source/_posts/后端开发/开发踩坑日记.md",
@@ -200,7 +170,6 @@
     "source/_obsidian/周报模板.md",
     "source/_posts/科研学习/研究思考-毕业/研究思路.md",
     "source/_posts/科研学习/研究思考-毕业",
-    "source/_posts/运维开发/运维排忧解难.md",
     "source/_posts/运维开发/各种环境配置.md",
     "source/_posts/运维开发/Kubernetes入门.md",
     "attachment/Pasted image 20240721233501.png",
