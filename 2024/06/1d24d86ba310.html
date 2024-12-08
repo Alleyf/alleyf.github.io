@@ -27,7 +27,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://picsum.photos/800/250">
 <meta property="article:published_time" content="2024-06-27T16:37:11.000Z">
-<meta property="article:modified_time" content="2024-08-16T13:56:16.061Z">
+<meta property="article:modified_time" content="2024-12-08T06:52:45.785Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="DevOps">
 <meta property="article:tag" content="运维">
@@ -319,7 +319,7 @@
         
         
         
-          94 分钟
+          95 分钟
         
       </span>
     
@@ -370,7 +370,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：4 个月前
+                    本文最后更新于：3 分钟前
                   
                 
               </p>
@@ -538,6 +538,9 @@
 
 <p>条件查询指定命名空间下指定状态的 pod 并批量删除</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">kubectl get pods -n etms | grep Evicted | awk <span class="hljs-string">&#x27;&#123;print $1&#125;&#x27;</span> | xargs kubectl delete pods --kubeconfig ./kube_config_cluster.yml -n etms<br></code></pre></td></tr></table></figure>
+
+<p>eg：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">kube-test get pods -n etms | grep Evicted | awk <span class="hljs-string">&#x27;&#123;print $1&#125;&#x27;</span> | xargs kubectl delete pods --kubeconfig ./test/kube_config_cluster.yml -n etms<br></code></pre></td></tr></table></figure>
 
 <p>强制删除 pod</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">kubectl delete pod hsas-1721236200-5q59b --grace-period=0 --force -n hsas<br></code></pre></td></tr></table></figure>
@@ -777,7 +780,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年8月16日</div>
+          <div>2024年12月8日</div>
         </div>
       
       <div class="license-meta-item">
