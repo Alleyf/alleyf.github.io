@@ -24,8 +24,12 @@
   "unresolvedLinks": false,
   "recentFilesStore": [
     {
-      "filepath": "source/_posts/科研学习/会议讨论/周会.md",
-      "timestamp": 1733649206472
+      "filepath": "source/_posts/运维开发/Kubernetes入门.md",
+      "timestamp": 1733934973656
+    },
+    {
+      "filepath": "source/_posts/科研学习/学习方法/科研思路.md",
+      "timestamp": 1733934021317
     }
   ],
   "starredFileStore": [],

@@ -1317,14 +1317,12 @@ kubectl patch statefulset web --type='json' -p='[{"op": "replace",
 "value": "nginx:1.9.1"}]'
 ```
 
-1. RollingUpdate -->灰度发布
+1. **RollingUpdate -->灰度发布**
 
-利用滚动更新中的 partition 属性，可以实现简易的灰度发布效果。
+利用滚动更新中的 `partition` 属性，可以实现简易的灰度发布效果。
 
-> 例如我们有 5 个 pod，如果当前 partition 设置为 3，那么此时滚动更新时，只会更新那些序号>= 3 的 pod
+> 例如我们有 5 个 pod，如果当前 partition 设置为 3，那么此时滚动更新时，只会更新那些序号 `>= 3 的 pod`
 利用该机制，找们可以通过控制 partition 的值，来决定只更新其中一部分 pod，确认设有问题后再主健增大更新的 pod 数量，最将实现全部 pod 更新。
-
-2. OnDelete
 
 ###### 金丝雀发布/灰度发布
 
@@ -1356,17 +1354,46 @@ kubectl patch statefulset web --type='json' -p='[{"op": "replace",
 **应用场景**：
 适合高风险功能的发布，比如涉及核心业务、用户数量大、系统复杂的场景。
 
----
-
 **区别**：
 - 灰度发布通常是逐步扩大用户群体，持续进行不同阶段的测试；金丝雀发布则偏向于初期的小范围验证。
 - 金丝雀发布通常风险更小，用户数量受控严格，灰度发布在成功后会逐步推广到全量用户。
 
 总的来说，这两种方法都旨在降低发布新版本的风险，确保系统的稳定性和用户体验。
 
+---
+
+2. OnDelete
+
+更新策略为（UpdateStrategy：OnDelete）时，只有当删除 pod 后才进行更新。
+
 ###### 删除
 
+1. 删除 statefulset 和 Headless Service
+   级联删除：删除 statefulset 时会同时删除 pods
+
+```bash
+kubectl delete statefulset web
+```
+
+非级联删除：删除 statefulset 时不会删除 pods，删除 sts 后，pod：
+
+```bash
+kubectl deelte sts web --cascade=false
+```
+
+2. 删除service
+
+```bash
+kubectl delete service nginx
+```
+
 ###### 删除 Pvc
+
+StatefulSet删除后PVC还会保留，数据不再使用的话也需要删除
+
+```bash
+kubectl delete pvc www-web-0 www-web-1
+```
 
 ##### 5.1.5.3.2 配置文件
 
@@ -1421,6 +1448,14 @@ spec:
 				requests:
 					storage: 1Gi # 请求1G存储资源
 ```
+
+---
+
+#### 5.1.5.4 DaemonSet
+
+> 作用：为每一个匹配的Node都部署一个守护进程。
+
+
 
 # 6 📖参考文献
 
