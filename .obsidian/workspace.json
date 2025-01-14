@@ -13,13 +13,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/科研学习/论文总结/Chain-of-Thought Reasoning Without Prompting.md",
-                "mode": "source",
+                "file": "source/_posts/科研学习/论文总结/BERT Pre-training of Deep Bidirectional Transformers for Language Understanding.md",
+                "mode": "preview",
                 "backlinks": false,
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Chain-of-Thought Reasoning Without Prompting"
+              "title": "BERT Pre-training of Deep Bidirectional Transformers for Language Understanding"
             }
           }
         ]
@@ -59,10 +59,10 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/科研学习/论文总结/Chain-of-Thought Reasoning Without Prompting.md"
+                "file": "source/_posts/科研学习/论文总结/BERT Pre-training of Deep Bidirectional Transformers for Language Understanding.md"
               },
               "icon": "lucide-list",
-              "title": "Chain-of-Thought Reasoning Without Prompting 的大纲"
+              "title": "BERT Pre-training of Deep Bidirectional Transformers for Language Understanding 的大纲"
             }
           }
         ]
@@ -162,6 +162,9 @@
   },
   "active": "f2c938a7b5bca938",
   "lastOpenFiles": [
+    "BERT Pre-training of Deep Bidirectional Transformers for Language Understanding.html",
+    "BERT Pre-training of Deep Bidirectional Transformers for Language Understanding.md",
+    "source/_posts/科研学习/论文总结/Chain-of-Thought Reasoning Without Prompting.md",
     "source/_posts/运维开发/各种环境配置.md~",
     "public/local-search.xml~",
     "source/_posts/科研学习/研究思考-毕业/研究思路.md",
@@ -174,7 +177,6 @@
     "public/tags/高并发",
     "public/archives/2024/12/index.html",
     "public/archives/2024/12",
-    "public/2024/12/8103216725bf.html",
     "source/_posts/运维开发/性能测试.md",
     "source/_posts/运维开发/Kubernetes入门.md",
     "source/_posts/科研学习/学习方法/科研思路.md",
@@ -199,9 +201,7 @@
     "source/_posts/运维开发/Scrapy-修炼手册.md",
     "source/_posts/科研学习/论文总结/Large Language Models for Generative Information  Extraction A Survey.md",
     "source/_posts/科研学习/论文总结/Explainability for large language models A survey.md",
-    "source/_posts/科研学习/论文总结/Chain-of-Thought Reasoning Without Prompting.md",
     "source/_posts/科研学习/论文总结/A survey of large language models.md",
-    "source/categories/index.md",
     "canvas/未命名.canvas",
     "canvas/AI学习思路.canvas",
     "attachment/Pasted Image 20240102110312.jpeg",

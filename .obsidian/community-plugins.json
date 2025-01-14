@@ -16,7 +16,6 @@
   "editing-toolbar",
   "obsidian-style-settings",
   "easy-typing-obsidian",
-  "marp-slides",
   "obsidian-enhancing-export",
   "media-extended",
   "obsidian-table-generator",
@@ -28,5 +27,6 @@
   "dataview",
   "obsidian-projects",
   "url-into-selection",
-  "obsidian-outliner"
+  "obsidian-outliner",
+  "marp-slides"
 ]
