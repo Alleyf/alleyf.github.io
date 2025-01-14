@@ -13,13 +13,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/科研学习/论文总结/BERT Pre-training of Deep Bidirectional Transformers for Language Understanding.md",
-                "mode": "preview",
+                "file": "source/about/index.md",
+                "mode": "source",
                 "backlinks": false,
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "BERT Pre-training of Deep Bidirectional Transformers for Language Understanding"
+              "title": "index"
             }
           }
         ]
@@ -59,10 +59,10 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/科研学习/论文总结/BERT Pre-training of Deep Bidirectional Transformers for Language Understanding.md"
+                "file": "source/about/index.md"
               },
               "icon": "lucide-list",
-              "title": "BERT Pre-training of Deep Bidirectional Transformers for Language Understanding 的大纲"
+              "title": "index 的大纲"
             }
           }
         ]
@@ -162,8 +162,9 @@
   },
   "active": "f2c938a7b5bca938",
   "lastOpenFiles": [
-    "BERT Pre-training of Deep Bidirectional Transformers for Language Understanding.html",
+    "source/_posts/科研学习/论文总结/BERT Pre-training of Deep Bidirectional Transformers for Language Understanding.md",
     "BERT Pre-training of Deep Bidirectional Transformers for Language Understanding.md",
+    "BERT Pre-training of Deep Bidirectional Transformers for Language Understanding.html",
     "source/_posts/科研学习/论文总结/Chain-of-Thought Reasoning Without Prompting.md",
     "source/_posts/运维开发/各种环境配置.md~",
     "public/local-search.xml~",
@@ -176,7 +177,6 @@
     "public/tags/高并发/index.html",
     "public/tags/高并发",
     "public/archives/2024/12/index.html",
-    "public/archives/2024/12",
     "source/_posts/运维开发/性能测试.md",
     "source/_posts/运维开发/Kubernetes入门.md",
     "source/_posts/科研学习/学习方法/科研思路.md",
