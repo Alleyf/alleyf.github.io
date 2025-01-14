@@ -27,7 +27,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://picsum.photos/800/250">
 <meta property="article:published_time" content="2024-01-09T06:53:44.000Z">
-<meta property="article:modified_time" content="2024-06-22T11:46:16.376Z">
+<meta property="article:modified_time" content="2025-01-14T16:50:04.473Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="LLM">
 <meta property="article:tag" content="可解释性">
@@ -370,7 +370,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：7 个月前
+                    本文最后更新于：2 分钟前
                   
                 
               </p>
@@ -389,7 +389,7 @@
 <li>“研究了 LLM 时代解释技术的主要挑战和新机遇。”</li>
 </ol>
 <h2 id="3-📊-研究方法"><a href="#3-📊-研究方法" class="headerlink" title="3 📊 研究方法"></a>3 📊 研究方法</h2><hr>
-<p><img src="https://qnpicmap.fcsluck.top/pics/202401091452852.png" srcset="/img/loading.gif" lazyload alt="|500"></p>
+<p><img src="http://img.alleyf.hidns.co/pics/202401091452852.png" srcset="/img/loading.gif" lazyload alt="|500"></p>
 <p>我们将 LLM 的可解释性分为两种主要范式。基于这种分类，我们总结了与这两种范式相关的 LLM 的不同可解释性技术。我们还讨论了在这两种范式下生成的解释的评估。</p>
 <h3 id="3-1-传统微调范式"><a href="#3-1-传统微调范式" class="headerlink" title="3.1 传统微调范式"></a>3.1 传统微调范式</h3><blockquote>
 <p>首先在大量未标记文本数据的语料库上对语言模型进行预训练，然后在 GLUE 基准测试上对来自特定下游域的一组标记数据（例如 SST-2、MNLI 和 QQP）进行微调（Wang 等人，2019 年）。</p>
@@ -416,7 +416,7 @@
 <li>基本模型：其中一种能力是通过提示进行小样本学习。这种类型适合参数超过十亿的大模型（<code>GPT3、OPT、LLaMA-1&amp;2、Falcon</code>），无需额外的人类偏好对齐。<br>  <strong>可解释性焦点</strong>：了解模型如何学习利用其预先训练的知识来响应提示<strong>。<br>  存在问题</strong>：（1）他们无法遵循用户指令，因为训练前数据包含的指令响应示例很少，并且 （2） 它们往往会产生有偏见和有毒的内容。</li>
 <li>辅助模型：通过监督微调进一步对基础模型进行微调，以实现人类水平的能力，例如开放域对话。关键思想是使模型的响应与人类的反馈和偏好保持一致。<br>  <strong>典型方法</strong>：通过（提示、响应）演示对和来自人类反馈的强化学习 （RLHF） 进行指令调整。模型通过自然语言反馈执行复杂多轮对话。（<code>GPT3.5&amp;4、Claude、LLaMA-2-Chat、Alpaca、Vicuna</code>）<br>  <strong>可解释性焦点</strong>：了解模型如何从对话中学习开放式交互行为。</li>
 </ul>
-<p><img src="https://qnpicmap.fcsluck.top/pics/202401091452743.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="http://img.alleyf.hidns.co/pics/202401091452743.png" srcset="/img/loading.gif" lazyload></p>
 <h4 id="3-2-1-方法"><a href="#3-2-1-方法" class="headerlink" title="3.2.1 方法"></a>3.2.1 方法</h4><ol>
 <li>思想链（CoT）解释</li>
 <li>传统微调范式的全局解释技术（基于概念的解释和基于模块的解释）</li>
@@ -528,7 +528,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年6月22日</div>
+          <div>2025年1月15日</div>
         </div>
       
       <div class="license-meta-item">

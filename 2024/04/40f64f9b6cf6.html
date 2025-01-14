@@ -27,7 +27,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://picsum.photos/800/250">
 <meta property="article:published_time" content="2024-04-18T12:14:59.000Z">
-<meta property="article:modified_time" content="2024-04-19T02:59:19.032Z">
+<meta property="article:modified_time" content="2025-01-14T16:50:04.588Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="微服务">
 <meta property="article:tag" content="架构">
@@ -370,7 +370,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：9 个月前
+                    本文最后更新于：2 分钟前
                   
                 
               </p>
@@ -394,17 +394,17 @@
 </ol>
 </blockquote>
 <h2 id="继承关系"><a href="#继承关系" class="headerlink" title="继承关系"></a>继承关系</h2><p>继承关系时领域模型设计中特有的关系，在转化为数据库设计时有三种方案。</p>
-<h3 id="方案一"><a href="#方案一" class="headerlink" title="方案一"></a>方案一</h3><p><img src="https://qnpicmap.fcsluck.top/pics/202404182059319.png" srcset="/img/loading.gif" lazyload alt="|475|in1"></p>
+<h3 id="方案一"><a href="#方案一" class="headerlink" title="方案一"></a>方案一</h3><p><img src="http://img.alleyf.hidns.co/pics/202404182059319.png" srcset="/img/loading.gif" lazyload alt="|475|in1"></p>
 <p>子对象数量少、属性少时可以采用父子共用一个表，包含父子所有属性对应的字段（父子主键一致），但是存在表稀疏问题，导致大量字段为空，使得存储空间浪费。</p>
 <blockquote>
 <p>优点：简单，整个继承关系的数据全部保存在这个表里<br>缺点：造成“表稀疏”</p>
 </blockquote>
-<h3 id="方案二"><a href="#方案二" class="headerlink" title="方案二"></a>方案二</h3><p><img src="https://qnpicmap.fcsluck.top/pics/202404182101703.png" srcset="/img/loading.gif" lazyload alt="|400"></p>
-<p><img src="https://qnpicmap.fcsluck.top/pics/202404182102555.png" srcset="/img/loading.gif" lazyload alt="|400"></p>
+<h3 id="方案二"><a href="#方案二" class="headerlink" title="方案二"></a>方案二</h3><p><img src="http://img.alleyf.hidns.co/pics/202404182101703.png" srcset="/img/loading.gif" lazyload alt="|400"></p>
+<p><img src="http://img.alleyf.hidns.co/pics/202404182102555.png" srcset="/img/loading.gif" lazyload alt="|400"></p>
 <p>每个子类对应一个表，每个表包含父类属性和子类特有属性（所有子类主键一致，以标识属于一个父类），适用于单次仅查询某一个子对象，不适合单词查询父类的所有子类对象。</p>
-<h3 id="方案三"><a href="#方案三" class="headerlink" title="方案三"></a>方案三</h3><p><img src="https://qnpicmap.fcsluck.top/pics/202404182105167.png" srcset="/img/loading.gif" lazyload alt="|525"></p>
+<h3 id="方案三"><a href="#方案三" class="headerlink" title="方案三"></a>方案三</h3><p><img src="http://img.alleyf.hidns.co/pics/202404182105167.png" srcset="/img/loading.gif" lazyload alt="|525"></p>
 <p>为父类和子类各自都有一张表，子类只包含其特有属性（父子主键一致），当查询父类的所有子类时根据主键查询父类共性信息再查询所有子类表获取特有信息。</p>
-<p><img src="https://qnpicmap.fcsluck.top/pics/202404182112485.png" srcset="/img/loading.gif" lazyload alt="|350"></p>
+<p><img src="http://img.alleyf.hidns.co/pics/202404182112485.png" srcset="/img/loading.gif" lazyload alt="|350"></p>
 <blockquote>
 <p>NoSQL数据库设计中一般采用第一种方案，因为NoSQL数据库把所有join操作的多表信息以集合（数组或对象）的形式全部集成在一个表中。</p>
 </blockquote>
@@ -474,7 +474,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年4月19日</div>
+          <div>2025年1月15日</div>
         </div>
       
       <div class="license-meta-item">
