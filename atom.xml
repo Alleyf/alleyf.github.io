@@ -6,7 +6,7 @@
   <link href="https://alleyf.github.io/atom.xml" rel="self"/>
   
   <link href="https://alleyf.github.io/"/>
-  <updated>2024-08-10T07:36:12.071Z</updated>
+  <updated>2025-01-14T16:24:55.341Z</updated>
   <id>https://alleyf.github.io/</id>
   
   <author>
@@ -17,11 +17,34 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>性能测试</title>
+    <link href="https://alleyf.github.io/2024/12/8103216725bf.html"/>
+    <id>https://alleyf.github.io/2024/12/8103216725bf.html</id>
+    <published>2024-12-16T00:39:27.000Z</published>
+    <updated>2025-01-14T16:24:55.341Z</updated>
+    
+    
+    <summary type="html">性能测试的相关概念和流程。</summary>
+    
+    
+    
+    <category term="运维开发" scheme="https://alleyf.github.io/categories/%E8%BF%90%E7%BB%B4%E5%BC%80%E5%8F%91/"/>
+    
+    
+    <category term="高并发" scheme="https://alleyf.github.io/tags/%E9%AB%98%E5%B9%B6%E5%8F%91/"/>
+    
+    <category term="高性能" scheme="https://alleyf.github.io/tags/%E9%AB%98%E6%80%A7%E8%83%BD/"/>
+    
+    <category term="高可用" scheme="https://alleyf.github.io/tags/%E9%AB%98%E5%8F%AF%E7%94%A8/"/>
+    
+  </entry>
+  
+  <entry>
     <title>研究思路</title>
     <link href="https://alleyf.github.io/2024/08/e73efe4b2ca2.html"/>
     <id>https://alleyf.github.io/2024/08/e73efe4b2ca2.html</id>
     <published>2024-08-10T05:59:49.000Z</published>
-    <updated>2024-08-10T07:36:12.071Z</updated>
+    <updated>2025-01-14T16:24:15.810Z</updated>
     
     
     <summary type="html">科研思路思考</summary>
@@ -85,7 +108,7 @@
     <link href="https://alleyf.github.io/2024/06/1d24d86ba310.html"/>
     <id>https://alleyf.github.io/2024/06/1d24d86ba310.html</id>
     <published>2024-06-27T16:37:11.000Z</published>
-    <updated>2024-12-08T06:52:45.785Z</updated>
+    <updated>2025-01-14T16:24:55.341Z</updated>
     
     
     <summary type="html">运维排错解决问题的必查手册</summary>
@@ -106,7 +129,7 @@
     <link href="https://alleyf.github.io/2024/05/9b5fa9c35ad7.html"/>
     <id>https://alleyf.github.io/2024/05/9b5fa9c35ad7.html</id>
     <published>2024-05-10T15:54:16.000Z</published>
-    <updated>2024-12-11T17:25:17.996Z</updated>
+    <updated>2025-01-14T16:24:55.340Z</updated>
     
     
     <summary type="html">k8s入门（基础介绍，核心概念，实战演练）</summary>
@@ -407,29 +430,6 @@
     
     
     <category term="dataset" scheme="https://alleyf.github.io/tags/dataset/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Scrapy-修炼手册</title>
-    <link href="https://alleyf.github.io/2023/12/332f648a7b46.html"/>
-    <id>https://alleyf.github.io/2023/12/332f648a7b46.html</id>
-    <published>2023-12-11T06:24:44.000Z</published>
-    <updated>2024-01-23T12:57:00.157Z</updated>
-    
-    
-    <summary type="html">关于Scrapy爬虫框架的知识点。</summary>
-    
-    
-    
-    <category term="运维开发" scheme="https://alleyf.github.io/categories/%E8%BF%90%E7%BB%B4%E5%BC%80%E5%8F%91/"/>
-    
-    
-    <category term="python" scheme="https://alleyf.github.io/tags/python/"/>
-    
-    <category term="Scrapy" scheme="https://alleyf.github.io/tags/Scrapy/"/>
-    
-    <category term="爬虫" scheme="https://alleyf.github.io/tags/%E7%88%AC%E8%99%AB/"/>
     
   </entry>
   
