@@ -109,8 +109,8 @@ BERT模型在多个NLP任务上取得了新的最先进结果，包括文本分�
 
 <div class=rimg>
 
-![|450](https://qnpicmap.fcsluck.top/pics/202403170116355.png)
-![|450](https://qnpicmap.fcsluck.top/pics/202403170132555.png)
+![|450](http://img.alleyf.hidns.co/pics/202403170116355.png)
+![|450](http://img.alleyf.hidns.co/pics/202403170132555.png)
 
 </div>
 

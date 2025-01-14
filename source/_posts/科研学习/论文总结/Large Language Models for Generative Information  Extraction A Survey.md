@@ -69,7 +69,7 @@ backgroundImage: url('https://marp.app/assets/hero-background.svg')
 
 ## 👑 贡献
 
-![#c](https://qnpicmap.fcsluck.top/pics/202406102056839.png)
+![#c](http://img.alleyf.hidns.co/pics/202406102056839.png)
 
 本文综述了利用大规模语言模型(LLMs)进行生成式信息抽取的研究进展，对生成 IE 的 LLM 进行了全面的探索，如上图所示。分析了LLMs在不同子任务和领域的应用技术，评估了最新方法，并指出了未来研究方向。
 

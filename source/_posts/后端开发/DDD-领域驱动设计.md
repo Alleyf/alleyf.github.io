@@ -39,7 +39,7 @@ number headings: first-level 1, max 5, start-at 1, 1.1
 
 ### 方案一
 
-![|475|in1](https://qnpicmap.fcsluck.top/pics/202404182059319.png)
+![|475|in1](http://img.alleyf.hidns.co/pics/202404182059319.png)
 
 子对象数量少、属性少时可以采用父子共用一个表，包含父子所有属性对应的字段（父子主键一致），但是存在表稀疏问题，导致大量字段为空，使得存储空间浪费。
 > 优点：简单，整个继承关系的数据全部保存在这个表里
@@ -48,19 +48,19 @@ number headings: first-level 1, max 5, start-at 1, 1.1
 
 ### 方案二
 
-![|400](https://qnpicmap.fcsluck.top/pics/202404182101703.png)
+![|400](http://img.alleyf.hidns.co/pics/202404182101703.png)
 
-![|400](https://qnpicmap.fcsluck.top/pics/202404182102555.png)
+![|400](http://img.alleyf.hidns.co/pics/202404182102555.png)
 
 每个子类对应一个表，每个表包含父类属性和子类特有属性（所有子类主键一致，以标识属于一个父类），适用于单次仅查询某一个子对象，不适合单词查询父类的所有子类对象。
 
 ### 方案三
 
-![|525](https://qnpicmap.fcsluck.top/pics/202404182105167.png)
+![|525](http://img.alleyf.hidns.co/pics/202404182105167.png)
 
 为父类和子类各自都有一张表，子类只包含其特有属性（父子主键一致），当查询父类的所有子类时根据主键查询父类共性信息再查询所有子类表获取特有信息。
 
 
-![|350](https://qnpicmap.fcsluck.top/pics/202404182112485.png)
+![|350](http://img.alleyf.hidns.co/pics/202404182112485.png)
 
 > NoSQL数据库设计中一般采用第一种方案，因为NoSQL数据库把所有join操作的多表信息以集合（数组或对象）的形式全部集成在一个表中。
