@@ -647,12 +647,14 @@ EOF
 - [配置yum国内镜像源](https://blog.csdn.net/m0_49605975/article/details/120039048)
 	1. 备份源文件：mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
 	2. 下载国内 yum 源配置文件到/etc/yum.repos.d/：
-		- 阿里源（推荐）：curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
+		- 华为源（可用）：curl -o /etc/yum.repos.d/CentOS-Base.repo https://repo.huaweicloud.com/repository/conf/CentOS-7-reg.repo
+		- 阿里源（不一定可用）：curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
 		- 网易源：curl -o  /etc/yum.repos.d/CentOS-Base.repo http://mirrors.163.com/.help/CentOS7-Base-163.repo
 	3. 清理 yum 缓存，并生成新的缓存：
 	   - yum clean all
 	   - yum makecache
-	4. 更新 yum 源检查是否生效：yum update
+	4. 更新 yum 源检查是否生效：
+		- yum update
 
 > [!TIP] 温馨提示
 > 一个节点设置完成后，可为其新建一个快照，然后通过 VMware 的克隆功能克隆两个一样的虚拟机；然后只需要调整静态 ip 和主机名称即可（`vi /etc/sysconfig/network-scripts/ifcfg-ens33`，`hostnamectl set-hostname <hostname>`）
@@ -1454,8 +1456,6 @@ spec:
 #### 5.1.5.4 DaemonSet
 
 > 作用：为每一个匹配的Node都部署一个守护进程。
-
-
 
 # 6 📖参考文献
 
