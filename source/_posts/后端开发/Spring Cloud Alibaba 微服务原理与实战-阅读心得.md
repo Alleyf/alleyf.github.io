@@ -1879,7 +1879,7 @@ spring-boot 版本为 2.6.13，spring-cloud-alibaba 版本为 2021.0.5.0，本�
 
 在分布式架构中，任何中间件或者应用都不允许单点存在，所以开源组件一般都会自己支持高可用集群解决方案。如图 5-2 所示，Nacos 提供了类似于 ZooKeeper 的集群架构，包含一个 Leader 节点和多个 Follower 节点。和 ZooKeeper 不同的是，它的数据一致性算法采用的是 **Raft**,同样采用了该算法的中间件有 Redis Sentinel 的 Leader 选举、Etcd 等。
 
-![](https://qnpicmap.fcsluck.top/pics/202312131639911.png)
+![](http://img.alleyf.hidns.co/pics/202312131639911.png)
 
 #### 安装环境要求
 
@@ -1916,7 +1916,7 @@ spring-boot 版本为 2.6.13，spring-cloud-alibaba 版本为 2021.0.5.0，本�
 具体配置由[各种环境配置](各种环境配置.md)中的 nacos 部分可见，连接外部数据库时新建的 nacos 用户的密码要用 mysql_native_password，否则会报错连不上外部数据库。
 集群部署结果如下图所示：
 
-![](https://qnpicmap.fcsluck.top/pics/202312131732523.png)
+![](http://img.alleyf.hidns.co/pics/202312131732523.png)
 
 ### Dubbo 使用 Nacos 实现注册中心
 
@@ -2037,9 +2037,9 @@ public class SampleProviderApplication {
 
 服务启动成功之后，访问 Ncos 控制台，进入“服务管理”→“服务列表”，如图下图所示，可以看到所有注册在 Nacos 上的服务。
 
-![](https://qnpicmap.fcsluck.top/pics/202312132000943.png)
+![](http://img.alleyf.hidns.co/pics/202312132000943.png)
 
-![](https://qnpicmap.fcsluck.top/pics/202312132036009.png)
+![](http://img.alleyf.hidns.co/pics/202312132036009.png)
 
 细心的读者会发现，基于 Spring Cloud Alibaba Nacos Discovery 实现服务注册时，元数据中发布的服务接口是 com.alibaba.cloud.dubbo.service.DubboMetadataService。那么消费者要怎么去找到 IHelloService 呢？别急，进入 Nacos 控制台的“配置列表”，可以看到如图 5-8 所示的配置信息。
 实际上这里把发布的接口信息存储到了配置中心，并且建立了映射关系，从而使得消费者在访问服务的时候能够找到目标接口进行调用。至此，服务端便全部开发完了，接下来我们开始消费端的开发。
@@ -2139,9 +2139,9 @@ public class SampleConsumerApplication {
 
 调用结果如下图所示：
 
-![](https://qnpicmap.fcsluck.top/pics/202312132059402.png)
+![](http://img.alleyf.hidns.co/pics/202312132059402.png)
 
-![](https://qnpicmap.fcsluck.top/pics/202312132059201.png)
+![](http://img.alleyf.hidns.co/pics/202312132059201.png)
 
 
 与第 4 章中 Dubbo Spring Cloud 的代码相比，除了注册中心从 ZooKeeper 变成 Nacos,其他基本没什么变化，因为这两者都是基于 Spring Cloud 标准实现的，而这些标准化的定义都抽象到了 Spring-Cloud-Common 包中。在后续的组件集成过程中，会以本节中创建的项目进行集成。
@@ -2152,7 +2152,7 @@ public class SampleConsumerApplication {
 
 Nacos 官方提供的架构图如下所示，我们简单来分析一下它的模块组成。
 
-![|700](https://qnpicmap.fcsluck.top/pics/202312132104508.png)
+![|700](http://img.alleyf.hidns.co/pics/202312132104508.png)
 
 - Provider APP:服务提供者。
 - Consumer APP:服务消费者。
@@ -2172,7 +2172,7 @@ Nacos 官方提供的架构图如下所示，我们简单来分析一下它的�
 
 Nacos 服务注册与发现的实现原理如下图所示：
 
-![](https://qnpicmap.fcsluck.top/pics/202312132137209.png)
+![](http://img.alleyf.hidns.co/pics/202312132137209.png)
 
 
 ## 深入解读 Nacos 源码
@@ -2185,12 +2185,12 @@ Nacos 源码部分，我们主要阅读三部分：
 
 ### 服务注册
 
-![|650](https://qnpicmap.fcsluck.top/pics/202312171240032.png)
+![|650](http://img.alleyf.hidns.co/pics/202312171240032.png)
 
 无论如何最终都是由 NacosAutoServiceRegistration.register 实现服务注册，而实际上用的是 namingService 的 register 去进行服务注册，注册的同时会开启心跳检测机制。
 心跳机制就是客户端通过 schedule 定时向服务端发送一个数据包，然后启动一个线程不断检测服务端的回应，如果在设定时间内没有收到服务端的回应，则认为服务器出现了故障。Nacos 服务端会根据客户端的心跳包不断更新服务的状态。
 
-![|650](https://qnpicmap.fcsluck.top/pics/202312171320606.png)
+![|650](http://img.alleyf.hidns.co/pics/202312171320606.png)
 
 简单总结一下服务注册的完整过程：
 - Nacos 客户端通过 Open API 的形式发送服务注册请求。
@@ -2208,7 +2208,7 @@ Nacos 源码部分，我们主要阅读三部分：
 
 ### 服务感知
 
-![](https://qnpicmap.fcsluck.top/pics/202312171341363.png)
+![](http://img.alleyf.hidns.co/pics/202312171341363.png)
 
 > 1. 客户端发起事件订阅后，**在 HostReactor 中有一个 UpdateTask 线程**，每 `10s` 发送一次 Pull 请求，获得服务端最新的地址列表。
 > 2. 对于服务端，它和服务提供者的实例之间维持了**心跳检测**，一旦服务提供者出现异常，则会发送一个 **Push 消息给 Nacos 客户端**，也就是服务消费者。
@@ -2283,7 +2283,7 @@ public class NacosConfigController {
 
 打开 nacos 控制台新建一个配置进行测试：
 
-![](https://qnpicmap.fcsluck.top/pics/202312171443783.png)
+![](http://img.alleyf.hidns.co/pics/202312171443783.png)
 
 > - Data ID: 表示 Nacos 中某个配置集的 ID,通常用于组织划分系统的配置集。
 > - Group: 表示配置所属的分组。
@@ -2366,7 +2366,7 @@ while (true) {
 }
 ```
 
-![|950](https://qnpicmap.fcsluck.top/pics/202312171527770.png)
+![|950](http://img.alleyf.hidns.co/pics/202312171527770.png)
 
 ### 基于 Data ID 配置 YAML 的文件扩展名
 
@@ -2408,7 +2408,7 @@ Spring Cloud Alibaba Nacos Config 从 Nacos Config Server 中加载配置时，�
 
 5. 启动应用程序进行测试，结果如下所示：
 
-![](https://qnpicmap.fcsluck.top/pics/202312171716294.png)
+![](http://img.alleyf.hidns.co/pics/202312171716294.png)
 
 
 我们可以发现，基于 Nacos Config 实现不同环境的切换和本地配置的不同环境切换没有任何区别。
@@ -2420,7 +2420,7 @@ bootstrap.properties 文件中的，修改起来显得很麻烦。通常的做�
 在前面的章节中使用 Nacos Config 时都采用默认的 Namespace:public 和 Group:DEFAULTGROUP,从名字我们基本能够猜测到它们的作用。我们看一下如图 6-2 所示的 Nacos 提供的数据模型，它的数据模型 Key 是由三元组来进行唯一确定的。
 其中 Namespace 用于解决多环境及多租户数据的隔离问题，比如在多套不同的环境下，可以根据指定的环境创建不同的 Namespace,实现多环境的隔离，或者在多用户的场景中，每个用户可以维护自己的 Namespace,.实现每个用户的配置数据和注册数据的隔离。需要注意的是，在不同的 Namespace 下，可以存在相同的 Group 或 Datald。
 
-![](https://qnpicmap.fcsluck.top/pics/202312211106546.png)
+![](http://img.alleyf.hidns.co/pics/202312211106546.png)
 
 
 Group 是 Nacos 中用来实现 Data ID 分组管理的机制，从图 6-2 可以看出，它可以实现不同 Service/Datald 的隔离。对于 Group 的用法，其实没有固定的规定，比如它可以实现不同环境下的 Datald 的分组，也可以实现不同应用或者组件下使用相同配置类型的分组，比如 database url。
@@ -2437,12 +2437,12 @@ spring:
 				namespace: 567674b9-baf8-4a41-8e90-80c47925d527 #test命名空间
 ```
 567674b9-baf8-4a41-8e90-80c47925d527 对应的是 Namespace 中命名空间的 ID,这个值可以在如下图所示的界面获取。
-![](https://qnpicmap.fcsluck.top/pics/202312211115425.png)
+![](http://img.alleyf.hidns.co/pics/202312211115425.png)
 
 **Group**
 Group 不需要提前创建，只需要在创建的时候指定，配置方法如下。
 - 在 Nacos 控制台的“新建配置”界面中指定配置所属的 Group,如图所示。
-  ![](https://qnpicmap.fcsluck.top/pics/202312211118801.png)
+  ![](http://img.alleyf.hidns.co/pics/202312211118801.png)
 - 在 bootstrap.yml 中添加如下配置即可：
 ```yml
 spring:
@@ -2474,7 +2474,7 @@ spring.cloud.nacos.config.ext-config[n].refresh 控制 Data ID 在配置发生�
 在 Nacos Config 控制方面针对配置管理提供了4种操作。针对这4种操作，Nacos 提供了 `SDK` 及 `Open API` 的方式进行访问。
 需要注意的是，Nacos 服务端的数据存储默认采用的是 Derby 数据库，除此之外，支持 MySQL 数据库。如果需要修改，可以参考第 5 章中关于 Nacos 集群部署部分，其中涉及 MySQL 数据库的配置。
 
-![](https://qnpicmap.fcsluck.top/pics/202312211139579.png)
+![](http://img.alleyf.hidns.co/pics/202312211139579.png)
 
 **配置自动刷新原理**
 一般来说，客户端和服务端之间的数据交互无非两种方式：Pull 和 Push。
@@ -2483,7 +2483,7 @@ spring.cloud.nacos.config.ext-config[n].refresh 控制 Data ID 在配置发生�
 
 Nacos 采用的是 Pull 模式，但并不是简单的 Pull,而是一种长轮询机制，它结合 Push 和 Pull 两者的优势。客户端采用长轮询的方式定时发起 Pul 请求，去检查服务端配置信息是否发生了变更，如果发生了变更，则客户端会根据变更的数据获得最新的配置。所谓长轮询，是客户端发起轮询请求之后，服务端如果有配置发生变更，就直接返回，如下图所示。
 
-![](https://qnpicmap.fcsluck.top/pics/202312211140280.png)
+![](http://img.alleyf.hidns.co/pics/202312211140280.png)
 
 如果客户端发起 Pull 请求后，发现服务端的配置和客户端的配置是保持一致的，那么服务端会先“Hol”住这个请求，也就是服务端拿到这个连接之后在指定的时间段内一直不返回结果，直到这段时间内配置发生变化，服务端会把原来“Hold”住的请求进行返回，如上图所示，Ncos 服务端收到请求之后，先检查配置是否发生了变更，如果没有，则设置一个定时任务，延期 29.5s 执行，并且把当前的客户端长轮询连接加入 allSubs 队列。这时候有两种方式触发该连接结果的返回：
 - 第一种是在**等待 29.5s 后触发自动检查机制**，这时候不管配置有没有发生变化，都会把结果返回客户端。而 29.5s 就是这个长连接保持的时间。
@@ -2535,32 +2535,32 @@ Nacos 采用的是 Pull 模式，但并不是简单的 Pull,而是一种长轮�
 
 ### 主流消息队列
 
-![](https://qnpicmap.fcsluck.top/pics/202312211724864.png)
+![](http://img.alleyf.hidns.co/pics/202312211724864.png)
 
 #### 数据磁盘组织的几种模型
 
-![](https://qnpicmap.fcsluck.top/pics/202312211740855.png)
+![](http://img.alleyf.hidns.co/pics/202312211740855.png)
 
 #### 消息队列核心模型
 
-![](https://qnpicmap.fcsluck.top/pics/202312211733980.png)
+![](http://img.alleyf.hidns.co/pics/202312211733980.png)
 
 
 
 #### 推/拉模型区别
 
-![](https://qnpicmap.fcsluck.top/pics/202312211742017.png)
+![](http://img.alleyf.hidns.co/pics/202312211742017.png)
 
 
 #### 消费者消费模型(1:N:M)
 
-![](https://qnpicmap.fcsluck.top/pics/202312211745205.png)
+![](http://img.alleyf.hidns.co/pics/202312211745205.png)
 
 **消费者组**：为提高消费效率、引入消费者组，发布订阅时，以消费者组/订阅作为单位。offset 是以(*group+topic+partition*)为单位维护。*组间广播、组内单播*
 
 #### kafka 和 RocketMQ 数据组织对比
 
-![](https://qnpicmap.fcsluck.top/pics/202312211750844.png)
+![](http://img.alleyf.hidns.co/pics/202312211750844.png)
 
 
 
@@ -2811,7 +2811,7 @@ spring:
 ```
 在自定义的 InputChannel 类中定义了两个接收消息通道，使用 orderInput 会收到 TopicOrder 中的消息。
 访问消息生产者的接口发送消息，消费者对指定主题的消息进行订阅监听结果如下图所示：
-![](https://qnpicmap.fcsluck.top/pics/202312211543376.png)
+![](http://img.alleyf.hidns.co/pics/202312211543376.png)
 
 ---
 ## Spring Cloud Alibaba RocketMQ
@@ -2819,7 +2819,7 @@ spring:
 Spring Cloud Stream 是 Spring Cloud 体系内的一个框架，用于构建与共享消息传递系统连接的高度可伸缩的事件驱动微服务，其目的是简化消息业务在 Spring Cloud 应用程序中的开发。
 Spring Cloud Stream 的架构图如图下图所示，应用程序通过 Spring Cloud Stream 注入的输入通道 inputs 和输出通道 outputs 与消息中间件 Middleware 通信，消息通道通过特定的中间件绑定器 Binder 实现连接到外部代理。
 
-![](https://qnpicmap.fcsluck.top/pics/202312211555771.png)
+![](http://img.alleyf.hidns.co/pics/202312211555771.png)
 
 Spring Cloud Stream 的实现基于**发布/订阅机制**，核心由四部分构成：Spring Framework 中的 `Spring Messaging` 和 `Spring Integration`,以及 Spring Cloud Stream 中的 `Binders` 和 `Bindings`。
 *Spring Messaging*:Spring Framework 中的统一消息编程模型，其核心对象如下。
@@ -2845,14 +2845,14 @@ Spring Cloud Stream 的实现基于**发布/订阅机制**，核心由四部分�
 
 ### RocketMQ 部署模型
 
-![](https://qnpicmap.fcsluck.top/pics/202312211823522.png)
+![](http://img.alleyf.hidns.co/pics/202312211823522.png)
 
 
 ### Spring Cloud Stream 消息发送和订阅流程
 
-![](https://qnpicmap.fcsluck.top/pics/202312211702051.png)
+![](http://img.alleyf.hidns.co/pics/202312211702051.png)
 
-![](https://qnpicmap.fcsluck.top/pics/202312211828219.png)
+![](http://img.alleyf.hidns.co/pics/202312211828219.png)
 
 ## 快速入门
 
@@ -2887,7 +2887,7 @@ Pull 是客户端需要主动到服务端取数据，优点是客户端可以依
 
 ### RocketMQ 发送同步消息
 同步消息发送过后会有一个返回值，也就是 mq 服务器接收到消息后返回的一个确认，这种方式非常安全，但是性能上并没有这么高，而且在 mq 集群中，也是要等到所有的从机都复制了消息以后才会返回，所以针对重要的消息可以选择这种方式
-![](https://qnpicmap.fcsluck.top/pics/202312212117647.png)
+![](http://img.alleyf.hidns.co/pics/202312212117647.png)
 
 
 ### RocketMQ 发送异步消息

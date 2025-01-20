@@ -40,7 +40,7 @@ number headings: auto, first-level 2, max 5, start-at 1, 1.1
 
 * * *
 
-![|500](https://qnpicmap.fcsluck.top/pics/202401091452852.png)
+![|500](http://img.alleyf.hidns.co/pics/202401091452852.png)
 
 我们将 LLM 的可解释性分为两种主要范式。基于这种分类，我们总结了与这两种范式相关的 LLM 的不同可解释性技术。我们还讨论了在这两种范式下生成的解释的评估。
 
@@ -82,7 +82,7 @@ number headings: auto, first-level 2, max 5, start-at 1, 1.1
     **典型方法**：通过（提示、响应）演示对和来自人类反馈的强化学习 （RLHF） 进行指令调整。模型通过自然语言反馈执行复杂多轮对话。（`GPT3.5&4、Claude、LLaMA-2-Chat、Alpaca、Vicuna`）  
     **可解释性焦点**：了解模型如何从对话中学习开放式交互行为。
 
-![](https://qnpicmap.fcsluck.top/pics/202401091452743.png)
+![](http://img.alleyf.hidns.co/pics/202401091452743.png)
 
 #### 3.2.1 方法
 

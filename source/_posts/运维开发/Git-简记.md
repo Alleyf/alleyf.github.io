@@ -42,7 +42,7 @@ git 文件有四种状态：
 2. 未修改：被管理但未修改的文件
 3. 已修改：修改后未添加到暂存区的文件
 4. 已暂存：添加到暂存区的文件
-![image.png](https://qnpicmap.fcsluck.top/pics/202311162206125.png)
+![image.png](http://img.alleyf.hidns.co/pics/202311162206125.png)
 ![](https://qnpicmap.csfan.fun/pics/202312022334491.png)
 
 # 安装和初始化配置
@@ -471,7 +471,7 @@ git reset --hard 版本号 #都不保留
 git reset --mixed 版本号 #仅保留工作区内容
 ```
 
-![image.png](https://qnpicmap.fcsluck.top/pics/202311180007484.png)
+![image.png](http://img.alleyf.hidns.co/pics/202311180007484.png)
 不同模式，工作区和暂存区的内容会不同。
 
 ## 合并与变基对比

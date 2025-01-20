@@ -27,7 +27,7 @@ Kubernetes（简称 k8s）是一个开源的容器编排平台，用于自动化
 
 Kubernetes 通过一组 API 来管理这些功能，这些 API 可以被不同的工具和语言所使用，以实现自动化和集成。它支持多种容器运行时，包括 Docker、containerd、CRI-O 等，并且可以在多种环境中运行，包括本地、云环境和边缘计算。
 Kubernetes 已经成为云原生技术栈中一个非常重要的组件，广泛用于生产环境，帮助开发者和系统管理员更高效地部署和管理应用程序。
-![|575](https://qnpicmap.fcsluck.top/pics/202406220059961.png)
+![|575](http://img.alleyf.hidns.co/pics/202406220059961.png)
 
 # 2 ⛪系统架构
 
@@ -404,7 +404,7 @@ kubectl create -f example-clusterrolebinding.yaml
 
 ###### Pod
 
-![](https://qnpicmap.fcsluck.top/pics/202407060942715.png)
+![](http://img.alleyf.hidns.co/pics/202407060942715.png)
 Pod 是 Kubernetes 集群中的**最小部署单元**，它可以**包含一个或多个容器**，这些容器**共享网络和存储资源**。Pod 的概念设计是为了解决容器的单进程模型限制，允许一组紧密协作的进程共享某些资源和文件，提高效率。Pod 内的容器通过 localhost 进行通信，共享网络命名空间和存储卷，使得它们可以高效地共享数据和通信。
 Pod 的设计允许容器之间共享某些资源，例如，一个容器生成的数据可以被另一个容器处理，因为它们可以挂载共享的存储卷。Pod 还具有自己的生命周期，如果 Pod 中的容器失败或终止，Kubernetes 会根据定义的重启策略自动重启 Pod。
 Pod 是 Kubernetes**分配资源的单位，也是原子调度单位**，确保 Pod 内的容器在同一节点上调度，并通过共享网络和存储资源来提高应用程序性能和可靠性。Pod 的这种设计模式，被称为“Sidecar”，在 Pod 中定义专门的容器来执行主业务容器所需的辅助工作，例如日志收集或配置管理。
@@ -429,7 +429,7 @@ Kubernetes 集群中的 Pod 存在如下两种使用途径：
 
 3. 分类：
 **Deployment（无状态）**：用于运行无状态应用程序，提供声明式的更新能力，可以指定 Pod 副本的数量，并确保始终运行指定数量的 Pod 副本，提供功能（**创建 Replica Set/Pod，滚动升级/回滚，平容和缩容，暂停与恢复 Deployment**）
-![|400](https://qnpicmap.fcsluck.top/pics/202407061019309.png)
+![|400](http://img.alleyf.hidns.co/pics/202407061019309.png)
 **ReplicaSet（无状态）**（在 **Deployment** 中内部使用）：确保 Pod 副本的精确数量始终运行。Deployment 控制器使用 **ReplicaSet 来确保 Pod 副本的一致性**，通过 `selector` 来选择对哪些 Pod（`label`）生效，动态更新 Pod 的副本数。
 
 ---
@@ -457,7 +457,7 @@ DaemonSet 保证在**每个匹配的 Node 上都运行一个容器副本**，常
 - *日志收集*，比如 fluentd,logstash 等
 - *系统监控*，比如 Prometheus Node Exporter,.collectd,New Relic agent,Ganglia gmond
 - *系统程序*，比如 kube-proy,kube-dns,glusterd,ceph 等
-![|600](https://qnpicmap.fcsluck.top/pics/202407061118025.png)
+![|600](http://img.alleyf.hidns.co/pics/202407061118025.png)
 
 ---
 **Job（任务）**：负责批处理任务的 Pod，确保指定数量的 Pod 成功完成任务。
@@ -467,13 +467,13 @@ DaemonSet 保证在**每个匹配的 Node 上都运行一个容器副本**，常
 
 ##### 4.2.1.3.2 服务发现
 
-![|350](https://qnpicmap.fcsluck.top/pics/202407061726447.png)
+![|350](http://img.alleyf.hidns.co/pics/202407061726447.png)
 
 ###### Service
 
 Service 简写"svc"。Pod 不能直接提供给外网访问，而是应该使用 service。Service 就是把 Pod 暴露出来提供服务，Service 才是真正的“服务”，它的中文名就叫“服务”。
 可以说 Service 是一个**应用服务的抽象**，定义了 Pod 逻辑集合和访问这个 Pod 集合的策路。Service 代理 Pod 集合，对外表现为一个访问入口，访问该入口的请求将经过负载均衡，转发到后端 Pod 中的容器。
-![](https://qnpicmap.fcsluck.top/pics/202407062213550.png)
+![](http://img.alleyf.hidns.co/pics/202407062213550.png)
 
 ###### Ingress
 
@@ -709,7 +709,7 @@ kubeadm init \
 --pod-network-cidr=10.244.0.0/16
 ```
 
- ![|500](https://qnpicmap.fcsluck.top/pics/202407080128851.png)
+ ![|500](http://img.alleyf.hidns.co/pics/202407080128851.png)
 2. #安装成功后 ，复制如下配置并执行
 
 ```sh
@@ -789,9 +789,9 @@ grep image calico.yaml #查看去除docker.io镜像源后的镜像
 kubectl apply -f calico.yaml
 ```
 
-![](https://qnpicmap.fcsluck.top/pics/202407131502094.png)
+![](http://img.alleyf.hidns.co/pics/202407131502094.png)
 
-![](https://qnpicmap.fcsluck.top/pics/202407131501885.png)
+![](http://img.alleyf.hidns.co/pics/202407131501885.png)
 
 > [!Warning] Tips
 > 执行上述命令后会自动运行一些 pod，但是可能会由于**镜像被墙而无法拉取**，因此需要**配置可用镜像源或者指定镜像源 pull 后再 docker save 和 load 转移到其他节点**上。
@@ -1100,7 +1100,7 @@ livenessProbe:
 
 #### 5.1.4.3 生命周期
 
-![](https://qnpicmap.fcsluck.top/pics/202407291453761.png)
+![](http://img.alleyf.hidns.co/pics/202407291453761.png)
 方向：从左到右，从上到下。
 
 ##### 5.1.4.3.1 Pod 退出流程

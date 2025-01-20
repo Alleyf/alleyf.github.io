@@ -49,7 +49,7 @@ excerpt: it is some basic usage of SpringBoot .
 > [!NOTE] `@Import`
 > - 导入**配置类**：`@Import(Xxx.class)`
 > - 导入 **ImportSelector 接口实现类**
-![](https://qnpicmap.fcsluck.top/pics/202312231707570.png)
+![](http://img.alleyf.hidns.co/pics/202312231707570.png)
 
 > 一般静态数据都会存储在配置文件中，要么从 application.yml 使用 spel 表达式获取，要么放在 resources 目录下其他文件里通过 io 读取资源文件中的配置进行注入。
 #### 注册条件
@@ -66,7 +66,7 @@ excerpt: it is some basic usage of SpringBoot .
 
 遵循约定大约配置的原测，在 boot 程序启动后，起步依赖中的一些 bean 对象会自动注入到 ioc 容器。
 
-![](https://qnpicmap.fcsluck.top/pics/202312232146107.png)
+![](http://img.alleyf.hidns.co/pics/202312232146107.png)
 
 ## 自定义 Starter
 
@@ -107,7 +107,7 @@ public class MyBatisAutoConfig {
 }
 ```
 完成后的目录结构如下图所示：
-![](https://qnpicmap.fcsluck.top/pics/202312232305656.png)
+![](http://img.alleyf.hidns.co/pics/202312232305656.png)
 
 ---
 # 走进 SpringBoot 一站式开发
@@ -4618,7 +4618,7 @@ https://jwt.io/
     🥈第二部分：**Payload**(有效载荷)，携带一些 _自定义信息、默认信息（不包括密码等私密数据）_ 等。例如：`{"id":"1","username":"Tom"}`  
     🥉第三部分：**Signature**(签名)，防止 Token 被篡改、确保安全性。将 _header、payload,并加入指定秘钥，通过指定签名算法计算而来_。
 
-[![](https://qnpicmap.fcsluck.top/pics/202312260031612.png)]( https://qnpicmap.fcsluck.top/pics/202312260031612.png )
+[![](http://img.alleyf.hidns.co/pics/202312260031612.png)]( http://img.alleyf.hidns.co/pics/202312260031612.png )
 
 载荷采用 `Base64` 编码，便于传输数据，中文 json 数据不支持直接传输。
 
@@ -4957,7 +4957,7 @@ public class FileUploadController {
 
 接口测试结果如下图所示：
 
-![|500](https://qnpicmap.fcsluck.top/pics/202312302242685.png)
+![|500](http://img.alleyf.hidns.co/pics/202312302242685.png)
 
 
 > `tomcat` 默认上传的**单个文件大小限制是 1M，同时上传默认的文件大小是 10M**，需要进行以下配置调整：
@@ -5041,7 +5041,7 @@ result = Result.success("密码修改成功");
 
 然后使用 maven 的 `package` 命令对项目进行打包，打包过程中会自动测试所有 `@test` 注解的方法，所有测试用例通过才能打包成功。
 
-![|350](https://qnpicmap.fcsluck.top/pics/202312312156709.png)
+![|350](http://img.alleyf.hidns.co/pics/202312312156709.png)
 
 接着执行以下命令即可运行 jar 包：
 ```sh
@@ -5066,7 +5066,7 @@ java -jar big_event-1.0-SNAPSHOT.jar --server.port=10010
 ### 外部配置文件
 
 可以在 jar 包同级目录下编写一个 `application.yml` 外部配置文件，根据内容覆盖原配置文件的部分配置。
-![|500](https://qnpicmap.fcsluck.top/pics/202312312205570.png)
+![|500](http://img.alleyf.hidns.co/pics/202312312205570.png)
 
 
 **环境属性配置优先级如下**：
@@ -5149,16 +5149,16 @@ server:
 2. 文件的名字为 `application-环境名称.yml`
 3. 在 `application.yml` 中激活环境
 
-![](https://qnpicmap.fcsluck.top/pics/202401011443743.png)
+![](http://img.alleyf.hidns.co/pics/202401011443743.png)
 
 在 resources 目录下创建多环境 ` application-xxx.yml ` 文件（专有配置）和 ` application.yml `（通用配置和环境激活配置）根配置文件。
 
-![](https://qnpicmap.fcsluck.top/pics/202401011448628.png)
+![](http://img.alleyf.hidns.co/pics/202401011448628.png)
 
 ### 多环境开发-Pofiles-分组
 
 尽管按照环境拆分多文件配置，但是如果一个环境中配置太多也不利于维护管理，因此可以按照功能对不同环境的配置拆分为不同模块进行分组，如下图所示：
-![|500](https://qnpicmap.fcsluck.top/pics/202401011452761.png)
+![|500](http://img.alleyf.hidns.co/pics/202401011452761.png)
 
 分组配置，一个组内包含多个模块配置。
 按照配置的类别，把配置信息配置到不同的配置文件中
@@ -5167,7 +5167,7 @@ server:
 `spring.profiles.group`
 在 application.yml 中激活分组
 `spring,profiles.active`
-![](https://qnpicmap.fcsluck.top/pics/202401011538970.png)
+![](http://img.alleyf.hidns.co/pics/202401011538970.png)
 
 
 ## 细节要点
@@ -5270,7 +5270,7 @@ mybatis:
 	- 使用 ThreadLocal 存储的数据，*线程安全，同一线程参数共享，不同线程参数隔离。*
 	- 用完记得调用 `remove` 方法释放数据，*否则会造成内存泄漏*。
 
-![](https://qnpicmap.fcsluck.top/pics/202312281217348.png)
+![](http://img.alleyf.hidns.co/pics/202312281217348.png)
 
 > 每个请求都隔离在各自的线程中，因此 userId 的存取都是线程安全的获取到各自正确的值。
 

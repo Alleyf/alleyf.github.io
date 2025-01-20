@@ -23,7 +23,7 @@ iter = iter(iterList) #生成迭代器对象
 print(next(iter))
 print(next(iter))
 ```
-![](https://qnpicmap.fcsluck.top/pics/202312112109733.png)
+![](http://img.alleyf.hidns.co/pics/202312112109733.png)
 ## 生成器（generator）
 在 Python 中，把使用了 `yield` 的函数称为生成器(generator)。生成器是一种特殊的迭代器，它形式上和函数很像，只是把 return 换成了 yield。函数在遇到 return 关键字时，会返回值并结束函数。而**生成器在遇到 yield 关键字时，会返回迭代器对象，但不会立即结束，而是保存当前的位置，下次执行时会从当前位置继续执行**。
 ```python
@@ -43,14 +43,14 @@ def get_fibonacci_generator(max_num):
 for m in get_fibonacci_generator(10):
     print(m,end=" ")
 ```
-![|600](https://qnpicmap.fcsluck.top/pics/202312112145953.png)
+![|600](http://img.alleyf.hidns.co/pics/202312112145953.png)
 
 ---
 # Scrapy 简介
 ## 引言
 Scrapy 是一个基于 Python 的开源网络爬虫框架，用于快速、高效地从网页中提取数据。它提供了一套强大的工具和库，帮助用户轻松地创建和管理网络爬虫。Scrapy 支持并发请求、异步处理、数据存储和导出等功能，同时还提供了丰富的文档和教程，方便用户学习和使用。
 Scrapy 的核心是一个引擎、调度器和下载器组成的架构，用户可以通过编写自定义的 Spider 来指定要抓取的网站和提取规则。同时，Scrapy 还提供了命令行工具和 Web 界面，方便用户监控爬取过程并进行调试。Scrapy 框架架构图如下图所示：
-![|600](https://qnpicmap.fcsluck.top/pics/202312121028242.png)
+![|600](http://img.alleyf.hidns.co/pics/202312121028242.png)
 
  ```mermaid
 graph TD
@@ -82,7 +82,7 @@ conda install -c scrapinghub scrapy #通过conda安装
 ## 起点中文网小说月票榜数据的爬取（静态网页入门）
 ### 爬取流程
 在 spider 文件夹下创建的爬虫类按照一下流程进行爬取：
-![|205](https://qnpicmap.fcsluck.top/pics/202312121421234.png)
+![|205](http://img.alleyf.hidns.co/pics/202312121421234.png)
 启动爬虫后首先执行 `start_requests` 方法对目标地址发起请求，响应成功后自动调用默认回调函数 `parse` 进行数据解析处理，使用 **css 或者 xpath** 语法进行解析获取目标数据，再进行 `yield` 返回，如需进一步爬取需要发起新的请求并 yield 返回。
 ### 创建项目
 使用 scrapy 命令创建一个 scrapy 项目，代码如下所示：
@@ -91,7 +91,7 @@ scrapy startproject <project_name> [project_dir]
 scrapy startproject QiDianNovel
 ```
 创建结果和文件结构如下图所示：
-![](https://qnpicmap.fcsluck.top/pics/202312112254375.png)
+![](http://img.alleyf.hidns.co/pics/202312112254375.png)
 项目结构解析：
 ```sh
 E:.
@@ -150,9 +150,9 @@ class QidianNovelSpider(Spider):
 scrapy crawl qidian_novel -o novel.csv #结果保存至根目录的novel.csv文件中
 ```
 爬取结果如下图所示：
-![](https://qnpicmap.fcsluck.top/pics/202312121355317.png)
+![](http://img.alleyf.hidns.co/pics/202312121355317.png)
 也可以将爬虫文件上传至 ScrapyLab 中执行任务，得到如下结果：
-![](https://qnpicmap.fcsluck.top/pics/202312121354684.png)
+![](http://img.alleyf.hidns.co/pics/202312121354684.png)
 # Scrapy 基本用法
 ## 爬虫伪装
 `scrapy.Request` 对象的参数和说明如下表所示：
@@ -392,7 +392,7 @@ class QidiannovelPipeline:
 - 文件的 URL 地址
 - 文件的校验和(Checksum)
 
-![|500](https://qnpicmap.fcsluck.top/pics/202312172000836.png)
+![|500](http://img.alleyf.hidns.co/pics/202312172000836.png)
 
 ### 文件下载
 #### 爬取 seaborn 案例源文件
@@ -535,7 +535,7 @@ class LawSpider(Spider):
 
 5. 爬取结果如下所示：
 
-![|500](https://qnpicmap.fcsluck.top/pics/202312181414603.png)
+![|500](http://img.alleyf.hidns.co/pics/202312181414603.png)
 
 
 ### 图片下载
@@ -543,7 +543,7 @@ class LawSpider(Spider):
 Scrapy 还提供了图片管道 ImagesPipeline 用于实现图片的下载，也可以扩展 ImagesPipeline,实现自定义的图片管道功能。
 图片也是文件，下载图片的本质也是下载文件，ImagesPipeline 继承于 FilesPipeline,使用上和 FilesPipeline 基本一致，只是在使用的 item 字段和配置选项上有所差别，如下表所示。
 
-![](https://qnpicmap.fcsluck.top/pics/202312181422225.png)
+![](http://img.alleyf.hidns.co/pics/202312181422225.png)
 
 下载图片必须安装 Pillow 依赖才可以使用：
 ```sh
@@ -677,7 +677,7 @@ class ImageSpider(Spider):
   },
 ```
 
-![](https://qnpicmap.fcsluck.top/pics/202312181656520.png)
+![](http://img.alleyf.hidns.co/pics/202312181656520.png)
 
 
 
@@ -692,7 +692,7 @@ class ImageSpider(Spider):
 
 使用 Scrapy 爬取链家网中武汉市二手房交易数据并保存于 CSV 文件中。
 
-![|500](https://qnpicmap.fcsluck.top/pics/202312132225168.png)
+![|500](http://img.alleyf.hidns.co/pics/202312132225168.png)
 目标信息：
 - 房屋名称
 - 房屋户型
@@ -711,7 +711,7 @@ class ImageSpider(Spider):
 
 **流程图**：
 
-![|500](https://qnpicmap.fcsluck.top/pics/202312132240109.png)
+![|500](http://img.alleyf.hidns.co/pics/202312132240109.png)
 
 **实现流程**：
 
@@ -811,7 +811,7 @@ class LianjiaSpider(Spider):
 
 在终端执行 `scrapy crawl home -o home.csv` 命令进行爬取，爬取结果保存于 home.csv 文件中，部分内容如下图所示：
 
-![](https://qnpicmap.fcsluck.top/pics/202312141047710.png)
+![](http://img.alleyf.hidns.co/pics/202312141047710.png)
 
 ### 数据过滤
 
@@ -879,7 +879,7 @@ cmdline.execute("scrapy crawl lianjia_home".split())
 
 运行 `start.py` 文件爬取结果保存于 csv 文件中如下所示：
 
-![](https://qnpicmap.fcsluck.top/pics/202312141145611.png)
+![](http://img.alleyf.hidns.co/pics/202312141145611.png)
 
 
 ### 持久存储（数据库）
@@ -894,7 +894,7 @@ pip install mysqlclient
 
 2. 保存 qidianNovel 项目中爬取的数据到 mysql 数据库，首先新建 mysql 数据库和数据表定义数据结构：
 
-![](https://qnpicmap.fcsluck.top/pics/202312141456882.png)
+![](http://img.alleyf.hidns.co/pics/202312141456882.png)
 
 3. 编写 pipeline 将数据持久化存储到 mysql 数据库：
 ```python
@@ -936,7 +936,7 @@ MYSQL_DB = 'qidian'
 
 启动爬虫，存储于 MySQL 数据库的结果如图所示：
 
-![](https://qnpicmap.fcsluck.top/pics/202312141500420.png)
+![](http://img.alleyf.hidns.co/pics/202312141500420.png)
 
 #### MongoDB 数据库
 
@@ -985,7 +985,7 @@ pip install pymongo
 ```
 
 mongodb 操作流程：
-![](https://qnpicmap.fcsluck.top/pics/202312141506781.png)
+![](http://img.alleyf.hidns.co/pics/202312141506781.png)
 
 2. 编写 pipeline 将数据持久化存储到 mongodb 数据库：
 
@@ -1027,7 +1027,7 @@ MongoDB = {
 
 启动爬虫，存储于 MongoDB 数据库的结果如图所示：
 
-![|600](https://qnpicmap.fcsluck.top/pics/202312141632051.png)
+![|600](http://img.alleyf.hidns.co/pics/202312141632051.png)
 
 
 #### Redis 数据库
@@ -1077,8 +1077,8 @@ Redis = {
 
 启动爬虫，存储于 Redis 数据库的结果如图所示：
 
-![](https://qnpicmap.fcsluck.top/pics/202312151113256.png)
-![|975](https://qnpicmap.fcsluck.top/pics/202312151113905.png)
+![](http://img.alleyf.hidns.co/pics/202312151113256.png)
+![|975](http://img.alleyf.hidns.co/pics/202312151113905.png)
 
 ---
 ## QQ 音乐榜单歌曲（访问 json 数据接口解析）
@@ -1183,7 +1183,7 @@ http://npm.taobao.org/mirrors/chromedriver/
 
 #### 方案设计
 
-![|550](https://qnpicmap.fcsluck.top/pics/202312151546447.png)
+![|550](http://img.alleyf.hidns.co/pics/202312151546447.png)
 
 由于 PhantomJS 浏览器在新版本的 selenium 中已经被弃用，因此采用 firefox 浏览器进行爬取
 #### 逻辑实现
@@ -1329,7 +1329,7 @@ if __name__ == "__main__":
 
 爬取结果如下图所示：
 
-![](https://qnpicmap.fcsluck.top/pics/202312151800702.png)
+![](http://img.alleyf.hidns.co/pics/202312151800702.png)
 
 ---
 # Splash 实现动态页面爬取
@@ -1368,7 +1368,7 @@ docker toolbox 通过 `docker-machine ip default` 查看 ip
 Splash 成功安装后，最后就要安装 Splash 对应的 Python 库了，命令如下：
 `pip install scrapy-splash`
 
-![|600](https://qnpicmap.fcsluck.top/pics/202312152155132.png)
+![|600](http://img.alleyf.hidns.co/pics/202312152155132.png)
 
 
 ## 爬取苏宁易购中的 iphone 手机信息（利用 Splash 爬取 js 动态内容）
@@ -1377,7 +1377,7 @@ Splash 成功安装后，最后就要安装 Splash 对应的 Python 库了，命
 
 苏宁易购的首页如下图左所示，网址为 [苏宁易购(Suning.com)-家电家装成套购，专注服务省心购！](https://www.suning.com/)。在页面的搜索栏中输入“iphone”,回车，就会跳转到 iphone 手机的商品销售页面，网址为 https://search.suning.com/iphone/ 如下图右所示。页面默认显示一定条手机信息，将页面往下拉，会不断加载更多手机信息，一页最多有 119 个 ipone 手机的商品信息。本项目希望使用 Splash,将尽量多的 iphone 商品销售信息爬取下来保存于 CSV 文件中。爬取的字段有：商品标题、价格、好评率和店铺名称。
 
-![](https://qnpicmap.fcsluck.top/pics/202312152154460.png)
+![](http://img.alleyf.hidns.co/pics/202312152154460.png)
 
 ### 逻辑实现
 
@@ -1481,7 +1481,7 @@ class IphoneSpider(Spider):
 
 由于 splash 在 scrapy 新版中被弃用，因此出现以下错误，连接 splash 超时，无法进行爬取：
 
-![|700](https://qnpicmap.fcsluck.top/pics/202312161129156.png)
+![|700](http://img.alleyf.hidns.co/pics/202312161129156.png)
 
 
 ## 起点个人书架书籍爬取（携带 cookie 自动登录）
@@ -1709,7 +1709,7 @@ fake-useragent 会随机给出一个 user-agent：
 
 ip 代理服务器分类：
 
-![](https://qnpicmap.fcsluck.top/pics/202312161726358.png)
+![](http://img.alleyf.hidns.co/pics/202312161726358.png)
 
 
 ### 代理中间件（只需要设置代理地址即可）
@@ -2016,9 +2016,9 @@ class QidianNovelSpider(Spider):
 
 #### 方案设计
 
-![](https://qnpicmap.fcsluck.top/pics/202312181742418.png)
+![](http://img.alleyf.hidns.co/pics/202312181742418.png)
 
-![](https://qnpicmap.fcsluck.top/pics/202312182040531.png)
+![](http://img.alleyf.hidns.co/pics/202312182040531.png)
 
 
 #### 逻辑实现
@@ -2094,15 +2094,15 @@ class ImageSpider(RedisSpider):
 ```
 
 
-![](https://qnpicmap.fcsluck.top/pics/202312182125893.png)
+![](http://img.alleyf.hidns.co/pics/202312182125893.png)
 
 每次启动爬虫后，`bianimage:start_urls` 键将会被消费掉不复存在，新增 `bianimage:items` 和 `bianimage:duplicate` 键记录条目和重复信息。
 
 *本地爬取结果，缺少部分分类，且已有分类不全*：
-![](https://qnpicmap.fcsluck.top/pics/202312182218379.png)
+![](http://img.alleyf.hidns.co/pics/202312182218379.png)
 
 *云端爬取结果*：
-![](https://qnpicmap.fcsluck.top/pics/202312182219620.png)
+![](http://img.alleyf.hidns.co/pics/202312182219620.png)
 
 ---
 ## 使用 Scrapyd 部署分布式爬虫
@@ -2167,9 +2167,9 @@ daemonstatus.json = scrapyd.webservice.DaemonStatus
 4. 启动 Scrapyd 服务
 在 anaconda 命令行对应环境中输入 `scrapyd`,如果访问 http://localhost:6800 出现如下所示信息，说明 Scrapyd 服务启动成功。
 
-![|500](https://qnpicmap.fcsluck.top/pics/202312191042297.png)
+![|500](http://img.alleyf.hidns.co/pics/202312191042297.png)
 
-![|500](https://qnpicmap.fcsluck.top/pics/202312191040373.png)
+![|500](http://img.alleyf.hidns.co/pics/202312191040373.png)
 
 
 ### Scrapyd 功能介绍
@@ -2229,9 +2229,9 @@ curl http://127.0.0.1:6800/schedule.json -d project=BianImage -d spider=bianimag
 ```
 执行命令后返回如下结果则表明启动成功：
 `{"node_name": "Alleyf", "status": "ok", "jobid": "2b7fa8179e4111ee8991004238aafa7c"}`
-![](https://qnpicmap.fcsluck.top/pics/202312191543963.png)
+![](http://img.alleyf.hidns.co/pics/202312191543963.png)
 
-![](https://qnpicmap.fcsluck.top/pics/202312191543569.png)
+![](http://img.alleyf.hidns.co/pics/202312191543569.png)
 
 ---
 ## 使用 Docker 部署分布式爬虫
@@ -2339,7 +2339,7 @@ docker login -u "username" -p "password" docker.io
 docker push alleyf/scrapyd:0.0.1
 ```
 
-![|600](https://qnpicmap.fcsluck.top/pics/202312191735852.png)
+![|600](http://img.alleyf.hidns.co/pics/202312191735852.png)
 
 ### 拉取运行镜像
 
@@ -2355,7 +2355,7 @@ docker run -d --name scrapyd -p 6800:6800 alleyf/scrapyd:0.0.1
 ```
 
 启动容器后打开服务器安全组端口，访问 6800 端口即可看到以下页面：
-![|500](https://qnpicmap.fcsluck.top/pics/202312191914587.png)
+![|500](http://img.alleyf.hidns.co/pics/202312191914587.png)
 
 ### 推送运行 scrapy 爬虫
 修改配置文件 scrapy.cfg 设置推送目标地址等信息：
@@ -2382,11 +2382,11 @@ scrapyd-deploy aliyun
 curl http://xxxx:6800/schedule.json -d project=BianImage -d spider=bianimage
 ```
 运行成功后在 6800 端口 Jobs 中可以看到正在运行的爬虫项目：
-![](https://qnpicmap.fcsluck.top/pics/202312191918177.png)
+![](http://img.alleyf.hidns.co/pics/202312191918177.png)
 
 **docker 启动容器实例后，容器实例就相当于一个基础的 linux 环境，并且包含了 docker 镜像打包时添加的文件**，具体如下图所示：
 
-![](https://qnpicmap.fcsluck.top/pics/202312191950167.png)
+![](http://img.alleyf.hidns.co/pics/202312191950167.png)
 
 
 > `scrapy v2.10.0` 不再支持将蜘蛛参数传递给 scrapy.core.engine.ExecutionEngine 的 crawl()方法。也就是说**新版本将不在支持启动 scrapy-redis 爬虫后再向 redis 中添加初始请求信息，必须项目启动前添加，或者 scrapy 降级到 2.9.0 版本**
@@ -2404,7 +2404,7 @@ curl http://xxxx:6800/schedule.json -d project=BianImage -d spider=bianimage
 
 ### Gerapy 介绍
 Gerapy 是一款分布式爬虫管理框架，支持 Python3，基于 Scrapy、Scrapyd、Scrapyd-Client、Scrapy-Redis、Scrapyd-APl、Scrapy-Splash、Jinjia2、Django、Vue.js 开发。
-![|600](https://qnpicmap.fcsluck.top/pics/202312191956807.png)
+![|600](http://img.alleyf.hidns.co/pics/202312191956807.png)
 
 ### Gerapy 使用方法
 1. 安装 Gerapy
@@ -2446,18 +2446,18 @@ gerapy runserver
 ### 项目部署
 1. 主机管理 
    首先在主机管理中添加分布式爬虫主机，配置和结果如下图所示：
-   ![|375](https://qnpicmap.fcsluck.top/pics/202312192045822.png)
-   ![](https://qnpicmap.fcsluck.top/pics/202312192046305.png)
+   ![|375](http://img.alleyf.hidns.co/pics/202312192045822.png)
+   ![](http://img.alleyf.hidns.co/pics/202312192046305.png)
 2. 项目管理
    可以直接将本地项目拷贝到 `gerpy/projects/` 目录下刷新即可看到项目，也可以通过上传文件的方式添加爬虫项目。
-![](https://qnpicmap.fcsluck.top/pics/202312192048774.png)
+![](http://img.alleyf.hidns.co/pics/202312192048774.png)
 上传项目后，首先点击部署进去将项目打包为 egg 文件，便于后面部署到主机上运行，打包结果如下图所示：
-![](https://qnpicmap.fcsluck.top/pics/202312192050085.png)
+![](http://img.alleyf.hidns.co/pics/202312192050085.png)
 
 3. 启动项目
    回到主机管理点击主机节点的调度，进去后可以看到运行和任务运行状态日志等信息，可以点击运行即可启动爬虫项目，结果如下图所示：
    
-![](https://qnpicmap.fcsluck.top/pics/202312192043239.png)
+![](http://img.alleyf.hidns.co/pics/202312192043239.png)
 
 ---
 
@@ -2493,7 +2493,7 @@ yag yagmail.SMTP(user="user@163.com",password="1234",host='smtp.163.com')
 
 ## 项目实现
 
-![](https://qnpicmap.fcsluck.top/pics/202312201052056.png)
+![](http://img.alleyf.hidns.co/pics/202312201052056.png)
 
 
 1. 环境准备

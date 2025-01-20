@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="icons">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/.obsidian/icons/font-awesome-brands.zip!/" />
+      <root url="jar://$PROJECT_DIR$/.obsidian/icons/lucide-icons.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
