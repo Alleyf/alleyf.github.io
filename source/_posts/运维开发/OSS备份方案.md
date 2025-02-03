@@ -1,10 +1,25 @@
-# 概述
+---
+title: OSS备份方案
+date: 2025-02-03 14:13:55
+tags:
+  - OSS
+sticky: 80
+excerpt: 
+author: fcs
+index_img: https://picsum.photos/800/250
+lang: zh-CN
+number headings: auto, first-level 1, max 5, start-at 1, 1.1
+---
+
+![](https://picsum.photos/800/250)
+
+# 1 概述
 
 > 经过与阿里云客服沟通，目前oss 云存储有两种数据同步方案：阿里云**OSS备份**服务，下载到本地同步到NAS。
 > 
 > 当前etms使用的存储量为300GB左右，由于最近频繁上传文件，因此截至7月到现在半个月时间新增存储用量280GB左右，预估月底可能会达到600GB左右，后续每个月的新增存储用量还需根据实际情况进行评估。
 
-# 阿里云OSS备份
+# 2 阿里云OSS备份
 
 ![78d35414fb9el.svg](https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/4273724071/78d35414fb9el.svg)
 
@@ -47,7 +62,7 @@
 | 10 TB  | 4,874     | 24,272.52    | 43,866      |
 | 30 TB  | 14,623    | 72,822.54    | 131,607     |
 
-# 下载到本地同步到NAS
+# 3 下载到本地同步到NAS
 
 说明：此方式通过直接全量下载oss云存储的文件到本地，再通过内网环境同步文件到NAS中。
 特点：下载耗时较长，不支持增量同步，占用本地存储和NAS存储容量，支持定时下载并同步。
