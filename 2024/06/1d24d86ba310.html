@@ -1,0 +1,1233 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="http://qnpicmap.fcsluck.top/pics/202311162214229.png">
+  <link rel="icon" href="http://qnpicmap.fcsluck.top/pics/202311162214229.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="fcs">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="运维排错解决问题的必查手册">
+<meta property="og:type" content="article">
+<meta property="og:title" content="运维排忧解难">
+<meta property="og:url" content="https://alleyf.github.io/2024/06/1d24d86ba310.html">
+<meta property="og:site_name" content="alleyf">
+<meta property="og:description" content="运维排错解决问题的必查手册">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://picsum.photos/800/250">
+<meta property="article:published_time" content="2024-06-27T16:37:11.000Z">
+<meta property="article:modified_time" content="2025-01-26T05:31:45.105Z">
+<meta property="article:author" content="alleyf">
+<meta property="article:tag" content="DevOps">
+<meta property="article:tag" content="运维">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://picsum.photos/800/250">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>运维排忧解难 - alleyf</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"alleyf.github.io","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":true,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"d57048846da607439cf11718741f2eb0","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?d57048846da607439cf11718741f2eb0";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<!-- hexo injector head_end start --><script> let HEXO_MMEDIA_DATA = { js: [], css: [], aplayerData: [], metingData: [], artPlayerData: [], dplayerData: []}; </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="alleyf" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Mr.Alleyf</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/gallery/">
+                <i class="iconfont icon-images"></i>
+                画廊
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/atom.xml">
+                <i class="iconfont icon-rss"></i>
+                RSS
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://github.com/Alleyf">
+                <i class="iconfont icon-github-fill"></i>
+                Github
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://api.likepoems.com/img/nature') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="运维排忧解难"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        fcs
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-28 00:37" pubdate>
+          2024年6月28日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          12k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          102 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">运维排忧解难</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：8 天前
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p><img src="https://picsum.photos/800/250" srcset="/img/loading.gif" lazyload></p>
+<h1 id="1-常用指令"><a href="#1-常用指令" class="headerlink" title="1 常用指令"></a>1 常用指令</h1><blockquote>
+<p>[!NOTE] 符号说明<br>指令中小括号 <code>()</code> 内为<strong>选填项</strong>，<code>&lt;&gt;</code> 为<strong>填充项</strong>（根据实际变量进行填充）。</p>
+</blockquote>
+<h2 id="1-1-Linux-指令"><a href="#1-1-Linux-指令" class="headerlink" title="1.1 Linux 指令"></a>1.1 Linux 指令</h2><p><a href="source/_posts/%E8%BF%90%E7%BB%B4%E5%BC%80%E5%8F%91/%E5%90%84%E7%A7%8D%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE.md">各种环境配置</a></p>
+<h3 id="1-1-1-Ssh-连接"><a href="#1-1-1-Ssh-连接" class="headerlink" title="1.1.1 Ssh 连接"></a>1.1.1 Ssh 连接</h3><p>-p 指定端口，默认不带则为 22 端口</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">ssh -p &lt;port&gt; &lt;username&gt;@&lt;ip/hostname&gt;<br></code></pre></td></tr></table></figure>
+
+<h3 id="1-1-2-文件传输"><a href="#1-1-2-文件传输" class="headerlink" title="1.1.2 文件传输"></a>1.1.2 文件传输</h3><blockquote>
+<p>通过 ssh 协议用于在本地计算机和远程计算机之间安全地复制文件</p>
+</blockquote>
+<ol>
+<li>本地到远程</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">scp (-p &lt;port&gt;) &lt;/path/to/local/file&gt; &lt;username&gt;@&lt;remote_host/host_name&gt;:&lt;/path/to/remote/directory&gt;<br></code></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>远程到本地</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">scp (-p &lt;port&gt;) &lt;username&gt;@&lt;remote_host/host_name&gt;: &lt;/path/to/remote/directory&gt; &lt;/path/to/local/file&gt; <br></code></pre></td></tr></table></figure>
+
+<h3 id="1-1-3-查看路由表"><a href="#1-1-3-查看路由表" class="headerlink" title="1.1.3 查看路由表"></a>1.1.3 查看路由表</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">yum install net-tools -y<br>route -n <span class="hljs-comment">#列出所有路由</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="1-1-4-查看资源"><a href="#1-1-4-查看资源" class="headerlink" title="1.1.4 查看资源"></a>1.1.4 查看资源</h3><p>查看所有资源占用情况，降序排列，<code>top</code> 默认会实时更新显示的信息，通常每秒刷新一次。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">top <br></code></pre></td></tr></table></figure>
+
+<ol>
+<li><strong>排序</strong>：<ul>
+<li>按 CPU 使用率排序：按 <code>P</code> 键。</li>
+<li>按内存使用率排序：按 <code>M</code> 键。</li>
+<li>按执行时间排序：按 <code>T</code> 键。</li>
+</ul>
+</li>
+<li><strong>搜索进程</strong>：<ul>
+<li>输入 <code>u</code> 键，然后输入用户名，可以显示该用户的所有进程。</li>
+<li>输入 <code>p</code> 键，然后输入进程 ID（PID），可以快速定位到特定进程。</li>
+</ul>
+</li>
+<li><strong>过滤进程</strong>：<ul>
+<li>输入 <code>U</code> 键，然后输入用户名，可以过滤显示该用户的进程。</li>
+<li>输入 <code>P</code> 键，然后输入进程 ID（PID），可以过滤显示该 PID 的进程。</li>
+</ul>
+</li>
+<li><strong>杀死进程</strong>：<ul>
+<li>输入 <code>k</code> 键，然后输入进程 ID 和要发送的信号（默认是 SIGTERM，即 15），可以杀死进程。</li>
+</ul>
+</li>
+</ol>
+<h3 id="1-1-5-查看进程"><a href="#1-1-5-查看进程" class="headerlink" title="1.1.5 查看进程"></a>1.1.5 查看进程</h3><p><code>ps</code> 命令在 Unix-like 系统中用于显示当前进程的状态。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">ps<br></code></pre></td></tr></table></figure>
+
+<ol>
+<li><p>参数说明</p>
+<ul>
+<li><code>USER</code>：进程所有者的用户名。</li>
+<li><code>PID</code>：进程的 ID。</li>
+<li><code>%CPU</code>：进程占用的 CPU 百分比。</li>
+<li><code>%MEM</code>：进程占用的内存百分比。</li>
+<li><code>VSZ</code>：虚拟内存大小（Virtual Size）。</li>
+<li><code>RSS</code>：实际内存大小（Resident Set Size）。</li>
+<li><code>TTY</code>：进程终端类型。</li>
+<li><code>STAT</code>：进程状态。</li>
+<li><code>START</code>：进程启动时间。</li>
+<li><code>TIME</code>：进程占用 CPU 的时间。</li>
+<li><code>COMMAND</code>：启动进程的命令。</li>
+</ul>
+</li>
+<li><p>常见组合</p>
+<ul>
+<li>ps aux (–sort&#x3D;-%mem&#x2F;cpu)： 显示所有进程(按照内存&#x2F;CPU 使用率降序排列进程)</li>
+<li>ps -ef：显示所有进程的完整信息。</li>
+<li>ps -p PID：显示特定进程的详细信息。</li>
+</ul>
+</li>
+</ol>
+<h3 id="1-1-6-查看内存"><a href="#1-1-6-查看内存" class="headerlink" title="1.1.6 查看内存"></a>1.1.6 查看内存</h3><p>以人类可读的方式展示内存使用状态。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">free -mh<br></code></pre></td></tr></table></figure>
+
+<h3 id="1-1-7-查看硬盘"><a href="#1-1-7-查看硬盘" class="headerlink" title="1.1.7 查看硬盘"></a>1.1.7 查看硬盘</h3><p>以人类可读的方式展示磁盘分配状态。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">df</span> -h<br></code></pre></td></tr></table></figure>
+
+<h3 id="1-1-8-查看系统日志"><a href="#1-1-8-查看系统日志" class="headerlink" title="1.1.8 查看系统日志"></a>1.1.8 查看系统日志</h3><p><code>journalctl</code> 是 <code>systemd</code> 系统服务管理器的一部分，用于查询和显示日志消息。它提供了一种方便的方式来查看系统日志，特别是与特定服务或单元相关的日志。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">sudo journalctl -u &lt;NetworkManager&gt;<br></code></pre></td></tr></table></figure>
+
+<p>查看系统日志</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">cat</span>/vim /var/log/messages<br>dmesg<br></code></pre></td></tr></table></figure>
+
+<p>查找cpu相关日志：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">grep -r Call -C 10 /var/log/messages*<br>grep -r Call /var/log/messages*<br></code></pre></td></tr></table></figure>
+
+<h3 id="1-1-9-查看编辑文件"><a href="#1-1-9-查看编辑文件" class="headerlink" title="1.1.9 查看编辑文件"></a>1.1.9 查看编辑文件</h3><h4 id="1-1-9-1-搜索文件"><a href="#1-1-9-1-搜索文件" class="headerlink" title="1.1.9.1 搜索文件"></a>1.1.9.1 搜索文件</h4><p>按照关键词搜索含有关键词的文件</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">find . -<span class="hljs-built_in">type</span> f -<span class="hljs-built_in">exec</span> grep -l <span class="hljs-string">&#x27;mysql-master&#x27;</span> &#123;&#125; \;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">grep <span class="hljs-string">&#x27;temporary password&#x27;</span> /var/log/mysqld.log<br></code></pre></td></tr></table></figure>
+
+<h4 id="1-1-9-2-查看文件数量"><a href="#1-1-9-2-查看文件数量" class="headerlink" title="1.1.9.2 查看文件数量"></a>1.1.9.2 查看文件数量</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">find /path/to/directory -<span class="hljs-built_in">type</span> f | <span class="hljs-built_in">wc</span> -l<br></code></pre></td></tr></table></figure>
+
+<h4 id="1-1-9-3-查看目录"><a href="#1-1-9-3-查看目录" class="headerlink" title="1.1.9.3 查看目录"></a>1.1.9.3 查看目录</h4><p>列出当前目录下的文件和文件夹</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">ls</span><br></code></pre></td></tr></table></figure>
+
+<ol>
+<li><p>常见搭配</p>
+<ul>
+<li>ls -lh：组合使用 <code>-l</code> 和 <code>-h</code> 选项，以易读的格式显示文件大小。</li>
+<li>ls -l：以长列表格式显示文件详细信息，包括权限、所有者、大小和最后修改时间。</li>
+<li>ls -lt：以修改时间排序，最新修改的文件排在最前面。</li>
+<li>ls -lS：以文件大小排序。</li>
+<li>ls -a：显示所有文件，包括以点（<code>.</code>）开头的隐藏文件。</li>
+<li>ls -R：递归地列出所有子目录的内容。</li>
+<li>ls -F：在每个文件名后添加一个字符以指示文件类型，例如，<code>/</code> 表示目录，<code>*</code> 表示可执行文件。</li>
+<li>ls -o：显示文件所有者和组，但不显示组名。</li>
+<li>ls –color：使用颜色来区分不同类型的文件。</li>
+<li>ls *.txt：列出当前目录下所有的 <code>.txt</code> 文件。</li>
+</ul>
+</li>
+<li><p>参数解释：<code>drwxr-xr-x 10 root root 4.0K Feb 22 21:41 clash</code></p>
+<ul>
+<li>d：目录&#x2F;文件</li>
+<li>rwx：文件所有者的权限，<code>r</code> 代表可读（read），<code>w</code> 代表可写（write），<code>x</code> 代表可执行（execute）</li>
+<li>r-x：文件所有者同组的用户（group）的权限，可读可执行但不可写</li>
+<li>r-x：其他用户（others）的权限，可读可执行但不可写</li>
+<li>10：硬链接指向这个目录的个数，目录至少为2（一个是 <code>.</code> 表示当前目录，另一个是 <code>..</code> 表示父目录），加上目录下文件和子目录的数量。</li>
+<li>root root：文件所有者和组的名称。</li>
+<li>4.0K：目录占用空间大小（不包括子文件和子目录）。</li>
+<li>Feb 22 21:41：目录最后修改的日期和时间。</li>
+<li>clash：目录名称。</li>
+</ul>
+</li>
+</ol>
+<h4 id="1-1-9-4-查看内容"><a href="#1-1-9-4-查看内容" class="headerlink" title="1.1.9.4 查看内容"></a>1.1.9.4 查看内容</h4><p>查看文件内容，打印在控制台</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">cat</span> &lt;fileName&gt;<br></code></pre></td></tr></table></figure>
+
+<h4 id="1-1-9-5-新建文件"><a href="#1-1-9-5-新建文件" class="headerlink" title="1.1.9.5 新建文件"></a>1.1.9.5 新建文件</h4><p>新增一个文件，或写入内容到文件中</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">cat</span> &gt; &lt;file.txt&gt;<br><span class="hljs-built_in">echo</span> &lt;content&gt; &gt; &lt;file.txt&gt;<br><span class="hljs-built_in">touch</span> &lt;file.txt&gt;<br></code></pre></td></tr></table></figure>
+
+<h4 id="1-1-9-6-编辑内容"><a href="#1-1-9-6-编辑内容" class="headerlink" title="1.1.9.6 编辑内容"></a>1.1.9.6 编辑内容</h4><p>使用 Vim 编辑器编辑文件</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">vi(m) &lt;fileName&gt;<br></code></pre></td></tr></table></figure>
+
+<ol>
+<li>常见操作：<ul>
+<li>i：进入插入写模式</li>
+<li>esc：退出当前模式</li>
+<li>：指令模式</li>
+<li>:q：直接退出</li>
+<li>:wq：保存退出</li>
+</ul>
+</li>
+</ol>
+<h2 id="1-2-K8s-和-Docker-相关指令"><a href="#1-2-K8s-和-Docker-相关指令" class="headerlink" title="1.2 K8s 和 Docker 相关指令"></a>1.2 K8s 和 Docker 相关指令</h2><p><a target="_blank" rel="noopener" href="https://www.rainbond.com/docs/quick-start/quick-install">快速安装 | Rainbond</a></p>
+<h3 id="1-2-1-K8s"><a href="#1-2-1-K8s" class="headerlink" title="1.2.1 K8s"></a>1.2.1 K8s</h3><h4 id="1-2-1-1-集群"><a href="#1-2-1-1-集群" class="headerlink" title="1.2.1.1 集群"></a>1.2.1.1 集群</h4><p>获取 prod 集群中所有节点信息</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment"># 正式集群</span><br>kube-prod get nodes<br><span class="hljs-comment"># 测试集群</span><br>kube-test get nodes<br></code></pre></td></tr></table></figure>
+
+<h4 id="1-2-1-2-节点"><a href="#1-2-1-2-节点" class="headerlink" title="1.2.1.2 节点"></a>1.2.1.2 节点</h4><p>获取指定命名空间下的所有 pod</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">kube-prod get pod -n &lt;namespace&gt;<br></code></pre></td></tr></table></figure>
+
+<p>获取指定 pod 的详情（<code>可根据 event 排查 pod 的错误信息</code>）</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">kube-prod describe pod &lt;pod-name&gt; -n &lt;namespace&gt;<br></code></pre></td></tr></table></figure>
+
+<p>条件查询指定命名空间下指定状态的 pod 并批量删除</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">kubectl get pods -n etms | grep Evicted | awk <span class="hljs-string">&#x27;&#123;print $1&#125;&#x27;</span> | xargs kubectl delete pods --kubeconfig ./kube_config_cluster.yml -n etms<br></code></pre></td></tr></table></figure>
+
+<p>eg：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">kube-test get pods -n etms | grep Evicted | awk <span class="hljs-string">&#x27;&#123;print $1&#125;&#x27;</span> | xargs kubectl delete pods --kubeconfig ./test/kube_config_cluster.yml -n etms<br></code></pre></td></tr></table></figure>
+
+<p>强制删除 pod</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">kubectl delete pod hsas-1721236200-5q59b --grace-period=0 --force -n hsas<br></code></pre></td></tr></table></figure>
+
+<h4 id="1-2-1-3-Pod"><a href="#1-2-1-3-Pod" class="headerlink" title="1.2.1.3 Pod"></a>1.2.1.3 Pod</h4><p>启动定时任务</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">kubectl-prod -n mysql create job --from=cronjob/cweb-mysql-backup cweb-k8s-mysql-master<br></code></pre></td></tr></table></figure>
+
+<h4 id="1-2-1-4-复制文件"><a href="#1-2-1-4-复制文件" class="headerlink" title="1.2.1.4 复制文件"></a>1.2.1.4 复制文件</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">kubectl <span class="hljs-built_in">cp</span> -n 命名空间 -c 容器名 pod名:文件绝对路径 文件目标位置<br><br>kube-test <span class="hljs-built_in">cp</span> -n tool -c kkfileview kkfileview-644dcccf65-r4kqb:/opt/kkFileView-4.1.0/config/application.properties ./application.properties<br></code></pre></td></tr></table></figure>
+
+<h4 id="1-2-1-5-创建configmap"><a href="#1-2-1-5-创建configmap" class="headerlink" title="1.2.1.5 创建configmap"></a>1.2.1.5 创建configmap</h4><ol>
+<li>命令创建</li>
+</ol>
+<blockquote>
+<p><strong>通过参数<code>--from-literal</code>直接指定键值对。这种方式比较适用于临时测试使用，而且不适合配置很多的情况。</strong></p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ kubectl create configmap config-literal \<br>--from-literal=pkslow.name=Larry \<br>--from-literal=pkslow.age=18 \<br>--from-literal=pkslow.webSite=www.pkslow.com <br></code></pre></td></tr></table></figure>
+
+<ol>
+<li>文件创建</li>
+</ol>
+<blockquote>
+<p>通过参数<code>--from-file</code>来指定文件。查看内容如下：</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ kubectl create configmap config-file \<br>--namespace=tool \<br>--from-file=application.yaml \<br></code></pre></td></tr></table></figure>
+
+<h3 id="1-2-2-Docker"><a href="#1-2-2-Docker" class="headerlink" title="1.2.2 Docker"></a>1.2.2 Docker</h3><h4 id="1-2-2-1-配置镜像"><a href="#1-2-2-1-配置镜像" class="headerlink" title="1.2.2.1 配置镜像"></a>1.2.2.1 配置镜像</h4><p>为镜像仓库配置下载源，查看 <code>/etc/docker/daemon.json</code> 文件来确定当前配置的镜像源，如果该文件不存在或为空，则默认使用 Docker 官方镜像源。</p>
+<ol>
+<li>查看镜像源配置</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">cat</span> /etc/docker/daemon.json<br><span class="hljs-built_in">cat</span> ~/.docker/config.json<br></code></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>修改配置<br>多个镜像源以逗号分隔</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs sh">&#123;<br>  <span class="hljs-string">&quot;registry-mirrors&quot;</span>: [<span class="hljs-string">&quot;http://hub-mirror.c.163.com&quot;</span>]<br>&#125;<br><br><span class="hljs-comment">#仅供私人使用</span><br>&#123;<br>  <span class="hljs-string">&quot;registry-mirrors&quot;</span>: [<br>                        <span class="hljs-string">&quot;https://dockerhub.icu&quot;</span>,<br>                        <span class="hljs-string">&quot;https://registry.dockermirror.com&quot;</span>,<br>                        <span class="hljs-string">&quot;https://docker.m.daocloud.io&quot;</span>,<br>                        <span class="hljs-string">&quot;https://docker.fxxk.dedyn.io&quot;</span>,<br>                        <span class="hljs-string">&quot;https://dk.csfan.fun&quot;</span><br>					],<br>  <span class="hljs-string">&quot;exec-opts&quot;</span>: [<span class="hljs-string">&quot;native.cgroupdriver=systemd&quot;</span>]<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>常见镜像源：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://docker.m.daocloud.io/">public-image-mirror</a></li>
+<li><a target="_blank" rel="noopener" href="https://mirror.iscas.ac.cn/">ISCAS 开源镜像站</a></li>
+<li><a target="_blank" rel="noopener" href="https://docker.rainbond.cc/">docker.rainbond.cc</a></li>
+<li><a target="_blank" rel="noopener" href="http://hub-mirror.c.163.com/">网易云镜像源</a></li>
+<li><a target="_blank" rel="noopener" href="https://dockerhub.icu/">icu紧急镜像源</a></li>
+<li><a href="https://<your_code>.mirror.aliyuncs.com">阿里云镜像源</a></li>
+<li><a target="_blank" rel="noopener" href="https://docker.mirrors.sjtug.sjtu.edu.cn/">上海交大镜像站</a></li>
+<li><a target="_blank" rel="noopener" href="https://docker.nju.edu.cn/">南京大学镜像站</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/cmliu/CF-Workers-docker.io/issues/8">DockerHub国内镜像源列表-20240618</a></li>
+<li><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/2430473">从 Docker Hub 拉取镜像受阻？这些解决方案帮你轻松应对</a></li>
+<li><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/2434428">国内无法拉取Docker镜像了？这些方法拯救你的Docker-腾讯云开发者社区-腾讯云</a></li>
+</ul>
+<blockquote>
+<p>测速（测速前先移除本地的镜像！）<br>docker rmi nginx:latest<br>time docker pull nginx:latest</p>
+</blockquote>
+<ol>
+<li>重启服务更新配置</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sh">systemctl restart docker.service<br>sudo systemctl daemon-reload<br>sudo systemctl restart docker<br></code></pre></td></tr></table></figure>
+
+<h4 id="1-2-2-2-保存镜像"><a href="#1-2-2-2-保存镜像" class="headerlink" title="1.2.2.2 保存镜像"></a>1.2.2.2 保存镜像</h4><p>将指定本地镜像保存为 tar 压缩包</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">docker save -o &lt;image.tar&gt; &lt;image&gt;<br></code></pre></td></tr></table></figure>
+
+<h4 id="1-2-2-3-加载镜像"><a href="#1-2-2-3-加载镜像" class="headerlink" title="1.2.2.3 加载镜像"></a>1.2.2.3 加载镜像</h4><p>根据指定镜像压缩包加载镜像到本地</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">docker load -i &lt;image.tar&gt;<br></code></pre></td></tr></table></figure>
+
+<h4 id="1-2-2-4-删除镜像"><a href="#1-2-2-4-删除镜像" class="headerlink" title="1.2.2.4 删除镜像"></a>1.2.2.4 删除镜像</h4><p>删除所有未使用的镜像，容器和存储卷。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sh">docker image prune<br>docker container prune<br>docker volume prune<br></code></pre></td></tr></table></figure>
+
+<h4 id="1-2-2-5-更新镜像"><a href="#1-2-2-5-更新镜像" class="headerlink" title="1.2.2.5 更新镜像"></a>1.2.2.5 更新镜像</h4><p>对已有的变更环境进行保存以便于 pod 重启后维持最新环境</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">docker commit [OPTIONS] CONTAINER [REPOSITORY[:TAG]]<br>docker commit -a <span class="hljs-string">&#x27;fcs&#x27;</span>(commit msg) c3a6f02ad044(containerId/name) conda:fcs202407080840(newImageName)<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><code>OPTIONS</code><ul>
+<li><code>-a</code> 或 <code>--author</code>：设置镜像的作者字段。</li>
+<li><code>-c</code> 或 <code>--change</code>：应用 Dockerfile 指令来创建镜像。</li>
+<li><code>-m</code> 或 <code>--message</code>：提交时的说明信息。</li>
+<li><code>-p</code> 或 <code>--pause</code>：提交时暂停容器运行（默认为 true）。</li>
+</ul>
+</li>
+<li><code>CONTAINER</code> 是你要提交的容器的 ID 或名称。</li>
+<li><code>REPOSITORY</code> 是新创建镜像的仓库名称。</li>
+<li><code>TAG</code> 是可选的，用于给镜像指定一个标签，如果不指定，默认标签是 <code>latest</code>。</li>
+</ul>
+<h2 id="1-3-MySQL-指令"><a href="#1-3-MySQL-指令" class="headerlink" title="1.3 MySQL 指令"></a>1.3 MySQL 指令</h2><h3 id="1-3-1-找到配置文件位置"><a href="#1-3-1-找到配置文件位置" class="headerlink" title="1.3.1 找到配置文件位置"></a>1.3.1 找到配置文件位置</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">show variables like &#x27;datadir&#x27;;<br></code></pre></td></tr></table></figure>
+
+<h3 id="1-3-2-查看日志所在位置"><a href="#1-3-2-查看日志所在位置" class="headerlink" title="1.3.2 查看日志所在位置"></a>1.3.2 查看日志所在位置</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">show variables like &#x27;log_bin&#x27;;<br></code></pre></td></tr></table></figure>
+
+<h1 id="2-常见问题"><a href="#2-常见问题" class="headerlink" title="2 常见问题"></a>2 常见问题</h1><blockquote>
+<p>[!warning] Tips</p>
+<ol>
+<li><strong>重启（物理机、虚拟机、服务、pod 等）</strong> 可能是 <code>最直接常见的办法</code>，但 <code>不是最有效</code> 的办法，具体问题具体分析，重在<strong>根据问题逐步搜索的排查思路，自顶向下排查，自底向上解决</strong>。</li>
+<li><em>遇到问题不要慌，众里寻它先百度，属是不行再问路，先思考后动脑，多学多看多实践，能力日益节节高</em>。</li>
+</ol>
+</blockquote>
+<h2 id="2-1-镜像无法拉取"><a href="#2-1-镜像无法拉取" class="headerlink" title="2.1 镜像无法拉取"></a>2.1 镜像无法拉取</h2><ol>
+<li>原因：由于国内防火墙导致国外官方镜像仓库被墙无法拉取镜像，本地镜像库缓存导致拉取时没有找到最新镜像，docker 网络问题，系统网络问题</li>
+<li>办法：<ul>
+<li>出国旅游：windosw 开启魔法拉取镜像后通过 docker save 和 load 转移镜像，并 push 到本地私有镜像仓库留存。</li>
+<li>取而代之：寻找国内镜像源仓库，直接拉取国内镜像仓库的镜像到本地，并推送到本地私有仓库留存。（国内镜像仓库不稳定，可能会清除镜像）</li>
+<li>重启 docker：docker pull 卡在 waiting 则可能是网络问题，将 pod 所在节点的 docker 进行重启。</li>
+<li>检查 hosts 添加记录：<code>cat /etc/hosts</code> 记录格式：ip    domain</li>
+<li>重启系统网络：<code>sudo systemctl restart NetworkManager</code></li>
+</ul>
+</li>
+</ol>
+<h2 id="2-2-内存-硬盘满载-溢出"><a href="#2-2-内存-硬盘满载-溢出" class="headerlink" title="2.2 内存&#x2F;硬盘满载&#x2F;溢出"></a>2.2 内存&#x2F;硬盘满载&#x2F;溢出</h2><ol>
+<li>原因：随着时间的累积和负载变化，内存或硬盘资源可能会不够，虚拟机负载过大，无法提供正常响应。</li>
+<li>办法：<ul>
+<li>内存：清理无用进程（kill），重启虚拟机（reboot），扩容内存（vcenter 扩大虚拟机内存）</li>
+<li>硬盘：查看磁盘分区和挂载情况（df -h），清理无用文件（rm -rf），转移文件（mv），硬盘扩容（分配更多分布式存储容量，添加一块磁盘并进行磁盘分区）</li>
+</ul>
+</li>
+</ol>
+<h2 id="2-3-挂载卷存储满载"><a href="#2-3-挂载卷存储满载" class="headerlink" title="2.3 挂载卷存储满载"></a>2.3 挂载卷存储满载</h2><ol>
+<li>原因：挂载的数据卷存储容量有限，当满载后无法在挂载目录下新增目录或文件。</li>
+<li>办法：<ul>
+<li>清理挂载目录下无用的文件，腾出可用空间</li>
+<li>对挂载卷进行扩容，增加其存储容量。</li>
+</ul>
+</li>
+</ol>
+<h2 id="2-4-CPU-核心过多软锁定"><a href="#2-4-CPU-核心过多软锁定" class="headerlink" title="2.4 CPU 核心过多软锁定"></a>2.4 CPU 核心过多软锁定</h2><ol>
+<li>问题描述：</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">   [1539310.375852]NMI watchdog:BUG:soft lockup CPU<span class="hljs-comment">#20 stuck for 23s![migration/20:111]</span><br>[1539310.375856]NMI watchdog:BUG:soft lockup CPU<span class="hljs-comment">#28 stuck for 23s![kubelet:9779]</span><br></code></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>原因：日志表明系统遇到了一个“软锁定”（soft lockup）的情况。这通常意味着某个进程或线程在 CPU 上运行了很长时间，导致系统监视器认为它可能已经冻结或卡住。<ul>
+<li><strong>死锁</strong>：一个或多个进程可能陷入了死锁状态，导致 CPU 无法处理其他任务。</li>
+<li><strong>资源竞争</strong>：进程之间可能存在资源竞争，导致 CPU 长时间占用。</li>
+<li><strong>无限循环</strong>：代码中可能存在无限循环，导致 CPU 被持续占用。</li>
+<li><strong>内核问题</strong>：可能是内核本身的问题，比如驱动程序或内核补丁引起的问题。</li>
+<li><strong>高负载</strong>：系统可能由于高负载而无法及时响应。</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>cpu stuck 软锁定的原因有很多种，比如供电不足、虚拟机 cpu 核心数超过物理机核心数、虚拟机&#x2F;物理机 cpu 太忙或磁盘 IO 太高、linux 内核 bug 等</p>
+</blockquote>
+<ol>
+<li>办法：<ul>
+<li>使用 <code>cat /var/dmesg</code> 或 <code>journalctl</code> 查看内核日志。</li>
+<li>查看核心数是否过多（eg：32），关机减少核心数（eg：12）；所有虚拟机的虚拟 cpu 加起来可能会超过物理机实际 cpu 线程数，但单个虚拟机的虚拟 cpu 处理器数不能超过物理机线程数，<strong>一般虚拟 cpu 个数和物理机 cpu 个数保持一致，总处理器数设为物理机的一半</strong>。(参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45603370/article/details/140293255">虚拟机如何选择处理器和内核数量，实现最佳性能_虚拟机设置cpu处理器只有处理内核数量-CSDN博客</a>)</li>
+</ul>
+</li>
+</ol>
+<h2 id="2-5-内存占用虚高"><a href="#2-5-内存占用虚高" class="headerlink" title="2.5 内存占用虚高"></a>2.5 内存占用虚高</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/vincent0920/article/details/135485154">vmware虚拟机内存异常占用问题一例_esxi8.0占用内存怎么处理</a></p>
+<h2 id="2-6-MySQL-故障"><a href="#2-6-MySQL-故障" class="headerlink" title="2.6 MySQL 故障"></a>2.6 MySQL 故障</h2><p>参考：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/paul8339/p/16880095.html">MySQL启动报错[ERROR] InnoDB: Trying to access page number 4294967295 in space 0, space name innodb</a></p>
+<h3 id="2-6-1-K8s-集群连不上"><a href="#2-6-1-K8s-集群连不上" class="headerlink" title="2.6.1 K8s 集群连不上"></a>2.6.1 K8s 集群连不上</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_45547688/article/details/131325877">k8s 集群 kubelet日志报错 command failed“ err&#x3D;“failed to parse kubelet flag: unknown flag: –network-p_command failed” err&#x3D;”failed to parse kubelet flag</a><br>kubelet版本节点之间不一致</p>
+<p>查看状态和日志：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">systemctl status kubelet.service<br>journalctl -u kubelet -f<br></code></pre></td></tr></table></figure>
+
+<p>查看版本：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">rpm -qa | grep kube<br></code></pre></td></tr></table></figure>
+
+<p>版本降级：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">yum downgrade kubeadm-1.18.0-0.x86_64 kubectl-1.18.0-0.x86_64 kubelet-1.18.0-0.x86_64<br></code></pre></td></tr></table></figure>
+
+<p>重启kubelet：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">sudo systemctl restart kubelet.service<br>systemctl daemon-reload<br></code></pre></td></tr></table></figure>
+
+<h2 id="2-7-Rancher故障"><a href="#2-7-Rancher故障" class="headerlink" title="2.7 Rancher故障"></a>2.7 Rancher故障</h2><h3 id="2-7-1-Rancher连不上apiserver"><a href="#2-7-1-Rancher连不上apiserver" class="headerlink" title="2.7.1 Rancher连不上apiserver"></a>2.7.1 Rancher连不上apiserver</h3><p>原因：cni上层的网络组件出现了问题，可能是网络相关的pod（kube-system空间下或者直接-A查看所有涉及到网络相关的pod）挂了，重启后拉不到镜像导致网络不可用。<br>解决：排查网络相关组件pod是否正常，不正常则根据event和status进行解决。</p>
+<h1 id="3-常用镜像"><a href="#3-常用镜像" class="headerlink" title="3 常用镜像"></a>3 常用镜像</h1><h2 id="3-1-基础设施"><a href="#3-1-基础设施" class="headerlink" title="3.1 基础设施"></a>3.1 基础设施</h2><h3 id="3-1-1-Longhorn"><a href="#3-1-1-Longhorn" class="headerlink" title="3.1.1 Longhorn"></a>3.1.1 Longhorn</h3><p>longhornio&#x2F;csi-attacher:v2.2.1-lh1<br>longhornio&#x2F;csi-provisioner:v1.6.0-lh1<br><code>longhornio/csi-resizer:v0.5.1-lh1</code><br>longhornio&#x2F;csi-snapshotter:v2.1.1-lh1<br>longhornio&#x2F;longhorn-engine:v1.1.0<br>longhornio&#x2F;longhorn-instance-manager:v1_20201216<br>longhornio&#x2F;longhorn-manager:v1.1.0<br>longhornio&#x2F;csi-node-driver-registrar:v1.2.0-lh1<br>longhornio&#x2F;longhorn-ui:v1.1.0</p>
+<h3 id="3-1-2-数据库"><a href="#3-1-2-数据库" class="headerlink" title="3.1.2 数据库"></a>3.1.2 数据库</h3><h4 id="3-1-2-1-关系型"><a href="#3-1-2-1-关系型" class="headerlink" title="3.1.2.1 关系型"></a>3.1.2.1 关系型</h4><p>busybox:1.32<br>registry.csdc.info&#x2F;publish&#x2F;mysql:5.7.31<br>mysql:5.7.31<br>nacos&#x2F;nacos-mysql-master:latest<br>nacos&#x2F;nacos-mysql-slave:latest<br>prom&#x2F;mysqld-exporter</p>
+<h4 id="3-1-2-2-非关系型"><a href="#3-1-2-2-非关系型" class="headerlink" title="3.1.2.2 非关系型"></a>3.1.2.2 非关系型</h4><h5 id="3-1-2-2-1-Redis"><a href="#3-1-2-2-1-Redis" class="headerlink" title="3.1.2.2.1 Redis"></a>3.1.2.2.1 Redis</h5><p>registry.csdc.info&#x2F;publish&#x2F;redis507<br>registry.csdc.info&#x2F;publish&#x2F;redis-exporter135<br>oliver006&#x2F;redis_exporter:v1.3.4<br>registry.csdc.info&#x2F;publish&#x2F;redisinsight:latest</p>
+<h5 id="3-1-2-2-2-Neo4j"><a href="#3-1-2-2-2-Neo4j" class="headerlink" title="3.1.2.2.2 Neo4j"></a>3.1.2.2.2 Neo4j</h5><p>neo4j:3.5</p>
+<h5 id="3-1-2-2-3-ELK"><a href="#3-1-2-2-3-ELK" class="headerlink" title="3.1.2.2.3 ELK"></a>3.1.2.2.3 ELK</h5><p>registry.csdc.info&#x2F;publish&#x2F;elasticsearch-ik-py:7.16.2<br>registry.csdc.info&#x2F;publish&#x2F;elasticsearch-ik:7.9.2<br>docker.elastic.co&#x2F;kibana&#x2F;kibana:7.16.2<br>registry.csdc.info&#x2F;elk&#x2F;logstash&#x2F;logstash:7.16.2<br>docker.elastic.co&#x2F;eck&#x2F;eck-operator:1.9.1</p>
+<h5 id="3-1-2-2-4-Mongodb"><a href="#3-1-2-2-4-Mongodb" class="headerlink" title="3.1.2.2.4 Mongodb"></a>3.1.2.2.4 Mongodb</h5><p>registry.csdc.info&#x2F;publish&#x2F;mongodb424:latest<br>registry.csdc.info&#x2F;publish&#x2F;mongodb-exporter:latest</p>
+<h4 id="3-1-2-3-OSS"><a href="#3-1-2-3-OSS" class="headerlink" title="3.1.2.3 OSS"></a>3.1.2.3 OSS</h4><p>minio&#x2F;minio:RELEASE.2022-03-17T06-34-49Z</p>
+<h3 id="3-1-3-反向代理"><a href="#3-1-3-反向代理" class="headerlink" title="3.1.3 反向代理"></a>3.1.3 反向代理</h3><p>nginx:stable<br>nginx:1.7.9<br>nginx:1.15</p>
+<h3 id="3-1-4-微服务中间件"><a href="#3-1-4-微服务中间件" class="headerlink" title="3.1.4 微服务中间件"></a>3.1.4 微服务中间件</h3><h4 id="3-1-4-1-Nacos"><a href="#3-1-4-1-Nacos" class="headerlink" title="3.1.4.1 Nacos"></a>3.1.4.1 Nacos</h4><p>nacos&#x2F;nacos-server:0.9.0<br>registry.csdc.info&#x2F;publish&#x2F;nacos&#x2F;nacos-server:0.9.0<br>nacos&#x2F;nacos-server:2.0.3<br>registry.csdc.info&#x2F;publish&#x2F;nacos221:latest</p>
+<h4 id="3-1-4-2-RabbitMQ"><a href="#3-1-4-2-RabbitMQ" class="headerlink" title="3.1.4.2 RabbitMQ"></a>3.1.4.2 RabbitMQ</h4><p>docker.io&#x2F;bitnami&#x2F;rabbitmq:3.11.6-debian-11-r0</p>
+<h4 id="3-1-4-3-Seata"><a href="#3-1-4-3-Seata" class="headerlink" title="3.1.4.3 Seata"></a>3.1.4.3 Seata</h4><p>docker.io&#x2F;seataio&#x2F;seata-server:latest<br>registry.csdc.info&#x2F;etms&#x2F;seata-server:latest</p>
+<h3 id="3-1-5-Gitlab"><a href="#3-1-5-Gitlab" class="headerlink" title="3.1.5 Gitlab"></a>3.1.5 Gitlab</h3><p>registry.csdc.info&#x2F;publish&#x2F;docker:stable-dind<br>gitlab&#x2F;gitlab-runner:alpine-v13.7.0<br>gitlab&#x2F;gitlab-runner-helper:x86_64-943fc252</p>
+<h3 id="3-1-6-Harbor"><a href="#3-1-6-Harbor" class="headerlink" title="3.1.6 Harbor"></a>3.1.6 Harbor</h3><p>harbor.newershoe.com:8443&#x2F;library&#x2F;etcd</p>
+<h3 id="3-1-7-监控看板"><a href="#3-1-7-监控看板" class="headerlink" title="3.1.7 监控看板"></a>3.1.7 监控看板</h3><h4 id="3-1-7-1-Grafana"><a href="#3-1-7-1-Grafana" class="headerlink" title="3.1.7.1 Grafana"></a>3.1.7.1 Grafana</h4><p>rancher&#x2F;grafana-grafana:7.1.5<br>rancher&#x2F;prometheus-auth:v0.2.1<br>grafana&#x2F;loki:2.4.2<br>grafana&#x2F;grafana:8.3.5<br>grafana&#x2F;promtail:2.1.0</p>
+<h4 id="3-1-7-2-Prometheus"><a href="#3-1-7-2-Prometheus" class="headerlink" title="3.1.7.2 Prometheus"></a>3.1.7.2 Prometheus</h4><p>rancher&#x2F;prom-prometheus:v2.18.2<br>rancher&#x2F;coreos-prometheus-config-reloader:v0.39.0<br>rancher&#x2F;jimmidyson-configmap-reload:v0.3.0<br>rancher&#x2F;mirrored-library-nginx:1.19.9-alpine</p>
+<h3 id="3-1-8-SSH"><a href="#3-1-8-SSH" class="headerlink" title="3.1.8 SSH"></a>3.1.8 SSH</h3><p>registry.csdc.info&#x2F;publish&#x2F;panubo-sshd:latest<br>panubo&#x2F;sshd</p>
+<h3 id="3-1-9-其他"><a href="#3-1-9-其他" class="headerlink" title="3.1.9 其他"></a>3.1.9 其他</h3><p>registry.csdc.info&#x2F;publish&#x2F;dingtalk-chatbot:1.0.3<br>registry.csdc.info&#x2F;publish&#x2F;databasetools:0.0.2<br>registry.csdc.info&#x2F;publish&#x2F;rsync-ssh:latest<br>rancher&#x2F;rancher-agent:v2.5.8<br>rancher&#x2F;fleet:v0.3.1<br>rancher&#x2F;gitjob:v0.1.8<br>rancher&#x2F;nginx-ingress-controller-defaultbackend:1.5-rancher1<br>rancher&#x2F;nginx-ingress-controller:nginx-0.35.0-rancher1<br>rancher&#x2F;calico-kube-controllers:v3.16.1<br>rancher&#x2F;calico-cni:v3.16.1<br>rancher&#x2F;calico-pod2daemon-flexvol:v3.16.1<br>rancher&#x2F;calico-node:v3.16.1<br>rancher&#x2F;coreos-flannel:v0.13.0-rancher1<br>rancher&#x2F;coredns-coredns:1.7.0<br>rancher&#x2F;cluster-proportional-autoscaler:1.8.1<br>rancher&#x2F;metrics-server:v0.3.6<br>rancher&#x2F;hyperkube:v1.19.3-rancher1<br>registry.csdc.info&#x2F;publish&#x2F;k8s-sidecar:1.15.1<br>registry.csdc.info&#x2F;publish&#x2F;kube-state-metrics:v2.2.4<br>quay.io&#x2F;prometheus&#x2F;alertmanager:v0.23.0<br>jimmidyson&#x2F;configmap-reload:v0.5.0<br>quay.io&#x2F;prometheus&#x2F;node-exporter:v1.3.0<br>prom&#x2F;pushgateway:v1.4.2<br>quay.io&#x2F;prometheus&#x2F;prometheus:v2.31.1<br>rancher&#x2F;rancher-operator:v0.1.3<br>registry.csdc.info&#x2F;publish&#x2F;tomcat:7<br>registry.csdc.info&#x2F;elk&#x2F;filebeat:7.9.2<br>registry.csdc.info&#x2F;publish&#x2F;locust-tasks<br>registry.csdc.info&#x2F;publish&#x2F;kubectl:v1.14</p>
+<h3 id="3-1-10-Research"><a href="#3-1-10-Research" class="headerlink" title="3.1.10 Research"></a>3.1.10 Research</h3><p>conda:fus<br>centos:latest<br>nvidia&#x2F;cuda:10.1-devel-ubuntu18.04<br>nvidia&#x2F;cuda:10.1-cudnn7-devel-centos7</p>
+<h1 id="4-数据备份"><a href="#4-数据备份" class="headerlink" title="4 数据备份"></a>4 数据备份</h1><h2 id="4-1-备份清单"><a href="#4-1-备份清单" class="headerlink" title="4.1 备份清单"></a>4.1 备份清单</h2><h3 id="4-1-1-数据库备份"><a href="#4-1-1-数据库备份" class="headerlink" title="4.1.1 数据库备份"></a>4.1.1 数据库备份</h3><p>应用数据库备份（每天）：</p>
+<ol>
+<li>K8s内备份：<ul>
+<li>srdb: mysql，mongodb</li>
+<li>smdb: mysql</li>
+<li>hsas: mysql</li>
+<li>cweb（每月）：mysql</li>
+</ul>
+</li>
+<li>dbServ（220）上备份：<ul>
+<li>cmis：mysql(auth)，oracle</li>
+</ul>
+</li>
+</ol>
+<h3 id="4-1-2-文件备份"><a href="#4-1-2-文件备份" class="headerlink" title="4.1.2 文件备份"></a>4.1.2 文件备份</h3><p>应用文件备份：</p>
+<ol>
+<li>K8S内备份（每天）：<ul>
+<li>srdb</li>
+<li>smdb</li>
+<li>hsas</li>
+<li>cmis</li>
+<li>cweb（每月）</li>
+</ul>
+</li>
+</ol>
+<p>FTP文件备份：<br>210上备份（每早上8点）：<code>autosync_push.sh</code></p>
+<p>GitLab代码备份（每周天）：<code>autobackup.sh</code></p>
+<h2 id="4-2-注意事项"><a href="#4-2-注意事项" class="headerlink" title="4.2 注意事项"></a>4.2 注意事项</h2><p>oracle数据库定时任务无法备份如下报错：</p>
+<blockquote>
+<p>ORA-31634: 作业已存在<br>ORA-31664: 如果采用默认值, 将无法构造唯一的作业名</p>
+</blockquote>
+<p>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/yabingshi_tech/article/details/110822529">ORA-31634: 作业已存在</a><br>原因：job队列满了。<br>解决：<br>    1. 先查询出所有未运行的Jobs：<code>SELECT &#39;DROP TABLE &#39; || OWNER_NAME ||&#39;.&#39;|| JOB_NAME ||&#39;;&#39; FROM DBA_DATAPUMP_JOBS WHERE   STATE=&#39;NOT RUNNING&#39;;</code><br>    2. 删除查询到的定时任务计划表：<code>DROP TABLE CMIS.SYS_EXPORT_SCHEMA_xx;</code></p>
+<h1 id="5-应用部署"><a href="#5-应用部署" class="headerlink" title="5 应用部署"></a>5 应用部署</h1><h2 id="5-1-新建项目"><a href="#5-1-新建项目" class="headerlink" title="5.1 新建项目"></a>5.1 新建项目</h2><h3 id="5-1-1-Gitlab"><a href="#5-1-1-Gitlab" class="headerlink" title="5.1.1 Gitlab"></a>5.1.1 Gitlab</h3><p>在gitlab新建一个要开发部署的项目</p>
+<h3 id="5-1-2-Harbor"><a href="#5-1-2-Harbor" class="headerlink" title="5.1.2 Harbor"></a>5.1.2 Harbor</h3><p>在harbor镜像仓库新建一个私有项目，后续该应用的所有镜像都存储在该镜像仓库，便于后续上传和拉取应用镜像。</p>
+<h1 id="6-参考文献"><a href="#6-参考文献" class="headerlink" title="6 参考文献"></a>6 参考文献</h1><ol>
+<li><a target="_blank" rel="noopener" href="https://github.com/EbookFoundation/free-programming-books/blob/main/books/free-programming-books-zh.md">free-programming-books&#x2F;books&#x2F;free-programming-books-zh.md</a></li>
+<li><a target="_blank" rel="noopener" href="https://kubernetes.io/zh-cn/docs/concepts/scheduling-eviction/node-pressure-eviction/">节点压力驱逐 | Kubernetes</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_59267075/article/details/127710880">Error排错：The node was low on resource: ephemeral-storage</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45603370/article/details/140293255">虚拟机如何选择处理器和内核数量，实现最佳性能_虚拟机设置cpu处理器只有处理内核数量</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/quantoublog/articles/17352359.html">无法打开虚拟机，获取该虚拟机的所有权失败。 主机上的某个应用程序正在使用该虚拟机</a></li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%BF%90%E7%BB%B4%E5%BC%80%E5%8F%91/" class="category-chain-item">运维开发</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/DevOps/">#DevOps</a>
+      
+        <a href="/tags/%E8%BF%90%E7%BB%B4/">#运维</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>运维排忧解难</div>
+      <div>https://alleyf.github.io/2024/06/1d24d86ba310.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>fcs</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年6月28日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2025年1月26日</div>
+        </div>
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/07/e01892fcb965.html" title="常用软件和环境">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">常用软件和环境</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/6fa68909089a.html" title="">
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.7.2/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"636f2864e051a199b91c","clientSecret":"5185fd11115bbcd8d2f636bc80de6bed98ed14c1","repo":"Gitalk","owner":"Alleyf","admin":["Alleyf"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":false,"proxy":"https://shielded-brushlands-08810.herokuapp.com/https://github.com/login/oauth/access_token"},
+          {
+            id: '75d97e607d0442444dacc2c3f65d4b19'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://github.com/Alleyf" target="_blank" rel="nofollow noopener"><span>Alleyf</span></a> <i class="iconfont icon-love"></i> <a href="https://fcsy.fit" target="_blank" rel="nofollow noopener"><span>Homepage</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      陕ICP备2022010038号
+    </a>
+  </span>
+  
+    
+      <span>
+        <a
+          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=2022010038"
+          rel="nofollow noopener"
+          class="beian-police"
+          target="_blank"
+        >
+          
+            <span style="visibility: hidden; width: 0">|</span>
+            <img src="http://qnpicmap.fcsluck.top/pics/202311161820757.png" srcset="/img/loading.gif" lazyload alt="police-icon"/>
+          
+          <span>陕公网安备2022010038号</span>
+        </a>
+      </span>
+    
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.1/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/assets/mmedia/mmedia-loader.js"></script><!-- hexo injector body_end end --></body>
+</html>

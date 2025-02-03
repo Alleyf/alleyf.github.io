@@ -1,0 +1,1085 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="http://qnpicmap.fcsluck.top/pics/202311162214229.png">
+  <link rel="icon" href="http://qnpicmap.fcsluck.top/pics/202311162214229.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="范财胜">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="some overview about law LLM。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="司法领域大模型调研一">
+<meta property="og:url" content="https://alleyf.github.io/2023/10/07aafc1a4754.html">
+<meta property="og:site_name" content="alleyf">
+<meta property="og:description" content="some overview about law LLM。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310182125959.png">
+<meta property="og:image" content="https://github.com/zhihaiLLM/wisdomInterrogatory/raw/main/pics/%E7%9F%A5%E8%AF%86%E5%BA%93%E6%9E%84%E5%BB%BA.png">
+<meta property="og:image" content="https://github.com/zhihaiLLM/wisdomInterrogatory/raw/main/pics/%E7%9F%A5%E8%AF%86%E5%A2%9E%E5%BC%BA_2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310191047973.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310191117205.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310191120327.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310181042436.jpg">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-c9833275b2304aacaa46423af3faee10_1440w.webp">
+<meta property="article:published_time" content="2023-10-18T01:55:23.000Z">
+<meta property="article:modified_time" content="2024-06-21T16:26:42.390Z">
+<meta property="article:author" content="alleyf">
+<meta property="article:tag" content="NLP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310182125959.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>司法领域大模型调研一 - alleyf</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"alleyf.github.io","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":true,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"d57048846da607439cf11718741f2eb0","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?d57048846da607439cf11718741f2eb0";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<!-- hexo injector head_end start --><script> let HEXO_MMEDIA_DATA = { js: [], css: [], aplayerData: [], metingData: [], artPlayerData: [], dplayerData: []}; </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="alleyf" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Mr.Alleyf</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/gallery/">
+                <i class="iconfont icon-images"></i>
+                画廊
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/atom.xml">
+                <i class="iconfont icon-rss"></i>
+                RSS
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://github.com/Alleyf">
+                <i class="iconfont icon-github-fill"></i>
+                Github
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://api.likepoems.com/img/nature') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="司法领域大模型调研一"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        范财胜
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-10-18 09:55" pubdate>
+          2023年10月18日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          9.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          80 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">司法领域大模型调研一</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：7 个月前
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p>调研来源：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cardlink">url: https://github.com/HqWu-HITCS/Awesome-Chinese-LLM#4-llm%E8%AE%AD%E7%BB%83%E5%BE%AE%E8%B0%83%E6%A1%86%E6%9E%B6<br>title: &quot;GitHub - HqWu-HITCS/Awesome-Chinese-LLM: 整理开源的中文大语言模型，以规模较小、可私有化部署、训练成本较低的模型为主，包括底座模型，垂直领域微调及应用，数据集与教程等。&quot;<br>description: &quot;整理开源的中文大语言模型，以规模较小、可私有化部署、训练成本较低的模型为主，包括底座模型，垂直领域微调及应用，数据集与教程等。 - GitHub - HqWu-HITCS/Awesome-Chinese-LLM: 整理开源的中文大语言模型，以规模较小、可私有化部署、训练成本较低的模型为主，包括底座模型，垂直领域微调及应用，数据集与教程等。&quot;<br>host: github.com<br>favicon: https://github.githubassets.com/favicons/favicon.svg<br>image: https://opengraph.githubassets.com/132594c1c3b2385a7b04bb0778a027b442296804625747ac9ba2e8dec643aa52/HqWu-HITCS/Awesome-Chinese-LLM<br></code></pre></td></tr></table></figure>
+
+
+<h1 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h1><p>据不完全统计、北京大学、山东大学、阿里云等超过20家学校、厂商都发布了面向法律行业的大模型产品，尽管侧重点不同，但都是尽可能聚焦大模型在文本生成、知识学习等方面的能力，助力法律咨询、文书写作等方面的工作。<br>有鉴于“百模大战”的“盛况”，行业呼唤通过一套较为全面、系统、实用的评估指标和测评方法，指引和推动法律大模型的研发、测评工作。<br>在这一背景下，由智慧司法技术总师系统、浙江大学、上海交通大学等联合发布的行业首个《法律大模型评估指标和测评方法（征求意见稿）》（以下简称《标准》）问世，围绕语言理解、知识问答、内容生产、逻辑推理等四个维度，定义了法律大模型所需要的12项能力体系，还从性能指标对大模型的响应速度、有效性等提出了要求，对法律大模型提出了全面的规范化要求<br>《标准》发布不久后，10月24日，科大讯飞正式对外发布了基于讯飞星火认知大模型打造的星火法律大模型，这也是行业首个完全对标《标准》的法律大模型。</p>
+<h1 id="研究现状"><a href="#研究现状" class="headerlink" title="研究现状"></a>研究现状</h1><h2 id="1-ChatLaw系列模型"><a href="#1-ChatLaw系列模型" class="headerlink" title="1.ChatLaw系列模型"></a><a target="_blank" rel="noopener" href="https://github.com/PKU-YuanGroup/ChatLaw#chatlaw%E7%B3%BB%E5%88%97%E6%A8%A1%E5%9E%8B">1.ChatLaw系列模型</a></h2><blockquote>
+<p>来源：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2306.16092.pdf">arXiv: ChatLaw</a><br>由北大开源的一系列法律领域的大模型，并针对<strong>LLM 和知识库</strong>的结合问题给出了法律场景下合理的解决方案。</p>
+</blockquote>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://huggingface.co/JessyTsu1/ChatLaw-13B">ChatLaw-13B</a>，此版本为学术 demo 版，基于姜子牙 <a target="_blank" rel="noopener" href="https://huggingface.co/IDEA-CCNL/Ziya-LLaMA-13B-v1">Ziya-LLaMA-13B-v1</a> 训练而来，<strong>中文各项表现很好</strong>，但是<strong>逻辑复杂的法律问答效果不佳</strong>，需要用更大参数的模型来解决。</li>
+<li><a target="_blank" rel="noopener" href="https://huggingface.co/JessyTsu1/ChatLaw-33B">ChatLaw-33B</a>，此版本为学术 demo 版，基于 <a target="_blank" rel="noopener" href="https://github.com/lyogavin/Anima">Anima-33B</a> 训练而来，<strong>逻辑推理能力大幅提升</strong>，但是因为 Anima 的<strong>中文语料过少</strong>，导致问答<strong>时常会出现英文数据</strong>。</li>
+<li><a target="_blank" rel="noopener" href="https://huggingface.co/chestnutlzj/ChatLaw-Text2Vec">ChatLaw-Text2Vec</a>，使用 93 w 条判决案例做成的数据集基于 BERT 训练了一个<strong>相似度匹配模型</strong>，可将用户<strong>提问信息和对应的法条相匹配</strong>。</li>
+</ul>
+<h3 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h3><p>数据主要由<strong>论坛、新闻、法条、司法解释、法律咨询、法考题、判决文书</strong>组成，随后经过清洗、数据增强等来构造对话数据。</p>
+<h3 id="参考价值"><a href="#参考价值" class="headerlink" title="参考价值"></a>参考价值</h3><ol>
+<li>提出了一种将 <strong>LLM 与矢量知识数据库相结合</strong>的新方法，并且将<strong>矢量数据库检索与关键词检索</strong>相结合，有效降低了单纯依赖矢量数据库检索的不准确性，克服模型<strong>幻觉问题</strong>。</li>
+<li>传统使用<strong>司法选择题</strong>来衡量司法大模型<strong>性能</strong>，但准确率普遍较低参考意义不大，借鉴电子竞技中的<strong>匹配机制和聊天机器人竞技场</strong>（Chatbot Arena）的设计，建立了模型竞逐 <strong>Elo</strong> 积分的评估机制，以更有效地评估模型处理法律多选题的能力。<br> <img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310182125959.png" srcset="/img/loading.gif" lazyload alt="image.png"></li>
+</ol>
+<hr>
+<h2 id="2-智海-录问"><a href="#2-智海-录问" class="headerlink" title="2.智海-录问"></a><a target="_blank" rel="noopener" href="https://github.com/zhihaiLLM/wisdomInterrogatory#%E6%99%BA%E6%B5%B7-%E5%BD%95%E9%97%AE">2.智海-录问</a></h2><blockquote>
+<p>智海-录问 (wisdomInterrogatory)是由浙江大学、阿里巴巴达摩院以及华院计算三家单位共同设计研发的法律大模型。核心思想：以“普法共享和司法效能提升”为目标，从推动法律智能化体系入司法实践、数字化案例建设、虚拟法律咨询服务赋能等方面提供支持，形成数字化和智能化的司法基座能力。</p>
+</blockquote>
+<h3 id="数据集-1"><a href="#数据集-1" class="headerlink" title="数据集"></a>数据集</h3><ul>
+<li>模型基座是 <a target="_blank" rel="noopener" href="https://github.com/baichuan-inc/baichuan-7B">Baichuan-7B</a>，在此基础上，进行了二次预训练目的是给通用的大模型注入法律领域的知识。预训练的数据包括<strong>法律文书、司法案例以及法律问答数据</strong>。再进行指令微调训练。</li>
+<li>微调训练数据类别包括<strong>法考题、司法咨询、法律情景问答、触犯法律与罪名预测、刑期预测、法院意见、案件摘要提取</strong>等。</li>
+</ul>
+<h3 id="参考价值-1"><a href="#参考价值-1" class="headerlink" title="参考价值"></a>参考价值</h3><p>构建<strong>司法知识库</strong>从中进行<strong>知识检索并融合</strong>，然后与用户输入共同输入到大模型中达到<strong>知识增强</strong>的目的，从而更好地完成各项任务。<br>    <img src="https://github.com/zhihaiLLM/wisdomInterrogatory/raw/main/pics/%E7%9F%A5%E8%AF%86%E5%BA%93%E6%9E%84%E5%BB%BA.png" srcset="/img/loading.gif" lazyload alt="知识库|450"><br>    共收集了 6 种类型的知识库，包括<strong>法条类、案例类、模板类、书籍类、法律考试类、法律日常问答类</strong>。<br>    <img src="https://github.com/zhihaiLLM/wisdomInterrogatory/raw/main/pics/%E7%9F%A5%E8%AF%86%E5%A2%9E%E5%BC%BA_2.png" srcset="/img/loading.gif" lazyload alt="智海录问原理图|700"><br>    知识融合作为知识增强中的核心部分，将检索到的不同来源的知识融合后输入给法律大模型，让问题本身<strong>附带更多的司法信息</strong>，从而优化提高模型回答的效果。比如询问一个案例如何判罚时，意图识别阶段识别出应在法条库和类案库做检索，我们把和知识库名和其下检索到的知识拼接，再和问题拼接，共同输入到模型生成答案：<br>    - 可参考的知识：<strong>法条：知识 1，知识 2 类案：知识 1，知识 2 问题：XXX，请问这个案例应该如何判罚？</strong></p>
+<hr>
+<h2 id="3-LexiLaw-中文法律大模型"><a href="#3-LexiLaw-中文法律大模型" class="headerlink" title="3. LexiLaw - 中文法律大模型"></a><a target="_blank" rel="noopener" href="https://github.com/CSHaitao/LexiLaw#lexilaw---%E4%B8%AD%E6%96%87%E6%B3%95%E5%BE%8B%E5%A4%A7%E6%A8%A1%E5%9E%8B">3. LexiLaw - 中文法律大模型</a></h2><p>LexiLaw 是一个<strong>经过微调的中文法律大模型</strong>，它基于 <strong>ChatGLM-6 B</strong> 架构，通过在法律领域的数据集上进行微调，使其在提供<strong>法律咨询和支持</strong>方面具备更高的性能和专业性。</p>
+<h3 id="数据集-2"><a href="#数据集-2" class="headerlink" title="数据集"></a>数据集</h3><p><strong>通用司法领域相关数据集+知识库</strong></p>
+<ol>
+<li>通用领域数据：通用领域文本数据集 <strong><a target="_blank" rel="noopener" href="https://github.com/LianjiaTech/BELLE">BELLE</a></strong> 1.5 M，其中包括不同指令类型、不同领域的文本。</li>
+<li>专业法律数据：常见法律问题和相应的答案。这些问答数据涵盖了多个法律领域，如合同法、劳动法、知识产权等。**<a target="_blank" rel="noopener" href="https://github.com/LawRefBook/Laws">法律法规</a>** 包含刑法、民法、宪法、司法解释等法律法规。**<a target="_blank" rel="noopener" href="https://jecqa.thunlp.org/">法律参考书籍</a>** JEC-QA 数据集提供的法律参考书籍<ul>
+<li><strong><a target="_blank" rel="noopener" href="https://github.com/LiuHC0428/LAW-GPT">LawGPT_zh</a></strong> : 52 k 单轮问答数据和 92 k 带有法律依据的情景问答</li>
+<li><strong><a target="_blank" rel="noopener" href="https://github.com/AndrewZhe/lawyer-llama">Lawyer LLaMA</a></strong> : 法考数据和法律指令微调数据</li>
+<li><strong><a target="_blank" rel="noopener" href="https://www.66law.cn/">华律网问答数据</a></strong> : 20 k 高质量华律网问答数据</li>
+<li><strong><a target="_blank" rel="noopener" href="https://github.com/murufeng/ChineseNlpCorpus/blob/master/datasets/lawzhidao/intro.ipynb">法律知道</a></strong> : 百度知道收集的 36 k 条法律问答数据</li>
+</ul>
+</li>
+<li>法律文书：<br> 使用了包括<strong>判决书、法院裁定书和法律文件</strong>等在内的法律文书。这些文书涵盖了各种法律领域和案件类型，从法律裁判文书网收集 50 k 法律文书，使用正则匹配提取文书的事实部分和裁判分析过程部分。</li>
+</ol>
+<h3 id="参考价值-2"><a href="#参考价值-2" class="headerlink" title="参考价值"></a>参考价值</h3><ol>
+<li>数据集构建可以使用<strong>通用司法数据集</strong>（开源法律数据集、法律文书、司法案例）+<strong>知识库</strong>（法律法规、法律书籍）。</li>
+<li><strong>类案检索设计</strong>的结构感知预训练语言模型 <a target="_blank" rel="noopener" href="https://github.com/CSHaitao/SAILER">SAILER</a>。<br> 1. 优点：<br>     (1) SAILER 充分利用<strong>法律案例文档中包含的结构信息</strong>，更加关注关键<strong>法律要素</strong>，类似于法律专家浏览法律案例文档的方式。<br>     (2) SAILER 采用<strong>非对称编码器-解码器架构</strong>，整合了多个不同的预训练目标。这样，跨任务的丰富语义信息就会被编码成<strong>密集向量</strong>。<br>     (3) 即使没有任何法律注释数据，SAILER 也具有强大的判别能力。它能<strong>准确区分不同指控</strong>的法律案件。<ol start="2">
+<li>展望：<br> “In the future, we would like to explore incorporating more expert knowledge such as legal knowledge graphs and law articles into pre-trained language models for better legal case retrieval.”<em>未来，我们希望探索将更多的专家知识（如<strong>法律知识图谱和法律文章</strong>）纳入预训练语言模型，以便更好地进行法律案件检索</em>。</li>
+</ol>
+</li>
+</ol>
+<hr>
+<h2 id="4-DISC-LawLLM"><a href="#4-DISC-LawLLM" class="headerlink" title="4.DISC-LawLLM"></a><a target="_blank" rel="noopener" href="https://github.com/FudanDISC/DISC-LawLLM">4.DISC-LawLLM</a></h2><p>DISC-LawLLM 是一个旨在为用户提供专业、智能、全面的<strong>法律服务</strong>的法律领域大模型，由<a target="_blank" rel="noopener" href="http://fudan-disc.com/">复旦大学数据智能与社会计算实验室 (Fudan-DISC)</a> 开发并开源。<br>您可以通过访问这个<a target="_blank" rel="noopener" href="https://law.fudan-disc.com/">链接</a>来在线体验我们的 DISC-LawLLM。<br><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310191047973.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="数据集-3"><a href="#数据集-3" class="headerlink" title="数据集"></a>数据集</h3><p>不同场景下的法律智能应用通常需要<strong>结合法律文本理解和生成</strong>的多种基本能力。为此，我们构建了一个高质量的监督微调数据集 DISC-Law-SFT，包括法律信息提取、判决预测、文档摘要和法律问题解答，确保覆盖不同司法应用场景。DISC-Law-SFT 包括两个子集，即 <strong>DISC-Law-SFT-Pair</strong> 和 D<strong>ISC-Law-SFT-Triplet（<a target="_blank" rel="noopener" href="https://huggingface.co/datasets/ShengbinYue/DISC-Law-SFT">下载地址</a>）</strong>。前者旨在为 LLM 引入<strong>法律推理能力</strong>，后者则有助于<strong>提高模型利用外部知识的能力</strong></p>
+<table>
+<thead>
+<tr>
+<th>数据集</th>
+<th>对应任务&#x2F;来源</th>
+<th>样本量</th>
+<th>对应情境</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DISC-Law-SFT-Pair</td>
+<td>司法要素提取</td>
+<td>32 K</td>
+<td>法律专业人员助手</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>司法事件检测</td>
+<td>27 K</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>案件分类</td>
+<td>20 K</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>判决预测</td>
+<td>11 K</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>类案匹配</td>
+<td>8 K</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>司法摘要</td>
+<td>9 K</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>舆情摘要</td>
+<td>6 K</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>法律问答</td>
+<td>93 K</td>
+<td>法律咨询服务</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>司法阅读理解</td>
+<td>38 K</td>
+<td>法律考试助手</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>法律考试</td>
+<td>12 K</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>DISC-Law-SFT-Triplet</td>
+<td>判决预测</td>
+<td>16 K</td>
+<td>法律专业人员助手</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>法律问答</td>
+<td>23 K</td>
+<td>法律咨询服务</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>General</td>
+<td>Alpaca-GPT 4</td>
+<td>48 K</td>
+<td>通用场景</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Firefly</td>
+<td>60 K</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>总计</td>
+<td>403 K</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="参考价值-3"><a href="#参考价值-3" class="headerlink" title="参考价值"></a>参考价值</h3><ol>
+<li>采用法律逻辑提示策略构建中国司法领域的监督微调数据集，并微调具有法律推理能力的 LLM。我们为 LLM 增加了<strong>检索模块（开源检索框架 <a target="_blank" rel="noopener" href="https://github.com/chatchat-space/Langchain-Chatchat">Langchain-Chatchat</a>）</strong>，以增强模型获取和利用外部法律知识的能力。<br> <img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310191117205.png" srcset="/img/loading.gif" lazyload></li>
+<li>提出了一个全面的法律基准–<strong>DISC-Law-Eval</strong>，通过<strong>司法评价数据集</strong>（<em>一系列中国法律标准化考试和知识竞赛的单选和多选</em>题）以及<strong>问答题形式</strong>（<em>法律咨询、在线论坛、与司法相关的出版物和法律文件中手工构建了一个高质量的测试集</em>），从客观和主观两个维度对智能法律系统进行评估.<br> <img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310191120327.png" srcset="/img/loading.gif" lazyload alt="image.png"></li>
+</ol>
+<hr>
+<h1 id="核心问题"><a href="#核心问题" class="headerlink" title="核心问题"></a>核心问题</h1><h2 id="1-性能评估"><a href="#1-性能评估" class="headerlink" title="1. 性能评估"></a>1. 性能评估</h2><h3 id="1-1-逻辑推理能力"><a href="#1-1-逻辑推理能力" class="headerlink" title="1.1 逻辑推理能力"></a>1.1 逻辑推理能力</h3><p>与医疗、教育、金融等垂直领域不同的是，法律场景的<strong>真实问答</strong>通常涉及很<strong>复杂的逻辑推理</strong>，这要求模型自身有<strong>很强的逻辑能力</strong>。</p>
+<h4 id="1-1-1-解决思路"><a href="#1-1-1-解决思路" class="headerlink" title="1.1.1 解决思路"></a>1.1.1 解决思路</h4><p>可以结合 AutoGPT 将输入的<strong>复杂逻辑问题</strong>进行分解为<strong>多个逻辑简单明确的子问题</strong>，分别对各个子问题进行分析处理。<br><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310181042436.jpg" srcset="/img/loading.gif" lazyload alt="Autogpt回答.jpg"></p>
+<blockquote>
+<p>[!NOTE] <strong>AutoGPT</strong><br>自主运行的 GPT，其运行过程无需或少需人工干预，能够根据 GPT 自主决策结果并结合外部资源执行相应操作，通过循环评估策略实时评估目标达成程度，来决定任务是否完成。<br><img src="https://pic1.zhimg.com/80/v2-c9833275b2304aacaa46423af3faee10_1440w.webp" srcset="/img/loading.gif" lazyload alt="autogpt原理图"><br>主要特点</p>
+<ol>
+<li>🌐分配要自动处理的任务&#x2F;目标，直到完成</li>
+<li>💾将多个 GPT-4 链接在一起以协作完成任务</li>
+<li>🔗互联网访问和读&#x2F;写文件的能力</li>
+<li>🗃️上下文联动记忆性</li>
+</ol>
+</blockquote>
+<hr>
+<h2 id="2-模型幻觉"><a href="#2-模型幻觉" class="headerlink" title="2. 模型幻觉"></a>2. 模型幻觉</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cardlink">url: https://zhuanlan.zhihu.com/p/651507945<br>title: &quot;七问大模型幻觉｜LLM Hallucination&quot;<br>description: &quot;在语言模型的背景下，幻觉指的是 一本正经的胡说八道：看似流畅自然的表述，实则不符合事实或者是错误的。幻觉现象的存在严重影响LLM应用的可靠性，本文将探讨大型语言模型(LLMs)的幻觉问题，以及解决幻觉现象的一…&quot;<br>host: zhuanlan.zhihu.com<br>image: https://picx.zhimg.com/v2-8fcec54b8e6a07a5c1eaae4575388082_720w.jpg?source=172ae18b<br></code></pre></td></tr></table></figure>
+<p>在语言模型的背景下，幻觉指的是<strong>一本正经的胡说八道</strong>：看似流畅自然的表述，实则不符合事实或者是错误的，实际上就是模型本身<strong>没有自知之明</strong>的觉悟，幻觉现象的存在严重影响 LLM 应用的<strong>可靠性</strong>。</p>
+<h3 id="2-1-解决思路（如何让模型知之为知之，不知为不知）"><a href="#2-1-解决思路（如何让模型知之为知之，不知为不知）" class="headerlink" title="2.1 解决思路（如何让模型知之为知之，不知为不知）"></a>2.1 解决思路（如何让模型知之为知之，不知为不知）</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cardlink">url: https://www.zhihu.com/question/613263212/answer/3202893895<br>title: &quot;如何解决LLM大语言模型的幻觉问题？ - 知乎&quot;<br>description: &quot;幻觉（Hallucination）一直大模型比较头疼的问题，为了探索大模型有没有可能知道自己「知道哪些知识」，…&quot;<br>host: www.zhihu.com<br></code></pre></td></tr></table></figure>
+<ul>
+<li>幻觉检测：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cardlink">url: https://arxiv.org/abs/2303.08896<br>title: &quot;SelfCheckGPT: Zero-Resource Black-Box Hallucination Detection for Generative Large Language Models&quot;<br>description: &quot;Generative Large Language Models (LLMs) such as GPT-3 are capable of generating highly fluent responses to a wide variety of user prompts. However, LLMs are known to hallucinate facts and make non-factual statements which can undermine trust in their output. Existing fact-checking approaches either require access to the output probability distribution (which may not be available for systems such as ChatGPT) or external databases that are interfaced via separate, often complex, modules. In this work, we propose \&quot;SelfCheckGPT\&quot;, a simple sampling-based approach that can be used to fact-check the responses of black-box models in a zero-resource fashion, i.e. without an external database. SelfCheckGPT leverages the simple idea that if an LLM has knowledge of a given concept, sampled responses are likely to be similar and contain consistent facts. However, for hallucinated facts, stochastically sampled responses are likely to diverge and contradict one another. We investigate this approach by using GPT-3 to generate passages about individuals from the WikiBio dataset, and manually annotate the factuality of the generated passages. We demonstrate that SelfCheckGPT can: i) detect non-factual and factual sentences; and ii) rank passages in terms of factuality. We compare our approach to several baselines and show that our approach has considerably higher AUC-PR scores in sentence-level hallucination detection and higher correlation scores in passage-level factuality assessment compared to grey-box methods.&quot;<br>host: arxiv.org<br>favicon: https://static.arxiv.org/static/browse/0.3.4/images/icons/favicon-32x32.png<br>image: https://static.arxiv.org/static/browse/0.3.4/images/arxiv-logo-fb.png<br></code></pre></td></tr></table></figure></li>
+<li>幻觉检测，评估，消除：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cardlink">url: https://arxiv.org/abs/2305.15852<br>title: &quot;Self-contradictory Hallucinations of Large Language Models: Evaluation, Detection and Mitigation&quot;<br>description: &quot;Large language models (large LMs) are susceptible to producing text that contains hallucinated content. An important instance of this problem is self-contradiction, where the LM generates two contradictory sentences within the same context. In this work, we present a comprehensive investigation into self-contradiction for various instruction-tuned LMs, covering evaluation, detection, and mitigation. Our analysis reveals the prevalence of self-contradictions when LMs generate text for open-domain topics, e.g., in 17.7% of all sentences produced by ChatGPT. Self-contradiction also complements retrieval-based methods, as a large portion of them (e.g., 35.8% for ChatGPT) cannot be verified using Wikipedia. We then propose a novel prompting-based framework designed to effectively detect and mitigate self-contradictions. Our detector achieves high accuracy, e.g., around 80% F1 score when prompting ChatGPT. The mitigation algorithm iteratively refines the generated text to remove contradictory information while preserving text fluency and informativeness. Importantly, our entire framework is applicable to black-box LMs and does not require external grounded knowledge. Our approach is practically effective and has been released as a push-button tool to benefit the public, available at https://chatprotect.ai/.&quot;<br>host: arxiv.org<br>favicon: https://static.arxiv.org/static/browse/0.3.4/images/icons/favicon-32x32.png<br>image: https://static.arxiv.org/static/browse/0.3.4/images/arxiv-logo-fb.png<br></code></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h2 id="3-隐私安全"><a href="#3-隐私安全" class="headerlink" title="3. 隐私安全"></a>3. 隐私安全</h2><p>如何在保证数据隐私性的前提下，利用私有数据训练大语言模型，从而满足在垂直领域中的应用需求。<br><u>eg：三星通过 ChatGPT 泄露了自己的秘密</u></p>
+<p>（1）<strong>差分隐私</strong>（Differential Privacy）<br>    差分隐私是一种数据隐私保护技术，通过向数据<strong>引入噪声</strong>来隐藏个体数据，以防止从模型的输出中反推个人信息。差分隐私可用于在保护数据的同时进行大规模数据分析。<br>（2）<strong>联邦学习</strong><br>    联邦学习（Federated learning，FL）是一种机器学习环境，在这种环境下，多个客户端（如移动设备或整个组织）在<strong>中央服务器</strong>（如服务提供商）的协调下<strong>协同训练一个模型</strong>，同时<strong>保持训练数据的分散性</strong>。FL 体现了<strong>集中数据收集和最小化</strong>的原则，可以减轻传统的集中式机器学习和数据科学方法带来的许多隐私、安全性风险和成本。因此，FL 是一种有效的<strong>高性能计算范式</strong>，也被看作是满足数据隐私性要求的<strong>分布式训练方法</strong>，可以用来解决司法领域大模型的隐私安全问题。<br>    1. <em>分散的数据存储</em>：<br>        联邦学习允许<strong>法院、执法机构和其他司法实体将敏感数据保留在本地，而不需要将数据集中存储在一个地方</strong>。这减少了中心化数据存储的风险，降低了数据泄露的潜在威胁。<br>    2. <em>隐私保护的模型训练</em>：<br>        联邦学习<strong>允许在本地设备上进行模型训练，同时避免直接访问或暴露个人数据。每个本地设备只共享模型参数的更新</strong>，而不是原始数据，这有助于保护数据隐私。<br>    3. <em>安全的模型聚合</em>：<br>        在联邦学习中，<strong>中央服务器负责聚合和整合来自本地设备的模型参数更新</strong>。这一过程经过安全的加密和验证，以确保模型更新的完整性和隐私性。<br>    4. <em>差分隐私</em>：<br>        差分隐私技术可以与联邦学习结合，以进一步增强数据隐私保护。通过<strong>向模型参数的更新引入噪声，可以在保持模型性能的同时，提供更高级别的个人数据保护</strong>。</p>
+<hr>
+<h1 id="个人总结"><a href="#个人总结" class="headerlink" title="个人总结"></a>个人总结</h1><ol>
+<li>目前司法大模型的研究现状综合来看普遍采用<span style="background:#d3f8b6"><font color="#ff0000">微调模型+知识库</font></span>来实现大模型的司法领域垂直应用<br> （1）<strong>微调模型</strong><br> 采用<em><strong>LLM通用预训练模型+司法数据集</strong></em>（法律法规，法律书籍，司法试题，论坛咨询和司法文书、案例等）<br> （2）<strong>知识库</strong><br> 采用法条、案例、文书、题库、问答等建立司法知识库，借助开源检索框架（ <a target="_blank" rel="noopener" href="https://github.com/chatchat-space/Langchain-Chatchat">Langchain-Chatchat</a>）对用户输入进行知识检索获得更多关联信息作为<strong>辅助指导</strong>输入到推理模实现知识增强的效果，从而克服一些模型性能和幻觉问题。</li>
+</ol>
+<blockquote>
+<p>[!NOTE] 思考<br>个人认为在知识库的基础上可以利用<strong>信息抽取技术</strong>将其构建为<strong>知识图谱</strong>，去除冗余信息保留关键实体和关系，再结合<strong>图嵌入机制</strong>将知识图谱实体和关系映射到<strong>低维向量空间</strong>中，从而更好地理解和利用知识图谱的信息，便于实现<strong>图谱融合</strong>，也可结合<strong>矢量和关键词检索</strong>进行知识增强，进而完成下游任务（如<strong>法律咨询、法条检索和类案检索</strong>等）。</p>
+</blockquote>
+<ol start="2">
+<li>司法大模型<strong>性能评估</strong>方面可以参考上述中的<em>Elo积分评估机制</em>和<em>DISC的客观选择题及主观问答题形式</em>进行模型效果评估。</li>
+<li>隐私安全方面，<strong>联邦学习</strong>可以是一个考虑的方向，目前已经有部分学者在做相关研究（如<strong>FedLLM：在专有数据上建立你自己的大型语言模型</strong>），但是联邦学习用于大模型的适用性还有待考证。</li>
+</ol>
+<hr>
+<h1 id="会议记录"><a href="#会议记录" class="headerlink" title="会议记录"></a>会议记录</h1><ol>
+<li>深度挖掘科学问题的研究，具体有哪些科学研究需要解决？</li>
+<li>数据集构建的目的，如何为后续知识图谱的构建提供便利</li>
+<li>如何构建一个高质量与时俱进的专业领域大模型数据集</li>
+<li>知识图谱中实体对齐和实体链接是两个核心问题</li>
+<li>大模型生成的虚拟数据不能用于自己训练，但是可以用于其他的任务</li>
+<li>大模型的知识检索性能可以用于评估知识图谱</li>
+<li>知识图谱提供指导参考辅助大模型，大模型也可以反哺知识图谱的构建融合</li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%A7%91%E7%A0%94%E5%AD%A6%E4%B9%A0/" class="category-chain-item">科研学习</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/NLP/">#NLP</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>司法领域大模型调研一</div>
+      <div>https://alleyf.github.io/2023/10/07aafc1a4754.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>范财胜</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年10月18日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2024年6月22日</div>
+        </div>
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/10/f7fb287915e2.html" title="司法领域大模型调研二">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">司法领域大模型调研二</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/10/153052cac26f.html" title="残差神经网络">
+                        <span class="hidden-mobile">残差神经网络</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.7.2/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"636f2864e051a199b91c","clientSecret":"5185fd11115bbcd8d2f636bc80de6bed98ed14c1","repo":"Gitalk","owner":"Alleyf","admin":["Alleyf"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":false,"proxy":"https://shielded-brushlands-08810.herokuapp.com/https://github.com/login/oauth/access_token"},
+          {
+            id: '086b55e4766b6aaaadb8ae8893047c44'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://github.com/Alleyf" target="_blank" rel="nofollow noopener"><span>Alleyf</span></a> <i class="iconfont icon-love"></i> <a href="https://fcsy.fit" target="_blank" rel="nofollow noopener"><span>Homepage</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      陕ICP备2022010038号
+    </a>
+  </span>
+  
+    
+      <span>
+        <a
+          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=2022010038"
+          rel="nofollow noopener"
+          class="beian-police"
+          target="_blank"
+        >
+          
+            <span style="visibility: hidden; width: 0">|</span>
+            <img src="http://qnpicmap.fcsluck.top/pics/202311161820757.png" srcset="/img/loading.gif" lazyload alt="police-icon"/>
+          
+          <span>陕公网安备2022010038号</span>
+        </a>
+      </span>
+    
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.1/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/assets/mmedia/mmedia-loader.js"></script><!-- hexo injector body_end end --></body>
+</html>

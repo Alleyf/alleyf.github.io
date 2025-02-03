@@ -1,0 +1,1206 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="http://qnpicmap.fcsluck.top/pics/202311162214229.png">
+  <link rel="icon" href="http://qnpicmap.fcsluck.top/pics/202311162214229.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="fcs">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一些关于 redis 作为缓存数据库的学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redis-缓存之美">
+<meta property="og:url" content="https://alleyf.github.io/2023/11/ab7de5524ddd.html">
+<meta property="og:site_name" content="alleyf">
+<meta property="og:description" content="一些关于 redis 作为缓存数据库的学习笔记">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://picsum.photos/800/250">
+<meta property="article:published_time" content="2023-11-25T02:45:31.000Z">
+<meta property="article:modified_time" content="2024-06-21T16:26:42.276Z">
+<meta property="article:author" content="alleyf">
+<meta property="article:tag" content="正则表达式">
+<meta property="article:tag" content="Regex">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://picsum.photos/800/250">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Redis-缓存之美 - alleyf</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"alleyf.github.io","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":true,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"d57048846da607439cf11718741f2eb0","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?d57048846da607439cf11718741f2eb0";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<!-- hexo injector head_end start --><script> let HEXO_MMEDIA_DATA = { js: [], css: [], aplayerData: [], metingData: [], artPlayerData: [], dplayerData: []}; </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="alleyf" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Mr.Alleyf</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/gallery/">
+                <i class="iconfont icon-images"></i>
+                画廊
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/atom.xml">
+                <i class="iconfont icon-rss"></i>
+                RSS
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://github.com/Alleyf">
+                <i class="iconfont icon-github-fill"></i>
+                Github
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://api.likepoems.com/img/nature') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Redis-缓存之美"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        fcs
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-11-25 10:45" pubdate>
+          2023年11月25日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          14k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          117 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Redis-缓存之美</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：7 个月前
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p><img src="https://picsum.photos/800/250" srcset="/img/loading.gif" lazyload></p>
+<h1 id="NoSQL-综述"><a href="#NoSQL-综述" class="headerlink" title="NoSQL 综述"></a>NoSQL 综述</h1><p>NoSQL 是一个用于描述非关系型数据库的术语。它代表了一类数据库管理系统，这些系统不使用传统的关系型数据库模型，而是采用其他数据模型来存储和检索数据。<br>NoSQL 数据库的特点包括：</p>
+<ol>
+<li><em>非结构化数据存储</em>：NoSQL 数据库不要求固定的表结构，可以灵活地存储和处理非结构化或半结构化数据。</li>
+<li><em>水平扩展性</em>：NoSQL 数据库通常支持水平扩展，可以在需要时添加更多的服务器来处理增加的负载。</li>
+<li><em>高性能</em>：由于不使用复杂的关系模型和查询语言，NoSQL 数据库通常具有高性能和低延迟。</li>
+<li>分布式计算：NoSQL 数据库通常使用分布式计算技术，在多个服务器上进行并行处理和存储数据。</li>
+<li><em>丰富的数据模型</em>：NoSQL 数据库支持多种数据模型，如键值对、文档、列族、图形等。</li>
+</ol>
+<p>根据数据模型的不同，NoSQL 数据库可以分为几种类型：</p>
+<ol>
+<li>&#x3D;&#x3D;键值对存储&#x3D;&#x3D;：最简单的 NoSQL 数据库类型，以键值对方式存储数据。例如 Redis 、Memcached 等。</li>
+<li>&#x3D;&#x3D;文档存储&#x3D;&#x3D;：以类似 JSON 格式的文档方式存储数据。例如 MongoDB、CouchDB 等。</li>
+<li>&#x3D;&#x3D;列族存储&#x3D;&#x3D;：以列族方式存储数据，适用于大数据和分布式环境。例如 HBase、Cassandra 等。</li>
+<li>&#x3D;&#x3D;图形存储&#x3D;&#x3D;：以图形结构方式存储数据，适用于复杂的关系查询。例如 Neo4j、OrientDB 等。</li>
+</ol>
+<p>NoSQL 数据库在大数据、实时分析、云计算等领域具有广泛的应用。它们可以处理海量的非结构化数据，并提供高性能的读写操作。与传统的关系型数据库相比，NoSQL 数据库具有更好的横向扩展性和高可用性，可以在集群中分布数据并实现数据的自动复制和故障恢复。<br>在大数据领域，NoSQL 数据库可以处理海量的数据，并支持并行计算和分布式存储。它们通常采用分布式架构，可以将数据存储在多个节点上，并通过并行计算来处理查询和分析任务。<br>在实时分析领域，NoSQL 数据库可以提供低延迟的查询和分析能力。它们通常采用内存存储或者基于索引的存储方式，可以快速地查找和处理数据。<br>在云计算领域，NoSQL 数据库可以轻松地扩展和部署。它们通常具有自动化管理和弹性伸缩的功能，可以根据需求来增加或减少资源。<br>总之，NoSQL 数据库在大数据、实时分析、云计算等领域具有广泛应用，并且不断发展创新。它们能够有效地处理海量数据，并提供高性能和可靠性。</p>
+<hr>
+<h1 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h1><h2 id="切换数据库"><a href="#切换数据库" class="headerlink" title="切换数据库"></a>切换数据库</h2><p>通过 select 语句进行切换数据库，默认有 0 到 15 号数据库。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">select index #index为redis数据库的序号，默认有16个（0~15）<br></code></pre></td></tr></table></figure>
+
+<h2 id="数据操作"><a href="#数据操作" class="headerlink" title="数据操作"></a>数据操作</h2><p>redis 的基本数据操作</p>
+<ol>
+<li>设置键值对：使用 SET 命令可以设置一个键值对，例如：<code>SET key value</code>。</li>
+<li>获取值：使用 GET 命令可以获取指定键的值，例如：<code>GET key</code>。</li>
+<li>删除键值对：使用 DEL 命令可以删除指定的键值对，例如：<code>DEL key</code>。</li>
+<li>检查键是否存在：使用 EXISTS 命令可以检查指定的键是否存在，例如：<code>EXISTS key</code>。</li>
+<li>设置过期时间：使用 EXPIRE 命令可以为指定的键设置过期时间，例如：<code>EXPIRE key seconds</code>。</li>
+<li>查看剩余过期时间：使用 TTL 命令可以查看指定键的剩余过期时间，例如：<code>TTL key</code>。</li>
+<li>自增和自减操作：使用 INCR 和 DECR 命令可以对指定的数值进行自增和自减操作，例如：<code>INCR key</code>, <code>DECR key</code>。</li>
+<li>列表操作：Redis 提供了一系列列表操作命令，如 LPUSH、RPUSH、LPOP、RPOP 等，用于在列表头部或尾部插入、删除元素等操作。</li>
+<li>哈希表操作：Redis 提供了一系列哈希表操作命令，如 HSET、HGET、HDEL 等，用于在哈希表中设置、获取、删除字段等操作。</li>
+<li>集合操作：Redis 提供了一系列集合操作命令，如 SADD、SREM、SMEMBERS 等，用于添加、删除、获取集合中的元素等操作。</li>
+<li>有序集合操作：Redis 提供了一系列有序集合操作命令，如 ZADD、ZREM、ZRANGE 等，用于添加、删除、获取有序集合中的元素等操作。</li>
+</ol>
+<p><strong>详细介绍：</strong></p>
+<ol>
+<li>添加数据:</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">set</span> &lt;key&gt; &lt;value&gt; -- 一次多个<br>mset &lt;key1&gt; &lt;value1&gt; &lt;key2&gt; &lt;value2&gt; ...<br></code></pre></td></tr></table></figure>
+
+<p>所有存入的改据默认会以<strong>字符串</strong>的形式保存，键值具有一定的命名规范，以方便我们可以快速定位我们的数据属于哪一个部分，比如用户的数据：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">-- 使用冒号来进行板块分划，比如下面表示用户XXX的信息中的name属性，值为lbw<br><span class="hljs-built_in">set</span> user:info:用户ID:name lbw<br></code></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>添加数据并设置过期时间：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">set</span> key value ex/px seconds <span class="hljs-comment">#ex：对应秒；px：对应毫秒</span><br>setex key seconds value<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>获取数据：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sh">get &lt;key&gt; --获取指定键数据<br>keys * --获取所有键<br>randomkey --随机获取一个键<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>设置过期时间：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">expire key seconds<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>查看过期时间：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sh">ttl key -- 以秒为单位显示剩余有效存储时间<br>pttl key -- 以毫秒为单位<br>persist key --转为永久存储<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>判断键是否存在：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">exists key --存在则返回1，不存在则返回0<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>迁移键到其他数据库：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">move key index<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>修改键名：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">rename oldKey newKey --不会检查newKey是否存在<br>renamex oldKey newKey --会检查newKey是否存在<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>自增&#x2F;减数字：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sh">incr key --返回自增1后的值<br>incrby key increment --返回自增increment后的值<br>decr key --返回自减1后的值<br>decrby key decrement --返回自减increment后的值<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>查看数据类型：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">type</span> key<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>删除数据：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">del key [key ...] --删除一个或多个键<br></code></pre></td></tr></table></figure></li>
+</ol>
+<hr>
+<h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><p>Redis 支持多种数据类型，包括：</p>
+<ol>
+<li><strong>字符串（String）</strong>：最基本的数据类型，可以存储任何类型的数据，如文本、二进制数据等。</li>
+<li><strong>列表（List）</strong>：有序的字符串列表，可以在列表的两端插入和删除元素，还可以根据索引获取元素。</li>
+<li><strong>集合（Set）</strong>：无序的字符串集合，不允许有重复元素，可以进行交集、并集、差集等操作。</li>
+<li><strong>散列（Hash）</strong>：键值对的无序散列表，适用于存储对象。</li>
+<li><strong>有序集合（Sorted Set）</strong>：类似于集合，但每个元素都关联一个分数（score），可以按照分数排序。</li>
+<li><strong>Bitmaps</strong>：位图数据类型，可以对位图进行位操作。</li>
+<li><strong>HyperLogLogs</strong>：基数估算算法实现的数据结构，用于计算一个集合中不重复元素的个数。</li>
+<li><strong>地理空间索引（Geospatial Indexes）</strong>：存储地理位置信息，并支持地理位置相关的查询操作。</li>
+</ol>
+<p>这些数据类型具有丰富而灵活的功能，在使用 Redis 时能够满足各种不同的需求。</p>
+<h2 id="Hash"><a href="#Hash" class="headerlink" title="Hash"></a>Hash</h2><p>这种类型本质上就是一个 HashMap,也就是嵌套了一个 HashMap 罢了，在 Java 中就像这样：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//Redis默认存String类似于这样：</span><br>Map&lt;string,String&gt;hash <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>;<br><span class="hljs-comment">//Redisi存Hash类型的政据类似于这样：</span><br>Map&lt;String,Map&lt;String,String&gt;&gt;hash <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>();<br></code></pre></td></tr></table></figure>
+
+<p>它比较适合存储类这样的数据，由于值本身又是一个 Map,因此我们可以在此 Map 中放入类的各种属性和值，以实现一个 Hash 数据类型存储一个类的数据。</p>
+<ol>
+<li><p>添加：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">hset &lt;key&gt; &lt;field&gt; &lt;value&gt; --添加<span class="hljs-built_in">hash</span>数据（只能指定一个字段和值）<br>hmset &lt;key&gt; &lt;field&gt; &lt;value&gt; [field value ...] --添加多对字段和值<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>获取键值：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sh">hget key 字段 --获取指定字段<br>hmget key field [field ...] --获取多个指定字段<br>hgetall key --如果想要一次性获取所有的字段和值<br>hvals key --获取键的所有值<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>判存：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">hexists key field --存在则返回1，否则返回0<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>删除：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">hdel key field [field ...] --删除一个或多个字段<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>获取长度：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">hlen key<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>难一需要注意的是，&#x3D;&#x3D;Hash 中只能存放字符串值&#x3D;&#x3D;，不允许出现嵌套的的情况。</p>
+</blockquote>
+</li>
+</ol>
+<h2 id="List"><a href="#List" class="headerlink" title="List"></a>List</h2><p>List 类型就是一个列表，而列表中存放一系列的字符串，它支持随机访问，支持双端操作，就像我们使用 Java 中的 LinkedList 一样。<br>我们可以直接向一个已存在或是不存在的 List 中添加数据，如果不存在，会自动创建：</p>
+<ol>
+<li><p>添加：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sh">--向列表头部添加元素<br>lpush &lt;key&gt; &lt;element&gt;...<br>--向列表尾部添加元素<br>rpush &lt;key&gt; &lt;element&gt;...<br>--在指定元素前面/后面插入元素<br>linsert &lt;key&gt; before/after &lt;指定元素&gt; &lt;element&gt;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>获取：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs sh">--根据下标获取元素<br>lindex &lt;key&gt; &lt;index&gt;<br>--获取并移除头部元素<br>lpop &lt;key&gt;<br>--获取并移除尾部元素<br>rpop &lt;key&gt;<br>--获取指定范围内的<br>lrange &lt;key&gt; start stop<br>注意下标可以使用负数来表示从后到前数的数字<br>--获取列表Q中的全部元素<br>lrange a 0 -1<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>取尾置头：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">-- 从前一个数组的最后取一个数出来放到另一个数组的头部，并返回元素<br>rpoplpush <span class="hljs-built_in">source</span> destination<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>阻塞操作（类似于生产者和消费者，比如我们想要等待列表中有了数据后再进行 poρ操作）:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">--如果列表中没有元素，那么就等待，如果指定时间（秒）内被添加了数据，那么就执行pop操作，如果超时就作废，支持同时等待多个列表，只要其中一个列表有元素了，那么就能执行<br>blpop &lt;key&gt;...<span class="hljs-built_in">timeout</span><br></code></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="Set-和-SortedSet"><a href="#Set-和-SortedSet" class="headerlink" title="Set 和 SortedSet"></a>Set 和 SortedSet</h2><p>   Set 集合其实就像 Java 中的 HashSet 一样（我们在 JavaSE 中已经讲解过了，HashSet 本质上就是利用了一个 HashMap,但是 Value 都是固定对象，仅偃是 Key 不同)它不允许出现重复元素，不支持随机访问，但是能够利用 Hash 表提供极高的查找效率。</p>
+<ol start="5">
+<li><p>添加元素：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">sadd &lt;key&gt; &lt;value&gt; ...<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>查看数量：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">scard &lt;key&gt;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>判断是否包含：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sh">--是否包含指定值<br>sismember &lt;key&gt; &lt;value&gt;<br>--列出所有值<br>smembers &lt;key&gt;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>集合之间的运算：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs sh">--集合之间的差集<br>sdiff &lt;key1&gt; &lt;key2&gt;<br>--集合之间的交集<br>sinter &lt;key1&gt; &lt;key2&gt;<br>--求并集(自动去重)<br>sunion &lt;key1&gt; &lt;key2&gt;<br>--将集合之间的差集存到目标集合中<br>sdiffstore 目标 &lt;key1&gt; &lt;key2&gt;<br>--同上<br>sinterstore 目标 &lt;key1&gt; &lt;key2<br>--同上<br>sunionstore 目标 &lt;key1&gt; &lt;key2<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>移动指定值到另一个集合中：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">smove &lt;key&gt; 目标 value<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>删除：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sh">--随机移除一个幸运儿<br>spop &lt;key&gt;<br>--移除指定<br>srem &lt;key&gt; &lt;value&gt;...<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>那么如果我们要求 Set 集合中的数据按照我们指定的顺序进行排列怎么办呢？这时就可以使用 SortedSet,它支持我们为每个值设定一个分数，分数的大小决定了值的位置，所以它是有序的。 </p>
+</blockquote>
+</li>
+<li><p>添加有序集合（<em>根据分数降序排列</em>）：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">zadd &lt;key&gt; [&lt;value&gt; &lt;score&gt;]...<br></code></pre></td></tr></table></figure>
+
+<p><img src="http://qnpicmap.fcsluck.top/pics/202311251747202.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+</li>
+<li><p>获取元素：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sh">zcard key<br>zrange key start end （withscores）可带分数返回<br>zrangebyscore key score1 score2 返回指定分数之间的数据<br>ZRANGEBYSCORE key min max [WITHSCORES] [LIMIT offset count] 自定义参数<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>删除元素：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">zrem key value ...<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>统计分数段内的数量</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">zcount &lt;key&gt; start  stop<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>根据分数获取指定值的排名</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">zrank &lt;key&gt; &lt;value&gt;<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>有关 Bitmap、HyperLogLog 和 Geospatial 等数据类型不常用，如需了解请参考 <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/32b9fe8c20e1">redis基本操作命令 - 简书</a></p>
+</blockquote>
+</li>
+</ol>
+<hr>
+<h1 id="持久化"><a href="#持久化" class="headerlink" title="持久化"></a>持久化</h1><p>因为 Redis 是内存数据库，它将自己的数据存储在内存里面，一旦 Redis 服务器进程退出或者运行 Redis 服务器的计算机停机，Redis 服务器中的数据就会丢失。<br>为了避免数据丢失，所以 Redis 提供了持久化机制，将存储在内存中的数据保存到磁盘中，用于在 Redis 服务器进程退出或者运行 Redis 服务器的计算机停机导致数据丢失时，快速的恢复之前 Redis 存储在内存中的数据。<br>Redis 持久化不保证数据的完整性，有可能会丢数据。当 Redis 用作 DB 时，DB 数据要完整，所以一定要有一个完整的数据源（文件、mysql），在系统启动时，从这个完整的数据源中将数据 load 到 Redis 中。<br>Redis 的有两种持久化方式，RDB 和 AOF。</p>
+<h3 id="ROB"><a href="#ROB" class="headerlink" title="ROB"></a>ROB</h3><p>RDB（Redis DataBase），是 redis 默认的存储方式，RDB 方式是通过快照（ snapshotting ）完成的。它保存的是某一时刻的数据并不关注过程。<em>RDB 保存 redis 某一时刻的数据的快照</em><br><strong>优点</strong>：</p>
+<ol>
+<li>写入速度快：由于 ROB 只需要写入键的位图文件和相应的值文件，而不需要写入完整的数据库文件，因此写入速度比传统的 AOF 和 RDB 持久化方式更快。</li>
+<li>读取速度快：由于 ROB 只需要读取键的位图信息，并根据位图信息读取相应的值文件，因此读取速度也比传统方式更快。</li>
+<li>占用空间小：由于 ROB 只需要保存每个键是否存在的位图信息和相应的值文件，因此占用空间比传统方式更小。</li>
+</ol>
+<p><strong>缺点</strong>：</p>
+<ol>
+<li>只适用于适量大小（不超过几千万个键）的数据库。</li>
+<li>不支持复制和集群模式。</li>
+<li>服务器故障时会丢失最后一次备份之后的数据。</li>
+<li>Redis 保存 rdb 时， fork 子进程的这个操作期间, Redis 服务会停止响应(一般是毫秒级)，但如果数据量大且 cpu 时间紧张，则停止响应的时间可能长达 1 秒。</li>
+</ol>
+<p>总的来说，ROB 持久化是一种在特定场景下可以提供更快速、更省空间的持久化方式，但对于大规模数据集和高可用性要求的场景可能不太适用。<br>RDB 持久化是将某个时间点上 Redis 中的数据保存到一个 RDB 文件中，如下所示：<br>保存：<br><img src="http://qnpicmap.fcsluck.top/pics/202311252009138.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<blockquote>
+<p>基于 RDB 持久化的上述性质，所以 RDB 持久化也叫做<strong>快照持久化</strong>。<br>该文件是一个经过压缩的二进制文件，通过该文件可以还原生成 RDB 文件时 Redis 中的数据，如下所示：</p>
+</blockquote>
+<p>还原：<br><img src="http://qnpicmap.fcsluck.top/pics/202311252012458.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<blockquote>
+<p><strong>触发快照的方式</strong>  </p>
+<ol>
+<li>符合自定义配置的快照规则；  </li>
+<li>执行 save 或者 bgsave 命令；  </li>
+<li>执行 flushall 命令；  </li>
+<li>执行主从复制操作 (第一次)。</li>
+</ol>
+</blockquote>
+<blockquote>
+<p><strong>配置参数定期执行</strong><br>在 <code>redis.conf</code> 中配置：save 多少秒内数据变了多少，可以配置多个条件，满足其中一个条件就会触发生成快照，提高性能</p>
+</blockquote>
+<p><strong>保存过程原理</strong>：<br><img src="http://qnpicmap.fcsluck.top/pics/202311252307029.png" srcset="/img/loading.gif" lazyload alt="image.png"><br><strong>相关配置参数：</strong></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sh">save<br>--注意上面这个命令是直接保存，会占用一定的时间，也可以单独开一个子进程后台执行保存<br>bgsave<br></code></pre></td></tr></table></figure>
+
+<p>执行后，会在服务端目录下生成一个 dump.rb 文件，而这个文件中就保存了内存中存放的数据，当服务器重后后，云目动加载里面的内容到对应数据库中。保存后我们可以关闭服务器：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">shutdown<br></code></pre></td></tr></table></figure>
+
+<p>重启后可以看到数据依然存在。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs conf">################################ SNAPSHOTTING  ################################<br># 快照配置<br># 注释掉“save”这一行配置项就可以让保存数据库功能失效<br># 设置sedis进行数据库镜像的频率。<br># 900秒（15分钟）内至少1个key值改变（则进行数据库保存--持久化） <br># 300秒（5分钟）内至少10个key值改变（则进行数据库保存--持久化） <br># 60秒（1分钟）内至少10000个key值改变（则进行数据库保存--持久化）<br>save 900 1<br>save 300 10<br>save 60 10000<br>#当RDB持久化出现错误后，是否依然进行继续进行工作，yes：不能进行工作，no：可以继续进行工作，可以通过info中的rdb_last_bgsave_status了解RDB持久化是否有错误<br>stop-writes-on-bgsave-error yes<br>#使用压缩rdb文件，rdb文件压缩使用LZF压缩算法，yes：压缩，但是需要一些cpu的消耗。no：不压缩，需要更多的磁盘空间<br>rdbcompression yes<br>#是否校验rdb文件。从rdb格式的第五个版本开始，在rdb文件的末尾会带上CRC64的校验和。这跟有利于文件的容错性，但是在保存rdb文件的时候，会有大概10%的性能损耗，所以如果你追求高性能，可以关闭该配置。<br>rdbchecksum yes<br>#rdb文件的名称<br>dbfilename dump.rdb<br>#数据目录，数据库的写入会在这个目录。rdb、aof文件也会写在这个目录<br>dir /var/lib/redis<br></code></pre></td></tr></table></figure>
+
+<h2 id="AOF-持久化"><a href="#AOF-持久化" class="headerlink" title="AOF 持久化"></a>AOF 持久化</h2><p>AOF 其实就是将客户端每一次操作记录追加到指定的 aof（日志）文件中，在 aof 文件体积多大时可以自动在后台重写 aof 文件（期间不影响正常服务，中途磁盘写满或停机等导致失败也不会丢失数据）<br><strong>优点</strong></p>
+<ul>
+<li>充分保证数据的持久化，正确的配置一般最多丢失 1 秒的数据</li>
+<li>aof 文件内容是以 Redis 协议格式保存，易读</li>
+</ul>
+<p><strong>缺点</strong></p>
+<ul>
+<li>aof 文件通常大于 rdb 文件</li>
+<li>速度会慢于 rdb, 具体得看具体 fsyn 策略</li>
+<li>重新启动 redis 时会极低的概率会导致无法将数据集恢复成保存时的原样(概率极低, 但确实出现过)</li>
+</ul>
+<p><strong>AOF 持久化原理：</strong><br><img src="http://qnpicmap.fcsluck.top/pics/202311252327646.png" srcset="/img/loading.gif" lazyload alt="image.png"><br><strong>aof 持久化的 fsync 策略支持</strong>：</p>
+<ul>
+<li>不执行 fsync：由操作系统保证数据同步到磁盘(linux 默认 30 秒)，速度最快</li>
+<li>每秒 1 次：每秒钟保存一次，最多丢失最近 1s 的数据（推荐，默认配置）</li>
+<li>每条命令：每次执行写操作都会保存一次，绝对保证数据持久化（影响性能）</li>
+</ul>
+<blockquote>
+<p>fsync：同步内存中所有已修改的文件数据到储存设备</p>
+</blockquote>
+<p>aof 文件是一个只追加的文件, 若写入了不完整的命令(磁盘满, 停机…)时, 可用自带的 <code>redis-check-aof</code> 工具轻易修复问题：执行 <code>redis-check-aof --fix</code><br>aof 文件过大时会触发自动重写, 重写后的新 aof 文件包含了恢复当前数据集所需的最少的命令集合.</p>
+<blockquote>
+<p>客户端多次对同一个键 incr 时, 操作 N 次则会写入 N 条, 但实际上只需一条 set 命令就可以保存该值, 重建就是生成足够重建当前数据集的最少命令。<br>Redis 重写 aof 操作同样是通过 fork 子进程来处理的.</p>
+</blockquote>
+<p><strong>命令行临时配置 aof:</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">CONFIG SET appendonly yes<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>仅当前实例生命周期内有效</p>
+</blockquote>
+<p><strong>配置文件持久配置 aof：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c">#注意得改成也是<br>appendonly yes<br><span class="hljs-meta">#appendfsync always</span><br>appendfsync everysec<br><span class="hljs-meta">#appendfsync no</span><br></code></pre></td></tr></table></figure>
+
+<p>重启服务器后，可以看到服务器目录下多了一个 appendonly.aof 文件，存储的就是我们执行的命令。<br>AOF 的缺点也很明显，每次服务器启动都需要进行过程重演，相比 RDB 更加耗费时间，并且随着我们的操作变多，不断累计，可能到最后我们的 aof 文件会变得无比巨大，我们需要一个改进方案来优化这些问题。<br>Redis 有一个 AOF 重写机制进行优化，比如我们执行了这样的语句：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c">lpush test <span class="hljs-number">666</span><br>lpush test <span class="hljs-number">777</span><br>lpush test <span class="hljs-number">888</span><br><span class="hljs-comment">//实际上用一条语句也可以实现：</span><br>lpush test <span class="hljs-number">666</span> <span class="hljs-number">777</span> <span class="hljs-number">888</span><br></code></pre></td></tr></table></figure>
+
+<p>正是如此，只要我们能够保证最终的重演结果和原有语句的结果一致，无论语句如何修改都可以，所以我们可以通过这种方式将多条语句进行压缩。<br>我们可以输入命令来手动执行重写操作：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">bgrewriteaof<br></code></pre></td></tr></table></figure>
+
+<p>或是在配置文件中配置自动重写</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment">#百分比计算，这里不多介绍</span><br>auto-aof-rewrite-percentage 100<br><span class="hljs-comment">#当达到这个大小时，触发自动重写</span><br>auto-aof-rewrite-min-size 64mb<br></code></pre></td></tr></table></figure>
+
+<p><strong>总结:</strong></p>
+<ul>
+<li>AOF:<ul>
+<li>优点：存储速度快、消耗资源少、支持实时存储</li>
+<li>缺点：加载速度慢、数据体积大</li>
+</ul>
+</li>
+<li>RDB:<ul>
+<li>优点：加载速度快、数据体积小</li>
+<li>缺点：存储速度慢大量消耗资源、会发生数据丢失</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1 id="事务和锁机制"><a href="#事务和锁机制" class="headerlink" title="事务和锁机制"></a>事务和锁机制</h1><h2 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h2><p>和 MySQL 一样，在 Rdis 中也有事务机制，当我们需要保证多条命令一次性完整执行而中途不受到其他命令干扰时，就可以使用事务机制。</p>
+<ol>
+<li><p>开启事务：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">multi<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>执行事务：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">exec<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>中途取消事务：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">discard<br></code></pre></td></tr></table></figure>
+
+<p>实际上整个事务是创建了一个<em>命令队列</em>，它不像 MySQL 那种在事务中也能单独得到结果，而是我们提前将所有的命令<em>装在队列中，但是并不会执行</em>，而是等我们<em>提交事务的时候再统一执行</em>。</p>
+</li>
+</ol>
+<h2 id="锁"><a href="#锁" class="headerlink" title="锁"></a>锁</h2><p>   实际上在 Redis 中也会出现多个命令同时竞争同一个数据的情况，比如现在有两条命令同时执行，他们都要去修改的值，那么这个时候就只能动用锁机制来保证同一时间只能有一个命令操作。<br>   虽然 <code>Redis中也有锁机制，但是它是一种乐观锁</code>，不同于 MySQL,我们在 MySQL 中认识的锁是悲观锁，那么什么是乐观锁什么是悲观锁呢？</p>
+<ul>
+<li>悲观锁：时刻认为别人会来抢占资源，&#x3D;&#x3D;禁止一切外来访问，直到释放锁&#x3D;&#x3D;，具有强烈的排他性质。</li>
+<li>乐观锁：并不认为会有人来抢占资源，所以会&#x3D;&#x3D;直接对数据进行操作，在操作时再去验证是否有其他人抢占资源&#x3D;&#x3D;。</li>
+</ul>
+<p>Redis 中可以使用 watch 来监视一个目标，如果<em><strong>执行事务之前被监视目标发生了修改，则取消本次事务</strong></em>：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">watch<br></code></pre></td></tr></table></figure>
+
+<p>我们可以开两个客户端进行测试。<br>取消监视可以使用：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">unwatch<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>乐观锁采用版本号来区分是否被修改，从而避免 ABA（即将 A 修改为 B 再修改为 A）问题。</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs image-layout-a">![image.png](http://qnpicmap.fcsluck.top/pics/202311261046338.png)<br>![image.png](http://qnpicmap.fcsluck.top/pics/202311261046425.png)<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="Java-与-Redis-交互"><a href="#Java-与-Redis-交互" class="headerlink" title="Java 与 Redis 交互"></a>Java 与 Redis 交互</h1><p>这里我们需要使用到 Jedis 框架，它能够实现 Java 与 Redis 数据库的交互，依赖：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>redis.clients<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>jedis<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>4.0.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="基本操作-1"><a href="#基本操作-1" class="headerlink" title="基本操作"></a>基本操作</h2><p>我们来看看如何连接 Redis 数据库，非常简单，只需要创建一个对象即可：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;  <br>    <span class="hljs-keyword">try</span> (<span class="hljs-type">Jedis</span> <span class="hljs-variable">jedis</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Jedis</span>(<span class="hljs-string">&quot;127.0.0.1&quot;</span>, <span class="hljs-number">6379</span>);  <br>    ) &#123;  <br>        jedis.auth(<span class="hljs-string">&quot;123456&quot;</span>);  <br>        jedis.keys(<span class="hljs-string">&quot;*&quot;</span>).forEach(System.out::println);  <br>        jedis.set(<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;zhangsan&quot;</span>);  <br>        System.out.println(jedis.get(<span class="hljs-string">&quot;a&quot;</span>)); <br>    &#125;  <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>通过 Jedis 对象，我们就可以直接调用命令的同名方法来执行 Redis 命令了，比如：</p>
+<ul>
+<li><p>Hash 类型：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String]args)</span>&#123;<br><span class="hljs-keyword">try</span>(Jedis jedis <span class="hljs-keyword">new</span> <span class="hljs-title class_">Jedis</span>(<span class="hljs-string">&quot;127.0.0.1&quot;</span>,<span class="hljs-number">6379</span>))&#123;<br>jedis.hset(<span class="hljs-string">&quot;hhh&quot;</span>,<span class="hljs-string">&quot;name&quot;</span>,<span class="hljs-string">&quot;sxc&quot;</span>);<span class="hljs-comment">//等同于hset hhh name sxc</span><br>jedis.hset(<span class="hljs-string">&quot;hhh&quot;</span>,<span class="hljs-string">&quot;sex&quot;</span>,<span class="hljs-string">&quot;19&quot;</span>);<span class="hljs-comment">//等同于hset hhh age19</span><br>jedis.hgetAll(<span class="hljs-string">&quot;hhh&quot;</span>).forEach((k,v)-&gt;System.out.println(k+<span class="hljs-string">&quot;:&quot;</span>+v));<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>列表操作：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String]args)</span>&#123;<br><span class="hljs-keyword">try</span>(Jedis jedis <span class="hljs-keyword">new</span> <span class="hljs-title class_">Jedis</span>(<span class="hljs-string">&quot;127.0.0.1&quot;</span>,<span class="hljs-number">6379</span>))&#123;<br>jedis.lpush(<span class="hljs-string">&quot;mylist&quot;</span>,<span class="hljs-string">&quot;111&quot;</span>,<span class="hljs-string">&quot;222&quot;</span>,<span class="hljs-string">&quot;333&quot;</span>);<span class="hljs-comment">//等同于lpush my1ist 111 222 333命令</span><br>jedis.lrange(<span class="hljs-string">&quot;mylist&quot;</span>,<span class="hljs-number">0</span>,-<span class="hljs-number">1</span>).forEach(System.out::println);<span class="hljs-comment">//等同手lrange mylist0-1</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>实际上我们只需要按照对应的操作去调用同名方法即可，所有的类型封装 Jedis 已经帮助我们完成了。</p>
+</li>
+</ul>
+<h2 id="SpringBoot-整合-Redis"><a href="#SpringBoot-整合-Redis" class="headerlink" title="SpringBoot 整合 Redis"></a>SpringBoot 整合 Redis</h2><ol>
+<li>导入依赖</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span>  <br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>        <br>        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>  <br>        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-data-redis<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>  <br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>  <br><span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>填加 spring.data.redis 相关配置</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">server:</span>  <br><span class="hljs-attr">port:</span> <span class="hljs-number">8080</span> <span class="hljs-comment"># 主要用于配置Spring Boot应用程序的端口  </span><br><span class="hljs-attr">spring:</span>  <br><span class="hljs-attr">application:</span>  <br> <span class="hljs-attr">name:</span> <span class="hljs-string">springboot-redis</span> <span class="hljs-comment"># 主要用于设置Spring Boot应用程序的名称  </span><br><span class="hljs-attr">data:</span>  <br> <span class="hljs-attr">redis:</span>  <br>   <span class="hljs-attr">host:</span> <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span> <span class="hljs-comment"># 主要用于配置Redis服务器的主机地址  </span><br>   <span class="hljs-attr">port:</span> <span class="hljs-number">6379</span> <span class="hljs-comment"># 主要用于配置Redis服务器的端口号  </span><br>   <span class="hljs-attr">password:</span> <span class="hljs-number">123456</span> <span class="hljs-comment"># 主要用于配置Redis服务器的密码  </span><br>   <span class="hljs-attr">database:</span> <span class="hljs-number">0</span> <span class="hljs-comment"># 主要用于配置Redis服务器的数据库索引（从0开始）  </span><br>   <span class="hljs-attr">timeout:</span> <span class="hljs-number">1000</span> <span class="hljs-comment"># 主要用于配置Redis操作的超时时间（以毫秒为单位）</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>依赖默认为我们提供了两个模板类 RedisTemplate 和 StringRedisTemplate 方便操作 redis</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@SpringBootTest</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">SpringBootRedisApplicationTests</span> &#123;<br> <span class="hljs-meta">@Resource</span><br> StringRedisTemplate stringRedisTemplate;  <span class="hljs-comment">// Spring Boot 配置文件注入 Redis 的 String 类型模板</span><br> <span class="hljs-meta">@Test</span><br> <span class="hljs-keyword">void</span> <span class="hljs-title function_">redisTest</span><span class="hljs-params">()</span> &#123;<br>     stringRedisTemplate.opsForValue().set(<span class="hljs-string">&quot;user:info:1:name&quot;</span>, <span class="hljs-string">&quot;zhangSan&quot;</span>, <span class="hljs-number">1</span>, TimeUnit.MINUTES);  <span class="hljs-comment">// 将键值对 &quot;user:info:1:name&quot; 的值设置为 &quot;zhangsan&quot; 存入 Redis</span><br>     stringRedisTemplate.opsForValue().set(<span class="hljs-string">&quot;user:info:1:age&quot;</span>, <span class="hljs-string">&quot;21&quot;</span>, <span class="hljs-number">1</span>, TimeUnit.MINUTES);  <span class="hljs-comment">// 将键值对 &quot;user:info:1:age&quot; 的值设置为 &quot;21&quot; 存入 Redis</span><br>     <span class="hljs-type">String</span> <span class="hljs-variable">name</span> <span class="hljs-operator">=</span> stringRedisTemplate.opsForValue().get(<span class="hljs-string">&quot;user:info:1:name&quot;</span>);  <span class="hljs-comment">// 获取键 &quot;user:info:1:name&quot; 对应的值并赋值给变量 name</span><br>     <span class="hljs-type">String</span> <span class="hljs-variable">age</span> <span class="hljs-operator">=</span> stringRedisTemplate.opsForValue().get(<span class="hljs-string">&quot;user:info:1:age&quot;</span>);  <span class="hljs-comment">// 获取键 &quot;user:info:1:age&quot; 对应的值并赋值给变量 age</span><br>     System.out.println(<span class="hljs-string">&quot;name:&quot;</span> + name + <span class="hljs-string">&quot;\nage:&quot;</span> + age);  <span class="hljs-comment">// 打印变量 name 和 age 的值</span><br>     stringRedisTemplate.delete(<span class="hljs-string">&quot;a&quot;</span>);  <span class="hljs-comment">// 删除键为 &quot;a&quot; 的键值对</span><br>     System.out.println(stringRedisTemplate.hasKey(<span class="hljs-string">&quot;a&quot;</span>));  <span class="hljs-comment">// 打印 Redis 中是否存在键 &quot;a&quot;</span><br> &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>实际上所有的值的操作都被封装到了 ValueOperations 对象中，而普通的键操作直接通过模板对象就可以使用了，大致使用方式其实和 Jedis 一致。</p>
+</blockquote>
+</li>
+</ol>
+<p>事务操作，由于 Spring 没有专门的 Redis 事务管理器，所以只能借用 JDBC 提供的，只不过无所谓，正常情况下反正我们也要用到这玩意：</p>
+<ul>
+<li><p>依赖注入</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>  <br>  <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>  <br>  <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-jdbc<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>  <br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>  <br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>  <br>  <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>mysql<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>  <br>  <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>mysql-connector-java<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>  <br>  <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>8.0.28<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>  <br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>配置数据库</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">server:</span>  <br><span class="hljs-attr">port:</span> <span class="hljs-number">8080</span> <span class="hljs-comment"># 主要用于配置Spring Boot应用程序的端口  </span><br><span class="hljs-attr">spring:</span>  <br><span class="hljs-attr">application:</span>  <br>  <span class="hljs-attr">name:</span> <span class="hljs-string">springboot-redis</span> <span class="hljs-comment"># 主要用于设置Spring Boot应用程序的名称  </span><br><span class="hljs-attr">redis:</span>  <br>  <span class="hljs-attr">host:</span> <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span> <span class="hljs-comment"># 主要用于配置Redis服务器的主机地址  </span><br>  <span class="hljs-attr">port:</span> <span class="hljs-number">6379</span> <span class="hljs-comment"># 主要用于配置Redis服务器的端口号  </span><br>  <span class="hljs-attr">password:</span> <span class="hljs-number">123456</span> <span class="hljs-comment"># 主要用于配置Redis服务器的密码  </span><br>  <span class="hljs-attr">database:</span> <span class="hljs-number">0</span> <span class="hljs-comment"># 主要用于配置Redis服务器的数据库索引（从0开始）  </span><br>  <span class="hljs-attr">timeout:</span> <span class="hljs-number">1000</span> <span class="hljs-comment"># 主要用于配置Redis操作的超时时间（以毫秒为单位）  </span><br><span class="hljs-attr">datasource:</span>  <br>  <span class="hljs-attr">driver-class-name:</span> <span class="hljs-string">com.mysql.cj.jdbc.Driver</span>  <br>  <span class="hljs-attr">url:</span> <span class="hljs-string">jdbc:mysql://127.0.0.1:3306/spring?useUnicode=true&amp;characterEncoding=utf-8</span> <span class="hljs-comment"># 主要用于配置数据库的URL  </span><br>  <span class="hljs-attr">username:</span> <span class="hljs-string">root</span> <span class="hljs-comment"># 主要用于配置数据库的用户名  </span><br>  <span class="hljs-attr">password:</span> <span class="hljs-number">123456</span> <span class="hljs-comment"># 主要用于配置数据库的密码</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>事务服务调用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Service</span>  <br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">RedisService</span> &#123;  <br>  <span class="hljs-meta">@Resource</span>  <br>  StringRedisTemplate stringRedisTemplate;  <br><br>  <span class="hljs-meta">@PostConstruct</span>  <br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">init</span><span class="hljs-params">()</span> &#123;  <br>      stringRedisTemplate.setEnableTransactionSupport(<span class="hljs-literal">true</span>);  <br>  &#125;  <br><br>  <span class="hljs-meta">@Transactional</span>  <br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">test</span><span class="hljs-params">()</span> &#123;  <br>      stringRedisTemplate.multi();  <br>      stringRedisTemplate.opsForValue().set(<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;123123&quot;</span>);  <br>      stringRedisTemplate.exec();  <br>  &#125;  <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>redis 也可以存实体类,不过首先要对其序列化处理为 json 格式才可以,entity 类要实现 <code>Serializable</code> 接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Data</span>  <br><span class="hljs-meta">@AllArgsConstructor</span>  <br><span class="hljs-meta">@NoArgsConstructor</span>  <br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Student</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Serializable</span> &#123;  <br>  String name;  <br>  <span class="hljs-type">int</span> age;  <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>存储对象类型:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">test</span><span class="hljs-params">()</span> &#123;  <br>  redisTemplate.multi();  <br>  redisTemplate.opsForValue().set(<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">Student</span>(<span class="hljs-string">&quot;xiaoShuai&quot;</span>, <span class="hljs-number">20</span>));  <br>  redisTemplate.exec();  <br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/182972002">Redis 持久化详解及配置 - 知乎</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1vR4y1o7Z2/?p=6&spm_id_from=pageDriver&vd_source=9c896fa9c3f9023797e8efe7be0c113e">持久化_哔哩哔哩_bilibili</a></li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6%E5%92%8C%E5%B7%A5%E5%85%B7/" class="category-chain-item">中间件和工具</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">#正则表达式</a>
+      
+        <a href="/tags/Regex/">#Regex</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Redis-缓存之美</div>
+      <div>https://alleyf.github.io/2023/11/ab7de5524ddd.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>fcs</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年11月25日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2024年6月22日</div>
+        </div>
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/11/d1d8bbbe9e18.html" title="Spring Cloud Alibaba 微服务原理与实战-阅读心得">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Spring Cloud Alibaba 微服务原理与实战-阅读心得</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/11/ce56947e919e.html" title="SpringCloud-微服务应用">
+                        <span class="hidden-mobile">SpringCloud-微服务应用</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.7.2/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"636f2864e051a199b91c","clientSecret":"5185fd11115bbcd8d2f636bc80de6bed98ed14c1","repo":"Gitalk","owner":"Alleyf","admin":["Alleyf"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":false,"proxy":"https://shielded-brushlands-08810.herokuapp.com/https://github.com/login/oauth/access_token"},
+          {
+            id: '1937d0b948464ea4d4a59c7da2782acb'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://github.com/Alleyf" target="_blank" rel="nofollow noopener"><span>Alleyf</span></a> <i class="iconfont icon-love"></i> <a href="https://fcsy.fit" target="_blank" rel="nofollow noopener"><span>Homepage</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      陕ICP备2022010038号
+    </a>
+  </span>
+  
+    
+      <span>
+        <a
+          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=2022010038"
+          rel="nofollow noopener"
+          class="beian-police"
+          target="_blank"
+        >
+          
+            <span style="visibility: hidden; width: 0">|</span>
+            <img src="http://qnpicmap.fcsluck.top/pics/202311161820757.png" srcset="/img/loading.gif" lazyload alt="police-icon"/>
+          
+          <span>陕公网安备2022010038号</span>
+        </a>
+      </span>
+    
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.1/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/assets/mmedia/mmedia-loader.js"></script><!-- hexo injector body_end end --></body>
+</html>

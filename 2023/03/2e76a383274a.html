@@ -1,0 +1,999 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="http://qnpicmap.fcsluck.top/pics/202311162214229.png">
+  <link rel="icon" href="http://qnpicmap.fcsluck.top/pics/202311162214229.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="alleyf">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="some key points with respect to dataframe-algorithm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dateframe—Algorithm">
+<meta property="og:url" content="https://alleyf.github.io/2023/03/2e76a383274a.html">
+<meta property="og:site_name" content="alleyf">
+<meta property="og:description" content="some key points with respect to dataframe-algorithm">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/05/24/kyjJIXU7eLSbCFW.png">
+<meta property="article:published_time" content="2023-03-17T11:06:15.000Z">
+<meta property="article:modified_time" content="2024-06-21T16:26:42.396Z">
+<meta property="article:author" content="alleyf">
+<meta property="article:tag" content="Dataframe-Algorithm">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s2.loli.net/2023/05/24/kyjJIXU7eLSbCFW.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Dateframe—Algorithm - alleyf</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"alleyf.github.io","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":true,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"d57048846da607439cf11718741f2eb0","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?d57048846da607439cf11718741f2eb0";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<!-- hexo injector head_end start --><script> let HEXO_MMEDIA_DATA = { js: [], css: [], aplayerData: [], metingData: [], artPlayerData: [], dplayerData: []}; </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="alleyf" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Mr.Alleyf</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/gallery/">
+                <i class="iconfont icon-images"></i>
+                画廊
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/atom.xml">
+                <i class="iconfont icon-rss"></i>
+                RSS
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://github.com/Alleyf">
+                <i class="iconfont icon-github-fill"></i>
+                Github
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://api.likepoems.com/img/nature') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Dateframe—Algorithm"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        alleyf
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-03-17 19:06" pubdate>
+          2023年3月17日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          45 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Dateframe—Algorithm</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：7 个月前
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="1-线性表"><a href="#1-线性表" class="headerlink" title="1.线性表"></a>1.线性表</h1><blockquote>
+<p>无论哪种数据结构，都存在<font color="#ff0000">增删改查 (按值查找)查（按位查找）</font>操作，对应不同操作的<font color="#4bacc6">时间复杂度不同</font>，要根据实际数据的形式选择合适的数据结构进行存储，再选择合适算法进行处理。</p>
+</blockquote>
+<h2 id="顺序表（sequence-list）"><a href="#顺序表（sequence-list）" class="headerlink" title="顺序表（sequence list）"></a>顺序表（sequence list）</h2><h3 id="1初始化"><a href="#1初始化" class="headerlink" title="1初始化"></a>1初始化</h3><h3 id="2增加元素"><a href="#2增加元素" class="headerlink" title="2增加元素"></a>2增加元素</h3><h3 id="3删除元素"><a href="#3删除元素" class="headerlink" title="3删除元素"></a>3删除元素</h3><h3 id="4修改元素"><a href="#4修改元素" class="headerlink" title="4修改元素"></a>4修改元素</h3><h3 id="5查找元素"><a href="#5查找元素" class="headerlink" title="5查找元素"></a>5查找元素</h3><h4 id="按值查找"><a href="#按值查找" class="headerlink" title="按值查找"></a>按值查找</h4><h4 id="按位查找"><a href="#按位查找" class="headerlink" title="按位查找"></a>按位查找</h4><h2 id="链表（link-list）"><a href="#链表（link-list）" class="headerlink" title="链表（link list）"></a>链表（link list）</h2><h3 id="1初始化-1"><a href="#1初始化-1" class="headerlink" title="1初始化"></a>1初始化</h3><h3 id="2增加元素-1"><a href="#2增加元素-1" class="headerlink" title="2增加元素"></a>2增加元素</h3><h4 id="头插"><a href="#头插" class="headerlink" title="头插"></a>头插</h4><h4 id="尾插"><a href="#尾插" class="headerlink" title="尾插"></a>尾插</h4><h3 id="3删除元素-1"><a href="#3删除元素-1" class="headerlink" title="3删除元素"></a>3删除元素</h3><h3 id="4修改元素-1"><a href="#4修改元素-1" class="headerlink" title="4修改元素"></a>4修改元素</h3><h3 id="5查找元素-1"><a href="#5查找元素-1" class="headerlink" title="5查找元素"></a>5查找元素</h3><h4 id="按值查找-1"><a href="#按值查找-1" class="headerlink" title="按值查找"></a>按值查找</h4><h4 id="按位查找-1"><a href="#按位查找-1" class="headerlink" title="按位查找"></a>按位查找</h4><h1 id="2-栈"><a href="#2-栈" class="headerlink" title="2.栈"></a>2.栈</h1><blockquote>
+<p>栈是一种<font color="#8064a2">后进先出（LIFO）</font>的线性表结构。</p>
+</blockquote>
+<p><span style="background:rgba(240, 107, 5, 0.2)">顺序栈：</span></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> &#123;</span>SElemType *base;<br>				SElemType *top;<br>				<span class="hljs-type">int</span> stacksize;&#125; SgStack;<br></code></pre></td></tr></table></figure>
+
+<p><span style="background:#b1ffff">链栈：</span></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">StackNode</span>&#123;</span><br>SElemType data;<br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">StackNode</span> *<span class="hljs-title">next</span>;</span>&#125;StackNode,*LinkStack;<br><br></code></pre></td></tr></table></figure>
+
+
+<h2 id="1初始化-2"><a href="#1初始化-2" class="headerlink" title="1初始化"></a>1初始化</h2><p><span style="background:rgba(240, 107, 5, 0.2)">顺序栈：</span></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c">Status <span class="hljs-title function_">InitStack</span><span class="hljs-params">(SgStack &amp;S,<span class="hljs-type">int</span> MAXSIZE&#123;</span><br><span class="hljs-params">S.base =new SElemType [MAXSIZE]；</span><br><span class="hljs-params"><span class="hljs-keyword">if</span>(!S.base） </span><br><span class="hljs-params">   <span class="hljs-keyword">return</span> OVERFLOW;</span><br><span class="hljs-params">   S.top = S.base;</span><br><span class="hljs-params">   S.stacksize = MAXSIZE；</span><br><span class="hljs-params">   <span class="hljs-keyword">return</span> OK;</span><br></code></pre></td></tr></table></figure>
+
+<p><span style="background:#b1ffff">链栈：</span></p>
+<p><strong>不带头节点：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">void</span> <span class="hljs-title function_">Initstack</span> <span class="hljs-params">(LinkStack &amp;S)</span><br>&#123;<br>	S=<span class="hljs-literal">NULL</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+
+<h2 id="2-入栈"><a href="#2-入栈" class="headerlink" title="2 入栈"></a>2 入栈</h2><p><span style="background:rgba(240, 107, 5, 0.2)">顺序栈：</span><br>时间复杂度：O（1）</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c"><br>Status <span class="hljs-title function_">Push</span><span class="hljs-params">(SqStack &amp;S,SElemType e)</span><br>&#123;<br><span class="hljs-keyword">if</span>(S.top - S.base==S.stacksize）<span class="hljs-keyword">return</span> ERROR;<br>*S.top++=e;<br><span class="hljs-keyword">return</span> OK;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这段代码是一个名为 <code>Push</code> 的函数，它接受两个参数：一个指向栈 <code>S</code> 的指针引用和要入栈的元素 <code>e</code>。<code>SqStack</code> 表示栈的类型，在这里推测它是由结构体或类定义的。<code>&amp;S</code> 表示将栈变量的地址传递给函数，通过引用来修改栈的内容。在 C&#x2F;C++中，引用有时候也被称为别名(alias)，它允许我们使用类似于指针的语法来操作对象，但是具有更好的安全性和易读性。<code>SElemType</code> 是栈元素的数据类型，可以是任何合法的数据类型。</p>
+<p>这个函数的作用是将元素e压入到栈S中，如果栈已满则返回ERROR，否则在栈顶插入元素e并返回OK。其中<code>S.top - S.base</code> 表示当前栈中已有元素的个数，如果这个值等于<code>S.stacksize</code>就意味着栈已经满了。<code>*S.top++=e</code>表示将元素e存储在栈顶，并将栈指针往上移动一位，准备接收下一个元素。最后，函数返回插入操作的结果，OK表示成功，ERROR表示失败。</p>
+<p><span style="background:#b1ffff">链栈：</span><br><strong>头插</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c">Status <span class="hljs-title function_">Push</span> <span class="hljs-params">(LinkStack&amp;S,ElemType e)</span>&#123;<br>p=new StackNode;<span class="hljs-comment">//生成新结点p</span><br><span class="hljs-keyword">if</span> (!p)<span class="hljs-keyword">return</span> OVERFLOW;<br>p-&gt;data=e;<br>p-&gt;next=S;<br>S=p;<span class="hljs-comment">//S始终指向当前第一个节点(栈顶节点)</span><br><span class="hljs-keyword">return</span> OK;<br><br></code></pre></td></tr></table></figure>
+
+
+<h2 id="3-出栈"><a href="#3-出栈" class="headerlink" title="3 出栈"></a>3 出栈</h2><p><span style="background:rgba(240, 107, 5, 0.2)">顺序栈：</span></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c">Status <span class="hljs-title function_">Pop</span><span class="hljs-params">(SqStack &amp;S,SElemType &amp;e)</span><br>&#123;<br><span class="hljs-keyword">if</span>(S.top == S.base）<span class="hljs-keyword">return</span> ERROR;<br>e=*--S.top;<br><span class="hljs-keyword">return</span> OK;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p><span style="background:#b1ffff">链栈：</span></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs c">Status <span class="hljs-title function_">Pop</span> <span class="hljs-params">(LinkStack &amp;S,SElemType &amp;e)</span><br>&#123;<br>	<span class="hljs-keyword">if</span> (S==<span class="hljs-literal">NULL</span>)<br>		<span class="hljs-keyword">return</span> ERROR;<br>	e = S-&gt;data;<br>	p = S;<br>	S = S-&gt;next;<br>	delete p;<br>	<span class="hljs-keyword">return</span> OK;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+
+<h1 id="3-队列"><a href="#3-队列" class="headerlink" title="3. 队列"></a>3. 队列</h1><blockquote>
+<p>队列是一种先进先出（FIFO）的线性表，只允许在表的一端插入，另一端删除。</p>
+</blockquote>
+<p><font color="#8064a2">顺序队列：</font></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c">Typedef <span class="hljs-class"><span class="hljs-keyword">struct</span> &#123;</span><br>QElemType *base;<span class="hljs-comment">//初始化的动态分配存储空间</span><br><span class="hljs-type">int</span> front;<span class="hljs-comment">//头指针</span><br><span class="hljs-type">int</span> rear;<span class="hljs-comment">//尾指针</span><br>&#125;SgQueue;<br><br></code></pre></td></tr></table></figure>
+
+
+<p><font color="#f79646">链队列：</font></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">QNode</span></span><br><span class="hljs-class">&#123;</span><br>	QElemType data;<br>	<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Qnode</span> *<span class="hljs-title">next</span>;</span><br>&#125;Qnode,*QueuePtr;<br><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> </span><br><span class="hljs-class">&#123;</span><br>	QueuePtr front;<span class="hljs-comment">//队头指针</span><br>	QueuePtr rear;<span class="hljs-comment">//队尾指针</span><br>&#125;LinkQueue;<br><br></code></pre></td></tr></table></figure>
+
+
+<h2 id="1-初始化"><a href="#1-初始化" class="headerlink" title="1 初始化"></a>1 初始化</h2><p><span style="background:#d3f8b6">顺序队列：</span></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs c">Status <span class="hljs-title function_">InitQueue</span> <span class="hljs-params">(SgQueue &amp;Q)</span><br>&#123;<br>Q.base = new QElemType[MAXQSIZE];<br><span class="hljs-keyword">if</span> (!Q.base)<br>	<span class="hljs-built_in">exit</span> (OVERFLOW);<br>Q.front=Q.rear=<span class="hljs-number">0</span>;<br><span class="hljs-keyword">return</span> OK;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+
+<p><span style="background:#fdbfff">链队列：</span><br><strong>有头节点</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs c">Status <span class="hljs-title function_">InitQueue</span> <span class="hljs-params">(LinkQueue &amp;Q)</span>&#123;<br>Q.front=(QueuePtr)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(QNode));<br><span class="hljs-keyword">if</span>(!Q.front)<br><span class="hljs-built_in">exit</span>(OVERFLOW);<br>Q.rear=Q.front;<br>Q.front-&gt;next=<span class="hljs-literal">NULL</span>;<br><span class="hljs-keyword">return</span> OK;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+
+
+<p><span style="background:#d3f8b6">队空标志：front&#x3D;&#x3D;rear</span><br><span style="background:#d3f8b6">队满标志：（rear+1）%M&#x3D;front</span>（循环队列）</p>
+<h2 id="2-入队"><a href="#2-入队" class="headerlink" title="2 入队"></a>2 入队</h2><p><strong>链接新节点，更新队尾节点</strong></p>
+<p><span style="background:#d3f8b6">顺序队列：</span></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c">Status <span class="hljs-title function_">EnQueue</span><span class="hljs-params">(SqQueue &amp;Q,QElemType e)</span><br>&#123;	<span class="hljs-keyword">if</span>((Q.rear+<span class="hljs-number">1</span>)%MAXQSIZE==Q.front)<br>		<span class="hljs-keyword">return</span> ERROR;<br>	Q.base[Q.rear]=e;<br>	Q.rear=(Q.rear+<span class="hljs-number">1</span>)%MAXQSIZE;<br>	<span class="hljs-keyword">return</span> OK;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+
+<p><span style="background:#fdbfff">链队列：</span></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c">Status <span class="hljs-title function_">EnQueue</span> <span class="hljs-params">(LinkQueue &amp;Q,QElemType e)</span>&#123;<br>p=(QueuePtr)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span> (QNode));<br><span class="hljs-keyword">if</span>(!p)<br>	<span class="hljs-built_in">exit</span>(OVERFLOW);<br>p-&gt;data=e;<br>p-&gt;next=<span class="hljs-literal">NULL</span>;<br>Q.rear-&gt;next=p;<br>Q.rear=p;<br><span class="hljs-keyword">return</span> OK;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="3-出队"><a href="#3-出队" class="headerlink" title="3 出队"></a>3 出队</h2><p><strong>临时存储首元节点，队头节点指向首元节点的下一个节点，删除释放首元节点</strong></p>
+<p><span style="background:#d3f8b6">顺序队列：</span></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c">Status <span class="hljs-title function_">DeQueue</span> <span class="hljs-params">(LinkQueue &amp;Q,QElemType &amp;e)</span><br>&#123;<br><span class="hljs-keyword">if</span>(Q.front==Q.rear)<br>	<span class="hljs-keyword">return</span> ERROR;<br>e=Q.base[Q.front];<br>Q.front=(Q.front+<span class="hljs-number">1</span>)%MAXQSIZE;<br><span class="hljs-keyword">return</span> OK;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+<p><span style="background:#fdbfff">链队列：</span></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs c">Status <span class="hljs-title function_">DeQueue</span> <span class="hljs-params">(LinkQueue &amp;Q,QElemType &amp;e&#123;</span><br><span class="hljs-params"><span class="hljs-keyword">if</span>(Q.front==Q.rear)</span><br><span class="hljs-params">	<span class="hljs-keyword">return</span> ERROR;</span><br><span class="hljs-params">p=Q.front-&gt;next;</span><br><span class="hljs-params">e=p-&gt;data;</span><br><span class="hljs-params">Q.front-&gt;next=p-&gt;next;</span><br><span class="hljs-params"><span class="hljs-keyword">if</span>(Q.rear==p)</span><br><span class="hljs-params">	Q.rear=Q.front;</span><br><span class="hljs-params"><span class="hljs-built_in">free</span>(p);</span><br><span class="hljs-params"><span class="hljs-keyword">return</span> OK;</span><br><span class="hljs-params">&#125;</span><br></code></pre></td></tr></table></figure>
+<p><span style="background:rgba(240, 200, 0, 0.2)">最后一个节点的时候，不删除，要让队头等于队尾节点。</span></p>
+<h2 id="4-取队列长度"><a href="#4-取队列长度" class="headerlink" title="4 取队列长度"></a>4 取队列长度</h2><p><span style="background:#d3f8b6">顺序队列：</span></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> <span class="hljs-title function_">QueueLength</span><span class="hljs-params">(SqQueue Q)</span><br>&#123;<br>	<span class="hljs-keyword">return</span> (Q.rear-Q.front+MAXQSIZE)%MAXQSIZE;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="4-串、数组和广义表"><a href="#4-串、数组和广义表" class="headerlink" title="4. 串、数组和广义表"></a>4. 串、数组和广义表</h1><blockquote>
+<p> 串就是字符串<br> 数组包括一维数组和二维数组<br> 广义表类似于 python 中的列表，可以表嵌套</p>
+</blockquote>
+<h1 id="5-树"><a href="#5-树" class="headerlink" title="5. 树"></a>5. 树</h1><p>n 个节点的有限集合</p>
+<h2 id="1性质"><a href="#1性质" class="headerlink" title="1性质"></a>1性质</h2><ul>
+<li>具有 n 个节点的完全二叉树的深度为<br>$$<a href="%E5%8F%96%E4%B8%8B%E7%95%8C">log_2 n</a>+1$$</li>
+</ul>
+<p>两类特殊的二叉树：</p>
+<ol>
+<li>满二叉树：<span style="background:#b1ffff">指深度为 k 且含有</span> $2^k-1$ <span style="background:#b1ffff">个节点的二叉树。</span></li>
+<li>完全二叉树：<span style="background:#affad1">书中所含的 n 个节点和满二叉树中编号为 1 至 n 的节点一一对应。</span></li>
+</ol>
+<h2 id="2存储结构"><a href="#2存储结构" class="headerlink" title="2存储结构"></a>2存储结构</h2><p>顺序存储：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">define</span> IMAXSIZE 100</span><br><span class="hljs-keyword">typedef</span> TElemType SqBiTree[MAXSIZE];<br>SqBiTree bt;<br></code></pre></td></tr></table></figure>
+
+<p>链式存储：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span>&#123;</span><br>   TEIemType data;<br>   <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">BiTNode</span> *<span class="hljs-title">Ichild</span>, *<span class="hljs-title">rchild</span>;</span><br>&#125;BiTNode, *BiTree;<br></code></pre></td></tr></table></figure>
+
+
+<h2 id="3遍历方式"><a href="#3遍历方式" class="headerlink" title="3遍历方式"></a>3遍历方式</h2><blockquote>
+<p>先中后的顺序指的是根据点访问的顺序，如先序遍历就是<font color="#f79646">根左右</font>，后序遍历就是<font color="#f79646">左右根</font>。</p>
+</blockquote>
+<p><img src="https://s2.loli.net/2023/05/24/kyjJIXU7eLSbCFW.png" srcset="/img/loading.gif" lazyload alt="遍历图|275"></p>
+<h3 id="先序遍历"><a href="#先序遍历" class="headerlink" title="先序遍历"></a>先序遍历</h3><p>ABCDEFGHK</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">void</span> <span class="hljs-title function_">Preorder</span> <span class="hljs-params">(BiTree T)</span><br>&#123;<br>   <span class="hljs-keyword">if</span> (T)&#123;<br>      visit(T-&gt;data);<br>      Preorder(T-&gt;IchiId);<br>      Preorder(T-&gt;rchiId);<br>   &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+<h3 id="中序遍历"><a href="#中序遍历" class="headerlink" title="中序遍历"></a>中序遍历</h3><p>BDCAEHGKF</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">void</span> <span class="hljs-title function_">Inorder</span> <span class="hljs-params">(BiTree T)</span><br>&#123;<br>   <span class="hljs-keyword">if</span> (T) &#123;<br>      Inorder(T-&gt;lchiId);<br>      visit(T-&gt;data);<br>      Ineorder(T-&gt;rchiId);<br>   &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>中序非递归：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">void</span> <span class="hljs-title function_">Inorder1</span> <span class="hljs-params">(BiTree T)</span><br>&#123; <br>Initstack(S); p=T;<br><span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>) &#123;<br><span class="hljs-keyword">while</span>(p) &#123;Push(S,p);p=p-&gt;lchild;&#125;<span class="hljs-comment">//先将左孩子全部入栈</span><br><span class="hljs-keyword">if</span>(StackEmpty(S)) <span class="hljs-keyword">return</span>;<br>Pop(S,p);<span class="hljs-comment">//出一个左孩子</span><br><span class="hljs-built_in">cout</span>&lt;&lt;P-&gt;data;<br>p=p-&gt;rchild;&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="后序遍历"><a href="#后序遍历" class="headerlink" title="后序遍历"></a>后序遍历</h3><p>DCBHKGFEA</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">void</span> <span class="hljs-title function_">bkorder</span> <span class="hljs-params">(BiTree T)</span><br>&#123;<br>   <span class="hljs-keyword">if</span> (T) &#123;<br>      bkorder(T-&gt;lchiId);<br>      bkorder(T-&gt;rchiId);<br>      visit(T-&gt;data);<br>   &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="层次遍历"><a href="#层次遍历" class="headerlink" title="层次遍历"></a>层次遍历</h3><p>ABECFDGHK</p>
+<h3 id="4-常见应用"><a href="#4-常见应用" class="headerlink" title="4 常见应用"></a>4 常见应用</h3><ol>
+<li>统计二叉树中叶子节点的个数：</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">void</span> <span class="hljs-title function_">CountLeaf</span> <span class="hljs-params">(BiTree T, <span class="hljs-type">int</span> &amp; count)</span> &#123;<br>	<span class="hljs-keyword">if</span>(T)&#123;<br>		<span class="hljs-keyword">if</span>(!T-&gt;lchild&amp;&amp;!T-&gt;rchild)<br>			count++;<br>		CountLeaf(T-&gt;lchild, count);<br>		CountLeaf(T-&gt;rchild, count);<br>	&#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+
+<ol start="2">
+<li>求二叉树的深度：</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> <span class="hljs-title function_">Depth</span> <span class="hljs-params">(BiTree I)</span>&#123;<br> <span class="hljs-keyword">if</span> (!T) depthval = O;<br> <span class="hljs-keyword">else</span> &#123;<br>    depthL= Depth(T-&gt;IchiId);<span class="hljs-comment">//求左子树的深度</span><br>    depthR= Depth(T-&gt;rchild);<span class="hljs-comment">//求右子树的深度</span><br>    depthval=<span class="hljs-number">1</span>+ (depthL&gt;depthR?depthL:depthR);<span class="hljs-comment">//取较大者相加</span><br>   &#125;<br> <span class="hljs-keyword">return</span> depthval;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>建立二叉树的存储结构：</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">void</span> <span class="hljs-title function_">CreateBiTree</span><span class="hljs-params">(BiTree &amp;T)</span>&#123;<br>	<span class="hljs-type">char</span> ch;<br>	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%c&quot;</span>,&amp;ch);<br>	<span class="hljs-keyword">if</span>(ch=<span class="hljs-string">&quot;&quot;</span>)<br>		T=<span class="hljs-literal">NULL</span>;<br>	<span class="hljs-keyword">else</span><br>		&#123;<br>			T = new BiTNode;<br>			T-&gt;data = ch;<br>			CreteBiTree(T-&gt;lchild);<span class="hljs-comment">//创建左子树</span><br>			CreteBiTree(T-&gt;rchild);<span class="hljs-comment">//创建右子树</span><br>		&#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>查询二叉树中的某个节点：</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">bool</span> <span class="hljs-title function_">Preorder</span> <span class="hljs-params">(BiTree T, ElemType x, BiTree &amp;p)</span>&#123;<br><span class="hljs-keyword">if</span>(T)&#123;<br>    <span class="hljs-keyword">if</span>(T-&gt;data==x)<span class="hljs-comment">//递归终止条件</span><br>	    &#123; <br>		    p = T;<br>		    <span class="hljs-keyword">return</span> TRUE;<br>		&#125;<br>	elseif&#123; <br>		<span class="hljs-keyword">if</span>(Preorder(T-&gt;lchild, x, p))<br>			<span class="hljs-keyword">return</span> TRUE;<br>	elseif&#123;<br>		<span class="hljs-keyword">if</span>(Preorder(T-&gt;rchild, x, p))<br>			<span class="hljs-keyword">return</span> TRUE;<br>	<span class="hljs-keyword">else</span>&#123;<br>			p = <span class="hljs-literal">NULL</span>;<br>			<span class="hljs-keyword">return</span> False;<br>		&#125;<br>	&#125;<br><span class="hljs-keyword">return</span> False;<br></code></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>线索二叉树：</li>
+</ol>
+<p>在中序线索二叉树中，查找结点*p的中序后继结点<br><span style="background:rgba(240, 200, 0, 0.2)">1. 若 P-&gt;Rtag 为 1, 则 P 的右线索指向其后继结点<em>q;</span><br><span style="background:rgba(240, 200, 0, 0.2)">2. 若 P-&gt;Rtag 为 0, 则其后继结点</em>q 是右子树中的最左结点。</span></p>
+<ol start="6">
+<li>森林于树之间的转换</li>
+</ol>
+<blockquote>
+<p>左孩子右兄弟连接原则：左子树均为孩子节点，右子树均为兄弟节点。</p>
+</blockquote>
+<ol start="7">
+<li>哈夫曼树，降序排列，从低到高，两两（多多）做兄弟构造新树，循环往复<br>所有叶子节点带权长度之和：<br>$$<br>WPL(T)&#x3D;\sum W_kl_k(对所有叶子节点)<br>$$<blockquote>
+<p>WPL 最小的哈夫曼树为<font color="#8db3e2">最优哈夫曼树</font>。<br>哈夫曼编码原则：<font color="#ff0000">左 0 右 1 原则</font></p>
+</blockquote>
+</li>
+</ol>
+<h1 id="6-图"><a href="#6-图" class="headerlink" title="6. 图"></a>6. 图</h1><h1 id="7"><a href="#7" class="headerlink" title="7."></a>7.</h1>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/" class="category-chain-item">算法学习</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Dataframe-Algorithm/">#Dataframe-Algorithm</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Dateframe—Algorithm</div>
+      <div>https://alleyf.github.io/2023/03/2e76a383274a.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>alleyf</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年3月17日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2024年6月22日</div>
+        </div>
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/03/bc61d01a6c7d.html" title="计算机视觉概述">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">计算机视觉概述</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/03/56d5f0383564.html" title="algorithm">
+                        <span class="hidden-mobile">algorithm</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.7.2/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"636f2864e051a199b91c","clientSecret":"5185fd11115bbcd8d2f636bc80de6bed98ed14c1","repo":"Gitalk","owner":"Alleyf","admin":["Alleyf"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":false,"proxy":"https://shielded-brushlands-08810.herokuapp.com/https://github.com/login/oauth/access_token"},
+          {
+            id: 'fd537a0d5a5e505265039aff3892f4f2'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://github.com/Alleyf" target="_blank" rel="nofollow noopener"><span>Alleyf</span></a> <i class="iconfont icon-love"></i> <a href="https://fcsy.fit" target="_blank" rel="nofollow noopener"><span>Homepage</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      陕ICP备2022010038号
+    </a>
+  </span>
+  
+    
+      <span>
+        <a
+          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=2022010038"
+          rel="nofollow noopener"
+          class="beian-police"
+          target="_blank"
+        >
+          
+            <span style="visibility: hidden; width: 0">|</span>
+            <img src="http://qnpicmap.fcsluck.top/pics/202311161820757.png" srcset="/img/loading.gif" lazyload alt="police-icon"/>
+          
+          <span>陕公网安备2022010038号</span>
+        </a>
+      </span>
+    
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.1/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/assets/mmedia/mmedia-loader.js"></script><!-- hexo injector body_end end --></body>
+</html>

@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>alleyf</title>
+  <icon>http://qnpicmap.fcsluck.top/pics/202311162214229.png</icon>
+  
+  <link href="https://alleyf.github.io/atom.xml" rel="self"/>
+  
+  <link href="https://alleyf.github.io/"/>
+  <updated>2025-02-03T06:11:51.331Z</updated>
+  <id>https://alleyf.github.io/</id>
+  
+  <author>
+    <name>alleyf</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>人像摄影技巧</title>
+    <link href="https://alleyf.github.io/2025/01/ba58492f5606.html"/>
+    <id>https://alleyf.github.io/2025/01/ba58492f5606.html</id>
+    <published>2025-01-27T04:24:21.000Z</published>
+    <updated>2025-02-03T06:11:51.331Z</updated>
+    
+    
+    <summary type="html">关于人像摄影的一些技巧。</summary>
+    
+    
+    
+    <category term="艺术生活" scheme="https://alleyf.github.io/categories/%E8%89%BA%E6%9C%AF%E7%94%9F%E6%B4%BB/"/>
+    
+    
+    <category term="PLOG" scheme="https://alleyf.github.io/tags/PLOG/"/>
+    
+    <category term="VLOG" scheme="https://alleyf.github.io/tags/VLOG/"/>
+    
+    <category term="人像摄影" scheme="https://alleyf.github.io/tags/%E4%BA%BA%E5%83%8F%E6%91%84%E5%BD%B1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="https://alleyf.github.io/2025/01/8b8896d33978.html"/>
+    <id>https://alleyf.github.io/2025/01/8b8896d33978.html</id>
+    <published>2025-01-26T05:31:45.101Z</published>
+    <updated>2025-02-03T06:13:50.437Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;经过与阿里云客服沟通，目前oss</summary>
+        
+      
+    
+    
+    
+    <category term="运维开发" scheme="https://alleyf.github.io/categories/%E8%BF%90%E7%BB%B4%E5%BC%80%E5%8F%91/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>性能测试</title>
+    <link href="https://alleyf.github.io/2024/12/8103216725bf.html"/>
+    <id>https://alleyf.github.io/2024/12/8103216725bf.html</id>
+    <published>2024-12-16T00:39:27.000Z</published>
+    <updated>2025-01-26T05:31:45.105Z</updated>
+    
+    
+    <summary type="html">性能测试的相关概念和流程。</summary>
+    
+    
+    
+    <category term="运维开发" scheme="https://alleyf.github.io/categories/%E8%BF%90%E7%BB%B4%E5%BC%80%E5%8F%91/"/>
+    
+    
+    <category term="高并发" scheme="https://alleyf.github.io/tags/%E9%AB%98%E5%B9%B6%E5%8F%91/"/>
+    
+    <category term="高性能" scheme="https://alleyf.github.io/tags/%E9%AB%98%E6%80%A7%E8%83%BD/"/>
+    
+    <category term="高可用" scheme="https://alleyf.github.io/tags/%E9%AB%98%E5%8F%AF%E7%94%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>研究思路</title>
+    <link href="https://alleyf.github.io/2024/08/e73efe4b2ca2.html"/>
+    <id>https://alleyf.github.io/2024/08/e73efe4b2ca2.html</id>
+    <published>2024-08-10T05:59:49.000Z</published>
+    <updated>2025-01-26T05:31:45.093Z</updated>
+    
+    
+    <summary type="html">科研思路思考</summary>
+    
+    
+    
+    <category term="科研学习" scheme="https://alleyf.github.io/categories/%E7%A7%91%E7%A0%94%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="科研" scheme="https://alleyf.github.io/tags/%E7%A7%91%E7%A0%94/"/>
+    
+    <category term="灵感" scheme="https://alleyf.github.io/tags/%E7%81%B5%E6%84%9F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>常用软件和环境</title>
+    <link href="https://alleyf.github.io/2024/07/e01892fcb965.html"/>
+    <id>https://alleyf.github.io/2024/07/e01892fcb965.html</id>
+    <published>2024-07-05T08:52:32.000Z</published>
+    <updated>2025-01-26T05:31:45.081Z</updated>
+    
+    
+    <summary type="html">程序员必备软件和环境配置</summary>
+    
+    
+    
+    <category term="中间件和工具" scheme="https://alleyf.github.io/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6%E5%92%8C%E5%B7%A5%E5%85%B7/"/>
+    
+    
+    <category term="工具" scheme="https://alleyf.github.io/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>运维排忧解难</title>
+    <link href="https://alleyf.github.io/2024/06/1d24d86ba310.html"/>
+    <id>https://alleyf.github.io/2024/06/1d24d86ba310.html</id>
+    <published>2024-06-27T16:37:11.000Z</published>
+    <updated>2025-01-26T05:31:45.105Z</updated>
+    
+    
+    <summary type="html">运维排错解决问题的必查手册</summary>
+    
+    
+    
+    <category term="运维开发" scheme="https://alleyf.github.io/categories/%E8%BF%90%E7%BB%B4%E5%BC%80%E5%8F%91/"/>
+    
+    
+    <category term="DevOps" scheme="https://alleyf.github.io/tags/DevOps/"/>
+    
+    <category term="运维" scheme="https://alleyf.github.io/tags/%E8%BF%90%E7%BB%B4/"/>
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="https://alleyf.github.io/2024/06/6fa68909089a.html"/>
+    <id>https://alleyf.github.io/2024/06/6fa68909089a.html</id>
+    <published>2024-06-21T16:26:42.390Z</published>
+    <updated>2024-06-21T16:26:42.390Z</updated>
+    
+    
+    
+    
+    <category term="科研学习" scheme="https://alleyf.github.io/categories/%E7%A7%91%E7%A0%94%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>深度学习论文阅读总结</title>
+    <link href="https://alleyf.github.io/2024/06/27cc3c9d1562.html"/>
+    <id>https://alleyf.github.io/2024/06/27cc3c9d1562.html</id>
+    <published>2024-06-21T16:26:42.389Z</published>
+    <updated>2024-06-21T16:26:42.389Z</updated>
+    
+    
+    <summary type="html">some overview about NLP papers。</summary>
+    
+    
+    
+    <category term="科研学习" scheme="https://alleyf.github.io/categories/%E7%A7%91%E7%A0%94%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="NLP" scheme="https://alleyf.github.io/tags/NLP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>国际会议记录</title>
+    <link href="https://alleyf.github.io/2024/06/55099b7e23d2.html"/>
+    <id>https://alleyf.github.io/2024/06/55099b7e23d2.html</id>
+    <published>2024-06-21T16:26:42.361Z</published>
+    <updated>2024-06-21T16:26:42.361Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;2023年数字法治与智慧司法国际研讨会议程&quot;&gt;&lt;a href=&quot;#2023年数字法治与智慧司法国际研讨会议程&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="科研学习" scheme="https://alleyf.github.io/categories/%E7%A7%91%E7%A0%94%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="https://alleyf.github.io/2024/06/9e9394aa9456.html"/>
+    <id>https://alleyf.github.io/2024/06/9e9394aa9456.html</id>
+    <published>2024-06-21T16:26:42.280Z</published>
+    <updated>2024-06-21T16:26:42.280Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;!DOCTYPE html&gt;&lt;html lang=&quot;zh-CN&quot;&gt;&lt;head&gt;&lt;title&gt;前端三件套-后端必备&lt;/title&gt;&lt;meta property=&quot;og:title&quot; content=&quot;前端三件套-后端必备&quot;&gt;&lt;meta name=&quot;author&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="前端开发" scheme="https://alleyf.github.io/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Kubernetes入门</title>
+    <link href="https://alleyf.github.io/2024/05/9b5fa9c35ad7.html"/>
+    <id>https://alleyf.github.io/2024/05/9b5fa9c35ad7.html</id>
+    <published>2024-05-10T15:54:16.000Z</published>
+    <updated>2025-01-26T05:31:45.100Z</updated>
+    
+    
+    <summary type="html">k8s入门（基础介绍，核心概念，实战演练）</summary>
+    
+    
+    
+    <category term="运维开发" scheme="https://alleyf.github.io/categories/%E8%BF%90%E7%BB%B4%E5%BC%80%E5%8F%91/"/>
+    
+    
+    <category term="K8s" scheme="https://alleyf.github.io/tags/K8s/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>DDD-领域驱动设计</title>
+    <link href="https://alleyf.github.io/2024/04/40f64f9b6cf6.html"/>
+    <id>https://alleyf.github.io/2024/04/40f64f9b6cf6.html</id>
+    <published>2024-04-18T12:14:59.000Z</published>
+    <updated>2025-01-26T05:31:45.083Z</updated>
+    
+    
+    <summary type="html">DDD数据库设计落地</summary>
+    
+    
+    
+    <category term="后端开发" scheme="https://alleyf.github.io/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
+    
+    
+    <category term="微服务" scheme="https://alleyf.github.io/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
+    
+    <category term="架构" scheme="https://alleyf.github.io/tags/%E6%9E%B6%E6%9E%84/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Chain-of-Thought Reasoning Without Prompting</title>
+    <link href="https://alleyf.github.io/2024/04/c649f2c38f75.html"/>
+    <id>https://alleyf.github.io/2024/04/c649f2c38f75.html</id>
+    <published>2024-04-05T12:14:59.000Z</published>
+    <updated>2025-01-26T05:31:45.095Z</updated>
+    
+    
+    <summary type="html">无提示的思维链推理：模型内在CoT推理能力的激发</summary>
+    
+    
+    
+    <category term="科研学习" scheme="https://alleyf.github.io/categories/%E7%A7%91%E7%A0%94%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="科研，CoT" scheme="https://alleyf.github.io/tags/%E7%A7%91%E7%A0%94%EF%BC%8CCoT/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>国家重点研究计划课题四-任务三-调研</title>
+    <link href="https://alleyf.github.io/2024/03/0bb1af708fab.html"/>
+    <id>https://alleyf.github.io/2024/03/0bb1af708fab.html</id>
+    <published>2024-03-28T09:16:36.000Z</published>
+    <updated>2025-01-26T05:31:45.098Z</updated>
+    
+    
+    <summary type="html">法院数据资产评估与管理</summary>
+    
+    
+    
+    <category term="科研学习" scheme="https://alleyf.github.io/categories/%E7%A7%91%E7%A0%94%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="科研" scheme="https://alleyf.github.io/tags/%E7%A7%91%E7%A0%94/"/>
+    
+    <category term="司法" scheme="https://alleyf.github.io/tags/%E5%8F%B8%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>科研思路</title>
+    <link href="https://alleyf.github.io/2024/03/8e4f20768995.html"/>
+    <id>https://alleyf.github.io/2024/03/8e4f20768995.html</id>
+    <published>2024-03-14T12:51:41.000Z</published>
+    <updated>2025-01-26T05:31:45.093Z</updated>
+    
+    
+    <summary type="html">some keypoints about research</summary>
+    
+    
+    
+    <category term="科研学习" scheme="https://alleyf.github.io/categories/%E7%A7%91%E7%A0%94%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="Paper" scheme="https://alleyf.github.io/tags/Paper/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>BERT Pre-training of Deep Bidirectional Transformers for Language Understanding</title>
+    <link href="https://alleyf.github.io/2024/02/bc09878197d9.html"/>
+    <id>https://alleyf.github.io/2024/02/bc09878197d9.html</id>
+    <published>2024-02-28T02:23:11.000Z</published>
+    <updated>2025-01-26T05:31:45.095Z</updated>
+    
+    
+    <summary type="html">BERT（Bidirectional Encoder Representations from Transformers）是一种创新的语言表示模型，它通过从无标签文本中预训练深度双向表示，利用Transformers架构在每一层都同时考虑了词汇的左右上下文。这种方法使得BERT模型在经过简单的微调后，就能在多种NLP任务上达到最先进的水平，包括但不限于问答和语言推断任务。BERT的设计理念简单而有效，它在十一个自然语言处理任务上取得了新的最先进结果，显著提高了GLUE、MultiNLI、SQuAD v1.1和SQuAD v2.0等基准测试的得分。</summary>
+    
+    
+    
+    <category term="科研学习" scheme="https://alleyf.github.io/categories/%E7%A7%91%E7%A0%94%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="NLP" scheme="https://alleyf.github.io/tags/NLP/"/>
+    
+    <category term="科研" scheme="https://alleyf.github.io/tags/%E7%A7%91%E7%A0%94/"/>
+    
+    <category term="DL" scheme="https://alleyf.github.io/tags/DL/"/>
+    
+    <category term="Transformer" scheme="https://alleyf.github.io/tags/Transformer/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>入门机器学习</title>
+    <link href="https://alleyf.github.io/2024/01/92e1da0544e0.html"/>
+    <id>https://alleyf.github.io/2024/01/92e1da0544e0.html</id>
+    <published>2024-01-16T04:49:25.000Z</published>
+    <updated>2024-06-21T16:26:42.381Z</updated>
+    
+    
+    <summary type="html">Deep learning</summary>
+    
+    
+    
+    <category term="科研学习" scheme="https://alleyf.github.io/categories/%E7%A7%91%E7%A0%94%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="AIGC" scheme="https://alleyf.github.io/tags/AIGC/"/>
+    
+    <category term="DL" scheme="https://alleyf.github.io/tags/DL/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Explainability for large language models A survey</title>
+    <link href="https://alleyf.github.io/2024/01/dde3edb72c38.html"/>
+    <id>https://alleyf.github.io/2024/01/dde3edb72c38.html</id>
+    <published>2024-01-09T06:53:44.000Z</published>
+    <updated>2025-01-26T05:31:45.096Z</updated>
+    
+    
+    <summary type="html">大语言模型可解释性调查综述</summary>
+    
+    
+    
+    <category term="科研学习" scheme="https://alleyf.github.io/categories/%E7%A7%91%E7%A0%94%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="LLM" scheme="https://alleyf.github.io/tags/LLM/"/>
+    
+    <category term="可解释性" scheme="https://alleyf.github.io/tags/%E5%8F%AF%E8%A7%A3%E9%87%8A%E6%80%A7/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>前端三件套-后端必备</title>
+    <link href="https://alleyf.github.io/2024/01/e99038e3aa4f.html"/>
+    <id>https://alleyf.github.io/2024/01/e99038e3aa4f.html</id>
+    <published>2024-01-01T11:00:54.000Z</published>
+    <updated>2025-01-26T05:31:45.082Z</updated>
+    
+    
+    <summary type="html">后端程序员需要掌握的前端必备知识。</summary>
+    
+    
+    
+    <category term="前端开发" scheme="https://alleyf.github.io/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
+    
+    
+    <category term="css" scheme="https://alleyf.github.io/tags/css/"/>
+    
+    <category term="javascript" scheme="https://alleyf.github.io/tags/javascript/"/>
+    
+    <category term="frontend" scheme="https://alleyf.github.io/tags/frontend/"/>
+    
+    <category term="html" scheme="https://alleyf.github.io/tags/html/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>后端开发手册</title>
+    <link href="https://alleyf.github.io/2023/12/76481f063d8b.html"/>
+    <id>https://alleyf.github.io/2023/12/76481f063d8b.html</id>
+    <published>2023-12-23T07:16:24.000Z</published>
+    <updated>2025-01-26T05:31:45.090Z</updated>
+    
+    
+    <summary type="html">关于后端开发的个人经验。</summary>
+    
+    
+    
+    <category term="后端开发" scheme="https://alleyf.github.io/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
+    
+    
+    <category term="rules" scheme="https://alleyf.github.io/tags/rules/"/>
+    
+  </entry>
+  
+</feed>
