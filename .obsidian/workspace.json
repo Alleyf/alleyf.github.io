@@ -8,16 +8,34 @@
         "type": "tabs",
         "children": [
           {
-            "id": "9dc16fc09c56ea7a",
+            "id": "2734048a2eabf66c",
             "type": "leaf",
             "state": {
-              "type": "diff-view",
+              "type": "markdown",
               "state": {
-                "file": "diary/ARCHIVE.json",
-                "staged": false
+                "file": "source/_posts/后端开发/站内信、活动、公告和推送技术调研.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
               },
-              "icon": "git-pull-request",
-              "title": "Diff View (ARCHIVE.json)"
+              "icon": "lucide-file",
+              "title": "站内信、活动、公告和推送技术调研"
+            }
+          }
+        ]
+      },
+      {
+        "id": "8e969abcac2e7ba4",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "1de699f58fde86e6",
+            "type": "leaf",
+            "state": {
+              "type": "mindmap-nextgen-plugin",
+              "state": {},
+              "icon": "dot-network",
+              "title": "站内信、活动、公告和推送技术调研"
             }
           }
         ]
@@ -39,7 +57,8 @@
             "state": {
               "type": "file-explorer",
               "state": {
-                "sortOrder": "alphabetical"
+                "sortOrder": "alphabetical",
+                "autoReveal": false
               },
               "icon": "lucide-folder-closed",
               "title": "文件列表"
@@ -56,16 +75,22 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {},
+              "state": {
+                "file": "source/_posts/后端开发/站内信、活动、公告和推送技术调研.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
               "icon": "lucide-list",
-              "title": "大纲"
+              "title": "站内信、活动、公告和推送技术调研 的大纲"
             }
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 310.50618982315063
+    "width": 310.50618982315063,
+    "collapsed": true
   },
   "right": {
     "id": "ef878eb90911b56c",
@@ -74,7 +99,7 @@
       {
         "id": "612f0098096832bc",
         "type": "tabs",
-        "dimension": 34.08045977011494,
+        "dimension": 51.700087183958146,
         "children": [
           {
             "id": "bdaaa10e2f08b79f",
@@ -85,40 +110,13 @@
               "icon": "calendar-with-checkmark",
               "title": "Calendar"
             }
-          },
-          {
-            "id": "b6d7c47699945de8",
-            "type": "leaf",
-            "state": {
-              "type": "advanced-tables-toolbar",
-              "state": {},
-              "icon": "spreadsheet",
-              "title": "Advanced Tables"
-            }
-          }
-        ]
-      },
-      {
-        "id": "94ed18f343f34498",
-        "type": "tabs",
-        "dimension": 34.08045977011494,
-        "children": [
-          {
-            "id": "73bd255a1d218621",
-            "type": "leaf",
-            "state": {
-              "type": "todo",
-              "state": {},
-              "icon": "checkmark",
-              "title": "Todo List"
-            }
           }
         ]
       },
       {
         "id": "c712742b5e0ae1de",
         "type": "tabs",
-        "dimension": 31.839080459770113,
+        "dimension": 48.29991281604184,
         "children": [
           {
             "id": "7debd791db616930",
@@ -147,17 +145,21 @@
       "graph:查看关系图谱": false,
       "canvas:新建白板": false,
       "omnisearch:Omnisearch": false,
-      "cmdr:Calendar: Open view": false,
-      "cmdr:Obsidian Git: Open source control view": false,
       "marp-slides:Show Slide Preview": false,
       "media-extended:Open media": false,
       "table-editor-obsidian:Advanced Tables Toolbar": false,
       "hide-folders:Show hidden folders": false,
-      "obsidian-memos:Memos": false
+      "obsidian-memos:Memos": false,
+      "mxmind:Mxmind": false,
+      "cmdr:Calendar: Open view": false,
+      "cmdr:Obsidian Git: Open source control view": false,
+      "obsidian-git:Open Git source control": false,
+      "obsidian-memos:Thino": false
     }
   },
-  "active": "9dc16fc09c56ea7a",
+  "active": "1de699f58fde86e6",
   "lastOpenFiles": [
+    "source/_posts/后端开发/站内信、活动、公告和推送技术调研.md",
     "source/_posts/科研学习/会议讨论/周会.md",
     "conflict-files-obsidian-git.md",
     "BERT Pre-training of Deep Bidirectional Transformers for Language Understanding.html",

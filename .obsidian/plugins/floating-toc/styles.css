@@ -310,6 +310,12 @@ settings:
   --floating-toc-line-width:18rem;
  
 }
+@media (max-width: 767px) {
+  .theme-light,
+  .theme-dark {
+    --floating-toc-line-width: 10rem; /* 适应较小屏幕 */
+  }
+}
 .theme-light{
   --floating-toc-header-background-color:var(--background-primary);
   --floating-toc-background-color: rgba(221, 221, 221, 0.3);

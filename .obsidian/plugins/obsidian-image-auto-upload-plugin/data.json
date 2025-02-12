@@ -1,7 +1,7 @@
 {
   "uploadByClipSwitch": true,
   "uploader": "PicGo",
-  "uploadServer": "http://127.0.0.1:36677/upload?picbed=qiniu&configName=abroad",
+  "uploadServer": "http://127.0.0.1:36677/upload?picbed=github&configName=default",
   "deleteServer": "http://127.0.0.1:36677/delete",
   "imageSizeSuffix": "",
   "picgoCorePath": "",
@@ -3692,6 +3692,21 @@
       "id": "36af9494-3169-41d4-a7bc-e8804662386c",
       "createdAt": 1736871999802,
       "updatedAt": 1736871999802
+    },
+    {
+      "isEncrypted": 1,
+      "EncryptedData": "0d39763d81e5c8a66d041139c09eb281:c15958dc0b153884fcf5d2b370cfb0ea9ad7178823fd488178b0cf8a279ebccf9c2a20c1532e1a3d03a87d5aa18b122e8073504a2758421f005a5bec10b05ed1fb5304ac676b56ea0b17dac62c155dbd5687ba14b981b4cdd983aba913094fbe71015084146cc157b458338163cb854c7ab5e707bf392ab4cf18cd87f8ce5921edc1a0101e8c28336d6647a9eceb8ce98f14c97f0c694f66e4e405c17fbb87c8519a5fd60bfff584120b1b84fea1465bdedd3e75fa1c2162151077c40be91212f634bba09f171af0e1355d8b7ed32e4e5bb2793bbfa17cdedf9f13bdfb4a7e0a3ba4686f6ea53fbf13cd6dd1d934df9f09d100309ee7e5ff375fad7be7f08cc3bb5daa7f1c76abb7abe06c657d24dd230d4eb0f8f98869d0be1fd87c0b5c2bfef7adbe3a1aa6dd4bc46affcb8788dd1c63827bb7a14f24ab796efc8690e8be00c8b8b6a168daee68238d3a62b2b82bccfef9100ea21e6192063d73f66f3c46321200c63f5b23cca3dd95184acf8ff224a85f188dfa58902c5a0c533c620d59bd6b728eaad22b519c01b0bfbf8d5383b6bde81e72de05af0ae0e7bf33ff8df7f09b00f8873e5dccd5dcceda25e3544460574484e457c2bcc5e7ae410801df9494f8880c38c52fba7bdd5a901d494f8a22893e61a3fcce3b2b3490ea65f1bdc64767c0a28c40e8b6d8882bc0d4d180963ba2360cb5345ecf101a1e1feaebdd0cc6d6f0f5c42e7128f3d296074d9486dbb8880a8511516fb10694e031816ee1e8505c3cea1aa45e6ac4787d4d04e6cbd962e5f56452576d0535b55dc37fe625ebd120a869b08cfc2db46541d6502159ff4530d603d6e60565e3125b6912a2fc68ab",
+      "fileName": "20250212101545278.png",
+      "width": 626,
+      "height": 96,
+      "extname": ".png",
+      "imgUrl": "https://raw.githubusercontent.com/Alleyf/PictureMap/main/blog/20250212101545278.png",
+      "hash": "0d9264dcfc1f2a14547c83b3f6c4f3cb035b75a9",
+      "type": "github",
+      "shortUrl": "",
+      "id": "3b173b77-8baf-46e1-a033-aea1a595341e",
+      "createdAt": 1739326546489,
+      "updatedAt": 1739326546489
     }
   ]
 }
