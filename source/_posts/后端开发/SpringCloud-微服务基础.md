@@ -8,8 +8,8 @@ sticky: 70
 excerpt: some notes related with springcloud learning。
 author: fcs
 ---
-![](https://picsum.photos/800/250)
 
+![](https://picsum.photos/800/250)
 
 # 微服务基础
 
@@ -72,7 +72,6 @@ SpringCloud是Spring提供的一套分布式解决方案，集合了一些大型
 - Hystrix  -  断路器，保护系统，控制故障范围。暂时可以跟家里电闸的保险丝类比，当触电危险发生时能够防止进一步的发展。
 - Zuul   -     api网关，路由，负载均衡等多种作用，就像我们的路由器，可能有很多个设备都连接了路由器，但是数据包要转发给谁则是由路由器在进行（已经被SpringCloudGateway取代）
 - Config  -  配置管理，可以实现配置文件集中管理
-
 
 那么首先，我们就从注册中心开始说起。
 
@@ -551,10 +550,8 @@ spring:
 
 ![image-20230306225638109](https://s2.loli.net/2023/03/06/1o8pmzBXCtixhKu.png)
 
-
 > [!NOTE] Tips
 > application的**name不能大写字母，用小写**。
-
 
 当我们的服务启动之后，会每隔一段时间跟Eureka发送一次心跳包，这样Eureka就能够感知到我们的服务是否处于正常运行状态。
 
@@ -902,7 +899,6 @@ public interface UserClient {
     User getUserById(@PathVariable("uid") int uid);  //参数和返回值也保持一致
 }
 ```
-
 
 > [!NOTE] Tips
 > 如果被调用的服务的接口添加了统一的 `RequestMapping` 地址，则要在 `xxxClient` 接口方法上**提供完整的路径**。
@@ -1332,7 +1328,6 @@ spring:
 > [!NOTE] Tips
 > `Path` 要填写**完整的api路径**包括统一的 `RequestMapping` 路径。
 
-
 接着启动网关，搭载Arm架构芯片的Mac电脑可能会遇到这个问题：
 
 ![image-20230306230542772](https://s2.loli.net/2023/03/06/IuoAzPmXnYHSDv3.png)
@@ -1457,6 +1452,244 @@ public class TestFilter implements GlobalFilter, Ordered {   //实现Ordered接�
 ```
 
 注意 `Order` 的值**越小优先级越高**，并且无论是在配置文件中编写的单个路由过滤器还是全局路由过滤器，都会受到Order值影响（单个路由的过滤器Order值按**从上往下的顺序从1开始递增**），最终是按照Order值决定哪个过滤器优先执行，当**Order值一样**时 *全局路由过滤器*执行 `优于` *单独的路由过滤器*执行。
+
+#### SQL过滤器
+
+**Spring框架适用**：
+
+```java
+package com.ruoyi.gateway.filter;  
+  
+import com.ruoyi.common.core.utils.JsonUtils;  
+import com.ruoyi.gateway.utils.WebFluxUtils;  
+import lombok.extern.slf4j.Slf4j;  
+import org.springframework.beans.factory.annotation.Value;  
+import org.springframework.cloud.context.config.annotation.RefreshScope;  
+import org.springframework.cloud.gateway.filter.GatewayFilterChain;  
+import org.springframework.cloud.gateway.filter.GlobalFilter;  
+import org.springframework.core.Ordered;  
+import org.springframework.http.server.reactive.ServerHttpRequest;  
+import org.springframework.stereotype.Component;  
+import org.springframework.util.MultiValueMap;  
+import org.springframework.web.server.ServerWebExchange;  
+import reactor.core.publisher.Mono;  
+  
+import java.util.Objects;  
+import java.util.regex.Pattern;  
+  
+/**  
+ * 全局SQL注入过滤器  
+ *  
+ * @author csFan  
+ * @date 2025-02-11  
+ */@Slf4j  
+@Component  
+@RefreshScope  
+public class GlobalSQLInjectFilter implements GlobalFilter, Ordered {  
+  
+    /**  
+     * 是否开启SQL注入检测  
+     */  
+    @Value("${security.sql-injection.enable:true}")  
+    private Boolean enable;  
+    /**  
+     * 定义SQL注入检测的正则表达式  
+     */  
+    @Value("${security.sql-injection.regex}")  
+    private String regEx;  
+  
+    /**  
+     * 请求体是否包含非法SQL  
+     *     * @param jsonParam json param  
+     * @return boolean  
+     */    private boolean bodyContainIllegalSQL(String jsonParam) {  
+        Pattern SQL_INJECTION_PATTERN = Pattern.compile(regEx,  
+            Pattern.CASE_INSENSITIVE  
+        );  
+        return Objects.requireNonNull(JsonUtils.parseMap(jsonParam))  
+            .entrySet()  
+            .parallelStream()  
+            // 过滤出类类型为String的body  
+            .filter(body -> body.getValue() instanceof String)  
+            // 过滤出SQL注入关键字  
+            .anyMatch(body ->  
+                {  
+                    boolean matches = SQL_INJECTION_PATTERN.matcher(String.valueOf(body.getValue())).matches();  
+                    if (matches) {  
+                        log.warn("Potential SQL injection detected in request body: {}={}", body.getKey(), body.getValue());  
+                    }  
+                    return matches;  
+                }  
+            );  
+    }  
+  
+    @Override  
+    public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {  
+        if (!enable) {  
+            return chain.filter(exchange);  
+        }  
+        ServerHttpRequest request = exchange.getRequest();  
+        // 检查请求是否为JSON请求  
+        if (WebFluxUtils.isJsonRequest(exchange)) {  
+            // 检查请求体是否包含SQL注入  
+            String jsonParam = WebFluxUtils.resolveBodyFromCacheRequest(exchange);  
+            if (jsonParam == null) {  
+                return Mono.error(new RuntimeException("请求参数非法异常！"));  
+            }  
+            boolean containIllegalSQL = bodyContainIllegalSQL(jsonParam);  
+            if (containIllegalSQL) {  
+                log.warn("Potential SQL injection detected in request body: {}", jsonParam);  
+                // 这里可以根据需要返回一个错误响应或者直接中断请求  
+                return Mono.error(new RuntimeException("请求参数非法异常！"));  
+            }  
+        } else {  
+            // 检查请求参数  
+            if (pathParamContainsSQLInjection(request.getQueryParams())) {  
+                log.warn("Potential SQL injection detected in query parameters: {}", request.getQueryParams());  
+                // 这里可以根据需要返回一个错误响应或者直接中断请求  
+                throw new IllegalArgumentException("请求参数异常非法！");  
+            }  
+        }  
+        return chain.filter(exchange);  
+    }  
+  
+    /**  
+     * 检测是否包含SQL注入关键字  
+     *  
+     * @param params params  
+     * @return boolean  
+     */    private boolean pathParamContainsSQLInjection(MultiValueMap<String, String> params) {  
+        Pattern SQL_INJECTION_PATTERN = Pattern.compile(regEx,  
+            Pattern.CASE_INSENSITIVE  
+        );  
+        for (String key : params.keySet()) {  
+            for (String value : params.get(key)) {  
+                if (SQL_INJECTION_PATTERN.matcher(value).matches()) {  
+                    return true;  
+                }  
+            }  
+        }  
+        return false;  
+    }  
+  
+    @Override  
+    public int getOrder() {  
+        return Ordered.LOWEST_PRECEDENCE - 1;  
+    }  
+}
+```
+
+**Structs框架适用**：
+
+```java
+package csdc.tool.security;  
+  
+import java.io.BufferedReader;  
+import java.io.IOException;  
+import java.util.Enumeration;  
+import javax.servlet.Filter;  
+import javax.servlet.FilterChain;  
+import javax.servlet.FilterConfig;  
+import javax.servlet.ServletException;  
+import javax.servlet.ServletRequest;  
+import javax.servlet.ServletResponse;  
+import javax.servlet.http.HttpServletRequest;  
+import javax.servlet.http.HttpServletResponse;  
+  
+/**  
+ * 过滤sql关键字的Filter  
+ * * @author csFan  
+ * @date 2025-02-13  
+ */public class SqlFilter implements Filter {  
+  
+    public void doFilter(ServletRequest request, ServletResponse response,  
+                         FilterChain chain) throws IOException, ServletException {  
+  
+        HttpServletRequest req = (HttpServletRequest) request;  
+        HttpServletResponse res = (HttpServletResponse) response;  
+        // 获得所有请求参数名  
+        Enumeration<?> params = req.getParameterNames();  
+  
+        StringBuilder sql = new StringBuilder();  
+        while (params.hasMoreElements()) {  
+            // 得到参数名  
+            String name = params.nextElement().toString();  
+            // System.out.println("name===========================" + name +  
+            // "--");            // 得到参数对应值  
+            String[] value = req.getParameterValues(name);  
+            for (String s : value) {  
+                if (sql.length() > 0) {  
+                    sql.append(";").append(s);  
+                }else {  
+                    sql.append(s);  
+                }  
+            }  
+        }  
+  
+        // 处理JSON请求体  
+        if ("application/json".equalsIgnoreCase(req.getContentType())) {  
+            StringBuilder jsonBody = new StringBuilder();  
+            BufferedReader reader = req.getReader();  
+            String line;  
+            while ((line = reader.readLine()) != null) {  
+                if (jsonBody.length() > 0) {  
+                    jsonBody.append(";").append(line);  
+                }else {  
+                    jsonBody.append(line);  
+                }  
+            }  
+            sql.append(jsonBody);  
+        }  
+  
+        //System.out.println("被匹配字符串：" + sql);  
+        if (sqlValidate(sql.toString())) {  
+            res.sendRedirect("/error.jsp");  
+        } else {  
+            chain.doFilter(req, res);  
+        }  
+    }  
+  
+    // 校验  
+    protected static boolean sqlValidate(String str) {  
+        // 统一转为小写  
+        str = str.toLowerCase();  
+        // String badStr = "and|exec";  
+        String badStr = "'|and|exec|execute|insert|select|delete|update|count|drop|chr|mid|master|truncate|char|declare|sitename|net user|xp_cmdshell|or|like";  
+        /*  
+         * String badStr =         * "'|and|exec|execute|insert|create|drop|table|from|grant|use|group_concat|column_name|"         * +         * "information_schema.columns|table_schema|union|where|select|delete|update|order|by|count|*|"         * + "chr|mid|master|truncate|char|declare|or|;|-|--|+|,|like|//|/|%|#";         */// 过滤掉的sql关键字，可以手动添加  
+        String[] badStrs = badStr.split("\\|");  
+        for (String s : badStrs) {  
+            if (str.contains(s)) {  
+                System.out.println(str+"；匹配到SQL注入关键字：" + s);  
+                return true;  
+            }  
+        }  
+        return false;  
+    }  
+  
+    public void init(FilterConfig filterConfig) throws ServletException {  
+        // throw new UnsupportedOperationException("Not supported yet.");  
+    }  
+  
+    public void destroy() {  
+        // throw new UnsupportedOperationException("Not supported yet.");  
+    }  
+}
+```
+
+在web.xml中配置拦截器
+
+```xml
+<!-- sql Filter -->  
+<filter>  
+    <filter-name>SqlFilter</filter-name>  
+    <filter-class>csdc.tool.security.SqlFilter</filter-class>  
+</filter>  
+<filter-mapping>  
+    <filter-name>SqlFilter</filter-name>  
+    <url-pattern>/*</url-pattern>  
+</filter-mapping>
+```
 
 ***
 
@@ -1628,12 +1861,10 @@ spring:
 
 比如我们实现的Eureka集群，它使用的就是AP方案，Eureka各个节点都是平等的，少数节点挂掉不会影响正常节点的工作，剩余的节点依然可以提供注册和查询服务。而Eureka客户端在向某个Eureka服务端注册时如果发现连接失败，则会自动切换至其他节点。只要有一台Eureka服务器正常运行，那么就能保证服务可用（A）**，只不过查询到的信息可能不是最新的**（C）
 
-
 # 细节要点
 
-1. 分模块开发时，不同模块**存在依赖的实体、工具类**等，将其抽取出来放到一个*公共模块（commons）* 里，哪里需要用就**将该模块作为依赖导入配置文件**中即可。
-2. **添加全参构造后也要添加无参构造**，因为**默认不添加时是有无参构造**的，否则容易后续发生问题。
-
+2. 分模块开发时，不同模块**存在依赖的实体、工具类**等，将其抽取出来放到一个*公共模块（commons）* 里，哪里需要用就**将该模块作为依赖导入配置文件**中即可。
+3. **添加全参构造后也要添加无参构造**，因为**默认不添加时是有无参构造**的，否则容易后续发生问题。
 
 # Reference
 
@@ -1643,4 +1874,5 @@ title: "柏码 - 让每一行代码都闪耀智慧的光芒！"
 host: itbaima.net
 favicon: /favicon.ico
 ```
+
 [柏码 - 让每一行代码都闪耀智慧的光芒！](https://itbaima.net/)

@@ -28,12 +28,6 @@
       "mode": "any"
     },
     {
-      "id": "obsidian-memos:open-memos",
-      "icon": "lightbulb",
-      "name": "Open Memos",
-      "mode": "any"
-    },
-    {
       "id": "number-headings-obsidian:number-headings",
       "icon": "plus-circle",
       "name": "Number Headings: Number all headings in document",

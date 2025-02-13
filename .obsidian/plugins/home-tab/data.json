@@ -13,7 +13,7 @@
   "fontColorType": "default",
   "fontWeight": 600,
   "maxResults": 5,
-  "showStarredFiles": false,
+  "showbookmarkedFiles": true,
   "showRecentFiles": true,
   "maxRecentFiles": 5,
   "storeRecentFile": true,
@@ -24,18 +24,29 @@
   "unresolvedLinks": false,
   "recentFilesStore": [
     {
-      "filepath": "source/_posts/后端开发/站内信、活动、公告和推送技术调研.md",
-      "timestamp": 1739242083737
+      "filepath": "source/_posts/后端开发/SpringCloud-微服务基础.md",
+      "timestamp": 1739436946958
     },
     {
-      "filepath": "source/_posts/科研学习/会议讨论/周会.md",
-      "timestamp": 1737624984827
+      "filepath": "未命名.md",
+      "timestamp": 1739436943919
+    },
+    {
+      "filepath": "source/_posts/后端开发/SpringBoot.md",
+      "timestamp": 1739436777119
+    },
+    {
+      "filepath": "source/_posts/后端开发/站内信、活动、公告和推送技术调研.md",
+      "timestamp": 1739436753310
     }
   ],
-  "starredFileStore": [],
+  "bookmarkedFileStore": [],
   "searchDelay": 0,
   "replaceNewTabs": true,
   "newTabOnStart": true,
   "closePreviousSessionTabs": true,
-  "omnisearch": true
+  "omnisearch": true,
+  "showOmnisearchExcerpt": true,
+  "showStarredFiles": false,
+  "starredFileStore": []
 }

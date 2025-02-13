@@ -12,5 +12,6 @@
   ],
   "showViewHeader": true,
   "textFontFamily": "霞鹜文楷,朱雀仿宋（预览测试版）",
-  "baseFontSizeAction": true
+  "baseFontSizeAction": true,
+  "showRibbon": true
 }
