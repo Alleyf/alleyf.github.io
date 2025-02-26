@@ -4,22 +4,22 @@
     "type": "split",
     "children": [
       {
-        "id": "8e969abcac2e7ba4",
+        "id": "0329fc411867a51f",
         "type": "tabs",
         "children": [
           {
-            "id": "72ee3a03983fbe5a",
+            "id": "121eb77f101e593e",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/科研学习/会议讨论/周会.md",
-                "mode": "preview",
+                "file": "source/_posts/运维开发/华为晟腾DeepSeek模型部署实践.md",
+                "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "周会"
+              "title": "华为晟腾DeepSeek模型部署实践"
             }
           }
         ]
@@ -60,13 +60,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/科研学习/会议讨论/周会.md",
+                "file": "source/_posts/运维开发/华为晟腾DeepSeek模型部署实践.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "周会 的大纲"
+              "title": "华为晟腾DeepSeek模型部署实践 的大纲"
             }
           }
         ]
@@ -103,9 +103,18 @@
               "icon": "checkmark",
               "title": "Todo List"
             }
+          },
+          {
+            "id": "9f2db79360f3e3dd",
+            "type": "leaf",
+            "state": {
+              "type": "advanced-tables-toolbar",
+              "state": {},
+              "icon": "spreadsheet",
+              "title": "Advanced Tables"
+            }
           }
-        ],
-        "currentTab": 1
+        ]
       },
       {
         "id": "c712742b5e0ae1de",
@@ -149,8 +158,11 @@
       "obsidian-memos:Thino": false
     }
   },
-  "active": "72ee3a03983fbe5a",
+  "active": "bdaaa10e2f08b79f",
   "lastOpenFiles": [
+    "source/_posts/运维开发/华为晟腾DeepSeek模型部署实践.md",
+    "source/_posts/运维开发/未命名思维导图.md",
+    "source/_posts/科研学习/会议讨论/DeepSeek等人工智能技术在教学科研中的应用.md",
     "source/_posts/科研学习/会议讨论/周会.md",
     "source/_posts/后端开发/站内信、活动、公告和推送技术调研.md",
     "source/_posts/后端开发/SpringCloud-微服务基础.md",
@@ -188,9 +200,6 @@
     "source/_posts/中间件和工具/常用软件和环境.md",
     "source/_posts/运维开发/WebMagic.md",
     "source/_posts/运维开发/Scrapy-修炼手册.md",
-    "source/_posts/科研学习/论文总结/Large Language Models for Generative Information  Extraction A Survey.md",
-    "source/_posts/科研学习/论文总结/Explainability for large language models A survey.md",
-    "source/_posts/科研学习/论文总结/Chain-of-Thought Reasoning Without Prompting.md",
     "canvas/未命名.canvas",
     "canvas/AI学习思路.canvas",
     "attachment/Pasted Image 20240102110312.jpeg",
