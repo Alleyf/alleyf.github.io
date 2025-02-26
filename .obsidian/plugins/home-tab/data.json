@@ -13,7 +13,7 @@
   "fontColorType": "default",
   "fontWeight": 600,
   "maxResults": 5,
-  "showbookmarkedFiles": true,
+  "showStarredFiles": false,
   "showRecentFiles": true,
   "maxRecentFiles": 5,
   "storeRecentFile": true,
@@ -24,17 +24,18 @@
   "unresolvedLinks": false,
   "recentFilesStore": [
     {
-      "filepath": "source/_posts/科研学习/会议讨论/周会.md",
-      "timestamp": 1740296280637
+      "filepath": "source/_posts/运维开发/未命名.md",
+      "timestamp": 1740555668937
+    },
+    {
+      "filepath": "source/_posts/运维开发/各种环境配置.md",
+      "timestamp": 1740555486513
     }
   ],
-  "bookmarkedFileStore": [],
+  "starredFileStore": [],
   "searchDelay": 0,
   "replaceNewTabs": true,
   "newTabOnStart": true,
   "closePreviousSessionTabs": true,
-  "omnisearch": true,
-  "showOmnisearchExcerpt": true,
-  "showStarredFiles": false,
-  "starredFileStore": []
+  "omnisearch": true
 }
