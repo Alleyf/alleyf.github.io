@@ -48,3 +48,5 @@ number headings: auto, first-level 1, max 5, start-at 1, 1.1
 1. [DeepSeek-R1-模型库-ModelZoo-昇腾社区](https://www.hiascend.com/software/modelzoo/models/detail/68457b8a51324310aad9a0f55c3e56e3)
 2. [微信公众平台](https://mp.weixin.qq.com/s/OA2tfvChRB9fektSI7xWUw)
 3. [DeepSeek-R1 昇腾910B满血版部署避坑指南](https://zhuanlan.zhihu.com/p/24200409101)
+4. [华为昇腾 910B 部署 DeepSeek-R1 蒸馏系列模型详细指南-CSDN博客](https://blog.csdn.net/MnivL/article/details/145685134)
+5. [DeepSeek模型权重下载太慢？快来魔乐体验加速丝滑下载，和“龟速”说拜拜 \| 社区动态 \| 魔乐社区](https://modelers.cn/updates/zh/modelers/20250213-deepseek%E6%9D%83%E9%87%8D%E4%B8%8B%E8%BD%BD/)
