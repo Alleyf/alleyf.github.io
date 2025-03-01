@@ -133,7 +133,7 @@
     <link href="https://alleyf.github.io/2024/08/e73efe4b2ca2.html"/>
     <id>https://alleyf.github.io/2024/08/e73efe4b2ca2.html</id>
     <published>2024-08-10T05:59:49.000Z</published>
-    <updated>2025-01-14T16:24:15.810Z</updated>
+    <updated>2025-01-14T16:26:56.841Z</updated>
     
     
     <summary type="html">科研思路思考</summary>
@@ -323,6 +323,52 @@
   </entry>
   
   <entry>
+    <title>国际会议记录</title>
+    <link href="https://alleyf.github.io/2024/03/20316e8fc58a.html"/>
+    <id>https://alleyf.github.io/2024/03/20316e8fc58a.html</id>
+    <published>2024-03-08T11:20:23.547Z</published>
+    <updated>2023-10-21T17:59:46.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;2023年数字法治与智慧司法国际研讨会议程&quot;&gt;&lt;a href=&quot;#2023年数字法治与智慧司法国际研讨会议程&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="科研学习" scheme="https://alleyf.github.io/categories/%E7%A7%91%E7%A0%94%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="https://alleyf.github.io/2024/03/45eeea6cb3b9.html"/>
+    <id>https://alleyf.github.io/2024/03/45eeea6cb3b9.html</id>
+    <published>2024-03-08T11:20:23.530Z</published>
+    <updated>2024-01-01T21:58:34.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;!DOCTYPE html&gt;&lt;html lang=&quot;zh-CN&quot;&gt;&lt;head&gt;&lt;title&gt;前端三件套-后端必备&lt;/title&gt;&lt;meta property=&quot;og:title&quot; content=&quot;前端三件套-后端必备&quot;&gt;&lt;meta name=&quot;author&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="前端开发" scheme="https://alleyf.github.io/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>BERT Pre-training of Deep Bidirectional Transformers for Language Understanding</title>
     <link href="https://alleyf.github.io/2024/02/bc09878197d9.html"/>
     <id>https://alleyf.github.io/2024/02/bc09878197d9.html</id>
@@ -337,9 +383,9 @@
     <category term="科研学习" scheme="https://alleyf.github.io/categories/%E7%A7%91%E7%A0%94%E5%AD%A6%E4%B9%A0/"/>
     
     
-    <category term="NLP" scheme="https://alleyf.github.io/tags/NLP/"/>
-    
     <category term="DL" scheme="https://alleyf.github.io/tags/DL/"/>
+    
+    <category term="NLP" scheme="https://alleyf.github.io/tags/NLP/"/>
     
     <category term="科研" scheme="https://alleyf.github.io/tags/%E7%A7%91%E7%A0%94/"/>
     
@@ -352,7 +398,7 @@
     <link href="https://alleyf.github.io/2024/01/92e1da0544e0.html"/>
     <id>https://alleyf.github.io/2024/01/92e1da0544e0.html</id>
     <published>2024-01-16T04:49:25.000Z</published>
-    <updated>2024-01-16T13:15:59.527Z</updated>
+    <updated>2024-01-16T05:15:58.000Z</updated>
     
     
     <summary type="html">Deep learning</summary>
@@ -386,54 +432,6 @@
     <category term="LLM" scheme="https://alleyf.github.io/tags/LLM/"/>
     
     <category term="可解释性" scheme="https://alleyf.github.io/tags/%E5%8F%AF%E8%A7%A3%E9%87%8A%E6%80%A7/"/>
-    
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="https://alleyf.github.io/2024/01/b87d14108aff.html"/>
-    <id>https://alleyf.github.io/2024/01/b87d14108aff.html</id>
-    <published>2024-01-02T05:09:33.837Z</published>
-    <updated>2024-01-02T05:58:34.499Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;!DOCTYPE html&gt;&lt;html lang=&quot;zh-CN&quot;&gt;&lt;head&gt;&lt;title&gt;前端三件套-后端必备&lt;/title&gt;&lt;meta property=&quot;og:title&quot; content=&quot;前端三件套-后端必备&quot;&gt;&lt;meta name=&quot;author&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="前端开发" scheme="https://alleyf.github.io/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>前端三件套-后端必备</title>
-    <link href="https://alleyf.github.io/2024/01/e99038e3aa4f.html"/>
-    <id>https://alleyf.github.io/2024/01/e99038e3aa4f.html</id>
-    <published>2024-01-01T11:00:54.000Z</published>
-    <updated>2025-01-14T16:50:04.492Z</updated>
-    
-    
-    <summary type="html">后端程序员需要掌握的前端必备知识。</summary>
-    
-    
-    
-    <category term="前端开发" scheme="https://alleyf.github.io/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
-    
-    
-    <category term="css" scheme="https://alleyf.github.io/tags/css/"/>
-    
-    <category term="javascript" scheme="https://alleyf.github.io/tags/javascript/"/>
-    
-    <category term="frontend" scheme="https://alleyf.github.io/tags/frontend/"/>
-    
-    <category term="html" scheme="https://alleyf.github.io/tags/html/"/>
     
   </entry>
   
