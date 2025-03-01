@@ -6,7 +6,7 @@
   <link href="https://alleyf.github.io/atom.xml" rel="self"/>
   
   <link href="https://alleyf.github.io/"/>
-  <updated>2025-02-09T06:10:05.829Z</updated>
+  <updated>2025-03-01T16:05:03.233Z</updated>
   <id>https://alleyf.github.io/</id>
   
   <author>
@@ -17,11 +17,58 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title></title>
+    <link href="https://alleyf.github.io/2025/03/4c204569d063.html"/>
+    <id>https://alleyf.github.io/2025/03/4c204569d063.html</id>
+    <published>2025-03-01T16:04:09.633Z</published>
+    <updated>2025-03-01T16:05:03.233Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h4 id=&quot;论文标题&quot;&gt;&lt;a href=&quot;#论文标题&quot; class=&quot;headerlink&quot; title=&quot;论文标题&quot;&gt;&lt;/a&gt;论文标题&lt;/h4&gt;&lt;p&gt;&lt;strong&gt;Exploring the Limits of Domain-Adaptive Training for</summary>
+        
+      
+    
+    
+    
+    <category term="课程学习" scheme="https://alleyf.github.io/categories/%E8%AF%BE%E7%A8%8B%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="https://alleyf.github.io/2025/02/5f7f017122ce.html"/>
+    <id>https://alleyf.github.io/2025/02/5f7f017122ce.html</id>
+    <published>2025-02-24T16:25:12.090Z</published>
+    <updated>2025-02-24T16:25:12.090Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;经过与阿里云客服沟通，目前oss</summary>
+        
+      
+    
+    
+    
+    <category term="运维开发" scheme="https://alleyf.github.io/categories/%E8%BF%90%E7%BB%B4%E5%BC%80%E5%8F%91/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>摄影基础指南</title>
     <link href="https://alleyf.github.io/2025/02/6df5b328c0dc.html"/>
     <id>https://alleyf.github.io/2025/02/6df5b328c0dc.html</id>
     <published>2025-02-09T06:00:21.000Z</published>
-    <updated>2025-02-09T06:10:05.829Z</updated>
+    <updated>2025-02-24T16:42:48.766Z</updated>
     
     
     <summary type="html">关于摄影的基础入门知识</summary>
@@ -86,7 +133,7 @@
     <link href="https://alleyf.github.io/2024/08/e73efe4b2ca2.html"/>
     <id>https://alleyf.github.io/2024/08/e73efe4b2ca2.html</id>
     <published>2024-08-10T05:59:49.000Z</published>
-    <updated>2025-01-14T16:26:56.841Z</updated>
+    <updated>2025-01-14T16:24:15.810Z</updated>
     
     
     <summary type="html">科研思路思考</summary>
@@ -276,52 +323,6 @@
   </entry>
   
   <entry>
-    <title>国际会议记录</title>
-    <link href="https://alleyf.github.io/2024/03/20316e8fc58a.html"/>
-    <id>https://alleyf.github.io/2024/03/20316e8fc58a.html</id>
-    <published>2024-03-08T11:20:23.547Z</published>
-    <updated>2023-10-21T17:59:46.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;2023年数字法治与智慧司法国际研讨会议程&quot;&gt;&lt;a href=&quot;#2023年数字法治与智慧司法国际研讨会议程&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="科研学习" scheme="https://alleyf.github.io/categories/%E7%A7%91%E7%A0%94%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="https://alleyf.github.io/2024/03/45eeea6cb3b9.html"/>
-    <id>https://alleyf.github.io/2024/03/45eeea6cb3b9.html</id>
-    <published>2024-03-08T11:20:23.530Z</published>
-    <updated>2024-01-01T21:58:34.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;!DOCTYPE html&gt;&lt;html lang=&quot;zh-CN&quot;&gt;&lt;head&gt;&lt;title&gt;前端三件套-后端必备&lt;/title&gt;&lt;meta property=&quot;og:title&quot; content=&quot;前端三件套-后端必备&quot;&gt;&lt;meta name=&quot;author&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="前端开发" scheme="https://alleyf.github.io/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
-    
-    
-  </entry>
-  
-  <entry>
     <title>BERT Pre-training of Deep Bidirectional Transformers for Language Understanding</title>
     <link href="https://alleyf.github.io/2024/02/bc09878197d9.html"/>
     <id>https://alleyf.github.io/2024/02/bc09878197d9.html</id>
@@ -336,9 +337,9 @@
     <category term="科研学习" scheme="https://alleyf.github.io/categories/%E7%A7%91%E7%A0%94%E5%AD%A6%E4%B9%A0/"/>
     
     
-    <category term="DL" scheme="https://alleyf.github.io/tags/DL/"/>
-    
     <category term="NLP" scheme="https://alleyf.github.io/tags/NLP/"/>
+    
+    <category term="DL" scheme="https://alleyf.github.io/tags/DL/"/>
     
     <category term="科研" scheme="https://alleyf.github.io/tags/%E7%A7%91%E7%A0%94/"/>
     
@@ -351,7 +352,7 @@
     <link href="https://alleyf.github.io/2024/01/92e1da0544e0.html"/>
     <id>https://alleyf.github.io/2024/01/92e1da0544e0.html</id>
     <published>2024-01-16T04:49:25.000Z</published>
-    <updated>2024-01-16T05:15:58.000Z</updated>
+    <updated>2024-01-16T13:15:59.527Z</updated>
     
     
     <summary type="html">Deep learning</summary>
@@ -389,6 +390,29 @@
   </entry>
   
   <entry>
+    <title></title>
+    <link href="https://alleyf.github.io/2024/01/b87d14108aff.html"/>
+    <id>https://alleyf.github.io/2024/01/b87d14108aff.html</id>
+    <published>2024-01-02T05:09:33.837Z</published>
+    <updated>2024-01-02T05:58:34.499Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;!DOCTYPE html&gt;&lt;html lang=&quot;zh-CN&quot;&gt;&lt;head&gt;&lt;title&gt;前端三件套-后端必备&lt;/title&gt;&lt;meta property=&quot;og:title&quot; content=&quot;前端三件套-后端必备&quot;&gt;&lt;meta name=&quot;author&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="前端开发" scheme="https://alleyf.github.io/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>前端三件套-后端必备</title>
     <link href="https://alleyf.github.io/2024/01/e99038e3aa4f.html"/>
     <id>https://alleyf.github.io/2024/01/e99038e3aa4f.html</id>
@@ -410,25 +434,6 @@
     <category term="frontend" scheme="https://alleyf.github.io/tags/frontend/"/>
     
     <category term="html" scheme="https://alleyf.github.io/tags/html/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>后端开发手册</title>
-    <link href="https://alleyf.github.io/2023/12/76481f063d8b.html"/>
-    <id>https://alleyf.github.io/2023/12/76481f063d8b.html</id>
-    <published>2023-12-23T07:16:24.000Z</published>
-    <updated>2025-01-14T16:50:04.478Z</updated>
-    
-    
-    <summary type="html">关于后端开发的个人经验。</summary>
-    
-    
-    
-    <category term="后端开发" scheme="https://alleyf.github.io/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
-    
-    
-    <category term="rules" scheme="https://alleyf.github.io/tags/rules/"/>
     
   </entry>
   
