@@ -24,6 +24,10 @@
   "unresolvedLinks": false,
   "recentFilesStore": [
     {
+      "filepath": "conflict-files-obsidian-git.md",
+      "timestamp": 1740811025355
+    },
+    {
       "filepath": "source/_posts/运维开发/实验1：多层神经⽹络的numpy实验.md",
       "timestamp": 1740561389716
     },
