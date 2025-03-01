@@ -1,0 +1,26 @@
+{
+  "providers": [
+    {
+      "tag": "sf",
+      "vendor": "SiliconFlow",
+      "options": {
+        "apiKey": "sk-oxqkwjottywnudsmoiaiaufhflbqciuhuwzltczikmspirtz",
+        "baseURL": "https://api.siliconflow.cn/",
+        "model": "deepseek-ai/DeepSeek-V3",
+        "parameters": {}
+      }
+    }
+  ],
+  "systemTags": [
+    "System",
+    "系统"
+  ],
+  "newChatTags": [
+    "NewChat",
+    "新对话"
+  ],
+  "userTags": [
+    "me",
+    "我"
+  ]
+}
