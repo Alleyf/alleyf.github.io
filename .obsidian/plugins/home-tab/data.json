@@ -13,7 +13,7 @@
   "fontColorType": "default",
   "fontWeight": 600,
   "maxResults": 5,
-  "showStarredFiles": false,
+  "showbookmarkedFiles": true,
   "showRecentFiles": true,
   "maxRecentFiles": 5,
   "storeRecentFile": true,
@@ -24,18 +24,21 @@
   "unresolvedLinks": false,
   "recentFilesStore": [
     {
-      "filepath": "source/_posts/运维开发/未命名.md",
-      "timestamp": 1740555668937
+      "filepath": "source/_posts/运维开发/实验1：多层神经⽹络的numpy实验.md",
+      "timestamp": 1740561389716
     },
     {
       "filepath": "source/_posts/运维开发/各种环境配置.md",
       "timestamp": 1740555486513
     }
   ],
-  "starredFileStore": [],
+  "bookmarkedFileStore": [],
   "searchDelay": 0,
   "replaceNewTabs": true,
   "newTabOnStart": true,
   "closePreviousSessionTabs": true,
-  "omnisearch": true
+  "omnisearch": true,
+  "showOmnisearchExcerpt": true,
+  "showStarredFiles": false,
+  "starredFileStore": []
 }
