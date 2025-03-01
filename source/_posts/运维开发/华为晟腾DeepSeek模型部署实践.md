@@ -46,7 +46,14 @@ number headings: auto, first-level 1, max 5, start-at 1, 1.1
 # 3 参考来源
 
 1. [DeepSeek-R1-模型库-ModelZoo-昇腾社区](https://www.hiascend.com/software/modelzoo/models/detail/68457b8a51324310aad9a0f55c3e56e3)
-2. [微信公众平台](https://mp.weixin.qq.com/s/OA2tfvChRB9fektSI7xWUw)
-3. [DeepSeek-R1 昇腾910B满血版部署避坑指南](https://zhuanlan.zhihu.com/p/24200409101)
-4. [华为昇腾 910B 部署 DeepSeek-R1 蒸馏系列模型详细指南-CSDN博客](https://blog.csdn.net/MnivL/article/details/145685134)
-5. [DeepSeek模型权重下载太慢？快来魔乐体验加速丝滑下载，和“龟速”说拜拜 \| 社区动态 \| 魔乐社区](https://modelers.cn/updates/zh/modelers/20250213-deepseek%E6%9D%83%E9%87%8D%E4%B8%8B%E8%BD%BD/)
+2. [DeepSeek-R1 昇腾910B满血版部署避坑指南](https://zhuanlan.zhihu.com/p/24200409101)
+3. [华为昇腾 910B 部署 DeepSeek-R1 蒸馏系列模型详细指南-CSDN博客](https://blog.csdn.net/MnivL/article/details/145685134)
+4. [DeepSeek模型权重下载太慢？快来魔乐体验加速丝滑下载，和“龟速”说拜拜 \| 社区动态 \| 魔乐社区](https://modelers.cn/updates/zh/modelers/20250213-deepseek%E6%9D%83%E9%87%8D%E4%B8%8B%E8%BD%BD/)
+5. [训练-华为 NPU 适配 - LLaMA Factory](https://llamafactory.readthedocs.io/zh-cn/latest/advanced/npu.html#id11)
+6. [训练-全流程昇腾实践 — 昇腾开源 文档](https://ascend.github.io/docs/sources/llamafactory/example.html)
+7. [部署-昇腾DeepSeek模型部署优秀实践及FAQ](https://mp.weixin.qq.com/s/OA2tfvChRB9fektSI7xWUw)
+8. [部署-Ascend/ModelZoo-PyTorch](https://gitee.com/ascend/ModelZoo-PyTorch/tree/master/MindIE/LLM/DeepSeek/DeepSeek-R1#deepseek-r1)
+9. [部署-Welcome to vLLM Ascend Plugin — vllm-ascend](https://vllm-ascend.readthedocs.io/en/latest/)
+10. [对话-GitHub - open-webui/open-webui: User-friendly AI Interface (Supports Ollama, OpenAI API, ...)](https://github.com/open-webui/open-webui)
+11. [对话-GitHub - infiniflow/ragflow: RAGFlow is an open-source RAG (Retrieval-Augmented Generation) engine based on deep document understanding.](https://github.com/infiniflow/ragflow)
+12. [对话-GitHub - CherryHQ/cherry-studio: 🍒 Cherry Studio is a desktop client that supports for multiple LLM providers. Support deepseek-r1](https://github.com/CherryHQ/cherry-studio)
