@@ -4,25 +4,36 @@
     "type": "split",
     "children": [
       {
-        "id": "0329fc411867a51f",
+        "id": "c1be165a8a4b979f",
         "type": "tabs",
         "children": [
           {
-            "id": "8fc878f025edcf05",
+            "id": "f8c00cb3b9691a8c",
+            "type": "leaf",
+            "state": {
+              "type": "home-tab-view",
+              "state": {},
+              "icon": "search",
+              "title": "Home tab"
+            }
+          },
+          {
+            "id": "11751c4cb1355f10",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/运维开发/华为晟腾DeepSeek模型部署实践.md",
+                "file": "conflict-files-obsidian-git.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "华为晟腾DeepSeek模型部署实践"
+              "title": "conflict-files-obsidian-git"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -60,13 +71,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/运维开发/华为晟腾DeepSeek模型部署实践.md",
+                "file": "conflict-files-obsidian-git.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "华为晟腾DeepSeek模型部署实践 的大纲"
+              "title": "conflict-files-obsidian-git 的大纲"
             }
           }
         ]
@@ -82,7 +93,7 @@
       {
         "id": "612f0098096832bc",
         "type": "tabs",
-        "dimension": 51.70008718395816,
+        "dimension": 34.08045977011494,
         "children": [
           {
             "id": "bdaaa10e2f08b79f",
@@ -95,17 +106,7 @@
             }
           },
           {
-            "id": "0490384cb8c3e68b",
-            "type": "leaf",
-            "state": {
-              "type": "todo",
-              "state": {},
-              "icon": "checkmark",
-              "title": "Todo List"
-            }
-          },
-          {
-            "id": "9f2db79360f3e3dd",
+            "id": "b6d7c47699945de8",
             "type": "leaf",
             "state": {
               "type": "advanced-tables-toolbar",
@@ -117,9 +118,26 @@
         ]
       },
       {
+        "id": "94ed18f343f34498",
+        "type": "tabs",
+        "dimension": 34.08045977011494,
+        "children": [
+          {
+            "id": "73bd255a1d218621",
+            "type": "leaf",
+            "state": {
+              "type": "todo",
+              "state": {},
+              "icon": "checkmark",
+              "title": "Todo List"
+            }
+          }
+        ]
+      },
+      {
         "id": "c712742b5e0ae1de",
         "type": "tabs",
-        "dimension": 48.29991281604184,
+        "dimension": 31.839080459770113,
         "children": [
           {
             "id": "7debd791db616930",
@@ -139,6 +157,9 @@
   },
   "left-ribbon": {
     "hiddenItems": {
+      "obsidian-git:Open Git source control": false,
+      "obsidian-memos:Thino": false,
+      "hide-folders:Show hidden folders": false,
       "obsidian-projects:打开项目": false,
       "command-palette:打开命令面板": false,
       "templates:插入模板": false,
@@ -148,66 +169,64 @@
       "graph:查看关系图谱": false,
       "canvas:新建白板": false,
       "omnisearch:Omnisearch": false,
+      "cmdr:Calendar: Open view": false,
+      "cmdr:Obsidian Git: Open source control view": false,
       "marp-slides:Show Slide Preview": false,
       "media-extended:Open media": false,
       "table-editor-obsidian:Advanced Tables Toolbar": false,
-      "hide-folders:Show hidden folders": false,
-      "cmdr:Calendar: Open view": false,
-      "cmdr:Obsidian Git: Open source control view": false,
-      "obsidian-git:Open Git source control": false,
-      "obsidian-memos:Thino": false
+      "obsidian-kanban:创建新看板": false
     }
   },
-  "active": "8fc878f025edcf05",
+  "active": "11751c4cb1355f10",
   "lastOpenFiles": [
-    "source/_posts/运维开发/华为晟腾DeepSeek模型部署实践.md",
-    "source/_posts/运维开发/实验1：多层神经⽹络的numpy实验.md",
     "conflict-files-obsidian-git.md",
-    "source/_posts/运维开发/未命名思维导图.md",
-    "source/_posts/科研学习/会议讨论/DeepSeek等人工智能技术在教学科研中的应用.md",
-    "source/_posts/科研学习/会议讨论/周会.md",
-    "source/_posts/后端开发/站内信、活动、公告和推送技术调研.md",
-    "source/_posts/后端开发/SpringCloud-微服务基础.md",
-    "未命名.md",
-    "source/_posts/后端开发/SpringBoot.md",
-    "db.json",
-    "BERT Pre-training of Deep Bidirectional Transformers for Language Understanding.html",
-    "source/_posts/艺术生活/摄影/人像摄影技巧.md",
-    "source/_posts/艺术生活/摄影/摄影基础指南.md",
-    "source/_posts/艺术生活/摄影",
-    "source/_posts/艺术生活",
-    "source/_obsidian/免责说明模板.md",
-    "source/_obsidian/周报模板.md",
-    "source/_posts/运维开发/Kubernetes入门.md",
-    "source/_posts/运维开发/运维排忧解难.md",
-    "source/_posts/运维开发/运维问题记录.md",
-    "source/_posts/运维开发/性能测试.md",
-    "source/_posts/_posts.zip",
-    "source/_posts/后端开发/开发踩坑日记.md",
-    "source/_posts/前端开发/Html5_Css_Js.md",
-    "source/_posts/科研学习/研究思考-毕业/研究思路.md",
-    "source/_posts/科研学习/研究思考-毕业",
+    "source/_posts/运维开发/华为晟腾DeepSeek模型部署实践.md",
+    "未命名看板.md",
+    "source/_posts/运维开发/实验1：多层神经⽹络的numpy实验.md",
+    "public/2024/04/1929349c41a3.html",
+    "public/2025/02/6df5b328c0dc.html",
+    "public/2025/02/8cef878ed100.html",
+    "public/archives/2025/02/index.html",
+    "public/archives/2025/02",
+    "public/archives/page/9/index.html",
+    "public/archives/page/9",
+    "public/page/9/index.html",
+    "public/page/9",
+    "public/2025/02",
     "source/_posts/运维开发/各种环境配置.md",
-    "attachment/Pasted image 20240721233501.png",
+    "source/_posts/艺术生活/摄影/摄影基础指南.md",
+    "source/_posts/后端开发/站内信、活动、公告和推送技术调研.md",
+    "source/_posts/艺术生活/摄影/人像摄影技巧.md",
     "source/_posts/运维开发/OSS备份方案.md",
-    "attachment/OSS备份方案-2.png",
-    "attachment/OSS备份方案-1.png",
-    "attachment/OSS备份方案.png",
-    "source/_posts/运维开发/MarkDown-真经.md",
-    "public/tags/K8s/index.html",
-    "public/tags/K8s",
-    "public/archives/2024/05/index.html",
-    "public/archives/2024/05",
-    "source/_posts/中间件和工具/常用软件和环境.md",
-    "source/_posts/运维开发/WebMagic.md",
+    "public/gallery/images/桌面壁纸/sunset.png",
+    "public/gallery/images/桌面壁纸/bg.jpg",
+    "public/gallery/images/桌面壁纸/fire.jpg",
+    "public/gallery/images/桌面壁纸/cloud.png",
+    "node_modules/hexo-i18n/README.md",
+    "node_modules/hexo-log/README.md",
+    "node_modules/is-core-module/README.md",
+    "node_modules/is-core-module/CHANGELOG.md",
+    "node_modules/hexo-tag-mmedia/README.md",
+    "node_modules/hexo-renderer-ejs/README.md",
+    "node_modules/hexo-pagination/README.md",
+    "node_modules/hexo-generator-category/README.md",
+    "node_modules/hexo-generator-archive/README.md",
+    "node_modules/husky/README.md",
+    "node_modules/hexo-theme-landscape/source/css/images/banner.jpg",
+    "node_modules/hexo-theme-landscape/README.md",
+    "node_modules/highlight.js/styles/pojoaque.jpg",
+    "node_modules/highlight.js/styles/brown-papersq.png",
+    "node_modules/highlight.js/SUPPORTED_LANGUAGES.md",
+    "node_modules/highlight.js/VERSION_11_UPGRADE.md",
+    "node_modules/highlight.js/VERSION_10_UPGRADE.md",
+    "node_modules/highlight.js/README.md",
+    "node_modules/highlight.js/SECURITY.md",
+    "node_modules/highlight.js/CHANGES.md",
+    "node_modules/hexo-theme-fluid/source/img/police_beian.png",
+    "node_modules/hexo-theme-fluid/source/img/loading.gif",
+    "node_modules/hexo-theme-fluid/source/img/fluid.png",
     "canvas/未命名.canvas",
     "canvas/AI学习思路.canvas",
-    "attachment/Pasted Image 20240102110312.jpeg",
-    "attachment/Pasted Image 20231203133358_381.png",
-    "attachment/Pasted Image 20231203133343_369.png",
-    "attachment/Pasted Image 20231202101022_171.png",
-    "attachment/Pasted Image 20231202100951_001.png",
-    "attachment/Pasted Image 20231128145734_285.png",
     "未命名.canvas",
     "canvas/review plans.canvas",
     "source/_posts/英语学习/EnglishWords.canvas",
