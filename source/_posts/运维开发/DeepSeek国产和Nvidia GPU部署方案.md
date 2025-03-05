@@ -4,7 +4,7 @@ date: 2025-03-05 18:35:26
 tags:
   - DeepSeek
 sticky: 80
-excerpt: 
+excerpt: 关于DeepSeek国产和Nvidia两种方案的部署。
 author: fcs
 index_img: https://picsum.photos/800/250
 lang: zh-CN
