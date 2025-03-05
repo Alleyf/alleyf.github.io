@@ -15,31 +15,29 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="alleyf">
+  <meta name="author" content="fcs">
   <meta name="keywords" content="">
   
-    <meta name="description" content="概述 经过与阿里云客服沟通，目前oss 云存储有两种数据同步方案：阿里云OSS备份服务，下载到本地同步到NAS。 当前etms使用的存储量为300GB左右，由于最近频繁上传文件，因此截至7月到现在半个月时间新增存储用量280GB左右，预估月底可能会达到600GB左右，后续每个月的新增存储用量还需根据实际情况进行评估。  阿里云OSS备份 说明：云备份是一种高效、安全、低成本的全托管式云备份存储服务">
+    <meta name="description" content="关于DeepSeek国产和Nvidia两种方案的部署。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="alleyf">
-<meta property="og:url" content="https://alleyf.github.io/2025/02/8cef878ed100.html">
+<meta property="og:title" content="DeepSeek国产和Nvidia GPU部署方案">
+<meta property="og:url" content="https://alleyf.github.io/2025/03/f16719a87f0e.html">
 <meta property="og:site_name" content="alleyf">
-<meta property="og:description" content="概述 经过与阿里云客服沟通，目前oss 云存储有两种数据同步方案：阿里云OSS备份服务，下载到本地同步到NAS。 当前etms使用的存储量为300GB左右，由于最近频繁上传文件，因此截至7月到现在半个月时间新增存储用量280GB左右，预估月底可能会达到600GB左右，后续每个月的新增存储用量还需根据实际情况进行评估。  阿里云OSS备份 说明：云备份是一种高效、安全、低成本的全托管式云备份存储服务">
+<meta property="og:description" content="关于DeepSeek国产和Nvidia两种方案的部署。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/4273724071/78d35414fb9el.svg">
-<meta property="og:image" content="https://alleyf.github.io/attachment/OSS%E5%A4%87%E4%BB%BD%E6%96%B9%E6%A1%88.png">
-<meta property="og:image" content="https://alleyf.github.io/attachment/OSS%E5%A4%87%E4%BB%BD%E6%96%B9%E6%A1%88-2.png">
-<meta property="og:image" content="https://alleyf.github.io/attachment/OSS%E5%A4%87%E4%BB%BD%E6%96%B9%E6%A1%88-1.png">
-<meta property="article:published_time" content="2025-02-26T07:38:43.889Z">
-<meta property="article:modified_time" content="2025-02-26T07:38:43.889Z">
+<meta property="og:image" content="https://picsum.photos/800/250">
+<meta property="article:published_time" content="2025-03-05T10:35:26.000Z">
+<meta property="article:modified_time" content="2025-03-05T14:46:33.295Z">
 <meta property="article:author" content="alleyf">
+<meta property="article:tag" content="DeepSeek">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/4273724071/78d35414fb9el.svg">
+<meta name="twitter:image" content="https://picsum.photos/800/250">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>alleyf</title>
+  <title>DeepSeek国产和Nvidia GPU部署方案 - alleyf</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -281,7 +279,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text=""></span>
+            <span id="subtitle" data-typed-text="DeepSeek国产和Nvidia GPU部署方案"></span>
           
         </div>
 
@@ -291,14 +289,14 @@
     
       <span class="post-meta mr-2">
         <i class="iconfont icon-author" aria-hidden="true"></i>
-        alleyf
+        fcs
       </span>
     
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-02-26 15:38" pubdate>
-          2025年2月26日 下午
+        <time datetime="2025-03-05 18:35" pubdate>
+          2025年3月5日 晚上
         </time>
       </span>
     
@@ -309,7 +307,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.4k 字
+          2.2k 字
         
       </span>
     
@@ -320,7 +318,7 @@
         
         
         
-          12 分钟
+          19 分钟
         
       </span>
     
@@ -366,145 +364,265 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none"></h1>
+            <h1 style="display: none">DeepSeek国产和Nvidia GPU部署方案</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：几秒前
+                  
+                
+              </p>
             
             
               <div class="markdown-body">
                 
-                <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><blockquote>
-<p>经过与阿里云客服沟通，目前oss 云存储有两种数据同步方案：阿里云<strong>OSS备份</strong>服务，下载到本地同步到NAS。</p>
-<p>当前etms使用的存储量为300GB左右，由于最近频繁上传文件，因此截至7月到现在半个月时间新增存储用量280GB左右，预估月底可能会达到600GB左右，后续每个月的新增存储用量还需根据实际情况进行评估。</p>
-</blockquote>
-<h1 id="阿里云OSS备份"><a href="#阿里云OSS备份" class="headerlink" title="阿里云OSS备份"></a>阿里云OSS备份</h1><p><img src="https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/4273724071/78d35414fb9el.svg" srcset="/img/loading.gif" lazyload alt="78d35414fb9el.svg"></p>
-<p>说明：云备份是一种高效、安全、低成本的全托管式云备份存储服务。您可以使用云备份来保护阿里云OSS里的数据，并为其创建多个可恢复版本。OSS备份服务提供基于阿里云原生的OSS数据定时保护解决方案。OSS备份可以按照设置的策略将存储空间（Bucket）内的文件（Object）定期备份到云备份中。当您的文件（Object）意外删除或者被篡改时，可通过云备份进行恢复。<br>特点：使用阿里云备份服务稳定高效，恢复数据容易，支持<strong>创建备份计划，设置备份库、备份内容、备份周期、备份保留时间</strong>等。云备份启动计划并按照计划持续备份OSS Bucket中的文件。在备份海量Object的场景中，使用OSS清单功能进行备份，可显著提升备份的效率和性能。您<strong>可配置按照日、月、周、年进行定时增量备份</strong>，并指定备份点的保留周期，灵活的实现备份数据版本管理。<br>费用：<strong>开通云备份服务不收取费用，云备份收取存储容量费和请求流量费</strong>等。计费详情请参见<a target="_blank" rel="noopener" href="https://help.aliyun.com/zh/cloud-backup/product-overview/billing-methods-and-billable-items?spm=a2c4g.11186623.0.0.13286c93c1GQem#concept-89062-zh">计费方式与计费项</a>。（分为按量付费和包年包月（资源包））</p>
-<p>按量付费：<br>    1. 存储费用：0.15 元&#x2F;GB&#x2F;月；<br>    2. 流量费用：<br>           - 00:00 - 08:00（闲时）：0.25 元&#x2F;GB<br>           - 08:00 - 24:00（忙时）：0.50 元&#x2F;GB<br><img src="/attachment/OSS%E5%A4%87%E4%BB%BD%E6%96%B9%E6%A1%88.png" srcset="/img/loading.gif" lazyload></p>
-<p>包年包月：</p>
-<ol>
-<li>存储费用：<br><img src="/attachment/OSS%E5%A4%87%E4%BB%BD%E6%96%B9%E6%A1%88-2.png" srcset="/img/loading.gif" lazyload></li>
-</ol>
-<table>
+                <p><img src="https://picsum.photos/800/250" srcset="/img/loading.gif" lazyload></p>
+<h1 id="1-DeepSeek-R1-671B-模型部署方案"><a href="#1-DeepSeek-R1-671B-模型部署方案" class="headerlink" title="1 DeepSeek-R1-671B 模型部署方案"></a>1 DeepSeek-R1-671B 模型部署方案</h1><h2 id="1-1-一、模型概述🌟​"><a href="#1-1-一、模型概述🌟​" class="headerlink" title="1.1 一、模型概述🌟​"></a>1.1 一、模型概述🌟​</h2><p>DeepSeek-R1-671B 是一款基于 Transformer 架构的大型语言模型，具有 671 亿参数，支持多种自然语言处理任务，如文本生成、问答、摘要等。该模型有两种常见且优秀的版本：<strong>满血版（BF16）和量化版（W8A8）</strong>。满血版模型精度高，但对硬件资源要求较高；量化版模型通过权重量化技术，在保持一定精度的同时，降低了模型的存储和计算需求，更适合资源受限的场景。</p>
+<h2 id="1-2-二、部署方案"><a href="#1-2-二、部署方案" class="headerlink" title="1.2 二、部署方案"></a>1.2 二、部署方案</h2><pre><code class=" mermaid">graph LR
+    subgraph 昇腾集群
+    A[Atlas 800I A2 Ascend 910B NPU]
+    A --&gt; C[MindIE推理引擎]
+    C --&gt; D[动态量化模块]
+    end
+    
+    subgraph NVIDIA集群
+    E[Nvidia A100/H100 GPU] --&gt; F[vLLM-Ascend]
+    F --&gt; G[Bitsandbytes量化]
+    end
+    
+    D --&gt; H[统一API输出]
+    G --&gt; H
+</code></pre>
+
+<h3 id="1-2-1-方案一：华为昇腾环境部署🐉"><a href="#1-2-1-方案一：华为昇腾环境部署🐉" class="headerlink" title="1.2.1 方案一：华为昇腾环境部署🐉"></a>1.2.1 方案一：华为昇腾环境部署🐉</h3><h4 id="1-2-1-1-硬件要求"><a href="#1-2-1-1-硬件要求" class="headerlink" title="1.2.1.1 硬件要求"></a>1.2.1.1 硬件要求</h4><table>
 <thead>
 <tr>
-<th>标准 - 同城冗余存储包</th>
-<th>规格</th>
-<th>包月价（单价：元）</th>
-<th>半年价（买 5 送 1）</th>
-<th>年价（买 9 送 3）</th>
+<th>组件</th>
+<th>满血版（BF16）</th>
+<th>量化版（W8A8）</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>-</td>
-<td>100 GB</td>
-<td>14.00</td>
-<td>69.72</td>
-<td>126.00</td>
+<td>服务器类型</td>
+<td>Atlas 800I A2（8×64G）×4</td>
+<td>Atlas 800I A2（8×64G）×2</td>
 </tr>
 <tr>
-<td>-</td>
-<td>500 GB</td>
-<td>68.00</td>
-<td>338.64</td>
-<td>612.00</td>
+<td>CPU</td>
+<td>4路48核</td>
+<td>4路48核</td>
 </tr>
 <tr>
-<td>-</td>
-<td>1 TB</td>
-<td>138.00</td>
-<td>687.24</td>
-<td>1,242.00</td>
+<td>内存</td>
+<td>1536GB</td>
+<td>1536GB</td>
 </tr>
 <tr>
-<td>-</td>
-<td>2 TB</td>
-<td>276.00</td>
-<td>1,374.48</td>
-<td>2,484.00</td>
+<td>GPU</td>
+<td>昇腾 910B（64GB）×32</td>
+<td>昇腾 910B（64GB）×16</td>
 </tr>
 <tr>
-<td>-</td>
-<td>5 TB</td>
-<td>691.00</td>
-<td>3,441.18</td>
-<td>6,219.00</td>
+<td>网络带宽</td>
+<td>100Gbps</td>
+<td>100Gbps</td>
 </tr>
 <tr>
-<td>-</td>
-<td>10 TB</td>
-<td>1,382.00</td>
-<td>6,882.36</td>
-<td>12,438.00</td>
-</tr>
-<tr>
-<td>-</td>
-<td>20 TB</td>
-<td>2,765.00</td>
-<td>13,769.70</td>
-<td>24,885.00</td>
+<td>存储</td>
+<td>NVMe SSD，容量≥1.3TB</td>
+<td>NVMe SSD，容量≥2TB</td>
 </tr>
 </tbody></table>
-<ol start="2">
-<li>流量费用：<br><img src="/attachment/OSS%E5%A4%87%E4%BB%BD%E6%96%B9%E6%A1%88-1.png" srcset="/img/loading.gif" lazyload></li>
-</ol>
-<table>
+<h4 id="1-2-1-2-软件要求"><a href="#1-2-1-2-软件要求" class="headerlink" title="1.2.1.2 软件要求"></a>1.2.1.2 软件要求</h4><table>
 <thead>
 <tr>
-<th>流量包规格</th>
-<th>包月价（单价：元）</th>
-<th>半年价（买 5 送 1）</th>
-<th>年价（买 9 送 3）</th>
+<th>组件</th>
+<th>版本</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>100 GB</td>
-<td>49</td>
-<td>244.02</td>
-<td>441</td>
+<td>MindIE推理框架</td>
+<td>2.0.T3.1-800I-A2-py311-openeuler24.03-lts</td>
 </tr>
 <tr>
-<td>300 GB</td>
-<td>148</td>
-<td>737.04</td>
-<td>1,332</td>
+<td>CANN工具包</td>
+<td>8.0.T63</td>
 </tr>
 <tr>
-<td>500 GB</td>
-<td>247</td>
-<td>1,230.06</td>
-<td>2,223</td>
+<td>PTA</td>
+<td>6.0.T700</td>
 </tr>
 <tr>
-<td>1 TB</td>
-<td>505</td>
-<td>2,514.90</td>
-<td>4,545</td>
+<td>MindStudio量化工具</td>
+<td>Msit: br_noncom_MindStudio_8.0.0_POC_20251231分支</td>
 </tr>
 <tr>
-<td>2 TB</td>
-<td>1,010</td>
-<td>5,029.80</td>
-<td>9,090</td>
+<td>HDK</td>
+<td>24.1.0</td>
 </tr>
 <tr>
-<td>5 TB</td>
-<td>2,525</td>
-<td>12,574.50</td>
-<td>22,725</td>
-</tr>
-<tr>
-<td>10 TB</td>
-<td>4,874</td>
-<td>24,272.52</td>
-<td>43,866</td>
-</tr>
-<tr>
-<td>30 TB</td>
-<td>14,623</td>
-<td>72,822.54</td>
-<td>131,607</td>
+<td>Python</td>
+<td>3.11</td>
 </tr>
 </tbody></table>
-<h1 id="下载到本地同步到NAS"><a href="#下载到本地同步到NAS" class="headerlink" title="下载到本地同步到NAS"></a>下载到本地同步到NAS</h1><p>说明：此方式通过直接全量下载oss云存储的文件到本地，再通过内网环境同步文件到NAS中。<br>特点：下载耗时较长，不支持增量同步，占用本地存储和NAS存储容量，支持定时下载并同步。<br>费用：分为本地存储和外网流量费用。</p>
-<p>本地存储：需要虚拟机存储下载oss文件，本地存储占用容量和oss占用存储容量一致，费用需进一步评估。<br>流量费用：从阿里云oss下载文件到本地虚拟机过程会消耗外网流量，产生对应费用，具体价格与方案一的流量费用价格一致，每次下载需要消耗的流量即存储容量大小。</p>
+<h4 id="1-2-1-3-部署流程"><a href="#1-2-1-3-部署流程" class="headerlink" title="1.2.1.3 部署流程"></a>1.2.1.3 部署流程</h4><ol>
+<li><p><strong>模型权重准备</strong></p>
+<ul>
+<li>从 HuggingFace、ModelScope 或魔乐社区下载 DeepSeek-R1-671B 模型权重。</li>
+<li>对于满血版，下载 BF16 格式的权重；对于量化版，下载 W8A8 格式的权重。</li>
+<li>将权重文件放置在指定路径，并确保权重文件夹权限为 750。</li>
+</ul>
+</li>
+<li><p><strong>容器化部署</strong></p>
+<ul>
+<li>使用昇腾官方提供的 Docker 镜像，如 <code>mindie:2.0.T3.1-800I-A2-py311-openeuler24.03-lts</code>。</li>
+<li>启动容器时，挂载模型权重路径和配置文件路径。</li>
+<li>进入容器后，配置基础环境变量和通信环境变量，如 <code>Ascend</code>、<code>ATB_LLM_HCCL_ENABLE</code>、<code>HCCL_CONNECT_TIMEOUT</code> 等。</li>
+</ul>
+</li>
+<li><p><strong>服务化配置</strong></p>
+<ul>
+<li>修改 <code>config.json</code> 文件，配置模型权重路径、端口号、多机推理等参数。</li>
+<li>启动服务化接口，使用 <code>mindieservice_daemon</code> 命令拉起服务。</li>
+</ul>
+</li>
+<li><p><strong>测试与验证</strong></p>
+<ul>
+<li>使用 <code>curl</code> 命令发送请求，验证模型服务是否正常运行。</li>
+<li>进行性能测试，调整参数以优化模型性能。</li>
+</ul>
+</li>
+</ol>
+<h3 id="1-2-2-方案二：Nvidia-GPU-环境部署💻"><a href="#1-2-2-方案二：Nvidia-GPU-环境部署💻" class="headerlink" title="1.2.2 方案二：Nvidia GPU 环境部署💻"></a>1.2.2 方案二：Nvidia GPU 环境部署💻</h3><h4 id="1-2-2-1-硬件要求"><a href="#1-2-2-1-硬件要求" class="headerlink" title="1.2.2.1 硬件要求"></a>1.2.2.1 硬件要求</h4><table>
+<thead>
+<tr>
+<th>组件</th>
+<th>满血版（BF16）</th>
+<th>量化版（W8A8）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>服务器类型</td>
+<td>DGX A100（8×80GB）×4</td>
+<td>DGX A100（8×80GB）×2</td>
+</tr>
+<tr>
+<td>CPU</td>
+<td>4路48核</td>
+<td>4路48核</td>
+</tr>
+<tr>
+<td>内存</td>
+<td>1TB</td>
+<td>1TB</td>
+</tr>
+<tr>
+<td>GPU</td>
+<td>Nvidia A100（80GB）×32</td>
+<td>Nvidia A100（80GB）×16</td>
+</tr>
+<tr>
+<td>网络带宽</td>
+<td>100Gbps</td>
+<td>100Gbps</td>
+</tr>
+<tr>
+<td>存储</td>
+<td>NVMe SSD，容量≥2TB</td>
+<td>NVMe SSD，容量≥2TB</td>
+</tr>
+</tbody></table>
+<h4 id="1-2-2-2-软件要求"><a href="#1-2-2-2-软件要求" class="headerlink" title="1.2.2.2 软件要求"></a>1.2.2.2 软件要求</h4><table>
+<thead>
+<tr>
+<th>组件</th>
+<th>版本</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CUDA工具包</td>
+<td>12.4</td>
+</tr>
+<tr>
+<td>cuDNN</td>
+<td>8.9</td>
+</tr>
+<tr>
+<td>PyTorch</td>
+<td>2.3.0</td>
+</tr>
+<tr>
+<td>vLLM推理引擎</td>
+<td>0.7.3</td>
+</tr>
+<tr>
+<td>Python</td>
+<td>3.11</td>
+</tr>
+</tbody></table>
+<h4 id="1-2-2-3-部署流程"><a href="#1-2-2-3-部署流程" class="headerlink" title="1.2.2.3 部署流程"></a>1.2.2.3 部署流程</h4><ol>
+<li><p><strong>环境准备</strong></p>
+<ul>
+<li>安装 CUDA 和 cuDNN。</li>
+<li>安装 PyTorch 和 Transformers 库。</li>
+<li>安装 vLLM 插件，用于加速模型推理。</li>
+</ul>
+</li>
+<li><p><strong>模型权重准备</strong></p>
+<ul>
+<li>从 Hugging Face 、ModelScope或魔乐社区下载 DeepSeek-R1-671B 模型权重。</li>
+<li>对于满血版，使用 BF16 格式的权重；对于量化版，使用 W8A8 格式的权重。</li>
+<li>将权重文件放置在指定路径，并确保权重文件夹权限为 750。</li>
+</ul>
+</li>
+<li><p><strong>配置分布式推理</strong></p>
+<ul>
+<li>根据vllm的部署文档，配置多机多卡运行参数，通过脚本进行分布式推理。</li>
+</ul>
+</li>
+<li><p><strong>测试与性能调优</strong></p>
+<ul>
+<li>使用chatbox、cherry studio或open-web-ui等进行测试。</li>
+<li>监控系统资源使用情况，优化 GPU 和 CPU 的利用率。</li>
+</ul>
+</li>
+</ol>
+<h2 id="1-3-三、方案对比📊"><a href="#1-3-三、方案对比📊" class="headerlink" title="1.3 三、方案对比📊"></a>1.3 三、方案对比📊</h2><table>
+<thead>
+<tr>
+<th>对比维度</th>
+<th>昇腾方案</th>
+<th>Nvidia方案</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>​<strong>硬件成本</strong>​</td>
+<td>高（专用服务器集群）</td>
+<td>极高（H100单卡约$30,000）</td>
+</tr>
+<tr>
+<td>​<strong>部署复杂度</strong>​</td>
+<td>复杂（需配置NPU网络与算子适配）</td>
+<td>中等（依赖成熟生态工具链）</td>
+</tr>
+<tr>
+<td>​<strong>国产化支持</strong>​</td>
+<td>✅ 全链路自主可控</td>
+<td>❌ 依赖进口硬件</td>
+</tr>
+<tr>
+<td>​<strong>量化支持</strong>​</td>
+<td>W8A8需手动转换</td>
+<td>原生支持FP8&#x2F;W8A8（TensorRT）</td>
+</tr>
+<tr>
+<td>​<strong>性能（BF16）​</strong>​</td>
+<td>约1911 tokens&#x2F;s（4节点）</td>
+<td>约3200 tokens&#x2F;s（8×A100）</td>
+</tr>
+</tbody></table>
+<h2 id="1-4-四、总结"><a href="#1-4-四、总结" class="headerlink" title="1.4 四、总结"></a>1.4 四、总结</h2><p>选择部署方案时，需要综合考虑硬件成本、软件生态、部署复杂度、性能优化和社区支持等因素。华为昇腾环境适合对数据安全和自主可控要求较高的场景，而 Nvidia GPU 环境则适合对性能和成本敏感的场景。无论选择哪种方案，都需要根据实际需求进行性能测试和优化，以确保模型服务的稳定性和高效性。</p>
 
                 
               </div>
@@ -535,6 +653,13 @@
     </div>
   
   
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/DeepSeek/">#DeepSeek</a>
+      
+    </div>
+  
 </div>
 
 
@@ -543,22 +668,27 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div></div>
-      <div>https://alleyf.github.io/2025/02/8cef878ed100.html</div>
+      <div>DeepSeek国产和Nvidia GPU部署方案</div>
+      <div>https://alleyf.github.io/2025/03/f16719a87f0e.html</div>
     </div>
     <div class="license-meta">
       
         <div class="license-meta-item">
           <div>作者</div>
-          <div>alleyf</div>
+          <div>fcs</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年2月26日</div>
+          <div>2025年3月5日</div>
         </div>
       
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2025年3月5日</div>
+        </div>
       
       <div class="license-meta-item">
         <div>许可协议</div>
@@ -586,18 +716,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/03/f16719a87f0e.html" title="DeepSeek国产和Nvidia GPU部署方案">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">DeepSeek国产和Nvidia GPU部署方案</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/02/6df5b328c0dc.html" title="摄影基础指南">
-                        <span class="hidden-mobile">摄影基础指南</span>
+                      <a href="/2025/02/8cef878ed100.html" title="">
+                        <span class="hidden-mobile"></span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -618,7 +742,7 @@
         var options = Object.assign(
           {"clientID":"636f2864e051a199b91c","clientSecret":"5185fd11115bbcd8d2f636bc80de6bed98ed14c1","repo":"Gitalk","owner":"Alleyf","admin":["Alleyf"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":false,"proxy":"https://shielded-brushlands-08810.herokuapp.com/https://github.com/login/oauth/access_token"},
           {
-            id: 'e14f7629bf1ac930948a770ed5f7ff66'
+            id: 'eb2ece6811074beef6dff386ada416cb'
           }
         )
         var gitalk = new Gitalk(options);
