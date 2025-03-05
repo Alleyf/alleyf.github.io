@@ -24,16 +24,12 @@
   "unresolvedLinks": false,
   "recentFilesStore": [
     {
-      "filepath": "source/_posts/运维开发/华为晟腾DeepSeek模型部署实践.md",
-<<<<<<< HEAD
-      "timestamp": 1741170574421
-=======
-      "timestamp": 1741054343767
+      "filepath": "source/_posts/运维开发/DeepSeek国产和Nvidia GPU部署方案.md",
+      "timestamp": 1741173654474
     },
     {
-      "filepath": "source/_posts/科研学习/会议讨论/周会.md",
-      "timestamp": 1741054250133
->>>>>>> d95fafe965f4354488d074b58d8a935a409d985c
+      "filepath": "source/_posts/运维开发/华为晟腾DeepSeek模型部署实践.md",
+      "timestamp": 1741171949527
     }
   ],
   "bookmarkedFileStore": [],
