@@ -24,17 +24,16 @@
   "unresolvedLinks": false,
   "recentFilesStore": [
     {
-<<<<<<< HEAD
-      "filepath": "source/_posts/运维开发/实验1：多层神经⽹络的numpy实验.md",
-      "timestamp": 1741221662334
+      "filepath": "source/_posts/运维开发/DeepSeek国产和Nvidia GPU部署方案.md",
+      "timestamp": 1741223043879
     },
     {
       "filepath": "source/_posts/运维开发/华为晟腾DeepSeek模型部署实践.md",
-      "timestamp": 1741054343767
-=======
-      "filepath": "source/_posts/运维开发/DeepSeek国产和Nvidia GPU部署方案.md",
-      "timestamp": 1741184597805
->>>>>>> 1cc477c5cb75b3df90724e4bb9c665187412f49a
+      "timestamp": 1741222976447
+    },
+    {
+      "filepath": "source/_posts/运维开发/实验1：多层神经⽹络的numpy实验.md",
+      "timestamp": 1741221662334
     }
   ],
   "bookmarkedFileStore": [],
