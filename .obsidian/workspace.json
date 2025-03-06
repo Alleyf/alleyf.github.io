@@ -4,22 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "0329fc411867a51f",
+        "id": "abbea2ff32455fb7",
         "type": "tabs",
         "children": [
           {
-            "id": "c494b599635cf996",
+            "id": "b47e64b52afe4727",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "source/_posts/运维开发/华为晟腾DeepSeek模型部署实践.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "华为晟腾DeepSeek模型部署实践"
+              "type": "home-tab-view",
+              "state": {},
+              "icon": "search",
+              "title": "Home tab"
             }
           }
         ]
@@ -60,13 +55,12 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/运维开发/华为晟腾DeepSeek模型部署实践.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "华为晟腾DeepSeek模型部署实践 的大纲"
+              "title": "大纲"
             }
           }
         ]
@@ -159,12 +153,12 @@
       "obsidian-memos:Thino": false
     }
   },
-  "active": "c494b599635cf996",
+  "active": "b47e64b52afe4727",
   "lastOpenFiles": [
-    "source/_posts/科研学习/会议讨论/周会.md",
-    "source/_posts/运维开发/华为晟腾DeepSeek模型部署实践.md",
-    "conflict-files-obsidian-git.md",
     "source/_posts/运维开发/实验1：多层神经⽹络的numpy实验.md",
+    "source/_posts/运维开发/华为晟腾DeepSeek模型部署实践.md",
+    "source/_posts/科研学习/会议讨论/周会.md",
+    "conflict-files-obsidian-git.md",
     "source/_posts/运维开发/未命名思维导图.md",
     "source/_posts/科研学习/会议讨论/DeepSeek等人工智能技术在教学科研中的应用.md",
     "source/_posts/后端开发/站内信、活动、公告和推送技术调研.md",
