@@ -8,33 +8,18 @@
         "type": "tabs",
         "children": [
           {
-            "id": "e971f1c9e5a68676",
+            "id": "b4ecdbe0858a390f",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/科研学习/会议讨论/周会.md",
+                "file": "source/_posts/运维开发/运维排忧解难.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "周会"
-            }
-          },
-          {
-            "id": "2da2d064f7d0621d",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "source/_obsidian/周报模板.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "周报模板"
+              "title": "运维排忧解难"
             }
           }
         ]
@@ -75,13 +60,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/科研学习/会议讨论/周会.md",
+                "file": "source/_posts/运维开发/运维排忧解难.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "周会 的大纲"
+              "title": "运维排忧解难 的大纲"
             }
           }
         ]
@@ -174,10 +159,10 @@
       "obsidian-memos:Thino": false
     }
   },
-  "active": "e971f1c9e5a68676",
+  "active": "b4ecdbe0858a390f",
   "lastOpenFiles": [
-    "source/_obsidian/周报模板.md",
     "source/_posts/科研学习/会议讨论/周会.md",
+    "source/_obsidian/周报模板.md",
     "source/_posts/运维开发/华为晟腾DeepSeek模型部署实践.md",
     "source/_posts/运维开发/DeepSeek国产和Nvidia GPU部署方案.md",
     "source/_posts/运维开发/实验1：多层神经⽹络的numpy实验.md",

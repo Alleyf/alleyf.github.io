@@ -24,24 +24,12 @@
   "unresolvedLinks": false,
   "recentFilesStore": [
     {
+      "filepath": "source/_posts/运维开发/运维排忧解难.md",
+      "timestamp": 1741592342046
+    },
+    {
       "filepath": "source/_posts/科研学习/会议讨论/周会.md",
-      "timestamp": 1741504561810
-    },
-    {
-      "filepath": "source/_obsidian/周报模板.md",
-      "timestamp": 1741504261341
-    },
-    {
-      "filepath": "source/_posts/运维开发/DeepSeek国产和Nvidia GPU部署方案.md",
-      "timestamp": 1741223043879
-    },
-    {
-      "filepath": "source/_posts/运维开发/华为晟腾DeepSeek模型部署实践.md",
-      "timestamp": 1741222976447
-    },
-    {
-      "filepath": "source/_posts/运维开发/实验1：多层神经⽹络的numpy实验.md",
-      "timestamp": 1741221662334
+      "timestamp": 1741592278786
     }
   ],
   "bookmarkedFileStore": [],
