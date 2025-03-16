@@ -26,10 +26,15 @@
             "id": "2ed0f51d06a8e699",
             "type": "leaf",
             "state": {
-              "type": "home-tab-view",
-              "state": {},
-              "icon": "search",
-              "title": "Home tab"
+              "type": "markdown",
+              "state": {
+                "file": "source/_posts/科研学习/会议讨论/周会.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "周会"
             }
           }
         ],
@@ -98,12 +103,13 @@
             "state": {
               "type": "outline",
               "state": {
+                "file": "source/_posts/科研学习/会议讨论/周会.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "大纲"
+              "title": "周会 的大纲"
             }
           }
         ]
@@ -174,6 +180,10 @@
   },
   "active": "2ed0f51d06a8e699",
   "lastOpenFiles": [
+    "source/_obsidian/周报模板.md",
+    "source/_obsidian/学术汇报模板.md",
+    "source/_obsidian/学习笔记模板.md",
+    "source/_posts/科研学习/会议讨论/周会.md",
     "source/_posts/艺术生活/摄影/摄影基础指南.md",
     "source/_posts/艺术生活/摄影/人像摄影技巧.md",
     "source/_posts/课程学习/信息网络与安全.md",
@@ -191,7 +201,6 @@
     "public/page/9",
     "public/archives/2025/03/index.html",
     "public/archives/2025/03",
-    "source/_posts/科研学习/会议讨论/周会.md",
     "source/_posts/后端开发/站内信、活动、公告和推送技术调研.md",
     "source/about/index.md",
     "source/gallery/index.md",
@@ -209,8 +218,6 @@
     "source/_posts/运维开发/Git-简记.md",
     "source/_posts/运维开发/运维排忧解难.md",
     "source/_posts/运维开发/各种环境配置.md",
-    "source/_obsidian/周报模板.md",
-    "source/_posts/科研学习/学习方法/DL概念知识库.md",
     "attachment/Pasted image 20240721233501.png",
     "attachment/OSS备份方案.png",
     "attachment/OSS备份方案-2.png",

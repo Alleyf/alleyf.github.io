@@ -25,19 +25,23 @@
   "recentFilesStore": [
     {
       "filepath": "source/_posts/科研学习/会议讨论/周会.md",
-      "timestamp": 1742099147497
+      "timestamp": 1742099267743
+    },
+    {
+      "filepath": "source/_obsidian/周报模板.md",
+      "timestamp": 1742099204956
+    },
+    {
+      "filepath": "source/_obsidian/学术汇报模板.md",
+      "timestamp": 1742099202311
+    },
+    {
+      "filepath": "source/_obsidian/学习笔记模板.md",
+      "timestamp": 1742099180416
     },
     {
       "filepath": "source/_posts/艺术生活/摄影/摄影基础指南.md",
       "timestamp": 1742099139257
-    },
-    {
-      "filepath": "source/_posts/艺术生活/摄影/人像摄影技巧.md",
-      "timestamp": 1742099138674
-    },
-    {
-      "filepath": "source/_posts/课程学习/信息网络与安全.md",
-      "timestamp": 1742099122657
     }
   ],
   "bookmarkedFileStore": [],
