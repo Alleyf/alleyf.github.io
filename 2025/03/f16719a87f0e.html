@@ -15,56 +15,29 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="alleyf">
+  <meta name="author" content="fcs">
   <meta name="keywords" content="">
   
-    <meta name="description" content="2023年数字法治与智慧司法国际研讨会议程会议简介华中科技大学和湖北高级人民法院联合举办 演讲记录发挥大模型优势，推动智慧司法跃升梁新（中国司法大数据研究院院长）（线上）  国内外大模型在司法领域应用   Lexis+ Al：法律研究和文件起草的生成式 Al   英国律商联讯Robin Al:  结合内部律师的指导来起草和编辑法律合同英国 Robin Al 公司ChatLaw：为大众提供普惠法律服">
+    <meta name="description" content="关于DeepSeek国产和Nvidia两种方案的部署。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="国际会议记录">
-<meta property="og:url" content="https://alleyf.github.io/2023/10/46c739775d39.html">
+<meta property="og:title" content="DeepSeek-R1-671B 国产和Nvidia GPU部署方案">
+<meta property="og:url" content="https://alleyf.github.io/2025/03/f16719a87f0e.html">
 <meta property="og:site_name" content="alleyf">
-<meta property="og:description" content="2023年数字法治与智慧司法国际研讨会议程会议简介华中科技大学和湖北高级人民法院联合举办 演讲记录发挥大模型优势，推动智慧司法跃升梁新（中国司法大数据研究院院长）（线上）  国内外大模型在司法领域应用   Lexis+ Al：法律研究和文件起草的生成式 Al   英国律商联讯Robin Al:  结合内部律师的指导来起草和编辑法律合同英国 Robin Al 公司ChatLaw：为大众提供普惠法律服">
+<meta property="og:description" content="关于DeepSeek国产和Nvidia两种方案的部署。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310211001753.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310211113561.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310211116571.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310211121471.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310211122730.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310211126416.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310211557538.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310211603381.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310211626338.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310211626425.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310211628608.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310211628110.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310211628280.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310211629206.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310211630746.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310211630068.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310211630040.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310211631968.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310212036409.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310212037457.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310212249410.png?token=AWSLQPZXBIK2XXJMJHUYP3DFGPSUO">
-<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310212040935.png?token=AWSLQP4MTXWPPLXJNFIRZ53FGPDOQ">
-<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310212041619.png?token=AWSLQP55Q5A42HXTHBDZFR3FGPDS6">
-<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310212044116.png?token=AWSLQP3E6F4A7QCNOLHBDMTFGPD7A">
-<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310212046798.png?token=AWSLQPY6AD6T4TLVQDDJJU3FGPEFK">
-<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310212103037.png?token=AWSLQP5YH5V7NDMBX54W763FGPGHK">
-<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310212112631.png?token=AWSLQP5LLB6TINVTZ7ZMNI3FGPHH6">
-<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310212116881.png?token=AWSLQPZYGUEXCCYNL7AZLYDFGPHVC">
-<meta property="og:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310212129914.png?token=AWSLQPYQLHYXYKKJFFP3YJDFGPJGU">
-<meta property="article:published_time" content="2023-10-21T00:52:02.555Z">
-<meta property="article:modified_time" content="2023-10-22T01:59:46.108Z">
+<meta property="og:image" content="https://picsum.photos/800/250">
+<meta property="article:published_time" content="2025-03-05T10:35:26.000Z">
+<meta property="article:modified_time" content="2025-03-16T04:15:09.994Z">
 <meta property="article:author" content="alleyf">
+<meta property="article:tag" content="DeepSeek">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310211001753.png">
+<meta name="twitter:image" content="https://picsum.photos/800/250">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>国际会议记录 - alleyf</title>
+  <title>DeepSeek-R1-671B 国产和Nvidia GPU部署方案 - alleyf</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -306,7 +279,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="国际会议记录"></span>
+            <span id="subtitle" data-typed-text="DeepSeek-R1-671B 国产和Nvidia GPU部署方案"></span>
           
         </div>
 
@@ -316,14 +289,14 @@
     
       <span class="post-meta mr-2">
         <i class="iconfont icon-author" aria-hidden="true"></i>
-        alleyf
+        fcs
       </span>
     
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-10-21 08:52" pubdate>
-          2023年10月21日 早上
+        <time datetime="2025-03-05 18:35" pubdate>
+          2025年3月5日 晚上
         </time>
       </span>
     
@@ -334,7 +307,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          883 字
+          1.9k 字
         
       </span>
     
@@ -345,7 +318,7 @@
         
         
         
-          8 分钟
+          16 分钟
         
       </span>
     
@@ -391,12 +364,12 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">国际会议记录</h1>
+            <h1 style="display: none">DeepSeek-R1-671B 国产和Nvidia GPU部署方案</h1>
             
               <p class="note note-info">
                 
                   
-                    本文最后更新于：1 年前
+                    本文最后更新于：4 分钟前
                   
                 
               </p>
@@ -404,45 +377,236 @@
             
               <div class="markdown-body">
                 
-                <h1 id="2023年数字法治与智慧司法国际研讨会议程"><a href="#2023年数字法治与智慧司法国际研讨会议程" class="headerlink" title="2023年数字法治与智慧司法国际研讨会议程"></a>2023年数字法治与智慧司法国际研讨会议程</h1><h2 id="会议简介"><a href="#会议简介" class="headerlink" title="会议简介"></a>会议简介</h2><p>华中科技大学和湖北高级人民法院联合举办</p>
-<h2 id="演讲记录"><a href="#演讲记录" class="headerlink" title="演讲记录"></a>演讲记录</h2><h3 id="发挥大模型优势，推动智慧司法跃升"><a href="#发挥大模型优势，推动智慧司法跃升" class="headerlink" title="发挥大模型优势，推动智慧司法跃升"></a>发挥大模型优势，推动智慧司法跃升</h3><p>梁新（中国司法大数据研究院院长）（线上）<br><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310211001753.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<ol>
-<li>国内外大模型在司法领域应用</li>
-</ol>
-<blockquote>
-<p>Lexis+ Al：法律研究和文件起草的生成式 Al   英国律商联讯<br>Robin Al:  结合内部律师的指导来起草和编辑法律合同英国 Robin Al 公司<br>ChatLaw：为大众提供普惠法律服务北京大学<br>万象大模型：知识检索、法官阅卷、庭审辅助等华宇信息<br>法律服务大模型：法律知识、审判辅助、文书生成等中国法研</p>
-</blockquote>
-<ol start="2">
-<li>生态应用实践<br>法规、制度合规审查场景<br>面向法务人员，辅助地方或企业制度的合规性审查，防止与上位法或关联法规冲突</li>
-</ol>
-<h3 id="知识产权相关的人工智能制度和案例中美欧比较及促进人工智能产业良性发展的对策思考"><a href="#知识产权相关的人工智能制度和案例中美欧比较及促进人工智能产业良性发展的对策思考" class="headerlink" title="知识产权相关的人工智能制度和案例中美欧比较及促进人工智能产业良性发展的对策思考"></a>知识产权相关的人工智能制度和案例中美欧比较及促进人工智能产业良性发展的对策思考</h3><p>余翔（华中科技大学中欧知识产权研究院院长、湖北师范大学副校长、欧洲科学院院士、教授）（线下）<br><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310211113561.png" srcset="/img/loading.gif" lazyload alt="image.png"><br><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310211116571.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h3 id="以司法数据科学化助力司法工作现代化"><a href="#以司法数据科学化助力司法工作现代化" class="headerlink" title="以司法数据科学化助力司法工作现代化"></a>以司法数据科学化助力司法工作现代化</h3><p>孙佑海（天津大学法学院院长、中国绿色发展研究院执行院长、教授）（线上）</p>
-<ol>
-<li>深刻认识数据资源为司法工作带来的新机遇<br><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310211121471.png" srcset="/img/loading.gif" lazyload alt="image.png"><br><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310211122730.png" srcset="/img/loading.gif" lazyload alt="image.png"><br><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310211126416.png" srcset="/img/loading.gif" lazyload alt="44f4409dd925fdea6e45847047860d6.jpg"><br><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310211557538.png" srcset="/img/loading.gif" lazyload alt="image.png"><br><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310211603381.png" srcset="/img/loading.gif" lazyload alt="image.png"></li>
-</ol>
-<h3 id="华宇万象法律大模型的构建与应用实践"><a href="#华宇万象法律大模型的构建与应用实践" class="headerlink" title="华宇万象法律大模型的构建与应用实践"></a>华宇万象法律大模型的构建与应用实践</h3><p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310211626338.png" srcset="/img/loading.gif" lazyload alt="image.png"><br><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310211626425.png" srcset="/img/loading.gif" lazyload alt="image.png"><br><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310211628608.png" srcset="/img/loading.gif" lazyload alt="image.png"><br><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310211628110.png" srcset="/img/loading.gif" lazyload alt="image.png"><br><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310211628280.png" srcset="/img/loading.gif" lazyload alt="image.png"><br><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310211629206.png" srcset="/img/loading.gif" lazyload alt="image.png"><br><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310211630746.png" srcset="/img/loading.gif" lazyload alt="image.png"><br><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310211630068.png" srcset="/img/loading.gif" lazyload alt="image.png"><br><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310211630040.png" srcset="/img/loading.gif" lazyload alt="image.png"><br><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310211631968.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h3 id="人工智能算法司法应用的发展隐忧及完善路径"><a href="#人工智能算法司法应用的发展隐忧及完善路径" class="headerlink" title="人工智能算法司法应用的发展隐忧及完善路径"></a>人工智能算法司法应用的发展隐忧及完善路径</h3><ol>
-<li>人工智能算法司法的实践图景</li>
-</ol>
+                <h1 id="1-模型概述🌟​"><a href="#1-模型概述🌟​" class="headerlink" title="1 模型概述🌟​"></a>1 模型概述🌟​</h1><p>DeepSeek-R1-671B 是一款基于 Transformer 架构的大型语言模型，具有 6710 亿参数，支持多种自然语言处理任务，如文本生成、问答、摘要等。该模型有两种常见且优秀的版本：<strong>满血版（BF16）和量化版（W8A8）</strong>。满血版模型精度高，但对硬件资源要求较高；量化版模型通过权重量化技术，在保持一定精度的同时，降低了模型的存储和计算需求，更适合资源受限的场景。</p>
+<h1 id="2-部署方案"><a href="#2-部署方案" class="headerlink" title="2 部署方案"></a>2 部署方案</h1><p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/blog/20250306092139389.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="2-1-方案一：华为昇腾环境部署🐉"><a href="#2-1-方案一：华为昇腾环境部署🐉" class="headerlink" title="2.1 方案一：华为昇腾环境部署🐉"></a>2.1 方案一：华为昇腾环境部署🐉</h2><h3 id="2-1-1-硬件要求"><a href="#2-1-1-硬件要求" class="headerlink" title="2.1.1 硬件要求"></a>2.1.1 硬件要求</h3><table>
+<thead>
+<tr>
+<th>组件</th>
+<th>满血版（BF16）</th>
+<th>量化版（W8A8）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>服务器类型</td>
+<td>Atlas 800I A2（8×64G）×4</td>
+<td>Atlas 800I A2（8×64G）×2</td>
+</tr>
+<tr>
+<td>CPU</td>
+<td>4路48核</td>
+<td>4路48核</td>
+</tr>
+<tr>
+<td>内存</td>
+<td>1536GB</td>
+<td>1536GB</td>
+</tr>
+<tr>
+<td>GPU</td>
+<td>昇腾 910B（64GB）×32</td>
+<td>昇腾 910B（64GB）×16</td>
+</tr>
+<tr>
+<td>网络带宽</td>
+<td>100Gbps</td>
+<td>100Gbps</td>
+</tr>
+<tr>
+<td>存储</td>
+<td>NVMe SSD，容量≥2TB</td>
+<td>NVMe SSD，容量≥2TB</td>
+</tr>
+</tbody></table>
+<h3 id="2-1-2-软件要求"><a href="#2-1-2-软件要求" class="headerlink" title="2.1.2 软件要求"></a>2.1.2 软件要求</h3><table>
+<thead>
+<tr>
+<th>组件</th>
+<th>版本</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>MindIE推理框架</td>
+<td>2.0.T3.1-800I-A2-py311-openeuler24.03-lts</td>
+</tr>
+<tr>
+<td>CANN工具包</td>
+<td>8.0.T63</td>
+</tr>
+<tr>
+<td>PTA</td>
+<td>6.0.T700</td>
+</tr>
+<tr>
+<td>MindStudio量化工具</td>
+<td>Msit: br_noncom_MindStudio_8.0.0_POC_20251231分支</td>
+</tr>
+<tr>
+<td>HDK</td>
+<td>24.1.0</td>
+</tr>
+<tr>
+<td>Python</td>
+<td>3.11</td>
+</tr>
+</tbody></table>
+<h3 id="2-1-3-部署流程"><a href="#2-1-3-部署流程" class="headerlink" title="2.1.3 部署流程"></a>2.1.3 部署流程</h3><ol>
+<li><p><strong>模型权重准备</strong></p>
 <ul>
-<li><p>算法裁判领域</p>
-</li>
-<li><p>算法推理领域<br>人工智能算法推理基于法律规则和案例，通过数据挖掘、机器学<br>习、自然语言处理等技术，依据特定的推理规则，对案件事实、证<br>据和法律条款进行分析和推理，从而预测案件的结果或提出合理的裁<br>判建议。<br>即通过对数据库中过往案例的事实经验进行分析来处理当下的案件。<br>例如，JUDITH 律师推理系统可以模拟法律形式推理的演绎推理，并将<br>推理过程转化为计算机语言，使机器法律推理从理论变为现实。</p>
-</li>
-<li><p>算法量刑领域<br>算法量刑的运作机理是在大数据、云计算、区块链等技术的支持下形成<br>知识图谱，通过对法律文书的事实要素进行提取，实现类案识别和<br>模型建构，借助深度学习等方法形成量刑算法，在此基础上实现量刑<br>预测和偏离度测算。</p>
-</li>
+<li>从 HuggingFace、ModelScope 或魔乐社区下载 DeepSeek-R1-671B 模型权重。</li>
+<li>对于满血版，下载 BF16 格式的权重；对于量化版，下载 W8A8 格式的权重。</li>
+<li>将权重文件放置在指定路径，并确保权重文件夹权限为 750。</li>
 </ul>
-<ol start="2">
-<li>人工智能算法司法应用的发展隐忧</li>
-</ol>
+</li>
+<li><p><strong>容器化部署</strong></p>
 <ul>
-<li>算法裁判易影响司法自主</li>
-<li>算法推理易影响实质正义</li>
-<li>算法量刑易影响自由裁量权</li>
+<li>使用昇腾官方提供的 Docker 镜像，如 <code>mindie:2.0.T3.1-800I-A2-py311-openeuler24.03-lts</code>。</li>
+<li>启动容器时，挂载模型权重路径和配置文件路径。</li>
+<li>进入容器后，配置基础环境变量和通信环境变量，如 <code>Ascend</code>、<code>ATB_LLM_HCCL_ENABLE</code>、<code>HCCL_CONNECT_TIMEOUT</code> 等。</li>
 </ul>
-<h3 id="法律大模型的挑战和机遇"><a href="#法律大模型的挑战和机遇" class="headerlink" title="法律大模型的挑战和机遇"></a>法律大模型的挑战和机遇</h3><p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310212036409.png" srcset="/img/loading.gif" lazyload alt="image.png"><br><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310212037457.png" srcset="/img/loading.gif" lazyload alt="image.png"><br><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310212249410.png?token=AWSLQPZXBIK2XXJMJHUYP3DFGPSUO" srcset="/img/loading.gif" lazyload alt="66db6a1944c12877b17ab79536570a93.jpg"><br><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310212040935.png?token=AWSLQP4MTXWPPLXJNFIRZ53FGPDOQ" srcset="/img/loading.gif" lazyload alt="image.png"><br><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310212041619.png?token=AWSLQP55Q5A42HXTHBDZFR3FGPDS6" srcset="/img/loading.gif" lazyload alt="image.png"><br><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310212044116.png?token=AWSLQP3E6F4A7QCNOLHBDMTFGPD7A" srcset="/img/loading.gif" lazyload alt="image.png"><br><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310212046798.png?token=AWSLQPY6AD6T4TLVQDDJJU3FGPEFK" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h3 id="健康大数据治理的分析框架"><a href="#健康大数据治理的分析框架" class="headerlink" title="健康大数据治理的分析框架"></a>健康大数据治理的分析框架</h3><p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310212103037.png?token=AWSLQP5YH5V7NDMBX54W763FGPGHK" srcset="/img/loading.gif" lazyload alt="image.png"><br><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310212112631.png?token=AWSLQP5LLB6TINVTZ7ZMNI3FGPHH6" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h3 id="个人医疗健康数据的跨境共享"><a href="#个人医疗健康数据的跨境共享" class="headerlink" title="个人医疗健康数据的跨境共享"></a>个人医疗健康数据的跨境共享</h3><p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310212116881.png?token=AWSLQPZYGUEXCCYNL7AZLYDFGPHVC" srcset="/img/loading.gif" lazyload alt="image.png"><br><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/web_icons/202310212129914.png?token=AWSLQPYQLHYXYKKJFFP3YJDFGPJGU" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+</li>
+<li><p><strong>服务化配置</strong></p>
+<ul>
+<li>修改 <code>config.json</code> 文件，配置模型权重路径、端口号、多机推理等参数。</li>
+<li>启动服务化接口，使用 <code>mindieservice_daemon</code> 命令拉起服务。</li>
+</ul>
+</li>
+<li><p><strong>测试与验证</strong></p>
+<ul>
+<li>使用 <code>curl</code> 命令发送请求，验证模型服务是否正常运行。</li>
+<li>进行性能测试，调整参数以优化模型性能。</li>
+</ul>
+</li>
+</ol>
+<h2 id="2-2-方案二：Nvidia-GPU-环境部署💻"><a href="#2-2-方案二：Nvidia-GPU-环境部署💻" class="headerlink" title="2.2 方案二：Nvidia GPU 环境部署💻"></a>2.2 方案二：Nvidia GPU 环境部署💻</h2><h3 id="2-2-1-硬件要求"><a href="#2-2-1-硬件要求" class="headerlink" title="2.2.1 硬件要求"></a>2.2.1 硬件要求</h3><table>
+<thead>
+<tr>
+<th>组件</th>
+<th>满血版（BF16）</th>
+<th>量化版（W8A8）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>服务器类型</td>
+<td>DGX A100（8×80GB）×4</td>
+<td>DGX A100（8×80GB）×2</td>
+</tr>
+<tr>
+<td>CPU</td>
+<td>4路48核</td>
+<td>4路48核</td>
+</tr>
+<tr>
+<td>内存</td>
+<td>1TB</td>
+<td>1TB</td>
+</tr>
+<tr>
+<td>GPU</td>
+<td>Nvidia A100（80GB）×32</td>
+<td>Nvidia A100（80GB）×16</td>
+</tr>
+<tr>
+<td>网络带宽</td>
+<td>100Gbps</td>
+<td>100Gbps</td>
+</tr>
+<tr>
+<td>存储</td>
+<td>NVMe SSD，容量≥2TB</td>
+<td>NVMe SSD，容量≥2TB</td>
+</tr>
+</tbody></table>
+<h3 id="2-2-2-软件要求"><a href="#2-2-2-软件要求" class="headerlink" title="2.2.2 软件要求"></a>2.2.2 软件要求</h3><table>
+<thead>
+<tr>
+<th>组件</th>
+<th>版本</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CUDA工具包</td>
+<td>12.4</td>
+</tr>
+<tr>
+<td>cuDNN</td>
+<td>8.9</td>
+</tr>
+<tr>
+<td>PyTorch</td>
+<td>2.3.0</td>
+</tr>
+<tr>
+<td>vLLM推理引擎</td>
+<td>0.7.3</td>
+</tr>
+<tr>
+<td>Python</td>
+<td>3.11</td>
+</tr>
+</tbody></table>
+<h3 id="2-2-3-部署流程"><a href="#2-2-3-部署流程" class="headerlink" title="2.2.3 部署流程"></a>2.2.3 部署流程</h3><ol>
+<li><p><strong>环境准备</strong></p>
+<ul>
+<li>安装 CUDA 和 cuDNN。</li>
+<li>安装 PyTorch 和 Transformers 库。</li>
+<li>安装 vLLM 插件，用于加速模型推理。</li>
+</ul>
+</li>
+<li><p><strong>模型权重准备</strong></p>
+<ul>
+<li>从 Hugging Face 、ModelScope或魔乐社区下载 DeepSeek-R1-671B 模型权重。</li>
+<li>对于满血版，使用 BF16 格式的权重；对于量化版，使用 W8A8 格式的权重。</li>
+<li>将权重文件放置在指定路径，并确保权重文件夹权限为 750。</li>
+</ul>
+</li>
+<li><p><strong>配置分布式推理</strong></p>
+<ul>
+<li>根据vllm的部署文档，配置多机多卡运行参数，通过脚本进行分布式推理。</li>
+</ul>
+</li>
+<li><p><strong>测试与性能调优</strong></p>
+<ul>
+<li>使用chatbox、cherry studio或open-web-ui等进行测试。</li>
+<li>监控系统资源使用情况，优化 GPU 和 CPU 的利用率。</li>
+</ul>
+</li>
+</ol>
+<h1 id="3-方案对比📊"><a href="#3-方案对比📊" class="headerlink" title="3 方案对比📊"></a>3 方案对比📊</h1><table>
+<thead>
+<tr>
+<th>对比维度</th>
+<th>昇腾方案</th>
+<th>Nvidia方案</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>​<strong>硬件成本</strong>​</td>
+<td>高（专用服务器集群）</td>
+<td>极高</td>
+</tr>
+<tr>
+<td>​<strong>部署复杂度</strong>​</td>
+<td>复杂（需配置NPU网络与算子适配）</td>
+<td>中等（依赖成熟生态工具链）</td>
+</tr>
+<tr>
+<td>​<strong>国产化支持</strong>​</td>
+<td>✅ 全链路自主可控</td>
+<td>❌ 依赖进口硬件</td>
+</tr>
+<tr>
+<td>​<strong>量化支持</strong>​</td>
+<td>不支持FP8，需要转换到BF16</td>
+<td>原生支持FP8&#x2F;W8A8（TensorRT）</td>
+</tr>
+<tr>
+<td>​<strong>性能（BF16）​</strong>​</td>
+<td>约1911 tokens&#x2F;s（4节点）</td>
+<td>约3200 tokens&#x2F;s（8×A100）</td>
+</tr>
+</tbody></table>
+<h1 id="4-总结"><a href="#4-总结" class="headerlink" title="4 总结"></a>4 总结</h1><p>选择部署方案时，需要综合考虑硬件成本、软件生态、部署复杂度、性能优化和社区支持等因素。华为昇腾环境适合对数据安全和自主可控要求较高的场景，而 Nvidia GPU 环境则适合对性能和成本敏感的场景。无论选择哪种方案，都需要根据实际需求进行性能测试和优化，以确保模型服务的稳定性和高效性。</p>
 
                 
               </div>
@@ -461,7 +625,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E7%A7%91%E7%A0%94%E5%AD%A6%E4%B9%A0/" class="category-chain-item">科研学习</a>
+  <a href="/categories/%E8%BF%90%E7%BB%B4%E5%BC%80%E5%8F%91/" class="category-chain-item">运维开发</a>
   
   
 
@@ -473,6 +637,13 @@
     </div>
   
   
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/DeepSeek/">#DeepSeek</a>
+      
+    </div>
+  
 </div>
 
 
@@ -481,26 +652,26 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>国际会议记录</div>
-      <div>https://alleyf.github.io/2023/10/46c739775d39.html</div>
+      <div>DeepSeek-R1-671B 国产和Nvidia GPU部署方案</div>
+      <div>https://alleyf.github.io/2025/03/f16719a87f0e.html</div>
     </div>
     <div class="license-meta">
       
         <div class="license-meta-item">
           <div>作者</div>
-          <div>alleyf</div>
+          <div>fcs</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年10月21日</div>
+          <div>2025年3月5日</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2023年10月22日</div>
+          <div>2025年3月16日</div>
         </div>
       
       <div class="license-meta-item">
@@ -529,18 +700,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/10/f7fb287915e2.html" title="司法领域大模型调研二">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">司法领域大模型调研二</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/10/07aafc1a4754.html" title="司法领域大模型调研一">
-                        <span class="hidden-mobile">司法领域大模型调研一</span>
+                      <a href="/2025/03/4c204569d063.html" title="">
+                        <span class="hidden-mobile"></span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -561,7 +726,7 @@
         var options = Object.assign(
           {"clientID":"636f2864e051a199b91c","clientSecret":"5185fd11115bbcd8d2f636bc80de6bed98ed14c1","repo":"Gitalk","owner":"Alleyf","admin":["Alleyf"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":false,"proxy":"https://shielded-brushlands-08810.herokuapp.com/https://github.com/login/oauth/access_token"},
           {
-            id: '91f8058e9c1ac960f556a36d230de146'
+            id: 'eb2ece6811074beef6dff386ada416cb'
           }
         )
         var gitalk = new Gitalk(options);

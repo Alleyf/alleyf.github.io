@@ -27,7 +27,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://picsum.photos/800/250">
 <meta property="article:published_time" content="2024-06-27T16:37:11.000Z">
-<meta property="article:modified_time" content="2025-01-14T16:24:55.341Z">
+<meta property="article:modified_time" content="2025-03-16T04:15:09.994Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="DevOps">
 <meta property="article:tag" content="运维">
@@ -319,7 +319,7 @@
         
         
         
-          102 分钟
+          104 分钟
         
       </span>
     
@@ -370,7 +370,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：1 个月前
+                    本文最后更新于：4 分钟前
                   
                 
               </p>
@@ -386,7 +386,12 @@
 <h3 id="1-1-1-Ssh-连接"><a href="#1-1-1-Ssh-连接" class="headerlink" title="1.1.1 Ssh 连接"></a>1.1.1 Ssh 连接</h3><p>-p 指定端口，默认不带则为 22 端口</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">ssh -p &lt;port&gt; &lt;username&gt;@&lt;ip/hostname&gt;<br></code></pre></td></tr></table></figure>
 
-<h3 id="1-1-2-文件传输"><a href="#1-1-2-文件传输" class="headerlink" title="1.1.2 文件传输"></a>1.1.2 文件传输</h3><blockquote>
+<h3 id="1-1-2-Glusterfs文件挂载"><a href="#1-1-2-Glusterfs文件挂载" class="headerlink" title="1.1.2 Glusterfs文件挂载"></a>1.1.2 Glusterfs文件挂载</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 创建挂载点目录（需指定路径）</span><br>sudo <span class="hljs-built_in">mkdir</span> -p /mnt/glusterfs<br><br><span class="hljs-comment"># 挂载 GlusterFS 卷（使用 FUSE 客户端）</span><br>sudo mount -t glusterfs &lt;GlusterFS节点IP或主机名&gt;:/&lt;卷名&gt; /mnt/glusterfs<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>卷名通过rancher里找到对应的volume查看。</p>
+</blockquote>
+<h3 id="1-1-3-文件传输"><a href="#1-1-3-文件传输" class="headerlink" title="1.1.3 文件传输"></a>1.1.3 文件传输</h3><blockquote>
 <p>通过 ssh 协议用于在本地计算机和远程计算机之间安全地复制文件</p>
 </blockquote>
 <ol>
@@ -399,9 +404,9 @@
 </ol>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">scp (-p &lt;port&gt;) &lt;username&gt;@&lt;remote_host/host_name&gt;: &lt;/path/to/remote/directory&gt; &lt;/path/to/local/file&gt; <br></code></pre></td></tr></table></figure>
 
-<h3 id="1-1-3-查看路由表"><a href="#1-1-3-查看路由表" class="headerlink" title="1.1.3 查看路由表"></a>1.1.3 查看路由表</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">yum install net-tools -y<br>route -n <span class="hljs-comment">#列出所有路由</span><br></code></pre></td></tr></table></figure>
+<h3 id="1-1-4-查看路由表"><a href="#1-1-4-查看路由表" class="headerlink" title="1.1.4 查看路由表"></a>1.1.4 查看路由表</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">yum install net-tools -y<br>route -n <span class="hljs-comment">#列出所有路由</span><br></code></pre></td></tr></table></figure>
 
-<h3 id="1-1-4-查看资源"><a href="#1-1-4-查看资源" class="headerlink" title="1.1.4 查看资源"></a>1.1.4 查看资源</h3><p>查看所有资源占用情况，降序排列，<code>top</code> 默认会实时更新显示的信息，通常每秒刷新一次。</p>
+<h3 id="1-1-5-查看资源"><a href="#1-1-5-查看资源" class="headerlink" title="1.1.5 查看资源"></a>1.1.5 查看资源</h3><p>查看所有资源占用情况，降序排列，<code>top</code> 默认会实时更新显示的信息，通常每秒刷新一次。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">top <br></code></pre></td></tr></table></figure>
 
 <ol>
@@ -426,7 +431,7 @@
 </ul>
 </li>
 </ol>
-<h3 id="1-1-5-查看进程"><a href="#1-1-5-查看进程" class="headerlink" title="1.1.5 查看进程"></a>1.1.5 查看进程</h3><p><code>ps</code> 命令在 Unix-like 系统中用于显示当前进程的状态。</p>
+<h3 id="1-1-6-查看进程"><a href="#1-1-6-查看进程" class="headerlink" title="1.1.6 查看进程"></a>1.1.6 查看进程</h3><p><code>ps</code> 命令在 Unix-like 系统中用于显示当前进程的状态。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">ps<br></code></pre></td></tr></table></figure>
 
 <ol>
@@ -453,13 +458,13 @@
 </ul>
 </li>
 </ol>
-<h3 id="1-1-6-查看内存"><a href="#1-1-6-查看内存" class="headerlink" title="1.1.6 查看内存"></a>1.1.6 查看内存</h3><p>以人类可读的方式展示内存使用状态。</p>
+<h3 id="1-1-7-查看内存"><a href="#1-1-7-查看内存" class="headerlink" title="1.1.7 查看内存"></a>1.1.7 查看内存</h3><p>以人类可读的方式展示内存使用状态。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">free -mh<br></code></pre></td></tr></table></figure>
 
-<h3 id="1-1-7-查看硬盘"><a href="#1-1-7-查看硬盘" class="headerlink" title="1.1.7 查看硬盘"></a>1.1.7 查看硬盘</h3><p>以人类可读的方式展示磁盘分配状态。</p>
+<h3 id="1-1-8-查看硬盘"><a href="#1-1-8-查看硬盘" class="headerlink" title="1.1.8 查看硬盘"></a>1.1.8 查看硬盘</h3><p>以人类可读的方式展示磁盘分配状态。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">df</span> -h<br></code></pre></td></tr></table></figure>
 
-<h3 id="1-1-8-查看系统日志"><a href="#1-1-8-查看系统日志" class="headerlink" title="1.1.8 查看系统日志"></a>1.1.8 查看系统日志</h3><p><code>journalctl</code> 是 <code>systemd</code> 系统服务管理器的一部分，用于查询和显示日志消息。它提供了一种方便的方式来查看系统日志，特别是与特定服务或单元相关的日志。</p>
+<h3 id="1-1-9-查看系统日志"><a href="#1-1-9-查看系统日志" class="headerlink" title="1.1.9 查看系统日志"></a>1.1.9 查看系统日志</h3><p><code>journalctl</code> 是 <code>systemd</code> 系统服务管理器的一部分，用于查询和显示日志消息。它提供了一种方便的方式来查看系统日志，特别是与特定服务或单元相关的日志。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">sudo journalctl -u &lt;NetworkManager&gt;<br></code></pre></td></tr></table></figure>
 
 <p>查看系统日志</p>
@@ -468,14 +473,14 @@
 <p>查找cpu相关日志：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">grep -r Call -C 10 /var/log/messages*<br>grep -r Call /var/log/messages*<br></code></pre></td></tr></table></figure>
 
-<h3 id="1-1-9-查看编辑文件"><a href="#1-1-9-查看编辑文件" class="headerlink" title="1.1.9 查看编辑文件"></a>1.1.9 查看编辑文件</h3><h4 id="1-1-9-1-搜索文件"><a href="#1-1-9-1-搜索文件" class="headerlink" title="1.1.9.1 搜索文件"></a>1.1.9.1 搜索文件</h4><p>按照关键词搜索含有关键词的文件</p>
+<h3 id="1-1-10-查看编辑文件"><a href="#1-1-10-查看编辑文件" class="headerlink" title="1.1.10 查看编辑文件"></a>1.1.10 查看编辑文件</h3><h4 id="1-1-10-1-搜索文件"><a href="#1-1-10-1-搜索文件" class="headerlink" title="1.1.10.1 搜索文件"></a>1.1.10.1 搜索文件</h4><p>按照关键词搜索含有关键词的文件</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">find . -<span class="hljs-built_in">type</span> f -<span class="hljs-built_in">exec</span> grep -l <span class="hljs-string">&#x27;mysql-master&#x27;</span> &#123;&#125; \;<br></code></pre></td></tr></table></figure>
 
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">grep <span class="hljs-string">&#x27;temporary password&#x27;</span> /var/log/mysqld.log<br></code></pre></td></tr></table></figure>
 
-<h4 id="1-1-9-2-查看文件数量"><a href="#1-1-9-2-查看文件数量" class="headerlink" title="1.1.9.2 查看文件数量"></a>1.1.9.2 查看文件数量</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">find /path/to/directory -<span class="hljs-built_in">type</span> f | <span class="hljs-built_in">wc</span> -l<br></code></pre></td></tr></table></figure>
+<h4 id="1-1-10-2-查看文件数量"><a href="#1-1-10-2-查看文件数量" class="headerlink" title="1.1.10.2 查看文件数量"></a>1.1.10.2 查看文件数量</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">find /path/to/directory -<span class="hljs-built_in">type</span> f | <span class="hljs-built_in">wc</span> -l<br></code></pre></td></tr></table></figure>
 
-<h4 id="1-1-9-3-查看目录"><a href="#1-1-9-3-查看目录" class="headerlink" title="1.1.9.3 查看目录"></a>1.1.9.3 查看目录</h4><p>列出当前目录下的文件和文件夹</p>
+<h4 id="1-1-10-3-查看目录"><a href="#1-1-10-3-查看目录" class="headerlink" title="1.1.10.3 查看目录"></a>1.1.10.3 查看目录</h4><p>列出当前目录下的文件和文件夹</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">ls</span><br></code></pre></td></tr></table></figure>
 
 <ol>
@@ -507,13 +512,13 @@
 </ul>
 </li>
 </ol>
-<h4 id="1-1-9-4-查看内容"><a href="#1-1-9-4-查看内容" class="headerlink" title="1.1.9.4 查看内容"></a>1.1.9.4 查看内容</h4><p>查看文件内容，打印在控制台</p>
+<h4 id="1-1-10-4-查看内容"><a href="#1-1-10-4-查看内容" class="headerlink" title="1.1.10.4 查看内容"></a>1.1.10.4 查看内容</h4><p>查看文件内容，打印在控制台</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">cat</span> &lt;fileName&gt;<br></code></pre></td></tr></table></figure>
 
-<h4 id="1-1-9-5-新建文件"><a href="#1-1-9-5-新建文件" class="headerlink" title="1.1.9.5 新建文件"></a>1.1.9.5 新建文件</h4><p>新增一个文件，或写入内容到文件中</p>
+<h4 id="1-1-10-5-新建文件"><a href="#1-1-10-5-新建文件" class="headerlink" title="1.1.10.5 新建文件"></a>1.1.10.5 新建文件</h4><p>新增一个文件，或写入内容到文件中</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">cat</span> &gt; &lt;file.txt&gt;<br><span class="hljs-built_in">echo</span> &lt;content&gt; &gt; &lt;file.txt&gt;<br><span class="hljs-built_in">touch</span> &lt;file.txt&gt;<br></code></pre></td></tr></table></figure>
 
-<h4 id="1-1-9-6-编辑内容"><a href="#1-1-9-6-编辑内容" class="headerlink" title="1.1.9.6 编辑内容"></a>1.1.9.6 编辑内容</h4><p>使用 Vim 编辑器编辑文件</p>
+<h4 id="1-1-10-6-编辑内容"><a href="#1-1-10-6-编辑内容" class="headerlink" title="1.1.10.6 编辑内容"></a>1.1.10.6 编辑内容</h4><p>使用 Vim 编辑器编辑文件</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">vi(m) &lt;fileName&gt;<br></code></pre></td></tr></table></figure>
 
 <ol>
@@ -827,7 +832,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2025年1月15日</div>
+          <div>2025年3月16日</div>
         </div>
       
       <div class="license-meta-item">
