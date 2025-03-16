@@ -37,7 +37,8 @@
               "title": "conflict-files-obsidian-git"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -102,13 +103,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/课程学习/信息网络与安全.md",
+                "file": "conflict-files-obsidian-git.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "信息网络与安全 的大纲"
+              "title": "conflict-files-obsidian-git 的大纲"
             }
           }
         ]
@@ -135,13 +136,17 @@
       "canvas:新建白板": false
     }
   },
-  "active": "e3d41e8415294f26",
+  "active": "5e19f87198761695",
   "lastOpenFiles": [
-    "conflict-files-obsidian-git.md",
+    "public/2025/02/8cef878ed100.html",
+    "public/2025/03/f16719a87f0e.html",
+    "public/tags/DeepSeek",
+    "source/_posts/运维开发/DeepSeek国产和Nvidia GPU部署方案.md",
+    "db.json",
     "source/_posts/课程学习/信息网络与安全.md",
+    "conflict-files-obsidian-git.md",
     "source/_posts/运维开发/实验1：多层神经⽹络的numpy实验.md",
     "source/_posts/运维开发/华为晟腾DeepSeek模型部署实践.md",
-    "db.json",
     "public/2025/02/5f7f017122ce.html",
     "public/2025/03/4c204569d063.html",
     "public/page/9/index.html",
@@ -149,8 +154,6 @@
     "public/archives/2025/03/index.html",
     "public/archives/2025/03",
     "public/archives/page/9/index.html",
-    "public/archives/page/9",
-    "public/2025/03",
     "source/_posts/艺术生活/摄影/摄影基础指南.md",
     "source/_posts/艺术生活/摄影/人像摄影技巧.md",
     "source/_posts/科研学习/会议讨论/周会.md",
@@ -173,8 +176,6 @@
     "source/_posts/运维开发/各种环境配置.md",
     "source/_obsidian/周报模板.md",
     "source/_posts/科研学习/学习方法/DL概念知识库.md",
-    "source/_posts/科研学习/学习方法/Paper_Reading_Method.md",
-    "source/_posts/科研学习/学习方法/latex手册.md",
     "attachment/Pasted image 20240721233501.png",
     "attachment/OSS备份方案.png",
     "attachment/OSS备份方案-2.png",
