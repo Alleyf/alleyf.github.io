@@ -14,7 +14,7 @@
   "fontWeight": 600,
   "maxResults": 5,
   "showbookmarkedFiles": true,
-  "showRecentFiles": true,
+  "showRecentFiles": false,
   "maxRecentFiles": 5,
   "storeRecentFile": true,
   "showPath": true,
@@ -24,26 +24,27 @@
   "unresolvedLinks": false,
   "recentFilesStore": [
     {
-<<<<<<< HEAD
-      "filepath": "conflict-files-obsidian-git.md",
-      "timestamp": 1740845212701
-=======
-      "filepath": "source/_posts/运维开发/运维排忧解难.md",
-      "timestamp": 1741592342046
+      "filepath": "source/_posts/科研学习/会议讨论/周会.md",
+      "timestamp": 1742099147497
     },
     {
-      "filepath": "source/_posts/科研学习/会议讨论/周会.md",
-      "timestamp": 1741592278786
->>>>>>> a356d26ea7f97489f5e09c5caf737d7d83964fdc
+      "filepath": "source/_posts/艺术生活/摄影/摄影基础指南.md",
+      "timestamp": 1742099139257
+    },
+    {
+      "filepath": "source/_posts/艺术生活/摄影/人像摄影技巧.md",
+      "timestamp": 1742099138674
+    },
+    {
+      "filepath": "source/_posts/课程学习/信息网络与安全.md",
+      "timestamp": 1742099122657
     }
   ],
   "bookmarkedFileStore": [],
   "searchDelay": 0,
   "replaceNewTabs": true,
-  "newTabOnStart": true,
-  "closePreviousSessionTabs": true,
-  "omnisearch": true,
-  "showOmnisearchExcerpt": true,
-  "showStarredFiles": false,
-  "starredFileStore": []
+  "newTabOnStart": false,
+  "closePreviousSessionTabs": false,
+  "omnisearch": false,
+  "showOmnisearchExcerpt": true
 }

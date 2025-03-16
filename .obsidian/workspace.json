@@ -13,28 +13,23 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/课程学习/信息网络与安全.md",
+                "file": "source/_posts/艺术生活/摄影/摄影基础指南.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "信息网络与安全"
+              "title": "摄影基础指南"
             }
           },
           {
-            "id": "5e19f87198761695",
+            "id": "2ed0f51d06a8e699",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "conflict-files-obsidian-git.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "conflict-files-obsidian-git"
+              "type": "home-tab-view",
+              "state": {},
+              "icon": "search",
+              "title": "Home tab"
             }
           }
         ],
@@ -103,13 +98,12 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "conflict-files-obsidian-git.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "conflict-files-obsidian-git 的大纲"
+              "title": "大纲"
             }
           }
         ]
@@ -121,7 +115,40 @@
   "right": {
     "id": "ef878eb90911b56c",
     "type": "split",
-    "children": [],
+    "children": [
+      {
+        "id": "e6734f3fb7b120c9",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "8c858159b0aedf6b",
+            "type": "leaf",
+            "state": {
+              "type": "calendar",
+              "state": {},
+              "icon": "calendar-with-checkmark",
+              "title": "Calendar"
+            }
+          }
+        ]
+      },
+      {
+        "id": "cef9e073412dd9c8",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f6a36b9b63f3a735",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {},
+              "icon": "git-pull-request",
+              "title": "Source Control"
+            }
+          }
+        ]
+      }
+    ],
     "direction": "horizontal",
     "width": 339.5
   },
@@ -133,18 +160,29 @@
       "templates:插入模板": false,
       "daily-notes:打开/创建今天的日记": false,
       "graph:查看关系图谱": false,
-      "canvas:新建白板": false
+      "canvas:新建白板": false,
+      "obsidian42-text-transporter:Text Transporter": false,
+      "obsidian-projects:打开项目": false,
+      "omnisearch:Omnisearch": false,
+      "table-editor-obsidian:Advanced Tables Toolbar": false,
+      "cmdr:Calendar: Open view": false,
+      "cmdr:Obsidian Git: Open source control view": false,
+      "obsidian-file-cleaner:清理文件": false,
+      "obsidian-git:Open Git source control": false,
+      "hide-folders:Show hidden folders": false
     }
   },
-  "active": "5e19f87198761695",
+  "active": "2ed0f51d06a8e699",
   "lastOpenFiles": [
+    "source/_posts/艺术生活/摄影/摄影基础指南.md",
+    "source/_posts/艺术生活/摄影/人像摄影技巧.md",
+    "source/_posts/课程学习/信息网络与安全.md",
+    "conflict-files-obsidian-git.md",
     "public/2025/02/8cef878ed100.html",
     "public/2025/03/f16719a87f0e.html",
     "public/tags/DeepSeek",
     "source/_posts/运维开发/DeepSeek国产和Nvidia GPU部署方案.md",
     "db.json",
-    "source/_posts/课程学习/信息网络与安全.md",
-    "conflict-files-obsidian-git.md",
     "source/_posts/运维开发/实验1：多层神经⽹络的numpy实验.md",
     "source/_posts/运维开发/华为晟腾DeepSeek模型部署实践.md",
     "public/2025/02/5f7f017122ce.html",
@@ -153,9 +191,6 @@
     "public/page/9",
     "public/archives/2025/03/index.html",
     "public/archives/2025/03",
-    "public/archives/page/9/index.html",
-    "source/_posts/艺术生活/摄影/摄影基础指南.md",
-    "source/_posts/艺术生活/摄影/人像摄影技巧.md",
     "source/_posts/科研学习/会议讨论/周会.md",
     "source/_posts/后端开发/站内信、活动、公告和推送技术调研.md",
     "source/about/index.md",
