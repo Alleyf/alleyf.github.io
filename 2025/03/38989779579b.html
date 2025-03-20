@@ -15,31 +15,26 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="fcs">
+  <meta name="author" content="alleyf">
   <meta name="keywords" content="">
   
-    <meta name="description" content="性能测试的相关概念和流程。">
+    <meta name="description" content="论文标题Exploring the Limits of Domain-Adaptive Training for Detoxifying Large-Scale Language Models 作者Boxin Wang, Wei Ping, Chaowei Xiao, Peng Xu, Mostofa Patwary, Mohammad Shoeybi, Bo Li, Anima Anandkum">
 <meta property="og:type" content="article">
-<meta property="og:title" content="性能测试">
-<meta property="og:url" content="https://alleyf.github.io/2024/12/8103216725bf.html">
+<meta property="og:title" content="alleyf">
+<meta property="og:url" content="https://alleyf.github.io/2025/03/38989779579b.html">
 <meta property="og:site_name" content="alleyf">
-<meta property="og:description" content="性能测试的相关概念和流程。">
+<meta property="og:description" content="论文标题Exploring the Limits of Domain-Adaptive Training for Detoxifying Large-Scale Language Models 作者Boxin Wang, Wei Ping, Chaowei Xiao, Peng Xu, Mostofa Patwary, Mohammad Shoeybi, Bo Li, Anima Anandkum">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://picsum.photos/800/250">
-<meta property="article:published_time" content="2024-12-16T00:39:27.000Z">
-<meta property="article:modified_time" content="2025-01-26T05:31:45.105Z">
+<meta property="article:published_time" content="2025-03-20T09:26:53.726Z">
+<meta property="article:modified_time" content="2025-03-20T09:26:53.726Z">
 <meta property="article:author" content="alleyf">
-<meta property="article:tag" content="高并发">
-<meta property="article:tag" content="高性能">
-<meta property="article:tag" content="高可用">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://picsum.photos/800/250">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>性能测试 - alleyf</title>
+  <title>alleyf</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -281,7 +276,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="性能测试"></span>
+            <span id="subtitle" data-typed-text=""></span>
           
         </div>
 
@@ -291,14 +286,14 @@
     
       <span class="post-meta mr-2">
         <i class="iconfont icon-author" aria-hidden="true"></i>
-        fcs
+        alleyf
       </span>
     
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-12-16 08:39" pubdate>
-          2024年12月16日 早上
+        <time datetime="2025-03-20 17:26" pubdate>
+          2025年3月20日 下午
         </time>
       </span>
     
@@ -309,7 +304,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          955 字
+          1.7k 字
         
       </span>
     
@@ -320,7 +315,7 @@
         
         
         
-          8 分钟
+          14 分钟
         
       </span>
     
@@ -366,33 +361,62 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">性能测试</h1>
-            
-              <p class="note note-info">
-                
-                  
-                    本文最后更新于：2 个月前
-                  
-                
-              </p>
+            <h1 style="display: none"></h1>
             
             
               <div class="markdown-body">
                 
-                <p><img src="https://picsum.photos/800/250" srcset="/img/loading.gif" lazyload></p>
-<h1 id="1-性能指标"><a href="#1-性能指标" class="headerlink" title="1 性能指标"></a>1 性能指标</h1><h2 id="1-1-QPS"><a href="#1-1-QPS" class="headerlink" title="1.1 QPS"></a>1.1 QPS</h2><p>QPS：Queries Per Second意思是“每秒查询率”，是一台<a target="_blank" rel="noopener" href="https://cloud.tencent.com/product/cvm/?from_column=20065&from=20065">服务器</a>每秒能够相应的查询次数，是对一个特定的查询服务器在规定时间内所处理流量多少的衡量标准。</p>
-<h2 id="1-2-TPS"><a href="#1-2-TPS" class="headerlink" title="1.2 TPS"></a>1.2 TPS</h2><p>TPS：是TransactionsPerSecond的缩写，也就是事务数&#x2F;秒。它是软件测试结果的测量单位。一个事务是指一个客户机向服务器发送请求然后服务器做出反应的过程。客户机在发送请求时开始计时，收到服务器响应后结束计时，以此来计算使用的时间和完成的事务个数。</p>
-<p>Tps即每秒处理事务数，包括了</p>
-<p>1）用户请求服务器<br>2）服务器自己的内部处理<br>3）服务器返回给用户</p>
-<p>这三个过程，每秒能够完成N个这三个过程，Tps也就是3；</p>
-<p>Qps基本类似于Tps，但是不同的是，对于一个页面的一次访问，形成一个Tps；但一次页面请求，可能产生多次对服务器的请求，服务器对这些请求，就可计入“Qps”之中。</p>
-<p>例如：访问一个页面会请求服务器3次，一次放，产生一个“T”，产生3个“Q”</p>
-<h2 id="1-3-吞吐量"><a href="#1-3-吞吐量" class="headerlink" title="1.3 吞吐量"></a>1.3 吞吐量</h2><p>一个系统的吞度量（承压能力）与request对CPU的消耗、外部接口、IO等等紧密关联。单个reqeust 对CPU消耗越高，外部系统接口、IO影响速度越慢，系统吞吐能力越低，反之越高。</p>
-<p>系统吞吐量几个重要参数：QPS（TPS）、并发数、响应时间。<br>QPS（TPS）：每秒钟request&#x2F;事务 数量<br>并发数：系统同时处理的request&#x2F;事务数<br>响应时间： 一般取平均响应时间</p>
-<h2 id="1-4-并发用户数"><a href="#1-4-并发用户数" class="headerlink" title="1.4 并发用户数"></a>1.4 并发用户数</h2><p>并发用户数的计算公式</p>
-<p>系统用户数：系统额定的用户数量，如一个OA系统，可能使用该系统的用户总数是5000个，那么这个数量，就是系统用户数。</p>
-<p>同时在线用户数：在一定的时间范围内，最大的同时在线用户数量。<br>同时在线用户数&#x3D;每秒请求数RPS（吞吐量）+并发连接数+平均用户思考时间<br>平均并发用户数的计算：C&#x3D;nL &#x2F; T<br>其中C是平均的并发用户数，n是平均每天访问用户数（login session），L是一天内用户从登录到退出的平均时间（login session的平均时间），T是考察时间长度（一天内多长时间有用户使用系统）</p>
-<p>并发用户数峰值计算：C^约等于C + 3*根号C<br>其中C^是并发用户峰值，C是平均并发用户数，该公式遵循泊松分布理论。</p>
+                <h4 id="论文标题"><a href="#论文标题" class="headerlink" title="论文标题"></a>论文标题</h4><p><strong>Exploring the Limits of Domain-Adaptive Training for Detoxifying Large-Scale Language Models</strong></p>
+<h4 id="作者"><a href="#作者" class="headerlink" title="作者"></a>作者</h4><p>Boxin Wang, Wei Ping, Chaowei Xiao, Peng Xu, Mostofa Patwary, Mohammad Shoeybi, Bo Li, Anima Anandkumar, Bryan Catanzaro</p>
+<h4 id="会议"><a href="#会议" class="headerlink" title="会议"></a>会议</h4><p>36th Conference on Neural Information Processing Systems (NeurIPS 2022)</p>
+<h3 id="1-研究背景"><a href="#1-研究背景" class="headerlink" title="1. 研究背景"></a>1. 研究背景</h3><p>大规模预训练语言模型（LMs）在各种自然语言处理（NLP）任务中表现出色，但这些模型可能会生成有毒和有偏见的语言，引发伦理问题。为了减少语言模型的毒性，研究者们提出了多种方法，包括解码时方法、预训练方法和领域适应性训练方法。领域适应性训练通过在精心策划的数据集上微调预训练模型来减少毒性，这种方法比解码时方法更灵活，比预训练方法更高效。</p>
+<h3 id="2-研究方法"><a href="#2-研究方法" class="headerlink" title="2. 研究方法"></a>2. 研究方法</h3><h4 id="2-1-训练语料"><a href="#2-1-训练语料" class="headerlink" title="2.1 训练语料"></a>2.1 训练语料</h4><ul>
+<li><strong>SGEAT（Self-Generation Enabled domain-Adaptive Training）</strong>：利用语言模型的生成能力创建非毒性训练语料。<ul>
+<li><strong>提示构造</strong>：设计不同的提示来引导模型生成训练语料。</li>
+<li><strong>自我生成</strong>：使用提示生成最多1000个词的文本。</li>
+<li><strong>数据过滤</strong>：使用Perspective API过滤掉有毒样本，保留最非毒性的50%文本。</li>
+<li><strong>领域适应性训练</strong>：使用过滤后的非毒性语料进行模型微调。</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-2-模型规模"><a href="#2-2-模型规模" class="headerlink" title="2.2 模型规模"></a>2.2 模型规模</h4><ul>
+<li>研究了从126M到530B参数规模的模型，发现：<ul>
+<li>不同规模的模型在相同的预训练语料上表现出相似的毒性水平。</li>
+<li>大规模模型需要更多的努力来减少毒性，例如更大的训练语料和更多的微调周期。</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-3-参数高效训练"><a href="#2-3-参数高效训练" class="headerlink" title="2.3 参数高效训练"></a>2.3 参数高效训练</h4><ul>
+<li><strong>适配器（Adapter）</strong>：在每个Transformer层添加瓶颈投影层，初始化为接近零以提高训练稳定性。</li>
+<li><strong>前缀调优（Prefix Tuning）</strong>：在输入中添加连续的“前缀”向量以更好地引导模型生成。</li>
+</ul>
+<h3 id="3-实验结果"><a href="#3-实验结果" class="headerlink" title="3. 实验结果"></a>3. 实验结果</h3><h4 id="3-1-训练语料的影响"><a href="#3-1-训练语料的影响" class="headerlink" title="3.1 训练语料的影响"></a>3.1 训练语料的影响</h4><ul>
+<li><strong>SGEAT（增强版）</strong>在1.3B模型上实现了最低的毒性分数，同时PPL（困惑度）略有增加，且未降低模型在下游任务上的性能。</li>
+<li><strong>SGEAT（增强版）</strong>在使用更小的训练语料（100k样本）时，仍然比DAPT（使用7500k样本）表现出更低的毒性。</li>
+</ul>
+<h4 id="3-2-模型规模的影响"><a href="#3-2-模型规模的影响" class="headerlink" title="3.2 模型规模的影响"></a>3.2 模型规模的影响</h4><ul>
+<li><strong>SGEAT</strong>在不同规模的模型上均表现出更好的毒性减少效果，即使使用更小的训练语料。</li>
+<li><strong>530B模型</strong>需要更多的训练周期和更大的训练语料来实现类似的毒性减少效果。</li>
+</ul>
+<h4 id="3-3-参数高效训练的影响"><a href="#3-3-参数高效训练的影响" class="headerlink" title="3.3 参数高效训练的影响"></a>3.3 参数高效训练的影响</h4><ul>
+<li><strong>适配器</strong>在大规模模型（8.3B和530B）上表现出更好的参数效率，同时减少了PPL的增加和提高了下游任务的准确性。</li>
+<li><strong>前缀调优</strong>在减少毒性方面效果有限，且对PPL的控制不如适配器。</li>
+</ul>
+<h3 id="4-人类评估"><a href="#4-人类评估" class="headerlink" title="4. 人类评估"></a>4. 人类评估</h3><ul>
+<li>人类评估结果与自动评估结果（Perspective API）高度一致，确认了不同规模的模型具有相似的毒性水平，且大规模模型更难 detoxify。</li>
+</ul>
+<h3 id="5-讨论"><a href="#5-讨论" class="headerlink" title="5. 讨论"></a>5. 讨论</h3><h4 id="5-1-对边缘群体的偏见"><a href="#5-1-对边缘群体的偏见" class="headerlink" title="5.1 对边缘群体的偏见"></a>5.1 对边缘群体的偏见</h4><ul>
+<li>使用BOLD数据集评估了1.3B标准模型和SGEAT（增强版）模型在性别和种族领域的PPL，发现SGEAT在减少毒性的同时，对性别和种族偏见的影响较小。</li>
+</ul>
+<h4 id="5-2-SGEAT的局限性"><a href="#5-2-SGEAT的局限性" class="headerlink" title="5.2 SGEAT的局限性"></a>5.2 SGEAT的局限性</h4><ul>
+<li>SGEAT依赖于Perspective API来过滤有毒样本，但现有的毒性分类器可能存在偏见，影响SGEAT的效果。</li>
+<li>预训练模型本身可能已经存在偏见，这可能影响自生成语料的质量和 detoxification 的效果。</li>
+</ul>
+<h3 id="6-结论"><a href="#6-结论" class="headerlink" title="6. 结论"></a>6. 结论</h3><p>本文通过系统地研究领域适应性训练在减少大规模语言模型毒性方面的极限，提出了SGEAT方法，实现了数据高效和有效的 detoxification。研究还发现，适配器在大规模模型上提供了更好的参数效率和模型性能。未来的工作将集中在减少预训练模型的社会偏见，以及开发更 robust、无偏见的仇恨言论检测器。</p>
+<h3 id="7-未来工作"><a href="#7-未来工作" class="headerlink" title="7. 未来工作"></a>7. 未来工作</h3><ul>
+<li><strong>减少社会偏见</strong>：开发新的方法来减少预训练模型中的社会偏见。</li>
+<li><strong>改进仇恨言论检测器</strong>：设计更 robust、无偏见的仇恨言论检测器，以提高 detoxification 的效果。</li>
+</ul>
 
                 
               </div>
@@ -411,7 +435,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E8%BF%90%E7%BB%B4%E5%BC%80%E5%8F%91/" class="category-chain-item">运维开发</a>
+  <a href="/categories/%E8%AF%BE%E7%A8%8B%E5%AD%A6%E4%B9%A0/" class="category-chain-item">课程学习</a>
   
   
 
@@ -423,17 +447,6 @@
     </div>
   
   
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/%E9%AB%98%E5%B9%B6%E5%8F%91/">#高并发</a>
-      
-        <a href="/tags/%E9%AB%98%E6%80%A7%E8%83%BD/">#高性能</a>
-      
-        <a href="/tags/%E9%AB%98%E5%8F%AF%E7%94%A8/">#高可用</a>
-      
-    </div>
-  
 </div>
 
 
@@ -442,27 +455,22 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>性能测试</div>
-      <div>https://alleyf.github.io/2024/12/8103216725bf.html</div>
+      <div></div>
+      <div>https://alleyf.github.io/2025/03/38989779579b.html</div>
     </div>
     <div class="license-meta">
       
         <div class="license-meta-item">
           <div>作者</div>
-          <div>fcs</div>
+          <div>alleyf</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年12月16日</div>
+          <div>2025年3月20日</div>
         </div>
       
-      
-        <div class="license-meta-item license-meta-date">
-          <div>更新于</div>
-          <div>2025年1月26日</div>
-        </div>
       
       <div class="license-meta-item">
         <div>许可协议</div>
@@ -490,18 +498,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/01/ba58492f5606.html" title="人像摄影技巧">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">人像摄影技巧</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/08/e73efe4b2ca2.html" title="研究思路">
-                        <span class="hidden-mobile">研究思路</span>
+                      <a href="/2025/03/f16719a87f0e.html" title="DeepSeek-R1-671B 国产和Nvidia GPU部署方案">
+                        <span class="hidden-mobile">DeepSeek-R1-671B 国产和Nvidia GPU部署方案</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -522,7 +524,7 @@
         var options = Object.assign(
           {"clientID":"636f2864e051a199b91c","clientSecret":"5185fd11115bbcd8d2f636bc80de6bed98ed14c1","repo":"Gitalk","owner":"Alleyf","admin":["Alleyf"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":false,"proxy":"https://shielded-brushlands-08810.herokuapp.com/https://github.com/login/oauth/access_token"},
           {
-            id: 'cd8d9c8cae3bc835d227bfa3dac65e82'
+            id: '41caae7ba37ad8bfb4b1b1e2e3d49b5a'
           }
         )
         var gitalk = new Gitalk(options);
