@@ -20,14 +20,14 @@
   
     <meta name="description" content="关于DeepSeek国产和Nvidia两种方案的部署。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="DeepSeek国产和Nvidia GPU部署方案">
+<meta property="og:title" content="DeepSeek-R1-671B 国产和Nvidia GPU部署方案">
 <meta property="og:url" content="https://alleyf.github.io/2025/03/f16719a87f0e.html">
 <meta property="og:site_name" content="alleyf">
 <meta property="og:description" content="关于DeepSeek国产和Nvidia两种方案的部署。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://picsum.photos/800/250">
 <meta property="article:published_time" content="2025-03-05T10:35:26.000Z">
-<meta property="article:modified_time" content="2025-03-05T14:46:33.295Z">
+<meta property="article:modified_time" content="2025-03-14T00:30:51.727Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="DeepSeek">
 <meta name="twitter:card" content="summary_large_image">
@@ -37,7 +37,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>DeepSeek国产和Nvidia GPU部署方案 - alleyf</title>
+  <title>DeepSeek-R1-671B 国产和Nvidia GPU部署方案 - alleyf</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -279,7 +279,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="DeepSeek国产和Nvidia GPU部署方案"></span>
+            <span id="subtitle" data-typed-text="DeepSeek-R1-671B 国产和Nvidia GPU部署方案"></span>
           
         </div>
 
@@ -307,7 +307,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.2k 字
+          1.9k 字
         
       </span>
     
@@ -318,7 +318,7 @@
         
         
         
-          19 分钟
+          16 分钟
         
       </span>
     
@@ -364,12 +364,12 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">DeepSeek国产和Nvidia GPU部署方案</h1>
+            <h1 style="display: none">DeepSeek-R1-671B 国产和Nvidia GPU部署方案</h1>
             
               <p class="note note-info">
                 
                   
-                    本文最后更新于：几秒前
+                    本文最后更新于：6 天前
                   
                 
               </p>
@@ -377,25 +377,9 @@
             
               <div class="markdown-body">
                 
-                <p><img src="https://picsum.photos/800/250" srcset="/img/loading.gif" lazyload></p>
-<h1 id="1-DeepSeek-R1-671B-模型部署方案"><a href="#1-DeepSeek-R1-671B-模型部署方案" class="headerlink" title="1 DeepSeek-R1-671B 模型部署方案"></a>1 DeepSeek-R1-671B 模型部署方案</h1><h2 id="1-1-一、模型概述🌟​"><a href="#1-1-一、模型概述🌟​" class="headerlink" title="1.1 一、模型概述🌟​"></a>1.1 一、模型概述🌟​</h2><p>DeepSeek-R1-671B 是一款基于 Transformer 架构的大型语言模型，具有 671 亿参数，支持多种自然语言处理任务，如文本生成、问答、摘要等。该模型有两种常见且优秀的版本：<strong>满血版（BF16）和量化版（W8A8）</strong>。满血版模型精度高，但对硬件资源要求较高；量化版模型通过权重量化技术，在保持一定精度的同时，降低了模型的存储和计算需求，更适合资源受限的场景。</p>
-<h2 id="1-2-二、部署方案"><a href="#1-2-二、部署方案" class="headerlink" title="1.2 二、部署方案"></a>1.2 二、部署方案</h2><pre><code class=" mermaid">graph LR
-    subgraph 昇腾集群
-    A[Atlas 800I A2 Ascend 910B NPU]
-    A --&gt; C[MindIE推理引擎]
-    C --&gt; D[动态量化模块]
-    end
-    
-    subgraph NVIDIA集群
-    E[Nvidia A100/H100 GPU] --&gt; F[vLLM-Ascend]
-    F --&gt; G[Bitsandbytes量化]
-    end
-    
-    D --&gt; H[统一API输出]
-    G --&gt; H
-</code></pre>
-
-<h3 id="1-2-1-方案一：华为昇腾环境部署🐉"><a href="#1-2-1-方案一：华为昇腾环境部署🐉" class="headerlink" title="1.2.1 方案一：华为昇腾环境部署🐉"></a>1.2.1 方案一：华为昇腾环境部署🐉</h3><h4 id="1-2-1-1-硬件要求"><a href="#1-2-1-1-硬件要求" class="headerlink" title="1.2.1.1 硬件要求"></a>1.2.1.1 硬件要求</h4><table>
+                <h1 id="1-模型概述🌟​"><a href="#1-模型概述🌟​" class="headerlink" title="1 模型概述🌟​"></a>1 模型概述🌟​</h1><p>DeepSeek-R1-671B 是一款基于 Transformer 架构的大型语言模型，具有 6710 亿参数，支持多种自然语言处理任务，如文本生成、问答、摘要等。该模型有两种常见且优秀的版本：<strong>满血版（BF16）和量化版（W8A8）</strong>。满血版模型精度高，但对硬件资源要求较高；量化版模型通过权重量化技术，在保持一定精度的同时，降低了模型的存储和计算需求，更适合资源受限的场景。</p>
+<h1 id="2-部署方案"><a href="#2-部署方案" class="headerlink" title="2 部署方案"></a>2 部署方案</h1><p><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/blog/20250306092139389.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="2-1-方案一：华为昇腾环境部署🐉"><a href="#2-1-方案一：华为昇腾环境部署🐉" class="headerlink" title="2.1 方案一：华为昇腾环境部署🐉"></a>2.1 方案一：华为昇腾环境部署🐉</h2><h3 id="2-1-1-硬件要求"><a href="#2-1-1-硬件要求" class="headerlink" title="2.1.1 硬件要求"></a>2.1.1 硬件要求</h3><table>
 <thead>
 <tr>
 <th>组件</th>
@@ -430,11 +414,11 @@
 </tr>
 <tr>
 <td>存储</td>
-<td>NVMe SSD，容量≥1.3TB</td>
+<td>NVMe SSD，容量≥2TB</td>
 <td>NVMe SSD，容量≥2TB</td>
 </tr>
 </tbody></table>
-<h4 id="1-2-1-2-软件要求"><a href="#1-2-1-2-软件要求" class="headerlink" title="1.2.1.2 软件要求"></a>1.2.1.2 软件要求</h4><table>
+<h3 id="2-1-2-软件要求"><a href="#2-1-2-软件要求" class="headerlink" title="2.1.2 软件要求"></a>2.1.2 软件要求</h3><table>
 <thead>
 <tr>
 <th>组件</th>
@@ -466,7 +450,7 @@
 <td>3.11</td>
 </tr>
 </tbody></table>
-<h4 id="1-2-1-3-部署流程"><a href="#1-2-1-3-部署流程" class="headerlink" title="1.2.1.3 部署流程"></a>1.2.1.3 部署流程</h4><ol>
+<h3 id="2-1-3-部署流程"><a href="#2-1-3-部署流程" class="headerlink" title="2.1.3 部署流程"></a>2.1.3 部署流程</h3><ol>
 <li><p><strong>模型权重准备</strong></p>
 <ul>
 <li>从 HuggingFace、ModelScope 或魔乐社区下载 DeepSeek-R1-671B 模型权重。</li>
@@ -494,7 +478,7 @@
 </ul>
 </li>
 </ol>
-<h3 id="1-2-2-方案二：Nvidia-GPU-环境部署💻"><a href="#1-2-2-方案二：Nvidia-GPU-环境部署💻" class="headerlink" title="1.2.2 方案二：Nvidia GPU 环境部署💻"></a>1.2.2 方案二：Nvidia GPU 环境部署💻</h3><h4 id="1-2-2-1-硬件要求"><a href="#1-2-2-1-硬件要求" class="headerlink" title="1.2.2.1 硬件要求"></a>1.2.2.1 硬件要求</h4><table>
+<h2 id="2-2-方案二：Nvidia-GPU-环境部署💻"><a href="#2-2-方案二：Nvidia-GPU-环境部署💻" class="headerlink" title="2.2 方案二：Nvidia GPU 环境部署💻"></a>2.2 方案二：Nvidia GPU 环境部署💻</h2><h3 id="2-2-1-硬件要求"><a href="#2-2-1-硬件要求" class="headerlink" title="2.2.1 硬件要求"></a>2.2.1 硬件要求</h3><table>
 <thead>
 <tr>
 <th>组件</th>
@@ -533,7 +517,7 @@
 <td>NVMe SSD，容量≥2TB</td>
 </tr>
 </tbody></table>
-<h4 id="1-2-2-2-软件要求"><a href="#1-2-2-2-软件要求" class="headerlink" title="1.2.2.2 软件要求"></a>1.2.2.2 软件要求</h4><table>
+<h3 id="2-2-2-软件要求"><a href="#2-2-2-软件要求" class="headerlink" title="2.2.2 软件要求"></a>2.2.2 软件要求</h3><table>
 <thead>
 <tr>
 <th>组件</th>
@@ -561,7 +545,7 @@
 <td>3.11</td>
 </tr>
 </tbody></table>
-<h4 id="1-2-2-3-部署流程"><a href="#1-2-2-3-部署流程" class="headerlink" title="1.2.2.3 部署流程"></a>1.2.2.3 部署流程</h4><ol>
+<h3 id="2-2-3-部署流程"><a href="#2-2-3-部署流程" class="headerlink" title="2.2.3 部署流程"></a>2.2.3 部署流程</h3><ol>
 <li><p><strong>环境准备</strong></p>
 <ul>
 <li>安装 CUDA 和 cuDNN。</li>
@@ -588,7 +572,7 @@
 </ul>
 </li>
 </ol>
-<h2 id="1-3-三、方案对比📊"><a href="#1-3-三、方案对比📊" class="headerlink" title="1.3 三、方案对比📊"></a>1.3 三、方案对比📊</h2><table>
+<h1 id="3-方案对比📊"><a href="#3-方案对比📊" class="headerlink" title="3 方案对比📊"></a>3 方案对比📊</h1><table>
 <thead>
 <tr>
 <th>对比维度</th>
@@ -599,7 +583,7 @@
 <tbody><tr>
 <td>​<strong>硬件成本</strong>​</td>
 <td>高（专用服务器集群）</td>
-<td>极高（H100单卡约$30,000）</td>
+<td>极高</td>
 </tr>
 <tr>
 <td>​<strong>部署复杂度</strong>​</td>
@@ -613,7 +597,7 @@
 </tr>
 <tr>
 <td>​<strong>量化支持</strong>​</td>
-<td>W8A8需手动转换</td>
+<td>不支持FP8，需要转换到BF16</td>
 <td>原生支持FP8&#x2F;W8A8（TensorRT）</td>
 </tr>
 <tr>
@@ -622,7 +606,7 @@
 <td>约3200 tokens&#x2F;s（8×A100）</td>
 </tr>
 </tbody></table>
-<h2 id="1-4-四、总结"><a href="#1-4-四、总结" class="headerlink" title="1.4 四、总结"></a>1.4 四、总结</h2><p>选择部署方案时，需要综合考虑硬件成本、软件生态、部署复杂度、性能优化和社区支持等因素。华为昇腾环境适合对数据安全和自主可控要求较高的场景，而 Nvidia GPU 环境则适合对性能和成本敏感的场景。无论选择哪种方案，都需要根据实际需求进行性能测试和优化，以确保模型服务的稳定性和高效性。</p>
+<h1 id="4-总结"><a href="#4-总结" class="headerlink" title="4 总结"></a>4 总结</h1><p>选择部署方案时，需要综合考虑硬件成本、软件生态、部署复杂度、性能优化和社区支持等因素。华为昇腾环境适合对数据安全和自主可控要求较高的场景，而 Nvidia GPU 环境则适合对性能和成本敏感的场景。无论选择哪种方案，都需要根据实际需求进行性能测试和优化，以确保模型服务的稳定性和高效性。</p>
 
                 
               </div>
@@ -668,7 +652,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>DeepSeek国产和Nvidia GPU部署方案</div>
+      <div>DeepSeek-R1-671B 国产和Nvidia GPU部署方案</div>
       <div>https://alleyf.github.io/2025/03/f16719a87f0e.html</div>
     </div>
     <div class="license-meta">
@@ -687,7 +671,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2025年3月5日</div>
+          <div>2025年3月14日</div>
         </div>
       
       <div class="license-meta-item">

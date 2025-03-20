@@ -6,7 +6,7 @@
   <link href="https://alleyf.github.io/atom.xml" rel="self"/>
   
   <link href="https://alleyf.github.io/"/>
-  <updated>2025-03-05T14:46:33.295Z</updated>
+  <updated>2025-03-14T00:30:51.727Z</updated>
   <id>https://alleyf.github.io/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>DeepSeek国产和Nvidia GPU部署方案</title>
+    <title>DeepSeek-R1-671B 国产和Nvidia GPU部署方案</title>
     <link href="https://alleyf.github.io/2025/03/f16719a87f0e.html"/>
     <id>https://alleyf.github.io/2025/03/f16719a87f0e.html</id>
     <published>2025-03-05T10:35:26.000Z</published>
-    <updated>2025-03-05T14:46:33.295Z</updated>
+    <updated>2025-03-14T00:30:51.727Z</updated>
     
     
     <summary type="html">关于DeepSeek国产和Nvidia两种方案的部署。</summary>
@@ -169,7 +169,7 @@
     <link href="https://alleyf.github.io/2024/06/1d24d86ba310.html"/>
     <id>https://alleyf.github.io/2024/06/1d24d86ba310.html</id>
     <published>2024-06-27T16:37:11.000Z</published>
-    <updated>2025-01-14T16:24:55.341Z</updated>
+    <updated>2025-03-14T00:30:51.729Z</updated>
     
     
     <summary type="html">运维排错解决问题的必查手册</summary>
