@@ -8,18 +8,18 @@
         "type": "tabs",
         "children": [
           {
-            "id": "a16422a27ca47894",
+            "id": "43faed091ab7d4cd",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/科研学习/会议讨论/周会.md",
+                "file": "source/_posts/运维开发/运维排忧解难.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "周会"
+              "title": "运维排忧解难"
             }
           }
         ]
@@ -60,13 +60,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/科研学习/会议讨论/周会.md",
+                "file": "source/_posts/运维开发/运维排忧解难.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "周会 的大纲"
+              "title": "运维排忧解难 的大纲"
             }
           }
         ]
@@ -145,10 +145,10 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "a16422a27ca47894",
+  "active": "43faed091ab7d4cd",
   "lastOpenFiles": [
-    "conflict-files-obsidian-git.md",
     "source/_posts/科研学习/会议讨论/周会.md",
+    "conflict-files-obsidian-git.md",
     "source/_posts/科研学习/论文总结/AGENTPOISON Red-teaming LLM Agents via Poisoning Memory or Knowledge Bases.md",
     "source/_posts/运维开发/运维排忧解难.md",
     "source/_posts/课程学习/信息网络与安全.md",
