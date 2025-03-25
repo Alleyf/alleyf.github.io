@@ -104,8 +104,7 @@
               "title": "Advanced Tables"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       },
       {
         "id": "c712742b5e0ae1de",
@@ -146,7 +145,7 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "9f2db79360f3e3dd",
+  "active": "bdaaa10e2f08b79f",
   "lastOpenFiles": [
     "source/_posts/运维开发/测试环境搭建方案.md",
     "source/_posts/运维开发/性能测试.md",
