@@ -1,0 +1,32 @@
+{
+  "imageAltText": true,
+  "replaceOriginalDoc": true,
+  "deleteAttachments": true,
+  "ignoreProperties": true,
+  "attachmentLocation": "attachment",
+  "imageStore": "IMGUR",
+  "imgurAnonymousSetting": {
+    "clientId": "fb4a95c4bc8432a"
+  },
+  "ossSetting": {
+    "region": "oss-cn-hangzhou",
+    "accessKeyId": "",
+    "accessKeySecret": "",
+    "bucket": "",
+    "endpoint": "https://oss-cn-hangzhou.aliyuncs.com/",
+    "path": "",
+    "customDomainName": ""
+  },
+  "imagekitSetting": {
+    "endpoint": "",
+    "imagekitID": "",
+    "privateKey": "",
+    "publicKey": "",
+    "folder": ""
+  },
+  "yuqueSetting": {
+    "token": "",
+    "bookSlug": "",
+    "public": true
+  }
+}

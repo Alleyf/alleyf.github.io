@@ -1,0 +1,1 @@
+{"id":"note-publish","name":"Note Publish","description":"An obsidian plugin for uploading local images embedded in markdown to remote store and export markdown for publishing to static site. Currently, it supports Yuque and Juejin.","author":"XingGuo Song","authorUrl":"https://www.songxingguo.com","isDesktopOnly":true,"minAppVersion":"0.11.0","version":"0.5.4"}
