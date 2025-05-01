@@ -18,15 +18,15 @@
   <meta name="author" content="alleyf">
   <meta name="keywords" content="">
   
-    <meta name="description" content="&#x2F;* 基础样式重置 *&#x2F;         * {             margin: 0;             padding: 0;             box-sizing: border-box;         }          :root {             --gap-size: 1.5rem;             --card-radiu">
+    <meta name="description" content="&#x2F;* 设置图片样式 *&#x2F; img {   border-radius: 10px; &#x2F;* 添加圆角边框 *&#x2F;   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); &#x2F;* 添加阴影效果 *&#x2F; }  &#x2F;* 设置图片悬停效果 *&#x2F; img:hover {   transform: scale(1.1); &#x2F;* 图片放大1.1倍 *&#x2F; }  &#x2F;* 设置图片动画">
 <meta property="og:type" content="website">
 <meta property="og:title" content="画廊">
 <meta property="og:url" content="https://alleyf.github.io/gallery/index.html">
 <meta property="og:site_name" content="alleyf">
-<meta property="og:description" content="&#x2F;* 基础样式重置 *&#x2F;         * {             margin: 0;             padding: 0;             box-sizing: border-box;         }          :root {             --gap-size: 1.5rem;             --card-radiu">
+<meta property="og:description" content="&#x2F;* 设置图片样式 *&#x2F; img {   border-radius: 10px; &#x2F;* 添加圆角边框 *&#x2F;   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); &#x2F;* 添加阴影效果 *&#x2F; }  &#x2F;* 设置图片悬停效果 *&#x2F; img:hover {   transform: scale(1.1); &#x2F;* 图片放大1.1倍 *&#x2F; }  &#x2F;* 设置图片动画">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-09-08T09:31:10.000Z">
-<meta property="article:modified_time" content="2025-05-01T18:08:05.961Z">
+<meta property="article:modified_time" content="2025-05-01T18:13:18.733Z">
 <meta property="article:author" content="alleyf">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -298,132 +298,71 @@
                 
 
 <article class="page-content">
-  <style>
-        /* 基础样式重置 */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <style>  
 
-        :root {
-            --gap-size: 1.5rem;
-            --card-radius: 12px;
-            --transition-speed: 0.3s;
-        }
+/* 设置图片样式 */
+img {
+  border-radius: 10px; /* 添加圆角边框 */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* 添加阴影效果 */
+}
 
-        /* 响应式网格布局 */
-        .ImageGrid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* 最小单元格 300px */
-            gap: var(--gap-size);
-            padding: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            background: #f9fafb ;
-            border-radius: var(--card-radius);
-        }
+/* 设置图片悬停效果 */
+img:hover {
+  transform: scale(1.1); /* 图片放大1.1倍 */
+}
 
-        /* 卡片容器 */
-        .card {
-            background: #fff ;
-            border-radius: var(--card-radius);
-            overflow: hidden;
-            transition: transform var(--transition-speed) ease, 
-                        box-shadow var(--transition-speed) ease;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        }
+/* 设置图片动画效果 */
+@keyframes fadeIn {
+  from {
+    opacity: 0; /* 初始透明度为0 */
+    transform: translateY(20px); /* 初始位置向下偏移20像素 */
+  }
+  
+  to {
+    opacity: 1; /* 最终透明度为1 */
+    transform: translateY(0); /* 最终位置恢复原始位置 */
+  }
+}
 
-        /* 悬停效果 */
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-        }
+/* 应用动画效果到图片上 */
+img.animated {
+  animation-name: fadeIn; /* 使用fadeIn动画效果 */
+  animation-duration: .5s; /* 动画持续时间为0.5秒 */
+}
 
-        /* 图片容器 */
-        .ImageInCard {
-            position: relative;
-            aspect-ratio: 16 / 9; /* 固定宽高比（16:9）*/
-            background: #f3f4f6 ; /* 占位背景色 */
-            overflow: hidden;
-        }
+.ImageGrid {  
+width: 100%;  
+max-width: 1040px;  
+margin: 0 auto;  
+text-align: center;  
+}  
+.card {  
+overflow: hidden;  
+transition: .3s ease-in-out;  
+border-radius: 8px;  
+background-color: rgba(180,180,180,0.2);  
+padding: 1.4px;  
+}  
+.ImageInCard img {  
+padding: 0;  
+border-radius: 8px;  
+width:100%;  
+height:100%;  
+}  
+@media (prefers-color-scheme: dark) {  
+.card {background-color: rgba(180,180,180,0.2);}  
 
-        /* 图片样式 */
-        .ImageInCard img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* 关键：统一裁剪显示 [[5]] [[8]] */
-            border-radius: var(--card-radius) var(--card-radius) 0 0;
-            transition: transform calc(var(--transition-speed) * 1.5) ease;
-        }
-
-        /* 悬停叠加效果 */
-        .ImageInCard::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: linear-gradient(to top, rgba(0,0,0,0.4), transparent 40%);
-            opacity: 0;
-            transition: opacity var(--transition-speed) ease;
-        }
-
-        .card:hover .ImageInCard::after {
-            opacity: 1;
-        }
-
-        .card:hover .ImageInCard img {
-            transform: scale(1.05); /* 微型放大效果 */
-        }
-
-        /* 动画效果 */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px) scale(0.95);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        .animated {
-            animation: fadeIn 0.6s ease-out forwards;
-        }
-
-        /* 暗色模式 */
-        @media (prefers-color-scheme: dark) {
-            .ImageGrid {
-                background: #111827 ;
-            }
-            .card {
-                background: #1f2937 ;
-            }
-            .ImageInCard {
-                background: #1f2937 ;
-            }
-        }
-
-        /* 移动端优化 */
-        @media (max-width: 640px) {
-            .ImageGrid {
-                grid-template-columns: 1fr; /* 单列显示 */
-                padding: 1rem;
-            }
-        }
-    </style>
+}  
+</style>  
 <div id="imageTab"></div>  
 <div class="ImageGrid"></div>
 <script>
-        // 初始化动画
-        document.addEventListener('DOMContentLoaded', () => {
-            const images = document.querySelectorAll('.ImageInCard img');
-            images.forEach(img => {
-                img.classList.add('animated');
-            });
-        });
+const images = document.querySelectorAll("img");
+images.forEach(image => {
+  image.classList.add("animated");
+});
 </script>
+
 
   
 
