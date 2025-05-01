@@ -6,7 +6,7 @@
   <link href="https://alleyf.github.io/atom.xml" rel="self"/>
   
   <link href="https://alleyf.github.io/"/>
-  <updated>2025-03-16T04:15:09.994Z</updated>
+  <updated>2025-05-01T18:48:02.823Z</updated>
   <id>https://alleyf.github.io/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>摄影审美</title>
+    <link href="https://alleyf.github.io/2025/05/b5764c5b69af.html"/>
+    <id>https://alleyf.github.io/2025/05/b5764c5b69af.html</id>
+    <published>2025-05-01T18:29:05.000Z</published>
+    <updated>2025-05-01T18:48:02.823Z</updated>
+    
+    
+    <summary type="html">摄影审美技巧。</summary>
+    
+    
+    
+    <category term="艺术生活" scheme="https://alleyf.github.io/categories/%E8%89%BA%E6%9C%AF%E7%94%9F%E6%B4%BB/"/>
+    
+    
+    <category term="摄影" scheme="https://alleyf.github.io/tags/%E6%91%84%E5%BD%B1/"/>
+    
+  </entry>
   
   <entry>
     <title>DeepSeek-R1-671B 国产和Nvidia GPU部署方案</title>
@@ -409,27 +428,6 @@
     <category term="科研" scheme="https://alleyf.github.io/tags/%E7%A7%91%E7%A0%94/"/>
     
     <category term="Transformer" scheme="https://alleyf.github.io/tags/Transformer/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>入门机器学习</title>
-    <link href="https://alleyf.github.io/2024/01/92e1da0544e0.html"/>
-    <id>https://alleyf.github.io/2024/01/92e1da0544e0.html</id>
-    <published>2024-01-16T04:49:25.000Z</published>
-    <updated>2024-01-16T05:15:58.000Z</updated>
-    
-    
-    <summary type="html">Deep learning</summary>
-    
-    
-    
-    <category term="科研学习" scheme="https://alleyf.github.io/categories/%E7%A7%91%E7%A0%94%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-    <category term="AIGC" scheme="https://alleyf.github.io/tags/AIGC/"/>
-    
-    <category term="DL" scheme="https://alleyf.github.io/tags/DL/"/>
     
   </entry>
   
