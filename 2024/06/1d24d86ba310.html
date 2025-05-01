@@ -27,7 +27,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://picsum.photos/800/250">
 <meta property="article:published_time" content="2024-06-27T16:37:11.000Z">
-<meta property="article:modified_time" content="2025-03-16T04:15:09.994Z">
+<meta property="article:modified_time" content="2025-05-01T18:24:37.222Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="DevOps">
 <meta property="article:tag" content="运维">
@@ -308,7 +308,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          12k 字
+          14k 字
         
       </span>
     
@@ -319,7 +319,7 @@
         
         
         
-          104 分钟
+          120 分钟
         
       </span>
     
@@ -370,7 +370,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2 个月前
+                    本文最后更新于：几秒前
                   
                 
               </p>
@@ -383,15 +383,88 @@
 <p>[!NOTE] 符号说明<br>指令中小括号 <code>()</code> 内为<strong>选填项</strong>，<code>&lt;&gt;</code> 为<strong>填充项</strong>（根据实际变量进行填充）。</p>
 </blockquote>
 <h2 id="1-1-Linux-指令"><a href="#1-1-Linux-指令" class="headerlink" title="1.1 Linux 指令"></a>1.1 Linux 指令</h2><p><a href="source/_posts/%E8%BF%90%E7%BB%B4%E5%BC%80%E5%8F%91/%E5%90%84%E7%A7%8D%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE.md">各种环境配置</a></p>
-<h3 id="1-1-1-Ssh-连接"><a href="#1-1-1-Ssh-连接" class="headerlink" title="1.1.1 Ssh 连接"></a>1.1.1 Ssh 连接</h3><p>-p 指定端口，默认不带则为 22 端口</p>
+<h3 id="1-1-1-磁盘扩容"><a href="#1-1-1-磁盘扩容" class="headerlink" title="1.1.1 磁盘扩容"></a>1.1.1 磁盘扩容</h3><h4 id="1-1-1-1-已存在磁盘（使用余量扩容分区）"><a href="#1-1-1-1-已存在磁盘（使用余量扩容分区）" class="headerlink" title="1.1.1.1 已存在磁盘（使用余量扩容分区）"></a>1.1.1.1 已存在磁盘（使用余量扩容分区）</h4><h5 id="1-1-1-1-1-确认剩余空间"><a href="#1-1-1-1-1-确认剩余空间" class="headerlink" title="1.1.1.1.1 确认剩余空间"></a>1.1.1.1.1 <strong>确认剩余空间</strong></h5><p>使用 <code>lsblk</code> 或 <code>fdisk -l</code> 查看新增磁盘的设备名（如 <code>/dev/sdb</code>）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo fdisk -l<br></code></pre></td></tr></table></figure>
+
+<ol>
+<li><p>​<strong>查看磁盘总容量</strong><br> <code>/dev/sda</code> 总容量为 322.1GB，已分配的分区如下：</p>
+<ul>
+<li><code>/dev/sda1</code>（启动分区）：1GB</li>
+<li><code>/dev/sda2</code>（LVM 物理卷）：107.4GB<ul>
+<li><code>centos-root</code>（根分区）：53.7GB</li>
+<li><code>centos-swap</code>（交换分区）：5.3GB</li>
+<li><code>centos-home</code>（用户数据分区）：47.3GB</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>​<strong>计算未使用空间</strong><br> <code>sda2</code> 的结束扇区为 <code>209715199</code>，而 <code>/dev/sda</code> 总扇区为 <code>629145600</code>，未分配空间约为 ​<strong>214.7GB</strong>​（322.1GB - 107.4GB）</p>
+</li>
+<li><p><strong>查看文件系统</strong></p>
+</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">lsblk -f<br></code></pre></td></tr></table></figure>
+
+<h5 id="1-1-1-1-2-扩容根目录逻辑卷"><a href="#1-1-1-1-2-扩容根目录逻辑卷" class="headerlink" title="1.1.1.1.2 扩容根目录逻辑卷"></a>1.1.1.1.2 <strong>扩容根目录逻辑卷</strong></h5><h6 id="步骤-1：扩展-Sda2-分区"><a href="#步骤-1：扩展-Sda2-分区" class="headerlink" title="步骤 1：扩展 Sda2 分区"></a><strong>步骤 1：扩展 Sda2 分区</strong></h6><p>由于未分配空间位于 <code>sda2</code> 之后，需先扩展 <code>sda2</code> 分区以包含全部磁盘空间：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo parted /dev/sda<br>(parted) resizepart 2 100%  <span class="hljs-comment"># 将sda2扩展到磁盘末尾</span><br>(parted) quit<br></code></pre></td></tr></table></figure>
+
+<h6 id="步骤-2：扩展物理卷"><a href="#步骤-2：扩展物理卷" class="headerlink" title="步骤 2：扩展物理卷"></a><strong>步骤 2：扩展物理卷</strong></h6><p>将新增空间加入 LVM 物理卷：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo pvresize /dev/sda2  <span class="hljs-comment"># 自动识别扩展后的空间</span><br></code></pre></td></tr></table></figure>
+
+<h6 id="​步骤-3：扩展逻辑卷"><a href="#​步骤-3：扩展逻辑卷" class="headerlink" title="​步骤 3：扩展逻辑卷"></a>​<strong>步骤 3：扩展逻辑卷</strong></h6><ol>
+<li>​<strong>查看卷组（VG）信息</strong></li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo vgdisplay centos  <span class="hljs-comment"># 确认VG名称为&quot;centos&quot;</span><br></code></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>​<strong>扩展根逻辑卷（LV）​</strong></li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo lvextend -l +100%FREE /dev/mapper/centos-root  <span class="hljs-comment"># 将剩余空间全部分配给根目录</span><br></code></pre></td></tr></table></figure>
+
+<h6 id="步骤-4：调整文件系统"><a href="#步骤-4：调整文件系统" class="headerlink" title="步骤 4：调整文件系统"></a><strong>步骤 4：调整文件系统</strong></h6><p>根据文件系统类型执行扩容：</p>
+<ul>
+<li>​<strong>ext4 文件系统</strong>：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo resize2fs /dev/mapper/centos-root<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>​<strong>xfs 文件系统</strong>：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo xfs_growfs /<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="1-1-1-1-3-​验证结果"><a href="#1-1-1-1-3-​验证结果" class="headerlink" title="1.1.1.1.3 ​验证结果"></a>1.1.1.1.3 ​<strong>验证结果</strong></h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">df</span> -h /  <span class="hljs-comment"># 查看根目录容量是否增加</span><br>lsblk    <span class="hljs-comment"># 确认逻辑卷大小变化</span><br></code></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="1-1-1-1-4-​注意事项"><a href="#1-1-1-1-4-​注意事项" class="headerlink" title="1.1.1.1.4 ​注意事项"></a>1.1.1.1.4 ​<strong>注意事项</strong></h5><ol>
+<li>​<strong>备份数据</strong><br> 操作前建议对重要数据备份，避免扩容失败导致数据丢失</li>
+<li>​<strong>文件系统类型</strong><br> 通过 <code>lsblk -f</code> 确认根目录文件系统类型（如 xfs 或 ext4）。</li>
+<li>​<strong>在线扩容</strong><br> 若使用 xfs 文件系统，支持在线扩容；ext4 需确保文件系统未损坏。</li>
+</ol>
+<hr>
+<h5 id="1-1-1-1-5-​扩展场景（可选）​"><a href="#1-1-1-1-5-​扩展场景（可选）​" class="headerlink" title="1.1.1.1.5 ​扩展场景（可选）​"></a>1.1.1.1.5 ​<strong>扩展场景（可选）​</strong></h5><ul>
+<li>​<strong>调整 home 分区空间</strong><br>  若无需保留home分区数据，可删除 <code>/dev/mapper/centos-home</code>，将其空间合并到根目录：</li>
+</ul>
+<ol>
+<li>备份 home 数据后卸载：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo umount /home<br>sudo lvremove /dev/mapper/centos-home<br></code></pre></td></tr></table></figure>
+
+<ol>
+<li>扩展根逻辑卷：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo lvextend -l +100%FREE /dev/mapper/centos-root<br>sudo resize2fs /dev/mapper/centos-root  <span class="hljs-comment"># 或xfs_growfs</span><br></code></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="1-1-2-Ssh-连接"><a href="#1-1-2-Ssh-连接" class="headerlink" title="1.1.2 Ssh 连接"></a>1.1.2 Ssh 连接</h3><p>-p 指定端口，默认不带则为 22 端口</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">ssh -p &lt;port&gt; &lt;username&gt;@&lt;ip/hostname&gt;<br></code></pre></td></tr></table></figure>
 
-<h3 id="1-1-2-Glusterfs文件挂载"><a href="#1-1-2-Glusterfs文件挂载" class="headerlink" title="1.1.2 Glusterfs文件挂载"></a>1.1.2 Glusterfs文件挂载</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 创建挂载点目录（需指定路径）</span><br>sudo <span class="hljs-built_in">mkdir</span> -p /mnt/glusterfs<br><br><span class="hljs-comment"># 挂载 GlusterFS 卷（使用 FUSE 客户端）</span><br>sudo mount -t glusterfs &lt;GlusterFS节点IP或主机名&gt;:/&lt;卷名&gt; /mnt/glusterfs<br></code></pre></td></tr></table></figure>
+<h3 id="1-1-3-Glusterfs-文件挂载"><a href="#1-1-3-Glusterfs-文件挂载" class="headerlink" title="1.1.3 Glusterfs 文件挂载"></a>1.1.3 Glusterfs 文件挂载</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 创建挂载点目录（需指定路径）</span><br>sudo <span class="hljs-built_in">mkdir</span> -p /mnt/glusterfs<br><br><span class="hljs-comment"># 挂载 GlusterFS 卷（使用 FUSE 客户端）</span><br>sudo mount -t glusterfs &lt;GlusterFS节点IP或主机名&gt;:/&lt;卷名&gt; /mnt/glusterfs<br></code></pre></td></tr></table></figure>
 
 <blockquote>
-<p>卷名通过rancher里找到对应的volume查看。</p>
+<p>卷名通过 rancher 里找到对应的 volume 查看。</p>
 </blockquote>
-<h3 id="1-1-3-文件传输"><a href="#1-1-3-文件传输" class="headerlink" title="1.1.3 文件传输"></a>1.1.3 文件传输</h3><blockquote>
+<h3 id="1-1-4-文件传输"><a href="#1-1-4-文件传输" class="headerlink" title="1.1.4 文件传输"></a>1.1.4 文件传输</h3><blockquote>
 <p>通过 ssh 协议用于在本地计算机和远程计算机之间安全地复制文件</p>
 </blockquote>
 <ol>
@@ -404,9 +477,9 @@
 </ol>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">scp (-p &lt;port&gt;) &lt;username&gt;@&lt;remote_host/host_name&gt;: &lt;/path/to/remote/directory&gt; &lt;/path/to/local/file&gt; <br></code></pre></td></tr></table></figure>
 
-<h3 id="1-1-4-查看路由表"><a href="#1-1-4-查看路由表" class="headerlink" title="1.1.4 查看路由表"></a>1.1.4 查看路由表</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">yum install net-tools -y<br>route -n <span class="hljs-comment">#列出所有路由</span><br></code></pre></td></tr></table></figure>
+<h3 id="1-1-5-查看路由表"><a href="#1-1-5-查看路由表" class="headerlink" title="1.1.5 查看路由表"></a>1.1.5 查看路由表</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">yum install net-tools -y<br>route -n <span class="hljs-comment">#列出所有路由</span><br></code></pre></td></tr></table></figure>
 
-<h3 id="1-1-5-查看资源"><a href="#1-1-5-查看资源" class="headerlink" title="1.1.5 查看资源"></a>1.1.5 查看资源</h3><p>查看所有资源占用情况，降序排列，<code>top</code> 默认会实时更新显示的信息，通常每秒刷新一次。</p>
+<h3 id="1-1-6-查看资源"><a href="#1-1-6-查看资源" class="headerlink" title="1.1.6 查看资源"></a>1.1.6 查看资源</h3><p>查看所有资源占用情况，降序排列，<code>top</code> 默认会实时更新显示的信息，通常每秒刷新一次。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">top <br></code></pre></td></tr></table></figure>
 
 <ol>
@@ -431,7 +504,7 @@
 </ul>
 </li>
 </ol>
-<h3 id="1-1-6-查看进程"><a href="#1-1-6-查看进程" class="headerlink" title="1.1.6 查看进程"></a>1.1.6 查看进程</h3><p><code>ps</code> 命令在 Unix-like 系统中用于显示当前进程的状态。</p>
+<h3 id="1-1-7-查看进程"><a href="#1-1-7-查看进程" class="headerlink" title="1.1.7 查看进程"></a>1.1.7 查看进程</h3><p><code>ps</code> 命令在 Unix-like 系统中用于显示当前进程的状态。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">ps<br></code></pre></td></tr></table></figure>
 
 <ol>
@@ -458,29 +531,34 @@
 </ul>
 </li>
 </ol>
-<h3 id="1-1-7-查看内存"><a href="#1-1-7-查看内存" class="headerlink" title="1.1.7 查看内存"></a>1.1.7 查看内存</h3><p>以人类可读的方式展示内存使用状态。</p>
+<h3 id="1-1-8-查看内存"><a href="#1-1-8-查看内存" class="headerlink" title="1.1.8 查看内存"></a>1.1.8 查看内存</h3><p>以人类可读的方式展示内存使用状态。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">free -mh<br></code></pre></td></tr></table></figure>
 
-<h3 id="1-1-8-查看硬盘"><a href="#1-1-8-查看硬盘" class="headerlink" title="1.1.8 查看硬盘"></a>1.1.8 查看硬盘</h3><p>以人类可读的方式展示磁盘分配状态。</p>
+<h3 id="1-1-9-查看硬盘"><a href="#1-1-9-查看硬盘" class="headerlink" title="1.1.9 查看硬盘"></a>1.1.9 查看硬盘</h3><p>以人类可读的方式展示磁盘分配状态。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">df</span> -h<br></code></pre></td></tr></table></figure>
 
-<h3 id="1-1-9-查看系统日志"><a href="#1-1-9-查看系统日志" class="headerlink" title="1.1.9 查看系统日志"></a>1.1.9 查看系统日志</h3><p><code>journalctl</code> 是 <code>systemd</code> 系统服务管理器的一部分，用于查询和显示日志消息。它提供了一种方便的方式来查看系统日志，特别是与特定服务或单元相关的日志。</p>
+<h3 id="1-1-10-查看系统日志"><a href="#1-1-10-查看系统日志" class="headerlink" title="1.1.10 查看系统日志"></a>1.1.10 查看系统日志</h3><p><code>journalctl</code> 是 <code>systemd</code> 系统服务管理器的一部分，用于查询和显示日志消息。它提供了一种方便的方式来查看系统日志，特别是与特定服务或单元相关的日志。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">sudo journalctl -u &lt;NetworkManager&gt;<br></code></pre></td></tr></table></figure>
 
 <p>查看系统日志</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">cat</span>/vim /var/log/messages<br>dmesg<br></code></pre></td></tr></table></figure>
 
-<p>查找cpu相关日志：</p>
+<p>查找 cpu 相关日志：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">grep -r Call -C 10 /var/log/messages*<br>grep -r Call /var/log/messages*<br></code></pre></td></tr></table></figure>
 
-<h3 id="1-1-10-查看编辑文件"><a href="#1-1-10-查看编辑文件" class="headerlink" title="1.1.10 查看编辑文件"></a>1.1.10 查看编辑文件</h3><h4 id="1-1-10-1-搜索文件"><a href="#1-1-10-1-搜索文件" class="headerlink" title="1.1.10.1 搜索文件"></a>1.1.10.1 搜索文件</h4><p>按照关键词搜索含有关键词的文件</p>
+<h3 id="1-1-11-查看编辑文件"><a href="#1-1-11-查看编辑文件" class="headerlink" title="1.1.11 查看编辑文件"></a>1.1.11 查看编辑文件</h3><h4 id="1-1-11-1-搜索文件"><a href="#1-1-11-1-搜索文件" class="headerlink" title="1.1.11.1 搜索文件"></a>1.1.11.1 搜索文件</h4><p>按照关键词搜索含有关键词的文件</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">find . -<span class="hljs-built_in">type</span> f -<span class="hljs-built_in">exec</span> grep -l <span class="hljs-string">&#x27;mysql-master&#x27;</span> &#123;&#125; \;<br></code></pre></td></tr></table></figure>
 
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">grep <span class="hljs-string">&#x27;temporary password&#x27;</span> /var/log/mysqld.log<br></code></pre></td></tr></table></figure>
 
-<h4 id="1-1-10-2-查看文件数量"><a href="#1-1-10-2-查看文件数量" class="headerlink" title="1.1.10.2 查看文件数量"></a>1.1.10.2 查看文件数量</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">find /path/to/directory -<span class="hljs-built_in">type</span> f | <span class="hljs-built_in">wc</span> -l<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo find / -<span class="hljs-built_in">type</span> f -name <span class="hljs-string">&quot;*.yaml&quot;</span> -<span class="hljs-built_in">exec</span> grep -H <span class="hljs-string">&#x27;service-node-port-range&#x27;</span> &#123;&#125; \; 2&gt;/dev/null<br></code></pre></td></tr></table></figure>
 
-<h4 id="1-1-10-3-查看目录"><a href="#1-1-10-3-查看目录" class="headerlink" title="1.1.10.3 查看目录"></a>1.1.10.3 查看目录</h4><p>列出当前目录下的文件和文件夹</p>
+<p>搜索指定文件名的文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo find / -name <span class="hljs-string">&quot;kube-apiserver.yaml&quot;</span> 2&gt;/dev/null<br></code></pre></td></tr></table></figure>
+
+<h4 id="1-1-11-2-查看文件数量"><a href="#1-1-11-2-查看文件数量" class="headerlink" title="1.1.11.2 查看文件数量"></a>1.1.11.2 查看文件数量</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">find /path/to/directory -<span class="hljs-built_in">type</span> f | <span class="hljs-built_in">wc</span> -l<br></code></pre></td></tr></table></figure>
+
+<h4 id="1-1-11-3-查看目录"><a href="#1-1-11-3-查看目录" class="headerlink" title="1.1.11.3 查看目录"></a>1.1.11.3 查看目录</h4><p>列出当前目录下的文件和文件夹</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">ls</span><br></code></pre></td></tr></table></figure>
 
 <ol>
@@ -512,13 +590,13 @@
 </ul>
 </li>
 </ol>
-<h4 id="1-1-10-4-查看内容"><a href="#1-1-10-4-查看内容" class="headerlink" title="1.1.10.4 查看内容"></a>1.1.10.4 查看内容</h4><p>查看文件内容，打印在控制台</p>
+<h4 id="1-1-11-4-查看内容"><a href="#1-1-11-4-查看内容" class="headerlink" title="1.1.11.4 查看内容"></a>1.1.11.4 查看内容</h4><p>查看文件内容，打印在控制台</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">cat</span> &lt;fileName&gt;<br></code></pre></td></tr></table></figure>
 
-<h4 id="1-1-10-5-新建文件"><a href="#1-1-10-5-新建文件" class="headerlink" title="1.1.10.5 新建文件"></a>1.1.10.5 新建文件</h4><p>新增一个文件，或写入内容到文件中</p>
+<h4 id="1-1-11-5-新建文件"><a href="#1-1-11-5-新建文件" class="headerlink" title="1.1.11.5 新建文件"></a>1.1.11.5 新建文件</h4><p>新增一个文件，或写入内容到文件中</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">cat</span> &gt; &lt;file.txt&gt;<br><span class="hljs-built_in">echo</span> &lt;content&gt; &gt; &lt;file.txt&gt;<br><span class="hljs-built_in">touch</span> &lt;file.txt&gt;<br></code></pre></td></tr></table></figure>
 
-<h4 id="1-1-10-6-编辑内容"><a href="#1-1-10-6-编辑内容" class="headerlink" title="1.1.10.6 编辑内容"></a>1.1.10.6 编辑内容</h4><p>使用 Vim 编辑器编辑文件</p>
+<h4 id="1-1-11-6-编辑内容"><a href="#1-1-11-6-编辑内容" class="headerlink" title="1.1.11.6 编辑内容"></a>1.1.11.6 编辑内容</h4><p>使用 Vim 编辑器编辑文件</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">vi(m) &lt;fileName&gt;<br></code></pre></td></tr></table></figure>
 
 <ol>
@@ -555,11 +633,11 @@
 
 <h4 id="1-2-1-4-复制文件"><a href="#1-2-1-4-复制文件" class="headerlink" title="1.2.1.4 复制文件"></a>1.2.1.4 复制文件</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">kubectl <span class="hljs-built_in">cp</span> -n 命名空间 -c 容器名 pod名:文件绝对路径 文件目标位置<br><br>kube-test <span class="hljs-built_in">cp</span> -n tool -c kkfileview kkfileview-644dcccf65-r4kqb:/opt/kkFileView-4.1.0/config/application.properties ./application.properties<br></code></pre></td></tr></table></figure>
 
-<h4 id="1-2-1-5-创建configmap"><a href="#1-2-1-5-创建configmap" class="headerlink" title="1.2.1.5 创建configmap"></a>1.2.1.5 创建configmap</h4><ol>
+<h4 id="1-2-1-5-创建-Configmap"><a href="#1-2-1-5-创建-Configmap" class="headerlink" title="1.2.1.5 创建 Configmap"></a>1.2.1.5 创建 Configmap</h4><ol>
 <li>命令创建</li>
 </ol>
 <blockquote>
-<p><strong>通过参数<code>--from-literal</code>直接指定键值对。这种方式比较适用于临时测试使用，而且不适合配置很多的情况。</strong></p>
+<p><strong>通过参数 <code>--from-literal</code> 直接指定键值对。这种方式比较适用于临时测试使用，而且不适合配置很多的情况。</strong></p>
 </blockquote>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ kubectl create configmap config-literal \<br>--from-literal=pkslow.name=Larry \<br>--from-literal=pkslow.age=18 \<br>--from-literal=pkslow.webSite=www.pkslow.com <br></code></pre></td></tr></table></figure>
 
@@ -567,7 +645,7 @@
 <li>文件创建</li>
 </ol>
 <blockquote>
-<p>通过参数<code>--from-file</code>来指定文件。查看内容如下：</p>
+<p>通过参数 <code>--from-file</code> 来指定文件。查看内容如下：</p>
 </blockquote>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ kubectl create configmap config-file \<br>--namespace=tool \<br>--from-file=application.yaml \<br></code></pre></td></tr></table></figure>
 
@@ -693,7 +771,7 @@
 </ol>
 <h2 id="2-5-内存占用虚高"><a href="#2-5-内存占用虚高" class="headerlink" title="2.5 内存占用虚高"></a>2.5 内存占用虚高</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/vincent0920/article/details/135485154">vmware虚拟机内存异常占用问题一例_esxi8.0占用内存怎么处理</a></p>
 <h2 id="2-6-MySQL-故障"><a href="#2-6-MySQL-故障" class="headerlink" title="2.6 MySQL 故障"></a>2.6 MySQL 故障</h2><p>参考：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/paul8339/p/16880095.html">MySQL启动报错[ERROR] InnoDB: Trying to access page number 4294967295 in space 0, space name innodb</a></p>
-<h3 id="2-6-1-K8s-集群连不上"><a href="#2-6-1-K8s-集群连不上" class="headerlink" title="2.6.1 K8s 集群连不上"></a>2.6.1 K8s 集群连不上</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_45547688/article/details/131325877">k8s 集群 kubelet日志报错 command failed“ err&#x3D;“failed to parse kubelet flag: unknown flag: –network-p_command failed” err&#x3D;”failed to parse kubelet flag</a><br>kubelet版本节点之间不一致</p>
+<h3 id="2-6-1-K8s-集群连不上"><a href="#2-6-1-K8s-集群连不上" class="headerlink" title="2.6.1 K8s 集群连不上"></a>2.6.1 K8s 集群连不上</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_45547688/article/details/131325877">k8s 集群 kubelet日志报错 command failed“ err&#x3D;“failed to parse kubelet flag: unknown flag: –network-p_command failed” err&#x3D;”failed to parse kubelet flag</a><br>kubelet 版本节点之间不一致</p>
 <p>查看状态和日志：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">systemctl status kubelet.service<br>journalctl -u kubelet -f<br></code></pre></td></tr></table></figure>
 
@@ -703,10 +781,20 @@
 <p>版本降级：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">yum downgrade kubeadm-1.18.0-0.x86_64 kubectl-1.18.0-0.x86_64 kubelet-1.18.0-0.x86_64<br></code></pre></td></tr></table></figure>
 
-<p>重启kubelet：</p>
+<p>重启 kubelet：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">sudo systemctl restart kubelet.service<br>systemctl daemon-reload<br></code></pre></td></tr></table></figure>
 
-<h2 id="2-7-Rancher故障"><a href="#2-7-Rancher故障" class="headerlink" title="2.7 Rancher故障"></a>2.7 Rancher故障</h2><h3 id="2-7-1-Rancher连不上apiserver"><a href="#2-7-1-Rancher连不上apiserver" class="headerlink" title="2.7.1 Rancher连不上apiserver"></a>2.7.1 Rancher连不上apiserver</h3><p>原因：cni上层的网络组件出现了问题，可能是网络相关的pod（kube-system空间下或者直接-A查看所有涉及到网络相关的pod）挂了，重启后拉不到镜像导致网络不可用。<br>解决：排查网络相关组件pod是否正常，不正常则根据event和status进行解决。</p>
+<h2 id="2-7-Rancher-故障"><a href="#2-7-Rancher-故障" class="headerlink" title="2.7 Rancher 故障"></a>2.7 Rancher 故障</h2><h3 id="2-7-1-Rancher-连不上-Apiserver"><a href="#2-7-1-Rancher-连不上-Apiserver" class="headerlink" title="2.7.1 Rancher 连不上 Apiserver"></a>2.7.1 Rancher 连不上 Apiserver</h3><p>原因：cni 上层的网络组件出现了问题，可能是网络相关的 pod（kube-system 空间下或者直接-A 查看所有涉及到网络相关的 pod）挂了，重启后拉不到镜像导致网络不可用。<br>解决：排查网络相关组件 pod 是否正常，不正常则根据 event 和 status 进行解决。</p>
+<h2 id="2-8-集群域名修改"><a href="#2-8-集群域名修改" class="headerlink" title="2.8 集群域名修改"></a>2.8 集群域名修改</h2><h3 id="2-8-1-修改242nginx域名配置"><a href="#2-8-1-修改242nginx域名配置" class="headerlink" title="2.8.1 修改242nginx域名配置"></a>2.8.1 修改242nginx域名配置</h3><p>修改<code>admin/nginx</code>目录下的nginx域名配置。<br>再使用<code>./config</code>脚本更新重启nginx以生效配置。</p>
+<h3 id="2-8-2-改233gitlab配置文件里的域名"><a href="#2-8-2-改233gitlab配置文件里的域名" class="headerlink" title="2.8.2 改233gitlab配置文件里的域名"></a>2.8.2 改233gitlab配置文件里的域名</h3><p>配置文件位置：<code>/etc/gitlab/gitlab.rb</code><br>修改gitlab配置后重启，同步修改集群内的gitlab-runner配置（configmap）里的域名。<br><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/blog/20250324223941398.png" srcset="/img/loading.gif" lazyload alt="|600"></p>
+<h3 id="2-8-3-改102harbor配置文件里的域名"><a href="#2-8-3-改102harbor配置文件里的域名" class="headerlink" title="2.8.3 改102harbor配置文件里的域名"></a>2.8.3 改102harbor配置文件里的域名</h3><p>配置文件位置：<code>/opt/harbor_1_7/harbor.cfg</code><br>修改harbor配置后重启，同步修改集群内的所有镜像的仓库地址（基础设施、定时任务、应用服务等）。</p>
+<h3 id="2-8-4-修改kubelet的配置仓库鉴权域名"><a href="#2-8-4-修改kubelet的配置仓库鉴权域名" class="headerlink" title="2.8.4 修改kubelet的配置仓库鉴权域名"></a>2.8.4 修改kubelet的配置仓库鉴权域名</h3><p>配置文件位于：<code>/var/lib/kubelet/config.json</code><br>修改里面的仓库域名。</p>
+<h2 id="2-9-Harbor镜像仓库清理"><a href="#2-9-Harbor镜像仓库清理" class="headerlink" title="2.9 Harbor镜像仓库清理"></a>2.9 Harbor镜像仓库清理</h2><ol>
+<li><strong>定位清理目标项目</strong>：登录harbor镜像仓库（registry.csdcinfo.cn），进入需要清理的项目。</li>
+<li><strong>过滤出待删除仓库镜像</strong>：进入需要删除的仓库，按照日期升序多选选中需要删除的镜像。<br><img src="https://img.fcs.cloudns.ch/pics/20250407150126574.png" srcset="/img/loading.gif" lazyload alt="|500"></li>
+<li><strong>删除选中的tag镜像</strong>：在仓库中删除前面选中的tag镜像。<br><img src="https://img.fcs.cloudns.ch/pics/20250407150346301.png" srcset="/img/loading.gif" lazyload alt="|500"></li>
+<li><strong>清理磁盘空间</strong>：上述删除仅为软删除并没有释放磁盘空间，需要进入系统管理的垃圾清理点击立即清理垃圾，此时会将前面软删除的镜像实际删除释放出占用的空间。<br><img src="https://img.fcs.cloudns.ch/pics/20250407150534168.png" srcset="/img/loading.gif" lazyload alt="|500"></li>
+</ol>
 <h1 id="3-常用镜像"><a href="#3-常用镜像" class="headerlink" title="3 常用镜像"></a>3 常用镜像</h1><h2 id="3-1-基础设施"><a href="#3-1-基础设施" class="headerlink" title="3.1 基础设施"></a>3.1 基础设施</h2><h3 id="3-1-1-Longhorn"><a href="#3-1-1-Longhorn" class="headerlink" title="3.1.1 Longhorn"></a>3.1.1 Longhorn</h3><p>longhornio&#x2F;csi-attacher:v2.2.1-lh1<br>longhornio&#x2F;csi-provisioner:v1.6.0-lh1<br><code>longhornio/csi-resizer:v0.5.1-lh1</code><br>longhornio&#x2F;csi-snapshotter:v2.1.1-lh1<br>longhornio&#x2F;longhorn-engine:v1.1.0<br>longhornio&#x2F;longhorn-instance-manager:v1_20201216<br>longhornio&#x2F;longhorn-manager:v1.1.0<br>longhornio&#x2F;csi-node-driver-registrar:v1.2.0-lh1<br>longhornio&#x2F;longhorn-ui:v1.1.0</p>
 <h3 id="3-1-2-数据库"><a href="#3-1-2-数据库" class="headerlink" title="3.1.2 数据库"></a>3.1.2 数据库</h3><h4 id="3-1-2-1-关系型"><a href="#3-1-2-1-关系型" class="headerlink" title="3.1.2.1 关系型"></a>3.1.2.1 关系型</h4><p>busybox:1.32<br>registry.csdc.info&#x2F;publish&#x2F;mysql:5.7.31<br>mysql:5.7.31<br>nacos&#x2F;nacos-mysql-master:latest<br>nacos&#x2F;nacos-mysql-slave:latest<br>prom&#x2F;mysqld-exporter</p>
 <h4 id="3-1-2-2-非关系型"><a href="#3-1-2-2-非关系型" class="headerlink" title="3.1.2.2 非关系型"></a>3.1.2.2 非关系型</h4><h5 id="3-1-2-2-1-Redis"><a href="#3-1-2-2-1-Redis" class="headerlink" title="3.1.2.2.1 Redis"></a>3.1.2.2.1 Redis</h5><p>registry.csdc.info&#x2F;publish&#x2F;redis507<br>registry.csdc.info&#x2F;publish&#x2F;redis-exporter135<br>oliver006&#x2F;redis_exporter:v1.3.4<br>registry.csdc.info&#x2F;publish&#x2F;redisinsight:latest</p>
@@ -727,7 +815,7 @@
 <h3 id="3-1-10-Research"><a href="#3-1-10-Research" class="headerlink" title="3.1.10 Research"></a>3.1.10 Research</h3><p>conda:fus<br>centos:latest<br>nvidia&#x2F;cuda:10.1-devel-ubuntu18.04<br>nvidia&#x2F;cuda:10.1-cudnn7-devel-centos7</p>
 <h1 id="4-数据备份"><a href="#4-数据备份" class="headerlink" title="4 数据备份"></a>4 数据备份</h1><h2 id="4-1-备份清单"><a href="#4-1-备份清单" class="headerlink" title="4.1 备份清单"></a>4.1 备份清单</h2><h3 id="4-1-1-数据库备份"><a href="#4-1-1-数据库备份" class="headerlink" title="4.1.1 数据库备份"></a>4.1.1 数据库备份</h3><p>应用数据库备份（每天）：</p>
 <ol>
-<li>K8s内备份：<ul>
+<li>K8s 内备份：<ul>
 <li>srdb: mysql，mongodb</li>
 <li>smdb: mysql</li>
 <li>hsas: mysql</li>
@@ -741,7 +829,7 @@
 </ol>
 <h3 id="4-1-2-文件备份"><a href="#4-1-2-文件备份" class="headerlink" title="4.1.2 文件备份"></a>4.1.2 文件备份</h3><p>应用文件备份：</p>
 <ol>
-<li>K8S内备份（每天）：<ul>
+<li>K8S 内备份（每天）：<ul>
 <li>srdb</li>
 <li>smdb</li>
 <li>hsas</li>
@@ -750,15 +838,15 @@
 </ul>
 </li>
 </ol>
-<p>FTP文件备份：<br>210上备份（每早上8点）：<code>autosync_push.sh</code></p>
-<p>GitLab代码备份（每周天）：<code>autobackup.sh</code></p>
-<h2 id="4-2-注意事项"><a href="#4-2-注意事项" class="headerlink" title="4.2 注意事项"></a>4.2 注意事项</h2><p>oracle数据库定时任务无法备份如下报错：</p>
+<p>FTP 文件备份：<br>210 上备份（每早上 8 点）：<code>autosync_push.sh</code></p>
+<p>GitLab 代码备份（每周天）：<code>autobackup.sh</code></p>
+<h2 id="4-2-注意事项"><a href="#4-2-注意事项" class="headerlink" title="4.2 注意事项"></a>4.2 注意事项</h2><p>oracle 数据库定时任务无法备份如下报错：</p>
 <blockquote>
 <p>ORA-31634: 作业已存在<br>ORA-31664: 如果采用默认值, 将无法构造唯一的作业名</p>
 </blockquote>
-<p>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/yabingshi_tech/article/details/110822529">ORA-31634: 作业已存在</a><br>原因：job队列满了。<br>解决：<br>    1. 先查询出所有未运行的Jobs：<code>SELECT &#39;DROP TABLE &#39; || OWNER_NAME ||&#39;.&#39;|| JOB_NAME ||&#39;;&#39; FROM DBA_DATAPUMP_JOBS WHERE   STATE=&#39;NOT RUNNING&#39;;</code><br>    2. 删除查询到的定时任务计划表：<code>DROP TABLE CMIS.SYS_EXPORT_SCHEMA_xx;</code></p>
-<h1 id="5-应用部署"><a href="#5-应用部署" class="headerlink" title="5 应用部署"></a>5 应用部署</h1><h2 id="5-1-新建项目"><a href="#5-1-新建项目" class="headerlink" title="5.1 新建项目"></a>5.1 新建项目</h2><h3 id="5-1-1-Gitlab"><a href="#5-1-1-Gitlab" class="headerlink" title="5.1.1 Gitlab"></a>5.1.1 Gitlab</h3><p>在gitlab新建一个要开发部署的项目</p>
-<h3 id="5-1-2-Harbor"><a href="#5-1-2-Harbor" class="headerlink" title="5.1.2 Harbor"></a>5.1.2 Harbor</h3><p>在harbor镜像仓库新建一个私有项目，后续该应用的所有镜像都存储在该镜像仓库，便于后续上传和拉取应用镜像。</p>
+<p>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/yabingshi_tech/article/details/110822529">ORA-31634: 作业已存在</a><br>原因：job 队列满了。<br>解决：<br>    1. 先查询出所有未运行的 Jobs：<code>SELECT &#39;DROP TABLE &#39; || OWNER_NAME ||&#39;.&#39;|| JOB_NAME ||&#39;;&#39; FROM DBA_DATAPUMP_JOBS WHERE   STATE=&#39;NOT RUNNING&#39;;</code><br>    2. 删除查询到的定时任务计划表：<code>DROP TABLE CMIS.SYS_EXPORT_SCHEMA_xx;</code></p>
+<h1 id="5-应用部署"><a href="#5-应用部署" class="headerlink" title="5 应用部署"></a>5 应用部署</h1><h2 id="5-1-新建项目"><a href="#5-1-新建项目" class="headerlink" title="5.1 新建项目"></a>5.1 新建项目</h2><h3 id="5-1-1-Gitlab"><a href="#5-1-1-Gitlab" class="headerlink" title="5.1.1 Gitlab"></a>5.1.1 Gitlab</h3><p>在 gitlab 新建一个要开发部署的项目</p>
+<h3 id="5-1-2-Harbor"><a href="#5-1-2-Harbor" class="headerlink" title="5.1.2 Harbor"></a>5.1.2 Harbor</h3><p>在 harbor 镜像仓库新建一个私有项目，后续该应用的所有镜像都存储在该镜像仓库，便于后续上传和拉取应用镜像。</p>
 <h1 id="6-参考文献"><a href="#6-参考文献" class="headerlink" title="6 参考文献"></a>6 参考文献</h1><ol>
 <li><a target="_blank" rel="noopener" href="https://github.com/EbookFoundation/free-programming-books/blob/main/books/free-programming-books-zh.md">free-programming-books&#x2F;books&#x2F;free-programming-books-zh.md</a></li>
 <li><a target="_blank" rel="noopener" href="https://kubernetes.io/zh-cn/docs/concepts/scheduling-eviction/node-pressure-eviction/">节点压力驱逐 | Kubernetes</a></li>
@@ -832,7 +920,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2025年3月16日</div>
+          <div>2025年5月2日</div>
         </div>
       
       <div class="license-meta-item">
