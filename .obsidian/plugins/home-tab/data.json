@@ -22,20 +22,7 @@
   "showShortcuts": true,
   "markdownOnly": false,
   "unresolvedLinks": false,
-  "recentFilesStore": [
-    {
-      "filepath": "source/gallery/index.md",
-      "timestamp": 1746122178411
-    },
-    {
-      "filepath": "source/_posts/科研学习/会议讨论/周会.md",
-      "timestamp": 1746122166109
-    },
-    {
-      "filepath": "source/_obsidian/免责说明模板.md",
-      "timestamp": 1746122164313
-    }
-  ],
+  "recentFilesStore": [],
   "bookmarkedFileStore": [],
   "searchDelay": 0,
   "replaceNewTabs": true,
