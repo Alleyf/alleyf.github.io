@@ -24,24 +24,16 @@
   "unresolvedLinks": false,
   "recentFilesStore": [
     {
+      "filepath": "source/gallery/index.md",
+      "timestamp": 1746122178411
+    },
+    {
       "filepath": "source/_posts/科研学习/会议讨论/周会.md",
-      "timestamp": 1742099507066
+      "timestamp": 1746122166109
     },
     {
-      "filepath": "source/_posts/艺术生活/摄影/摄影基础指南.md",
-      "timestamp": 1742099506372
-    },
-    {
-      "filepath": "source/_obsidian/周报模板.md",
-      "timestamp": 1742099204956
-    },
-    {
-      "filepath": "source/_obsidian/学术汇报模板.md",
-      "timestamp": 1742099202311
-    },
-    {
-      "filepath": "source/_obsidian/学习笔记模板.md",
-      "timestamp": 1742099180416
+      "filepath": "source/_obsidian/免责说明模板.md",
+      "timestamp": 1746122164313
     }
   ],
   "bookmarkedFileStore": [],
