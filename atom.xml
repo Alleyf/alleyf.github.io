@@ -6,7 +6,7 @@
   <link href="https://alleyf.github.io/atom.xml" rel="self"/>
   
   <link href="https://alleyf.github.io/"/>
-  <updated>2025-05-01T18:48:02.823Z</updated>
+  <updated>2025-05-04T07:56:05.451Z</updated>
   <id>https://alleyf.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>调色基础</title>
+    <link href="https://alleyf.github.io/2025/05/be28b1649e20.html"/>
+    <id>https://alleyf.github.io/2025/05/be28b1649e20.html</id>
+    <published>2025-05-04T06:59:03.000Z</published>
+    <updated>2025-05-04T07:56:05.451Z</updated>
+    
+    
+    <summary type="html">关于照片调色的基础入门知识。</summary>
+    
+    
+    
+    <category term="艺术生活" scheme="https://alleyf.github.io/categories/%E8%89%BA%E6%9C%AF%E7%94%9F%E6%B4%BB/"/>
+    
+    
+    <category term="摄影" scheme="https://alleyf.github.io/tags/%E6%91%84%E5%BD%B1/"/>
+    
+    <category term="调色" scheme="https://alleyf.github.io/tags/%E8%B0%83%E8%89%B2/"/>
+    
+  </entry>
   
   <entry>
     <title>摄影审美</title>
@@ -403,31 +424,6 @@
     
     <category term="前端开发" scheme="https://alleyf.github.io/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
     
-    
-  </entry>
-  
-  <entry>
-    <title>BERT Pre-training of Deep Bidirectional Transformers for Language Understanding</title>
-    <link href="https://alleyf.github.io/2024/02/bc09878197d9.html"/>
-    <id>https://alleyf.github.io/2024/02/bc09878197d9.html</id>
-    <published>2024-02-28T02:23:11.000Z</published>
-    <updated>2025-01-14T16:50:04.536Z</updated>
-    
-    
-    <summary type="html">BERT（Bidirectional Encoder Representations from Transformers）是一种创新的语言表示模型，它通过从无标签文本中预训练深度双向表示，利用Transformers架构在每一层都同时考虑了词汇的左右上下文。这种方法使得BERT模型在经过简单的微调后，就能在多种NLP任务上达到最先进的水平，包括但不限于问答和语言推断任务。BERT的设计理念简单而有效，它在十一个自然语言处理任务上取得了新的最先进结果，显著提高了GLUE、MultiNLI、SQuAD v1.1和SQuAD v2.0等基准测试的得分。</summary>
-    
-    
-    
-    <category term="科研学习" scheme="https://alleyf.github.io/categories/%E7%A7%91%E7%A0%94%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-    <category term="NLP" scheme="https://alleyf.github.io/tags/NLP/"/>
-    
-    <category term="DL" scheme="https://alleyf.github.io/tags/DL/"/>
-    
-    <category term="科研" scheme="https://alleyf.github.io/tags/%E7%A7%91%E7%A0%94/"/>
-    
-    <category term="Transformer" scheme="https://alleyf.github.io/tags/Transformer/"/>
     
   </entry>
   
