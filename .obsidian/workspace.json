@@ -21,8 +21,24 @@
               "icon": "lucide-file",
               "title": "运维排忧解难"
             }
+          },
+          {
+            "id": "2a815600ae6cad74",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "conflict-files-obsidian-git.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "conflict-files-obsidian-git"
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -60,13 +76,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/运维开发/运维排忧解难.md",
+                "file": "conflict-files-obsidian-git.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "运维排忧解难 的大纲"
+              "title": "conflict-files-obsidian-git 的大纲"
             }
           }
         ]
@@ -145,15 +161,27 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "e693a9e829ff4fd7",
+  "active": "2a815600ae6cad74",
   "lastOpenFiles": [
+    "source/_posts/运维开发/运维排忧解难.md",
+    "conflict-files-obsidian-git.md",
+    "source/gallery/images/朋友挚交/FCS01683.jpeg",
+    "source/gallery/images/朋友挚交/FCS01678.jpeg",
+    "source/gallery/images/朋友挚交/FCS01676.jpeg",
+    "source/gallery/images/朋友挚交/FCS01603.jpeg",
+    "source/gallery/images/朋友挚交",
+    "source/gallery/images/徒步旅行/FCS01646.jpeg",
+    "source/gallery/images/徒步旅行/FCS00907.jpeg",
+    "source/gallery/images/徒步旅行/FCS00909.jpeg",
+    "source/gallery/images/徒步旅行",
+    "source/_posts/艺术生活/摄影/调色基础.md",
+    "source/_posts/艺术生活/摄影/摄影审美.md",
+    "db.json",
     "source/_posts/科研学习/会议讨论/周会.md",
     "source/_obsidian/周报模板.md",
-    "source/_posts/运维开发/运维排忧解难.md",
     "source/_posts/运维开发/运维问题记录.md",
     "source/_posts/运维开发/测试环境搭建方案.md",
     "source/_posts/运维开发/性能测试.md",
-    "conflict-files-obsidian-git.md",
     "source/_posts/科研学习/论文总结/AGENTPOISON Red-teaming LLM Agents via Poisoning Memory or Knowledge Bases.md",
     "source/_posts/课程学习/信息网络与安全.md",
     "source/_posts/运维开发/华为晟腾DeepSeek模型部署实践.md",
@@ -165,7 +193,6 @@
     "source/_posts/后端开发/SpringCloud-微服务基础.md",
     "未命名.md",
     "source/_posts/后端开发/SpringBoot.md",
-    "db.json",
     "BERT Pre-training of Deep Bidirectional Transformers for Language Understanding.html",
     "source/_posts/艺术生活/摄影/人像摄影技巧.md",
     "source/_posts/艺术生活/摄影/摄影基础指南.md",
@@ -175,26 +202,14 @@
     "source/_posts/运维开发/Kubernetes入门.md",
     "source/_posts/_posts.zip",
     "source/_posts/后端开发/开发踩坑日记.md",
-    "source/_posts/前端开发/Html5_Css_Js.md",
-    "source/_posts/科研学习/研究思考-毕业/研究思路.md",
     "source/_posts/科研学习/研究思考-毕业",
-    "source/_posts/运维开发/各种环境配置.md",
     "attachment/Pasted image 20240721233501.png",
     "attachment/OSS备份方案-2.png",
     "attachment/OSS备份方案-1.png",
-    "attachment/OSS备份方案.png",
     "public/tags/K8s/index.html",
     "public/tags/K8s",
-    "public/archives/2024/05/index.html",
-    "public/archives/2024/05",
     "canvas/未命名.canvas",
     "canvas/AI学习思路.canvas",
-    "attachment/Pasted Image 20240102110312.jpeg",
-    "attachment/Pasted Image 20231203133358_381.png",
-    "attachment/Pasted Image 20231203133343_369.png",
-    "attachment/Pasted Image 20231202101022_171.png",
-    "attachment/Pasted Image 20231202100951_001.png",
-    "attachment/Pasted Image 20231128145734_285.png",
     "未命名.canvas",
     "canvas/review plans.canvas",
     "source/_posts/英语学习/EnglishWords.canvas",
