@@ -13,13 +13,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/艺术生活/摄影/调色基础.md",
+                "file": "source/_posts/运维开发/运维排忧解难.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "调色基础"
+              "title": "运维排忧解难"
             }
           }
         ]
@@ -60,13 +60,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/艺术生活/摄影/调色基础.md",
+                "file": "source/_posts/运维开发/运维排忧解难.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "调色基础 的大纲"
+              "title": "运维排忧解难 的大纲"
             }
           }
         ]
@@ -135,13 +135,13 @@
       "note-publish:笔记预览": false
     }
   },
-  "active": "f6a36b9b63f3a735",
+  "active": "980d121ceaf669c1",
   "lastOpenFiles": [
+    "source/_posts/艺术生活/摄影/调色基础.md",
     "public/2025/05/be28b1649e20.html",
     "public/tags/调色/index.html",
     "public/tags/调色",
     "source/_posts/艺术生活/摄影/摄影审美.md",
-    "source/_posts/艺术生活/摄影/调色基础.md",
     "public/tags/摄影/index.html",
     "public/tags/摄影",
     "public/archives/2025/05/index.html",
@@ -163,7 +163,6 @@
     "source/gallery/images/朋友挚交/FCS01683.jpeg",
     "source/gallery/images/朋友挚交/FCS01676.jpeg",
     "source/gallery/images/朋友挚交/FCS01678.jpeg",
-    "source/gallery/images/朋友挚交",
     "source/gallery/images/徒步旅行/FCS01646.jpeg",
     "source/_posts/科研学习/会议讨论/周会.md",
     "source/_obsidian/免责说明模板.md",
