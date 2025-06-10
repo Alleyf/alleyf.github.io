@@ -27,7 +27,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://picsum.photos/800/250">
 <meta property="article:published_time" content="2024-06-27T16:37:11.000Z">
-<meta property="article:modified_time" content="2025-05-01T18:24:37.222Z">
+<meta property="article:modified_time" content="2025-06-10T14:39:00.075Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="DevOps">
 <meta property="article:tag" content="运维">
@@ -308,7 +308,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          14k 字
+          15k 字
         
       </span>
     
@@ -319,7 +319,7 @@
         
         
         
-          120 分钟
+          125 分钟
         
       </span>
     
@@ -370,7 +370,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：1 个月前
+                    本文最后更新于：几秒前
                   
                 
               </p>
@@ -456,10 +456,34 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo lvextend -l +100%FREE /dev/mapper/centos-root<br>sudo resize2fs /dev/mapper/centos-root  <span class="hljs-comment"># 或xfs_growfs</span><br></code></pre></td></tr></table></figure>
 
 <hr>
+<h4 id="1-1-1-2-新增磁盘"><a href="#1-1-1-2-新增磁盘" class="headerlink" title="1.1.1.2 新增磁盘"></a>1.1.1.2 新增磁盘</h4><h5 id="1-1-1-2-1-VSphere给虚拟机加新硬盘"><a href="#1-1-1-2-1-VSphere给虚拟机加新硬盘" class="headerlink" title="1.1.1.2.1 VSphere给虚拟机加新硬盘"></a>1.1.1.2.1 VSphere给虚拟机加新硬盘</h5><p><img src="http://img.fcs.cloudns.ch/pics/20250606171759126.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>添加完成硬盘后，重启虚拟机以识别到新硬盘。</p>
+<h5 id="1-1-1-2-2-新硬盘创建物理卷（PV）"><a href="#1-1-1-2-2-新硬盘创建物理卷（PV）" class="headerlink" title="1.1.1.2.2 新硬盘创建物理卷（PV）"></a>1.1.1.2.2 新硬盘创建物理卷（PV）</h5><p>首先，你需要将 sdb 磁盘转化为物理卷。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pvcreate /dev/sdb<br></code></pre></td></tr></table></figure>
+
+<h5 id="1-1-1-2-3-扩展卷组（VG）"><a href="#1-1-1-2-3-扩展卷组（VG）" class="headerlink" title="1.1.1.2.3 扩展卷组（VG）"></a>1.1.1.2.3 扩展卷组（VG）</h5><blockquote>
+<p>将这个新的物理卷加入到现有的卷组中</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">vgextend centos /dev/sdb<br></code></pre></td></tr></table></figure>
+
+<h5 id="1-1-1-2-4-扩展逻辑卷（LV）"><a href="#1-1-1-2-4-扩展逻辑卷（LV）" class="headerlink" title="1.1.1.2.4 扩展逻辑卷（LV）"></a>1.1.1.2.4 扩展逻辑卷（LV）</h5><blockquote>
+<p>现在可以扩展 &#x2F; 根目录所在的逻辑卷了，以增加100GB为例（根据实际情况调整大小）</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">lvextend -L +100G /dev/centos/root<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>如果你想使用 sdb 上的所有空间</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">lvextend -l +100%FREE /dev/centos/root<br></code></pre></td></tr></table></figure>
+
+<h5 id="1-1-1-2-5-扩展文件系统"><a href="#1-1-1-2-5-扩展文件系统" class="headerlink" title="1.1.1.2.5 扩展文件系统"></a>1.1.1.2.5 扩展文件系统</h5><p>最后一步是扩展文件系统以使用新增的空间。这个步骤依赖于你 &#x2F; 根目录使用的文件系统类型。</p>
+<h6 id="如果是-ext4文件系统"><a href="#如果是-ext4文件系统" class="headerlink" title="如果是 ext4文件系统"></a>如果是 ext4文件系统</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">resize2fs /dev/rl/root<br></code></pre></td></tr></table></figure>
+
+<h6 id="如果是-XFS文件系统"><a href="#如果是-XFS文件系统" class="headerlink" title="如果是 XFS文件系统"></a>如果是 XFS文件系统</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">xfs_growfs /<br></code></pre></td></tr></table></figure>
+
 <h3 id="1-1-2-Ssh-连接"><a href="#1-1-2-Ssh-连接" class="headerlink" title="1.1.2 Ssh 连接"></a>1.1.2 Ssh 连接</h3><p>-p 指定端口，默认不带则为 22 端口</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">ssh -p &lt;port&gt; &lt;username&gt;@&lt;ip/hostname&gt;<br></code></pre></td></tr></table></figure>
 
-<h3 id="1-1-3-Glusterfs-文件挂载"><a href="#1-1-3-Glusterfs-文件挂载" class="headerlink" title="1.1.3 Glusterfs 文件挂载"></a>1.1.3 Glusterfs 文件挂载</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 创建挂载点目录（需指定路径）</span><br>sudo <span class="hljs-built_in">mkdir</span> -p /mnt/glusterfs<br><br><span class="hljs-comment"># 挂载 GlusterFS 卷（使用 FUSE 客户端）</span><br>sudo mount -t glusterfs &lt;GlusterFS节点IP或主机名&gt;:/&lt;卷名&gt; /mnt/glusterfs<br></code></pre></td></tr></table></figure>
+<h3 id="1-1-3-Glusterfs-文件挂载"><a href="#1-1-3-Glusterfs-文件挂载" class="headerlink" title="1.1.3 Glusterfs 文件挂载"></a>1.1.3 Glusterfs 文件挂载</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 创建挂载点目录（需指定路径）</span><br>sudo <span class="hljs-built_in">mkdir</span> -p /mnt/glusterfs<br><br><span class="hljs-comment"># 挂载 GlusterFS 卷（使用 FUSE 客户端）</span><br>mount -t glusterfs 192.168.88.170:vol_69994102f7e8a927ebeb3acd3784590c  /mnt/hsas_log<br>sudo mount -t glusterfs &lt;GlusterFS节点IP或主机名&gt;:/&lt;卷名&gt; /mnt/glusterfs<br></code></pre></td></tr></table></figure>
 
 <blockquote>
 <p>卷名通过 rancher 里找到对应的 volume 查看。</p>
@@ -629,7 +653,7 @@
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">kubectl delete pod hsas-1721236200-5q59b --grace-period=0 --force -n hsas<br></code></pre></td></tr></table></figure>
 
 <h4 id="1-2-1-3-Pod"><a href="#1-2-1-3-Pod" class="headerlink" title="1.2.1.3 Pod"></a>1.2.1.3 Pod</h4><p>启动定时任务</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">kubectl-prod -n mysql create job --from=cronjob/cweb-mysql-backup cweb-k8s-mysql-master<br></code></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sh">kubectl-prod -n mysql create job --from=cronjob/cweb-mysql-backup cweb-k8s-mysql-master<br>第一个cweb：名称空间<br>第二个cweb：定时任务名<br>第三个cweb：启动的pod名<br></code></pre></td></tr></table></figure>
 
 <h4 id="1-2-1-4-复制文件"><a href="#1-2-1-4-复制文件" class="headerlink" title="1.2.1.4 复制文件"></a>1.2.1.4 复制文件</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">kubectl <span class="hljs-built_in">cp</span> -n 命名空间 -c 容器名 pod名:文件绝对路径 文件目标位置<br><br>kube-test <span class="hljs-built_in">cp</span> -n tool -c kkfileview kkfileview-644dcccf65-r4kqb:/opt/kkFileView-4.1.0/config/application.properties ./application.properties<br></code></pre></td></tr></table></figure>
 
@@ -920,7 +944,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2025年5月2日</div>
+          <div>2025年6月10日</div>
         </div>
       
       <div class="license-meta-item">
