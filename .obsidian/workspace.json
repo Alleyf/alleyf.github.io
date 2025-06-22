@@ -8,7 +8,7 @@
         "type": "tabs",
         "children": [
           {
-            "id": "5f9dad19b84fa7e7",
+            "id": "72f0420a6f49e2c3",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -73,7 +73,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 310.50618982315063
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "ef878eb90911b56c",
@@ -147,10 +148,10 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "5f9dad19b84fa7e7",
+  "active": "72f0420a6f49e2c3",
   "lastOpenFiles": [
-    "source/_posts/运维开发/20250622_云计算及基础平台学习清单.md",
     "source/_posts/后端开发/20250622_后端学习清单.md",
+    "source/_posts/运维开发/20250622_云计算及基础平台学习清单.md",
     "source/_posts/运维开发/20230608_雷思敏_云计算及基础平台学习清单.md",
     "source/_posts/前端开发/20230608_雷思敏_云计算及基础平台学习清单.md",
     "source/_posts/后端开发/后端学习.md",

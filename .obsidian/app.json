@@ -19,7 +19,7 @@
     "pageSize": "A4",
     "landscape": false,
     "margin": "0",
-    "downscalePercent": 100
+    "downscalePercent": 79
   },
   "spellcheck": false,
   "attachmentFolderPath": "attachment",
