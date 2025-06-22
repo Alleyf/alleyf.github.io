@@ -24,20 +24,16 @@
   "unresolvedLinks": false,
   "recentFilesStore": [
     {
+      "filepath": "source/_posts/运维开发/20250622_云计算及基础平台学习清单.md",
+      "timestamp": 1750575466162
+    },
+    {
       "filepath": "source/_posts/后端开发/20250622_后端学习清单.md",
       "timestamp": 1750575085509
     },
     {
       "filepath": "source/_posts/后端开发/后端学习.md",
       "timestamp": 1750574994286
-    },
-    {
-      "filepath": "source/_posts/后端开发/后端开发手册.md",
-      "timestamp": 1750574988906
-    },
-    {
-      "filepath": "source/_posts/运维开发/运维排忧解难.md",
-      "timestamp": 1750340033711
     }
   ],
   "bookmarkedFileStore": [],
