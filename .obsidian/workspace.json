@@ -1,25 +1,25 @@
 {
   "main": {
-    "id": "b1eebb169a362eba",
+    "id": "4e1d48d78a3603d3",
     "type": "split",
     "children": [
       {
-        "id": "63b61e5fe5b57d11",
+        "id": "8ed760dee295b97c",
         "type": "tabs",
         "children": [
           {
-            "id": "72f0420a6f49e2c3",
+            "id": "c777f882adc00117",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/后端开发/20250622_后端学习清单.md",
+                "file": "source/_posts/科研学习/会议讨论/周会.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "20250622_后端学习清单"
+              "title": "周会"
             }
           }
         ]
@@ -28,15 +28,36 @@
     "direction": "vertical"
   },
   "left": {
-    "id": "5383d5b0300a119a",
+    "id": "bb05ecf40c3b0ffb",
     "type": "split",
     "children": [
       {
-        "id": "f62931217ad3a3b9",
+        "id": "9333a8464a62ac28",
         "type": "tabs",
         "children": [
           {
-            "id": "35a8b979ca76b32d",
+            "id": "8ad6e23308e50e3b",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "source/_posts/科研学习/会议讨论/周会.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "周会 的大纲"
+            }
+          }
+        ]
+      },
+      {
+        "id": "de2c732dd51bbb04",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "3d08a715f28b0d85",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -49,43 +70,21 @@
             }
           }
         ]
-      },
-      {
-        "id": "c736c57ccfb1438e",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "d4d96d123a51c296",
-            "type": "leaf",
-            "state": {
-              "type": "outline",
-              "state": {
-                "file": "source/_posts/后端开发/20250622_后端学习清单.md",
-                "followCursor": false,
-                "showSearch": false,
-                "searchQuery": ""
-              },
-              "icon": "lucide-list",
-              "title": "20250622_后端学习清单 的大纲"
-            }
-          }
-        ]
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 300
   },
   "right": {
-    "id": "ef878eb90911b56c",
+    "id": "abd1e67f7c126d19",
     "type": "split",
     "children": [
       {
-        "id": "612f0098096832bc",
+        "id": "266e3ea4ea6cbc17",
         "type": "tabs",
-        "dimension": 51.70008718395816,
         "children": [
           {
-            "id": "bdaaa10e2f08b79f",
+            "id": "af133cd0c05b2dc6",
             "type": "leaf",
             "state": {
               "type": "calendar",
@@ -93,26 +92,15 @@
               "icon": "calendar-with-checkmark",
               "title": "Calendar"
             }
-          },
-          {
-            "id": "9f2db79360f3e3dd",
-            "type": "leaf",
-            "state": {
-              "type": "advanced-tables-toolbar",
-              "state": {},
-              "icon": "spreadsheet",
-              "title": "Advanced Tables"
-            }
           }
         ]
       },
       {
-        "id": "c712742b5e0ae1de",
+        "id": "53ab3e4d4617cd29",
         "type": "tabs",
-        "dimension": 48.29991281604184,
         "children": [
           {
-            "id": "7debd791db616930",
+            "id": "415d00a19d163394",
             "type": "leaf",
             "state": {
               "type": "git-view",
@@ -125,84 +113,79 @@
       }
     ],
     "direction": "horizontal",
-    "width": 339.5
+    "width": 300
   },
   "left-ribbon": {
     "hiddenItems": {
-      "obsidian42-brat:BRAT": false,
-      "note-publish:笔记预览": false,
-      "obsidian42-text-transporter:Text Transporter": false,
-      "obsidian-file-cleaner:清理文件": false,
-      "command-palette:打开命令面板": false,
-      "templates:插入模板": false,
-      "daily-notes:打开/创建今天的日记": false,
-      "workspaces:管理工作区布局": false,
       "markdown-importer:打开 Markdown 格式转换器": false,
+      "workspaces:管理工作区布局": false,
       "graph:查看关系图谱": false,
       "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "obsidian42-text-transporter:Text Transporter": false,
       "omnisearch:Omnisearch": false,
       "table-editor-obsidian:Advanced Tables Toolbar": false,
       "cmdr:Calendar: Open view": false,
       "cmdr:Obsidian Git: Open source control view": false,
-      "obsidian-git:Open Git source control": false
+      "obsidian-file-cleaner:清理文件": false,
+      "obsidian-git:Open Git source control": false,
+      "obsidian42-brat:BRAT": false,
+      "note-publish:笔记预览": false
     }
   },
-  "active": "72f0420a6f49e2c3",
+  "active": "af133cd0c05b2dc6",
   "lastOpenFiles": [
-    "source/_posts/后端开发/20250622_后端学习清单.md",
-    "source/_posts/运维开发/20250622_云计算及基础平台学习清单.md",
-    "source/_posts/运维开发/20230608_雷思敏_云计算及基础平台学习清单.md",
-    "source/_posts/前端开发/20230608_雷思敏_云计算及基础平台学习清单.md",
-    "source/_posts/后端开发/后端学习.md",
-    "source/_posts/后端开发/20230609_彭俊聪_后端学习清单.md",
-    "source/_posts/后端开发/后端开发手册.md",
-    "conflict-files-obsidian-git.md",
-    "source/_posts/运维开发/运维排忧解难.md",
-    "source/_posts/运维开发/运维问题记录.md",
     "source/_posts/科研学习/会议讨论/周会.md",
-    "source/gallery/images/朋友挚交/FCS01683.jpeg",
-    "source/gallery/images/朋友挚交/FCS01678.jpeg",
-    "source/gallery/images/朋友挚交/FCS01676.jpeg",
-    "source/gallery/images/朋友挚交/FCS01603.jpeg",
-    "source/gallery/images/朋友挚交",
-    "source/gallery/images/徒步旅行/FCS01646.jpeg",
-    "source/gallery/images/徒步旅行/FCS00907.jpeg",
-    "source/gallery/images/徒步旅行/FCS00909.jpeg",
-    "source/gallery/images/徒步旅行",
-    "source/_posts/艺术生活/摄影/调色基础.md",
+    "themes/fluid/source/css/_pages/_base/_widget/qrcode.styl",
+    "themes/fluid/source/css/_pages/_base/_widget/toc.styl",
+    "themes/fluid/source/css/_pages/_base/_widget/search.styl",
+    "themes/fluid/source/css/_pages/_base/_widget/scroll-btn.styl",
+    "themes/fluid/source/css/_pages/_base/_widget/pagination.styl",
+    "themes/fluid/source/css/_pages/_base/_widget/noscript.styl",
+    "themes/fluid/source/css/_pages/_base/_widget/ngrogress.styl",
+    "themes/fluid/source/css/_pages/_base/_widget/header.styl",
+    "themes/fluid/source/css/_pages/_base/_widget/modal.styl",
+    "themes/fluid/source/css/_pages/_base/_widget/footnote.styl",
+    "themes/landscape/README.md",
+    "themes/fluid/README_en.md",
+    "themes/fluid/README.md",
+    "source/_posts/科研学习/机器学习/CV/目标检测.md",
+    "source/_posts/科研学习/机器学习/CV/图像分类.md",
+    "source/_posts/科研学习/机器学习/CV/计算机视觉概述.md",
+    "source/_posts/科研学习/机器学习/CV/卷积神经网络基础.md",
+    "source/_posts/科研学习/机器学习/Tools/PyTorch.md",
+    "source/_posts/科研学习/机器学习/Tools/NoteBook.md",
+    "source/_posts/科研学习/机器学习/Tools/Python_Notes.md",
     "source/_posts/艺术生活/摄影/摄影审美.md",
-    "db.json",
-    "source/_obsidian/周报模板.md",
-    "source/_posts/运维开发/测试环境搭建方案.md",
-    "source/_posts/运维开发/性能测试.md",
-    "source/_posts/科研学习/论文总结/AGENTPOISON Red-teaming LLM Agents via Poisoning Memory or Knowledge Bases.md",
-    "source/_posts/课程学习/信息网络与安全.md",
-    "source/_posts/运维开发/华为晟腾DeepSeek模型部署实践.md",
-    "source/_posts/运维开发/DeepSeek国产和Nvidia GPU部署方案.md",
-    "source/_posts/运维开发/实验1：多层神经⽹络的numpy实验.md",
-    "source/_posts/运维开发/未命名思维导图.md",
-    "source/_posts/科研学习/会议讨论/DeepSeek等人工智能技术在教学科研中的应用.md",
-    "source/_posts/后端开发/站内信、活动、公告和推送技术调研.md",
-    "source/_posts/后端开发/SpringCloud-微服务基础.md",
-    "未命名.md",
-    "BERT Pre-training of Deep Bidirectional Transformers for Language Understanding.html",
-    "source/_posts/艺术生活/摄影",
-    "source/_posts/艺术生活",
-    "source/_posts/_posts.zip",
-    "source/_posts/科研学习/研究思考-毕业",
-    "attachment/Pasted image 20240721233501.png",
-    "attachment/OSS备份方案-2.png",
-    "attachment/OSS备份方案-1.png",
-    "public/tags/K8s/index.html",
-    "public/tags/K8s",
-    "canvas/未命名.canvas",
-    "canvas/AI学习思路.canvas",
-    "未命名.canvas",
-    "canvas/review plans.canvas",
+    "source/_posts/科研学习/论文总结/Paper_Reading_Tables.md",
+    "source/_posts/艺术生活/摄影/调色基础.md",
+    "source/_posts/艺术生活/摄影/摄影基础指南.md",
+    "source/_posts/艺术生活/摄影/人像摄影技巧.md",
+    "source/_posts/科研学习/调研报告/司法领域大模型调研四.md",
+    "source/_posts/科研学习/调研报告/数据集汇总与评测.md",
+    "source/_posts/科研学习/调研报告/多源异构司法数据汇聚融合-解决方案调研.md",
+    "source/_posts/科研学习/调研报告/国家重点研究计划课题四-任务三-调研.md",
+    "source/_posts/科研学习/调研报告/司法领域大模型调研二.md",
+    "source/_posts/科研学习/调研报告/司法领域大模型调研三.md",
+    "source/_posts/科研学习/论文总结/Deep residual learning for image recognition.md",
+    "source/_posts/科研学习/论文总结/论文总结.md",
+    "source/_posts/科研学习/调研报告/司法领域大模型调研一.md",
+    "source/_posts/科研学习/论文总结/Papers Reading.md",
+    "source/gallery/images/桌面壁纸/sunset.png",
+    "source/gallery/images/桌面壁纸/fire.jpg",
+    "source/gallery/images/徒步旅行/FCS00907.jpeg",
+    "source/gallery/images/桌面壁纸/cloud.png",
+    "source/gallery/images/朋友挚交/FCS01678.jpeg",
+    "source/gallery/images/桌面壁纸/bg.jpg",
+    "source/gallery/images/朋友挚交/FCS01683.jpeg",
+    "source/gallery/images/朋友挚交/FCS01603.jpeg",
+    "source/gallery/images/朋友挚交/FCS01676.jpeg",
+    "source/gallery/images/徒步旅行/FCS01646.jpeg",
     "source/_posts/英语学习/EnglishWords.canvas",
     "source/_posts/英语学习/PaperWords.canvas",
-    "source/_posts/课程学习/review plans.canvas",
-    "未命名 1.canvas",
-    "source/_posts/未命名.canvas"
+    "canvas/review plans.canvas",
+    "canvas/AI学习思路.canvas"
   ]
 }
