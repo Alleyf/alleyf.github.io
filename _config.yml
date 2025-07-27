@@ -5,7 +5,7 @@
 # Site
 title: alleyf
 subtitle: ""
-description: "一个有趣的业余博主"
+description: "一个有趣的业余blogger"
 keywords:
 author: alleyf
 language: zh-CN # 指定语言，会影响主题显示的语言，按需修改 英文：en
@@ -102,7 +102,11 @@ pagination_dir: page
 ## include:/exclude: options only apply to the 'source/' folder
 include:
 exclude:
+  - "**/周会.md"
 ignore:
+  - .gitignore
+  - node_modules/**/*
+  - "**/周会.md"
 
 # Extensions
 ## Plugins: https://hexo.io/plugins/
