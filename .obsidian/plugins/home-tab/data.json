@@ -24,24 +24,12 @@
   "unresolvedLinks": false,
   "recentFilesStore": [
     {
-      "filepath": "source/_posts/科研学习/研究思考-毕业/未命名.md",
-      "timestamp": 1757148462074
-    },
-    {
-      "filepath": "source/_obsidian/学习笔记模板.md",
-      "timestamp": 1757148415140
-    },
-    {
-      "filepath": "source/_posts/科研学习/研究思考-毕业/研究思路.md",
-      "timestamp": 1757144134099
-    },
-    {
-      "filepath": "source/_posts/科研学习/会议讨论/国际会议.md",
-      "timestamp": 1757144121938
-    },
-    {
       "filepath": "source/_posts/科研学习/会议讨论/周会.md",
-      "timestamp": 1757144118243
+      "timestamp": 1757221375840
+    },
+    {
+      "filepath": "source/_posts/科研学习/研究思考-毕业/融合开放域（RAG）和垂直域（KAG）的知识图谱的推理增强研究.md",
+      "timestamp": 1757221343953
     }
   ],
   "bookmarkedFileStore": [],
