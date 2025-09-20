@@ -1,0 +1,943 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="http://qnpicmap.fcsluck.top/pics/202311162214229.png">
+  <link rel="icon" href="http://qnpicmap.fcsluck.top/pics/202311162214229.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="alleyf">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一、云计算及基础平台入门 操作系统：   描述：会操作常用的操作系统，管理维护实验室设备 linux：  《鸟哥的linux私房菜》linux经典基础教程 重点章节（两个圈重点学习，一个圈简单学习）：    实验室主要使用Centos7发行版，与课本一致   学习方式 在自己的电脑上安装一台Centos7虚拟机 进行文件编辑操作，写一个简单的shell脚本 在操作系统上部署一个nginx">
+<meta property="og:type" content="article">
+<meta property="og:title" content="alleyf">
+<meta property="og:url" content="https://alleyf.github.io/2025/09/d5495e3d8642.html">
+<meta property="og:site_name" content="alleyf">
+<meta property="og:description" content="一、云计算及基础平台入门 操作系统：   描述：会操作常用的操作系统，管理维护实验室设备 linux：  《鸟哥的linux私房菜》linux经典基础教程 重点章节（两个圈重点学习，一个圈简单学习）：    实验室主要使用Centos7发行版，与课本一致   学习方式 在自己的电脑上安装一台Centos7虚拟机 进行文件编辑操作，写一个简单的shell脚本 在操作系统上部署一个nginx">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/jpeg/34478746/1686278450441-e56d1fcd-f59c-4ced-be52-fb3a40c1b5e9.jpeg#averageHue=%23eaeaea&clientId=u3fe7ae9d-d7d1-4&from=paste&height=800&id=u6ed777a5&originHeight=800&originWidth=348&originalType=binary&ratio=1&rotation=0&showTitle=false&size=53247&status=done&style=none&taskId=u7a1dff9c-5eb2-47c6-8334-7b693d91196&title=&width=348">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/jpeg/34478746/1686278527390-edc08320-f9c9-4c87-b1bf-c21bd9fba09a.jpeg#averageHue=%23f7f4f4&clientId=u3fe7ae9d-d7d1-4&from=paste&height=738&id=u9e9a6ff9&originHeight=738&originWidth=752&originalType=binary&ratio=1&rotation=0&showTitle=false&size=79569&status=done&style=none&taskId=uef15023e-803c-4a2b-80ea-78e647f04a7&title=&width=752">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/jpeg/34478746/1686278546667-ac9d5aad-70bc-4436-a763-3a2318845854.jpeg#averageHue=%23e4e1dd&clientId=u3fe7ae9d-d7d1-4&from=paste&height=725&id=u0e277c88&originHeight=725&originWidth=578&originalType=binary&ratio=1&rotation=0&showTitle=false&size=71258&status=done&style=none&taskId=ue1111635-8444-4dd1-8c2c-a07010b5a50&title=&width=578">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/jpeg/34478746/1686278557618-03a413da-a5f4-4f2e-8209-6a0058827d79.jpeg#averageHue=%23e5e0db&clientId=u3fe7ae9d-d7d1-4&from=paste&height=661&id=ufce9e267&originHeight=661&originWidth=551&originalType=binary&ratio=1&rotation=0&showTitle=false&size=66716&status=done&style=none&taskId=uf1bd7489-c670-4c7a-9962-9934cbc900e&title=&width=551">
+<meta property="article:published_time" content="2025-09-20T13:05:10.405Z">
+<meta property="article:modified_time" content="2025-09-20T13:05:10.405Z">
+<meta property="article:author" content="alleyf">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2023/jpeg/34478746/1686278450441-e56d1fcd-f59c-4ced-be52-fb3a40c1b5e9.jpeg#averageHue=%23eaeaea&clientId=u3fe7ae9d-d7d1-4&from=paste&height=800&id=u6ed777a5&originHeight=800&originWidth=348&originalType=binary&ratio=1&rotation=0&showTitle=false&size=53247&status=done&style=none&taskId=u7a1dff9c-5eb2-47c6-8334-7b693d91196&title=&width=348">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>alleyf</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"alleyf.github.io","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":true,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"d57048846da607439cf11718741f2eb0","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?d57048846da607439cf11718741f2eb0";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<!-- hexo injector head_end start --><script> let HEXO_MMEDIA_DATA = { js: [], css: [], aplayerData: [], metingData: [], artPlayerData: [], dplayerData: []}; </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/atom.xml" title="alleyf" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Mr.Alleyf</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/gallery/">
+                <i class="iconfont icon-images"></i>
+                画廊
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/atom.xml">
+                <i class="iconfont icon-rss"></i>
+                RSS
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://github.com/Alleyf">
+                <i class="iconfont icon-github-fill"></i>
+                Github
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://api.likepoems.com/img/nature') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text=""></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        alleyf
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-09-20 21:05" pubdate>
+          2025年9月20日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          10 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none"></h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="一、云计算及基础平台入门"><a href="#一、云计算及基础平台入门" class="headerlink" title="一、云计算及基础平台入门"></a>一、云计算及基础平台入门</h1><ol>
+<li><p>操作系统： </p>
+<ul>
+<li>描述：会操作常用的操作系统，管理维护实验室设备</li>
+<li>linux： <ul>
+<li>《鸟哥的linux私房菜》linux经典基础教程<ul>
+<li>重点章节（两个圈重点学习，一个圈简单学习）：</li>
+<li><img src="https://cdn.nlark.com/yuque/0/2023/jpeg/34478746/1686278450441-e56d1fcd-f59c-4ced-be52-fb3a40c1b5e9.jpeg#averageHue=%23eaeaea&clientId=u3fe7ae9d-d7d1-4&from=paste&height=800&id=u6ed777a5&originHeight=800&originWidth=348&originalType=binary&ratio=1&rotation=0&showTitle=false&size=53247&status=done&style=none&taskId=u7a1dff9c-5eb2-47c6-8334-7b693d91196&title=&width=348" srcset="/img/loading.gif" lazyload alt="mmexport1686278404768.jpg"></li>
+</ul>
+</li>
+<li>实验室主要使用Centos7发行版，与课本一致</li>
+</ul>
+</li>
+<li>学习方式<ul>
+<li><strong>在自己的电脑上安装一台Centos7虚拟机</strong></li>
+<li><strong>进行文件编辑操作，写一个简单的shell脚本</strong></li>
+<li><strong>在操作系统上部署一个nginx</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>计算机网络：</p>
+<ul>
+<li>《计算机网络：自顶向下方法（原书第7版）》</li>
+<li>熟悉网络架构，对实验室的网络架构有较深认识。</li>
+<li>熟悉HTTP1&#x2F;HTTP2等常见协议的报文组成</li>
+</ul>
+</li>
+<li><p>虚拟化技术：</p>
+<ul>
+<li>描述：将一台计算机虚拟为多台逻辑计算机，运行不同的系统与服务。</li>
+<li>docker:<ul>
+<li>《Docker技术入门与实战》<ul>
+<li>重点章节：</li>
+<li><img src="https://cdn.nlark.com/yuque/0/2023/jpeg/34478746/1686278527390-edc08320-f9c9-4c87-b1bf-c21bd9fba09a.jpeg#averageHue=%23f7f4f4&clientId=u3fe7ae9d-d7d1-4&from=paste&height=738&id=u9e9a6ff9&originHeight=738&originWidth=752&originalType=binary&ratio=1&rotation=0&showTitle=false&size=79569&status=done&style=none&taskId=uef15023e-803c-4a2b-80ea-78e647f04a7&title=&width=752" srcset="/img/loading.gif" lazyload alt="mmexport1686278409240.jpg"></li>
+<li><img src="https://cdn.nlark.com/yuque/0/2023/jpeg/34478746/1686278546667-ac9d5aad-70bc-4436-a763-3a2318845854.jpeg#averageHue=%23e4e1dd&clientId=u3fe7ae9d-d7d1-4&from=paste&height=725&id=u0e277c88&originHeight=725&originWidth=578&originalType=binary&ratio=1&rotation=0&showTitle=false&size=71258&status=done&style=none&taskId=ue1111635-8444-4dd1-8c2c-a07010b5a50&title=&width=578" srcset="/img/loading.gif" lazyload alt="mmexport1686278413803.jpg"></li>
+<li><img src="https://cdn.nlark.com/yuque/0/2023/jpeg/34478746/1686278557618-03a413da-a5f4-4f2e-8209-6a0058827d79.jpeg#averageHue=%23e5e0db&clientId=u3fe7ae9d-d7d1-4&from=paste&height=661&id=ufce9e267&originHeight=661&originWidth=551&originalType=binary&ratio=1&rotation=0&showTitle=false&size=66716&status=done&style=none&taskId=uf1bd7489-c670-4c7a-9962-9934cbc900e&title=&width=551" srcset="/img/loading.gif" lazyload alt="mmexport1686278411561.jpg"></li>
+</ul>
+</li>
+<li>掌握容器的操作方式与命令、镜像的各种操作</li>
+</ul>
+</li>
+<li>学习方式：<ul>
+<li>在自己的虚拟机上安装Docker，并使用Docker运行常见的服务（nginx、tomcat等）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>数据库应用：</p>
+<ul>
+<li>《MySQL必知必会》</li>
+<li>学习方式：<ul>
+<li><strong>下载安装mysql数据库，进行数据库的各种操作</strong></li>
+</ul>
+</li>
+<li>学习目标： <ul>
+<li>数据库基本原理与使用方法</li>
+<li>掌握数据库sql操作语句及代码的使用</li>
+<li>掌握常用的数据库备份方式</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h1 id="二、运维进阶"><a href="#二、运维进阶" class="headerlink" title="二、运维进阶"></a>二、运维进阶</h1><ol>
+<li>Kubernetes(K8S)（重要）： <ul>
+<li>描述：大规模容器服务的调度与管理，需要linux、docker的基本知识。<ul>
+<li><strong>《Kubernetes权威指南》整本书都是重点</strong></li>
+</ul>
+</li>
+<li>学习目标： <ul>
+<li>掌握K8S网络架构基础，常用组件的使用</li>
+<li>掌握rancher可视化操作</li>
+<li>掌握云原生架构</li>
+</ul>
+</li>
+<li>学习方法：<ul>
+<li>准备几台虚拟机，搭建一个k8s集群，向集群中增加、减少节点。</li>
+<li><strong>在集群中部署一些服务（nginx、mysql等）</strong></li>
+</ul>
+</li>
+<li><strong>思考虚拟机上直接部署、使用docker部署、k8s集群中部署服务的异同，以及不同方式的优点。</strong></li>
+</ul>
+</li>
+</ol>
+<p>CI&#x2F;CD（持续集成、持续交付和持续部署）（了解）：</p>
+<ul>
+<li>描述：一种通过在应用开发阶段引入自动化来频繁向客户交付应用的方法。<ul>
+<li>《GitLab CI&#x2F;CD从入门到实战》</li>
+<li>学习gitlab流水线文件编写方式</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li>DevOps（了解）:<ul>
+<li>描述：打通开发运维的壁垒，实现开发运维一体化。<ul>
+<li>《DevOps权威指南》</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h1 id="三、其他资源分享"><a href="#三、其他资源分享" class="headerlink" title="三、其他资源分享"></a>三、其他资源分享</h1><ol>
+<li><p>网站</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1MT411x7GH/?spm_id_from=333.1007.top_right_bar_window_custom_collection.content.click&vd_source=9c896fa9c3f9023797e8efe7be0c113e">完整版Kubernetes（K8S）全套入门+微服务实战项目，带你一站式深入掌握K8S核心能力_哔哩哔哩_bilibili</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1484y1u7h1/?spm_id_from=333.1007.top_right_bar_window_custom_collection.content.click">开源工具rke方式部署高可用K8s集群丨rancher高可用丨生产级可用K8s集群_哔哩哔哩_bilibili</a></li>
+</ul>
+</li>
+<li><p>书籍 </p>
+<ul>
+<li>《网络是怎样连接的》</li>
+<li>《深入剖析Kubernetes》</li>
+<li>《Kubernetes零基础快速入门》</li>
+<li>《图解HTTP》</li>
+<li>《Mysql必知必会》</li>
+</ul>
+</li>
+</ol>
+<h1 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h1><p>运维的工作内容很杂，在实际的工作的可能会面临各种各样的问题，在学习的过程中要记住与实际的工作环境相结合。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%BF%90%E7%BB%B4%E5%BC%80%E5%8F%91/" class="category-chain-item">运维开发</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div></div>
+      <div>https://alleyf.github.io/2025/09/d5495e3d8642.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>alleyf</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年9月20日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/09/4dcc34f2b89d.html" title="">
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.7.2/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"636f2864e051a199b91c","clientSecret":"5185fd11115bbcd8d2f636bc80de6bed98ed14c1","repo":"Gitalk","owner":"Alleyf","admin":["Alleyf"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":false,"proxy":"https://shielded-brushlands-08810.herokuapp.com/https://github.com/login/oauth/access_token"},
+          {
+            id: '313460b14806c8e2ebfa8462b9010b14'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://github.com/Alleyf" target="_blank" rel="nofollow noopener"><span>Alleyf</span></a> <i class="iconfont icon-love"></i> <a href="https://fcsy.fit" target="_blank" rel="nofollow noopener"><span>Homepage</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      陕ICP备2022010038号
+    </a>
+  </span>
+  
+    
+      <span>
+        <a
+          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=2022010038"
+          rel="nofollow noopener"
+          class="beian-police"
+          target="_blank"
+        >
+          
+            <span style="visibility: hidden; width: 0">|</span>
+            <img src="http://qnpicmap.fcsluck.top/pics/202311161820757.png" srcset="/img/loading.gif" lazyload alt="police-icon"/>
+          
+          <span>陕公网安备2022010038号</span>
+        </a>
+      </span>
+    
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.1/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/assets/mmedia/mmedia-loader.js"></script><!-- hexo injector body_end end --></body>
+</html>
