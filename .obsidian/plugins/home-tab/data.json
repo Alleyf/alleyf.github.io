@@ -14,7 +14,7 @@
   "fontWeight": 600,
   "maxResults": 5,
   "showbookmarkedFiles": true,
-  "showRecentFiles": true,
+  "showRecentFiles": false,
   "maxRecentFiles": 5,
   "storeRecentFile": true,
   "showPath": true,
@@ -22,23 +22,12 @@
   "showShortcuts": true,
   "markdownOnly": false,
   "unresolvedLinks": false,
-  "recentFilesStore": [
-    {
-      "filepath": "source/_posts/科研学习/研究思考-毕业/研究思路.md",
-      "timestamp": 1758346363344
-    },
-    {
-      "filepath": "source/_posts/科研学习/研究思考-毕业/基于大语言模型的时序知识图谱推理研究.md",
-      "timestamp": 1758346343230
-    }
-  ],
+  "recentFilesStore": [],
   "bookmarkedFileStore": [],
   "searchDelay": 0,
   "replaceNewTabs": true,
-  "newTabOnStart": true,
-  "closePreviousSessionTabs": true,
-  "omnisearch": true,
-  "showOmnisearchExcerpt": true,
-  "showStarredFiles": false,
-  "starredFileStore": []
+  "newTabOnStart": false,
+  "closePreviousSessionTabs": false,
+  "omnisearch": false,
+  "showOmnisearchExcerpt": true
 }

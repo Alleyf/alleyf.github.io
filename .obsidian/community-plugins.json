@@ -23,11 +23,10 @@
   "obsidian-enhancing-export",
   "obsidian-file-cleaner",
   "floating-toc",
+  "obsidian-git",
   "home-tab",
   "obsidian42-brat",
   "note-publish",
-  "obsidian-git",
-  "marp-slides",
-  "obsidian-topic-linking",
-  "infio-copilot"
+  "obsidian-local-rest-api",
+  "marp-slides"
 ]
