@@ -1,0 +1,23 @@
+{
+  "id": "c8e0bf2a-e91a-47a5-aeda-4f3f0e96f707",
+  "name": "vault",
+  "content": [
+    {
+      "type": "folder",
+      "content": "/"
+    }
+  ],
+  "chatHistory": [
+    {
+      "id": "2408de7c-0053-4ee8-84f5-17544045dff6",
+      "title": "目前的研究方向太大太宽泛了，如何缩小聚焦到一个有价值意义且不太困难的研究点"
+    }
+  ],
+  "metadata": {
+    "isDefault": true,
+    "description": "all vault as workspace"
+  },
+  "createdAt": 1758117643678,
+  "updatedAt": 1758117886466,
+  "schemaVersion": 1
+}

@@ -1,0 +1,342 @@
+{
+  "version": 0.5,
+  "defaultProvider": "Infio",
+  "infioProvider": {
+    "name": "Infio",
+    "apiKey": "",
+    "baseUrl": "",
+    "useCustomUrl": false,
+    "models": []
+  },
+  "openrouterProvider": {
+    "name": "OpenRouter",
+    "apiKey": "",
+    "baseUrl": "",
+    "useCustomUrl": false,
+    "models": []
+  },
+  "siliconflowProvider": {
+    "name": "SiliconFlow",
+    "apiKey": "79c0925d-0bbf-4909-b21d-5a66a8f979e7",
+    "baseUrl": "https://api-inference.modelscope.cn/v1/",
+    "useCustomUrl": true,
+    "models": []
+  },
+  "alibabaQwenProvider": {
+    "name": "AlibabaQwen",
+    "apiKey": "",
+    "baseUrl": "",
+    "useCustomUrl": false,
+    "models": []
+  },
+  "anthropicProvider": {
+    "name": "Anthropic",
+    "apiKey": "",
+    "baseUrl": "",
+    "useCustomUrl": false,
+    "models": []
+  },
+  "deepseekProvider": {
+    "name": "DeepSeek",
+    "apiKey": "",
+    "baseUrl": "",
+    "useCustomUrl": false,
+    "models": []
+  },
+  "openaiProvider": {
+    "name": "OpenAI",
+    "apiKey": "",
+    "baseUrl": "",
+    "useCustomUrl": false,
+    "models": []
+  },
+  "googleProvider": {
+    "name": "Google",
+    "apiKey": "",
+    "baseUrl": "",
+    "useCustomUrl": false,
+    "models": []
+  },
+  "ollamaProvider": {
+    "name": "Ollama",
+    "apiKey": "ollama",
+    "baseUrl": "",
+    "useCustomUrl": true,
+    "models": []
+  },
+  "groqProvider": {
+    "name": "Groq",
+    "apiKey": "",
+    "baseUrl": "",
+    "useCustomUrl": false,
+    "models": []
+  },
+  "grokProvider": {
+    "name": "Grok",
+    "apiKey": "",
+    "baseUrl": "",
+    "useCustomUrl": false,
+    "models": []
+  },
+  "moonshotProvider": {
+    "name": "Moonshot",
+    "apiKey": "",
+    "baseUrl": "",
+    "useCustomUrl": false,
+    "models": []
+  },
+  "openaicompatibleProvider": {
+    "name": "OpenAICompatible",
+    "apiKey": "79c0925d-0bbf-4909-b21d-5a66a8f979e7",
+    "baseUrl": "https://api-inference.modelscope.cn/v1/",
+    "useCustomUrl": true,
+    "models": [
+      "Qwen/Qwen3-Next-80B-A3B-Thinking",
+      "Qwen/Qwen3-Next-80B-A3B-Instruct"
+    ]
+  },
+  "localproviderProvider": {
+    "name": "LocalProvider",
+    "apiKey": "",
+    "baseUrl": "",
+    "useCustomUrl": false,
+    "models": []
+  },
+  "mcpEnabled": false,
+  "collectedChatModels": [],
+  "collectedInsightModels": [],
+  "collectedApplyModels": [],
+  "collectedEmbeddingModels": [],
+  "activeProviderTab": "Google",
+  "chatModelProvider": "OpenAICompatible",
+  "chatModelId": "Qwen/Qwen3-Next-80B-A3B-Instruct",
+  "insightModelProvider": "OpenAICompatible",
+  "insightModelId": "Qwen/Qwen3-Next-80B-A3B-Thinking",
+  "applyModelProvider": "OpenAICompatible",
+  "applyModelId": "Qwen/Qwen3-Next-80B-A3B-Instruct",
+  "embeddingModelProvider": "LocalProvider",
+  "embeddingModelId": "TaylorAI/bge-micro-v2",
+  "fuzzyMatchThreshold": 0.85,
+  "experimentalDiffStrategy": false,
+  "multiSearchReplaceDiffStrategy": true,
+  "workspace": "",
+  "mode": "ask",
+  "defaultMention": "none",
+  "serperApiKey": "",
+  "serperSearchEngine": "google",
+  "jinaApiKey": "",
+  "filesSearchSettings": {
+    "method": "auto",
+    "regexBackend": "coreplugin",
+    "matchBackend": "coreplugin",
+    "ripgrepPath": ""
+  },
+  "activeModels": [],
+  "infioApiKey": "",
+  "openAIApiKey": "",
+  "anthropicApiKey": "",
+  "geminiApiKey": "",
+  "groqApiKey": "",
+  "deepseekApiKey": "",
+  "ollamaEmbeddingModel": {
+    "baseUrl": "",
+    "model": ""
+  },
+  "ollamaChatModel": {
+    "baseUrl": "",
+    "model": ""
+  },
+  "openAICompatibleChatModel": {
+    "baseUrl": "",
+    "apiKey": "",
+    "model": ""
+  },
+  "ollamaApplyModel": {
+    "baseUrl": "",
+    "model": ""
+  },
+  "openAICompatibleApplyModel": {
+    "baseUrl": "",
+    "apiKey": "",
+    "model": ""
+  },
+  "systemPrompt": "",
+  "ragOptions": {
+    "filesystem": "opfs",
+    "chunkSize": 500,
+    "batchSize": 32,
+    "thresholdTokens": 8192,
+    "minSimilarity": 0,
+    "limit": 10,
+    "excludePatterns": [],
+    "includePatterns": []
+  },
+  "autocompleteEnabled": true,
+  "advancedMode": false,
+  "apiProvider": "openai",
+  "azureOAIApiSettings": "",
+  "openAIApiSettings": "",
+  "ollamaApiSettings": "",
+  "triggers": [
+    {
+      "type": "string",
+      "value": "# "
+    },
+    {
+      "type": "string",
+      "value": ". "
+    },
+    {
+      "type": "string",
+      "value": ": "
+    },
+    {
+      "type": "string",
+      "value": ", "
+    },
+    {
+      "type": "string",
+      "value": "! "
+    },
+    {
+      "type": "string",
+      "value": "? "
+    },
+    {
+      "type": "string",
+      "value": "`"
+    },
+    {
+      "type": "string",
+      "value": "' "
+    },
+    {
+      "type": "string",
+      "value": "= "
+    },
+    {
+      "type": "string",
+      "value": "$ "
+    },
+    {
+      "type": "string",
+      "value": "> "
+    },
+    {
+      "type": "string",
+      "value": "\n"
+    },
+    {
+      "type": "regex",
+      "value": "[\\t ]*(\\-|\\*)[\\t ]+$"
+    },
+    {
+      "type": "regex",
+      "value": "[\\t ]*[0-9A-Za-z]+\\.[\\t ]+$"
+    },
+    {
+      "type": "regex",
+      "value": "\\$\\$\\n[\\t ]*$"
+    },
+    {
+      "type": "regex",
+      "value": "```[a-zA-Z0-9]*(\\n\\s*)?$"
+    },
+    {
+      "type": "regex",
+      "value": "\\s*(-|[0-9]+\\.) \\[.\\]\\s+$"
+    }
+  ],
+  "delay": 500,
+  "modelOptions": {
+    "temperature": 1,
+    "top_p": 0.1,
+    "frequency_penalty": 0.25,
+    "presence_penalty": 0,
+    "max_tokens": 4096
+  },
+  "systemMessage": "Your job is to predict the most logical text that should be written at the location of the <mask/>.\nYour answer can be either code, a single word, or multiple sentences.\nIf the <mask/> is in the middle of a partial sentence, your answer should only be the 1 or 2 words fixes the sentence and not the entire sentence.\nYou are not allowed to have any overlapping text directly surrounding the <mask/>.  \nYour answer must be in the same language as the text directly surrounding the <mask/>.\nYour response must have the following format:\nTHOUGHT: here, you reason about the answer; use the 80/20 principle to be brief.\nLANGUAGE: here, you write the language of your answer, e.g. English, Python, Dutch, etc.\nANSWER: here, you write the text that should be at the location of <mask/>\n",
+  "fewShotExamples": [
+    {
+      "context": "BlockQuotes",
+      "input": "# Matthew effect\nIn the book Outliers, Malcolm Gladwell popularized the term Matthew effect.\nThis effect is named after the following New Testament verse:\n> <mask/>\nAccording to Malcolm Gladwell, the Matthew effect means that more successful people are most likely given special attention and opportunities leading to further success.",
+      "answer": "THOUGHT: The answer is a biblical verse from Matthew's effect, related to accumulating advantage; Gladwell mentions it in Outliers.\nLANGUAGE: English\nANSWER: For unto everyone that hath shall be given, and he shall have abundance. But from him that hath not shall taken away even that which he hath.\n>  Matthew 25:29"
+    },
+    {
+      "context": "CodeBlock",
+      "input": "# debounce\nA debounce function makes sure that a function is only triggered once per user input. This is useful for event based triggers. You can implement in javascript like this:\n```javascript\nfunction debounce(func, timeout = 300){\n  <mask/>\n}\n```\n",
+      "answer": "THOUGHT: This should include debounce logic, clearTimeout, setTimeout, prevent rapid calls, and function wrapper.\nLANGUAGE: JavaScript\nANSWER:let timer;\n  return (...args) => {\n    clearTimeout(timer);\n    timer = setTimeout(() => { func.apply(this, args); }, timeout);\n  };"
+    },
+    {
+      "context": "CodeBlock",
+      "input": "```python\ndef fibonacci(<mask/>) -> int:\n\tif n == 0 or n == 1:\n\t\treturn n\n\telse:\n\t\treturn fibonacci(n-1) + fibonacci(n-2)\n```\n",
+      "answer": "THOUGHT: This function finds the nth Fibonacci number. The 'n' arg of type int is missing. Based on the location of <mask/>, the answer must be function arguments.\nLANGUAGE: Python \nANSWER: n: int"
+    },
+    {
+      "context": "Heading",
+      "input": "# The <mask/> function\nThe softmax function transforms a vector into a probability distribution such that the sum of the vector is equal to 1.",
+      "answer": "THOUGHT: The paragraph describes the softmax function and converts the vector to probability distributions; the title already contains \"The\" and \"function\". The answer must add the missing word to the title.\nLANGUAGE: English\nANSWER: Softmax"
+    },
+    {
+      "context": "NumberedList",
+      "input": "# Binary search\nBinary is a sorting O(log(n)) searching algorithm. It works as follows:\n1. Ensure you have a sorted array.\n2. Check the middle element in the list:\n3. Return the index if this is the item you are looking for.\n4. <mask/>\n5. Go to step 2 with the remaining left half if the item is larger than the target.\n6. If there are no more elements to check, the return indicates that the item is not in the list.\n",
+      "answer": "THOUGHT: The list contains steps of the binary search algorithm. It is missing the decision to split right if item < target.\nLANGUAGE: English\nANSWER: Go to step 2 with the remaining right half if the item is smaller than the target."
+    },
+    {
+      "context": "TaskList",
+      "input": "# Prepare for conference\nBefore going to a conference, there are a few things to do:\n- [ ] Finish presentation\n\t- [ ] Write outline\n\t- [ ] Create slides\n\t- [ ] Practice presentation\n- [ ] Book flights  \n- [ ] Reserve hotel  \n- [ ] Pack suitcase\n\t- [ ] <mask/>\n- [ ] Arrange transportation to airport\n",
+      "answer": "THOUGHT: The answer must be a subtask of 'Pack suitcase'; typical subtasks: 'Clothes,' 'Toiletries,' 'Travel documents'; ' - [ ] ' already there.\nLANGUAGE: English\nANSWER: Clothes"
+    },
+    {
+      "context": "TaskList",
+      "input": " # Write blog post about Obsidian\nFor my Obsidian blog post, I need to do the following:\n- [ ] Research about Obsidian.\n- [ ] Create an outline for the blog.\n- [ ] Gather relevant visual aids.  \n- [ ] <mask/>\n- [ ] Review and edit the first draft  \n",
+      "answer": "THOUGHT: The <mask/> is in the middle of a task sequence between gathering visuals before editing 1st draft. The 1st draft is missing and fits the sequence.\nLANGUAGE: English\nANSWER: Write the first draft"
+    },
+    {
+      "context": "Text",
+      "input": "# Locality-sensitive hashing (LSH)\nLocality-sensitive hashing (LSH) is an algorithm that hashes similar items into the same buckets with high probability.\n\n## Potential problems\n### Collision (AND)\nThis happens when distant points are hashed into the same bucket. <mask/>\n\n### Split (OR)\nNearby points are hashed into different buckets. This problem can be solved by using multiple hash tables instead of one. Points are candidates neighbors if they are a candidate in any of the hash tables. As a result the false negative rate reduces significantly, while the false positives rate only increase slightly.",
+      "answer": "THOUGHT: The answer must be the next sentence. It must explain the strategy to mitigate a collision problem, such as having multiple projections/hashes per table.\nLANGUAGE: English\nANSWER: This problem can be solved by having multiple projections/hashes per table, where points are candidates' neighbors if they occur in all query bins."
+    },
+    {
+      "context": "Text",
+      "input": "# Digitizing sound waves \nTypical sound waves are complex and consist of multiple waves, each with amplitude, frequency, and phase.\nWhen we digitize a sound, we sample the amplitude, the difference compared to the base level, at fixed intervals. This gives a sequence of digital values that can be used to approximate the original sound wave by recreating the pressure changes over time. The <mask/> is known as the sampling rate. The sampling rate must be chosen correctly, or we cannot represent specific frequencies or introduce unintended distortions.",
+      "answer": "THOUGHT: The text is about digitizing sound waves and the needed properties. The <mask/> is an incomplete sentence starting with 'The' and ending with 'is known as the sampling rate.', I should avoid overlap with this. The answer is a description for the property known as the 'sampling rate'.\nLANGUAGE: English\nANSWER: chosen interval"
+    },
+    {
+      "context": "UnorderedList",
+      "input": "# Relu activation function\nThe ReLU activation function is a relatively simple non-linear function:\n$$\nReLU(x) = max(0, x)\n$$\nAdvantages:\n- <mask/>\n\nDisadvantages:\n- Dead ReLU problem, whereby specific activation will only output zeros and thus will not have any gradients. This can be computationally wasteful since we still need matrix multiplication.\n- Range $[0, \\infty]$ so Exploding Gradients can still be a problem.\n",
+      "answer": "THOUGHT: Answer must be advantage of ReLU: simple, efficient, sparsity, addresses vanishing gradient to some extent, popular in practice. The \"- \" is already there.\nLANGUAGE: English\nANSWER: Computational cheap activations and gradients.\n- Vanishing gradient problem is rare, assuming correct weight initialization."
+    },
+    {
+      "context": "UnorderedList",
+      "input": "# SOLID\nSOLID is a set of design principles from Robert C. Martin. It consists of the following sub-principles:\n- S: Single Responsibility Principle: A class should have only one reason to change, meaning it should only have one job or responsibility.\n- <mask/>\n- I: Interface Segregation Principle: Clients should not be forced to depend on interfaces they do not use.\n- D: Dependency Inversion Principle: High-level modules should not depend on low-level modules, but both should depend on abstractions.\n",
+      "answer": "THOUGHT: This is a list of SOLID principles. The \"Open-Closed Principle\" and \"Liskov Substitution Principle\" are missing. I must add them in a consistent format.\nLANGUAGE: English\nANSWER: O: Open-Closed Principle: Software entities should be open for extension, but closed for modification.\n- L: Liskov Substitution Principle: Subtypes must be substitutable for their base types without altering the correctness of the program."
+    },
+    {
+      "context": "MathBlock",
+      "input": "# Logarithm definition\nA logarithm is the power to which a base must be raised to yield a given number. For example, $2^3 =8$; therefore, $3$ is the logarithm of $8$ to base $2$, or in other words $ <mask/>$",
+      "answer": "The text close to the <mask/> is about the definition of the log and logarithm of 8 to base 2. The answer is an inline formula for base 2 of 8 equals 3.\nLANGUAGE: LaTeX, English\nANSWER: 3 = \\log_2(8)"
+    },
+    {
+      "context": "MathBlock",
+      "input": "# Sample mean\nThe sample mean, or sometime called average, is defined as:\n\n$$\nsample\\_mean(x) = <mask/>\n$$\nThe average value has the property that 50% of the weighted* value will be above and below it. This weighted property can make it more sensitive to outliers than the median.\n",
+      "answer": "THOUGHT: The text is about sample mean; the math block needs LaTeX for the sum of observations divided by the number of observations.\nLANGUAGE: LaTeX, English \nANSWER: \\frac{1}{n} \\sum_i^n x_i"
+    },
+    {
+      "context": "Heading",
+      "input": "# <mask/>\nA neuron is considered dead if it does not activate for any of the training instance in the training dataset. Because it never activates it will never have a gradient due to the chain rule so it also cannot change anymore. The dead ReLU problem can have due to a wide variety of reasons, such as:\n1. Poorly initialized weights.\n2. Extremely high learning rates during training.\n",
+      "answer": "THOUGHT: The paragraph discusses the ReLU activation function, and dead neurons never activate. This problem is named the \"Dead ReLU problem\".\nLANGUAGE: English\nANSWER: The dead ReLU problem"
+    }
+  ],
+  "userMessageTemplate": "{{prefix}}<mask/>{{suffix}}",
+  "chainOfThoughRemovalRegex": "(.|\\n)*ANSWER:",
+  "dontIncludeDataviews": true,
+  "maxPrefixCharLimit": 4000,
+  "maxSuffixCharLimit": 4000,
+  "removeDuplicateMathBlockIndicator": true,
+  "removeDuplicateCodeBlockIndicator": true,
+  "ignoredFilePatterns": "**/secret/**\n",
+  "ignoredTags": "",
+  "cacheSuggestions": true,
+  "debugMode": false
+}
