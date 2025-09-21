@@ -37,7 +37,8 @@
               "title": "基于大语言模型的时序知识图谱推理研究"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -75,13 +76,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/科研学习/研究思考-毕业/研究思路.md",
+                "file": "source/_posts/科研学习/研究思考-毕业/基于大语言模型的时序知识图谱推理研究.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "研究思路 的大纲"
+              "title": "基于大语言模型的时序知识图谱推理研究 的大纲"
             }
           }
         ]
@@ -132,6 +133,7 @@
   },
   "left-ribbon": {
     "hiddenItems": {
+      "bases:创建新数据库": false,
       "markdown-importer:打开 Markdown 格式转换器": false,
       "workspaces:管理工作区布局": false,
       "command-palette:打开命令面板": false,
@@ -142,8 +144,6 @@
       "obsidian42-text-transporter:Text Transporter": false,
       "omnisearch:Omnisearch": false,
       "table-editor-obsidian:Advanced Tables Toolbar": false,
-      "cmdr:Calendar: Open view": false,
-      "cmdr:Obsidian Git: Open source control view": false,
       "obsidian-file-cleaner:清理文件": false,
       "obsidian-git:Open Git source control": false,
       "obsidian42-brat:BRAT": false,
@@ -151,7 +151,7 @@
       "marp-slides:Show Slide Preview": false
     }
   },
-  "active": "f6a36b9b63f3a735",
+  "active": "4eb8e5f7493e6f5f",
   "lastOpenFiles": [
     "public/2025/09/4dcc34f2b89d.html",
     "public/categories/运维开发/page/2/index.html",
