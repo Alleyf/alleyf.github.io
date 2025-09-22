@@ -117,6 +117,7 @@
   },
   "left-ribbon": {
     "hiddenItems": {
+      "infio-copilot:打开 Infio Copilot": false,
       "bases:创建新数据库": false,
       "markdown-importer:打开 Markdown 格式转换器": false,
       "workspaces:管理工作区布局": false,
@@ -135,11 +136,11 @@
       "marp-slides:Show Slide Preview": false
     }
   },
-  "active": "a34ec1ec178f1a5a",
+  "active": "f6a36b9b63f3a735",
   "lastOpenFiles": [
+    "conflict-files-obsidian-git.md",
     "source/_posts/科研学习/研究思考-毕业/基于大语言模型的时序知识图谱推理研究.md",
     "source/_posts/科研学习/研究思考-毕业/研究思路.md",
-    "conflict-files-obsidian-git.md",
     "public/2025/09/4dcc34f2b89d.html",
     "public/categories/运维开发/page/2/index.html",
     "public/categories/运维开发/page/2",
