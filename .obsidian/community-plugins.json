@@ -28,5 +28,7 @@
   "obsidian42-brat",
   "note-publish",
   "obsidian-local-rest-api",
-  "marp-slides"
+  "marp-slides",
+  "infio-copilot",
+  "templater-obsidian"
 ]

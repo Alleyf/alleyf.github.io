@@ -23,22 +23,36 @@
             }
           },
           {
-            "id": "2ef2c2bd24333185",
+            "id": "b7f66087b9f9aaaa",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "conflict-files-obsidian-git.md",
+                "file": "source/_obsidian/目录.md",
+                "mode": "source",
+                "source": true,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "目录"
+            }
+          },
+          {
+            "id": "d066817e27e5a461",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "attachment/AwesomeMarp_blue.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "conflict-files-obsidian-git"
+              "title": "AwesomeMarp_blue"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -76,13 +90,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "conflict-files-obsidian-git.md",
+                "file": "source/_posts/科研学习/研究思考-毕业/研究思路.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "conflict-files-obsidian-git 的大纲"
+              "title": "研究思路 的大纲"
             }
           }
         ]
@@ -149,26 +163,41 @@
       "obsidian-git:Open Git source control": false,
       "obsidian42-brat:BRAT": false,
       "note-publish:笔记预览": false,
-      "marp-slides:Show Slide Preview": false
+      "marp-slides:Show Slide Preview": false,
+      "templater-obsidian:Templater": false
     }
   },
   "active": "f6a36b9b63f3a735",
   "lastOpenFiles": [
+    "public/gallery/images/朋友挚交/FCS01678.jpeg",
+    "public/gallery/images/桌面壁纸/cloud.png",
+    "public/gallery/images/桌面壁纸/fire.jpg",
+    "public/gallery/images/徒步旅行/FCS01646.jpeg",
+    "public/gallery/images/朋友挚交/FCS01676.jpeg",
+    "public/gallery/images/朋友挚交/FCS01603.jpeg",
+    "public/gallery/images/朋友挚交/FCS01683.jpeg",
+    "public/gallery/images/徒步旅行/FCS00907.jpeg",
+    "public/gallery/images/徒步旅行/FCS00909.jpeg",
+    "public/gallery/images/桌面壁纸/bg.jpg",
+    "public/img/default.png",
+    "source/_obsidian/目录.md",
+    "source/_posts/科研学习/研究思考-毕业/研究思路.md",
+    "attachment/AwesomeMarp_blue.md",
+    "source/_posts/科研学习/研究思考-毕业/基于大语言模型的少样本时间知识图谱推理与可解释性增强研究.md",
+    "基于大语言模型的少样本时间知识图谱推理与可解释性增强研究.html",
+    "基于大语言模型的少样本时间知识图谱推理与可解释性增强研究.md",
+    "source/_posts/科研学习/研究思考-毕业/基于大语言模型的时序知识图谱推理研究.md",
+    "source/_posts/科研学习/研究思考-毕业/选题预选方案.md",
+    "conflict-files-obsidian-git.md",
     "public/archives/2025/page/2/index.html",
     "public/archives/2025/page/2",
     "public/archives/2025/page",
     "public/2025/09/124e5eddb410.html",
-    "source/_posts/科研学习/研究思考-毕业/研究思路.md",
-    "conflict-files-obsidian-git.md",
-    "source/_posts/科研学习/研究思考-毕业/选题预选方案.md",
-    "source/_posts/科研学习/研究思考-毕业/基于大语言模型的时序知识图谱推理研究.md",
     "public/2025/09/4dcc34f2b89d.html",
     "public/categories/运维开发/page/2/index.html",
     "public/categories/运维开发/page/2",
     "public/categories/运维开发/page",
     "public/tags/后端/index.html",
-    "public/tags/后端",
-    "public/archives/2025/09/index.html",
     "学术汇报模板.md",
     "基于大语言模型的时序知识图谱推理研究.md",
     "source/_posts/运维开发/20250622_云计算及基础平台学习清单.md",
@@ -181,25 +210,11 @@
     "source/_posts/运维开发/测试环境搭建方案.md",
     "source/_posts/科研学习/论文总结/AGENTPOISON Red-teaming LLM Agents via Poisoning Memory or Knowledge Bases.md",
     "source/gallery/index.md",
-    "public/gallery/images/朋友挚交/FCS01678.jpeg",
-    "public/gallery/images/徒步旅行/FCS01646.jpeg",
-    "public/gallery/images/朋友挚交/FCS01683.jpeg",
-    "public/gallery/images/朋友挚交/FCS01676.jpeg",
-    "public/gallery/images/朋友挚交/FCS01603.jpeg",
-    "source/gallery/images/朋友挚交/FCS01603.jpeg",
-    "source/gallery/images/朋友挚交/FCS01683.jpeg",
-    "source/gallery/images/朋友挚交/FCS01676.jpeg",
-    "source/gallery/images/朋友挚交/FCS01678.jpeg",
-    "source/gallery/images/徒步旅行/FCS01646.jpeg",
     "source/_posts/科研学习/会议讨论/周会.md",
     "source/_obsidian/免责说明模板.md",
     "source/_obsidian/周报模板.md",
     "source/_obsidian/学术汇报模板.md",
     "source/_obsidian/学习笔记模板.md",
-    "source/_posts/艺术生活/摄影/人像摄影技巧.md",
-    "source/_posts/课程学习/信息网络与安全.md",
-    "source/_posts/运维开发/DeepSeek国产和Nvidia GPU部署方案.md",
-    "source/_posts/运维开发/实验1：多层神经⽹络的numpy实验.md",
     "canvas/未命名.canvas",
     "canvas/AI学习思路.canvas",
     "未命名.canvas",

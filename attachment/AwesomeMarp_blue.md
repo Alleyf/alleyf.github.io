@@ -847,6 +847,3 @@ footer: 范财胜（武汉理工大学） # 设置页脚区域的内容，如果
 <!-- _footer: "" -->
 <!-- _paginate: "" -->
 
-<br>
-
-![#c w:350](https://mytuchuang-1303248785.cos.ap-beijing.myqcloud.com/picgo/202309240907419.png)
