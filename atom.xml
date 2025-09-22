@@ -6,7 +6,7 @@
   <link href="https://alleyf.github.io/atom.xml" rel="self"/>
   
   <link href="https://alleyf.github.io/"/>
-  <updated>2025-09-20T13:05:10.405Z</updated>
+  <updated>2025-09-22T13:27:34.247Z</updated>
   <id>https://alleyf.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="https://alleyf.github.io/2025/09/124e5eddb410.html"/>
+    <id>https://alleyf.github.io/2025/09/124e5eddb410.html</id>
+    <published>2025-09-22T13:27:34.247Z</published>
+    <updated>2025-09-22T13:27:34.247Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;TKG研究选题推荐与规划&quot;&gt;&lt;a href=&quot;#TKG研究选题推荐与规划&quot; class=&quot;headerlink&quot; title=&quot;TKG研究选题推荐与规划&quot;&gt;&lt;/a&gt;TKG研究选题推荐与规划&lt;/h2&gt;&lt;h3</summary>
+        
+      
+    
+    
+    
+    <category term="科研学习" scheme="https://alleyf.github.io/categories/%E7%A7%91%E7%A0%94%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+  </entry>
   
   <entry>
     <title></title>
@@ -250,7 +273,7 @@
     <link href="https://alleyf.github.io/2024/08/e73efe4b2ca2.html"/>
     <id>https://alleyf.github.io/2024/08/e73efe4b2ca2.html</id>
     <published>2024-08-10T05:59:49.000Z</published>
-    <updated>2025-09-21T16:05:28.624Z</updated>
+    <updated>2025-09-22T13:27:34.247Z</updated>
     
     
     <summary type="html">科研思路思考</summary>
@@ -402,25 +425,6 @@
     
     
     <category term="Paper" scheme="https://alleyf.github.io/tags/Paper/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>深度学习论文阅读总结</title>
-    <link href="https://alleyf.github.io/2024/03/bdd09778ce05.html"/>
-    <id>https://alleyf.github.io/2024/03/bdd09778ce05.html</id>
-    <published>2024-03-08T11:20:23.564Z</published>
-    <updated>2024-02-27T18:07:52.000Z</updated>
-    
-    
-    <summary type="html">some overview about NLP papers。</summary>
-    
-    
-    
-    <category term="科研学习" scheme="https://alleyf.github.io/categories/%E7%A7%91%E7%A0%94%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-    <category term="NLP" scheme="https://alleyf.github.io/tags/NLP/"/>
     
   </entry>
   
