@@ -1,0 +1,1058 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="http://qnpicmap.fcsluck.top/pics/202311162214229.png">
+  <link rel="icon" href="http://qnpicmap.fcsluck.top/pics/202311162214229.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="fcs">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="历史链分步探索 + LLM与图模型「插拔式融合」，解决高阶历史信息利用不足的复杂TKGF。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="​《历史链推理：让LLM像侦探一样破解时序知识图谱！高阶信息+分步推理&#x3D;预测开挂》">
+<meta property="og:url" content="https://alleyf.github.io/2025/09/4e4910ce215c.html">
+<meta property="og:site_name" content="alleyf">
+<meta property="og:description" content="历史链分步探索 + LLM与图模型「插拔式融合」，解决高阶历史信息利用不足的复杂TKGF。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://picsum.photos/800/250">
+<meta property="article:published_time" content="2025-09-23T12:10:25.000Z">
+<meta property="article:modified_time" content="2025-09-23T15:19:56.327Z">
+<meta property="article:author" content="alleyf">
+<meta property="article:tag" content="research">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://picsum.photos/800/250">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>​《历史链推理：让LLM像侦探一样破解时序知识图谱！高阶信息+分步推理=预测开挂》 - alleyf</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"alleyf.github.io","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":true,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"d57048846da607439cf11718741f2eb0","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?d57048846da607439cf11718741f2eb0";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<!-- hexo injector head_end start --><script> let HEXO_MMEDIA_DATA = { js: [], css: [], aplayerData: [], metingData: [], artPlayerData: [], dplayerData: []}; </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/atom.xml" title="alleyf" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Mr.Alleyf</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/gallery/">
+                <i class="iconfont icon-images"></i>
+                画廊
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/atom.xml">
+                <i class="iconfont icon-rss"></i>
+                RSS
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://github.com/Alleyf">
+                <i class="iconfont icon-github-fill"></i>
+                Github
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://api.likepoems.com/img/nature') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="​《历史链推理：让LLM像侦探一样破解时序知识图谱！高阶信息+分步推理=预测开挂》"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        fcs
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-09-23 20:10" pubdate>
+          2025年9月23日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          23 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">​《历史链推理：让LLM像侦探一样破解时序知识图谱！高阶信息+分步推理=预测开挂》</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：几秒前
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <h3 id="0-1-1-📋-​​论文元信息速览表​​"><a href="#0-1-1-📋-​​论文元信息速览表​​" class="headerlink" title="0.1.1 📋 ​​论文元信息速览表​​"></a>0.1.1 📋 ​<strong>​论文元信息速览表​</strong>​</h3><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>​<strong>​标题​</strong>​</td>
+<td>Chain-of-History Reasoning for Temporal Knowledge Graph Forecasting</td>
+</tr>
+<tr>
+<td>​<strong>​作者​</strong>​</td>
+<td>Yuwei Xia, Ding Wang, Qiang Liu, Liang Wang, Shu Wu, Xiaoyu Zhang</td>
+</tr>
+<tr>
+<td>​<strong>​机构​</strong>​</td>
+<td>中科院信息工程研究所、自动化所</td>
+</tr>
+<tr>
+<td>​<strong>​核心问题​</strong>​</td>
+<td>时序知识图谱（TKG）预测中，LLM无法有效利用高阶历史信息</td>
+</tr>
+<tr>
+<td>​<strong>​解决方案​</strong>​</td>
+<td>提出Chain-of-History（CoH）分步推理框架</td>
+</tr>
+<tr>
+<td>​<strong>​三大痛点​</strong>​</td>
+<td>1️⃣ 一阶历史信息不足  <br>2️⃣ 历史信息过载时LLM推理崩盘  <br>3️⃣ 纯LLM的结构推理能力弱</td>
+</tr>
+<tr>
+<td>​<strong>​杀手锏​</strong>​</td>
+<td>历史链分步探索 + LLM与图模型「插拔式融合」</td>
+</tr>
+<tr>
+<td>​<strong>​效果​</strong>​</td>
+<td>在ICEWS三大数据集上全面碾压基线，Hit@10最高提升7.36%</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="0-1-2-🕵️♂️-​​一、背景：TKG预测的「历史困局」​​"><a href="#0-1-2-🕵️♂️-​​一、背景：TKG预测的「历史困局」​​" class="headerlink" title="0.1.2 🕵️♂️ ​​一、背景：TKG预测的「历史困局」​​"></a>0.1.2 🕵️♂️ ​<strong>​一、背景：TKG预测的「历史困局」​</strong>​</h3><p>​<strong>​时序知识图谱（TKG）​</strong>​ 记录实体关系随时间的变化（如_德国2023年签署协议_）。预测未来事件时，现有方法面临两大派系斗争：</p>
+<ul>
+<li><p>​<strong>​图神经网络（GNN）派​</strong>​：擅长捕捉结构信息，但看不懂语义（像会算账但不懂合同的会计）。</p>
+</li>
+<li><p>​<strong>​LLM派​</strong>​：语义理解强，但存在三大致命伤（见图1👇）：</p>
+<ul>
+<li><p>​<strong>​信息饥饿​</strong>​：只用一阶历史（德国→丹麦），忽略高阶链条（德国→俄罗斯→乌克兰）。</p>
+</li>
+<li><p>​<strong>​信息过载​</strong>​：历史太长时LLM性能暴跌（见图2👇，历史长度超阈值后MRR断崖下跌）。</p>
+</li>
+<li><p>​<strong>​结构盲​</strong>​：LLM看不懂图谱拓扑关系（比如分不清“俄罗斯”和“俄罗斯武装”的区别）。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://hunyuan-plugin-private-1258344706.cos.ap-nanjing.myqcloud.com/pdf_youtu/img/ec34b42c644c011291d095d923cf209d-image.png?q-sign-algorithm=sha1&q-ak=AKID372nLgqocp7HZjfQzNcyGOMTN3Xp6FEA&q-sign-time=1758629091;2073989091&q-key-time=1758629091;2073989091&q-header-list=host&q-url-param-list=&q-signature=943fc5978f17f6cd5891898a3f462f4c8bd0ec65" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>💡 ​<strong>​学术裁缝灵感1​</strong>​：​<strong>​历史信息不是越多越好！​</strong>​ 图2证明LLM处理长历史时会「CPU过载」，这启示我们设计​<strong>​历史信息压缩算法​</strong>​可能比堆数据更有效。</p>
+</blockquote>
+<hr>
+<h3 id="0-1-3-🧩-​​二、CoH核心创新：历史链推理「三步走」​​"><a href="#0-1-3-🧩-​​二、CoH核心创新：历史链推理「三步走」​​" class="headerlink" title="0.1.3 🧩 ​​二、CoH核心创新：历史链推理「三步走」​​"></a>0.1.3 🧩 ​<strong>​二、CoH核心创新：历史链推理「三步走」​</strong>​</h3><p>​<strong>​CoH的核心理念​</strong>​：像侦探破案一样，​<strong>​分阶段梳理线索链​</strong>​，避免信息过载。具体流程见图3👇：</p>
+<p><img src="https://hunyuan-plugin-private-1258344706.cos.ap-nanjing.myqcloud.com/pdf_youtu/img/529186f1bcb78405520994bd0e0bc38a-image.png?q-sign-algorithm=sha1&q-ak=AKID372nLgqocp7HZjfQzNcyGOMTN3Xp6FEA&q-sign-time=1758629093;2073989093&q-key-time=1758629093;2073989093&q-header-list=host&q-url-param-list=&q-signature=86e5ab019dcf6eb5141c8e0785246ad75b40a35a" srcset="/img/loading.gif" lazyload></p>
+<h4 id="0-1-3-1-​​Step-1：一阶历史「海选」​​"><a href="#0-1-3-1-​​Step-1：一阶历史「海选」​​" class="headerlink" title="0.1.3.1 ​​Step 1：一阶历史「海选」​​"></a>0.1.3.1 ​<strong>​Step 1：一阶历史「海选」​</strong>​</h4><ul>
+<li><p>​<strong>​操作​</strong>​：喂给LLM 100条一阶历史（如_德国谴责俄罗斯_），让它挑出Top 30重要事件。</p>
+</li>
+<li><p>​<strong>​玄机​</strong>​：用Prompt控制输出格式（见表1），强制LLM只返回事件ID，避免废话。</p>
+</li>
+</ul>
+<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs gherkin">|<span class="hljs-string"> 步骤   </span>|<span class="hljs-string"> Prompt设计要点                          </span>|<br>|<span class="hljs-string">--------</span>|<span class="hljs-string">------------------------------------------</span>|<br>|<span class="hljs-string"> Step 1 </span>|<span class="hljs-string"> “列出影响预测的最重要历史事件ID”         </span>|<br>|<span class="hljs-string"> Step 2 </span>|<span class="hljs-string"> “基于历史链推断可能答案”                 </span>|<br></code></pre></td></tr></table></figure>
+
+<h4 id="0-1-3-2-​​Step-2：高阶历史链「深度挖掘」​​"><a href="#0-1-3-2-​​Step-2：高阶历史链「深度挖掘」​​" class="headerlink" title="0.1.3.2 ​​Step 2：高阶历史链「深度挖掘」​​"></a>0.1.3.2 ​<strong>​Step 2：高阶历史链「深度挖掘」​</strong>​</h4><ul>
+<li><p>​<strong>​操作​</strong>​：用Step 1的输出（如_德国谴责俄罗斯_）关联二阶历史（如_俄罗斯与乌克兰战争_），构建历史链<code>德国→俄罗斯→乌克兰</code>。</p>
+</li>
+<li><p>​<strong>​关键技巧​</strong>​：时间匿名化！把<code>2023-06-02</code>转成<code>第153天</code>，防止LLM用先验知识作弊。</p>
+</li>
+</ul>
+<h4 id="0-1-3-3-​​终极大招：LLM-图模型「插拔式融合」​​"><a href="#0-1-3-3-​​终极大招：LLM-图模型「插拔式融合」​​" class="headerlink" title="0.1.3.3 ​​终极大招：LLM+图模型「插拔式融合」​​"></a>0.1.3.3 ​<strong>​终极大招：LLM+图模型「插拔式融合」​</strong>​</h4><ul>
+<li><p>​<strong>​LLM输出处理​</strong>​：将答案序号转为指数衰减得分（公式1），序号越小得分越高：</p>
+<p>  <code>S_LLM = 1 / (1 + e^(α·序号))</code></p>
+</li>
+<li><p>​<strong>​融合公式​</strong>​：动态加权图模型得分与LLM得分：</p>
+<p>  <code>最终得分 = w·S_图模型 + (1-w)·S_LLM</code></p>
+</li>
+</ul>
+<blockquote>
+<p>💡 ​<strong>​学术裁缝灵感2​</strong>​：​<strong>​序号即概率！​</strong>​ LLM输出的排序序号包含隐含置信度（表3证明打乱顺序会暴跌性能），这种​<strong>​低成本置信度提取法​</strong>​可迁移至其他排序任务。</p>
+</blockquote>
+<hr>
+<h3 id="0-1-4-🚀-​​三、实验结果：全面碾压基线​​"><a href="#0-1-4-🚀-​​三、实验结果：全面碾压基线​​" class="headerlink" title="0.1.4 🚀 ​​三、实验结果：全面碾压基线​​"></a>0.1.4 🚀 ​<strong>​三、实验结果：全面碾压基线​</strong>​</h3><h4 id="0-1-4-1-​​表2：CoH暴打一切竞争对手​​"><a href="#0-1-4-1-​​表2：CoH暴打一切竞争对手​​" class="headerlink" title="0.1.4.1 ​​表2：CoH暴打一切竞争对手​​"></a>0.1.4.1 ​<strong>​表2：CoH暴打一切竞争对手​</strong>​</h4><table>
+<thead>
+<tr>
+<th>模型类型</th>
+<th>数据集</th>
+<th>MRR(%)</th>
+<th>Hit@1(%)</th>
+<th>​<strong>​相对提升​</strong>​</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>纯LLM (ICL)</td>
+<td>ICEWS14</td>
+<td>31.79</td>
+<td>22.38</td>
+<td>-</td>
+</tr>
+<tr>
+<td>​<strong>​纯LLM (CoH)​</strong>​</td>
+<td>ICEWS14</td>
+<td>34.51</td>
+<td>24.20</td>
+<td>↑8.56%</td>
+</tr>
+<tr>
+<td>RE-GCN</td>
+<td>ICEWS18</td>
+<td>31.08</td>
+<td>20.44</td>
+<td>-</td>
+</tr>
+<tr>
+<td>​<strong>​RE-GCN+CoH​</strong>​</td>
+<td>ICEWS18</td>
+<td>32.10</td>
+<td>21.75</td>
+<td>↑6.41%</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>✨ ​<strong>​关键结论​</strong>​：</p>
+<ol>
+<li><p>CoH让纯LLM预测性能​<strong>​最高提升11.3%​</strong>​（ICEWS18的MRR）</p>
+</li>
+<li><p>作为插件可使图模型​<strong>​Hit@1最高提升6.41%​</strong>​（RE-GCN在ICEWS18）</p>
+</li>
+</ol>
+</blockquote>
+<h4 id="0-1-4-2-​​表4：案例解读——CoH的「语义破案」能力​​"><a href="#0-1-4-2-​​表4：案例解读——CoH的「语义破案」能力​​" class="headerlink" title="0.1.4.2 ​​表4：案例解读——CoH的「语义破案」能力​​"></a>0.1.4.2 ​<strong>​表4：案例解读——CoH的「语义破案」能力​</strong>​</h4><table>
+<thead>
+<tr>
+<th>查询案例</th>
+<th>图模型答案</th>
+<th>​<strong>​CoH答案​</strong>​</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>缅甸军方将与谁谈判？ (正确答案：泰国)</td>
+<td>1.马来西亚 2.柬埔寨 ​<strong>​5.泰国​</strong>​</td>
+<td>​<strong>​1.泰国​</strong>​ 2.泰国公民 3.泰国活动家</td>
+</tr>
+<tr>
+<td>沙特军队攻击了谁？ (正确答案：也门武装)</td>
+<td>1.也门 ​<strong>​5.也门武装​</strong>​</td>
+<td>​<strong>​2.也门武装​</strong>​ 5.沙特黑帮</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>💡 ​<strong>​学术裁缝灵感3​</strong>​：​<strong>​匿名化实验暗藏玄机​</strong>​！表7显示匿名数据使性能暴跌，证明LLM的​<strong>​静态语义知识​</strong>​是重要推理因子——启示我们设计​<strong>​知识注入模块​</strong>​可增强模型普适性。</p>
+</blockquote>
+<hr>
+<h3 id="0-1-5-🧪-​​四、致命发现：历史信息的「黄金分割点」​​"><a href="#0-1-5-🧪-​​四、致命发现：历史信息的「黄金分割点」​​" class="headerlink" title="0.1.5 🧪 ​​四、致命发现：历史信息的「黄金分割点」​​"></a>0.1.5 🧪 ​<strong>​四、致命发现：历史信息的「黄金分割点」​</strong>​</h3><ul>
+<li><p>​<strong>​图2的隐藏规律​</strong>​：历史长度存在​<strong>​性能拐点​</strong>​！超过阈值后MRR断崖下跌：</p>
+<p>  <img src="https://hunyuan-plugin-private-1258344706.cos.ap-nanjing.myqcloud.com/pdf_youtu/img/cc2294e78794b6a3c14d7db9e61ca469-image.png?q-sign-algorithm=sha1&q-ak=AKID372nLgqocp7HZjfQzNcyGOMTN3Xp6FEA&q-sign-time=1758629107;2073989107&q-key-time=1758629107;2073989107&q-header-list=host&q-url-param-list=&q-signature=c352b1bf8a09b4991c7a4fb047c54f5b809871b4" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>​<strong>​启发性结论​</strong>​：喂给LLM的历史信息需要​<strong>​精炼提纯​</strong>​，而非无脑堆砌！</p>
+</li>
+</ul>
+<hr>
+<h3 id="0-1-6-💎-​​五、可薅的学术羊毛（创新点-迁移灵感）​​"><a href="#0-1-6-💎-​​五、可薅的学术羊毛（创新点-迁移灵感）​​" class="headerlink" title="0.1.6 💎 ​​五、可薅的学术羊毛（创新点+迁移灵感）​​"></a>0.1.6 💎 ​<strong>​五、可薅的学术羊毛（创新点+迁移灵感）​</strong>​</h3><ol>
+<li><p>​<strong>​分步推理框架​</strong>​</p>
+<ul>
+<li><p>​<strong>​创新点​</strong>​：用CoH将高阶历史分解为多步子任务，破解LLM信息过载难题。</p>
+</li>
+<li><p>​<strong>​可薅方向​</strong>​：迁移至​<strong>​多跳问答​</strong>​、​<strong>​事理图谱推理​</strong>​等长链条任务，设计「推理中间件」。</p>
+</li>
+</ul>
+</li>
+<li><p>​<strong>​动态融合机制​</strong>​</p>
+<ul>
+<li><p>​<strong>​创新点​</strong>​：公式<code>S = w·S_图 + (1-w)·S_LLM</code>实现结构与语义的互补。</p>
+</li>
+<li><p>​<strong>​可薅方向​</strong>​：用于​<strong>​多模态融合​</strong>​（如图文检索）、​<strong>​模型集成​</strong>​（如BERT+GNN）。</p>
+</li>
+</ul>
+</li>
+<li><p>​<strong>​低成本置信度提取​</strong>​</p>
+<ul>
+<li><p>​<strong>​创新点​</strong>​：利用LLM输出序号生成指数衰减得分，无需额外训练。</p>
+</li>
+<li><p>​<strong>​可薅方向​</strong>​：适配​<strong>​检索排序​</strong>​、​<strong>​主动学习​</strong>​中的不确定性估计。</p>
+</li>
+</ul>
+</li>
+<li><p>​<strong>​时间匿名化防作弊​</strong>​</p>
+<ul>
+<li><p>​<strong>​创新点​</strong>​：将具体日期转为抽象时间，阻断LLM先验知识干扰。</p>
+</li>
+<li><p>​<strong>​可薅方向​</strong>​：泛化至​<strong>​地理位置匿名​</strong>​、​<strong>​机构名称脱敏​</strong>​等场景。</p>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="0-1-7-🚨-​​六、警钟长鸣（局限性）​​"><a href="#0-1-7-🚨-​​六、警钟长鸣（局限性）​​" class="headerlink" title="0.1.7 🚨 ​​六、警钟长鸣（局限性）​​"></a>0.1.7 🚨 ​<strong>​六、警钟长鸣（局限性）​</strong>​</h3><ul>
+<li><p>​<strong>​推理速度​</strong>​：多步调用LLM导致时延高（作者建议用Mixtral-8x7B量化版缓解）</p>
+</li>
+<li><p>​<strong>​融合僵化​</strong>​：权重w需手动调整，未来可探索​<strong>​自适应融合网络​</strong>​（比如加个LSTM学权重？）</p>
+</li>
+</ul>
+<hr>
+<p>​<strong>​总结​</strong>​：CoH像给LLM装上了「历史显微镜」+「图模型外挂」，既解决了高阶信息利用难题，又弥补了纯LLM的结构缺陷。其分步推理、动态融合、置信度提取三把斧，堪称时序预测任务的「瑞士军刀」！研一新生可重点薅其框架设计灵感，举一反三攻破其他长链条推理任务💪</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%A7%91%E7%A0%94%E5%AD%A6%E4%B9%A0/" class="category-chain-item">科研学习</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/research/">#research</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>​《历史链推理：让LLM像侦探一样破解时序知识图谱！高阶信息+分步推理=预测开挂》</div>
+      <div>https://alleyf.github.io/2025/09/4e4910ce215c.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>fcs</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年9月23日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2025年9月23日</div>
+        </div>
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/09/15e68f6f44ef.html" title="GenTKG: 基于大语言模型的时间知识图谱生成式预测">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">GenTKG: 基于大语言模型的时间知识图谱生成式预测</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/09/124e5eddb410.html" title="">
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.7.2/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"636f2864e051a199b91c","clientSecret":"5185fd11115bbcd8d2f636bc80de6bed98ed14c1","repo":"Gitalk","owner":"Alleyf","admin":["Alleyf"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":false,"proxy":"https://shielded-brushlands-08810.herokuapp.com/https://github.com/login/oauth/access_token"},
+          {
+            id: '398c0f74bfb21167cc544e123cd3d238'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://github.com/Alleyf" target="_blank" rel="nofollow noopener"><span>Alleyf</span></a> <i class="iconfont icon-love"></i> <a href="https://fcsy.fit" target="_blank" rel="nofollow noopener"><span>Homepage</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      陕ICP备2022010038号
+    </a>
+  </span>
+  
+    
+      <span>
+        <a
+          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=2022010038"
+          rel="nofollow noopener"
+          class="beian-police"
+          target="_blank"
+        >
+          
+            <span style="visibility: hidden; width: 0">|</span>
+            <img src="http://qnpicmap.fcsluck.top/pics/202311161820757.png" srcset="/img/loading.gif" lazyload alt="police-icon"/>
+          
+          <span>陕公网安备2022010038号</span>
+        </a>
+      </span>
+    
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.1/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/assets/mmedia/mmedia-loader.js"></script><!-- hexo injector body_end end --></body>
+</html>

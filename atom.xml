@@ -6,7 +6,7 @@
   <link href="https://alleyf.github.io/atom.xml" rel="self"/>
   
   <link href="https://alleyf.github.io/"/>
-  <updated>2025-09-22T14:53:51.119Z</updated>
+  <updated>2025-09-23T15:19:56.326Z</updated>
   <id>https://alleyf.github.io/</id>
   
   <author>
@@ -15,6 +15,44 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>GenTKG: 基于大语言模型的时间知识图谱生成式预测</title>
+    <link href="https://alleyf.github.io/2025/09/15e68f6f44ef.html"/>
+    <id>https://alleyf.github.io/2025/09/15e68f6f44ef.html</id>
+    <published>2025-09-23T12:20:00.000Z</published>
+    <updated>2025-09-23T15:19:56.326Z</updated>
+    
+    
+    <summary type="html">时序规则检索（一阶检索，可借鉴COH高阶检索实现复杂推理）+少样本微调（lora），解决少样本TKGF。</summary>
+    
+    
+    
+    <category term="科研学习" scheme="https://alleyf.github.io/categories/%E7%A7%91%E7%A0%94%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="research" scheme="https://alleyf.github.io/tags/research/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>​《历史链推理：让LLM像侦探一样破解时序知识图谱！高阶信息+分步推理=预测开挂》</title>
+    <link href="https://alleyf.github.io/2025/09/4e4910ce215c.html"/>
+    <id>https://alleyf.github.io/2025/09/4e4910ce215c.html</id>
+    <published>2025-09-23T12:10:25.000Z</published>
+    <updated>2025-09-23T15:19:56.327Z</updated>
+    
+    
+    <summary type="html">历史链分步探索 + LLM与图模型「插拔式融合」，解决高阶历史信息利用不足的复杂TKGF。</summary>
+    
+    
+    
+    <category term="科研学习" scheme="https://alleyf.github.io/categories/%E7%A7%91%E7%A0%94%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="research" scheme="https://alleyf.github.io/tags/research/"/>
+    
+  </entry>
   
   <entry>
     <title></title>
@@ -36,6 +74,44 @@
     
     <category term="科研学习" scheme="https://alleyf.github.io/categories/%E7%A7%91%E7%A0%94%E5%AD%A6%E4%B9%A0/"/>
     
+    
+  </entry>
+  
+  <entry>
+    <title>《MetaTKG：让“时间知识图谱”秒变“元学习小机灵”》——一篇能让研一萌新看懂 EMNLP’22 最佳“穿越”外挂的脱口秀</title>
+    <link href="https://alleyf.github.io/2025/09/9ce7077bf863.html"/>
+    <id>https://alleyf.github.io/2025/09/9ce7077bf863.html</id>
+    <published>2025-09-21T12:20:00.000Z</published>
+    <updated>2025-09-23T15:19:56.328Z</updated>
+    
+    
+    <summary type="html">元学习分段学习掌握TKG演化模式+门控整合模块智能权重分配传递知识，解决少样本和长序列TKGF。</summary>
+    
+    
+    
+    <category term="科研学习" scheme="https://alleyf.github.io/categories/%E7%A7%91%E7%A0%94%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="research" scheme="https://alleyf.github.io/tags/research/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>zrLLM：当大模型化身时空侦探——零样本关系预测破案实录</title>
+    <link href="https://alleyf.github.io/2025/09/86df980fd7ff.html"/>
+    <id>https://alleyf.github.io/2025/09/86df980fd7ff.html</id>
+    <published>2025-09-21T12:10:00.000Z</published>
+    <updated>2025-09-23T15:19:56.327Z</updated>
+    
+    
+    <summary type="html">LLM生成关系描述（ERD）+GRU构建历史推理链（RHL），解决零样本TKGF。</summary>
+    
+    
+    
+    <category term="科研学习" scheme="https://alleyf.github.io/categories/%E7%A7%91%E7%A0%94%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="research" scheme="https://alleyf.github.io/tags/research/"/>
     
   </entry>
   
@@ -351,84 +427,6 @@
     <category term="微服务" scheme="https://alleyf.github.io/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
     
     <category term="架构" scheme="https://alleyf.github.io/tags/%E6%9E%B6%E6%9E%84/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Chain-of-Thought Reasoning Without Prompting</title>
-    <link href="https://alleyf.github.io/2024/04/c649f2c38f75.html"/>
-    <id>https://alleyf.github.io/2024/04/c649f2c38f75.html</id>
-    <published>2024-04-05T12:14:59.000Z</published>
-    <updated>2025-01-14T16:45:07.052Z</updated>
-    
-    
-    <summary type="html">无提示的思维链推理：模型内在CoT推理能力的激发</summary>
-    
-    
-    
-    <category term="科研学习" scheme="https://alleyf.github.io/categories/%E7%A7%91%E7%A0%94%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-    <category term="科研，CoT" scheme="https://alleyf.github.io/tags/%E7%A7%91%E7%A0%94%EF%BC%8CCoT/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>国家重点研究计划课题四-任务三-调研</title>
-    <link href="https://alleyf.github.io/2024/03/0bb1af708fab.html"/>
-    <id>https://alleyf.github.io/2024/03/0bb1af708fab.html</id>
-    <published>2024-03-28T09:16:36.000Z</published>
-    <updated>2025-01-14T16:50:04.457Z</updated>
-    
-    
-    <summary type="html">法院数据资产评估与管理</summary>
-    
-    
-    
-    <category term="科研学习" scheme="https://alleyf.github.io/categories/%E7%A7%91%E7%A0%94%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-    <category term="科研" scheme="https://alleyf.github.io/tags/%E7%A7%91%E7%A0%94/"/>
-    
-    <category term="司法" scheme="https://alleyf.github.io/tags/%E5%8F%B8%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>科研思路</title>
-    <link href="https://alleyf.github.io/2024/03/8e4f20768995.html"/>
-    <id>https://alleyf.github.io/2024/03/8e4f20768995.html</id>
-    <published>2024-03-14T12:51:41.000Z</published>
-    <updated>2025-01-14T16:50:04.530Z</updated>
-    
-    
-    <summary type="html">some keypoints about research</summary>
-    
-    
-    
-    <category term="科研学习" scheme="https://alleyf.github.io/categories/%E7%A7%91%E7%A0%94%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-    <category term="Paper" scheme="https://alleyf.github.io/tags/Paper/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>深度学习论文阅读总结</title>
-    <link href="https://alleyf.github.io/2024/03/bdd09778ce05.html"/>
-    <id>https://alleyf.github.io/2024/03/bdd09778ce05.html</id>
-    <published>2024-03-08T11:20:23.564Z</published>
-    <updated>2024-02-27T18:07:52.000Z</updated>
-    
-    
-    <summary type="html">some overview about NLP papers。</summary>
-    
-    
-    
-    <category term="科研学习" scheme="https://alleyf.github.io/categories/%E7%A7%91%E7%A0%94%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-    <category term="NLP" scheme="https://alleyf.github.io/tags/NLP/"/>
     
   </entry>
   
