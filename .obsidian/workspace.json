@@ -1,29 +1,44 @@
 {
   "main": {
-    "id": "b1eebb169a362eba",
+    "id": "4e1d48d78a3603d3",
     "type": "split",
     "children": [
       {
-        "id": "4db175b5cd3bf758",
+        "id": "715a75db803c1e81",
         "type": "tabs",
         "children": [
           {
-            "id": "a34ec1ec178f1a5a",
+            "id": "60d4264266a935fd",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/科研学习/研究思考-毕业/研究思路.md",
+                "file": "source/_posts/科研学习/研究思考-毕业/基于大语言模型的时序知识图谱推理研究.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "研究思路"
+              "title": "基于大语言模型的时序知识图谱推理研究"
             }
           },
           {
-            "id": "c425ac6814b37fe8",
+            "id": "0abfcbb31fc3dc55",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "source/_posts/科研学习/论文总结/未命名.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "未命名"
+            }
+          },
+          {
+            "id": "6f8011863cbea495",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -36,36 +51,6 @@
               "icon": "lucide-file",
               "title": "基于大语言模型的少样本时间知识图谱推理与可解释性增强研究"
             }
-          },
-          {
-            "id": "b7f66087b9f9aaaa",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "source/_obsidian/目录.md",
-                "mode": "source",
-                "source": true,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "目录"
-            }
-          },
-          {
-            "id": "d066817e27e5a461",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "attachment/AwesomeMarp_blue.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "AwesomeMarp_blue"
-            }
           }
         ],
         "currentTab": 1
@@ -74,15 +59,36 @@
     "direction": "vertical"
   },
   "left": {
-    "id": "5383d5b0300a119a",
+    "id": "bb05ecf40c3b0ffb",
     "type": "split",
     "children": [
       {
-        "id": "f62931217ad3a3b9",
+        "id": "9333a8464a62ac28",
         "type": "tabs",
         "children": [
           {
-            "id": "35a8b979ca76b32d",
+            "id": "8ad6e23308e50e3b",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "source/_posts/科研学习/论文总结/未命名.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "未命名 的大纲"
+            }
+          }
+        ]
+      },
+      {
+        "id": "de2c732dd51bbb04",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "3d08a715f28b0d85",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -95,42 +101,21 @@
             }
           }
         ]
-      },
-      {
-        "id": "c736c57ccfb1438e",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "d4d96d123a51c296",
-            "type": "leaf",
-            "state": {
-              "type": "outline",
-              "state": {
-                "file": "source/_posts/科研学习/研究思考-毕业/基于大语言模型的少样本时间知识图谱推理与可解释性增强研究.md",
-                "followCursor": false,
-                "showSearch": false,
-                "searchQuery": ""
-              },
-              "icon": "lucide-list",
-              "title": "基于大语言模型的少样本时间知识图谱推理与可解释性增强研究 的大纲"
-            }
-          }
-        ]
       }
     ],
     "direction": "horizontal",
-    "width": 278.5
+    "width": 300
   },
   "right": {
-    "id": "ef878eb90911b56c",
+    "id": "abd1e67f7c126d19",
     "type": "split",
     "children": [
       {
-        "id": "e6734f3fb7b120c9",
+        "id": "266e3ea4ea6cbc17",
         "type": "tabs",
         "children": [
           {
-            "id": "8c858159b0aedf6b",
+            "id": "af133cd0c05b2dc6",
             "type": "leaf",
             "state": {
               "type": "calendar",
@@ -142,11 +127,11 @@
         ]
       },
       {
-        "id": "cef9e073412dd9c8",
+        "id": "53ab3e4d4617cd29",
         "type": "tabs",
         "children": [
           {
-            "id": "f6a36b9b63f3a735",
+            "id": "415d00a19d163394",
             "type": "leaf",
             "state": {
               "type": "git-view",
@@ -159,19 +144,18 @@
       }
     ],
     "direction": "horizontal",
-    "width": 339.5
+    "width": 300
   },
   "left-ribbon": {
     "hiddenItems": {
-      "infio-copilot:打开 Infio Copilot": false,
       "bases:创建新数据库": false,
       "markdown-importer:打开 Markdown 格式转换器": false,
       "workspaces:管理工作区布局": false,
-      "command-palette:打开命令面板": false,
-      "templates:插入模板": false,
-      "daily-notes:打开/创建今天的日记": false,
       "graph:查看关系图谱": false,
       "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
       "obsidian42-text-transporter:Text Transporter": false,
       "omnisearch:Omnisearch": false,
       "table-editor-obsidian:Advanced Tables Toolbar": false,
@@ -180,64 +164,60 @@
       "obsidian42-brat:BRAT": false,
       "note-publish:笔记预览": false,
       "marp-slides:Show Slide Preview": false,
-      "templater-obsidian:Templater": false
+      "infio-copilot:打开 Infio Copilot": false
     }
   },
-  "active": "c425ac6814b37fe8",
+  "active": "0abfcbb31fc3dc55",
   "lastOpenFiles": [
-    "source/_obsidian/目录.md",
     "source/_posts/科研学习/研究思考-毕业/基于大语言模型的少样本时间知识图谱推理与可解释性增强研究.md",
-    "source/_posts/科研学习/研究思考-毕业/研究思路.md",
-    "public/gallery/images/朋友挚交/FCS01678.jpeg",
-    "public/gallery/images/桌面壁纸/cloud.png",
-    "public/gallery/images/桌面壁纸/fire.jpg",
-    "public/gallery/images/徒步旅行/FCS01646.jpeg",
-    "public/gallery/images/朋友挚交/FCS01676.jpeg",
-    "public/gallery/images/朋友挚交/FCS01603.jpeg",
-    "public/gallery/images/朋友挚交/FCS01683.jpeg",
-    "public/gallery/images/徒步旅行/FCS00907.jpeg",
-    "public/gallery/images/徒步旅行/FCS00909.jpeg",
-    "public/gallery/images/桌面壁纸/bg.jpg",
-    "attachment/AwesomeMarp_blue.md",
-    "基于大语言模型的少样本时间知识图谱推理与可解释性增强研究.html",
-    "基于大语言模型的少样本时间知识图谱推理与可解释性增强研究.md",
+    "source/_posts/科研学习/论文总结/未命名.md",
+    "source/_posts/科研学习/论文总结/《MetaTKG：让“时间知识图谱”秒变“元学习小机灵”》  ——一篇能让研一萌新看懂 EMNLP’22 最佳“穿越”外挂的脱口秀.md",
     "source/_posts/科研学习/研究思考-毕业/基于大语言模型的时序知识图谱推理研究.md",
-    "source/_posts/科研学习/研究思考-毕业/选题预选方案.md",
-    "conflict-files-obsidian-git.md",
-    "public/archives/2025/page/2/index.html",
-    "public/archives/2025/page/2",
-    "public/archives/2025/page",
-    "public/2025/09/124e5eddb410.html",
-    "public/2025/09/4dcc34f2b89d.html",
-    "public/categories/运维开发/page/2/index.html",
-    "public/categories/运维开发/page/2",
-    "public/categories/运维开发/page",
-    "public/tags/后端/index.html",
-    "学术汇报模板.md",
-    "基于大语言模型的时序知识图谱推理研究.md",
-    "source/_posts/运维开发/20250622_云计算及基础平台学习清单.md",
-    "source/_posts/科研学习/调研报告/论文总结.md",
-    "source/_posts/后端开发/20250622_后端学习清单.md",
-    "source/_posts/运维开发/运维排忧解难.md",
-    "source/_posts/艺术生活/摄影/调色基础.md",
-    "source/_posts/艺术生活/摄影/摄影审美.md",
-    "source/_posts/艺术生活/摄影/摄影基础指南.md",
-    "source/_posts/运维开发/测试环境搭建方案.md",
-    "source/_posts/科研学习/论文总结/AGENTPOISON Red-teaming LLM Agents via Poisoning Memory or Knowledge Bases.md",
-    "source/gallery/index.md",
     "source/_posts/科研学习/会议讨论/周会.md",
-    "source/_obsidian/免责说明模板.md",
-    "source/_obsidian/周报模板.md",
+    "source/_posts/科研学习/研究思考-毕业/选题预选方案.md",
+    "基于大语言模型的少样本时间知识图谱推理与可解释性增强研究.md",
+    "基于大语言模型的少样本时间知识图谱推理与可解释性增强研究.html",
+    "source/_obsidian/目录.md",
+    "source/_posts/科研学习/研究思考-毕业/研究思路.md",
+    "conflict-files-obsidian-git.md",
+    "_infio_prompts",
+    "基于大语言模型的时序知识图谱推理研究.md",
+    "source/_posts/科研学习/论文总结/Chain-of-Thought Reasoning Without Prompting.md",
+    "source/_posts/科研学习/论文总结/A survey of large language models.md",
+    "学术汇报模板.md",
     "source/_obsidian/学术汇报模板.md",
+    "attachment/AwesomeMarp_blue.md",
+    "学术汇报模板.html",
+    "基于大语言模型的时序知识图谱推理研究.html",
     "source/_obsidian/学习笔记模板.md",
-    "canvas/未命名.canvas",
-    "canvas/AI学习思路.canvas",
-    "未命名.canvas",
-    "canvas/review plans.canvas",
+    "source/_posts/科研学习/会议讨论/国际会议.md",
+    "themes/fluid/source/css/_pages/_base/_widget/qrcode.styl",
+    "themes/fluid/source/css/_pages/_base/_widget/toc.styl",
+    "themes/fluid/source/css/_pages/_base/_widget/search.styl",
+    "themes/fluid/source/css/_pages/_base/_widget/scroll-btn.styl",
+    "themes/fluid/source/css/_pages/_base/_widget/pagination.styl",
+    "themes/fluid/source/css/_pages/_base/_widget/noscript.styl",
+    "themes/landscape/README.md",
+    "themes/fluid/README_en.md",
+    "themes/fluid/README.md",
+    "source/_posts/科研学习/机器学习/CV/目标检测.md",
+    "source/_posts/科研学习/机器学习/CV/图像分类.md",
+    "source/_posts/科研学习/机器学习/CV/计算机视觉概述.md",
+    "source/_posts/科研学习/机器学习/CV/卷积神经网络基础.md",
+    "source/_posts/科研学习/机器学习/Tools/PyTorch.md",
+    "source/gallery/images/桌面壁纸/sunset.png",
+    "source/gallery/images/桌面壁纸/fire.jpg",
+    "source/gallery/images/徒步旅行/FCS00907.jpeg",
+    "source/gallery/images/桌面壁纸/cloud.png",
+    "source/gallery/images/朋友挚交/FCS01678.jpeg",
+    "source/gallery/images/桌面壁纸/bg.jpg",
+    "source/gallery/images/朋友挚交/FCS01683.jpeg",
+    "source/gallery/images/朋友挚交/FCS01603.jpeg",
+    "source/gallery/images/朋友挚交/FCS01676.jpeg",
+    "source/gallery/images/徒步旅行/FCS01646.jpeg",
     "source/_posts/英语学习/EnglishWords.canvas",
     "source/_posts/英语学习/PaperWords.canvas",
-    "source/_posts/课程学习/review plans.canvas",
-    "未命名 1.canvas",
-    "source/_posts/未命名.canvas"
+    "canvas/review plans.canvas",
+    "canvas/AI学习思路.canvas"
   ]
 }
