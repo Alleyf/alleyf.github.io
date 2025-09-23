@@ -67,8 +67,7 @@
               "title": "AwesomeMarp_blue"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -106,13 +105,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/科研学习/研究思考-毕业/基于大语言模型的少样本时间知识图谱推理与可解释性增强研究.md",
+                "file": "source/_posts/科研学习/研究思考-毕业/研究思路.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "基于大语言模型的少样本时间知识图谱推理与可解释性增强研究 的大纲"
+              "title": "研究思路 的大纲"
             }
           }
         ]
@@ -183,10 +182,11 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "c425ac6814b37fe8",
+  "active": "a34ec1ec178f1a5a",
   "lastOpenFiles": [
-    "source/_obsidian/目录.md",
     "source/_posts/科研学习/研究思考-毕业/基于大语言模型的少样本时间知识图谱推理与可解释性增强研究.md",
+    "attachment/AwesomeMarp_blue.md",
+    "source/_obsidian/目录.md",
     "source/_posts/科研学习/研究思考-毕业/研究思路.md",
     "public/gallery/images/朋友挚交/FCS01678.jpeg",
     "public/gallery/images/桌面壁纸/cloud.png",
@@ -198,7 +198,6 @@
     "public/gallery/images/徒步旅行/FCS00907.jpeg",
     "public/gallery/images/徒步旅行/FCS00909.jpeg",
     "public/gallery/images/桌面壁纸/bg.jpg",
-    "attachment/AwesomeMarp_blue.md",
     "基于大语言模型的少样本时间知识图谱推理与可解释性增强研究.html",
     "基于大语言模型的少样本时间知识图谱推理与可解释性增强研究.md",
     "source/_posts/科研学习/研究思考-毕业/基于大语言模型的时序知识图谱推理研究.md",
