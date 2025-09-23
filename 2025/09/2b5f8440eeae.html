@@ -1,0 +1,1102 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="http://qnpicmap.fcsluck.top/pics/202311162214229.png">
+  <link rel="icon" href="http://qnpicmap.fcsluck.top/pics/202311162214229.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="fcs">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="知识图谱（KG）通过&quot;实体-关系-实体&quot;的结构化三元组表达现实世界事实，**时序知识图谱（TKG）** 进一步引入时间维度（记为 &#96;(h, r, t, τ)&#96;，其中 &#96;h&#96; &#x3D;头实体、&#96;r&#96; &#x3D;关系、&#96;t&#96; &#x3D;尾实体、&#96;τ&#96; &#x3D;时间戳），能够表示动态演化的世界知识，例如：可精准刻画科研项目研究周期、专家合作时序、成果产出节点等动态事实。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于 LLM 的少样本时序知识图谱推理与可解释性增强研究">
+<meta property="og:url" content="https://alleyf.github.io/2025/09/2b5f8440eeae.html">
+<meta property="og:site_name" content="alleyf">
+<meta property="og:description" content="知识图谱（KG）通过&quot;实体-关系-实体&quot;的结构化三元组表达现实世界事实，**时序知识图谱（TKG）** 进一步引入时间维度（记为 &#96;(h, r, t, τ)&#96;，其中 &#96;h&#96; &#x3D;头实体、&#96;r&#96; &#x3D;关系、&#96;t&#96; &#x3D;尾实体、&#96;τ&#96; &#x3D;时间戳），能够表示动态演化的世界知识，例如：可精准刻画科研项目研究周期、专家合作时序、成果产出节点等动态事实。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://picsum.photos/800/250">
+<meta property="article:published_time" content="2025-09-21T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-09-23T17:47:36.060Z">
+<meta property="article:author" content="alleyf">
+<meta property="article:tag" content="科研">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://picsum.photos/800/250">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>基于 LLM 的少样本时序知识图谱推理与可解释性增强研究 - alleyf</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"alleyf.github.io","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":true,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"d57048846da607439cf11718741f2eb0","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?d57048846da607439cf11718741f2eb0";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<!-- hexo injector head_end start --><script> let HEXO_MMEDIA_DATA = { js: [], css: [], aplayerData: [], metingData: [], artPlayerData: [], dplayerData: []}; </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/atom.xml" title="alleyf" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Mr.Alleyf</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/gallery/">
+                <i class="iconfont icon-images"></i>
+                画廊
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/atom.xml">
+                <i class="iconfont icon-rss"></i>
+                RSS
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://github.com/Alleyf">
+                <i class="iconfont icon-github-fill"></i>
+                Github
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://api.likepoems.com/img/nature') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="基于 LLM 的少样本时序知识图谱推理与可解释性增强研究"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        fcs
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-09-22 00:00" pubdate>
+          2025年9月22日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          37 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">基于 LLM 的少样本时序知识图谱推理与可解释性增强研究</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：几秒前
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <!-- _class: cover_a -->
+<!-- _header: "" --> 
+<!-- _footer: "" --> 
+<!-- _paginate: "" --> 
+
+<h1 id="基于-LLM-的少样本时序知识图谱推理与可解释性增强研究"><a href="#基于-LLM-的少样本时序知识图谱推理与可解释性增强研究" class="headerlink" title="基于 LLM 的少样本时序知识图谱推理与可解释性增强研究"></a>基于 LLM 的少样本时序知识图谱推理与可解释性增强研究</h1><h5 id="细化选题探讨"><a href="#细化选题探讨" class="headerlink" title="细化选题探讨"></a>细化选题探讨</h5><p>汇报人：<a href="http://alleyf.github.io/">范财胜</a><br>所属单位：华中科技大学<br>汇报时间：2025-09-24<br>联系方式：<a href="mailto:&#99;&#115;&#102;&#97;&#x6e;&#x40;&#x68;&#x75;&#x73;&#116;&#46;&#101;&#x64;&#x75;&#46;&#99;&#110;">&#99;&#115;&#102;&#97;&#x6e;&#x40;&#x68;&#x75;&#x73;&#116;&#46;&#101;&#x64;&#x75;&#46;&#99;&#110;</a></p>
+<h1 id="📕-目录"><a href="#📕-目录" class="headerlink" title="📕 目录"></a>📕 目录</h1><!-- _class: cols2_ol_ci fglass toc_a  -->
+<!-- _footer: "" -->
+<!-- _header: "CONTENT" -->
+<!-- _paginate: "" -->
+
+<ul>
+<li><a href="#%F0%9F%93%9C-%E5%AF%BC%E8%AE%BA">📜导论</a></li>
+<li><a href="#%F0%9F%94%8D-%E5%BC%95%E8%A8%80">🔍引言</a></li>
+<li><a href="#%F0%9F%8F%97%EF%B8%8F-%E7%A0%94%E7%A9%B6%E6%A1%86%E6%9E%B6%E8%AE%BE%E8%AE%A1">🏗️研究框架设计</a></li>
+<li><a href="#%F0%9F%93%8B-%E9%A2%84%E6%9C%9F%E5%AE%9E%E9%AA%8C%E4%B8%8E%E8%AF%84%E4%BC%B0%E8%AE%BE%E8%AE%A1">📋预期实验与评估设计</a></li>
+<li><a href="#%E2%9A%A0%EF%B8%8F-%E6%8C%91%E6%88%98%E4%B8%8E%E5%B1%95%E6%9C%9B">⚠️挑战与展望</a></li>
+</ul>
+<h1 id="📜-导论"><a href="#📜-导论" class="headerlink" title="📜 导论"></a>📜 导论</h1><!-- _class: navbar  -->
+
+
+<table>
+<thead>
+<tr>
+<th align="center">Meta</th>
+<th align="center">Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">标题</td>
+<td align="center">基于 LLM 的少样本时序知识图谱推理与可解释性增强研究</td>
+</tr>
+<tr>
+<td align="center">研究阶段</td>
+<td align="center">选题探讨阶段（未开展具体实验）</td>
+</tr>
+<tr>
+<td align="center">核心场景</td>
+<td align="center">通用公开数据集场景+社科科研管理数据</td>
+</tr>
+<tr>
+<td align="center">关键问题</td>
+<td align="center">少样本稀疏性、模型可解释性、语义-结构融合</td>
+</tr>
+<tr>
+<td align="center">技术方向</td>
+<td align="center">时间知识图谱（TKG）、少样本学习、大语言模型（LLM）</td>
+</tr>
+<tr>
+<td align="center">预期价值</td>
+<td align="center">提升 TKGF 的性能表现，适用于通用场景</td>
+</tr>
+</tbody></table>
+<h1 id="🔍-引言"><a href="#🔍-引言" class="headerlink" title="🔍 引言"></a>🔍 引言</h1><!-- _class: navbar  -->
+<!-- _header: \ **[引言](#3)** *[研究框架设计](#4)* *[预期实验与评估设计](#5)* *[挑战与展望](#6)*  -->
+
+<h2 id="📑-背景挑战"><a href="#📑-背景挑战" class="headerlink" title="📑 背景挑战"></a>📑 背景挑战</h2><!-- _class: cols-1 -->
+
+<p>知识图谱（KG）通过”实体-关系-实体”的结构化三元组表达现实世界事实，<strong>时序知识图谱（TKG）</strong> 进一步引入时间维度（记为 <code>(h, r, t, τ)</code>，其中 <code>h</code> &#x3D;头实体、<code>r</code> &#x3D;关系、<code>t</code> &#x3D;尾实体、<code>τ</code> &#x3D;时间戳），能够表示动态演化的世界知识，例如：可精准刻画科研项目研究周期、专家合作时序、成果产出节点等动态事实。</p>
+<p>当前 TKG 推理面临如下三大核心挑战：</p>
+<ul>
+<li><strong>少样本零样本稀疏性</strong>：多数场景存在显著的”&#x3D;&#x3D;长尾分布&#x3D;&#x3D;”，以社科场景为例：多数新项目、青年专家的关联事实仅出现数次甚至没有，传统 TKG 模型依赖大量样本训练，难以泛化到稀疏实体&#x2F;关系。</li>
+<li><strong>可解释性缺失</strong>：现有模型多为”黑盒”，推理结果缺乏透明逻辑，而科研项目评审、专家推荐等场景需明确的决策依据（如”为何预测该教授可以获得项目立项”）。</li>
+<li><strong>复杂推理能力不足</strong>：当前的 TKGR 多数依赖于基于<em>逻辑规则或基于 GNN 的结构化推理</em>，没有充分融合 LLM 利用其丰富的语义信息来解决复杂 TKG 推理问题。</li>
+</ul>
+<p>大语言模型（LLM）具备强大的语义理解与指令遵循能力，可以为 TKG 中少样本零样本实体或关系生成丰富的描述信息，融合图神经网络的结构信息，为弥补 TKG 结构稀疏性、生成自然语言解释、提高复杂 TKG 推理能力提供了新路径。</p>
+<h2 id="🎯-研究目标"><a href="#🎯-研究目标" class="headerlink" title="🎯 研究目标"></a>🎯 研究目标</h2><h4 id="1-时间知识图谱与少样本推理"><a href="#1-时间知识图谱与少样本推理" class="headerlink" title="1. 时间知识图谱与少样本推理"></a>1. 时间知识图谱与少样本推理</h4><p><img src="http://img.fcs.cloudns.ch/pics/20250922141316625.png" srcset="/img/loading.gif" lazyload alt="#c  h:256"></p>
+<ul>
+<li><strong>TKG推理定义</strong>：给定不完整三元组 <code>(h, r, ?, τ)</code> 或 <code>(?, r, t, τ)</code>，预测当前时间范围内的缺失事实（内插）或预测未来事实（外推）。</li>
+<li><strong>少样本场景界定</strong>：针对某一关系 <code>r</code>，若训练集中包含该关系的三元组数量≤K（通常 K&#x3D;1&#x2F;5&#x2F;10），则属于 K-shot 推理任务——社科数据中”新项目-成果””青年专家-合作”等关系多为 1-5 shot。</li>
+<li><strong>核心挑战</strong>：如何从极少量样本中快速学习关系模式，并结合时间顺序约束（如”项目立项后 2 年产出成果”）进行泛化。</li>
+</ul>
+<hr>
+<h4 id="2-LLM-与知识图谱的融合逻辑"><a href="#2-LLM-与知识图谱的融合逻辑" class="headerlink" title="2. LLM 与知识图谱的融合逻辑"></a>2. LLM 与知识图谱的融合逻辑</h4><p>LLM 的优势与局限形成对 TKG 的”精准互补”：</p>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>大语言模型（LLM）</th>
+<th>时间知识图谱（TKG）</th>
+<th>融合价值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>数据形式</td>
+<td>非结构化文本（语义丰富）</td>
+<td>结构化三元组（逻辑清晰）</td>
+<td>语义补全结构，结构约束语义</td>
+</tr>
+<tr>
+<td>时序建模</td>
+<td>弱（依赖上下文窗口，长时序丢失）</td>
+<td>强（显式时间戳，支持时序推理）</td>
+<td>TKG 时序约束提升 LLM 的时间感知力</td>
+</tr>
+<tr>
+<td>少样本泛化</td>
+<td>强（语义迁移能力）</td>
+<td>弱（依赖样本数量）</td>
+<td>LLM 语义迁移解决 TKG 稀疏问题</td>
+</tr>
+<tr>
+<td>可解释性</td>
+<td>可生成自然语言解释</td>
+<td>可提供结构化推理路径</td>
+<td>路径+语言形成可理解的解释</td>
+</tr>
+</tbody></table>
+<hr>
+<h4 id="3-可解释性的核心诉求"><a href="#3-可解释性的核心诉求" class="headerlink" title="3. 可解释性的核心诉求"></a>3. 可解释性的核心诉求</h4><p>敏感场景对解释的需求具有”三维特征”：</p>
+<ul>
+<li><strong>准确性</strong>：解释需对应模型真实推理逻辑（非”事后编造”）；</li>
+<li><strong>可读性</strong>：需转化为自然语言（如”因 A 专家 2023 年主持过同类项目，故推荐其合作”）；</li>
+<li><strong>实用性</strong>：需关联业务目标（如帮助评审专家快速定位项目核心价值）。</li>
+</ul>
+<h2 id="✨-预期贡献"><a href="#✨-预期贡献" class="headerlink" title="✨ 预期贡献"></a>✨ 预期贡献</h2><!-- _class: cols-3 -->
+
+<blockquote>
+<p>理论贡献</p>
+<ul>
+<li>明确 LLM 在”结构稀疏 TKG”中的语义补全价值，提出”时序结构嵌入+文本语义嵌入”的双模态融合理论。</li>
+<li>建立”少样本推理-可解释性增强”的协同机制，证明解释性提升与推理精度可正向循环。</li>
+</ul>
+</blockquote>
+<blockquote>
+<p> 方法贡献</p>
+<ul>
+<li>设计轻量级、可迁移的少样本 TKG 推理框架，兼容公开数据集与社科私有数据，解决长尾分布问题。</li>
+<li>提出混合式可解释性方案，结合注意力定位（神经方法）与自然语言生成（符号方法），平衡解释精度与可读性。</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>应用贡献</p>
+<ul>
+<li>针对社科科研管理场景，定制”项目状态预测””专家合作推荐”两大任务的落地方案，提升数据驱动决策的效率与可信度。</li>
+</ul>
+</blockquote>
+<h1 id="🏗️-研究框架设计"><a href="#🏗️-研究框架设计" class="headerlink" title="🏗️ 研究框架设计"></a>🏗️ 研究框架设计</h1><!-- _class: navbar  -->
+<!-- _header: \ *[引言](#3)* **[研究框架设计](#4)** *[预期实验与评估设计](#5)* *[挑战与展望](#6)*  -->
+
+
+<h2 id="🛠️-技术层—稠密场景下结构语义混合增强的复杂-TKGF-增强研究"><a href="#🛠️-技术层—稠密场景下结构语义混合增强的复杂-TKGF-增强研究" class="headerlink" title="🛠️ 技术层—稠密场景下结构语义混合增强的复杂 TKGF 增强研究"></a>🛠️ 技术层—稠密场景下结构语义混合增强的复杂 TKGF 增强研究</h2><ul>
+<li><strong>研究关键点 1-复杂推理</strong><ul>
+<li>参考文献：<a href="source/_posts/%E7%A7%91%E7%A0%94%E5%AD%A6%E4%B9%A0/%E8%AE%BA%E6%96%87%E6%80%BB%E7%BB%93/%E2%80%8B%E3%80%8A%E5%8E%86%E5%8F%B2%E9%93%BE%E6%8E%A8%E7%90%86%EF%BC%9A%E8%AE%A9LLM%E5%83%8F%E4%BE%A6%E6%8E%A2%E4%B8%80%E6%A0%B7%E7%A0%B4%E8%A7%A3%E6%97%B6%E5%BA%8F%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%EF%BC%81%E9%AB%98%E9%98%B6%E4%BF%A1%E6%81%AF+%E5%88%86%E6%AD%A5%E6%8E%A8%E7%90%86=%E9%A2%84%E6%B5%8B%E5%BC%80%E6%8C%82%E3%80%8B.md">​COH</a>：历史链分步探索 + LLM 与图模型「插拔式融合」，解决高阶历史信息利用不足的复杂 TKGR 问题。</li>
+<li>核心目标：通过历史链分步探索与 LLM-图模型的动态融合，充分利用高阶历史信息，解决复杂 TKGR 任务中因高阶历史信息利用不足导致的推理性能受限问题，提升复杂场景下未来事件的预测准确性。</li>
+<li>技术范式：采用“LLM 生成时序逻辑规则+图模型推理”的插拔式融合框架（如 GenTKG 的时间逻辑规则检索策略 TLR），通过 LLM 从历史数据中挖掘时序规则（如“Consult (T0) → Make_phonecall (T1)”），并基于规则检索相关事实；结合图模型的结构推理能力验证规则有效性，动态更新规则以适应新数据，实现高阶历史信息的深度利用。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li><strong>研究关键点 2-可解释性</strong>（<em>密集场景推理路径多才有意义，稀疏场景历史候选路径太少别无选择</em>）<ul>
+<li>参考文献：LLM-DA：LLM 生成动态更新的时序规则+图模型双推理融合，无需微调解决规则提取难+可解释性差问题。</li>
+<li>核心目标：生成“结构化路径（时序规则序列）+自然语言解释（规则语义）”的双视角结果，解决复杂推理中规则提取模糊、可解释性差的痛点，为预测结果提供可追溯的逻辑依据。</li>
+<li>技术范式：利用 LLM 分析历史数据生成时序逻辑规则（结构化路径），并通过图模型推理验证规则的应用过程；同时将规则的语义（如规则触发的因果关系）和推理步骤（如规则匹配的具体事实）转化为自然语言描述，形成“规则-推理-解释”的全链路可解释输出。</li>
+</ul>
+</li>
+</ul>
+<h2 id="🛠️-技术层—稀疏场景下基于-LLM-语义增强的少-零样本-TKGF-增强研究"><a href="#🛠️-技术层—稀疏场景下基于-LLM-语义增强的少-零样本-TKGF-增强研究" class="headerlink" title="🛠️ 技术层—稀疏场景下基于 LLM 语义增强的少&#x2F;零样本 TKGF 增强研究"></a>🛠️ 技术层—稀疏场景下基于 LLM 语义增强的少&#x2F;零样本 TKGF 增强研究</h2><ul>
+<li><strong>研究关键点 3-少样本零样本</strong><ul>
+<li>&#x3D;&#x3D;参考文献&#x3D;&#x3D;<ul>
+<li>MAML 元学习：元学习分段学习掌握 TKG 演化模式+门控整合模块智能权重分配传递知识，解决少样本 TKGF。</li>
+<li>GenTKG&#x2F;zrLLM：LLM 生成关系描述（ERD）+GRU 构建历史推理链（RHL），解决零样本 TKGF；时序规则检索+少样本微调（lora），解决少样本 TKGF。</li>
+</ul>
+</li>
+<li>核心目标：从 K 个样本中快速学习关系 <code>r</code> 的时序模式，泛化到新实体。</li>
+<li>技术范式：采用<strong>MAML（模型无关元学习）</strong> 框架，结合 LLM 生成语义描述或 few shot lora 微调。</li>
+</ul>
+</li>
+</ul>
+<h2 id="💡-应用层—面向社科场景的任务落地"><a href="#💡-应用层—面向社科场景的任务落地" class="headerlink" title="💡 应用层—面向社科场景的任务落地"></a>💡 应用层—面向社科场景的任务落地</h2><p>基于上述模型，针对社科科研管理设计两大核心任务：</p>
+<ul>
+<li><strong>项目状态预测任务</strong>：输入 <code>(项目 X, 状态, ?, 2026)</code>，预测结题时的类型（在研&#x2F;结题&#x2F;延期），并输出解释（如”因项目 X 聚焦技术研发，且负责人 A 曾在同类项目中产出 4 篇论文，因此2026年该项目可以正常结题”），帮助资源优化配置、科研进度预警。</li>
+<li><strong>专家合作推荐任务</strong>：输入 <code>(项目 X, 需要合作专家, ?, 2025)</code>，推荐匹配专家，解释核心依据（如”专家 B 在 2024 年发表过项目 X 相关主题论文，且与负责人有 3 次历史合作”），有利于打破科研壁垒、促进学者交流合作。</li>
+</ul>
+<h1 id="📋-预期实验与评估设计"><a href="#📋-预期实验与评估设计" class="headerlink" title="📋 预期实验与评估设计"></a>📋 预期实验与评估设计</h1><!-- _class: navbar  -->
+<!-- _header: \ *[引言](#3)* *[研究框架设计](#4)* **[预期实验与评估设计](#5)** *[挑战与展望](#6)*  -->
+
+<h2 id="1-🗃️-数据集设置"><a href="#1-🗃️-数据集设置" class="headerlink" title="1. 🗃️ 数据集设置"></a>1. 🗃️ 数据集设置</h2><table>
+<thead>
+<tr>
+<th>数据集类型</th>
+<th>具体数据集</th>
+<th>用途</th>
+<th>关键处理</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>公开数据集</td>
+<td>ICEWS系列（14、05-18、21）、GDELT、YAGO（全球新闻事件和维基百科等数据）</td>
+<td>通用性验证（复杂多跳推理和少样本推理性能）</td>
+<td>按关系采样构建 1&#x2F;5&#x2F;10-shot 任务，筛选跨 5 年以上的实体关系对</td>
+</tr>
+<tr>
+<td>自制数据集</td>
+<td>社科科研管理数据</td>
+<td>应用场景验证</td>
+<td>脱敏处理，标注”项目-状态””项目-合作”关系</td>
+</tr>
+</tbody></table>
+<h2 id="2-🔬-实验任务设计"><a href="#2-🔬-实验任务设计" class="headerlink" title="2. 🔬 实验任务设计"></a>2. 🔬 实验任务设计</h2><!-- _class: cols-2 -->
+
+<blockquote>
+<p>[!NOTE] 基础任务：少样本链接预测<br>    - <strong>任务定义</strong>：<br>        - 给定 <code>(h, r, ?, τ)</code>，预测尾实体 <code>t</code>；给定 <code>(? ,r, t, τ)</code>，预测头实体 <code>h</code>。<br>    - <strong>场景划分</strong>：<br>        - ①常见关系的少样本场景（如”主持”关系，5-shot）；<br>        - ②长尾关系场景（如”指导青年项目”，1-shot）；<br>        - ③新实体场景（无历史数据的新项目）。</p>
+</blockquote>
+<blockquote>
+<p>[!NOTE] 应用任务：社科场景下游任务<br>    -  <strong>项目状态预测</strong>：<br>       - 输入：项目实体、”状态”关系、目标时间戳（结题时间）。<br>       - 输出：研究状态（二分类）+ 自然语言解释。<br>    -  <strong>专家合作推荐</strong>：<br>       - 输入：项目实体、”需要合作专家”关系、立项时间。<br>       - 输出：Top-5 专家列表 + 每人的推荐理由。</p>
+</blockquote>
+<h2 id="3-📊-评估指标"><a href="#3-📊-评估指标" class="headerlink" title="3. 📊 评估指标"></a>3. 📊 评估指标</h2><!-- _class: cols2_ol_sq fglass -->
+<h4 id="（1）推理性能指标"><a href="#（1）推理性能指标" class="headerlink" title="（1）推理性能指标"></a>（1）推理性能指标</h4><ul>
+<li><strong>Hits@k（）</strong> ：预测结果中前 k 名包含正确实体的比例（k&#x3D;1,3,5,10，越高越好）。</li>
+<li><strong>MRR（平均倒数排名）</strong>：正确实体排名的倒数均值（越高越好）。</li>
+<li><strong>MR（平均排名）</strong>：正确实体的平均排名（越低越好）。</li>
+</ul>
+<h4 id="（2）可解释性指标"><a href="#（2）可解释性指标" class="headerlink" title="（2）可解释性指标"></a>（2）可解释性指标</h4><ul>
+<li><strong>自动评估</strong>：计算解释文本与结构化路径的”语义相似度”（用 BERTScore，越高说明对齐性越好）。</li>
+</ul>
+<h2 id="4-🆚-对比方案设计"><a href="#4-🆚-对比方案设计" class="headerlink" title="4. 🆚 对比方案设计"></a>4. 🆚 对比方案设计</h2><h4 id="（1）基线模型分组"><a href="#（1）基线模型分组" class="headerlink" title="（1）基线模型分组"></a>（1）基线模型分组</h4><ul>
+<li><strong>传统少样本 TKG 模型</strong>：MetaTKGR (2022)。</li>
+<li><strong>LLM+TKG 融合模型</strong>：zrLLM (2023)、GenTKG (2023)、COH (2024)。</li>
+<li><strong>Ablation 实验对照组</strong>：<blockquote>
+<ul>
+<li>无 LLM 模块：仅用元学习+TKG 结构嵌入。</li>
+<li>无元学习模块：LLM+TKG 但用传统训练（非少样本）。</li>
+<li>单一解释模块：仅注意力可视化&#x2F;仅 LLM 生成解释。</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h4 id="（2）核心对比维度"><a href="#（2）核心对比维度" class="headerlink" title="（2）核心对比维度"></a>（2）核心对比维度</h4><ul>
+<li>性能对比：在公开数据集上，验证本模型在1&#x2F;5&#x2F;10-shot场景下的 Hits@10 &#x2F;MRR 是否优于基线。</li>
+<li>泛化对比：在新实体场景下，验证本模型的性能下降幅度是否低于基线。</li>
+</ul>
+<h1 id="⚠️-挑战与展望"><a href="#⚠️-挑战与展望" class="headerlink" title="⚠️ 挑战与展望"></a>⚠️ 挑战与展望</h1><!-- _class: navbar  -->
+<!-- _header: \ *[引言](#3)* *[研究框架设计](#4)* *[预期实验与评估设计](#5)* **[挑战与展望](#6)**  -->
+
+<h2 id="1-潜在挑战"><a href="#1-潜在挑战" class="headerlink" title="1. 潜在挑战"></a>1. 潜在挑战</h2><ul>
+<li><strong>LLM 的时序建模局限</strong>：对于跨 10 年以上的长时序关系（如”专家职业生涯的合作模式演变”），LLM 的上下文窗口可能无法覆盖，需结合时序分解技术。</li>
+<li><strong>少样本解释的准确性</strong>：当样本仅 1-2 个时，推理路径单一，LLM 生成的解释可能过于简单，需引入”领域知识图谱”补充背景逻辑。</li>
+<li><strong>数据的噪声干扰</strong>：申报书文本可能存在”夸大描述”，导致 LLM 语义嵌入偏差，需设计文本清洗与可信度评分模块。</li>
+</ul>
+<h2 id="2-未来展望"><a href="#2-未来展望" class="headerlink" title="2. 未来展望"></a>2. 未来展望</h2><ul>
+<li><strong>技术深化</strong>：探索”多模态 LLM”（如结合项目演示 PPT、成果 PDF）的 TKG 增强推理，进一步丰富语义信息。</li>
+<li><strong>场景拓展</strong>：将框架应用于”政策效果预测”（如”某科研政策实施后，专利产出的变化趋势”），提升研究的社会价值。</li>
+<li><strong>效率优化</strong>：针对 TKG 动态更新特点，设计增量学习机制，避免模型全量重训。</li>
+</ul>
+<h1 id="📕参考文献"><a href="#📕参考文献" class="headerlink" title="📕参考文献"></a>📕参考文献</h1><!-- _class: navbar  -->
+
+
+<h1 id="🙏-致谢"><a href="#🙏-致谢" class="headerlink" title="🙏 致谢"></a>🙏 致谢</h1><!-- _class: cover_d -->
+<!-- _paginate: "" -->
+<!-- _footer: 厚德博学，追求卓越 -->
+<!-- _header: ![](https://www.hust.edu.cn/images/logo20240628.png) -->
+
+<p>感谢各位老师和师兄师姐们的聆听，如有不当敬请批评指正！</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%A7%91%E7%A0%94%E5%AD%A6%E4%B9%A0/" class="category-chain-item">科研学习</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E7%A7%91%E7%A0%94/">#科研</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>基于 LLM 的少样本时序知识图谱推理与可解释性增强研究</div>
+      <div>https://alleyf.github.io/2025/09/2b5f8440eeae.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>fcs</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年9月22日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2025年9月24日</div>
+        </div>
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/09/124e5eddb410.html" title="">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/09/9ce7077bf863.html" title="《MetaTKG：让“时间知识图谱”秒变“元学习小机灵”》——一篇能让研一萌新看懂 EMNLP’22 最佳“穿越”外挂的脱口秀">
+                        <span class="hidden-mobile">《MetaTKG：让“时间知识图谱”秒变“元学习小机灵”》——一篇能让研一萌新看懂 EMNLP’22 最佳“穿越”外挂的脱口秀</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.7.2/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"636f2864e051a199b91c","clientSecret":"5185fd11115bbcd8d2f636bc80de6bed98ed14c1","repo":"Gitalk","owner":"Alleyf","admin":["Alleyf"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":false,"proxy":"https://shielded-brushlands-08810.herokuapp.com/https://github.com/login/oauth/access_token"},
+          {
+            id: 'fbcf708f4d13ccc41a6498926b724c9b'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://github.com/Alleyf" target="_blank" rel="nofollow noopener"><span>Alleyf</span></a> <i class="iconfont icon-love"></i> <a href="https://fcsy.fit" target="_blank" rel="nofollow noopener"><span>Homepage</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      陕ICP备2022010038号
+    </a>
+  </span>
+  
+    
+      <span>
+        <a
+          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=2022010038"
+          rel="nofollow noopener"
+          class="beian-police"
+          target="_blank"
+        >
+          
+            <span style="visibility: hidden; width: 0">|</span>
+            <img src="http://qnpicmap.fcsluck.top/pics/202311161820757.png" srcset="/img/loading.gif" lazyload alt="police-icon"/>
+          
+          <span>陕公网安备2022010038号</span>
+        </a>
+      </span>
+    
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.1/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/assets/mmedia/mmedia-loader.js"></script><!-- hexo injector body_end end --></body>
+</html>

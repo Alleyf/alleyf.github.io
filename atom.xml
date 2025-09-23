@@ -78,6 +78,25 @@
   </entry>
   
   <entry>
+    <title>基于 LLM 的少样本时序知识图谱推理与可解释性增强研究</title>
+    <link href="https://alleyf.github.io/2025/09/2b5f8440eeae.html"/>
+    <id>https://alleyf.github.io/2025/09/2b5f8440eeae.html</id>
+    <published>2025-09-21T16:00:00.000Z</published>
+    <updated>2025-09-23T17:47:36.060Z</updated>
+    
+    
+    <summary type="html">知识图谱（KG）通过&quot;实体-关系-实体&quot;的结构化三元组表达现实世界事实，**时序知识图谱（TKG）** 进一步引入时间维度（记为 `(h, r, t, τ)`，其中 `h` =头实体、`r` =关系、`t` =尾实体、`τ` =时间戳），能够表示动态演化的世界知识，例如：可精准刻画科研项目研究周期、专家合作时序、成果产出节点等动态事实。</summary>
+    
+    
+    
+    <category term="科研学习" scheme="https://alleyf.github.io/categories/%E7%A7%91%E7%A0%94%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="科研" scheme="https://alleyf.github.io/tags/%E7%A7%91%E7%A0%94/"/>
+    
+  </entry>
+  
+  <entry>
     <title>《MetaTKG：让“时间知识图谱”秒变“元学习小机灵”》——一篇能让研一萌新看懂 EMNLP’22 最佳“穿越”外挂的脱口秀</title>
     <link href="https://alleyf.github.io/2025/09/9ce7077bf863.html"/>
     <id>https://alleyf.github.io/2025/09/9ce7077bf863.html</id>
@@ -406,27 +425,6 @@
     
     
     <category term="K8s" scheme="https://alleyf.github.io/tags/K8s/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>DDD-领域驱动设计</title>
-    <link href="https://alleyf.github.io/2024/04/40f64f9b6cf6.html"/>
-    <id>https://alleyf.github.io/2024/04/40f64f9b6cf6.html</id>
-    <published>2024-04-18T12:14:59.000Z</published>
-    <updated>2025-01-14T16:50:04.588Z</updated>
-    
-    
-    <summary type="html">DDD数据库设计落地</summary>
-    
-    
-    
-    <category term="后端开发" scheme="https://alleyf.github.io/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
-    
-    
-    <category term="微服务" scheme="https://alleyf.github.io/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
-    
-    <category term="架构" scheme="https://alleyf.github.io/tags/%E6%9E%B6%E6%9E%84/"/>
     
   </entry>
   
