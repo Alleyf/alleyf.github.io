@@ -13,13 +13,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/科研学习/研究思考-毕业/基于大语言模型的时序知识图谱推理研究.md",
+                "file": "source/_posts/科研学习/论文总结/《MetaTKG：让“时间知识图谱”秒变“元学习小机灵”》  ——一篇能让研一萌新看懂 EMNLP’22 最佳“穿越”外挂的脱口秀.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "基于大语言模型的时序知识图谱推理研究"
+              "title": "《MetaTKG：让“时间知识图谱”秒变“元学习小机灵”》  ——一篇能让研一萌新看懂 EMNLP’22 最佳“穿越”外挂的脱口秀"
             }
           },
           {
@@ -28,13 +28,28 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/科研学习/论文总结/未命名.md",
+                "file": "source/_posts/科研学习/论文总结/zrLLM：当大模型化身时空侦探——零样本关系预测破案实录.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "未命名"
+              "title": "zrLLM：当大模型化身时空侦探——零样本关系预测破案实录"
+            }
+          },
+          {
+            "id": "ae7fcf183942c9af",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "source/_posts/科研学习/论文总结/GenTKG 基于大语言模型的时间知识图谱生成式预测.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "GenTKG 基于大语言模型的时间知识图谱生成式预测"
             }
           },
           {
@@ -51,9 +66,53 @@
               "icon": "lucide-file",
               "title": "基于大语言模型的少样本时间知识图谱推理与可解释性增强研究"
             }
+          },
+          {
+            "id": "aafb0ad9a264968c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "source/_posts/科研学习/论文总结/​《历史链推理：让LLM像侦探一样破解时序知识图谱！高阶信息+分步推理=预测开挂》.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "​《历史链推理：让LLM像侦探一样破解时序知识图谱！高阶信息+分步推理=预测开挂》"
+            }
+          },
+          {
+            "id": "9a5b480cbe295773",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "source/_posts/科研学习/研究思考-毕业/研究思路.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "研究思路"
+            }
+          },
+          {
+            "id": "6be9800f2c3a2813",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "source/_posts/科研学习/研究思考-毕业/基于大语言模型的时序知识图谱推理研究.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "基于大语言模型的时序知识图谱推理研究"
+            }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -72,13 +131,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/科研学习/论文总结/未命名.md",
+                "file": "source/_posts/科研学习/论文总结/《MetaTKG：让“时间知识图谱”秒变“元学习小机灵”》  ——一篇能让研一萌新看懂 EMNLP’22 最佳“穿越”外挂的脱口秀.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "未命名 的大纲"
+              "title": "《MetaTKG：让“时间知识图谱”秒变“元学习小机灵”》  ——一篇能让研一萌新看懂 EMNLP’22 最佳“穿越”外挂的脱口秀 的大纲"
             }
           }
         ]
@@ -167,18 +226,21 @@
       "infio-copilot:打开 Infio Copilot": false
     }
   },
-  "active": "0abfcbb31fc3dc55",
+  "active": "60d4264266a935fd",
   "lastOpenFiles": [
     "source/_posts/科研学习/研究思考-毕业/基于大语言模型的少样本时间知识图谱推理与可解释性增强研究.md",
-    "source/_posts/科研学习/论文总结/未命名.md",
+    "基于大语言模型的少样本时间知识图谱推理与可解释性增强研究.md",
+    "source/_posts/科研学习/论文总结/​《历史链推理：让LLM像侦探一样破解时序知识图谱！高阶信息+分步推理=预测开挂》.md",
+    "source/_posts/科研学习/论文总结/GenTKG 基于大语言模型的时间知识图谱生成式预测.md",
+    "source/_posts/科研学习/论文总结/zrLLM：当大模型化身时空侦探——零样本关系预测破案实录.md",
     "source/_posts/科研学习/论文总结/《MetaTKG：让“时间知识图谱”秒变“元学习小机灵”》  ——一篇能让研一萌新看懂 EMNLP’22 最佳“穿越”外挂的脱口秀.md",
+    "source/_posts/科研学习/研究思考-毕业/研究思路.md",
     "source/_posts/科研学习/研究思考-毕业/基于大语言模型的时序知识图谱推理研究.md",
+    "source/_obsidian/学习笔记模板.md",
     "source/_posts/科研学习/会议讨论/周会.md",
     "source/_posts/科研学习/研究思考-毕业/选题预选方案.md",
-    "基于大语言模型的少样本时间知识图谱推理与可解释性增强研究.md",
     "基于大语言模型的少样本时间知识图谱推理与可解释性增强研究.html",
     "source/_obsidian/目录.md",
-    "source/_posts/科研学习/研究思考-毕业/研究思路.md",
     "conflict-files-obsidian-git.md",
     "_infio_prompts",
     "基于大语言模型的时序知识图谱推理研究.md",
@@ -189,7 +251,6 @@
     "attachment/AwesomeMarp_blue.md",
     "学术汇报模板.html",
     "基于大语言模型的时序知识图谱推理研究.html",
-    "source/_obsidian/学习笔记模板.md",
     "source/_posts/科研学习/会议讨论/国际会议.md",
     "themes/fluid/source/css/_pages/_base/_widget/qrcode.styl",
     "themes/fluid/source/css/_pages/_base/_widget/toc.styl",
@@ -203,8 +264,6 @@
     "source/_posts/科研学习/机器学习/CV/目标检测.md",
     "source/_posts/科研学习/机器学习/CV/图像分类.md",
     "source/_posts/科研学习/机器学习/CV/计算机视觉概述.md",
-    "source/_posts/科研学习/机器学习/CV/卷积神经网络基础.md",
-    "source/_posts/科研学习/机器学习/Tools/PyTorch.md",
     "source/gallery/images/桌面壁纸/sunset.png",
     "source/gallery/images/桌面壁纸/fire.jpg",
     "source/gallery/images/徒步旅行/FCS00907.jpeg",

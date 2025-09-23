@@ -24,24 +24,20 @@
   "unresolvedLinks": false,
   "recentFilesStore": [
     {
-      "filepath": "source/_posts/科研学习/论文总结/未命名.md",
-      "timestamp": 1758608251897
+      "filepath": "source/_posts/科研学习/论文总结/《MetaTKG：让“时间知识图谱”秒变“元学习小机灵”》  ——一篇能让研一萌新看懂 EMNLP’22 最佳“穿越”外挂的脱口秀.md",
+      "timestamp": 1758635157963
     },
     {
       "filepath": "source/_posts/科研学习/研究思考-毕业/基于大语言模型的少样本时间知识图谱推理与可解释性增强研究.md",
-      "timestamp": 1758608250956
+      "timestamp": 1758634747141
     },
     {
-      "filepath": "source/_posts/科研学习/论文总结/《MetaTKG：让“时间知识图谱”秒变“元学习小机灵”》  ——一篇能让研一萌新看懂 EMNLP’22 最佳“穿越”外挂的脱口秀.md",
-      "timestamp": 1758592452657
+      "filepath": "source/_posts/科研学习/论文总结/​《历史链推理：让LLM像侦探一样破解时序知识图谱！高阶信息+分步推理=预测开挂》.md",
+      "timestamp": 1758634745646
     },
     {
-      "filepath": "source/_posts/科研学习/研究思考-毕业/基于大语言模型的时序知识图谱推理研究.md",
-      "timestamp": 1758590874969
-    },
-    {
-      "filepath": "source/_posts/科研学习/会议讨论/周会.md",
-      "timestamp": 1758589695698
+      "filepath": "source/_posts/科研学习/论文总结/GenTKG 基于大语言模型的时间知识图谱生成式预测.md",
+      "timestamp": 1758634579224
     }
   ],
   "bookmarkedFileStore": [],

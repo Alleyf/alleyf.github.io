@@ -4,7 +4,7 @@ date: 2025-09-21T20:10:00
 tags:
   - research
 sticky: 80
-excerpt:
+excerpt: LLM生成关系描述（ERD）+GRU构建历史推理链（RHL），解决零样本TKGF。
 author: fcs
 index_img: https://picsum.photos/800/250
 lang: zh-CN
@@ -75,7 +75,6 @@ number headings: auto, first-level 1, max 5, start-at 1, 1.1
 - 给定新案件“(A国, 太空合作, ?, 2023)”
     
 - 回溯A国历史行为：
-    
     ```mermaid
     timeline
       title A国的太空黑历史
@@ -86,7 +85,7 @@ number headings: auto, first-level 1, max 5, start-at 1, 1.1
     
     ​**​技术实现​**​：用GRU网络构建​**​时间推理链​**​（图3案例）
     
-    ![](https://hunyuan-plugin-private-1258344706.cos.ap-nanjing.myqcloud.com/pdf_youtu/img/c39ef937594830aa9cb1689a6f852d44-image.png?q-sign-algorithm=sha1&q-ak=AKID372nLgqocp7HZjfQzNcyGOMTN3Xp6FEA&q-sign-time=1758598213%3B2073958213&q-key-time=1758598213%3B2073958213&q-header-list=host&q-url-param-list=&q-signature=a9c7dabdeed1715658abb2613d7fa16e337f9e8c)
+    ![|750](https://hunyuan-plugin-private-1258344706.cos.ap-nanjing.myqcloud.com/pdf_youtu/img/c39ef937594830aa9cb1689a6f852d44-image.png?q-sign-algorithm=sha1&q-ak=AKID372nLgqocp7HZjfQzNcyGOMTN3Xp6FEA&q-sign-time=1758598213%3B2073958213&q-key-time=1758598213%3B2073958213&q-header-list=host&q-url-param-list=&q-signature=a9c7dabdeed1715658abb2613d7fa16e337f9e8c)
     
 
 #### 0.1.3.4 ​**​🛡️ 第三步：防作弊机制​**​
