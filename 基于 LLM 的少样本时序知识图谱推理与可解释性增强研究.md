@@ -16,7 +16,7 @@ headingDivider:
   - 2
   - 3
 header:
-footer: \ *[范财胜（华中科技大学）](http://alleyf.github.io)*  *csfan@hust.edu.cn* *2024-01-02*
+footer: \ *[范财胜（华中科技大学）](http://alleyf.github.io)*  *csfan@hust.edu.cn* *2025-09-24*
 backgroundColor:
 backgroundImage: url('https://marp.app/assets/hero-background.svg')
 ---
@@ -178,28 +178,8 @@ graph LR
 
 ---
 
-```mermaid
-flowchart TB
-    subgraph 稀疏场景TKGF增强核心模块
-        A[输入：少/零样本TKG数据（含目标关系r+新实体）] --> B[数据分支：少样本数据 / 零样本数据]
-        
-        %% 分支1：MAML元学习链路（少样本核心）
-        B --> C[MAML元学习框架]
-        C --> D[分段学习模块：掌握TKG通用演化模式]
-        C --> E[门控整合模块：智能权重分配与知识传递]
-        D & E --> F[元知识建模：形成关系r的时序模式模板]
-        
-        %% 分支2：LLM语义增强链路（少/零样本通用）
-        B --> G[LLM模块]
-        G --> H[关系语义描述生成（ERD, GenTKG）：补全稀疏语义]
-        G --> I[少样本LoRA微调（GenTKG/zrLLM）：快速适配关系r]
-        H & I --> J[GRU历史推理链构建（RHL, GenTKG）：挖掘有限历史关联]
-        
-        %% 知识泛化与输出
-        F & J --> K[知识泛化模块：将关系r模式迁移至新实体]
-        K --> L[输出：稀疏场景下少/零样本TKGF增强结果（泛化至新实体）]
-    end
-```
+![#c  image.png](http://img.fcs.cloudns.ch/pics/20250924113838427.png)
+
 
 
 ## 💡 应用层—面向社科场景的任务落地
