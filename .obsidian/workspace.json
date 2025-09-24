@@ -112,7 +112,8 @@
               "title": "基于大语言模型的时序知识图谱推理研究"
             }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -131,13 +132,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/科研学习/论文总结/《MetaTKG：让“时间知识图谱”秒变“元学习小机灵”》  ——一篇能让研一萌新看懂 EMNLP’22 最佳“穿越”外挂的脱口秀.md",
+                "file": "source/_posts/科研学习/研究思考-毕业/基于大语言模型的少样本时间知识图谱推理与可解释性增强研究.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "《MetaTKG：让“时间知识图谱”秒变“元学习小机灵”》  ——一篇能让研一萌新看懂 EMNLP’22 最佳“穿越”外挂的脱口秀 的大纲"
+              "title": "基于大语言模型的少样本时间知识图谱推理与可解释性增强研究 的大纲"
             }
           }
         ]
@@ -226,14 +227,15 @@
       "infio-copilot:打开 Infio Copilot": false
     }
   },
-  "active": "60d4264266a935fd",
+  "active": "6f8011863cbea495",
   "lastOpenFiles": [
+    "source/_posts/科研学习/论文总结/GenTKG 基于大语言模型的时间知识图谱生成式预测.md",
+    "source/_posts/科研学习/论文总结/《MetaTKG：让“时间知识图谱”秒变“元学习小机灵”》  ——一篇能让研一萌新看懂 EMNLP’22 最佳“穿越”外挂的脱口秀.md",
+    "source/_posts/科研学习/论文总结/sed1XcmBT",
     "source/_posts/科研学习/研究思考-毕业/基于大语言模型的少样本时间知识图谱推理与可解释性增强研究.md",
     "基于大语言模型的少样本时间知识图谱推理与可解释性增强研究.md",
     "source/_posts/科研学习/论文总结/​《历史链推理：让LLM像侦探一样破解时序知识图谱！高阶信息+分步推理=预测开挂》.md",
-    "source/_posts/科研学习/论文总结/GenTKG 基于大语言模型的时间知识图谱生成式预测.md",
     "source/_posts/科研学习/论文总结/zrLLM：当大模型化身时空侦探——零样本关系预测破案实录.md",
-    "source/_posts/科研学习/论文总结/《MetaTKG：让“时间知识图谱”秒变“元学习小机灵”》  ——一篇能让研一萌新看懂 EMNLP’22 最佳“穿越”外挂的脱口秀.md",
     "source/_posts/科研学习/研究思考-毕业/研究思路.md",
     "source/_posts/科研学习/研究思考-毕业/基于大语言模型的时序知识图谱推理研究.md",
     "source/_obsidian/学习笔记模板.md",
@@ -257,13 +259,11 @@
     "themes/fluid/source/css/_pages/_base/_widget/search.styl",
     "themes/fluid/source/css/_pages/_base/_widget/scroll-btn.styl",
     "themes/fluid/source/css/_pages/_base/_widget/pagination.styl",
-    "themes/fluid/source/css/_pages/_base/_widget/noscript.styl",
     "themes/landscape/README.md",
     "themes/fluid/README_en.md",
     "themes/fluid/README.md",
     "source/_posts/科研学习/机器学习/CV/目标检测.md",
     "source/_posts/科研学习/机器学习/CV/图像分类.md",
-    "source/_posts/科研学习/机器学习/CV/计算机视觉概述.md",
     "source/gallery/images/桌面壁纸/sunset.png",
     "source/gallery/images/桌面壁纸/fire.jpg",
     "source/gallery/images/徒步旅行/FCS00907.jpeg",
