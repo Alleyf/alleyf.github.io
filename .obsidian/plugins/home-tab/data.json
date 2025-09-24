@@ -22,16 +22,7 @@
   "showShortcuts": true,
   "markdownOnly": false,
   "unresolvedLinks": false,
-  "recentFilesStore": [
-    {
-      "filepath": "source/_posts/科研学习/研究思考-毕业/基于 LLM 的少样本时序知识图谱推理与可解释性增强研究.md",
-      "timestamp": 1758677310777
-    },
-    {
-      "filepath": "source/_posts/科研学习/论文总结/​《历史链推理：让LLM像侦探一样破解时序知识图谱！高阶信息+分步推理=预测开挂》.md",
-      "timestamp": 1758677308638
-    }
-  ],
+  "recentFilesStore": [],
   "bookmarkedFileStore": [],
   "searchDelay": 0,
   "replaceNewTabs": true,
