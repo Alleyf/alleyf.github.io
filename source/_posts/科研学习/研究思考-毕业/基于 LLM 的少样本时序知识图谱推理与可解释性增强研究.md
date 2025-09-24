@@ -242,14 +242,14 @@ LLM 的优势与局限形成对 TKG 的"精准互补"：
 
 # 📕参考文献
 
-- [1] Wei, W., et al. "Large Language Models-guided Dynamic Adaptation for Temporal Knowledge Graph Reasoning." NeurIPS, 2024. [arXiv:2405.14170](https://arxiv.org/abs/2405.14170).
-- [2] Wang, Y., et al. "Chain-of-History Reasoning for Temporal Knowledge Graph Forecasting." ACL Findings, 2024. [arXiv:2402.14382](https://arxiv.org/abs/2402.14382).
-- [3] Li, Y., et al. "Temporal knowledge graph completion: A survey." IJCAI, 2023. [DOI:10.24963/ijcai.2023/734](https://doi.org/10.24963/ijcai.2023/734).  
-- [4] Liu, Z., et al. "A survey on temporal knowledge graph: Representation learning and applications." arXiv preprint, 2024. [arXiv:2403.04782](https://arxiv.org/abs/2403.04782).  
-- [5] Wang, Q., et al. "A survey on knowledge graphs: Representation, acquisition, and applications." IEEE TNNLS, 2022. [DOI:10.1109/TNNLS.2021.3070843](https://doi.org/10.1109/TNNLS.2021.3070843).  
-- [6] Chen, D., et al. "MetaTKG: Learning evolutionary meta-knowledge for temporal knowledge graph reasoning." EMNLP, 2022. [arXiv:2209.02998](https://doi.org/10.18653/v1/2022.emnlp-main.487).  
-- [7] Zhang, T., et al. "GenTKG: Generative forecasting on temporal knowledge graph with large language models." arXiv preprint, 2023. [arXiv:2310.07793](https://arxiv.org/abs/2310.07793).  
-- [8] Zhao, K., et al. "zrLLM: Zero-shot relational learning on temporal knowledge graphs with large language models." NAACL, 2024. [arXiv:2312.15884](https://doi.org/10.18653/v1/2024.naacl-long.104).
+[1] Wei, W., et al. "Large Language Models-guided Dynamic Adaptation for Temporal Knowledge Graph Reasoning." NeurIPS, 2024. [arXiv:2405.14170](https://arxiv.org/abs/2405.14170).
+[2] Wang, Y., et al. "Chain-of-History Reasoning for Temporal Knowledge Graph Forecasting." ACL Findings, 2024. [arXiv:2402.14382](https://arxiv.org/abs/2402.14382).
+[3] Li, Y., et al. "Temporal knowledge graph completion: A survey." IJCAI, 2023. [DOI:10.24963/ijcai.2023/734](https://doi.org/10.24963/ijcai.2023/734).  
+[4] Liu, Z., et al. "A survey on temporal knowledge graph: Representation learning and applications." arXiv preprint, 2024. [arXiv:2403.04782](https://arxiv.org/abs/2403.04782).  
+[5] Wang, Q., et al. "A survey on knowledge graphs: Representation, acquisition, and applications." IEEE TNNLS, 2022. [DOI:10.1109/TNNLS.2021.3070843](https://doi.org/10.1109/TNNLS.2021.3070843).  
+[6] Chen, D., et al. "MetaTKG: Learning evolutionary meta-knowledge for temporal knowledge graph reasoning." EMNLP, 2022. [arXiv:2209.02998](https://doi.org/10.18653/v1/2022.emnlp-main.487).  
+[7] Zhang, T., et al. "GenTKG: Generative forecasting on temporal knowledge graph with large language models." arXiv preprint, 2023. [arXiv:2310.07793](https://arxiv.org/abs/2310.07793).  
+[8] Zhao, K., et al. "zrLLM: Zero-shot relational learning on temporal knowledge graphs with large language models." NAACL, 2024. [arXiv:2312.15884](https://doi.org/10.18653/v1/2024.naacl-long.104).
 
 # 🙏 致谢
 <!-- _class: cover_d -->
