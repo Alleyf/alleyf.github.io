@@ -6,7 +6,10 @@
     "public/",
     "scaffolds/",
     "scripts/",
-    "themes/"
+    "themes/",
+    "diary/",
+    "canvas/",
+    "MarpTheme/"
   ],
   "strictLineBreaks": false,
   "showLineNumber": false,
@@ -32,5 +35,7 @@
   "showInlineTitle": false,
   "showUnsupportedFiles": false,
   "propertiesInDocument": "visible",
-  "foldHeading": true
+  "foldHeading": true,
+  "newFileLocation": "current",
+  "uriCallbacks": true
 }
