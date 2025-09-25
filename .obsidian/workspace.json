@@ -13,13 +13,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/科研学习/研究思考-毕业/基于 LLM 的少样本时序知识图谱推理与可解释性增强研究.md",
+                "file": "source/_posts/科研学习/研究思考-毕业/基于 LLM 的时序知识图谱推理与可解释性增强研究.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "基于 LLM 的少样本时序知识图谱推理与可解释性增强研究"
+              "title": "基于 LLM 的时序知识图谱推理与可解释性增强研究"
             }
           },
           {
@@ -72,13 +72,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/科研学习/研究思考-毕业/基于 LLM 的少样本时序知识图谱推理与可解释性增强研究.md",
+                "file": "source/_posts/科研学习/研究思考-毕业/基于 LLM 的时序知识图谱推理与可解释性增强研究.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "基于 LLM 的少样本时序知识图谱推理与可解释性增强研究 的大纲"
+              "title": "基于 LLM 的时序知识图谱推理与可解释性增强研究 的大纲"
             }
           }
         ]
@@ -167,12 +167,12 @@
       "infio-copilot:打开 Infio Copilot": false
     }
   },
-  "active": "0bf94850fc25443a",
+  "active": "08e087e0f848f7a2",
   "lastOpenFiles": [
     "基于 LLM 的少样本时序知识图谱推理与可解释性增强研究.md",
     "基于 LLM 的少样本时序知识图谱推理与可解释性增强研究.html",
     "source/_posts/科研学习/论文总结/​《历史链推理：让LLM像侦探一样破解时序知识图谱！高阶信息+分步推理=预测开挂》.md",
-    "source/_posts/科研学习/研究思考-毕业/基于 LLM 的少样本时序知识图谱推理与可解释性增强研究.md",
+    "source/_posts/科研学习/研究思考-毕业/基于 LLM 的时序知识图谱推理与可解释性增强研究.md",
     "基于大语言模型的少样本时间知识图谱推理与可解释性增强研究.md",
     "source/_posts/科研学习/研究思考-毕业/基于大语言模型的时序知识图谱推理研究.md",
     "conflict-files-obsidian-git.md",
