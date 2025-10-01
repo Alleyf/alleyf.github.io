@@ -1,7 +1,7 @@
 {
   "CHROME_PATH": "",
   "ThemePath": "MarpTheme",
-  "EnableHTML": false,
+  "EnableHTML": true,
   "MathTypesettings": "mathjax",
   "HTMLExportMode": "bare",
   "EXPORT_PATH": "C:\\Users\\Administrator\\Desktop\\",
