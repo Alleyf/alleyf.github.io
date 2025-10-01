@@ -54,22 +54,6 @@
           }
         ],
         "currentTab": 1
-      },
-      {
-        "id": "8f7513a2ac9184f3",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "fe9fb48ecf2a9d94",
-            "type": "leaf",
-            "state": {
-              "type": "marp-preview-view",
-              "state": {},
-              "icon": "lucide-file",
-              "title": "Deck Preview"
-            }
-          }
-        ]
       }
     ],
     "direction": "vertical"
@@ -172,7 +156,6 @@
       "templates:插入模板": true,
       "daily-notes:打开/创建今天的日记": false,
       "graph:查看关系图谱": false,
-      "canvas:新建白板": false,
       "obsidian42-text-transporter:Text Transporter": true,
       "omnisearch:Omnisearch": false,
       "table-editor-obsidian:Advanced Tables Toolbar": false,
