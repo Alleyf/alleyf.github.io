@@ -24,24 +24,24 @@
   "unresolvedLinks": false,
   "recentFilesStore": [
     {
-      "filepath": "source/_posts/科研学习/学习方法/Paper_Reading_Method.md",
-      "timestamp": 1759302995191
+      "filepath": "source/_posts/科研学习/论文总结/《时序图谱遇上大模型 TGL-LLM如何用 时空双修 突破预测瓶颈》.md",
+      "timestamp": 1759472548823
     },
     {
-      "filepath": "source/_posts/科研学习/学习方法/科研思路.md",
-      "timestamp": 1759302958851
+      "filepath": "source/_posts/科研学习/学习方法/Paper_Reading_Method.md",
+      "timestamp": 1759472466757
     },
     {
       "filepath": "source/_posts/科研学习/研究思考-毕业/基于大语言模型的时序知识图谱推理研究.md",
-      "timestamp": 1759302949859
+      "timestamp": 1759472464075
+    },
+    {
+      "filepath": "source/_posts/科研学习/学习方法/科研思路.md",
+      "timestamp": 1759472463116
     },
     {
       "filepath": "source/_posts/科研学习/论文总结/zrLLM：当大模型化身时空侦探——零样本关系预测破案实录.md",
       "timestamp": 1759302894908
-    },
-    {
-      "filepath": "source/_posts/科研学习/论文总结/Paper_Reading_Tables.md",
-      "timestamp": 1759302893456
     }
   ],
   "bookmarkedFileStore": [],

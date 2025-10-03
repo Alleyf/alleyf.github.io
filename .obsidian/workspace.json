@@ -28,13 +28,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/科研学习/学习方法/Paper_Reading_Method.md",
+                "file": "source/_posts/科研学习/论文总结/《时序图谱遇上大模型 TGL-LLM如何用 时空双修 突破预测瓶颈》.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "Paper_Reading_Method"
+              "title": "《时序图谱遇上大模型 TGL-LLM如何用 时空双修 突破预测瓶颈》"
             }
           },
           {
@@ -91,13 +91,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/科研学习/学习方法/Paper_Reading_Method.md",
+                "file": "source/_posts/科研学习/论文总结/《时序图谱遇上大模型 TGL-LLM如何用 时空双修 突破预测瓶颈》.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Paper_Reading_Method 的大纲"
+              "title": "《时序图谱遇上大模型 TGL-LLM如何用 时空双修 突破预测瓶颈》 的大纲"
             }
           }
         ]
@@ -169,8 +169,10 @@
   },
   "active": "e3cc5faafa5a3f87",
   "lastOpenFiles": [
-    "source/_posts/科研学习/学习方法/科研思路.md",
+    "source/_posts/科研学习/学习方法/Paper_Reading_Method.md",
+    "source/_posts/科研学习/论文总结/《时序图谱遇上大模型 TGL-LLM如何用 时空双修 突破预测瓶颈》.md",
     "source/_posts/科研学习/研究思考-毕业/基于大语言模型的时序知识图谱推理研究.md",
+    "source/_posts/科研学习/学习方法/科研思路.md",
     "source/_posts/科研学习/论文总结/zrLLM：当大模型化身时空侦探——零样本关系预测破案实录.md",
     "source/_posts/科研学习/论文总结/Paper_Reading_Tables.md",
     "source/_posts/科研学习/论文总结/Papers Reading.md",
@@ -213,8 +215,6 @@
     "基于大语言模型的时序知识图谱推理研究.md",
     "source/_posts/运维开发/20250622_云计算及基础平台学习清单.md",
     "source/_posts/科研学习/调研报告/论文总结.md",
-    "source/_posts/后端开发/20250622_后端学习清单.md",
-    "source/_posts/运维开发/运维排忧解难.md",
     "canvas/未命名.canvas",
     "canvas/AI学习思路.canvas",
     "未命名.canvas",
