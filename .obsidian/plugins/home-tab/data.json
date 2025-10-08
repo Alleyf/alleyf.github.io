@@ -14,7 +14,7 @@
   "fontWeight": 600,
   "maxResults": 5,
   "showbookmarkedFiles": true,
-  "showRecentFiles": true,
+  "showRecentFiles": false,
   "maxRecentFiles": 5,
   "storeRecentFile": true,
   "showPath": true,
@@ -24,21 +24,31 @@
   "unresolvedLinks": false,
   "recentFilesStore": [
     {
-      "filepath": "source/_posts/科研学习/会议讨论/周会.md",
-      "timestamp": 1759924595679
+      "filepath": "source/_posts/艺术生活/摄影/调色基础.md",
+      "timestamp": 1759934231478
     },
     {
-      "filepath": "source/_posts/运维开发/运维排忧解难.md",
-      "timestamp": 1758979831048
+      "filepath": "source/_posts/科研学习/学习方法/科研思路.md",
+      "timestamp": 1759934211089
+    },
+    {
+      "filepath": "source/_posts/科研学习/论文总结/《时序图谱遇上大模型 TGL-LLM如何用 时空双修 突破预测瓶颈》.md",
+      "timestamp": 1759934147822
+    },
+    {
+      "filepath": "source/_posts/科研学习/学习方法/Paper_Reading_Method.md",
+      "timestamp": 1759472466757
+    },
+    {
+      "filepath": "source/_posts/科研学习/研究思考-毕业/基于大语言模型的时序知识图谱推理研究.md",
+      "timestamp": 1759472464075
     }
   ],
   "bookmarkedFileStore": [],
   "searchDelay": 0,
   "replaceNewTabs": true,
-  "newTabOnStart": true,
-  "closePreviousSessionTabs": true,
-  "omnisearch": true,
-  "showOmnisearchExcerpt": true,
-  "showStarredFiles": false,
-  "starredFileStore": []
+  "newTabOnStart": false,
+  "closePreviousSessionTabs": false,
+  "omnisearch": false,
+  "showOmnisearchExcerpt": true
 }

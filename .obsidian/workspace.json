@@ -1,25 +1,55 @@
 {
   "main": {
-    "id": "4e1d48d78a3603d3",
+    "id": "b1eebb169a362eba",
     "type": "split",
     "children": [
       {
-        "id": "a5f65682ce0752df",
+        "id": "4db175b5cd3bf758",
         "type": "tabs",
         "children": [
           {
-            "id": "77fd3bf7a9faa5d2",
+            "id": "a34ec1ec178f1a5a",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/科研学习/会议讨论/周会.md",
+                "file": "source/_posts/艺术生活/摄影/调色基础.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "周会"
+              "title": "调色基础"
+            }
+          },
+          {
+            "id": "e3cc5faafa5a3f87",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "source/_posts/科研学习/论文总结/《时序图谱遇上大模型 TGL-LLM如何用 时空双修 突破预测瓶颈》.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "《时序图谱遇上大模型 TGL-LLM如何用 时空双修 突破预测瓶颈》"
+            }
+          },
+          {
+            "id": "0d0187524a10664e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "source/_posts/科研学习/研究思考-毕业/基于大语言模型的时序知识图谱推理研究.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "基于大语言模型的时序知识图谱推理研究"
             }
           }
         ]
@@ -28,36 +58,15 @@
     "direction": "vertical"
   },
   "left": {
-    "id": "bb05ecf40c3b0ffb",
+    "id": "5383d5b0300a119a",
     "type": "split",
     "children": [
       {
-        "id": "9333a8464a62ac28",
+        "id": "f62931217ad3a3b9",
         "type": "tabs",
         "children": [
           {
-            "id": "8ad6e23308e50e3b",
-            "type": "leaf",
-            "state": {
-              "type": "outline",
-              "state": {
-                "file": "source/_posts/科研学习/会议讨论/周会.md",
-                "followCursor": false,
-                "showSearch": false,
-                "searchQuery": ""
-              },
-              "icon": "lucide-list",
-              "title": "周会 的大纲"
-            }
-          }
-        ]
-      },
-      {
-        "id": "de2c732dd51bbb04",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "3d08a715f28b0d85",
+            "id": "35a8b979ca76b32d",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -70,21 +79,42 @@
             }
           }
         ]
-      }
-    ],
-    "direction": "horizontal",
-    "width": 300
-  },
-  "right": {
-    "id": "abd1e67f7c126d19",
-    "type": "split",
-    "children": [
+      },
       {
-        "id": "266e3ea4ea6cbc17",
+        "id": "c736c57ccfb1438e",
         "type": "tabs",
         "children": [
           {
-            "id": "af133cd0c05b2dc6",
+            "id": "d4d96d123a51c296",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "source/_posts/艺术生活/摄影/调色基础.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "调色基础 的大纲"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 278.5
+  },
+  "right": {
+    "id": "ef878eb90911b56c",
+    "type": "split",
+    "children": [
+      {
+        "id": "e6734f3fb7b120c9",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "8c858159b0aedf6b",
             "type": "leaf",
             "state": {
               "type": "calendar",
@@ -96,11 +126,11 @@
         ]
       },
       {
-        "id": "53ab3e4d4617cd29",
+        "id": "cef9e073412dd9c8",
         "type": "tabs",
         "children": [
           {
-            "id": "415d00a19d163394",
+            "id": "f6a36b9b63f3a735",
             "type": "leaf",
             "state": {
               "type": "git-view",
@@ -113,19 +143,19 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 339.5
   },
   "left-ribbon": {
     "hiddenItems": {
-      "templater-obsidian:Templater": false,
-      "bases:创建新数据库": false,
-      "markdown-importer:打开 Markdown 格式转换器": false,
+      "infio-copilot:打开 Infio Copilot": false,
+      "bases:创建新数据库": true,
+      "markdown-importer:打开 Markdown 格式转换器": true,
       "workspaces:管理工作区布局": false,
-      "graph:查看关系图谱": false,
+      "command-palette:打开命令面板": true,
+      "templates:插入模板": true,
       "daily-notes:打开/创建今天的日记": false,
-      "templates:插入模板": false,
-      "command-palette:打开命令面板": false,
-      "obsidian42-text-transporter:Text Transporter": false,
+      "graph:查看关系图谱": false,
+      "obsidian42-text-transporter:Text Transporter": true,
       "omnisearch:Omnisearch": false,
       "table-editor-obsidian:Advanced Tables Toolbar": false,
       "obsidian-file-cleaner:清理文件": false,
@@ -133,60 +163,65 @@
       "obsidian42-brat:BRAT": false,
       "note-publish:笔记预览": false,
       "marp-slides:Show Slide Preview": false,
-      "infio-copilot:打开 Infio Copilot": false
+      "templater-obsidian:Templater": false
     }
   },
-  "active": "77fd3bf7a9faa5d2",
+  "active": "a34ec1ec178f1a5a",
   "lastOpenFiles": [
-    "source/_posts/运维开发/运维排忧解难.md",
+    "source/_posts/科研学习/学习方法/科研思路.md",
     "source/_posts/科研学习/论文总结/《时序图谱遇上大模型 TGL-LLM如何用 时空双修 突破预测瓶颈》.md",
-    "source/_posts/科研学习/研究思考-毕业/基于 LLM 的时序知识图谱推理与可解释性增强研究.md",
+    "source/_posts/科研学习/学习方法/Paper_Reading_Method.md",
+    "source/_posts/科研学习/研究思考-毕业/基于大语言模型的时序知识图谱推理研究.md",
+    "source/_posts/科研学习/论文总结/zrLLM：当大模型化身时空侦探——零样本关系预测破案实录.md",
+    "source/_posts/科研学习/论文总结/Paper_Reading_Tables.md",
+    "source/_posts/科研学习/论文总结/Papers Reading.md",
+    "source/_posts/科研学习/研究思考-毕业/研究思路.md",
+    "public/2025/09/30e84bb5e593.html",
+    "source/_posts/科研学习/研究思考-毕业/基于大语言模型的少样本时间知识图谱推理与可解释性增强研究.md",
     "基于 LLM 的时序知识图谱推理与可解释性增强研究.md",
     "基于 LLM 的少样本时序知识图谱推理与可解释性增强研究.md",
     "基于 LLM 的少样本时序知识图谱推理与可解释性增强研究.html",
-    "source/_posts/科研学习/论文总结/​《历史链推理：让LLM像侦探一样破解时序知识图谱！高阶信息+分步推理=预测开挂》.md",
+    "source/_posts/科研学习/研究思考-毕业/基于 LLM 的时序知识图谱推理与可解释性增强研究.md",
+    "source/_posts/科研学习/Explainability for large language models- A survey.mm",
+    "public/2025/09/2b5f8440eeae.html",
     "基于大语言模型的少样本时间知识图谱推理与可解释性增强研究.md",
-    "source/_posts/科研学习/研究思考-毕业/基于大语言模型的时序知识图谱推理研究.md",
-    "conflict-files-obsidian-git.md",
-    "source/_obsidian/marp 二分栏.md",
-    "source/_posts/科研学习/论文总结/GenTKG 基于大语言模型的时间知识图谱生成式预测.md",
-    "source/_posts/科研学习/论文总结/《MetaTKG：让“时间知识图谱”秒变“元学习小机灵”》  ——一篇能让研一萌新看懂 EMNLP’22 最佳“穿越”外挂的脱口秀.md",
-    "source/_posts/科研学习/论文总结/sed1XcmBT",
-    "source/_posts/科研学习/论文总结/zrLLM：当大模型化身时空侦探——零样本关系预测破案实录.md",
-    "source/_posts/科研学习/研究思考-毕业/研究思路.md",
-    "source/_obsidian/学习笔记模板.md",
-    "source/_posts/科研学习/会议讨论/周会.md",
-    "source/_posts/科研学习/研究思考-毕业/选题预选方案.md",
     "基于大语言模型的少样本时间知识图谱推理与可解释性增强研究.html",
-    "source/_obsidian/目录.md",
-    "_infio_prompts",
-    "基于大语言模型的时序知识图谱推理研究.md",
-    "source/_posts/科研学习/论文总结/Chain-of-Thought Reasoning Without Prompting.md",
-    "source/_posts/科研学习/论文总结/A survey of large language models.md",
-    "学术汇报模板.md",
+    "public/archives/page/10/index.html",
+    "public/archives/page/10",
     "source/_obsidian/学术汇报模板.md",
     "attachment/AwesomeMarp_blue.md",
-    "学术汇报模板.html",
-    "基于大语言模型的时序知识图谱推理研究.html",
-    "source/_posts/科研学习/会议讨论/国际会议.md",
-    "themes/fluid/source/css/_pages/_base/_widget/qrcode.styl",
-    "themes/fluid/source/css/_pages/_base/_widget/toc.styl",
-    "themes/fluid/source/css/_pages/_base/_widget/search.styl",
-    "themes/fluid/source/css/_pages/_base/_widget/scroll-btn.styl",
-    "themes/landscape/README.md",
-    "source/gallery/images/桌面壁纸/sunset.png",
-    "source/gallery/images/桌面壁纸/fire.jpg",
-    "source/gallery/images/徒步旅行/FCS00907.jpeg",
-    "source/gallery/images/桌面壁纸/cloud.png",
-    "source/gallery/images/朋友挚交/FCS01678.jpeg",
-    "source/gallery/images/桌面壁纸/bg.jpg",
-    "source/gallery/images/朋友挚交/FCS01683.jpeg",
-    "source/gallery/images/朋友挚交/FCS01603.jpeg",
-    "source/gallery/images/朋友挚交/FCS01676.jpeg",
-    "source/gallery/images/徒步旅行/FCS01646.jpeg",
+    "source/_obsidian/marp 二分栏.md",
+    "conflict-files-obsidian-git.md",
+    "public/archives/2025/page/2/index.html",
+    "public/2025/09/86df980fd7ff.html",
+    "public/2025/09/9ce7077bf863.html",
+    "source/_posts/科研学习/论文总结/《MetaTKG：让“时间知识图谱”秒变“元学习小机灵”》  ——一篇能让研一萌新看懂 EMNLP’22 最佳“穿越”外挂的脱口秀.md",
+    "source/_posts/科研学习/论文总结/​《历史链推理：让LLM像侦探一样破解时序知识图谱！高阶信息+分步推理=预测开挂》.md",
+    "source/_posts/科研学习/论文总结/GenTKG 基于大语言模型的时间知识图谱生成式预测.md",
+    "source/_obsidian/目录.md",
+    "public/gallery/images/朋友挚交/FCS01678.jpeg",
+    "public/gallery/images/桌面壁纸/cloud.png",
+    "public/gallery/images/桌面壁纸/fire.jpg",
+    "public/gallery/images/徒步旅行/FCS01646.jpeg",
+    "public/gallery/images/朋友挚交/FCS01676.jpeg",
+    "public/gallery/images/朋友挚交/FCS01603.jpeg",
+    "public/gallery/images/朋友挚交/FCS01683.jpeg",
+    "public/gallery/images/徒步旅行/FCS00907.jpeg",
+    "public/gallery/images/徒步旅行/FCS00909.jpeg",
+    "public/gallery/images/桌面壁纸/bg.jpg",
+    "source/_posts/科研学习/研究思考-毕业/选题预选方案.md",
+    "学术汇报模板.md",
+    "基于大语言模型的时序知识图谱推理研究.md",
+    "source/_posts/运维开发/20250622_云计算及基础平台学习清单.md",
+    "source/_posts/科研学习/调研报告/论文总结.md",
+    "canvas/未命名.canvas",
+    "canvas/AI学习思路.canvas",
+    "未命名.canvas",
+    "canvas/review plans.canvas",
     "source/_posts/英语学习/EnglishWords.canvas",
     "source/_posts/英语学习/PaperWords.canvas",
-    "canvas/review plans.canvas",
-    "canvas/AI学习思路.canvas"
+    "source/_posts/课程学习/review plans.canvas",
+    "未命名 1.canvas",
+    "source/_posts/未命名.canvas"
   ]
 }
