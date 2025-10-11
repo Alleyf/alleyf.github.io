@@ -13,13 +13,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/艺术生活/摄影/调色基础.md",
+                "file": "source/_posts/科研学习/论文总结/时序知识图谱表示与推理的研究进展与趋势.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "调色基础"
+              "title": "时序知识图谱表示与推理的研究进展与趋势"
             }
           },
           {
@@ -67,8 +67,7 @@
               "title": "基于大语言模型的时序知识图谱推理研究"
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -106,13 +105,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/科研学习/论文总结/Temporal Knowledge Graph Completion A Survey.md",
+                "file": "source/_posts/科研学习/论文总结/时序知识图谱表示与推理的研究进展与趋势.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Temporal Knowledge Graph Completion A Survey 的大纲"
+              "title": "时序知识图谱表示与推理的研究进展与趋势 的大纲"
             }
           }
         ]
@@ -183,15 +182,16 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "4000910907a19067",
+  "active": "a34ec1ec178f1a5a",
   "lastOpenFiles": [
-    "source/_posts/科研学习/论文总结/A Survey on Temporal Knowledge Graph Representation Learning and Applications.md",
-    "source/_posts/科研学习/论文总结/Temporal Knowledge Graph Completion A Survey.md",
     "source/_posts/科研学习/学习方法/Paper_Reading_Method.md",
+    "source/_posts/科研学习/论文总结/时序知识图谱表示与推理的研究进展与趋势.md",
+    "source/_posts/艺术生活/摄影/调色基础.md",
+    "source/_posts/科研学习/论文总结/Temporal Knowledge Graph Completion A Survey.md",
+    "source/_posts/科研学习/论文总结/A Survey on Temporal Knowledge Graph Representation Learning and Applications.md",
     "source/_posts/科研学习/论文总结/《时序图谱遇上大模型 TGL-LLM如何用 时空双修 突破预测瓶颈》.md",
     "source/_posts/科研学习/论文总结/Papers Reading.md",
     "source/_posts/科研学习/研究思考-毕业/基于大语言模型的时序知识图谱推理研究.md",
-    "source/_posts/艺术生活/摄影/调色基础.md",
     "source/_posts/科研学习/学习方法/科研思路.md",
     "source/_posts/科研学习/论文总结/zrLLM：当大模型化身时空侦探——零样本关系预测破案实录.md",
     "source/_posts/科研学习/论文总结/Paper_Reading_Tables.md",
@@ -230,7 +230,6 @@
     "public/gallery/images/徒步旅行/FCS00909.jpeg",
     "public/gallery/images/桌面壁纸/bg.jpg",
     "source/_posts/科研学习/研究思考-毕业/选题预选方案.md",
-    "学术汇报模板.md",
     "canvas/未命名.canvas",
     "canvas/AI学习思路.canvas",
     "未命名.canvas",
