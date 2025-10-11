@@ -25,6 +25,10 @@
   "recentFilesStore": [
     {
       "filepath": "source/_posts/科研学习/论文总结/未命名.md",
+      "timestamp": 1760186805469
+    },
+    {
+      "filepath": "source/_posts/科研学习/论文总结/A Survey on Temporal Knowledge Graph Representation Learning and Applications.md",
       "timestamp": 1760182324090
     },
     {
@@ -38,10 +42,6 @@
     {
       "filepath": "source/_posts/科研学习/论文总结/Papers Reading.md",
       "timestamp": 1760181892271
-    },
-    {
-      "filepath": "source/_posts/科研学习/研究思考-毕业/基于大语言模型的时序知识图谱推理研究.md",
-      "timestamp": 1760181621283
     }
   ],
   "bookmarkedFileStore": [],
