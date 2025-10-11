@@ -38,6 +38,21 @@
             }
           },
           {
+            "id": "4000910907a19067",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "source/_posts/科研学习/论文总结/A Survey on Temporal Knowledge Graph Representation Learning and Applications.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "A Survey on Temporal Knowledge Graph Representation Learning and Applications"
+            }
+          },
+          {
             "id": "0d0187524a10664e",
             "type": "leaf",
             "state": {
@@ -52,7 +67,8 @@
               "title": "基于大语言模型的时序知识图谱推理研究"
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -90,13 +106,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/艺术生活/摄影/调色基础.md",
+                "file": "source/_posts/科研学习/论文总结/A Survey on Temporal Knowledge Graph Representation Learning and Applications.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "调色基础 的大纲"
+              "title": "A Survey on Temporal Knowledge Graph Representation Learning and Applications 的大纲"
             }
           }
         ]
@@ -147,34 +163,37 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "infio-copilot:打开 Infio Copilot": false,
-      "bases:创建新数据库": true,
       "markdown-importer:打开 Markdown 格式转换器": true,
       "workspaces:管理工作区布局": false,
       "command-palette:打开命令面板": true,
       "templates:插入模板": true,
       "daily-notes:打开/创建今天的日记": false,
       "graph:查看关系图谱": false,
-      "obsidian42-text-transporter:Text Transporter": true,
+      "obsidian42-text-transporter:Text Transporter": false,
       "omnisearch:Omnisearch": false,
       "table-editor-obsidian:Advanced Tables Toolbar": false,
+      "cmdr:Calendar: Open view": false,
+      "cmdr:Obsidian Git: Open source control view": false,
       "obsidian-file-cleaner:清理文件": false,
       "obsidian-git:Open Git source control": false,
       "obsidian42-brat:BRAT": false,
       "note-publish:笔记预览": false,
       "marp-slides:Show Slide Preview": false,
+      "infio-copilot:打开 Infio Copilot": false,
       "templater-obsidian:Templater": false
     }
   },
-  "active": "a34ec1ec178f1a5a",
+  "active": "4000910907a19067",
   "lastOpenFiles": [
-    "source/_posts/科研学习/学习方法/科研思路.md",
-    "source/_posts/科研学习/论文总结/《时序图谱遇上大模型 TGL-LLM如何用 时空双修 突破预测瓶颈》.md",
     "source/_posts/科研学习/学习方法/Paper_Reading_Method.md",
+    "source/_posts/科研学习/论文总结/A Survey on Temporal Knowledge Graph Representation Learning and Applications.md",
+    "source/_posts/科研学习/论文总结/《时序图谱遇上大模型 TGL-LLM如何用 时空双修 突破预测瓶颈》.md",
+    "source/_posts/科研学习/论文总结/Papers Reading.md",
     "source/_posts/科研学习/研究思考-毕业/基于大语言模型的时序知识图谱推理研究.md",
+    "source/_posts/艺术生活/摄影/调色基础.md",
+    "source/_posts/科研学习/学习方法/科研思路.md",
     "source/_posts/科研学习/论文总结/zrLLM：当大模型化身时空侦探——零样本关系预测破案实录.md",
     "source/_posts/科研学习/论文总结/Paper_Reading_Tables.md",
-    "source/_posts/科研学习/论文总结/Papers Reading.md",
     "source/_posts/科研学习/研究思考-毕业/研究思路.md",
     "public/2025/09/30e84bb5e593.html",
     "source/_posts/科研学习/研究思考-毕业/基于大语言模型的少样本时间知识图谱推理与可解释性增强研究.md",
@@ -212,8 +231,6 @@
     "source/_posts/科研学习/研究思考-毕业/选题预选方案.md",
     "学术汇报模板.md",
     "基于大语言模型的时序知识图谱推理研究.md",
-    "source/_posts/运维开发/20250622_云计算及基础平台学习清单.md",
-    "source/_posts/科研学习/调研报告/论文总结.md",
     "canvas/未命名.canvas",
     "canvas/AI学习思路.canvas",
     "未命名.canvas",
