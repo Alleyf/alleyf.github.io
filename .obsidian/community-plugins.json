@@ -22,7 +22,6 @@
   "editor-width-slider",
   "obsidian-enhancing-export",
   "obsidian-file-cleaner",
-  "floating-toc",
   "obsidian-git",
   "home-tab",
   "obsidian42-brat",
@@ -30,5 +29,6 @@
   "obsidian-local-rest-api",
   "marp-slides",
   "infio-copilot",
-  "templater-obsidian"
+  "templater-obsidian",
+  "floating-toc"
 ]
