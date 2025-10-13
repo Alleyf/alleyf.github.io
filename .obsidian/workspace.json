@@ -23,21 +23,6 @@
             }
           },
           {
-            "id": "dfa2fba97bb391b0",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "conflict-files-obsidian-git.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "conflict-files-obsidian-git"
-            }
-          },
-          {
             "id": "7840d150cf086f07",
             "type": "leaf",
             "state": {
@@ -67,8 +52,7 @@
               "title": "zrLLM：当大模型化身时空侦探——零样本关系预测破案实录"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -87,13 +71,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "conflict-files-obsidian-git.md",
+                "file": "source/_posts/科研学习/论文总结/《MetaTKG：让“时间知识图谱”秒变“元学习小机灵”》  ——一篇能让研一萌新看懂 EMNLP’22 最佳“穿越”外挂的脱口秀.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "conflict-files-obsidian-git 的大纲"
+              "title": "《MetaTKG：让“时间知识图谱”秒变“元学习小机灵”》  ——一篇能让研一萌新看懂 EMNLP’22 最佳“穿越”外挂的脱口秀 的大纲"
             }
           }
         ]
@@ -182,8 +166,9 @@
       "infio-copilot:打开 Infio Copilot": false
     }
   },
-  "active": "dfa2fba97bb391b0",
+  "active": "3a9cbb9706c2da03",
   "lastOpenFiles": [
+    "source/_posts/科研学习/研究思考-毕业/未命名.md",
     "source/_posts/科研学习/论文总结/《MetaTKG：让“时间知识图谱”秒变“元学习小机灵”》  ——一篇能让研一萌新看懂 EMNLP’22 最佳“穿越”外挂的脱口秀.md",
     "conflict-files-obsidian-git.md",
     "source/_posts/科研学习/论文总结/时序知识图谱表示与推理的研究进展与趋势.md",
@@ -193,7 +178,6 @@
     "source/_posts/科研学习/论文总结/zrLLM：当大模型化身时空侦探——零样本关系预测破案实录.md",
     "source/_posts/科研学习/论文总结/​《历史链推理：让LLM像侦探一样破解时序知识图谱！高阶信息+分步推理=预测开挂》.md",
     "source/_posts/科研学习/研究思考-毕业/研究思路.md",
-    "source/_posts/科研学习/研究思考-毕业/未命名.md",
     "source/_posts/科研学习/研究思考-毕业/选题预选方案.md",
     "source/_posts/科研学习/论文总结/让AI学会时间管理 腾讯元宝揭秘时序知识图谱推理黑科技——当大模型遇上动态规则进化，预测未来事件像刷朋友圈一样简单​.md",
     "source/_posts/科研学习/研究思考-毕业/基于大语言模型的时序知识图谱推理研究.md",
