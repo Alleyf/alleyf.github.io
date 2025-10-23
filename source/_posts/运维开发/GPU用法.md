@@ -20,9 +20,10 @@ number headings: auto, first-level 1, max 5, start-at 1, 1.1
 
 ![image.png](http://img.fcs.cloudns.ch/pics/20251023102842963.png)
 
+---
 # 2 创建命名空间
 
-进入 project，点击上方 Namespace
+找到创建的 project，点击上方 Add Namespace
 
 ![image.png](http://img.fcs.cloudns.ch/pics/20251023102936847.png)
 
@@ -31,6 +32,7 @@ number headings: auto, first-level 1, max 5, start-at 1, 1.1
 
 ![image.png](http://img.fcs.cloudns.ch/pics/20251023103052051.png)
 
+---
 # 3 添加 Deployment
 
 ![image.png](http://img.fcs.cloudns.ch/pics/20251023103207569.png)
@@ -46,10 +48,12 @@ number headings: auto, first-level 1, max 5, start-at 1, 1.1
    ![image.png](http://img.fcs.cloudns.ch/pics/20251023103800741.png)
 6. 设置 gpu 数量（**切记不可超过 gpu 物理机显卡数量，一般只需要设置为 1，然后可以成功启动 pod，按照需要再逐渐增大目前都是八卡，所有 pod 都没用的情况下才能设为 8**）
    ![image.png](http://img.fcs.cloudns.ch/pics/20251023104706077.png)
-# 4 配置 pod 对应的虚拟机的 hostname 和hosts
+
+---
+# 4 配置 pod 对应的虚拟机的 hostname 和 hosts
    ![image.png](http://img.fcs.cloudns.ch/pics/20251023111849720.png)![](http://img.fcs.cloudns.ch/pics/20251023112507199.png)
 ```yaml
-   hostname: gpupod
+hostname: gpupod
 hostAliases:
 - ip: "192.168.88.190"
   hostnames:
@@ -65,6 +69,7 @@ hostAliases:
   - "gpu4"
 ```
 
+---
 # 5 开启 ssh 登录
    ![image.png](http://img.fcs.cloudns.ch/pics/20251023104137613.png)
 
@@ -77,16 +82,17 @@ service ssh start
 passwd
 ```
 
+---
 # 6 通过 xshell 或其他 ssh 工具访问 pod
 
 （**主机填 192.168.88.122，端口号填 port 映射的 random 的最终端口，用户名为 root，密码为自己 ssh 那里设置的密码**）
    ![image.png](http://img.fcs.cloudns.ch/pics/20251023105132464.png)
 
+---
 # 7 保存 pod 为镜像
 
 （**当有重大变动时最好把当前 pod 保存为一个镜像，不保存的话 pod 一旦关闭就会导致所有的操作丢失包括环境，通过宿主机即物理机下的 home 目录下的 save_docker_image.sh 脚本保存**）
-
-通过以下指令保存镜像（docker不变，gpu4根据自己在Node Scheduling中选的gpu节点的名字决定，运行在哪个上就用哪个名字）
+通过以下指令保存镜像（docker 不变，gpu4 根据自己在 Node Scheduling 中选的 gpu 节点的名字决定，运行在哪个上就用哪个名字）
 
 ```bash
 # 连接宿主机
