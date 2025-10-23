@@ -1,5 +1,5 @@
 ---
-title: GPU用法
+title: GPU使用指南
 date: 2025-10-23 10:05:00
 tags: research
 sticky: 80
