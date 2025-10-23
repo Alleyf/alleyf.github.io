@@ -37,8 +37,7 @@
               "title": "各种环境配置"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -57,13 +56,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/运维开发/各种环境配置.md",
+                "file": "source/_posts/运维开发/运维排忧解难.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "各种环境配置 的大纲"
+              "title": "运维排忧解难 的大纲"
             }
           }
         ]
@@ -152,10 +151,10 @@
       "infio-copilot:打开 Infio Copilot": false
     }
   },
-  "active": "aa98dc1e444b11af",
+  "active": "780f41849d22bb1a",
   "lastOpenFiles": [
-    "source/_posts/运维开发/运维排忧解难.md",
     "source/_posts/运维开发/各种环境配置.md",
+    "source/_posts/运维开发/运维排忧解难.md",
     "source/_posts/科研学习/会议讨论/周会.md",
     "source/_posts/科研学习/研究思考-毕业/基于 LLM 的时序知识图谱推理与可解释性增强研究.md",
     "source/_posts/科研学习/论文总结/《MetaTKG：让“时间知识图谱”秒变“元学习小机灵”》  ——一篇能让研一萌新看懂 EMNLP’22 最佳“穿越”外挂的脱口秀.md",
