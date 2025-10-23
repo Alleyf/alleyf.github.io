@@ -13,13 +13,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/运维开发/运维排忧解难.md",
+                "file": "source/_posts/运维开发/GPU用法.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "运维排忧解难"
+              "title": "GPU用法"
             }
           },
           {
@@ -56,13 +56,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/运维开发/运维排忧解难.md",
+                "file": "source/_posts/运维开发/GPU用法.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "运维排忧解难 的大纲"
+              "title": "GPU用法 的大纲"
             }
           }
         ]
@@ -153,8 +153,9 @@
   },
   "active": "780f41849d22bb1a",
   "lastOpenFiles": [
-    "source/_posts/运维开发/各种环境配置.md",
     "source/_posts/运维开发/运维排忧解难.md",
+    "source/_posts/运维开发/GPU用法.md",
+    "source/_posts/运维开发/各种环境配置.md",
     "source/_posts/科研学习/会议讨论/周会.md",
     "source/_posts/科研学习/研究思考-毕业/基于 LLM 的时序知识图谱推理与可解释性增强研究.md",
     "source/_posts/科研学习/论文总结/《MetaTKG：让“时间知识图谱”秒变“元学习小机灵”》  ——一篇能让研一萌新看懂 EMNLP’22 最佳“穿越”外挂的脱口秀.md",
@@ -182,7 +183,6 @@
     "source/_obsidian/目录.md",
     "_infio_prompts",
     "基于大语言模型的时序知识图谱推理研究.md",
-    "source/_posts/科研学习/论文总结/Chain-of-Thought Reasoning Without Prompting.md",
     "学术汇报模板.html",
     "基于大语言模型的时序知识图谱推理研究.html",
     "themes/fluid/source/css/_pages/_base/_widget/qrcode.styl",
