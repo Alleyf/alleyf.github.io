@@ -8,7 +8,7 @@
         "type": "tabs",
         "children": [
           {
-            "id": "82854c94f8810aba",
+            "id": "ce85342c709a9f78",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -146,10 +146,10 @@
       "infio-copilot:打开 Infio Copilot": false
     }
   },
-  "active": "82854c94f8810aba",
+  "active": "ce85342c709a9f78",
   "lastOpenFiles": [
-    "source/_posts/运维开发/运维排忧解难.md",
     "source/_posts/科研学习/会议讨论/周会.md",
+    "source/_posts/运维开发/运维排忧解难.md",
     "source/_posts/竞赛挑战/基于Qwen2.5-VL-3B的电路图问答模型构建方案.md",
     "source/_posts/竞赛挑战",
     "source/_posts/运维开发/GPU使用指南.md",
