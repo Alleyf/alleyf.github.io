@@ -12,8 +12,8 @@ number headings: auto, first-level 1, max 5, start-at 1, 1.1
 # 1 登录
 
 ```bash
-research
-CSDCresearch702
+*research*
+CSDC702
 ```
 
 # 2 创建项目
