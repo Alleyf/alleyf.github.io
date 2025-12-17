@@ -24,20 +24,12 @@
   "unresolvedLinks": false,
   "recentFilesStore": [
     {
+      "filepath": "source/_posts/运维开发/GPU使用指南.md",
+      "timestamp": 1765964384599
+    },
+    {
       "filepath": "source/_posts/科研学习/会议讨论/周会.md",
-      "timestamp": 1765692893597
-    },
-    {
-      "filepath": "source/_posts/运维开发/各种环境配置.md",
-      "timestamp": 1765692885339
-    },
-    {
-      "filepath": "source/_posts/运维开发/运维排忧解难.md",
-      "timestamp": 1765510031128
-    },
-    {
-      "filepath": "source/_posts/运维开发/运维问题记录.md",
-      "timestamp": 1765506104883
+      "timestamp": 1765964380433
     }
   ],
   "bookmarkedFileStore": [],
