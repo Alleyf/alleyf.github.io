@@ -6,7 +6,7 @@
   <link href="https://alleyf.github.io/atom.xml" rel="self"/>
   
   <link href="https://alleyf.github.io/"/>
-  <updated>2025-09-23T15:19:56.326Z</updated>
+  <updated>2025-12-21T04:32:35.644Z</updated>
   <id>https://alleyf.github.io/</id>
   
   <author>
@@ -15,6 +15,48 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="https://alleyf.github.io/2025/12/a5c88954cd00.html"/>
+    <id>https://alleyf.github.io/2025/12/a5c88954cd00.html</id>
+    <published>2025-12-21T04:32:35.644Z</published>
+    <updated>2025-12-21T04:32:35.644Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;基于Qwen2-5-VL-3B的电路图问答模型构建方案&quot;&gt;&lt;a href=&quot;#基于Qwen2-5-VL-3B的电路图问答模型构建方案&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="竞赛挑战" scheme="https://alleyf.github.io/categories/%E7%AB%9E%E8%B5%9B%E6%8C%91%E6%88%98/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>GPU使用指南</title>
+    <link href="https://alleyf.github.io/2025/10/81a09e3b6a23.html"/>
+    <id>https://alleyf.github.io/2025/10/81a09e3b6a23.html</id>
+    <published>2025-10-23T02:05:00.000Z</published>
+    <updated>2025-12-21T04:32:35.644Z</updated>
+    
+    
+    <summary type="html">gpu pod的使用方法</summary>
+    
+    
+    
+    <category term="运维开发" scheme="https://alleyf.github.io/categories/%E8%BF%90%E7%BB%B4%E5%BC%80%E5%8F%91/"/>
+    
+    
+    <category term="research" scheme="https://alleyf.github.io/tags/research/"/>
+    
+  </entry>
   
   <entry>
     <title>GenTKG: 基于大语言模型的时间知识图谱生成式预测</title>
@@ -82,7 +124,7 @@
     <link href="https://alleyf.github.io/2025/09/30e84bb5e593.html"/>
     <id>https://alleyf.github.io/2025/09/30e84bb5e593.html</id>
     <published>2025-09-21T16:00:00.000Z</published>
-    <updated>2025-10-01T07:13:36.959Z</updated>
+    <updated>2025-12-21T04:32:35.642Z</updated>
     
     
     <summary type="html">知识图谱（KG）通过&quot;实体-关系-实体&quot;的结构化三元组表达现实世界事实，**时序知识图谱（TKG）** 进一步引入时间维度（记为 `(h, r, t, τ)`，其中 `h` =头实体、`r` =关系、`t` =尾实体、`τ` =时间戳），能够表示动态演化的世界知识，例如：可精准刻画科研项目研究周期、专家合作时序、成果产出节点等动态事实。</summary>
@@ -101,7 +143,7 @@
     <link href="https://alleyf.github.io/2025/09/9ce7077bf863.html"/>
     <id>https://alleyf.github.io/2025/09/9ce7077bf863.html</id>
     <published>2025-09-21T12:20:00.000Z</published>
-    <updated>2025-09-23T15:19:56.328Z</updated>
+    <updated>2025-12-21T04:32:35.643Z</updated>
     
     
     <summary type="html">元学习分段学习掌握TKG演化模式+门控整合模块智能权重分配传递知识，解决少样本和长序列TKGF。</summary>
@@ -385,46 +427,6 @@
     
     
     <category term="工具" scheme="https://alleyf.github.io/tags/%E5%B7%A5%E5%85%B7/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>运维排忧解难</title>
-    <link href="https://alleyf.github.io/2024/06/1d24d86ba310.html"/>
-    <id>https://alleyf.github.io/2024/06/1d24d86ba310.html</id>
-    <published>2024-06-27T16:37:11.000Z</published>
-    <updated>2025-10-01T07:13:36.960Z</updated>
-    
-    
-    <summary type="html">运维排错解决问题的必查手册</summary>
-    
-    
-    
-    <category term="运维开发" scheme="https://alleyf.github.io/categories/%E8%BF%90%E7%BB%B4%E5%BC%80%E5%8F%91/"/>
-    
-    
-    <category term="DevOps" scheme="https://alleyf.github.io/tags/DevOps/"/>
-    
-    <category term="运维" scheme="https://alleyf.github.io/tags/%E8%BF%90%E7%BB%B4/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Kubernetes入门</title>
-    <link href="https://alleyf.github.io/2024/05/9b5fa9c35ad7.html"/>
-    <id>https://alleyf.github.io/2024/05/9b5fa9c35ad7.html</id>
-    <published>2024-05-10T15:54:16.000Z</published>
-    <updated>2025-01-14T16:50:04.543Z</updated>
-    
-    
-    <summary type="html">k8s入门（基础介绍，核心概念，实战演练）</summary>
-    
-    
-    
-    <category term="运维开发" scheme="https://alleyf.github.io/categories/%E8%BF%90%E7%BB%B4%E5%BC%80%E5%8F%91/"/>
-    
-    
-    <category term="K8s" scheme="https://alleyf.github.io/tags/K8s/"/>
     
   </entry>
   

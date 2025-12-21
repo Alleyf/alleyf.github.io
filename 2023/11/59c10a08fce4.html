@@ -52,7 +52,7 @@
 <meta property="og:image" content="http://img.alleyf.hidns.co/pics/202311182136214.png">
 <meta property="og:image" content="https://user-images.githubusercontent.com/9840435/60266022-72a82400-98e7-11e9-9958-f9004c2f97e1.gif">
 <meta property="article:published_time" content="2023-11-18T06:53:11.000Z">
-<meta property="article:modified_time" content="2025-01-14T16:50:04.430Z">
+<meta property="article:modified_time" content="2025-12-21T04:32:35.646Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="java">
 <meta property="article:tag" content="mysql">
@@ -336,7 +336,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          88k 字
+          89k 字
         
       </span>
     
@@ -347,7 +347,7 @@
         
         
         
-          732 分钟
+          741 分钟
         
       </span>
     
@@ -398,7 +398,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：1 年前
+                    本文最后更新于：几秒前
                   
                 
               </p>
@@ -840,6 +840,57 @@
 
 <h4 id="查看指定网络信息"><a href="#查看指定网络信息" class="headerlink" title="查看指定网络信息"></a>查看指定网络信息</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">docker network inspect mynetwork<br></code></pre></td></tr></table></figure>
 
+<hr>
+<h2 id="Docker-降级"><a href="#Docker-降级" class="headerlink" title="Docker 降级"></a>Docker 降级</h2><p>在<strong>不损坏已有镜像、容器、卷、网络</strong>的前提下，把 <strong>CentOS 7.9</strong> 上的 <strong>Docker 降级到 18.09.8</strong>，核心思路是：</p>
+<blockquote>
+<p><strong>只卸载 rpm 包，不动 <code>/var/lib/docker</code>；随后安装旧版 rpm，守护进程重启后会自动识别原有数据。</strong></p>
+</blockquote>
+<hr>
+<h3 id="✅-1-先备份（可选，但强烈建议）"><a href="#✅-1-先备份（可选，但强烈建议）" class="headerlink" title="✅ 1. 先备份（可选，但强烈建议）"></a>✅ 1. 先备份（可选，但强烈建议）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 备份镜像/容器元数据</span><br>docker system <span class="hljs-built_in">df</span>                    <span class="hljs-comment"># 看一眼当前资源</span><br>tar -czf /var/tmp/docker-lib-$(<span class="hljs-built_in">date</span> +%F).tar.gz -C /var/lib docker<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="✅-2-停止-Docker-服务"><a href="#✅-2-停止-Docker-服务" class="headerlink" title="✅ 2. 停止 Docker 服务"></a>✅ 2. 停止 Docker 服务</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo systemctl stop docker docker.socket containerd<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="✅-3-仅卸载-rpm-包，保留数据目录"><a href="#✅-3-仅卸载-rpm-包，保留数据目录" class="headerlink" title="✅ 3. 仅卸载 rpm 包，保留数据目录"></a>✅ 3. 仅卸载 rpm 包，<strong>保留数据目录</strong></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo yum remove -y docker-ce docker-ce-cli<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>注意：  </p>
+<ul>
+<li>**不要加 <code>containerd.io</code>**，新版与 18.09.8 兼容，可继续沿用；  </li>
+<li>**不要手动删除 <code>/var/lib/docker</code>**，否则镜像&#x2F;容器会丢失。</li>
+</ul>
+</blockquote>
+<hr>
+<h3 id="✅-4-安装指定-18-09-8-版本"><a href="#✅-4-安装指定-18-09-8-版本" class="headerlink" title="✅ 4. 安装指定 18.09.8 版本"></a>✅ 4. 安装指定 18.09.8 版本</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo yum install -y docker-ce-18.09.8 docker-ce-cli-18.09.8<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="✅-5-启动并验证"><a href="#✅-5-启动并验证" class="headerlink" title="✅ 5. 启动并验证"></a>✅ 5. 启动并验证</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo systemctl start docker<br>sudo systemctl <span class="hljs-built_in">enable</span> docker<br>docker version            <span class="hljs-comment"># 服务端应显示 18.09.8</span><br>docker images             <span class="hljs-comment"># 原有镜像应全部可见</span><br>docker ps -a              <span class="hljs-comment"># 原有容器应全部列出</span><br></code></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="✅-6-锁定版本（可选）"><a href="#✅-6-锁定版本（可选）" class="headerlink" title="✅ 6. 锁定版本（可选）"></a>✅ 6. 锁定版本（可选）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo yum install -y yum-plugin-versionlock<br>sudo yum versionlock add docker-ce-18.09.8 docker-ce-cli-18.09.8<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="⚠️-常见坑"><a href="#⚠️-常见坑" class="headerlink" title="⚠️ 常见坑"></a>⚠️ 常见坑</h3><table>
+<thead>
+<tr>
+<th>场景</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>启动报错 <code>graphdriver</code> &#x2F; <code>overlay2</code> 不兼容</td>
+<td>18.09.8 与 20.x 使用同一 <code>overlay2</code> 格式，一般可直接识别；若曾启用实验特性，可 <code>dockerd --storage-driver=overlay2</code> 强制指定。</td>
+</tr>
+<tr>
+<td>容器无法启动</td>
+<td>先 <code>docker start &lt;container&gt;</code>，若失败看 <code>docker logs &lt;container&gt;</code>；99% 是容器内应用问题，与降级无关。</td>
+</tr>
+<tr>
+<td>使用 <code>devicemapper</code></td>
+<td>18.09 同样支持，无需转换。</td>
+</tr>
+</tbody></table>
+<h3 id="✅-一句话总结"><a href="#✅-一句话总结" class="headerlink" title="✅ 一句话总结"></a>✅ 一句话总结</h3><p><strong>只要你不删 <code>/var/lib/docker</code>，卸载再装回 18.09.8 的 rpm，所有镜像、容器、卷、网络都会完好无损地回来。</strong></p>
 <hr>
 <h1 id="Docker-Compose"><a href="#Docker-Compose" class="headerlink" title="Docker-Compose"></a>Docker-Compose</h1><h2 id="下载-Docker-compose"><a href="#下载-Docker-compose" class="headerlink" title="下载 Docker-compose"></a>下载 Docker-compose</h2><p>下载 docker-compose 到 &#x2F;usr&#x2F;local&#x2F;bin 中</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">curl/wget https://github.com/docker/compose/releases/download/v2.23.0/docker-compose-linux-x86_64 <span class="hljs-comment">#后续版本更新可自由切换为需要的docker-compose版本的url</span><br></code></pre></td></tr></table></figure>
@@ -1866,7 +1917,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2025年1月15日</div>
+          <div>2025年12月21日</div>
         </div>
       
       <div class="license-meta-item">

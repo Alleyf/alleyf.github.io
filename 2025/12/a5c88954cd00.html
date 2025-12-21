@@ -1,0 +1,903 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="http://qnpicmap.fcsluck.top/pics/202311162214229.png">
+  <link rel="icon" href="http://qnpicmap.fcsluck.top/pics/202311162214229.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="alleyf">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="基于Qwen2.5-VL-3B的电路图问答模型构建方案本文档详细阐述了如何在仅有1000张电路图、缺乏问答对数据集的情况下，通过合成数据、知识蒸馏和检索增强生成（RAG）等技术，训练一个效果良好的电路图问答多模态大模型。  1. 项目概述目标：微调Qwen2.5-VL-3B模型，使其能够准确理解电路图，并对单选题和填空题形式的问题给出正确答案。 挑战：  仅有1000张电路图，无现成的问答对（QA">
+<meta property="og:type" content="article">
+<meta property="og:title" content="alleyf">
+<meta property="og:url" content="https://alleyf.github.io/2025/12/a5c88954cd00.html">
+<meta property="og:site_name" content="alleyf">
+<meta property="og:description" content="基于Qwen2.5-VL-3B的电路图问答模型构建方案本文档详细阐述了如何在仅有1000张电路图、缺乏问答对数据集的情况下，通过合成数据、知识蒸馏和检索增强生成（RAG）等技术，训练一个效果良好的电路图问答多模态大模型。  1. 项目概述目标：微调Qwen2.5-VL-3B模型，使其能够准确理解电路图，并对单选题和填空题形式的问题给出正确答案。 挑战：  仅有1000张电路图，无现成的问答对（QA">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-12-21T04:32:35.644Z">
+<meta property="article:modified_time" content="2025-12-21T04:32:35.644Z">
+<meta property="article:author" content="alleyf">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>alleyf</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"alleyf.github.io","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":true,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"d57048846da607439cf11718741f2eb0","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?d57048846da607439cf11718741f2eb0";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<!-- hexo injector head_end start --><script> let HEXO_MMEDIA_DATA = { js: [], css: [], aplayerData: [], metingData: [], artPlayerData: [], dplayerData: []}; </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.0.0"><link rel="alternate" href="/atom.xml" title="alleyf" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Mr.Alleyf</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/gallery/">
+                <i class="iconfont icon-images"></i>
+                画廊
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/atom.xml">
+                <i class="iconfont icon-rss"></i>
+                RSS
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://github.com/Alleyf">
+                <i class="iconfont icon-github-fill"></i>
+                Github
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://api.likepoems.com/img/nature') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text=""></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        alleyf
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-12-21 12:32" pubdate>
+          2025年12月21日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          43 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none"></h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="基于Qwen2-5-VL-3B的电路图问答模型构建方案"><a href="#基于Qwen2-5-VL-3B的电路图问答模型构建方案" class="headerlink" title="基于Qwen2.5-VL-3B的电路图问答模型构建方案"></a>基于Qwen2.5-VL-3B的电路图问答模型构建方案</h1><p>本文档详细阐述了如何在仅有1000张电路图、缺乏问答对数据集的情况下，通过合成数据、知识蒸馏和检索增强生成（RAG）等技术，训练一个效果良好的电路图问答多模态大模型。</p>
+<hr>
+<h2 id="1-项目概述"><a href="#1-项目概述" class="headerlink" title="1. 项目概述"></a>1. 项目概述</h2><p><strong>目标</strong>：微调<code>Qwen2.5-VL-3B</code>模型，使其能够准确理解电路图，并对单选题和填空题形式的问题给出正确答案。</p>
+<p><strong>挑战</strong>：</p>
+<ul>
+<li>仅有1000张电路图，无现成的问答对（QA pairs）。</li>
+<li>缺乏深度模拟电路专业知识，难以手工构造高质量问题。</li>
+</ul>
+<p><strong>核心策略</strong>：<code>合成数据先行</code> + <code>知识蒸馏提效</code> + <code>RAG增强推理</code>。</p>
+<p><strong>基础模型</strong>：<code>Qwen2.5-VL-3B-Instruct</code> 是一个指令微调的多模态视觉语言模型，适用于文档和图表理解任务。</p>
+<hr>
+<h2 id="2-阶段一：构建高质量合成问答数据集"><a href="#2-阶段一：构建高质量合成问答数据集" class="headerlink" title="2. 阶段一：构建高质量合成问答数据集"></a>2. 阶段一：构建高质量合成问答数据集</h2><h3 id="2-1-利用大模型API生成初步QA对"><a href="#2-1-利用大模型API生成初步QA对" class="headerlink" title="2.1. 利用大模型API生成初步QA对"></a>2.1. 利用大模型API生成初步QA对</h3><p>使用GPT-4V、Claude 3.5 Sonnet或Qwen-VL-72B等强大模型，为每张电路图生成多样化的问答对。</p>
+<h4 id="提示词模板（Prompt-Template）"><a href="#提示词模板（Prompt-Template）" class="headerlink" title="提示词模板（Prompt Template）"></a>提示词模板（Prompt Template）</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs text">你是一位专业的电子工程师。请仔细分析以下电路图，并根据要求生成有深度的问题和答案。<br><br>**任务**：<br>1.  **识别类问题**：识别图中的关键元器件（如电阻、电容、晶体管、运放等），并询问其类型、标号或参数。<br>2.  **功能类问题**：推断电路的整体或局部功能（如放大器、滤波器、稳压器等）。<br>3.  **分析/计算类问题**：基于图中标注的参数（如电阻值、电容值、电源电压），提出一个可以计算或推理的问题（如电流、电压、增益、截止频率等）。<br>4.  **单选/填空格式**：所有问题必须以以下两种格式之一输出：<br>    -   **单选题**：`问题：[问题文本] 选项：A. [选项A] B. [选项B] C. [选项C] D. [选项D] 答案：[正确选项字母]`<br>    -   **填空题**：`问题：[问题文本，包含一个或多个下划线______] 答案：[填空内容]`<br><br>**要求**：<br>-   问题应清晰、具体，答案应准确无误。<br>-   为每张图生成至少5个不同类型的问题。<br>-   如果图中信息不足以回答某个问题，请跳过该类型。<br><br>现在，请分析这张电路图：<br>[在此处插入电路图]<br></code></pre></td></tr></table></figure>
+
+
+<h3 id="2-2-数据清洗与验证（修订重点）"><a href="#2-2-数据清洗与验证（修订重点）" class="headerlink" title="2.2. 数据清洗与验证（修订重点）"></a>2.2. 数据清洗与验证（修订重点）</h3><p>由于移除了电路仿真环节，数据验证完全依赖于大模型的交叉验证和规则过滤。以下是详细的验证提示词模板。</p>
+<h4 id="验证步骤1：答案正确性验证"><a href="#验证步骤1：答案正确性验证" class="headerlink" title="验证步骤1：答案正确性验证"></a>验证步骤1：答案正确性验证</h4><p>使用另一个大模型（如Claude）对生成的QA对进行逐条验证。</p>
+<p><strong>提示词模板（Correctness Validation）</strong>：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs text">你是一位严谨的电子工程学教授，正在审阅一份电路分析试题。请判断以下问题和答案是否正确。<br><br>**电路图**：<br>[在此处插入原始电路图]<br><br>**待验证的问答对**：<br>&#123;generated_qa_pair&#125;<br><br>**你的任务**：<br>1.  仔细分析电路图。<br>2.  独立回答该问题。<br>3.  将你的答案与提供的“答案”进行比较。<br>4.  输出格式必须为：`判断：[正确/错误] 理由：[简要解释]`<br><br>请开始你的审阅。<br></code></pre></td></tr></table></figure>
+
+<h4 id="验证步骤2：问题-答案一致性与格式检查"><a href="#验证步骤2：问题-答案一致性与格式检查" class="headerlink" title="验证步骤2：问题-答案一致性与格式检查"></a>验证步骤2：问题-答案一致性与格式检查</h4><p>确保问题和答案在逻辑上一致，且格式符合要求。</p>
+<p><strong>提示词模板（Consistency &amp; Format Check）</strong>：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs text">你是一个数据质量检查员。请检查以下问答对是否符合指定的数据规范。<br><br>**数据规范**：<br>- 单选题格式必须为：“问题：... 选项：A. ... B. ... C. ... D. ... 答案：X”<br>- 填空题格式必须为：“问题：...______... 答案：...”<br>- 答案必须在问题的上下文中是明确且唯一的。<br><br>**待检查的问答对**：<br>&#123;generated_qa_pair&#125;<br><br>**你的任务**：<br>1.  检查格式是否符合规范。<br>2.  检查答案是否与问题逻辑一致（例如，单选题的答案必须是A、B、C、D中的一个）。<br>3.  输出格式必须为：`格式：[合规/不合规] 一致性：[一致/不一致] 备注：[具体说明]`<br></code></pre></td></tr></table></figure>
+
+<h4 id="验证步骤3：整体数据集质量评估"><a href="#验证步骤3：整体数据集质量评估" class="headerlink" title="验证步骤3：整体数据集质量评估"></a>验证步骤3：整体数据集质量评估</h4><p>对整个数据集进行抽样，评估其多样性和专业性。</p>
+<p><strong>提示词模板（Quality Assessment）</strong>：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs text">你是一位AI数据集评估专家。以下是从一个电路图问答数据集中随机抽取的10个样本。请对该数据集的整体质量进行评估。<br><br>**样本列表**：<br>1. &#123;qa_sample_1&#125;<br>2. &#123;qa_sample_2&#125;<br>...<br>3. &#123;qa_sample_10&#125;<br><br>**评估维度**：<br>- **多样性**：问题类型是否覆盖了识别、功能、分析等多个方面？<br>- **专业性**：问题和答案是否体现了专业的电路知识？<br>- **难度梯度**：是否包含了从简单到复杂的不同难度问题？<br>- **错误率**：根据你的判断，样本中明显错误的比例大概是多少？<br><br>**你的任务**：<br>请根据以上维度，给出一份简明的评估报告，并给出是否可以用于模型微调的建议。<br></code></pre></td></tr></table></figure>
+
+<p>通过以上三步验证流程，可以有效过滤掉大部分低质量或错误的合成数据，确保用于微调的数据集具有较高的可靠性。研究表明，经过严格验证的合成数据集训练出的模型，其性能远优于使用未经验证数据训练的模型 。</p>
+<hr>
+<h2 id="3-阶段二：模型微调与知识蒸馏"><a href="#3-阶段二：模型微调与知识蒸馏" class="headerlink" title="3. 阶段二：模型微调与知识蒸馏"></a>3. 阶段二：模型微调与知识蒸馏</h2><h3 id="3-1-使用LLaMA-Factory进行LoRA微调"><a href="#3-1-使用LLaMA-Factory进行LoRA微调" class="headerlink" title="3.1. 使用LLaMA-Factory进行LoRA微调"></a>3.1. 使用LLaMA-Factory进行LoRA微调</h3><p><code>LLaMA-Factory</code>是一个高效的微调框架，已集成对<code>Qwen2-VL</code>系列模型的支持，可用于监督微调（SFT）。</p>
+<h4 id="数据格式准备"><a href="#数据格式准备" class="headerlink" title="数据格式准备"></a>数据格式准备</h4><p>将合成数据集转换为<code>LLaMA-Factory</code>所需的JSON格式：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">[</span><br>  <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;images&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;./data/circuit_001.png&quot;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;messages&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>      <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;role&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;user&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;content&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&lt;image&gt;问题：图中运放U1的正相输入端连接的是哪个电阻？ 选项：A. R1 B. R2 C. R3 D. R4&quot;</span><br>      <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;role&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;assistant&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;content&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;答案：A&quot;</span><br>      <span class="hljs-punctuation">&#125;</span><br>    <span class="hljs-punctuation">]</span><br>  <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;images&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;./data/circuit_002.png&quot;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;messages&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>      <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;role&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;user&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;content&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&lt;image&gt;问题：该RC低通滤波器的截止频率约为______Hz。（π取3.14）&quot;</span><br>      <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;role&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;assistant&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;content&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;答案：1592&quot;</span><br>      <span class="hljs-punctuation">&#125;</span><br>    <span class="hljs-punctuation">]</span><br>  <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">]</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="微调命令示例"><a href="#微调命令示例" class="headerlink" title="微调命令示例"></a>微调命令示例</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 安装 LLaMA Factory</span><br>git <span class="hljs-built_in">clone</span> https://github.com/hiyouga/LLaMA-Factory.git<br><span class="hljs-built_in">cd</span> LLaMA-Factory<br>pip install -r requirements.txt<br><br><span class="hljs-comment"># 启动微调 (示例参数)</span><br>CUDA_VISIBLE_DEVICES=0 llamafactory-cli train \<br>    --stage sft \<br>    --model_name_or_path Qwen/Qwen2.5-VL-3B-Instruct \<br>    --do_train \<br>    --dataset your_circuit_qa_dataset \<br>    --template qwen2_vl \<br>    --finetuning_type lora \<br>    --lora_target qwen2_vl \<br>    --output_dir ./output_qwen2.5vl_circuit_lora \<br>    --per_device_train_batch_size 1 \<br>    --gradient_accumulation_steps 4 \<br>    --lr_scheduler_type cosine \<br>    --logging_steps 10 \<br>    --save_steps 1000 \<br>    --learning_rate 5e-5 \<br>    --num_train_epochs 3.0 \<br>    --plot_loss \<br>    --fp16<br></code></pre></td></tr></table></figure>
+<p>此过程利用LoRA技术，仅训练少量参数，大大降低了硬件需求。</p>
+<h3 id="3-2-知识蒸馏（Knowledge-Distillation）"><a href="#3-2-知识蒸馏（Knowledge-Distillation）" class="headerlink" title="3.2. 知识蒸馏（Knowledge Distillation）"></a>3.2. 知识蒸馏（Knowledge Distillation）</h3><p>为了提升微调后模型的专业深度，引入知识蒸馏。</p>
+<h4 id="蒸馏流程"><a href="#蒸馏流程" class="headerlink" title="蒸馏流程"></a>蒸馏流程</h4><ol>
+<li><strong>选择教师模型（Teacher）</strong>：选用<code>GPT-4V</code>或<code>Qwen2.5-VL-72B</code>作为教师模型。</li>
+<li><strong>生成软标签（Soft Targets）</strong>：<ul>
+<li>对于每张电路图和一个开放式问题（如“请详细分析此电路的工作原理”），让教师模型生成一个详尽、准确的回答。</li>
+<li><strong>提示词</strong>：“你是一位资深模拟电路设计专家。请对以下电路图进行深入、专业的分析，包括其工作原理、关键元器件的作用、性能参数估算等。”</li>
+</ul>
+</li>
+<li><strong>蒸馏训练</strong>：<ul>
+<li>将学生模型（即上一步微调好的<code>qwen2.5-vl-3b-lora</code>）的输出与教师模型的“软标签”进行对齐。</li>
+<li>损失函数通常为交叉熵损失，目标是让学生模型的输出分布尽可能接近教师模型的输出分布。</li>
+<li>可以使用<code>Transformers</code>库或<code>LLaMA-Factory</code>的自定义训练脚本来实现此过程。</li>
+</ul>
+</li>
+</ol>
+<p>通过蒸馏，学生模型能够学习到教师模型蕴含的更深层次的电路知识和推理能力。</p>
+<hr>
+<h2 id="4-阶段三：部署多模态RAG（MM-RAG）系统"><a href="#4-阶段三：部署多模态RAG（MM-RAG）系统" class="headerlink" title="4. 阶段三：部署多模态RAG（MM-RAG）系统"></a>4. 阶段三：部署多模态RAG（MM-RAG）系统</h2><p>即使模型经过微调和蒸馏，其知识仍是静态的。RAG可以在推理时动态注入外部知识，显著提升准确性和可解释性。</p>
+<h3 id="4-1-构建电路知识库"><a href="#4-1-构建电路知识库" class="headerlink" title="4.1. 构建电路知识库"></a>4.1. 构建电路知识库</h3><ul>
+<li><strong>数据来源</strong>：<ul>
+<li>经典教材：《The Art of Electronics》, 《Microelectronic Circuits》等。</li>
+<li>元器件手册：TI, Analog Devices, ON Semiconductor等官网的PDF数据手册。</li>
+<li>在线资源：All About Circuits, Electronics Tutorials等网站的文章。</li>
+</ul>
+</li>
+<li><strong>数据处理</strong>：<ul>
+<li>使用<code>Unstructured</code>或<code>PyPDF2</code>等工具解析PDF。</li>
+<li>将长文档分块（chunking），每块约512个token。</li>
+<li>使用文本嵌入模型（如<code>text-embedding-3-large</code>）为每个文本块生成向量，并存入向量数据库（如<code>Chroma</code>或<code>Milvus</code>）。</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-2-构建多模态RAG推理流程"><a href="#4-2-构建多模态RAG推理流程" class="headerlink" title="4.2. 构建多模态RAG推理流程"></a>4.2. 构建多模态RAG推理流程</h3><p>完整的MM-RAG系统架构如下：</p>
+<ol>
+<li><strong>用户输入</strong>：一张电路图 + 一个问题。</li>
+<li><strong>多模态查询理解</strong>：将用户的问题和电路图一起输入到一个<strong>多模态嵌入模型</strong>（可以是微调后的<code>qwen2.5-vl-3b</code>本身，或专用的CLIP-like模型）中，生成一个联合的查询向量。</li>
+<li><strong>混合检索</strong>：<ul>
+<li><strong>文本检索</strong>：用查询向量在文本向量库中检索最相关的知识片段。</li>
+<li><strong>（可选）图像检索</strong>：如果有一个“电路图-描述”数据库，也可以检索视觉上相似的电路及其分析报告。</li>
+</ul>
+</li>
+<li><strong>上下文增强</strong>：将检索到的<code>Top-K</code>个知识片段拼接成上下文。</li>
+<li><strong>最终生成</strong>：将原始问题、电路图和检索到的上下文一起输入给最终的<code>qwen2.5-vl-3b</code>模型，生成答案。</li>
+</ol>
+<h4 id="最终推理提示词模板"><a href="#最终推理提示词模板" class="headerlink" title="最终推理提示词模板"></a>最终推理提示词模板</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs text">你是一个专业的电路分析AI助手。你的回答必须基于以下提供的权威参考资料，并结合对电路图的理解。<br><br>**参考资料**：<br>&#123;retrieved_context_from_knowledge_base&#125;<br><br>**你的任务**：<br>请根据以上参考资料和你对下方电路图的分析，回答用户的问题。<br><br>**电路图**：<br>&lt;image&gt;<br><br>**用户问题**：<br>&#123;user_question&#125;<br><br>**回答**：<br></code></pre></td></tr></table></figure>
+
+<p>通过这种方式，模型的回答不仅基于其内部参数，还基于实时检索到的、可验证的外部知识，极大地提高了专业问答的可靠性。</p>
+<hr>
+<h2 id="5-总结"><a href="#5-总结" class="headerlink" title="5. 总结"></a>5. 总结</h2><p>本方案提供了一条在数据和专业知识受限的情况下，构建领域专用多模态模型的可行路径。通过自动化数据合成、高效的LoRA微调、知识蒸馏以及强大的RAG增强，有望在<code>Qwen2.5-VL-3B</code>的基础上，打造出一个性能优异的电路图问答系统。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AB%9E%E8%B5%9B%E6%8C%91%E6%88%98/" class="category-chain-item">竞赛挑战</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div></div>
+      <div>https://alleyf.github.io/2025/12/a5c88954cd00.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>alleyf</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年12月21日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/10/81a09e3b6a23.html" title="GPU使用指南">
+                        <span class="hidden-mobile">GPU使用指南</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.7.2/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"636f2864e051a199b91c","clientSecret":"5185fd11115bbcd8d2f636bc80de6bed98ed14c1","repo":"Gitalk","owner":"Alleyf","admin":["Alleyf"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":false,"proxy":"https://shielded-brushlands-08810.herokuapp.com/https://github.com/login/oauth/access_token"},
+          {
+            id: 'badfa4af5a13e4b8412e5223310d8659'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://github.com/Alleyf" target="_blank" rel="nofollow noopener"><span>Alleyf</span></a> <i class="iconfont icon-love"></i> <a href="https://fcsy.fit" target="_blank" rel="nofollow noopener"><span>Homepage</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      陕ICP备2022010038号
+    </a>
+  </span>
+  
+    
+      <span>
+        <a
+          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=2022010038"
+          rel="nofollow noopener"
+          class="beian-police"
+          target="_blank"
+        >
+          
+            <span style="visibility: hidden; width: 0">|</span>
+            <img src="http://qnpicmap.fcsluck.top/pics/202311161820757.png" srcset="/img/loading.gif" lazyload alt="police-icon"/>
+          
+          <span>陕公网安备2022010038号</span>
+        </a>
+      </span>
+    
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.1/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/assets/mmedia/mmedia-loader.js"></script><!-- hexo injector body_end end --></body>
+</html>
