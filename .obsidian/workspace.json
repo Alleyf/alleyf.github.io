@@ -23,6 +23,21 @@
             }
           },
           {
+            "id": "7fd95b6a0a3af987",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "conflict-files-obsidian-git.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "conflict-files-obsidian-git"
+            }
+          },
+          {
             "id": "e3cc5faafa5a3f87",
             "type": "leaf",
             "state": {
@@ -52,7 +67,8 @@
               "title": "基于大语言模型的时序知识图谱推理研究"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -90,13 +106,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/艺术生活/摄影/调色基础.md",
+                "file": "conflict-files-obsidian-git.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "调色基础 的大纲"
+              "title": "conflict-files-obsidian-git 的大纲"
             }
           }
         ]
@@ -166,8 +182,27 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "a34ec1ec178f1a5a",
+  "active": "f6a36b9b63f3a735",
   "lastOpenFiles": [
+    "public/archives/2025/12/index.html",
+    "public/archives/2025/12",
+    "public/categories/竞赛挑战/index.html",
+    "public/categories/竞赛挑战",
+    "public/archives/2025/10/index.html",
+    "public/archives/2025/10",
+    "public/2025/12/a5c88954cd00.html",
+    "public/2025/12",
+    "public/2025/10/81a09e3b6a23.html",
+    "public/2025/10",
+    "source/_posts/艺术生活/摄影/调色基础.md",
+    "conflict-files-obsidian-git.md",
+    "source/_posts/运维开发/GPU使用指南.md",
+    "source/_posts/竞赛挑战/基于Qwen2.5-VL-3B的电路图问答模型构建方案.md",
+    "source/_posts/竞赛挑战",
+    "source/_posts/科研学习/论文总结/让AI学会时间管理 腾讯元宝揭秘时序知识图谱推理黑科技——当大模型遇上动态规则进化，预测未来事件像刷朋友圈一样简单​.md",
+    "source/_posts/科研学习/论文总结/时序知识图谱表示与推理的研究进展与趋势.md",
+    "source/_posts/科研学习/论文总结/Temporal Knowledge Graph Completion A Survey.md",
+    "source/_posts/科研学习/论文总结/A Survey on Temporal Knowledge Graph Representation Learning and Applications.md",
     "source/_posts/科研学习/学习方法/科研思路.md",
     "source/_posts/科研学习/论文总结/《时序图谱遇上大模型 TGL-LLM如何用 时空双修 突破预测瓶颈》.md",
     "source/_posts/科研学习/学习方法/Paper_Reading_Method.md",
@@ -176,29 +211,15 @@
     "source/_posts/科研学习/论文总结/Paper_Reading_Tables.md",
     "source/_posts/科研学习/论文总结/Papers Reading.md",
     "source/_posts/科研学习/研究思考-毕业/研究思路.md",
-    "public/2025/09/30e84bb5e593.html",
     "source/_posts/科研学习/研究思考-毕业/基于大语言模型的少样本时间知识图谱推理与可解释性增强研究.md",
     "基于 LLM 的时序知识图谱推理与可解释性增强研究.md",
     "基于 LLM 的少样本时序知识图谱推理与可解释性增强研究.md",
-    "基于 LLM 的少样本时序知识图谱推理与可解释性增强研究.html",
     "source/_posts/科研学习/研究思考-毕业/基于 LLM 的时序知识图谱推理与可解释性增强研究.md",
-    "source/_posts/科研学习/Explainability for large language models- A survey.mm",
-    "public/2025/09/2b5f8440eeae.html",
     "基于大语言模型的少样本时间知识图谱推理与可解释性增强研究.md",
-    "基于大语言模型的少样本时间知识图谱推理与可解释性增强研究.html",
-    "public/archives/page/10/index.html",
-    "public/archives/page/10",
     "source/_obsidian/学术汇报模板.md",
     "attachment/AwesomeMarp_blue.md",
     "source/_obsidian/marp 二分栏.md",
-    "conflict-files-obsidian-git.md",
-    "public/archives/2025/page/2/index.html",
-    "public/2025/09/86df980fd7ff.html",
-    "public/2025/09/9ce7077bf863.html",
     "source/_posts/科研学习/论文总结/《MetaTKG：让“时间知识图谱”秒变“元学习小机灵”》  ——一篇能让研一萌新看懂 EMNLP’22 最佳“穿越”外挂的脱口秀.md",
-    "source/_posts/科研学习/论文总结/​《历史链推理：让LLM像侦探一样破解时序知识图谱！高阶信息+分步推理=预测开挂》.md",
-    "source/_posts/科研学习/论文总结/GenTKG 基于大语言模型的时间知识图谱生成式预测.md",
-    "source/_obsidian/目录.md",
     "public/gallery/images/朋友挚交/FCS01678.jpeg",
     "public/gallery/images/桌面壁纸/cloud.png",
     "public/gallery/images/桌面壁纸/fire.jpg",
@@ -209,11 +230,6 @@
     "public/gallery/images/徒步旅行/FCS00907.jpeg",
     "public/gallery/images/徒步旅行/FCS00909.jpeg",
     "public/gallery/images/桌面壁纸/bg.jpg",
-    "source/_posts/科研学习/研究思考-毕业/选题预选方案.md",
-    "学术汇报模板.md",
-    "基于大语言模型的时序知识图谱推理研究.md",
-    "source/_posts/运维开发/20250622_云计算及基础平台学习清单.md",
-    "source/_posts/科研学习/调研报告/论文总结.md",
     "canvas/未命名.canvas",
     "canvas/AI学习思路.canvas",
     "未命名.canvas",
