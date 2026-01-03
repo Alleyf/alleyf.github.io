@@ -8,51 +8,6 @@
         "type": "tabs",
         "children": [
           {
-            "id": "a34ec1ec178f1a5a",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "source/_posts/艺术生活/摄影/调色基础.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "调色基础"
-            }
-          },
-          {
-            "id": "e3cc5faafa5a3f87",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "source/_posts/科研学习/论文总结/《时序图谱遇上大模型 TGL-LLM如何用 时空双修 突破预测瓶颈》.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "《时序图谱遇上大模型 TGL-LLM如何用 时空双修 突破预测瓶颈》"
-            }
-          },
-          {
-            "id": "0d0187524a10664e",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "source/_posts/科研学习/研究思考-毕业/基于大语言模型的时序知识图谱推理研究.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "基于大语言模型的时序知识图谱推理研究"
-            }
-          },
-          {
             "id": "19656fb77e598b33",
             "type": "leaf",
             "state": {
@@ -67,8 +22,7 @@
               "title": "周会"
             }
           }
-        ],
-        "currentTab": 3
+        ]
       }
     ],
     "direction": "vertical"
@@ -182,7 +136,7 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "19656fb77e598b33",
+  "active": "f6a36b9b63f3a735",
   "lastOpenFiles": [
     "conflict-files-obsidian-git.md",
     "public/archives/2025/12/index.html",
