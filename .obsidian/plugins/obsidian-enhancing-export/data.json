@@ -1,8 +1,7 @@
 {
   "items": [
     {
-      "name": "Markdown",
-      "customArguments": ""
+      "name": "Markdown"
     },
     {
       "name": "Markdown (Hugo)"
@@ -18,13 +17,10 @@
     },
     {
       "name": "PDF",
-      "customArguments": "--pdf-engine=xelatex"
+      "openExportedFile": true
     },
     {
-      "name": "Word (.docx)",
-      "customArguments": "",
-      "runCommand": false,
-      "openExportedFile": true
+      "name": "Word (.docx)"
     },
     {
       "name": "OpenOffice"
@@ -52,27 +48,13 @@
     },
     {
       "name": "Bibliography"
-    },
-    {
-      "name": "word1",
-      "type": "pandoc",
-      "arguments": "-f ${fromFormat} --resource-path=\"${currentDir}\" --resource-path=\"${attachmentFolderPath}\" -s -o \"${outputPath}\" -t docx",
-      "extension": ".docx",
-      "customArguments": "--citeproc --csl \"C:\\Users\\30355\\AppData\\Local\\Pandoc\\templates\\gb-t-7714-2015-numeric-bilingual-no-uppercase-no-url-doi.csl\" --bibliography \"C:\\Users\\30355\\AppData\\Local\\Pandoc\\templates\\ref.bib\" -M reference-section-title=\"参考文献\" -M link-citations=true --reference-doc=\"C:\\Users\\30355\\AppData\\Local\\Pandoc\\templates\\templates_refine.docx\"",
-      "openExportedFile": true
     }
   ],
   "defaultExportDirectoryMode": "Auto",
   "openExportedFile": true,
-  "env": {
-    "win32": {
-      "TEST": "--from markdown-yaml_metadata_block"
-    }
-  },
+  "env": {},
   "showExportProgressBar": true,
   "lastExportDirectory": {
     "win32": "A:\\dashboard"
-  },
-  "lastEditName": "word1",
-  "lastExportType": "Word (.docx)"
+  }
 }
