@@ -1,0 +1,472 @@
+/* Obsidian Multi-Platform Publisher Styles */
+
+/* 发布对话框 */
+.publisher-modal {
+  min-width: 500px;
+  max-width: 600px;
+}
+
+.publisher-modal .modal-content {
+  padding: 20px;
+  max-height: none;
+}
+
+.publisher-modal h2 {
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+/* 平台选择 */
+.platform-section {
+  margin: 10px 0;
+}
+
+.platform-section h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 1em;
+}
+
+.platform-grid {
+  display: grid;
+  gap: 10px;
+}
+
+.platform-category {
+  margin-bottom: 8px;
+}
+
+.platform-category h4 {
+  margin-bottom: 6px;
+  margin-top: 0;
+  color: var(--text-muted);
+  font-size: 0.85em;
+  text-transform: uppercase;
+}
+
+.platform-item {
+  display: flex;
+  align-items: center;
+  padding: 6px 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.platform-item:hover {
+  background-color: var(--background-modifier-hover);
+}
+
+.platform-item.platform-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.platform-item input[type="checkbox"] {
+  margin-right: 10px;
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.platform-item input[type="checkbox"]:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.platform-item label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  flex: 1;
+  user-select: none;
+}
+
+.platform-icon {
+  font-size: 1.2em;
+  margin-right: 8px;
+}
+
+.platform-name {
+  font-weight: 500;
+}
+
+.platform-status {
+  margin-left: 8px;
+  font-size: 0.85em;
+  color: var(--text-muted);
+}
+
+/* 发布选项 */
+.options-section {
+  margin: 10px 0;
+  padding: 10px;
+  background-color: var(--background-secondary);
+  border-radius: 4px;
+}
+
+/* 进度显示 */
+.progress-container {
+  margin: 15px 0;
+  padding: 12px;
+  background-color: var(--background-secondary);
+  border-radius: 4px;
+}
+
+.platform-progress {
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 4px;
+  background-color: var(--background-primary);
+}
+
+.platform-progress.status-pending {
+  border-left: 3px solid var(--text-muted);
+}
+
+.platform-progress.status-processing {
+  border-left: 3px solid var(--interactive-accent);
+}
+
+.platform-progress.status-success {
+  border-left: 3px solid var(--text-success);
+}
+
+.platform-progress.status-error {
+  border-left: 3px solid var(--text-error);
+}
+
+.progress-bar {
+  height: 4px;
+  background-color: var(--background-modifier-border);
+  border-radius: 2px;
+  margin-top: 8px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: var(--interactive-accent);
+  transition: width 0.3s ease;
+}
+
+/* 发布结果 */
+.publish-result {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 4px;
+}
+
+.publish-result.result-success {
+  background-color: var(--background-modifier-success);
+}
+
+.publish-result.result-error {
+  background-color: var(--background-modifier-error);
+}
+
+.result-icon {
+  font-size: 1.2em;
+  margin-right: 10px;
+}
+
+.result-platform {
+  font-weight: 500;
+  margin-right: 10px;
+}
+
+.result-link {
+  margin-left: auto;
+  color: var(--interactive-accent);
+  text-decoration: none;
+}
+
+.result-link:hover {
+  text-decoration: underline;
+}
+
+.result-error-message {
+  margin-left: 10px;
+  color: var(--text-error);
+  font-size: 0.9em;
+}
+
+/* 按钮容器 */
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid var(--background-modifier-border);
+}
+
+/* 发布历史视图 */
+.publisher-history-view {
+  padding: 20px;
+}
+
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.history-header h2 {
+  margin: 0;
+}
+
+.refresh-button {
+  padding: 6px 12px;
+  border-radius: 4px;
+  background-color: var(--interactive-accent);
+  color: var(--text-on-accent);
+  border: none;
+  cursor: pointer;
+}
+
+.refresh-button:hover {
+  background-color: var(--interactive-accent-hover);
+}
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.empty-message {
+  text-align: center;
+  color: var(--text-muted);
+  padding: 40px;
+}
+
+/* 历史记录项 */
+.history-record {
+  padding: 15px;
+  border-radius: 4px;
+  background-color: var(--background-secondary);
+  border: 1px solid var(--background-modifier-border);
+}
+
+.record-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.record-title h3 {
+  margin: 0;
+  font-size: 1.1em;
+}
+
+.record-time {
+  color: var(--text-muted);
+  font-size: 0.9em;
+}
+
+.record-platforms {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.platform-item {
+  display: flex;
+  align-items: center;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background-color: var(--background-primary);
+  font-size: 0.9em;
+}
+
+.platform-item.platform-success {
+  border-left: 3px solid var(--text-success);
+}
+
+.platform-item.platform-error {
+  border-left: 3px solid var(--text-error);
+}
+
+.status-icon {
+  margin-right: 4px;
+}
+
+.platform-link {
+  margin-left: 8px;
+  color: var(--interactive-accent);
+  text-decoration: none;
+  font-size: 0.85em;
+}
+
+.platform-link:hover {
+  text-decoration: underline;
+}
+
+.record-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.action-button {
+  padding: 4px 12px;
+  border-radius: 4px;
+  background-color: var(--interactive-normal);
+  color: var(--text-normal);
+  border: none;
+  cursor: pointer;
+  font-size: 0.9em;
+}
+
+.action-button:hover {
+  background-color: var(--interactive-hover);
+}
+
+.action-button.delete-button {
+  background-color: var(--background-modifier-error);
+  color: var(--text-error);
+}
+
+.action-button.delete-button:hover {
+  background-color: var(--background-modifier-error-hover);
+}
+
+/* 设置页面 */
+.platforms-desc {
+  margin-bottom: 15px;
+  color: var(--text-muted);
+}
+
+.default-platforms {
+  margin: 10px 0;
+}
+
+.platform-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 8px;
+  margin: 4px;
+  border-radius: 4px;
+  background-color: var(--interactive-accent);
+  color: var(--text-on-accent);
+  font-size: 0.9em;
+}
+
+.platform-tag-remove {
+  margin-left: 6px;
+  padding: 0 4px;
+  background: none;
+  border: none;
+  color: var(--text-on-accent);
+  cursor: pointer;
+  font-size: 1.2em;
+  line-height: 1;
+}
+
+.platform-tag-remove:hover {
+  opacity: 0.8;
+}
+
+/* 认证对话框 */
+.auth-section {
+  margin: 20px 0;
+  padding: 15px;
+  border-radius: 4px;
+  background-color: var(--background-secondary);
+}
+
+.auth-section h3 {
+  margin-top: 0;
+}
+
+.auth-section textarea {
+  width: 100%;
+  min-height: 100px;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid var(--background-modifier-border);
+  background-color: var(--background-primary);
+  color: var(--text-normal);
+  font-family: var(--font-monospace);
+  font-size: 0.9em;
+  resize: vertical;
+}
+
+.coming-soon {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* 状态栏 */
+.publisher-status-bar {
+  cursor: pointer;
+  padding: 0 8px;
+}
+
+.publisher-status-bar:hover {
+  background-color: var(--background-modifier-hover);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .publisher-modal {
+    min-width: 90vw;
+  }
+
+  .platform-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .button-container {
+    flex-direction: column;
+  }
+
+  .button-container button {
+    width: 100%;
+  }
+}
+
+/* 动画 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.publisher-modal,
+.history-record {
+  animation: fadeIn 0.3s ease;
+}
+
+/* 滚动条样式 */
+.publisher-modal .modal-content::-webkit-scrollbar,
+.history-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.publisher-modal .modal-content::-webkit-scrollbar-track,
+.history-list::-webkit-scrollbar-track {
+  background: var(--background-secondary);
+}
+
+.publisher-modal .modal-content::-webkit-scrollbar-thumb,
+.history-list::-webkit-scrollbar-thumb {
+  background: var(--background-modifier-border);
+  border-radius: 4px;
+}
+
+.publisher-modal .modal-content::-webkit-scrollbar-thumb:hover,
+.history-list::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}

@@ -31,5 +31,6 @@
   "infio-copilot",
   "templater-obsidian",
   "floating-toc",
-  "duplicate-line"
+  "duplicate-line",
+  "obsidian-publisher"
 ]

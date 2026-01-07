@@ -1,0 +1,10 @@
+{
+  "id": "obsidian-publisher",
+  "name": "Multi-Platform Publisher",
+  "version": "1.0.0",
+  "minAppVersion": "0.15.0",
+  "description": "一键将笔记发布到微信公众号、知乎、今日头条等多个平台",
+  "author": "Nms",
+  "authorUrl": "https://googhub.nyc.mn/",
+  "isDesktopOnly": false
+}

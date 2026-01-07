@@ -1,0 +1,27 @@
+{
+  "serverUrl": "http://localhost",
+  "serverPort": 3000,
+  "autoStartServer": true,
+  "platforms": {
+    "weixin": {
+      "enabled": true,
+      "autoPublish": false,
+      "authenticated": true,
+      "lastAuthTime": 1767788408976,
+      "accountName": "Cephalosporan"
+    },
+    "toutiao": {
+      "enabled": false,
+      "autoPublish": false,
+      "authenticated": false
+    }
+  },
+  "publishHistory": [],
+  "defaultPlatforms": [
+    "weixin"
+  ],
+  "imageCompression": true,
+  "imageQuality": 80,
+  "proxyEnabled": false,
+  "proxyUrl": "http://127.0.0.1:7897"
+}
