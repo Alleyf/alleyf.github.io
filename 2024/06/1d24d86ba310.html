@@ -27,7 +27,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://picsum.photos/800/250">
 <meta property="article:published_time" content="2024-06-27T16:37:11.000Z">
-<meta property="article:modified_time" content="2026-01-03T14:29:34.154Z">
+<meta property="article:modified_time" content="2026-01-07T12:21:29.170Z">
 <meta property="article:author" content="alleyf">
 <meta property="article:tag" content="DevOps">
 <meta property="article:tag" content="运维">
@@ -308,7 +308,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          23k 字
+          24k 字
         
       </span>
     
@@ -319,7 +319,7 @@
         
         
         
-          189 分钟
+          199 分钟
         
       </span>
     
@@ -370,7 +370,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：4 天前
+                    本文最后更新于：几秒前
                   
                 
               </p>
@@ -385,7 +385,6 @@
 <h2 id="1-1-Linux-指令"><a href="#1-1-Linux-指令" class="headerlink" title="1.1 Linux 指令"></a>1.1 Linux 指令</h2><p><a href="source/_posts/%E8%BF%90%E7%BB%B4%E5%BC%80%E5%8F%91/%E5%90%84%E7%A7%8D%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE.md">各种环境配置</a></p>
 <h3 id="1-1-1-磁盘扩容"><a href="#1-1-1-磁盘扩容" class="headerlink" title="1.1.1 磁盘扩容"></a>1.1.1 磁盘扩容</h3><h4 id="1-1-1-1-已存在磁盘（使用余量扩容分区）"><a href="#1-1-1-1-已存在磁盘（使用余量扩容分区）" class="headerlink" title="1.1.1.1 已存在磁盘（使用余量扩容分区）"></a>1.1.1.1 已存在磁盘（使用余量扩容分区）</h4><h5 id="1-1-1-1-1-确认剩余空间"><a href="#1-1-1-1-1-确认剩余空间" class="headerlink" title="1.1.1.1.1 确认剩余空间"></a>1.1.1.1.1 <strong>确认剩余空间</strong></h5><p>使用 <code>lsblk</code> 或 <code>fdisk -l</code> 查看新增磁盘的设备名（如 <code>/dev/sdb</code>）</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo fdisk -l<br></code></pre></td></tr></table></figure>
-
 <ol>
 <li><p>​<strong>查看磁盘总容量</strong><br> <code>/dev/sda</code> 总容量为 322.1GB，已分配的分区如下：</p>
 <ul>
@@ -404,36 +403,31 @@
 </li>
 </ol>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">lsblk -f<br></code></pre></td></tr></table></figure>
-
-<h5 id="1-1-1-1-2-扩容根目录逻辑卷"><a href="#1-1-1-1-2-扩容根目录逻辑卷" class="headerlink" title="1.1.1.1.2 扩容根目录逻辑卷"></a>1.1.1.1.2 <strong>扩容根目录逻辑卷</strong></h5><h6 id="步骤-1：扩展-Sda2-分区"><a href="#步骤-1：扩展-Sda2-分区" class="headerlink" title="步骤 1：扩展 Sda2 分区"></a><strong>步骤 1：扩展 Sda2 分区</strong></h6><p>由于未分配空间位于 <code>sda2</code> 之后，需先扩展 <code>sda2</code> 分区以包含全部磁盘空间：</p>
+<h5 id="1-1-1-1-2-扩容根目录逻辑卷"><a href="#1-1-1-1-2-扩容根目录逻辑卷" class="headerlink" title="1.1.1.1.2 扩容根目录逻辑卷"></a>1.1.1.1.2 <strong>扩容根目录逻辑卷</strong></h5><h6 id="步骤-1：识别并扩展-Sda2-分区"><a href="#步骤-1：识别并扩展-Sda2-分区" class="headerlink" title="步骤 1：识别并扩展 Sda2 分区"></a><strong>步骤 1：识别并扩展 Sda2 分区</strong></h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 先确认你的盘是 scsi 几号</span><br><span class="hljs-built_in">ls</span> /sys/class/scsi_disk/<br><span class="hljs-comment"># 假设看到 2:0:0:0 对应 sda</span><br><span class="hljs-built_in">echo</span> 1 | sudo <span class="hljs-built_in">tee</span> /sys/class/scsi_disk/2\:0\:0\:0/device/rescan<br><span class="hljs-comment"># 或者一条命令批量扫所有 scsi 盘</span><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> /sys/class/scsi_disk/*/device/rescan; <span class="hljs-keyword">do</span> <span class="hljs-built_in">echo</span> 1 | sudo <span class="hljs-built_in">tee</span> <span class="hljs-variable">$i</span>; <span class="hljs-keyword">done</span><br><span class="hljs-comment"># 扫完立即再执行</span><br>sudo parted -s /dev/sda <span class="hljs-built_in">print</span><br></code></pre></td></tr></table></figure>
+<p>由于未分配空间位于 <code>sda2</code> 之后，需先扩展 <code>sda2</code> 分区以包含全部磁盘空间：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo parted /dev/sda<br>(parted) resizepart 2 100%  <span class="hljs-comment"># 将sda2扩展到磁盘末尾</span><br>(parted) quit<br></code></pre></td></tr></table></figure>
-
 <h6 id="步骤-2：扩展物理卷"><a href="#步骤-2：扩展物理卷" class="headerlink" title="步骤 2：扩展物理卷"></a><strong>步骤 2：扩展物理卷</strong></h6><p>将新增空间加入 LVM 物理卷：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo pvresize /dev/sda2  <span class="hljs-comment"># 自动识别扩展后的空间</span><br></code></pre></td></tr></table></figure>
-
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">partprobe<br>sudo pvresize /dev/sda2  <span class="hljs-comment"># 自动识别扩展后的空间</span><br></code></pre></td></tr></table></figure>
 <h6 id="​步骤-3：扩展逻辑卷"><a href="#​步骤-3：扩展逻辑卷" class="headerlink" title="​步骤 3：扩展逻辑卷"></a>​<strong>步骤 3：扩展逻辑卷</strong></h6><ol>
 <li>​<strong>查看卷组（VG）信息</strong></li>
 </ol>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo vgdisplay centos  <span class="hljs-comment"># 确认VG名称为&quot;centos&quot;</span><br></code></pre></td></tr></table></figure>
-
 <ol start="2">
 <li>​<strong>扩展根逻辑卷（LV）​</strong></li>
 </ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo lvextend -l +100%FREE /dev/mapper/centos-root  <span class="hljs-comment"># 将剩余空间全部分配给根目录</span><br></code></pre></td></tr></table></figure>
-
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo lvextend -l +100%FREE /dev/mapper/centos/root  <span class="hljs-comment"># 将剩余空间全部分配给根目录</span><br></code></pre></td></tr></table></figure>
 <h6 id="步骤-4：调整文件系统"><a href="#步骤-4：调整文件系统" class="headerlink" title="步骤 4：调整文件系统"></a><strong>步骤 4：调整文件系统</strong></h6><p>根据文件系统类型执行扩容：</p>
 <ul>
 <li>​<strong>ext4 文件系统</strong>：</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo resize2fs /dev/mapper/centos-root<br></code></pre></td></tr></table></figure>
-
 <ul>
 <li>​<strong>xfs 文件系统</strong>：</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo xfs_growfs /<br></code></pre></td></tr></table></figure>
 
 <hr>
-<h5 id="1-1-1-1-3-​验证结果"><a href="#1-1-1-1-3-​验证结果" class="headerlink" title="1.1.1.1.3 ​验证结果"></a>1.1.1.1.3 ​<strong>验证结果</strong></h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">df</span> -h /  <span class="hljs-comment"># 查看根目录容量是否增加</span><br>lsblk    <span class="hljs-comment"># 确认逻辑卷大小变化</span><br></code></pre></td></tr></table></figure>
+<h5 id="1-1-1-1-3-​验证结果"><a href="#1-1-1-1-3-​验证结果" class="headerlink" title="1.1.1.1.3 ​验证结果"></a>1.1.1.1.3 ​<strong>验证结果</strong></h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">vgs      <span class="hljs-comment"># 查看卷组</span><br><span class="hljs-built_in">df</span> -h /  <span class="hljs-comment"># 查看根目录容量是否增加</span><br>lsblk    <span class="hljs-comment"># 确认逻辑卷大小变化</span><br></code></pre></td></tr></table></figure>
 
 <hr>
 <h5 id="1-1-1-1-4-​注意事项"><a href="#1-1-1-1-4-​注意事项" class="headerlink" title="1.1.1.1.4 ​注意事项"></a>1.1.1.1.4 ​<strong>注意事项</strong></h5><ol>
@@ -449,7 +443,6 @@
 <li>备份 home 数据后卸载：</li>
 </ol>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo umount /home<br>sudo lvremove /dev/mapper/centos-home<br></code></pre></td></tr></table></figure>
-
 <ol>
 <li>扩展根逻辑卷：</li>
 </ol>
@@ -459,52 +452,100 @@
 <h4 id="1-1-1-2-新增磁盘"><a href="#1-1-1-2-新增磁盘" class="headerlink" title="1.1.1.2 新增磁盘"></a>1.1.1.2 新增磁盘</h4><h5 id="1-1-1-2-1-VSphere-给虚拟机加新硬盘"><a href="#1-1-1-2-1-VSphere-给虚拟机加新硬盘" class="headerlink" title="1.1.1.2.1 VSphere 给虚拟机加新硬盘"></a>1.1.1.2.1 VSphere 给虚拟机加新硬盘</h5><p><img src="http://img.fcs.cloudns.ch/pics/20250606171759126.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>添加完成硬盘后，重启虚拟机以识别到新硬盘。</p>
 <h5 id="1-1-1-2-2-新硬盘创建物理卷（PV）"><a href="#1-1-1-2-2-新硬盘创建物理卷（PV）" class="headerlink" title="1.1.1.2.2 新硬盘创建物理卷（PV）"></a>1.1.1.2.2 新硬盘创建物理卷（PV）</h5><p>首先，你需要将 sdb 磁盘转化为物理卷。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pvcreate /dev/sdb<br></code></pre></td></tr></table></figure>
-
 <h5 id="1-1-1-2-3-扩展卷组（VG）"><a href="#1-1-1-2-3-扩展卷组（VG）" class="headerlink" title="1.1.1.2.3 扩展卷组（VG）"></a>1.1.1.2.3 扩展卷组（VG）</h5><blockquote>
 <p>将这个新的物理卷加入到现有的卷组中</p>
 </blockquote>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">vgextend centos /dev/sdb<br></code></pre></td></tr></table></figure>
-
 <h5 id="1-1-1-2-4-扩展逻辑卷（LV）"><a href="#1-1-1-2-4-扩展逻辑卷（LV）" class="headerlink" title="1.1.1.2.4 扩展逻辑卷（LV）"></a>1.1.1.2.4 扩展逻辑卷（LV）</h5><blockquote>
 <p>现在可以扩展 &#x2F; 根目录所在的逻辑卷了，以增加 100GB 为例（根据实际情况调整大小）</p>
 </blockquote>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">lvextend -L +100G /dev/centos/root<br></code></pre></td></tr></table></figure>
-
 <blockquote>
 <p>如果你想使用 sdb 上的所有空间</p>
 </blockquote>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">lvextend -l +100%FREE /dev/centos/root<br></code></pre></td></tr></table></figure>
-
 <h5 id="1-1-1-2-5-扩展文件系统"><a href="#1-1-1-2-5-扩展文件系统" class="headerlink" title="1.1.1.2.5 扩展文件系统"></a>1.1.1.2.5 扩展文件系统</h5><p>最后一步是扩展文件系统以使用新增的空间。这个步骤依赖于你 &#x2F; 根目录使用的文件系统类型。</p>
 <h6 id="如果是-ext4-文件系统"><a href="#如果是-ext4-文件系统" class="headerlink" title="如果是 ext4 文件系统"></a>如果是 ext4 文件系统</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">resize2fs /dev/rl/root<br></code></pre></td></tr></table></figure>
-
 <h6 id="如果是-XFS-文件系统"><a href="#如果是-XFS-文件系统" class="headerlink" title="如果是 XFS 文件系统"></a>如果是 XFS 文件系统</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">xfs_growfs /<br></code></pre></td></tr></table></figure>
-
-
-<h3 id="1-1-2-检查磁盘空间并清理"><a href="#1-1-2-检查磁盘空间并清理" class="headerlink" title="1.1.2 检查磁盘空间并清理"></a>1.1.2 检查磁盘空间并清理</h3><p>你的系统根分区 <code>/dev/mapper/centos-root</code> 已 <strong>100% 满了</strong>（196G 已用完，仅剩 104K），必须立即清理，否则系统可能崩溃、服务宕机、无法登录。</p>
+<h3 id="1-1-2-磁盘缩容"><a href="#1-1-2-磁盘缩容" class="headerlink" title="1.1.2 磁盘缩容"></a>1.1.2 磁盘缩容</h3><blockquote>
+<p>前提：</p>
+<ol>
+<li>待缩小的空间必须是磁盘末尾没有被分配使用的空余空间（eg：误扩容磁盘过大；新增的磁盘等）</li>
+<li>存储空间充足，足以克隆出一个原磁盘实际使用大小的容量。</li>
+</ol>
+</blockquote>
+<h4 id="1-1-2-1-参考文献"><a href="#1-1-2-1-参考文献" class="headerlink" title="1.1.2.1 参考文献"></a>1.1.2.1 参考文献</h4><p><a target="_blank" rel="noopener" href="https://www.imwxz.com/posts/ce878cfd.html#:~:text=Windows%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%E8%87%AA%E5%B8%A6%E7%9A%84%E7%A3%81%E7%9B%98%E7%AE%A1%E7%90%86%E5%99%A8%E6%88%96%E8%80%85%E9%AB%98%E7%BA%A7%E4%B8%80%E7%82%B9%E7%9A%84DiskGenius%EF%BC%8C%E5%88%92%E5%88%86%E5%87%BA%E9%9C%80%E8%A6%81%E5%87%8F%E5%B0%91%E7%9A%84%E7%A3%81%E7%9B%98%E7%A9%BA%E9%97%B4%EF%BC%8C%E6%B3%A8%E6%84%8F%E5%8A%A1%E5%BF%85%E7%A1%AE%E4%BF%9D%E5%88%92%E5%88%86%E5%87%BA%E7%9A%84%E3%80%90%E6%9C%AA%E5%88%86%E9%85%8D%E3%80%91%E9%BB%91%E8%89%B2%E5%9D%97%E5%9C%A8%E6%9C%80%E5%8F%B3%E4%BE%A7%EF%BC%88%E7%A3%81%E7%9B%98%E5%B0%BE%EF%BC%89%E3%80%82%20%E5%86%8D%E6%AC%A1%20vi%20src.vmdk%EF%BC%8C%E5%B0%86RW%E9%82%A3%E4%B8%80%E8%A1%8C%E7%9A%84%E6%96%87%E4%BB%B6%E5%90%8D%E6%94%B9%E6%88%90,src-flat.vmdk%EF%BC%8C%E5%A6%82%E6%9E%9C%E6%9C%89%E5%A4%9A%E4%B8%80%E8%A1%8C%20deletable%20%E7%9A%84%E9%9C%80%E8%A6%81%E5%88%A0%E6%8E%89%E3%80%82%20%E5%9B%9E%E5%88%B0ESXi%E7%95%8C%E9%9D%A2%EF%BC%8C%E5%8F%B3%E5%87%BB%E3%80%90%E8%99%9A%E6%8B%9F%E6%9C%BA-%E5%BF%AB%E7%85%A7-%E6%95%B4%E5%90%88%E7%A1%AC%E7%9B%98%E3%80%91%EF%BC%8C%E7%84%B6%E5%90%8E%E8%BF%9B%E5%8E%BB%E5%88%B7%E6%96%B0%E4%B8%8B%E5%B0%B1%E8%83%BD%E7%9C%8B%E5%88%B0%E7%A1%AC%E7%9B%98%E5%B7%B2%E7%BB%8F%E7%BC%A9%E5%B0%8F%E4%BA%86~%20%E5%BC%80%E6%9C%BA%E6%B5%8B%E8%AF%95%E4%B8%8B%E5%B0%B1%E8%A1%8C%E4%BA%86">ESXi手动缩小vmdk虚拟机硬盘大小</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/inthat/article/details/123125453">配置ssh连接Esxi、ESXi 收缩虚拟硬盘文件(.vmdk) 大小(回收ESXi thin磁盘空间)</a></p>
+<h4 id="1-1-2-2-准备工作"><a href="#1-1-2-2-准备工作" class="headerlink" title="1.1.2.2 准备工作"></a>1.1.2.2 准备工作</h4><ol>
+<li><p><strong>备份数据</strong>：操作前务必对虚拟机进行完整备份（快照）</p>
+</li>
+<li><p><strong>确认工具</strong>：</p>
+<ul>
+<li>Windows：磁盘管理器&#x2F;DiskGenius</li>
+<li>Linux：GParted Live 镜像</li>
+</ul>
+</li>
+<li><p>用 GParted 调整分区，注意：<br> - 保持&#x2F;boot 分区起始位置不变<br> - 空闲空间必须移至磁盘末尾</p>
+</li>
+<li><p><strong>vmkfstools 压缩空白空间</strong>：需要先填充 0</p>
+</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 填充未使用的空间归零</span><br><span class="hljs-built_in">dd</span> <span class="hljs-keyword">if</span>=/dev/zero bs=6144 of=/zero ; <span class="hljs-built_in">sync</span> ; <span class="hljs-built_in">rm</span> /zero<br><span class="hljs-comment"># 压缩未使用的空间</span><br>vmkfstools -K /vmfs/volumes/volumename/vmname/vmname.vmdk<br><span class="hljs-comment"># 检验物理空间是否降低</span><br><span class="hljs-built_in">du</span> -ah *<br></code></pre></td></tr></table></figure>
+<h4 id="1-1-2-3-分区调整​"><a href="#1-1-2-3-分区调整​" class="headerlink" title="1.1.2.3 分区调整​"></a>1.1.2.3 分区调整​</h4><ol>
+<li><strong>SSH 连接 ESXi 主机</strong>​</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> /vmfs/volumes/[datastore]/[VM目录]<br>vi src.vmdk  <span class="hljs-comment"># 编辑非flat文件</span><br></code></pre></td></tr></table></figure>
+<ol>
+<li>**修改 vmdk 描述文件​</li>
+</ol>
+<ul>
+<li>调整 <code>RW</code> 参数值（计算公式：目标 GB 数×1024³&#x2F;512）</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">RW 268435456 VMFS <span class="hljs-string">&quot;src.vmdk&quot;</span>  <span class="hljs-comment"># 示例：128GB</span><br></code></pre></td></tr></table></figure>
+<ul>
+<li>更新 <code>ddb.geometry.cylinders</code>（参考值）：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">128G=16709<br>256G=33418<br></code></pre></td></tr></table></figure>
+<ol>
+<li><strong>克隆重建磁盘</strong>​</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">vmkfstools -i src.vmdk dest.vmdk<br><span class="hljs-built_in">rm</span> src.vmdk src-flat.vmdk<br><span class="hljs-built_in">mv</span> dest.vmdk src.vmdk<br><span class="hljs-built_in">mv</span> dest-flat.vmdk src-flat.vmdk<br></code></pre></td></tr></table></figure>
+<ol>
+<li><strong>修正文件引用</strong>​<ul>
+<li>再次编辑src.vmdk，确保指向 <code>src-flat.vmdk</code></li>
+<li>删除可能存在的 <code>deletable</code> 行</li>
+</ul>
+</li>
+</ol>
+<h4 id="1-1-2-4-最终处理​"><a href="#1-1-2-4-最终处理​" class="headerlink" title="1.1.2.4 最终处理​"></a>1.1.2.4 最终处理​</h4><ol>
+<li>在 ESXi 界面执行【虚拟机→快照→整合硬盘】</li>
+<li>重启虚拟机验证数据完整性</li>
+</ol>
+<blockquote>
+<p><strong>注意事项</strong>​</p>
+<ul>
+<li>操作前确保虚拟机已关闭</li>
+<li>大容量磁盘处理耗时较长（建议低峰期操作）</li>
+<li>若出现错误，立即还原备份文件</li>
+</ul>
+</blockquote>
+<h3 id="1-1-3-检查磁盘空间并清理"><a href="#1-1-3-检查磁盘空间并清理" class="headerlink" title="1.1.3 检查磁盘空间并清理"></a>1.1.3 检查磁盘空间并清理</h3><p>你的系统根分区 <code>/dev/mapper/centos-root</code> 已 <strong>100% 满了</strong>（196G 已用完，仅剩 104K），必须立即清理，否则系统可能崩溃、服务宕机、无法登录。</p>
 <hr>
-<h4 id="1-1-2-1-🔍-第一步：快速定位大目录（按大小排序）"><a href="#1-1-2-1-🔍-第一步：快速定位大目录（按大小排序）" class="headerlink" title="1.1.2.1 🔍 第一步：快速定位大目录（按大小排序）"></a>1.1.2.1 🔍 第一步：快速定位大目录（按大小排序）</h4><p>运行以下命令，<strong>从根目录开始，找出占用空间最大的目录</strong>：</p>
+<h4 id="1-1-3-1-🔍-第一步：快速定位大目录（按大小排序）"><a href="#1-1-3-1-🔍-第一步：快速定位大目录（按大小排序）" class="headerlink" title="1.1.3.1 🔍 第一步：快速定位大目录（按大小排序）"></a>1.1.3.1 🔍 第一步：快速定位大目录（按大小排序）</h4><p>运行以下命令，<strong>从根目录开始，找出占用空间最大的目录</strong>：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 查看根目录下各子目录大小（人类可读，按大小排序）</span><br>sudo <span class="hljs-built_in">du</span> -h --max-depth=1 / | <span class="hljs-built_in">sort</span> -hr<br></code></pre></td></tr></table></figure>
-
 <blockquote>
 <p>✅ 输出示例：</p>
 <figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli">150G    <span class="hljs-string">/var</span><br>30G     <span class="hljs-string">/usr</span><br>10G     <span class="hljs-string">/home</span><br>5G      <span class="hljs-string">/opt</span><br><span class="hljs-string">...</span><br></code></pre></td></tr></table></figure>
 </blockquote>
 <p>重点关注 <strong><code>/var</code>、<code>/tmp</code>、<code>/home</code>、<code>/root</code>、<code>/usr</code></strong> 等目录。</p>
 <hr>
-<h4 id="1-1-2-2-🧹-第二步：重点清理常见“临时-日志”目录"><a href="#1-1-2-2-🧹-第二步：重点清理常见“临时-日志”目录" class="headerlink" title="1.1.2.2 🧹 第二步：重点清理常见“临时&#x2F;日志”目录"></a>1.1.2.2 🧹 第二步：重点清理常见“临时&#x2F;日志”目录</h4><h5 id="1-1-2-2-1-清理系统日志（通常在-var-log）"><a href="#1-1-2-2-1-清理系统日志（通常在-var-log）" class="headerlink" title="1.1.2.2.1 清理系统日志（通常在 /var/log）"></a>1.1.2.2.1 <strong>清理系统日志（通常在 <code>/var/log</code>）</strong></h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 查看 /var/log 大小</span><br>sudo <span class="hljs-built_in">du</span> -sh /var/log<br><br><span class="hljs-comment"># 清空大日志文件（不要直接删，避免服务异常）</span><br>sudo <span class="hljs-built_in">truncate</span> -s 0 /var/log/messages<br>sudo <span class="hljs-built_in">truncate</span> -s 0 /var/log/secure<br>sudo <span class="hljs-built_in">truncate</span> -s 0 /var/log/maillog<br>sudo <span class="hljs-built_in">truncate</span> -s 0 /var/log/cron<br>sudo <span class="hljs-built_in">truncate</span> -s 0 /var/log/dmesg<br><br><span class="hljs-comment"># 清理 journal 日志（如果使用 systemd）</span><br>sudo journalctl --vacuum-size=100M<br><span class="hljs-comment"># 或清空</span><br>sudo journalctl --vacuum-time=1s<br></code></pre></td></tr></table></figure>
-
-<h5 id="1-1-2-2-2-清理临时目录"><a href="#1-1-2-2-2-清理临时目录" class="headerlink" title="1.1.2.2.2 清理临时目录"></a>1.1.2.2.2 <strong>清理临时目录</strong></h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 清理 /tmp（重启会自动清，但可手动删）</span><br>sudo <span class="hljs-built_in">rm</span> -rf /tmp/*<br><br><span class="hljs-comment"># 清理 /var/tmp</span><br>sudo <span class="hljs-built_in">rm</span> -rf /var/tmp/*<br></code></pre></td></tr></table></figure>
-
-<h5 id="1-1-2-2-3-清理-YUM-缓存（如果是-CentOS-RHEL）"><a href="#1-1-2-2-3-清理-YUM-缓存（如果是-CentOS-RHEL）" class="headerlink" title="1.1.2.2.3 清理 YUM 缓存（如果是 CentOS&#x2F;RHEL）"></a>1.1.2.2.3 <strong>清理 YUM 缓存（如果是 CentOS&#x2F;RHEL）</strong></h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 清理 yum 缓存</span><br>sudo yum clean all<br><br><span class="hljs-comment"># 或直接删缓存目录</span><br>sudo <span class="hljs-built_in">rm</span> -rf /var/cache/yum<br></code></pre></td></tr></table></figure>
-
-<h5 id="1-1-2-2-4-清理-Docker（如果你用了-Docker）"><a href="#1-1-2-2-4-清理-Docker（如果你用了-Docker）" class="headerlink" title="1.1.2.2.4 清理 Docker（如果你用了 Docker）"></a>1.1.2.2.4 <strong>清理 Docker（如果你用了 Docker）</strong></h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 查看 Docker 磁盘使用</span><br>docker system <span class="hljs-built_in">df</span><br><br><span class="hljs-comment"># 清理无用镜像、容器、卷</span><br>docker system prune -a -f --volumes<br></code></pre></td></tr></table></figure>
-
-<h5 id="1-1-2-2-5-清理旧内核（如果-boot-也满，但你这里-boot-只用了-5-）"><a href="#1-1-2-2-5-清理旧内核（如果-boot-也满，但你这里-boot-只用了-5-）" class="headerlink" title="1.1.2.2.5 清理旧内核（如果 &#x2F;boot 也满，但你这里 &#x2F;boot 只用了 5%）"></a>1.1.2.2.5 <strong>清理旧内核（如果 &#x2F;boot 也满，但你这里 &#x2F;boot 只用了 5%）</strong></h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 列出已安装内核</span><br>rpm -q kernel<br><br><span class="hljs-comment"># 删除旧内核（保留最新1-2个）</span><br>sudo package-cleanup --oldkernels --count=1<br></code></pre></td></tr></table></figure>
+<h4 id="1-1-3-2-🧹-第二步：重点清理常见“临时-日志”目录"><a href="#1-1-3-2-🧹-第二步：重点清理常见“临时-日志”目录" class="headerlink" title="1.1.3.2 🧹 第二步：重点清理常见“临时&#x2F;日志”目录"></a>1.1.3.2 🧹 第二步：重点清理常见“临时&#x2F;日志”目录</h4><h5 id="1-1-3-2-1-清理系统日志（通常在-var-log）"><a href="#1-1-3-2-1-清理系统日志（通常在-var-log）" class="headerlink" title="1.1.3.2.1 清理系统日志（通常在 /var/log）"></a>1.1.3.2.1 <strong>清理系统日志（通常在 <code>/var/log</code>）</strong></h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 查看 /var/log 大小</span><br>sudo <span class="hljs-built_in">du</span> -sh /var/log<br><span class="hljs-comment"># 清空大日志文件（不要直接删，避免服务异常）</span><br>sudo <span class="hljs-built_in">truncate</span> -s 0 /var/log/messages<br>sudo <span class="hljs-built_in">truncate</span> -s 0 /var/log/secure<br>sudo <span class="hljs-built_in">truncate</span> -s 0 /var/log/maillog<br>sudo <span class="hljs-built_in">truncate</span> -s 0 /var/log/cron<br>sudo <span class="hljs-built_in">truncate</span> -s 0 /var/log/dmesg<br><span class="hljs-comment"># 清理 journal 日志（如果使用 systemd）</span><br>sudo journalctl --vacuum-size=100M<br><span class="hljs-comment"># 或清空</span><br>sudo journalctl --vacuum-time=1s<br></code></pre></td></tr></table></figure>
+<h5 id="1-1-3-2-2-清理临时目录"><a href="#1-1-3-2-2-清理临时目录" class="headerlink" title="1.1.3.2.2 清理临时目录"></a>1.1.3.2.2 <strong>清理临时目录</strong></h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 清理 /tmp（重启会自动清，但可手动删）</span><br>sudo <span class="hljs-built_in">rm</span> -rf /tmp/*<br><span class="hljs-comment"># 清理 /var/tmp</span><br>sudo <span class="hljs-built_in">rm</span> -rf /var/tmp/*<br></code></pre></td></tr></table></figure>
+<h5 id="1-1-3-2-3-清理-YUM-缓存（如果是-CentOS-RHEL）"><a href="#1-1-3-2-3-清理-YUM-缓存（如果是-CentOS-RHEL）" class="headerlink" title="1.1.3.2.3 清理 YUM 缓存（如果是 CentOS&#x2F;RHEL）"></a>1.1.3.2.3 <strong>清理 YUM 缓存（如果是 CentOS&#x2F;RHEL）</strong></h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 清理 yum 缓存</span><br>sudo yum clean all<br><span class="hljs-comment"># 或直接删缓存目录</span><br>sudo <span class="hljs-built_in">rm</span> -rf /var/cache/yum<br></code></pre></td></tr></table></figure>
+<h5 id="1-1-3-2-4-清理-Docker（如果你用了-Docker）"><a href="#1-1-3-2-4-清理-Docker（如果你用了-Docker）" class="headerlink" title="1.1.3.2.4 清理 Docker（如果你用了 Docker）"></a>1.1.3.2.4 <strong>清理 Docker（如果你用了 Docker）</strong></h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 查看 Docker 磁盘使用</span><br>docker system <span class="hljs-built_in">df</span><br><span class="hljs-comment"># 清理无用镜像、容器、卷</span><br>docker system prune -a -f --volumes<br></code></pre></td></tr></table></figure>
+<h5 id="1-1-3-2-5-清理旧内核（如果-boot-也满，但你这里-boot-只用了-5-）"><a href="#1-1-3-2-5-清理旧内核（如果-boot-也满，但你这里-boot-只用了-5-）" class="headerlink" title="1.1.3.2.5 清理旧内核（如果 &#x2F;boot 也满，但你这里 &#x2F;boot 只用了 5%）"></a>1.1.3.2.5 <strong>清理旧内核（如果 &#x2F;boot 也满，但你这里 &#x2F;boot 只用了 5%）</strong></h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 列出已安装内核</span><br>rpm -q kernel<br><span class="hljs-comment"># 删除旧内核（保留最新1-2个）</span><br>sudo package-cleanup --oldkernels --count=1<br></code></pre></td></tr></table></figure>
 
 <hr>
-<h4 id="1-1-2-3-🔎-第三步：查找大文件（-100MB）"><a href="#1-1-2-3-🔎-第三步：查找大文件（-100MB）" class="headerlink" title="1.1.2.3 🔎 第三步：查找大文件（&gt;100MB）"></a>1.1.2.3 🔎 第三步：查找大文件（&gt;100MB）</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 查找全系统大于 100MB 的文件</span><br>sudo find / -<span class="hljs-built_in">type</span> f -size +100M -<span class="hljs-built_in">exec</span> <span class="hljs-built_in">ls</span> -lh &#123;&#125; \; 2&gt;/dev/null | <span class="hljs-built_in">sort</span> -k5 -hr<br><br><span class="hljs-comment"># 或只查最近修改的大文件</span><br>sudo find / -<span class="hljs-built_in">type</span> f -size +100M -mtime -7 -<span class="hljs-built_in">exec</span> <span class="hljs-built_in">ls</span> -lh &#123;&#125; \; 2&gt;/dev/null<br></code></pre></td></tr></table></figure>
-
+<h4 id="1-1-3-3-🔎-第三步：查找大文件（-100MB）"><a href="#1-1-3-3-🔎-第三步：查找大文件（-100MB）" class="headerlink" title="1.1.3.3 🔎 第三步：查找大文件（&gt;100MB）"></a>1.1.3.3 🔎 第三步：查找大文件（&gt;100MB）</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 查找全系统大于 100MB 的文件</span><br>sudo find / -<span class="hljs-built_in">type</span> f -size +100M -<span class="hljs-built_in">exec</span> <span class="hljs-built_in">ls</span> -lh &#123;&#125; \; 2&gt;/dev/null | <span class="hljs-built_in">sort</span> -k5 -hr<br><span class="hljs-comment"># 或只查最近修改的大文件</span><br>sudo find / -<span class="hljs-built_in">type</span> f -size +100M -mtime -7 -<span class="hljs-built_in">exec</span> <span class="hljs-built_in">ls</span> -lh &#123;&#125; \; 2&gt;/dev/null<br></code></pre></td></tr></table></figure>
 <p>常见“罪魁祸首”：</p>
 <ul>
 <li>日志文件：<code>*.log</code>、<code>journal</code>、<code>catalina.out</code>（Tomcat）</li>
@@ -513,30 +554,28 @@
 <li>应用缓存：<code>/home/*/.cache</code>、<code>/var/lib/*</code></li>
 </ul>
 <hr>
-<h4 id="1-1-2-4-💡-第四步：紧急释放空间（如果上述不够）"><a href="#1-1-2-4-💡-第四步：紧急释放空间（如果上述不够）" class="headerlink" title="1.1.2.4 💡 第四步：紧急释放空间（如果上述不够）"></a>1.1.2.4 💡 第四步：紧急释放空间（如果上述不够）</h4><h5 id="1-1-2-4-1-方案-A：临时扩容（如果用了-LVM）"><a href="#1-1-2-4-1-方案-A：临时扩容（如果用了-LVM）" class="headerlink" title="1.1.2.4.1 方案 A：临时扩容（如果用了 LVM）"></a>1.1.2.4.1 方案 A：临时扩容（如果用了 LVM）</h5><p>但你的 <code>df -h</code> 显示是 LVM（<code>/dev/mapper/centos-root</code>），可检查是否有未分配空间：</p>
+<h4 id="1-1-3-4-💡-第四步：紧急释放空间（如果上述不够）"><a href="#1-1-3-4-💡-第四步：紧急释放空间（如果上述不够）" class="headerlink" title="1.1.3.4 💡 第四步：紧急释放空间（如果上述不够）"></a>1.1.3.4 💡 第四步：紧急释放空间（如果上述不够）</h4><h5 id="1-1-3-4-1-方案-A：临时扩容（如果用了-LVM）"><a href="#1-1-3-4-1-方案-A：临时扩容（如果用了-LVM）" class="headerlink" title="1.1.3.4.1 方案 A：临时扩容（如果用了 LVM）"></a>1.1.3.4.1 方案 A：临时扩容（如果用了 LVM）</h5><p>但你的 <code>df -h</code> 显示是 LVM（<code>/dev/mapper/centos-root</code>），可检查是否有未分配空间：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo vgs    <span class="hljs-comment"># 查看卷组剩余空间</span><br>sudo lvs    <span class="hljs-comment"># 查看逻辑卷</span><br></code></pre></td></tr></table></figure>
 <p>如果有剩余，可扩容（但需先清理出一点空间才能操作）。</p>
-<h5 id="1-1-2-4-2-方案-B：删除无用大文件（谨慎！）"><a href="#1-1-2-4-2-方案-B：删除无用大文件（谨慎！）" class="headerlink" title="1.1.2.4.2 方案 B：删除无用大文件（谨慎！）"></a>1.1.2.4.2 方案 B：删除无用大文件（谨慎！）</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 示例：删除某个大日志</span><br>sudo <span class="hljs-built_in">rm</span> -f /var/log/your_app_huge.log<br><br><span class="hljs-comment"># 或清空（更安全）</span><br>sudo <span class="hljs-built_in">truncate</span> -s 0 /path/to/huge_file<br></code></pre></td></tr></table></figure>
-
+<h5 id="1-1-3-4-2-方案-B：删除无用大文件（谨慎！）"><a href="#1-1-3-4-2-方案-B：删除无用大文件（谨慎！）" class="headerlink" title="1.1.3.4.2 方案 B：删除无用大文件（谨慎！）"></a>1.1.3.4.2 方案 B：删除无用大文件（谨慎！）</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 示例：删除某个大日志</span><br>sudo <span class="hljs-built_in">rm</span> -f /var/log/your_app_huge.log<br><span class="hljs-comment"># 或清空（更安全）</span><br>sudo <span class="hljs-built_in">truncate</span> -s 0 /path/to/huge_file<br></code></pre></td></tr></table></figure>
 <blockquote>
 <p>⚠️ <strong>切勿删除你不认识的文件！</strong> 尤其是 <code>/bin</code>、<code>/sbin</code>、<code>/lib</code> 下的文件。</p>
 </blockquote>
 <hr>
-<h4 id="1-1-2-5-✅-第五步：预防措施"><a href="#1-1-2-5-✅-第五步：预防措施" class="headerlink" title="1.1.2.5 ✅ 第五步：预防措施"></a>1.1.2.5 ✅ 第五步：预防措施</h4><ol>
+<h4 id="1-1-3-5-✅-第五步：预防措施"><a href="#1-1-3-5-✅-第五步：预防措施" class="headerlink" title="1.1.3.5 ✅ 第五步：预防措施"></a>1.1.3.5 ✅ 第五步：预防措施</h4><ol>
 <li><strong>设置 logrotate</strong>（自动轮转日志）<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo vi /etc/logrotate.d/your_app<br></code></pre></td></tr></table></figure></li>
 <li><strong>监控磁盘使用</strong><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 安装监控工具</span><br>sudo yum install -y ncdu<br><span class="hljs-comment"># 交互式查看目录大小</span><br>sudo ncdu /<br></code></pre></td></tr></table></figure></li>
 <li><strong>定期清理脚本</strong><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 添加 cron 任务</span><br><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;0 2 * * 0 /usr/bin/yum clean all&quot;</span> | sudo crontab -<br></code></pre></td></tr></table></figure></li>
 </ol>
 <hr>
-<h4 id="1-1-2-6-🚨-紧急操作建议"><a href="#1-1-2-6-🚨-紧急操作建议" class="headerlink" title="1.1.2.6 🚨 紧急操作建议"></a>1.1.2.6 🚨 紧急操作建议</h4><p>你现在 <strong>必须立即清理至少 1~2GB 空间</strong>，否则：</p>
+<h4 id="1-1-3-6-🚨-紧急操作建议"><a href="#1-1-3-6-🚨-紧急操作建议" class="headerlink" title="1.1.3.6 🚨 紧急操作建议"></a>1.1.3.6 🚨 紧急操作建议</h4><p>你现在 <strong>必须立即清理至少 1~2GB 空间</strong>，否则：</p>
 <ul>
 <li><code>systemd</code> 可能无法写日志</li>
 <li>SSH 可能拒绝新连接</li>
 <li>数据库可能 crash</li>
 </ul>
 <p><strong>优先执行：</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 1. 清理 journal 日志</span><br>sudo journalctl --vacuum-size=50M<br><br><span class="hljs-comment"># 2. 清空主要日志</span><br>sudo <span class="hljs-built_in">truncate</span> -s 0 /var/log/messages<br>sudo <span class="hljs-built_in">truncate</span> -s 0 /var/log/secure<br><br><span class="hljs-comment"># 3. 清理 yum 缓存</span><br>sudo yum clean all<br><br><span class="hljs-comment"># 4. 检查 /tmp 和 /var/tmp</span><br>sudo <span class="hljs-built_in">rm</span> -rf /tmp/*<br>sudo <span class="hljs-built_in">rm</span> -rf /var/tmp/*<br></code></pre></td></tr></table></figure>
-
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 1. 清理 journal 日志</span><br>sudo journalctl --vacuum-size=50M<br><span class="hljs-comment"># 2. 清空主要日志</span><br>sudo <span class="hljs-built_in">truncate</span> -s 0 /var/log/messages<br>sudo <span class="hljs-built_in">truncate</span> -s 0 /var/log/secure<br><span class="hljs-comment"># 3. 清理 yum 缓存</span><br>sudo yum clean all<br><span class="hljs-comment"># 4. 检查 /tmp 和 /var/tmp</span><br>sudo <span class="hljs-built_in">rm</span> -rf /tmp/*<br>sudo <span class="hljs-built_in">rm</span> -rf /var/tmp/*<br></code></pre></td></tr></table></figure>
 <p>然后再次运行：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">df</span> -h<br></code></pre></td></tr></table></figure>
 <p>确认 <code>/</code> 分区 <strong>Use% 降到 95% 以下</strong>。</p>
@@ -544,32 +583,26 @@
 <p>完成清理后，建议用 <code>ncdu</code> 工具深入分析：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo yum install -y ncdu<br>sudo ncdu /<br></code></pre></td></tr></table></figure>
 <p>它会交互式显示目录大小，方便你精准定位“空间吞噬者”。</p>
-<h3 id="1-1-3-Ssh-连接"><a href="#1-1-3-Ssh-连接" class="headerlink" title="1.1.3 Ssh 连接"></a>1.1.3 Ssh 连接</h3><p>-p 指定端口，默认不带则为 22 端口</p>
+<h3 id="1-1-4-Ssh-连接"><a href="#1-1-4-Ssh-连接" class="headerlink" title="1.1.4 Ssh 连接"></a>1.1.4 Ssh 连接</h3><p>-p 指定端口，默认不带则为 22 端口</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">ssh -p &lt;port&gt; &lt;username&gt;@&lt;ip/hostname&gt;<br></code></pre></td></tr></table></figure>
-
-<h3 id="1-1-4-Glusterfs-文件挂载"><a href="#1-1-4-Glusterfs-文件挂载" class="headerlink" title="1.1.4 Glusterfs 文件挂载"></a>1.1.4 Glusterfs 文件挂载</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 创建挂载点目录（需指定路径）</span><br>sudo <span class="hljs-built_in">mkdir</span> -p /mnt/glusterfs<br><br><span class="hljs-comment"># 挂载 GlusterFS 卷（使用 FUSE 客户端）</span><br>mount -t glusterfs 192.168.88.170:vol_69994102f7e8a927ebeb3acd3784590c  /mnt/hsas_log<br>sudo mount -t glusterfs &lt;GlusterFS节点IP或主机名&gt;:/&lt;卷名&gt; /mnt/glusterfs<br></code></pre></td></tr></table></figure>
-
+<h3 id="1-1-5-Glusterfs-文件挂载"><a href="#1-1-5-Glusterfs-文件挂载" class="headerlink" title="1.1.5 Glusterfs 文件挂载"></a>1.1.5 Glusterfs 文件挂载</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 创建挂载点目录（需指定路径）</span><br>sudo <span class="hljs-built_in">mkdir</span> -p /mnt/glusterfs<br><span class="hljs-comment"># 挂载 GlusterFS 卷（使用 FUSE 客户端）</span><br>mount -t glusterfs 192.168.88.170:vol_69994102f7e8a927ebeb3acd3784590c  /mnt/hsas_log<br>sudo mount -t glusterfs &lt;GlusterFS节点IP或主机名&gt;:/&lt;卷名&gt; /mnt/glusterfs<br></code></pre></td></tr></table></figure>
 <blockquote>
 <p>卷名通过 rancher 里找到对应的 volume 查看。</p>
 </blockquote>
-<h3 id="1-1-5-文件传输"><a href="#1-1-5-文件传输" class="headerlink" title="1.1.5 文件传输"></a>1.1.5 文件传输</h3><blockquote>
+<h3 id="1-1-6-文件传输"><a href="#1-1-6-文件传输" class="headerlink" title="1.1.6 文件传输"></a>1.1.6 文件传输</h3><blockquote>
 <p>通过 ssh 协议用于在本地计算机和远程计算机之间安全地复制文件</p>
 </blockquote>
 <ol>
 <li>本地到远程</li>
 </ol>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">scp (-p &lt;port&gt;) &lt;/path/to/local/file&gt; &lt;username&gt;@&lt;remote_host/host_name&gt;:&lt;/path/to/remote/directory&gt;<br></code></pre></td></tr></table></figure>
-
 <ol start="2">
 <li>远程到本地</li>
 </ol>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">scp (-p &lt;port&gt;) &lt;username&gt;@&lt;remote_host/host_name&gt;: &lt;/path/to/remote/directory&gt; &lt;/path/to/local/file&gt; <br></code></pre></td></tr></table></figure>
-
-<h3 id="1-1-6-查看路由表"><a href="#1-1-6-查看路由表" class="headerlink" title="1.1.6 查看路由表"></a>1.1.6 查看路由表</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">yum install net-tools -y<br>route -n <span class="hljs-comment">#列出所有路由</span><br></code></pre></td></tr></table></figure>
-
-<h3 id="1-1-7-查看资源"><a href="#1-1-7-查看资源" class="headerlink" title="1.1.7 查看资源"></a>1.1.7 查看资源</h3><p>查看所有资源占用情况，降序排列，<code>top</code> 默认会实时更新显示的信息，通常每秒刷新一次。</p>
+<h3 id="1-1-7-查看路由表"><a href="#1-1-7-查看路由表" class="headerlink" title="1.1.7 查看路由表"></a>1.1.7 查看路由表</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">yum install net-tools -y<br>route -n <span class="hljs-comment">#列出所有路由</span><br></code></pre></td></tr></table></figure>
+<h3 id="1-1-8-查看资源"><a href="#1-1-8-查看资源" class="headerlink" title="1.1.8 查看资源"></a>1.1.8 查看资源</h3><p>查看所有资源占用情况，降序排列，<code>top</code> 默认会实时更新显示的信息，通常每秒刷新一次。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">top <br></code></pre></td></tr></table></figure>
-
 <ol>
 <li><strong>排序</strong>：<ul>
 <li>按 CPU 使用率排序：按 <code>P</code> 键。</li>
@@ -592,9 +625,8 @@
 </ul>
 </li>
 </ol>
-<h3 id="1-1-8-查看进程"><a href="#1-1-8-查看进程" class="headerlink" title="1.1.8 查看进程"></a>1.1.8 查看进程</h3><p><code>ps</code> 命令在 Unix-like 系统中用于显示当前进程的状态。</p>
+<h3 id="1-1-9-查看进程"><a href="#1-1-9-查看进程" class="headerlink" title="1.1.9 查看进程"></a>1.1.9 查看进程</h3><p><code>ps</code> 命令在 Unix-like 系统中用于显示当前进程的状态。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">ps<br></code></pre></td></tr></table></figure>
-
 <ol>
 <li><p>参数说明</p>
 <ul>
@@ -619,36 +651,25 @@
 </ul>
 </li>
 </ol>
-<h3 id="1-1-9-查看内存"><a href="#1-1-9-查看内存" class="headerlink" title="1.1.9 查看内存"></a>1.1.9 查看内存</h3><p>以人类可读的方式展示内存使用状态。</p>
+<h3 id="1-1-10-查看内存"><a href="#1-1-10-查看内存" class="headerlink" title="1.1.10 查看内存"></a>1.1.10 查看内存</h3><p>以人类可读的方式展示内存使用状态。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">free -mh<br></code></pre></td></tr></table></figure>
-
-<h3 id="1-1-10-查看硬盘"><a href="#1-1-10-查看硬盘" class="headerlink" title="1.1.10 查看硬盘"></a>1.1.10 查看硬盘</h3><p>以人类可读的方式展示磁盘分配状态。</p>
+<h3 id="1-1-11-查看硬盘"><a href="#1-1-11-查看硬盘" class="headerlink" title="1.1.11 查看硬盘"></a>1.1.11 查看硬盘</h3><p>以人类可读的方式展示磁盘分配状态。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">df</span> -h<br></code></pre></td></tr></table></figure>
-
-<h3 id="1-1-11-查看系统日志"><a href="#1-1-11-查看系统日志" class="headerlink" title="1.1.11 查看系统日志"></a>1.1.11 查看系统日志</h3><p><code>journalctl</code> 是 <code>systemd</code> 系统服务管理器的一部分，用于查询和显示日志消息。它提供了一种方便的方式来查看系统日志，特别是与特定服务或单元相关的日志。</p>
+<h3 id="1-1-12-查看系统日志"><a href="#1-1-12-查看系统日志" class="headerlink" title="1.1.12 查看系统日志"></a>1.1.12 查看系统日志</h3><p><code>journalctl</code> 是 <code>systemd</code> 系统服务管理器的一部分，用于查询和显示日志消息。它提供了一种方便的方式来查看系统日志，特别是与特定服务或单元相关的日志。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">sudo journalctl -u &lt;NetworkManager&gt;<br></code></pre></td></tr></table></figure>
-
 <p>查看系统日志</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">cat</span>/vim /var/log/messages<br>dmesg<br></code></pre></td></tr></table></figure>
-
 <p>查找 cpu 相关日志：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">grep -r Call -C 10 /var/log/messages*<br>grep -r Call /var/log/messages*<br></code></pre></td></tr></table></figure>
-
-<h3 id="1-1-12-查看编辑文件"><a href="#1-1-12-查看编辑文件" class="headerlink" title="1.1.12 查看编辑文件"></a>1.1.12 查看编辑文件</h3><h4 id="1-1-12-1-搜索文件"><a href="#1-1-12-1-搜索文件" class="headerlink" title="1.1.12.1 搜索文件"></a>1.1.12.1 搜索文件</h4><p>按照关键词搜索含有关键词的文件</p>
+<h3 id="1-1-13-查看编辑文件"><a href="#1-1-13-查看编辑文件" class="headerlink" title="1.1.13 查看编辑文件"></a>1.1.13 查看编辑文件</h3><h4 id="1-1-13-1-搜索文件"><a href="#1-1-13-1-搜索文件" class="headerlink" title="1.1.13.1 搜索文件"></a>1.1.13.1 搜索文件</h4><p>按照关键词搜索含有关键词的文件</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">find . -<span class="hljs-built_in">type</span> f -<span class="hljs-built_in">exec</span> grep -l <span class="hljs-string">&#x27;mysql-master&#x27;</span> &#123;&#125; \;<br></code></pre></td></tr></table></figure>
-
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">grep <span class="hljs-string">&#x27;temporary password&#x27;</span> /var/log/mysqld.log<br></code></pre></td></tr></table></figure>
-
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo find / -<span class="hljs-built_in">type</span> f -name <span class="hljs-string">&quot;*.yaml&quot;</span> -<span class="hljs-built_in">exec</span> grep -H <span class="hljs-string">&#x27;service-node-port-range&#x27;</span> &#123;&#125; \; 2&gt;/dev/null<br></code></pre></td></tr></table></figure>
-
 <p>搜索指定文件名的文件</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo find / -name <span class="hljs-string">&quot;kube-apiserver.yaml&quot;</span> 2&gt;/dev/null<br></code></pre></td></tr></table></figure>
-
-<h4 id="1-1-12-2-查看文件数量"><a href="#1-1-12-2-查看文件数量" class="headerlink" title="1.1.12.2 查看文件数量"></a>1.1.12.2 查看文件数量</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">find /path/to/directory -<span class="hljs-built_in">type</span> f | <span class="hljs-built_in">wc</span> -l<br></code></pre></td></tr></table></figure>
-
-<h4 id="1-1-12-3-查看目录"><a href="#1-1-12-3-查看目录" class="headerlink" title="1.1.12.3 查看目录"></a>1.1.12.3 查看目录</h4><p>列出当前目录下的文件和文件夹</p>
+<h4 id="1-1-13-2-查看文件数量"><a href="#1-1-13-2-查看文件数量" class="headerlink" title="1.1.13.2 查看文件数量"></a>1.1.13.2 查看文件数量</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">find /path/to/directory -<span class="hljs-built_in">type</span> f | <span class="hljs-built_in">wc</span> -l<br></code></pre></td></tr></table></figure>
+<h4 id="1-1-13-3-查看目录"><a href="#1-1-13-3-查看目录" class="headerlink" title="1.1.13.3 查看目录"></a>1.1.13.3 查看目录</h4><p>列出当前目录下的文件和文件夹</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">ls</span><br></code></pre></td></tr></table></figure>
-
 <ol>
 <li><p>常见搭配</p>
 <ul>
@@ -670,7 +691,7 @@
 <li>rwx：文件所有者的权限，<code>r</code> 代表可读（read），<code>w</code> 代表可写（write），<code>x</code> 代表可执行（execute）</li>
 <li>r-x：文件所有者同组的用户（group）的权限，可读可执行但不可写</li>
 <li>r-x：其他用户（others）的权限，可读可执行但不可写</li>
-<li>10：硬链接指向这个目录的个数，目录至少为2（一个是 <code>.</code> 表示当前目录，另一个是 <code>..</code> 表示父目录），加上目录下文件和子目录的数量。</li>
+<li>10：硬链接指向这个目录的个数，目录至少为 2（一个是 <code>.</code> 表示当前目录，另一个是 <code>..</code> 表示父目录），加上目录下文件和子目录的数量。</li>
 <li>root root：文件所有者和组的名称。</li>
 <li>4.0K：目录占用空间大小（不包括子文件和子目录）。</li>
 <li>Feb 22 21:41：目录最后修改的日期和时间。</li>
@@ -678,15 +699,12 @@
 </ul>
 </li>
 </ol>
-<h4 id="1-1-12-4-查看内容"><a href="#1-1-12-4-查看内容" class="headerlink" title="1.1.12.4 查看内容"></a>1.1.12.4 查看内容</h4><p>查看文件内容，打印在控制台</p>
+<h4 id="1-1-13-4-查看内容"><a href="#1-1-13-4-查看内容" class="headerlink" title="1.1.13.4 查看内容"></a>1.1.13.4 查看内容</h4><p>查看文件内容，打印在控制台</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">cat</span> &lt;fileName&gt;<br></code></pre></td></tr></table></figure>
-
-<h4 id="1-1-12-5-新建文件"><a href="#1-1-12-5-新建文件" class="headerlink" title="1.1.12.5 新建文件"></a>1.1.12.5 新建文件</h4><p>新增一个文件，或写入内容到文件中</p>
+<h4 id="1-1-13-5-新建文件"><a href="#1-1-13-5-新建文件" class="headerlink" title="1.1.13.5 新建文件"></a>1.1.13.5 新建文件</h4><p>新增一个文件，或写入内容到文件中</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">cat</span> &gt; &lt;file.txt&gt;<br><span class="hljs-built_in">echo</span> &lt;content&gt; &gt; &lt;file.txt&gt;<br><span class="hljs-built_in">touch</span> &lt;file.txt&gt;<br></code></pre></td></tr></table></figure>
-
-<h4 id="1-1-12-6-编辑内容"><a href="#1-1-12-6-编辑内容" class="headerlink" title="1.1.12.6 编辑内容"></a>1.1.12.6 编辑内容</h4><p>使用 Vim 编辑器编辑文件</p>
+<h4 id="1-1-13-6-编辑内容"><a href="#1-1-13-6-编辑内容" class="headerlink" title="1.1.13.6 编辑内容"></a>1.1.13.6 编辑内容</h4><p>使用 Vim 编辑器编辑文件</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">vi(m) &lt;fileName&gt;<br></code></pre></td></tr></table></figure>
-
 <ol>
 <li>常见操作：<ul>
 <li>i：进入插入写模式</li>
@@ -700,33 +718,23 @@
 <h2 id="1-2-K8s-和-Docker-相关指令"><a href="#1-2-K8s-和-Docker-相关指令" class="headerlink" title="1.2 K8s 和 Docker 相关指令"></a>1.2 K8s 和 Docker 相关指令</h2><p><a target="_blank" rel="noopener" href="https://www.rainbond.com/docs/quick-start/quick-install">快速安装 | Rainbond</a></p>
 <h3 id="1-2-1-K8s"><a href="#1-2-1-K8s" class="headerlink" title="1.2.1 K8s"></a>1.2.1 K8s</h3><h4 id="1-2-1-1-集群"><a href="#1-2-1-1-集群" class="headerlink" title="1.2.1.1 集群"></a>1.2.1.1 集群</h4><p>获取 prod 集群中所有节点信息</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment"># 正式集群</span><br>kube-prod get nodes<br><span class="hljs-comment"># 测试集群</span><br>kube-test get nodes<br></code></pre></td></tr></table></figure>
-
 <h4 id="1-2-1-2-节点"><a href="#1-2-1-2-节点" class="headerlink" title="1.2.1.2 节点"></a>1.2.1.2 节点</h4><p>获取指定命名空间下的所有 pod</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">kube-prod get pod -n &lt;namespace&gt;<br></code></pre></td></tr></table></figure>
-
 <p>获取指定 pod 的详情（<code>可根据 event 排查 pod 的错误信息</code>）</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">kube-prod describe pod &lt;pod-name&gt; -n &lt;namespace&gt;<br></code></pre></td></tr></table></figure>
-
 <p>条件查询指定命名空间下指定状态的 pod 并批量删除</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">kubectl get pods -n etms | grep Evicted | awk <span class="hljs-string">&#x27;&#123;print $1&#125;&#x27;</span> | xargs kubectl delete pods --kubeconfig ./kube_config_cluster.yml -n etms<br></code></pre></td></tr></table></figure>
-
 <p>eg：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">kube-test get pods -n etms | grep Evicted | awk <span class="hljs-string">&#x27;&#123;print $1&#125;&#x27;</span> | xargs kubectl delete pods --kubeconfig ./test/kube_config_cluster.yml -n etms<br></code></pre></td></tr></table></figure>
-
 <p>强制删除 pod</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">kubectl delete pod hsas-1721236200-5q59b --grace-period=0 --force -n hsas<br></code></pre></td></tr></table></figure>
-
 <h4 id="1-2-1-3-Pod"><a href="#1-2-1-3-Pod" class="headerlink" title="1.2.1.3 Pod"></a>1.2.1.3 Pod</h4><p>启动定时任务</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sh">kubectl-prod -n mysql create job --from=cronjob/cweb-mysql-backup cweb-k8s-mysql-master<br>第一个cweb：名称空间<br>第二个cweb：定时任务名<br>第三个cweb：启动的pod名<br></code></pre></td></tr></table></figure>
-
 <p>启动定时任务并查看日志</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">kube-prod create job bems-backup-test-$(<span class="hljs-built_in">date</span> +%s) --from=cronjob/bems-backup -n bems<br>kube-prod get job -n bems<br>POD_NAME=$(kube-prod get pods -n bems -l job-name=bems-backup-test-1767168515 -o jsonpath=<span class="hljs-string">&#x27;&#123;.items[0].metadata.name&#125;&#x27;</span>)<br>kube-prod logs -n bems <span class="hljs-variable">$POD_NAME</span> -c backup<br>kube-prod delete job bems-backup-test-1767168515 -n bems<br></code></pre></td></tr></table></figure>
-
 <h4 id="1-2-1-4-Deployment"><a href="#1-2-1-4-Deployment" class="headerlink" title="1.2.1.4 Deployment"></a>1.2.1.4 Deployment</h4><h5 id="1-2-1-4-1-查看-deployment-的标签"><a href="#1-2-1-4-1-查看-deployment-的标签" class="headerlink" title="1.2.1.4.1 查看 deployment 的标签"></a>1.2.1.4.1 查看 deployment 的标签</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">kube-etms get deploy -n etms etms-web --show-labels<br></code></pre></td></tr></table></figure>
-
 <h5 id="1-2-1-4-2-实时查看控制台日志"><a href="#1-2-1-4-2-实时查看控制台日志" class="headerlink" title="1.2.1.4.2 实时查看控制台日志"></a>1.2.1.4.2 实时查看控制台日志</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">kube-etms logs -n etms -l app=etms-web --prefix -f | grep --line-buffered <span class="hljs-string">&quot;关键词&quot;</span><br></code></pre></td></tr></table></figure>
-<h4 id="1-2-1-5-复制文件"><a href="#1-2-1-5-复制文件" class="headerlink" title="1.2.1.5 复制文件"></a>1.2.1.5 复制文件</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">kubectl <span class="hljs-built_in">cp</span> -n 命名空间 -c 容器名 pod名:文件绝对路径 文件目标位置<br><br>kube-test <span class="hljs-built_in">cp</span> -n tool -c kkfileview kkfileview-644dcccf65-r4kqb:/opt/kkFileView-4.1.0/config/application.properties ./application.properties<br></code></pre></td></tr></table></figure>
-
+<h4 id="1-2-1-5-复制文件"><a href="#1-2-1-5-复制文件" class="headerlink" title="1.2.1.5 复制文件"></a>1.2.1.5 复制文件</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">kubectl <span class="hljs-built_in">cp</span> -n 命名空间 -c 容器名 pod名:文件绝对路径 文件目标位置<br>kube-test <span class="hljs-built_in">cp</span> -n tool -c kkfileview kkfileview-644dcccf65-r4kqb:/opt/kkFileView-4.1.0/config/application.properties ./application.properties<br></code></pre></td></tr></table></figure>
 <h4 id="1-2-1-6-创建-Configmap"><a href="#1-2-1-6-创建-Configmap" class="headerlink" title="1.2.1.6 创建 Configmap"></a>1.2.1.6 创建 Configmap</h4><ol>
 <li>命令创建</li>
 </ol>
@@ -734,7 +742,6 @@
 <p><strong>通过参数 <code>--from-literal</code> 直接指定键值对。这种方式比较适用于临时测试使用，而且不适合配置很多的情况。</strong></p>
 </blockquote>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ kubectl create configmap config-literal \<br>--from-literal=pkslow.name=Larry \<br>--from-literal=pkslow.age=18 \<br>--from-literal=pkslow.webSite=www.pkslow.com <br></code></pre></td></tr></table></figure>
-
 <ol>
 <li>文件创建</li>
 </ol>
@@ -742,19 +749,15 @@
 <p>通过参数 <code>--from-file</code> 来指定文件。查看内容如下：</p>
 </blockquote>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ kubectl create configmap config-file \<br>--namespace=tool \<br>--from-file=application.yaml \<br></code></pre></td></tr></table></figure>
-
 <h3 id="1-2-2-Docker"><a href="#1-2-2-Docker" class="headerlink" title="1.2.2 Docker"></a>1.2.2 Docker</h3><h4 id="1-2-2-1-配置镜像"><a href="#1-2-2-1-配置镜像" class="headerlink" title="1.2.2.1 配置镜像"></a>1.2.2.1 配置镜像</h4><p>为镜像仓库配置下载源，查看 <code>/etc/docker/daemon.json</code> 文件来确定当前配置的镜像源，如果该文件不存在或为空，则默认使用 Docker 官方镜像源。</p>
 <ol>
 <li>查看镜像源配置</li>
 </ol>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">cat</span> /etc/docker/daemon.json<br><span class="hljs-built_in">cat</span> ~/.docker/config.json<br></code></pre></td></tr></table></figure>
-
 <ol start="2">
-<li>修改配置<br>多个镜像源以逗号分隔</li>
+<li>修改配置<br>多个镜像源以逗号分隔<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs sh">&#123;<br>  <span class="hljs-string">&quot;registry-mirrors&quot;</span>: [<span class="hljs-string">&quot;http://hub-mirror.c.163.com&quot;</span>]<br>&#125;<br><span class="hljs-comment">#仅供私人使用</span><br>&#123;<br>  <span class="hljs-string">&quot;registry-mirrors&quot;</span>: [<br>                        <span class="hljs-string">&quot;https://dockerhub.icu&quot;</span>,<br>                        <span class="hljs-string">&quot;https://registry.dockermirror.com&quot;</span>,<br>                        <span class="hljs-string">&quot;https://docker.m.daocloud.io&quot;</span>,<br>                        <span class="hljs-string">&quot;https://docker.fxxk.dedyn.io&quot;</span>,<br>                        <span class="hljs-string">&quot;https://dk.csfan.fun&quot;</span><br>					],<br>  <span class="hljs-string">&quot;exec-opts&quot;</span>: [<span class="hljs-string">&quot;native.cgroupdriver=systemd&quot;</span>]<br>&#125;<br></code></pre></td></tr></table></figure>
+常见镜像源：</li>
 </ol>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs sh">&#123;<br>  <span class="hljs-string">&quot;registry-mirrors&quot;</span>: [<span class="hljs-string">&quot;http://hub-mirror.c.163.com&quot;</span>]<br>&#125;<br><br><span class="hljs-comment">#仅供私人使用</span><br>&#123;<br>  <span class="hljs-string">&quot;registry-mirrors&quot;</span>: [<br>                        <span class="hljs-string">&quot;https://dockerhub.icu&quot;</span>,<br>                        <span class="hljs-string">&quot;https://registry.dockermirror.com&quot;</span>,<br>                        <span class="hljs-string">&quot;https://docker.m.daocloud.io&quot;</span>,<br>                        <span class="hljs-string">&quot;https://docker.fxxk.dedyn.io&quot;</span>,<br>                        <span class="hljs-string">&quot;https://dk.csfan.fun&quot;</span><br>					],<br>  <span class="hljs-string">&quot;exec-opts&quot;</span>: [<span class="hljs-string">&quot;native.cgroupdriver=systemd&quot;</span>]<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p>常见镜像源：</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://docker.m.daocloud.io/">public-image-mirror</a></li>
 <li><a target="_blank" rel="noopener" href="https://mirror.iscas.ac.cn/">ISCAS 开源镜像站</a></li>
@@ -775,19 +778,14 @@
 <li>重启服务更新配置</li>
 </ol>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sh">systemctl restart docker.service<br>sudo systemctl daemon-reload<br>sudo systemctl restart docker<br></code></pre></td></tr></table></figure>
-
 <h4 id="1-2-2-2-保存镜像"><a href="#1-2-2-2-保存镜像" class="headerlink" title="1.2.2.2 保存镜像"></a>1.2.2.2 保存镜像</h4><p>将指定本地镜像保存为 tar 压缩包</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">docker save -o &lt;image.tar&gt; &lt;image&gt;<br></code></pre></td></tr></table></figure>
-
 <h4 id="1-2-2-3-加载镜像"><a href="#1-2-2-3-加载镜像" class="headerlink" title="1.2.2.3 加载镜像"></a>1.2.2.3 加载镜像</h4><p>根据指定镜像压缩包加载镜像到本地</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">docker load -i &lt;image.tar&gt;<br></code></pre></td></tr></table></figure>
-
 <h4 id="1-2-2-4-删除镜像"><a href="#1-2-2-4-删除镜像" class="headerlink" title="1.2.2.4 删除镜像"></a>1.2.2.4 删除镜像</h4><p>删除所有未使用的镜像，容器和存储卷。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sh">docker image prune<br>docker container prune<br>docker volume prune<br></code></pre></td></tr></table></figure>
-
 <h4 id="1-2-2-5-更新镜像"><a href="#1-2-2-5-更新镜像" class="headerlink" title="1.2.2.5 更新镜像"></a>1.2.2.5 更新镜像</h4><p>对已有的变更环境进行保存以便于 pod 重启后维持最新环境</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">docker commit [OPTIONS] CONTAINER [REPOSITORY[:TAG]]<br>docker commit -a <span class="hljs-string">&#x27;fcs&#x27;</span>(commit msg) c3a6f02ad044(containerId/name) conda:fcs202407080840(newImageName)<br></code></pre></td></tr></table></figure>
-
 <ul>
 <li><code>OPTIONS</code><ul>
 <li><code>-a</code> 或 <code>--author</code>：设置镜像的作者字段。</li>
@@ -801,9 +799,7 @@
 <li><code>TAG</code> 是可选的，用于给镜像指定一个标签，如果不指定，默认标签是 <code>latest</code>。</li>
 </ul>
 <h2 id="1-3-MySQL-指令"><a href="#1-3-MySQL-指令" class="headerlink" title="1.3 MySQL 指令"></a>1.3 MySQL 指令</h2><h3 id="1-3-1-找到配置文件位置"><a href="#1-3-1-找到配置文件位置" class="headerlink" title="1.3.1 找到配置文件位置"></a>1.3.1 找到配置文件位置</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">show variables like &#x27;datadir&#x27;;<br></code></pre></td></tr></table></figure>
-
 <h3 id="1-3-2-查看日志所在位置"><a href="#1-3-2-查看日志所在位置" class="headerlink" title="1.3.2 查看日志所在位置"></a>1.3.2 查看日志所在位置</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">show variables like &#x27;log_bin&#x27;;<br></code></pre></td></tr></table></figure>
-
 <h1 id="2-常见问题"><a href="#2-常见问题" class="headerlink" title="2 常见问题"></a>2 常见问题</h1><blockquote>
 <p>[!warning] Tips</p>
 <ol>
@@ -842,7 +838,6 @@
 <li>问题描述：</li>
 </ol>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">   [1539310.375852]NMI watchdog:BUG:soft lockup CPU<span class="hljs-comment">#20 stuck for 23s![migration/20:111]</span><br>[1539310.375856]NMI watchdog:BUG:soft lockup CPU<span class="hljs-comment">#28 stuck for 23s![kubelet:9779]</span><br></code></pre></td></tr></table></figure>
-
 <ol start="2">
 <li>原因：日志表明系统遇到了一个“软锁定”（soft lockup）的情况。这通常意味着某个进程或线程在 CPU 上运行了很长时间，导致系统监视器认为它可能已经冻结或卡住。<ul>
 <li><strong>死锁</strong>：一个或多个进程可能陷入了死锁状态，导致 CPU 无法处理其他任务。</li>
@@ -865,19 +860,14 @@
 </ol>
 <h2 id="2-5-内存占用虚高"><a href="#2-5-内存占用虚高" class="headerlink" title="2.5 内存占用虚高"></a>2.5 内存占用虚高</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/vincent0920/article/details/135485154">vmware虚拟机内存异常占用问题一例_esxi8.0占用内存怎么处理</a></p>
 <h2 id="2-6-MySQL-故障"><a href="#2-6-MySQL-故障" class="headerlink" title="2.6 MySQL 故障"></a>2.6 MySQL 故障</h2><p>参考：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/paul8339/p/16880095.html">MySQL启动报错[ERROR] InnoDB: Trying to access page number 4294967295 in space 0, space name innodb</a></p>
-<h3 id="2-6-1-K8s-集群连不上"><a href="#2-6-1-K8s-集群连不上" class="headerlink" title="2.6.1 K8s 集群连不上"></a>2.6.1 K8s 集群连不上</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_45547688/article/details/131325877">k8s 集群 kubelet日志报错 command failed“ err&#x3D;“failed to parse kubelet flag: unknown flag: –network-p_command failed” err&#x3D;”failed to parse kubelet flag</a><br>kubelet 版本节点之间不一致</p>
-<p>查看状态和日志：</p>
+<h3 id="2-6-1-K8s-集群连不上"><a href="#2-6-1-K8s-集群连不上" class="headerlink" title="2.6.1 K8s 集群连不上"></a>2.6.1 K8s 集群连不上</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_45547688/article/details/131325877">k8s 集群 kubelet日志报错 command failed“ err&#x3D;“failed to parse kubelet flag: unknown flag: –network-p_command failed” err&#x3D;”failed to parse kubelet flag</a><br>kubelet 版本节点之间不一致<br>查看状态和日志：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">systemctl status kubelet.service<br>journalctl -u kubelet -f<br></code></pre></td></tr></table></figure>
-
 <p>查看版本：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">rpm -qa | grep kube<br></code></pre></td></tr></table></figure>
-
 <p>版本降级：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">yum downgrade kubeadm-1.18.0-0.x86_64 kubectl-1.18.0-0.x86_64 kubelet-1.18.0-0.x86_64<br></code></pre></td></tr></table></figure>
-
 <p>重启 kubelet：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">sudo systemctl restart kubelet.service<br>systemctl daemon-reload<br></code></pre></td></tr></table></figure>
-
 <h2 id="2-7-Rancher-故障"><a href="#2-7-Rancher-故障" class="headerlink" title="2.7 Rancher 故障"></a>2.7 Rancher 故障</h2><h3 id="2-7-1-Rancher-连不上-Apiserver"><a href="#2-7-1-Rancher-连不上-Apiserver" class="headerlink" title="2.7.1 Rancher 连不上 Apiserver"></a>2.7.1 Rancher 连不上 Apiserver</h3><p>原因：cni 上层的网络组件出现了问题，可能是网络相关的 pod（kube-system 空间下或者直接-A 查看所有涉及到网络相关的 pod）挂了，重启后拉不到镜像导致网络不可用。<br>解决：排查网络相关组件 pod 是否正常，不正常则根据 event 和 status 进行解决。</p>
 <h2 id="2-8-集群域名修改"><a href="#2-8-集群域名修改" class="headerlink" title="2.8 集群域名修改"></a>2.8 集群域名修改</h2><h3 id="2-8-1-修改-242nginx-域名配置"><a href="#2-8-1-修改-242nginx-域名配置" class="headerlink" title="2.8.1 修改 242nginx 域名配置"></a>2.8.1 修改 242nginx 域名配置</h3><p>修改 <code>admin/nginx</code> 目录下的 nginx 域名配置。<br>再使用 <code>./config</code> 脚本更新重启 nginx 以生效配置。</p>
 <h3 id="2-8-2-改-233gitlab-配置文件里的域名"><a href="#2-8-2-改-233gitlab-配置文件里的域名" class="headerlink" title="2.8.2 改 233gitlab 配置文件里的域名"></a>2.8.2 改 233gitlab 配置文件里的域名</h3><p>配置文件位置：<code>/etc/gitlab/gitlab.rb</code><br>修改 gitlab 配置后重启，同步修改集群内的 gitlab-runner 配置（configmap）里的域名。<br><img src="https://raw.githubusercontent.com/Alleyf/PictureMap/main/blog/20250324223941398.png" srcset="/img/loading.gif" lazyload alt="|600"></p>
@@ -892,8 +882,7 @@
 <h2 id="2-10-Mongodb-启动失败"><a href="#2-10-Mongodb-启动失败" class="headerlink" title="2.10 Mongodb 启动失败"></a>2.10 Mongodb 启动失败</h2><blockquote>
 <p>问题：Rollback failed with unrecoverable error: UnrecoverableRollbackError: not willing to roll back more than 86400 seconds of data. Have: 263733 seconds</p>
 </blockquote>
-<p>原因：分片挂掉没有及时启动，导致数据不一致，无法启动。</p>
-<p>解决办法：</p>
+<p>原因：分片挂掉没有及时启动，导致数据不一致，无法启动。<br>解决办法：</p>
 <ol>
 <li>关闭 mongo 集群，找到这个分片的主分片，把它的整个目录复制到无法启动的那台分片上</li>
 <li>增大同步时间限制，添加环境变量 MONGODB_EXTRA_FLAGS &#x3D; –setParameter&#x3D;rollbackTimeLimitSecs&#x3D;172800，通过以下指令验证：mongo -u username -p password –authenticationDatabase admin –eval “db.adminCommand({getParameter: 1, rollbackTimeLimitSecs: 1})”</li>
@@ -941,8 +930,7 @@
 </ul>
 </li>
 </ol>
-<p>FTP 文件备份：<br>210 上备份（每早上 8 点）：<code>autosync_push.sh</code></p>
-<p>GitLab 代码备份（每周天）：<code>autobackup.sh</code></p>
+<p>FTP 文件备份：<br>210 上备份（每早上 8 点）：<code>autosync_push.sh</code><br>GitLab 代码备份（每周天）：<code>autobackup.sh</code></p>
 <h2 id="4-2-注意事项"><a href="#4-2-注意事项" class="headerlink" title="4.2 注意事项"></a>4.2 注意事项</h2><p>oracle 数据库定时任务无法备份如下报错：</p>
 <blockquote>
 <p>ORA-31634: 作业已存在<br>ORA-31664: 如果采用默认值, 将无法构造唯一的作业名</p>
@@ -975,35 +963,21 @@
 </ol>
 </blockquote>
 <h2 id="7-1-详细过程"><a href="#7-1-详细过程" class="headerlink" title="7.1 详细过程"></a>7.1 详细过程</h2><ol>
-<li><p>所有 etcd 和 master 和 worker 节点的 <code>/etc/hosts</code> 添加上所有节点名称和 ip 对应解析。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs bash">192.168.88.129 etcd0 etcd0.linux.csdc<br>192.168.88.128 etcd1<br>192.168.88.127 etcd2<br>192.168.88.126 master0<br>192.168.88.125 master1<br>192.168.88.124 master2<br>192.168.88.123 build0<br>192.168.88.122 node0<br>192.168.88.121 node1<br>192.168.88.120 node2<br>192.168.88.119 node3<br>192.168.88.118 node4<br>192.168.88.117 node5<br>192.168.88.116 node6<br>192.168.88.115 node7<br>192.168.88.190 gpu<br>192.168.88.192 gpu2 h3cgpu<br>192.168.88.194 gpu3 h3cgpu2<br>192.168.88.196 gpu4 h3cgpu3<br>192.168.88.102 registry.csdcinfo.cn registry.csdc.info<br>192.168.88.233 gitlab.csdcinfo.cn gitlab.csdc.info<br>192.168.88.231 rancher.csdcinfo.cn rancher.csdc.info<br></code></pre></td></tr></table></figure>
-</li>
-<li><p><code>vim /etc/sysctl.conf</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">net.ipv4.ip_forward = 1<br>net.bridge.bridge-nf-call-ip6tables = 1<br>net.bridge.bridge-nf-call-iptables = 1<br></code></pre></td></tr></table></figure>
-<p>刷新配置</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">modprobe br_netfilter<br>sysctl -p<br></code></pre></td></tr></table></figure>
-</li>
-<li><p>关闭防火墙</p>
-</li>
+<li>所有 etcd 和 master 和 worker 节点的 <code>/etc/hosts</code> 添加上所有节点名称和 ip 对应解析。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs bash">192.168.88.129 etcd0 etcd0.linux.csdc<br>192.168.88.128 etcd1<br>192.168.88.127 etcd2<br>192.168.88.126 master0<br>192.168.88.125 master1<br>192.168.88.124 master2<br>192.168.88.123 build0<br>192.168.88.122 node0<br>192.168.88.121 node1<br>192.168.88.120 node2<br>192.168.88.119 node3<br>192.168.88.118 node4<br>192.168.88.117 node5<br>192.168.88.116 node6<br>192.168.88.115 node7<br>192.168.88.190 gpu<br>192.168.88.192 gpu2 h3cgpu<br>192.168.88.194 gpu3 h3cgpu2<br>192.168.88.196 gpu4 h3cgpu3<br>192.168.88.102 registry.csdcinfo.cn registry.csdc.info<br>192.168.88.233 gitlab.csdcinfo.cn gitlab.csdc.info<br>192.168.88.231 rancher.csdcinfo.cn rancher.csdc.info<br></code></pre></td></tr></table></figure></li>
+<li><code>vim /etc/sysctl.conf</code><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">net.ipv4.ip_forward = 1<br>net.bridge.bridge-nf-call-ip6tables = 1<br>net.bridge.bridge-nf-call-iptables = 1<br></code></pre></td></tr></table></figure>
+刷新配置<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">modprobe br_netfilter<br>sysctl -p<br></code></pre></td></tr></table></figure></li>
+<li>关闭防火墙</li>
 </ol>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">systemctl stop firewalld<br>systemctl <span class="hljs-built_in">disable</span> firewalld<br>firewall-cmd --state<br></code></pre></td></tr></table></figure>
-
 <ol start="4">
 <li>关闭 selinux</li>
 </ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#永久关闭，一定要重启操作系统后生效。</span><br>sudo sed -i <span class="hljs-string">&#x27;s/^SELINUX=.*/SELINUX=disabled/&#x27;</span> /etc/selinux/config<br><br><span class="hljs-comment">#临时关闭，不重启操作系统，即刻生效。</span><br>sudo setenforce 0<br></code></pre></td></tr></table></figure>
-
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#永久关闭，一定要重启操作系统后生效。</span><br>sudo sed -i <span class="hljs-string">&#x27;s/^SELINUX=.*/SELINUX=disabled/&#x27;</span> /etc/selinux/config<br><span class="hljs-comment">#临时关闭，不重启操作系统，即刻生效。</span><br>sudo setenforce 0<br></code></pre></td></tr></table></figure>
 <ol start="5">
-<li><p>主机 swap 分区设置</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#永久关闭，需要重启操作系统生效。</span><br>sudo swapoff -a<br><span class="hljs-comment"># 注释掉 /etc/fstab 里所有 swap 行</span><br>sudo sed -i <span class="hljs-string">&#x27;/swap/s/^/#/&#x27;</span> /etc/fstab<br><br><span class="hljs-comment"># 应该无输出</span><br>swapon --show<br>free -h              <span class="hljs-comment"># Swap 行应为 0B</span><br><br><span class="hljs-comment"># cat /etc/fstab</span><br>···<br><span class="hljs-comment">#/dev/mapper/centos_192-swap swap defaults &#123;&#125; &#123;&#125;</span><br><span class="hljs-comment">#临时关闭，不需要重启操作系统，即刻生效。</span><br><span class="hljs-comment"># swapoff a</span><br></code></pre></td></tr></table></figure>
-</li>
-<li><p>时间同步</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">yum -y install ntpdate<br>crontab -e<br>0 */1 * * * ntpdate time1.aliyun.com<br></code></pre></td></tr></table></figure>
-</li>
-<li><p>添加 rancher 用户<br>使用 CentOS 时，不能使用 root 账号，因此要添加专用的账号进行 docker 相关操作。重启系统以后才能生效，只重<br>的！重启后，rancher 用户也可以直接使用 docker ps 命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">useradd rancher<br>usermod -aG docker rancher<br><span class="hljs-built_in">echo</span> 123 | passwd --stdin rancher<br></code></pre></td></tr></table></figure></li>
-<li><p>复制 ssh 证书<br>从 rke 二进制文件安装主机上复制，如果已经复制，则可不需要重复性复制。</p>
-</li>
+<li>主机 swap 分区设置<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#永久关闭，需要重启操作系统生效。</span><br>sudo swapoff -a<br><span class="hljs-comment"># 注释掉 /etc/fstab 里所有 swap 行</span><br>sudo sed -i <span class="hljs-string">&#x27;/swap/s/^/#/&#x27;</span> /etc/fstab<br><span class="hljs-comment"># 应该无输出</span><br>swapon --show<br>free -h              <span class="hljs-comment"># Swap 行应为 0B</span><br><span class="hljs-comment"># cat /etc/fstab</span><br>···<br><span class="hljs-comment">#/dev/mapper/centos_192-swap swap defaults &#123;&#125; &#123;&#125;</span><br><span class="hljs-comment">#临时关闭，不需要重启操作系统，即刻生效。</span><br><span class="hljs-comment"># swapoff a</span><br></code></pre></td></tr></table></figure></li>
+<li>时间同步<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">yum -y install ntpdate<br>crontab -e<br>0 */1 * * * ntpdate time1.aliyun.com<br></code></pre></td></tr></table></figure></li>
+<li>添加 rancher 用户<br>使用 CentOS 时，不能使用 root 账号，因此要添加专用的账号进行 docker 相关操作。重启系统以后才能生效，只重<br>的！重启后，rancher 用户也可以直接使用 docker ps 命令<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">useradd rancher<br>usermod -aG docker rancher<br><span class="hljs-built_in">echo</span> 123 | passwd --stdin rancher<br></code></pre></td></tr></table></figure></li>
+<li>复制 ssh 证书<br>从 rke 二进制文件安装主机上复制，如果已经复制，则可不需要重复性复制。</li>
 </ol>
 <ul>
 <li>复制证书<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">ssh-copy-id rancher@worker02<br></code></pre></td></tr></table></figure></li>
@@ -1011,45 +985,31 @@
 </ul>
 <hr>
 <h1 id="8-ack-集群-arthas-调试方法"><a href="#8-ack-集群-arthas-调试方法" class="headerlink" title="8 ack 集群 arthas 调试方法"></a>8 ack 集群 arthas 调试方法</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 进入arthas目录</span><br><span class="hljs-built_in">cd</span> /opt/arthas/<br><span class="hljs-comment"># 下载jattach</span><br>wget https://hub.gitmirror.com/https://github.com/apangin/jattach/releases/download/v2.1/jattach<br><span class="hljs-comment"># 添加目录执行权限</span><br><span class="hljs-built_in">chmod</span> +x /opt/arthas/jattach<br><span class="hljs-comment"># 加载java进程到arthas</span><br>./jattach 1 load instrument <span class="hljs-literal">false</span> /opt/arthas/arthas-agent.jar<br><span class="hljs-comment"># 启动arthas</span><br>java -jar arthas-client.jar 127.0.0.1 3658<br></code></pre></td></tr></table></figure>
-
-
-<h1 id="9-手动调整专网默认缺省路由"><a href="#9-手动调整专网默认缺省路由" class="headerlink" title="9 手动调整专网默认缺省路由"></a>9 手动调整专网默认缺省路由</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#99段优先</span><br>route del default gw 192.168.99.1<br>route add default gw 192.168.99.1 metric 50<br>route -n<br><br><span class="hljs-comment">#88段优先</span><br>route del default gw 192.168.99.1<br>route add default gw 192.168.99.1 metric 101<br>route -n<br></code></pre></td></tr></table></figure>
-
+<h1 id="9-手动调整专网默认缺省路由"><a href="#9-手动调整专网默认缺省路由" class="headerlink" title="9 手动调整专网默认缺省路由"></a>9 手动调整专网默认缺省路由</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#99段优先</span><br>route del default gw 192.168.99.1<br>route add default gw 192.168.99.1 metric 50<br>route -n<br><span class="hljs-comment">#88段优先</span><br>route del default gw 192.168.99.1<br>route add default gw 192.168.99.1 metric 101<br>route -n<br></code></pre></td></tr></table></figure>
 <h2 id="9-1-创建-Systemd-服务固化路由配置"><a href="#9-1-创建-Systemd-服务固化路由配置" class="headerlink" title="9.1 创建 Systemd 服务固化路由配置"></a>9.1 创建 Systemd 服务固化路由配置</h2><p>适用于使用 Systemd 的现代 Linux 系统（CentOS 7+, Ubuntu 16.04+）</p>
 <ol>
 <li>创建服务文件：</li>
 </ol>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo vim /etc/systemd/system/static-routes.service<br></code></pre></td></tr></table></figure>
-
 <ol start="2">
 <li>写入以下内容：</li>
 </ol>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-section">[Unit]</span><br><span class="hljs-attr">Description</span>=Static Routes<br><span class="hljs-attr">After</span>=network.target<br><br><span class="hljs-section">[Service]</span><br><span class="hljs-attr">Type</span>=<span class="hljs-literal">on</span>eshot<br><span class="hljs-attr">RemainAfterExit</span>=<span class="hljs-literal">yes</span><br><span class="hljs-attr">ExecStart</span>=/sbin/ip route add <span class="hljs-number">100.1</span>.<span class="hljs-number">1.0</span>/<span class="hljs-number">24</span> via <span class="hljs-number">192.168</span>.<span class="hljs-number">99.1</span><br><span class="hljs-attr">ExecStart</span>=/sbin/ip route add <span class="hljs-number">144.0</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">8</span> via <span class="hljs-number">192.168</span>.<span class="hljs-number">99.1</span><br><br><span class="hljs-section">[Install]</span><br><span class="hljs-attr">WantedBy</span>=multi-user.target<br></code></pre></td></tr></table></figure>
-
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-section">[Unit]</span><br><span class="hljs-attr">Description</span>=Static Routes<br><span class="hljs-attr">After</span>=network.target<br><span class="hljs-section">[Service]</span><br><span class="hljs-attr">Type</span>=<span class="hljs-literal">on</span>eshot<br><span class="hljs-attr">RemainAfterExit</span>=<span class="hljs-literal">yes</span><br><span class="hljs-attr">ExecStart</span>=/sbin/ip route add <span class="hljs-number">100.1</span>.<span class="hljs-number">1.0</span>/<span class="hljs-number">24</span> via <span class="hljs-number">192.168</span>.<span class="hljs-number">99.1</span><br><span class="hljs-attr">ExecStart</span>=/sbin/ip route add <span class="hljs-number">144.0</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">8</span> via <span class="hljs-number">192.168</span>.<span class="hljs-number">99.1</span><br><span class="hljs-section">[Install]</span><br><span class="hljs-attr">WantedBy</span>=multi-user.target<br></code></pre></td></tr></table></figure>
 <ol start="3">
 <li>启用并启动服务：</li>
 </ol>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo systemctl daemon-reload<br>sudo systemctl <span class="hljs-built_in">enable</span> static-routes.service<br>sudo systemctl start static-routes.service<br></code></pre></td></tr></table></figure>
-
-<h1 id="10-Glusterfs-常用操作"><a href="#10-Glusterfs-常用操作" class="headerlink" title="10 Glusterfs 常用操作"></a>10 Glusterfs 常用操作</h1><h2 id="10-1-查看容量"><a href="#10-1-查看容量" class="headerlink" title="10.1 查看容量"></a>10.1 查看容量</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs bash">heketi-cli node list 查看所有节点<br><br>heketi-cli node info 1f5074b6a92ff222cc59d71426638c56 查看单个节点<br><br>heketi-cli volume list 查看所有卷<br><br>heketi-cli volume list | grep vol_366bbff89824f57eb02ffa290462d39b 查看特定卷<br><br>heketi-cli volume delete 366bbff89824f57eb02ffa290462d39b 删除卷<br><br>mount -t glusterfs 192.168.88.170:vol_69994102f7e8a927ebeb3acd3784590c /mnt/hsas_log/<br></code></pre></td></tr></table></figure>
-
+<h1 id="10-Glusterfs-常用操作"><a href="#10-Glusterfs-常用操作" class="headerlink" title="10 Glusterfs 常用操作"></a>10 Glusterfs 常用操作</h1><h2 id="10-1-查看容量"><a href="#10-1-查看容量" class="headerlink" title="10.1 查看容量"></a>10.1 查看容量</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">heketi-cli node list 查看所有节点<br>heketi-cli node info 1f5074b6a92ff222cc59d71426638c56 查看单个节点<br>heketi-cli volume list 查看所有卷<br>heketi-cli volume list | grep vol_366bbff89824f57eb02ffa290462d39b 查看特定卷<br>heketi-cli volume delete 366bbff89824f57eb02ffa290462d39b 删除卷<br>mount -t glusterfs 192.168.88.170:vol_69994102f7e8a927ebeb3acd3784590c /mnt/hsas_log/<br></code></pre></td></tr></table></figure>
 <h2 id="10-2-扩容"><a href="#10-2-扩容" class="headerlink" title="10.2 扩容"></a>10.2 扩容</h2><blockquote>
 <p>在 170 主节点上执行以下命令</p>
 </blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs bash">heketi-cli device add --name /dev/sde --node 1f5074b6a92ff222cc59d71426638c56<br><br>heketi-cli device add --name /dev/sdf --node 1f5074b6a92ff222cc59d71426638c56<br><br>heketi-cli device add --name /dev/sde --node a55452348b59fe6312e34d9801a33e1e<br><br>heketi-cli device add --name /dev/sdf --node a55452348b59fe6312e34d9801a33e1e<br><br>heketi-cli device add --name /dev/sde --node c69166fd5d586c4354d6c77312467a6a<br><br>heketi-cli device add --name /dev/sdf --node c69166fd5d586c4354d6c77312467a6a<br></code></pre></td></tr></table></figure>
-
-
-<h1 id="11-K8s静态路由配置"><a href="#11-K8s静态路由配置" class="headerlink" title="11 K8s静态路由配置"></a>11 K8s静态路由配置</h1><p>本地Windows如果需要能够访问k8s的内部网络，需要做静态路由：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">heketi-cli device add --name /dev/sde --node 1f5074b6a92ff222cc59d71426638c56<br>heketi-cli device add --name /dev/sdf --node 1f5074b6a92ff222cc59d71426638c56<br>heketi-cli device add --name /dev/sde --node a55452348b59fe6312e34d9801a33e1e<br>heketi-cli device add --name /dev/sdf --node a55452348b59fe6312e34d9801a33e1e<br>heketi-cli device add --name /dev/sde --node c69166fd5d586c4354d6c77312467a6a<br>heketi-cli device add --name /dev/sdf --node c69166fd5d586c4354d6c77312467a6a<br></code></pre></td></tr></table></figure>
+<h1 id="11-K8s-静态路由配置"><a href="#11-K8s-静态路由配置" class="headerlink" title="11 K8s 静态路由配置"></a>11 K8s 静态路由配置</h1><p>本地 Windows 如果需要能够访问 k8s 的内部网络，需要做静态路由：</p>
 <ul>
-<li><p>测试环境</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">route add 10.44.0.0 mask 255.255.0.0 -p 192.168.88.115<br></code></pre></td></tr></table></figure></li>
-<li><p>正式环境</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">route add 10.42.0.0 mask 255.255.0.0 -p 192.168.88.133<br></code></pre></td></tr></table></figure></li>
-<li><p>研究环境</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">route add 10.64.0.0 mask 255.255.0.0 -p 192.168.88.126<br></code></pre></td></tr></table></figure>
-</li>
-<li><p>查看静态路由表</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">route <span class="hljs-built_in">print</span><br></code></pre></td></tr></table></figure></li>
+<li>测试环境<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">route add 10.44.0.0 mask 255.255.0.0 -p 192.168.88.115<br></code></pre></td></tr></table></figure></li>
+<li>正式环境<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">route add 10.42.0.0 mask 255.255.0.0 -p 192.168.88.133<br></code></pre></td></tr></table></figure></li>
+<li>研究环境<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">route add 10.64.0.0 mask 255.255.0.0 -p 192.168.88.126<br></code></pre></td></tr></table></figure></li>
+<li>查看静态路由表<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">route <span class="hljs-built_in">print</span><br></code></pre></td></tr></table></figure></li>
 </ul>
 <h1 id="12-参考文献"><a href="#12-参考文献" class="headerlink" title="12 参考文献"></a>12 参考文献</h1><ol>
 <li><a target="_blank" rel="noopener" href="https://github.com/EbookFoundation/free-programming-books/blob/main/books/free-programming-books-zh.md">free-programming-books&#x2F;books&#x2F;free-programming-books-zh.md</a></li>
@@ -1125,7 +1085,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2026年1月3日</div>
+          <div>2026年1月7日</div>
         </div>
       
       <div class="license-meta-item">
